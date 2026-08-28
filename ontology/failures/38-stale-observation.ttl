@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure38StaleObservation a eco:TypedFailure,skos:Concept; skos:prefLabel "STALE_OBSERVATION"; eco:failurePhase "admission"; eco:standingOnFailure "UNKNOWN"; eco:remediation "refresh observation before admission"; eco:retryPolicy "new-subject".
