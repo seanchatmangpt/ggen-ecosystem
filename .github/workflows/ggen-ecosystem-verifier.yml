@@ -114,3 +114,7 @@ jobs:
         run: |
           grep -q marketplace_sha .github/workflows/ggen-ecosystem-sync.yml
 
+      - name: Verify no-cargo-build
+        run: |
+          ! grep -q 'cargo build' .github/workflows/ggen-ecosystem-sync.yml
+
