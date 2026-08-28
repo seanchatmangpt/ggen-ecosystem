@@ -1,0 +1,6 @@
+{
+  "id": "artifact-path-shape",
+  "path": "/artifact",
+  "op": "regex",
+  "expected": "\\.github/workflows/[a-z0-9-]+\\.yml"
+}
