@@ -38,3 +38,7 @@ jobs:
         run: |
           test -f AGENTS.md
 
+      - name: Verify project-name
+        run: |
+          grep -q 'name = "ggen-ecosystem"' ggen.toml
+
