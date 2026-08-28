@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:Blake3ReceiptBinding a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "BLAKE3 receipt binding";skos:definition "Receipt identity binds immutable execution evidence with the ecosystem receipt hashing contract.";eco:falsifier "A receipt identity that cannot bind immutable evidence falsifies this invariant.".
