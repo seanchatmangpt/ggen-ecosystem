@@ -1,0 +1,15 @@
+ASK {
+  FILTER NOT EXISTS {
+    ?c <http://www.w3.org/2004/02/skos/core#inScheme> <https://ggen.dev/ecosystem#ExclusionScheme> .
+    FILTER(?c NOT IN (
+      <https://ggen.dev/ecosystem#NoAmbientExecution>,
+      <https://ggen.dev/ecosystem#NoUnreceiptedActuation>,
+      <https://ggen.dev/ecosystem#NoHookActuation>,
+      <https://ggen.dev/ecosystem#NoProjectionAuthority>,
+      <https://ggen.dev/ecosystem#NoInspectionAsExecution>,
+      <https://ggen.dev/ecosystem#NoWorkflowAsSuccess>,
+      <https://ggen.dev/ecosystem#NoRepoAsMount>,
+      <https://ggen.dev/ecosystem#NoNamedReceiptAsReceipt>
+    ))
+  }
+}
