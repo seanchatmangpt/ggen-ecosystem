@@ -1,0 +1,8 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+eco:EcosystemLockProjection a eco:Capability, skos:Concept ;
+  skos:inScheme eco:CapabilityScheme ;
+  skos:prefLabel "Ecosystem lock projection" ;
+  skos:broader eco:EcosystemComposition ;
+  skos:scopeNote "Reversible ecosystem capability slice. Admission does not grant ambient DO authority." .
