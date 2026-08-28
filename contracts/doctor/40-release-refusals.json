@@ -1,0 +1,1 @@
+{"expected":"typed refusals or unsupported edges","failure_standing":"PARTIAL_ALIVE","id":"release-refusals","path":"docs/RELEASE.md","predicate":"contains","remediation":"preserve typed negative evidence"}

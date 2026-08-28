@@ -1,0 +1,1 @@
+{"expected":"Only a receipted broker may perform `DO`","failure_standing":"REFUSED:AMBIENT_DO","id":"receipted-do-only","path":"AGENTS.md","predicate":"contains","remediation":"route mutation through broker"}

@@ -1,0 +1,1 @@
+{"expected":"catalog.observed_public_repositories=300","failure_standing":"UNKNOWN","id":"lock-public-count","path":"ecosystem.lock.toml","predicate":"toml_eq","remediation":"refresh exact public census"}

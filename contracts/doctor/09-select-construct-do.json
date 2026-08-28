@@ -1,0 +1,1 @@
+{"expected":"`SELECT`, `CONSTRUCT`, and `DO` are distinct","failure_standing":"REFUSED:AUTHORITY_COLLAPSE","id":"select-construct-do","path":"AGENTS.md","predicate":"contains","remediation":"restore authority separation"}

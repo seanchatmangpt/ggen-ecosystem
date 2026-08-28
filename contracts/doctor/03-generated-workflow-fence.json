@@ -1,0 +1,1 @@
+{"expected":"must not be hand-edited","failure_standing":"REFUSED:GENERATED_EDIT_SURFACE","id":"generated-workflow-fence","path":"AGENTS.md","predicate":"contains","remediation":"repair semantic producer, not generated workflow"}

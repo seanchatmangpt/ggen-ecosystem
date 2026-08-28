@@ -1,0 +1,1 @@
+{"expected":"unreceipted actuation","failure_standing":"REFUSED:UNRECEIPTED_ACTUATION","id":"dfcm-unreceipted","path":"docs/DFCM.md","predicate":"contains","remediation":"route actuation through receipt boundary"}

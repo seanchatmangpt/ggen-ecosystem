@@ -1,0 +1,1 @@
+{"expected":"BRCE actuation","failure_standing":"REFUSED:BRCE_MISSING","id":"architecture-brce","path":"docs/ARCHITECTURE.md","predicate":"contains","remediation":"restore BRCE actuation edge"}

@@ -1,0 +1,1 @@
+{"expected":"ecosystem source SHA","failure_standing":"PARTIAL_ALIVE","id":"release-source-sha","path":"docs/RELEASE.md","predicate":"contains","remediation":"record exact source SHA"}

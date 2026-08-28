@@ -1,0 +1,1 @@
+{"expected":"ontology.source=ontology.ttl","failure_standing":"BUILD_BROKEN","id":"manifest-ontology","path":"ggen.toml","predicate":"toml_eq","remediation":"restore ontology source path"}

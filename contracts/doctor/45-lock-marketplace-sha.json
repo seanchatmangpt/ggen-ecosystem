@@ -1,0 +1,1 @@
+{"expected":"ggen_marketplace.sha=4c4232515b43d40cef8288c43eacfab2c31ab485","failure_standing":"BLOCKED","id":"lock-marketplace-sha","path":"ecosystem.lock.toml","predicate":"toml_eq","remediation":"restore marketplace SHA"}

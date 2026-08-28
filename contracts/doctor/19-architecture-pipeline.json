@@ -1,0 +1,1 @@
+{"expected":"observed repository/capability graph","failure_standing":"BUILD_BROKEN","id":"architecture-pipeline","path":"docs/ARCHITECTURE.md","predicate":"contains","remediation":"restore composition pipeline"}

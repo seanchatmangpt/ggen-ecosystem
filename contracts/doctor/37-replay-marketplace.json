@@ -1,0 +1,1 @@
+{"expected":"marketplace SHA `4c4232515b43d40cef8288c43eacfab2c31ab485`","failure_standing":"BLOCKED","id":"replay-marketplace","path":"docs/REPLAY.md","predicate":"contains","remediation":"materialize exact marketplace SHA"}
