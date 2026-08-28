@@ -1,0 +1,13 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+ASK {
+  eco:repo-candidate-ggen_igniter
+    a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/ggen_igniter" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/ggen_igniter" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+}
