@@ -1,0 +1,20 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix map: <https://ggen.dev/ecosystem/mapping#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+map:PublicOntologyMapping a <http://www.w3.org/2000/01/rdf-schema#Class> .
+map:sourceTerm a rdf:Property .
+map:targetTerm a rdf:Property .
+map:projectionKind a rdf:Property .
+map:falsifier a rdf:Property .
+
+map:mapping-01-deterministicmanufacture
+    a map:PublicOntologyMapping ;
+    map:sourceTerm eco:DeterministicManufacture ;
+    map:targetTerm <http://www.w3.org/2004/02/skos/core#Concept> ;
+    map:projectionKind "class-projection" ;
+    dcterms:description "Capability instances project as SKOS Concepts for public taxonomy interoperability." ;
+    prov:wasDerivedFrom <https://github.com/seanchatmangpt/ggen-ecosystem/commit/53d53adfb617a51f5a63ede0c286ebccdf496969> ;
+    map:falsifier "Refuse this mapping if the source term disappears, the public target is semantically stronger than the source, or a projection would grant authority absent from the ecosystem ontology." .
