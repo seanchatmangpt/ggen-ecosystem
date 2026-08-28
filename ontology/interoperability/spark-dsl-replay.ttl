@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. <https://ggen.dev/ecosystem/interoperability/spark-dsl-replay> a eco:InteroperabilityContract; eco:standing "CANDIDATE"; eco:authorityCeiling "CONSTRUCT"; eco:purpose "Spark DSL expansion is replayable from exact source inputs.".

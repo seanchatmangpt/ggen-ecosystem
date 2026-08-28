@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. <https://ggen.dev/ecosystem/interoperability/igniter-compose-order> a eco:InteroperabilityContract; eco:standing "CANDIDATE"; eco:authorityCeiling "CONSTRUCT"; eco:purpose "Igniter task composition order is explicit and deterministic.".

@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. <https://ggen.dev/ecosystem/interoperability/ash-relationship-schema> a eco:InteroperabilityContract; eco:standing "CANDIDATE"; eco:authorityCeiling "CONSTRUCT"; eco:purpose "Ash relationships preserve admitted graph relation identity.".

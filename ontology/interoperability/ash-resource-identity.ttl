@@ -1,0 +1,11 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://ggen.dev/ecosystem/interoperability/ash-resource-identity> a eco:InteroperabilityContract, skos:Concept ;
+  skos:prefLabel "Ash resource identity contract" ;
+  dcterms:description "Generated Ash resources retain stable semantic identity." ;
+  eco:contractFamily "Ash" ;
+  eco:standing "CANDIDATE" ;
+  eco:authorityCeiling "CONSTRUCT" ;
+  eco:falsifier "Refuse promotion if exact-source replay or authority-boundary verification fails." .

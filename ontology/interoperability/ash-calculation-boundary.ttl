@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. <https://ggen.dev/ecosystem/interoperability/ash-calculation-boundary> a eco:InteroperabilityContract; eco:standing "CANDIDATE"; eco:authorityCeiling "CONSTRUCT"; eco:purpose "Ash calculations are derived projections, not source authority.".
