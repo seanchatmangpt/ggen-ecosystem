@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:VerifierIdentity a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Verifier Identity"; skos:definition "Identity of the verifier responsible for producing a verification observation." .

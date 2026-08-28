@@ -1,0 +1,8 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+eco:VerificationEvidenceScheme
+  a skos:ConceptScheme ;
+  skos:prefLabel "Verification Evidence Calculus" ;
+  dcterms:description "Canonical semantic vocabulary for exact-subject verification, falsification, evidence scope, learning receipts, and verification standing." .

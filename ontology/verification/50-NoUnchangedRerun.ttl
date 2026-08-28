@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:NoUnchangedRerun a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "No Unchanged Rerun"; skos:definition "A guard forbidding unchanged reruns of the same failed verifier without a new hypothesis, changed subject, or changed environment." .

@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:FalsifierIdentity a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Falsifier Identity"; skos:definition "Identity of the falsifier capable of disproving a claimed invariant." .

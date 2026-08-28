@@ -1,0 +1,3 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+eco:ExactSubjectVerification a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Exact Subject Verification"; skos:definition "Verification evidence bound to the exact admitted repository, ref, commit, tree, and subject under test." .

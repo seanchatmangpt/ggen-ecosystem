@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:EvidenceStanding a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Evidence Standing"; skos:definition "A standing assigned to evidence without exceeding the observed verification scope." .

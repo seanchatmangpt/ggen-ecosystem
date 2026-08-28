@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:PartialVerification a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Partial Verification"; skos:definition "Verification standing for bounded evidence that does not satisfy the full exact-subject execution crown." .

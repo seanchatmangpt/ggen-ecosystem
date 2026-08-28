@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:DependencyDiscovery a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Dependency Discovery"; skos:definition "A dependency newly established by observed execution or validation evidence." .

@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:BranchReachabilityEvidence a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Branch Reachability Evidence"; skos:definition "Evidence that an exact commit is reachable from a named remote branch." .

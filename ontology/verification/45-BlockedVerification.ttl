@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:BlockedVerification a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Blocked Verification"; skos:definition "Verification standing for a potentially valid edge blocked by transport, authority, environment, or dependency constraints." .
