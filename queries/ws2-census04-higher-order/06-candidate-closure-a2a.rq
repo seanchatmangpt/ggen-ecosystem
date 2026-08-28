@@ -1,0 +1,4 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { eco:repo-candidate-A2A a eco:RepositoryCandidate, prov:Entity ; dcterms:identifier "seanchatmangpt/A2A" ; eco:sourceUrl "https://github.com/seanchatmangpt/A2A" ; eco:censusStanding "CANDIDATE" ; eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ; eco:publicProjection true . }
