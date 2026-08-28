@@ -1,0 +1,2 @@
+# WS4 invariant 07: reusable input exposes exact GGen release
+ASK { <https://ggen.io/ecosystem/github-sync#workflow> <http://seanchatmangpt.github.io/packs/github-actions#onBlock> ?v . FILTER(CONTAINS(STR(?v), "ggen_release:")) }
