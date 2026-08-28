@@ -5,7 +5,7 @@ name = "ggen-ecosystem"
 source = "ontology.ttl"
 
 [packs]
-github-actions = { git = "https://github.com/seanchatmangpt/ggen-marketplace.git", version = "4c4232515b43d40cef8288c43eacfab2c31ab485", subdir = "packs/github-actions-pack" }
+github-actions = { git = "https://github.com/seanchatmangpt/ggen-marketplace.git", version = "c779aec20d9c93727c7ad4464f1dd52ac8e066e4", subdir = "packs/github-actions-pack" }
 
 [templates]
 dir = "templates"

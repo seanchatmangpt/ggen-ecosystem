@@ -6,17 +6,17 @@ on:
         description: Exact ggen release tag
         required: false
         type: string
-        default: v26.8.27
+        default: v26.8.28
       ggen_asset_sha256:
         description: SHA256 of the Linux release asset
         required: false
         type: string
-        default: ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035
+        default: ccb9fe78ef0c84d8b240b45beb6e73f47e2c930d5db3efcf9a0e58dfe071d313
       marketplace_sha:
         description: Exact ggen marketplace commit required by every pack
         required: false
         type: string
-        default: 4c4232515b43d40cef8288c43eacfab2c31ab485
+        default: c779aec20d9c93727c7ad4464f1dd52ac8e066e4
       working_directory:
         description: Repository relative directory containing ggen.toml
         required: false
@@ -38,17 +38,17 @@ on:
         description: Exact ggen release tag
         required: true
         type: string
-        default: v26.8.27
+        default: v26.8.28
       ggen_asset_sha256:
         description: SHA256 of the Linux release asset
         required: true
         type: string
-        default: ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035
+        default: ccb9fe78ef0c84d8b240b45beb6e73f47e2c930d5db3efcf9a0e58dfe071d313
       marketplace_sha:
         description: Exact ggen marketplace commit required by every pack
         required: true
         type: string
-        default: 4c4232515b43d40cef8288c43eacfab2c31ab485
+        default: c779aec20d9c93727c7ad4464f1dd52ac8e066e4
       working_directory:
         description: Repository relative directory containing ggen.toml
         required: true
@@ -168,7 +168,7 @@ jobs:
           install -m 0755 "${candidates[0]}" "$bin_dir/ggen"
           binary_sha256="$(sha256sum "$bin_dir/ggen" | awk '{print $1}')"
           echo "$bin_dir" >> "$GITHUB_PATH"
-          echo "binary_sha256=$binary_sha256" >> "$GITHUB_OUTPUT"
+          echo "binary_sha256=$binary_sha256" >> "$GITHUB_OUTPUT
 
       - name: Manufacture with ggen sync run
         id: sync
@@ -188,7 +188,7 @@ jobs:
           exit_code=$?
           set -e
           echo "exit_code=$exit_code" >> "$GITHUB_OUTPUT"
-          echo "$exit_code" > "$RUNNER_TEMP/ggen-ecosystem-evidence/sync-exit-code.txt"
+          echo "$exit_code" > "$RUNNER_TEMP/ggen-ecosystem-evidence/sync-exit-code.txt
 
       - name: Bind generated consequence into replay receipt
         if: always()
@@ -239,7 +239,7 @@ jobs:
           }
           (root / 'ecosystem-sync-receipt.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + chr(10))
           PY
-          sha256sum "$tmp/ggen-sync.patch" "$tmp/ecosystem-sync-receipt.json" "$tmp/packs.json" > "$tmp/SHA256SUMS"
+          sha256sum "$tmp/ggen-sync.patch" "$tmp/ecosystem-sync-receipt.json" "$tmp/packs.json" > "$tmp/SHA256SUMS
 
       - name: Upload deterministic replay evidence
         if: always()

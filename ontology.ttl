@@ -16,17 +16,17 @@ ex:workflow
       description: Exact ggen release tag
       required: false
       type: string
-      default: v26.8.27
+      default: v26.8.28
     ggen_asset_sha256:
       description: SHA256 of the Linux release asset
       required: false
       type: string
-      default: ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035
+      default: ccb9fe78ef0c84d8b240b45beb6e73f47e2c930d5db3efcf9a0e58dfe071d313
     marketplace_sha:
       description: Exact ggen marketplace commit required by every pack
       required: false
       type: string
-      default: 4c4232515b43d40cef8288c43eacfab2c31ab485
+      default: c779aec20d9c93727c7ad4464f1dd52ac8e066e4
     working_directory:
       description: Repository relative directory containing ggen.toml
       required: false
@@ -48,17 +48,17 @@ workflow_dispatch:
       description: Exact ggen release tag
       required: true
       type: string
-      default: v26.8.27
+      default: v26.8.28
     ggen_asset_sha256:
       description: SHA256 of the Linux release asset
       required: true
       type: string
-      default: ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035
+      default: ccb9fe78ef0c84d8b240b45beb6e73f47e2c930d5db3efcf9a0e58dfe071d313
     marketplace_sha:
       description: Exact ggen marketplace commit required by every pack
       required: true
       type: string
-      default: 4c4232515b43d40cef8288c43eacfab2c31ab485
+      default: c779aec20d9c93727c7ad4464f1dd52ac8e066e4
     working_directory:
       description: Repository relative directory containing ggen.toml
       required: true
