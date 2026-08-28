@@ -1,0 +1,4 @@
+ASK {
+  { SELECT (COUNT(?c) AS ?n) WHERE { ?c <http://www.w3.org/2004/02/skos/core#inScheme> <https://ggen.dev/ecosystem#ExclusionScheme> . } }
+  FILTER(?n = 8)
+}
