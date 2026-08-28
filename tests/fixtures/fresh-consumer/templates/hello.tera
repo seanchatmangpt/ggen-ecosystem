@@ -1,0 +1,4 @@
+// PR-010 fresh-consumer crown test output
+{% for row in sparql_results %}
+// shape={{ row.shape }} targetClass={{ row.targetClass }} prop={{ row.propPath }}
+{% endfor %}

@@ -7,7 +7,7 @@ This repository is the canonical composition root of the ggen ecosystem. Ontolog
 - Prefer existing `ggen-marketplace` packs; do not create a new pack here unless reusable knowledge cannot live in an existing one.
 - Project observations and admission data belong here; reusable executable knowledge belongs in `ggen-marketplace`.
 - Generated outputs are never editing surfaces.
-- The current proven producer is GGen `v26.8.27` (`df1e138a64c80e41090cff7c84fb62d77e03b734`) with marketplace `4c4232515b43d40cef8288c43eacfab2c31ab485`; see `ecosystem.lock.toml`.
+- The real GGen source and pack marketplace are checked out as git submodules of this repo (`vendor/ggen`, `vendor/ggen-marketplace` — see `.gitmodules`), not merely referenced by pinned commit SHA. `Dockerfile` builds a composed image (real `ggen` binary from `vendor/ggen` + the real `vendor/ggen-marketplace/packs/` tree) published by `.github/workflows/ggen-ecosystem-container.yml`; `.github/workflows/ggen-ecosystem-sync.yml` runs `ggen sync run` inside that pinned container (`container: ghcr.io/seanchatmangpt/ggen-ecosystem:<tag>`, default `v26.8.28`) rather than downloading a binary. `ggen-marketplace` also exposes a reusable composite action (`packs/github-actions-pack/examples/consume-github-actions-pack/.github/actions/use-ggen-ecosystem/action.yml`) that runs `docker run ... ggen sync run` against the same image for consumer repos. See `ecosystem.lock.toml` for the exact pinned producer identities.
 
 ## DfCM
 Preserve -> Fence -> Calculus -> Exclusions -> Falsifier -> Extension -> Operationalization.

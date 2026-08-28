@@ -1,0 +1,13 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://example.org/fresh-consumer#> .
+
+# Minimal SHACL shape for the PR-010 fresh-consumer fixture. Models the
+# "independent external consumer" case: this file has no dependency on
+# ggen-ecosystem's own vendor/ submodules -- it is what a brand-new
+# consumer repo would author from scratch after installing the
+# ggen-ecosystem container/action.
+ex:ThingShape a sh:NodeShape ;
+    sh:targetClass ex:Thing ;
+    sh:property
+        [ sh:path ex:name ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .

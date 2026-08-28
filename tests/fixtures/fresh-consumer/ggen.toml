@@ -1,0 +1,32 @@
+# PR-010 fresh-consumer fixture manifest.
+#
+# Models what a brand-new, independent consumer repo would actually author:
+# no [ontology].imports of vendor/ggen or vendor/ggen-marketplace (this repo's
+# own submodules -- a real external consumer has neither checked out). The
+# pack contract this fixture exercises is delivered at the CONTAINER layer,
+# not via a local path pack source: the operator runs this fixture through
+# the ggen-ecosystem container image (built from vendor/ggen +
+# vendor/ggen-marketplace/packs/ inside that image, per ecosystem.lock.toml's
+# [container] section) or the composite GitHub Action at
+# vendor/ggen-marketplace/packs/github-actions-pack/examples/consume-github-actions-pack/.github/actions/use-ggen-ecosystem
+# -- see README.md in this directory for the exact invocation.
+[project]
+name = "fresh-consumer"
+version = "0.1.0"
+description = "PR-010 fresh-consumer crown-test fixture: minimal independent consumer state"
+authors = ["fresh-consumer"]
+license = "MIT"
+
+[ontology]
+source = "ontology.ttl"
+standard_only = false
+
+[generation]
+output_dir = "."
+
+[[generation.rules]]
+name = "hello"
+query = { file = "queries/extract.rq" }
+template = { file = "templates/hello.tera" }
+output_file = "out/hello.rs"
+mode = "Overwrite"

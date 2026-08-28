@@ -1,0 +1,115 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## What this repository is
+
+`ggen-ecosystem` (`/Users/sac/ggen-ecosystem`, this repo) is a **semantic control-plane root** among a set of independent sibling repositories on this machine — it is a standalone repo with its own GitHub origin (`github.com/seanchatmangpt/ggen-ecosystem`), sitting as a peer directory under `/Users/sac/` alongside the real ggen source and the real pack marketplace, not a parent or submodule relationship to either. It owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing as RDF/TTL ontology + SHACL admission + a ggen manifest — without absorbing the source of the repos it describes.
+
+There is no application code here in the conventional sense (no build/lint/test commands to run) — the repository's "code" is RDF ontology, SHACL shapes, SPARQL queries, TOML manifests/locks, and a generated GitHub Actions workflow. For the actual `ggen sync` run invocation contract (cwd-only `ggen.toml`, no `--manifest` flag, `ORDER BY` required under `strict_mode`), see the `run-ggen` skill (`~/.claude/skills/run-ggen/SKILL.md`) rather than re-deriving it here.
+
+### Sibling repos on this machine (real, observed — not aspirational)
+
+- **`/Users/sac/ggen`** — the actual GGen CLI source repo. Cargo package `ggen`, 15-member workspace under `crates/` (ggen-config, ggen-cli-lib, ggen-engine, etc.). `origin` remote = `https://github.com/seanchatmangpt/ggen.git`; a second `upstream` remote points to `github.com/rust-starter/rust-starter.git` (this repo was forked/scaffolded from rust-starter). It is also vendored into this repo as the `vendor/ggen` git submodule (`.gitmodules`), which `Dockerfile` builds from directly (`COPY vendor/ggen/ /src/`, `cargo build --release --locked -p ggen-cli --bin ggen`) to produce the composed `ggen-ecosystem` container image. Treat any version/branch claim about `~/ggen` as `UNKNOWN` until re-checked live — do not assume it matches this note.
+- **`/Users/sac/ggen-marketplace`** — the actual pack marketplace, `packs/` dir with 250+ entries (e.g. `affidavit-pack`, `dfcm-pack`, the `clap-noun-verb-*` family). `origin` = its own GitHub remote. It is also vendored into this repo as the `vendor/ggen-marketplace` git submodule (`.gitmodules`); `Dockerfile` copies its `packs/` tree straight into the composed image (`COPY vendor/ggen-marketplace/packs/ /opt/ggen-marketplace/packs/`), and `packs/github-actions-pack` ships a reusable composite action, `examples/consume-github-actions-pack/.github/actions/use-ggen-ecosystem/action.yml`, that consumer repos call to run `docker run ... ggen sync run` against the published `ghcr.io/seanchatmangpt/ggen-ecosystem` image instead of invoking a local `ggen` binary. See `ecosystem.lock.toml` for the exact pinned producer identities (marketplace SHA, container tag).
+- **Other consumer repos with their own `ggen.toml`** (not exhaustive — sampled, not enumerated): `~/gymact`, `~/praxis`, `~/clap-noun-verb`, `~/chatman-ecosystem`, `~/xaas`. Each pulls packs from `~/ggen-marketplace` (by relative or absolute local path) or vendors an ontology copy; this repo has no dependency edge on them, they are catalog/profile observations only.
+- **Adjacent non-canonical repos** (present on disk, distinct standing): `~/ggen-legacy` and `~/ggen-create` are active (real git history, recent commits); `~/ggen-broker` and `~/ggen-core-v2` are non-git snapshots with no commit history since late June — `ABANDONED`/superseded by concepts now implemented in `~/ggen-legacy`, not part of the live ecosystem.
+
+Ad hoc validation commands (not wired into any CI job, run manually when needed):
+
+```bash
+# Validate ontology.ttl against admission/shapes.ttl
+pyshacl -s admission/shapes.ttl -d ontology.ttl -i rdfs -f human
+
+# Run a SPARQL query from queries/*.rq against the graph (no arq/riot on this
+# machine; use rdflib if installed, or run it through a ggen manifest instead)
+python3 -c "import rdflib; g=rdflib.Graph(); g.parse('ontology.ttl', format='turtle'); [print(r) for r in g.query(open('queries/falsifiers.rq').read())]"
+```
+
+## Manufacturing pipeline (the core mental model)
+
+```
+vendor/ggen (submodule)         vendor/ggen-marketplace (submodule)
+        v                                v
+              Dockerfile
+        (builds ggen binary + copies packs/ tree)
+                    v
+ghcr.io/seanchatmangpt/ggen-ecosystem:<tag>   (published by ggen-ecosystem-container.yml)
+                    v
+ggen.toml + ontology.ttl  --------->  ggen sync run  (runs inside that pinned container)
+                                              v
+.github/workflows/ggen-ecosystem-sync.yml   (GENERATED — never hand-edit)
+```
+
+- `ggen.toml` — the manifest: project name, ontology source (`ontology.ttl`), pinned marketplace pack, template dir.
+- `ggen.lock` — generated by `ggen sync`; pins the pack's exact commit + BLAKE3 content hash. Do not hand-edit.
+- `ecosystem.lock.toml` — the ecosystem-level lock: exact GGen release/commit/asset SHA-256, marketplace SHA, manufacturing file paths, and GitHub catalog census counts. This is the single place exact producer identities are recorded.
+- `vendor/ggen`, `vendor/ggen-marketplace` — real git submodules (see `.gitmodules`) vendoring the actual GGen source and pack marketplace into this repo, so the container build has a real tree to compile/copy from rather than fetching a released binary.
+- `Dockerfile` — builds the composed `ggen-ecosystem` image: a builder stage compiles a real `ggen` binary from `vendor/ggen` (pinned to `vendor/ggen/rust-toolchain.toml`'s nightly), and the final stage copies that binary plus `vendor/ggen-marketplace/packs/` into a `debian:bookworm-slim` runtime image. Requires the repo checked out with submodules (`git submodule update --init --recursive` or `actions/checkout` with `submodules: recursive`).
+- `.github/workflows/ggen-ecosystem-container.yml` — builds and publishes that composed image to `ghcr.io/seanchatmangpt/ggen-ecosystem` on `workflow_dispatch` or a `v*.*.*` tag push.
+- `.github/workflows/ggen-ecosystem-sync.yml` — generated by GGen through `ggen sync run`. It now runs its steps `container:`-scoped inside the pinned `ghcr.io/seanchatmangpt/ggen-ecosystem:<ggen_container_tag>` image (default `v26.8.28`) rather than installing a `ggen` binary directly on the runner. If its behavior is wrong, fix the ontology/manifest/pack that produced it and regenerate — never hand-edit the workflow file itself.
+- `ggen-marketplace`'s `packs/github-actions-pack/examples/consume-github-actions-pack/.github/actions/use-ggen-ecosystem/action.yml` — a reusable composite action other consumer repos call to run `docker run ghcr.io/seanchatmangpt/ggen-ecosystem:<tag> ggen sync run` against their own `ggen.toml`, without installing `ggen` locally.
+- `generated/` — reserved for other manufactured projections (repository matrices, capability matrices, profile closures, dependency graphs, verifier reports). Same rule: repair the source, not the projection.
+- To run the manufacturing rail: use the real `ggen` CLI (`run-ggen` skill) against `ggen.toml` directly, run it inside the composed container (`docker run ghcr.io/seanchatmangpt/ggen-ecosystem:<tag> ggen sync run`), or trigger `.github/workflows/ggen-ecosystem-sync.yml` via `workflow_dispatch`/`workflow_call`.
+
+## Ontology and semantic layout
+
+- `ontology.ttl` — root ontology entry point.
+- `ontology/` — split ontology modules: `authority.ttl`, `capabilities.ttl`, `dfcm-design-space.ttl`, `github-catalog.ttl`, `instrument-gain.ttl`, `packs.ttl`, `profiles.ttl`, `repositories.ttl`, `repository-census.ttl` (+ sharded `repository-census-0{1..4}.ttl`), `standing.ttl`.
+- `admission/` — SHACL shapes (`shapes.ttl`) and admission law: `policies.ttl`, `exclusions.ttl`, `privacy.ttl`. This is the gate that constrains what enters the graph — `UNKNOWN` is never admitted merely because it's plausible.
+- `profiles/` — five semantic profiles, each a dependency-closed candidate set: `cloud-session.ttl`, `platform-engineering.ttl`, `process-intelligence.ttl`, `autofde.ttl`, `everything.ttl` (deliberately kept as `CANDIDATE`, never pre-authorized).
+- `queries/` — SPARQL over the graph: `candidate-repositories.rq`, `falsifiers.rq`, `github-catalog-scope.rq`, `premature-admission.rq`, `profile-closure.rq`, `profile-reference-closure.rq`, `publication-fence.rq`, `repository-matrix.rq`. `falsifiers.rq` is the canonical way to check whether a crown claim (e.g. `ALIVE`) can be falsified before trusting it.
+- `planning/` — PPDDL domain/problem/plan artifacts and their solution receipts (DfCM reversible planning over the design space, e.g. `instrument-gain-*`).
+- `receipts/` — committed ecosystem-level evidence (bootstrap manufacturing receipt, GitHub census receipt). A file named `receipt` is evidence only if its matching verifier accepts it — see `docs/STANDING.md`.
+- `templates/` — ggen templates directory referenced by `ggen.toml`.
+
+## Authority boundary (do not blur these)
+
+```
+SELECT / semantic inputs -> ontology and profile/admission graphs
+CONSTRUCT                -> ggen sync run / deterministic projections
+EVIDENCE                 -> locks + receipts + replay artifacts
+DO                       -> external authorized Git/GitHub merge path
+```
+
+No graph, planner, hook, generated projection, or workflow receives ambient `DO` (irreversible-mutation) authority. Only a receipted broker may perform `DO`. The generated CI workflow runs with `permissions: contents: read` only — mutation authority stays outside it. Hooks emit intents only, never actuate.
+
+Note: `EVIDENCE` is this file's convenience label for the locks/receipts/replay-artifact category — it is not named as a peer authority tier in `AGENTS.md` (`SELECT, CONSTRUCT, and DO are distinct`) or `docs/ARCHITECTURE.md` (evidence is handled under a separate "Receipt/replay" section, not the "Authority" section). Treat `SELECT`/`CONSTRUCT`/`DO` as the three authority tiers; `EVIDENCE` is an artifact category, not a fourth authority.
+
+## Standing vocabulary — use only these terms
+
+`UNKNOWN`, `PARTIAL_ALIVE`, `ALIVE`, `BLOCKED`, `BUILD_BROKEN`, `UNSUPPORTED`, and typed `REFUSED:<type>`. Never invent alternative status words. Key distinctions (see `docs/STANDING.md`):
+
+- Inspection is not execution.
+- A green/generated workflow is not proof it ran on the exact commit being discussed — evidence is scoped to the exact commit and exact jobs that ran.
+- A named receipt is not a verified receipt.
+- `ALIVE` may only be crowned after: exact lock identities are materialized → `ggen sync run` executes → generated verifiers execute → `ggen receipt verify` succeeds → a second sync proves deterministic replay/idempotence → the exact subject SHA is bound into the receipt chain. (Exact `ggen receipt verify` CLI flags are not yet documented anywhere in this repo — check `ggen receipt verify --help` against the installed binary before relying on a remembered invocation.)
+
+## DfCM operating model (why files aren't deleted casually)
+
+The optimization target is **maximum lawful reversible option capital**, not minimalism. Concretely (`docs/DFCM.md`, `AGENTS.md`):
+
+- **Preserve**: keep multiple lawful transports/pack closures/execution modes/profiles available until evidence forces selection.
+- **Fence**: never remove a repository, pack, profile, compatibility edge, or transport just because a newer path exists — establish semantic equivalence first, or record the intentional loss.
+- A failed edge in the design space is topology, not graph failure — it stays recorded as a candidate rather than being deleted.
+- New repositories/packs enter as reversible graph facts or `CANDIDATE`s first; they don't require centralizing their source into this repo.
+
+## GitHub catalog scope
+
+The maximal repository scope is **every public repository owned by `seanchatmangpt`** (`owner=seanchatmangpt AND visibility=public`, see `ontology/github-catalog.ttl`). The `repository-census-*.ttl` shards are a materialized high-signal subset for profile reasoning — not the boundary of the `everything` profile. Catalog membership is observation only: it grants no dependency edge, compatibility claim, execution status, or mutation authority by itself. Private repository identities must never be projected into this public repository.
+
+## Repository workflow conventions
+
+- Resolve `main` to an exact SHA before branching; never silently move the base.
+- Use a purpose branch per change; verify the exact head before merging.
+- Merge only an inspected, authorized head.
+- Preserve typed failures (`BLOCKED`, `BUILD_BROKEN`, `REFUSED:<type>`, etc.) rather than smoothing them over into a false `ALIVE`.
+- Prefer existing `ggen-marketplace` packs over creating a new pack here; reusable executable knowledge belongs in `ggen-marketplace`, project-specific observation/admission data belongs here.
+
+## Key docs (read before deep changes)
+
+- `docs/ARCHITECTURE.md` — root contract, objects/morphisms, admission/closure/authority/actuation/receipt/standing pipeline.
+- `docs/DFCM.md` — the DfCM design-space model summarized above.
+- `docs/STANDING.md` — full standing vocabulary and evidence-dimension rules.
+- `docs/ADMISSION.md`, `docs/PROFILES.md`, `docs/GITHUB-CATALOG.md`, `docs/REPOSITORY-CENSUS.md`, `docs/TRANSPORT.md`, `docs/REPLAY.md`, `docs/RELEASE.md`, `docs/EXTENSION.md` — subsystem-specific detail.
+- `AGENTS.md` — condensed operating doctrine (authority, manufacture, DfCM, execution, standing vocabulary, GitHub catalog, repo workflow, generated directories) — treat as binding alongside this file.

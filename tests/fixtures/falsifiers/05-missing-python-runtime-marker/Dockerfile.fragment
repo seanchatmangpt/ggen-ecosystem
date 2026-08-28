@@ -1,0 +1,5 @@
+# Illustrative only -- NOT part of the real Dockerfile, NOT built.
+# Shows the failure mode: final stage COPY omits the python3 interpreter entirely.
+FROM scratch AS final
+COPY --from=builder /usr/local/bin/ggen /usr/local/bin/ggen
+# (missing: COPY --from=builder /usr/bin/python3 /usr/bin/python3, or apt-get install python3)

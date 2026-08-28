@@ -35,7 +35,7 @@ ggen_marketplace_commit = "c779aec20d9c93727c7ad4464f1dd52ac8e066e4"
 # step in the generated sync workflow. digest is UNKNOWN until a real `docker build`+push runs.
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
 tag = "UNKNOWN-TODO-not-yet-built"
-digest = "UNKNOWN-TODO-not-yet-built"
+digest = "not-a-real-digest-12345"
 
 [manufacturing]
 manifest = "ggen.toml"

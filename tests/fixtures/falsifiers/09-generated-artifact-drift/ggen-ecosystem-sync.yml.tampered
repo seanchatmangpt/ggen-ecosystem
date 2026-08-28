@@ -151,7 +151,7 @@ jobs:
           exit_code=$?
           set -e
           echo "exit_code=$exit_code" >> "$GITHUB_OUTPUT"
-          echo "$exit_code" > "$RUNNER_TEMP/ggen-ecosystem-evidence/sync-exit-code.txt"
+          echo "$exit_code" > "$RUNNER_TEMP/ggen-ecosystem-evidence/sync-exit-code.txt
 
       - name: Bind generated consequence into replay receipt
         if: always()
@@ -199,7 +199,7 @@ jobs:
           }
           (root / 'ecosystem-sync-receipt.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + chr(10))
           PY
-          sha256sum "$tmp/ggen-sync.patch" "$tmp/ecosystem-sync-receipt.json" "$tmp/packs.json" > "$tmp/SHA256SUMS"
+          sha256sum "$tmp/ggen-sync.patch" "$tmp/ecosystem-sync-receipt.json" "$tmp/packs.json" > "$tmp/SHA256SUMS
 
       - name: Upload deterministic replay evidence
         if: always()
@@ -220,3 +220,4 @@ jobs:
             exit 1
           fi
 
+# tampered drift marker Fri Aug 28 16:14:04 PDT 2026

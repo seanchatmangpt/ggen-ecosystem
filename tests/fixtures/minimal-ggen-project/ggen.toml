@@ -1,0 +1,20 @@
+[project]
+name = "ggen-smoke"
+version = "1.0.0"
+description = "container smoke test"
+authors = ["smoke"]
+license = "MIT"
+
+[ontology]
+source = "ontology/data.ttl"
+standard_only = false
+
+[generation]
+output_dir = "."
+
+[[generation.rules]]
+name = "hello"
+query = { file = "queries/extract.rq" }
+template = { file = "templates/hello.tera" }
+output_file = "out/hello.rs"
+mode = "Overwrite"

@@ -1,4 +1,7 @@
 .ggen-v2/
+.ggen/
 target/
+vendor/*/target/
+tests/.scratch-*/
 .DS_Store
 *.tmp

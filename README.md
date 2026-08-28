@@ -2,35 +2,49 @@
 
 Canonical governed composition root for the ggen ecosystem.
 
-This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories.
+This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
 
 ## Manufacturing contract
 
-The repository is a first-class GGen consumer:
+The repository is a first-class GGen consumer. `ggen` itself is consumed by building it from the real `vendor/ggen` submodule into a composed container (bundled with the real `vendor/ggen-marketplace/packs/`), published to GHCR — not by downloading a release binary tarball:
 
 ```text
-ggen.toml + ontology.ttl
-        +
-ggen-marketplace@4c4232515b43d40cef8288c43eacfab2c31ab485
-        |
-        v
-    ggen sync run
-        |
-        v
-.github/workflows/ggen-ecosystem-sync.yml
+vendor/ggen (submodule)        vendor/ggen-marketplace (submodule)
+        |                              |
+        v                              v
+      Dockerfile  ------------------->  ghcr.io/seanchatmangpt/ggen-ecosystem:<tag>
+                                              |
+ggen.toml + ontology.ttl                     |
+        |                                    v
+        +----------------------->  ggen sync run  (runs INSIDE that container)
+                                              |
+                                              v
+                        .github/workflows/ggen-ecosystem-sync.yml
+                        .github/workflows/ggen-ecosystem-container.yml
 ```
 
-The workflow is a generated consequence. Edit its semantic inputs and regenerate with `ggen sync run`; do not hand-edit the generated workflow.
+Both generated workflows are a generated consequence of `ontology.ttl`. Edit its semantic inputs and regenerate with `ggen sync run`; do not hand-edit either generated workflow. A reusable composite Action (`use-ggen-ecosystem`, in `ggen-marketplace/packs/github-actions-pack/examples/consume-github-actions-pack/`) lets other repos run `ggen sync run` inside the same pinned container without a curl/binary step of their own.
+
+## Local development
+
+This repo vendors `ggen` and `ggen-marketplace` as real git submodules. A plain `git clone` does **not** populate them -- clone with `git clone --recurse-submodules <url>` to get everything in one step, or if you already have a plain clone, run `git submodule update --init --recursive` (also exposed as `make submodules`) before doing anything else.
+
+A `Makefile` at the repo root wraps the common contributor workflows:
+
+- `make submodules` -- `git submodule update --init --recursive`; populates/updates `vendor/ggen` and `vendor/ggen-marketplace`.
+- `make image` -- `docker build -t ggen-ecosystem:local .`; builds the composed container from the Dockerfile and the vendored submodules.
+- `make sync` -- removes any stale `ggen.lock`, then runs `ggen sync run --dry-run` followed by a real `ggen sync run` against `ontology.ttl`/`ggen.toml`.
+- `make doctor` -- runs `scripts/doctor.sh` if present; otherwise prints a placeholder note (no such script exists in this repo yet).
+- `make verify` -- chains all of the above in order: `submodules` -> `image` -> `sync` -> `doctor`.
 
 ### Exact producer pins
 
-- GGen release: `v26.8.27`
-- GGen source commit behind that tag: `df1e138a64c80e41090cff7c84fb62d77e03b734`
-- Linux x86_64 release asset SHA-256: `ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035`
-- GGen executable SHA-256 observed during manufacture: `01d0f5e624d12eeda503db4fb4b00618472bd775ee4850c9a2f850651db76680`
-- Marketplace commit: `4c4232515b43d40cef8288c43eacfab2c31ab485`
-- Marketplace pack: `packs/github-actions-pack`
-- Pack content BLAKE3: `1ce72f06a115995a37b9416013d607d4898f3cd707819681a76f663d69c99da8`
+- GGen release: `v26.8.28` (real published GitHub release, verified via `gh release list`/`gh release view`)
+- GGen source commit: `c61ee99359c9dbc7b3cb71687976932a3e737ed4` (resolved via `git ls-remote --tags`; matches the `vendor/ggen` submodule pin)
+- GGen aarch64-apple-darwin release asset SHA-256 (verified via `gh release download` + `shasum -a 256`, historical — no longer the consumption path): `82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42`
+- Marketplace commit: `c779aec20d9c93727c7ad4464f1dd52ac8e066e4` (matches the `vendor/ggen-marketplace` submodule pin)
+- Marketplace pack: `packs/github-actions-pack` (sourced via local submodule `path =`, not `git =`/`version =`)
+- Composed container: `ghcr.io/seanchatmangpt/ggen-ecosystem` — tag/digest `UNKNOWN-TODO` until a real `docker build`+push runs (see `.github/workflows/ggen-ecosystem-container.yml`)
 
 ## Maximum ecosystem graph
 
@@ -56,7 +70,7 @@ Five semantic profiles are defined: `cloud-session`, `platform-engineering`, `pr
 
 ## GitHub-native cloud bootstrap
 
-`.github/workflows/ggen-ecosystem-sync.yml` is both a reusable `workflow_call` target and a manual `workflow_dispatch` rail. It checks out the exact candidate, admits exact producer/pack identities, installs the checksum-pinned GGen release, executes `ggen sync run`, and captures deterministic replay evidence while keeping repository mutation authority outside the workflow (`contents: read` only).
+`.github/workflows/ggen-ecosystem-sync.yml` is both a reusable `workflow_call` target and a manual `workflow_dispatch` rail. It checks out the exact candidate (with submodules), admits exact producer/pack identities, runs its `construct` job **inside** the pinned `ghcr.io/seanchatmangpt/ggen-ecosystem` container, executes `ggen sync run`, and captures deterministic replay evidence while keeping repository mutation authority outside the workflow (`contents: read` only). `.github/workflows/ggen-ecosystem-container.yml` builds and publishes that container from `vendor/ggen` + `vendor/ggen-marketplace` on tag push or manual dispatch.
 
 ## Provenance
 

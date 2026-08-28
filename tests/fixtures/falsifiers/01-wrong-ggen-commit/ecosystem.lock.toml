@@ -25,7 +25,7 @@ repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 # Real git submodules added 2026-08-28 (`git submodule add`), replacing the URL+pinned-SHA-in-TOML
 # only approach for these two sibling repos. Verify with `git submodule status`.
 ggen_path = "vendor/ggen"
-ggen_commit = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
+ggen_commit = "0000000000000000000000000000000000dead"
 ggen_marketplace_path = "vendor/ggen-marketplace"
 ggen_marketplace_commit = "c779aec20d9c93727c7ad4464f1dd52ac8e066e4"
 

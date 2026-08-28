@@ -1,0 +1,13 @@
+.git
+vendor/ggen/.git
+vendor/ggen/target
+vendor/ggen-marketplace/.git
+vendor/ggen-marketplace/.ggen-v2
+docs
+receipts
+planning
+queries
+admission
+profiles
+ontology
+.claude

@@ -1,0 +1,7 @@
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+SELECT ?shape ?targetClass ?propPath
+WHERE {
+  ?shape a sh:NodeShape ; sh:targetClass ?targetClass ; sh:property ?prop .
+  ?prop sh:path ?propPath .
+}
+ORDER BY ?shape ?propPath
