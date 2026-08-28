@@ -1,0 +1,30 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+# Falsifier: a profile points at a target that is not typed in the corresponding ontology.
+SELECT ?profile ?edge ?target
+WHERE {
+  ?profile a eco:Profile .
+  {
+    ?profile eco:includesRepository ?target .
+    BIND(eco:includesRepository AS ?edge)
+    FILTER NOT EXISTS { ?target a eco:Repository }
+  }
+  UNION
+  {
+    ?profile eco:includesCandidateRepository ?target .
+    BIND(eco:includesCandidateRepository AS ?edge)
+    FILTER NOT EXISTS { ?target a eco:RepositoryCandidate }
+  }
+  UNION
+  {
+    ?profile eco:includesPack ?target .
+    BIND(eco:includesPack AS ?edge)
+    FILTER NOT EXISTS { ?target a eco:Pack }
+  }
+  UNION
+  {
+    ?profile eco:includesCapability ?target .
+    BIND(eco:includesCapability AS ?edge)
+    FILTER NOT EXISTS { ?target a eco:Capability }
+  }
+}
+ORDER BY ?profile ?edge ?target

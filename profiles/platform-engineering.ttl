@@ -1,0 +1,7 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+eco:platform-engineering-observation a prov:Entity ;
+    dcterms:title "platform-engineering profile projection" ;
+    eco:selectsProfile eco:platform-engineering .

@@ -1,0 +1,10 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+SELECT ?catalog ?owner ?predicate ?standing
+WHERE {
+  ?catalog a dcat:Catalog ;
+           eco:ownerLogin ?owner ;
+           eco:repositoryPredicate ?predicate ;
+           eco:catalogStanding ?standing .
+}
+ORDER BY ?catalog

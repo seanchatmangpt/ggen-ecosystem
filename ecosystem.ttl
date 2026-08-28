@@ -1,0 +1,28 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+eco:ggen-ecosystem
+    a dcat:Dataset, prov:Entity ;
+    dcterms:title "ggen ecosystem composition graph" ;
+    dcterms:identifier "seanchatmangpt/ggen-ecosystem" ;
+    dcterms:hasVersion "26.8.27" ;
+    dcterms:description "Canonical governed composition, closure, qualification and transport graph for the ggen ecosystem." ;
+    eco:owns eco:Composition, eco:Admission, eco:Closure, eco:Qualification, eco:Transport, eco:Standing ;
+    eco:doesNotOwn eco:RepositorySourceIdentity, eco:AmbientActuation ;
+    eco:defaultProfile eco:cloud-session ;
+    eco:maximalProfile eco:everything ;
+    eco:manufacturedBy eco:ggen ;
+    eco:knowledgeSource eco:ggen-marketplace .
+
+eco:Composition a skos:Concept ; skos:prefLabel "composition" .
+eco:Admission a skos:Concept ; skos:prefLabel "admission" .
+eco:Closure a skos:Concept ; skos:prefLabel "closure" .
+eco:Qualification a skos:Concept ; skos:prefLabel "qualification" .
+eco:Transport a skos:Concept ; skos:prefLabel "transport" .
+eco:Standing a skos:Concept ; skos:prefLabel "standing" .
+eco:RepositorySourceIdentity a skos:Concept ; skos:prefLabel "independent repository source identity" .
+eco:AmbientActuation a skos:Concept ; skos:prefLabel "ambient actuation authority" .

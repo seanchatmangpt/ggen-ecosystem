@@ -1,0 +1,11 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+SELECT ?subject ?falsifier WHERE {
+  VALUES (?subject ?falsifier) {
+    (eco:ALIVE "no exact-subject execution receipt")
+    (eco:ReceiptReplay "receipt verify fails or exact-output replay diverges")
+    (eco:ClosureResolution "a selected dependency is absent from exact lock closure")
+    (eco:EcosystemComposition "profile selects an unknown repository, pack, or capability")
+    (eco:CloudBootstrap "sibling layout cannot execute ggen sync run at locked identities")
+  }
+}
+ORDER BY ?subject

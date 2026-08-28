@@ -1,0 +1,14 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+eco:aliveDefinition a rdf:Property .
+eco:StandingScheme a skos:ConceptScheme ; skos:prefLabel "ggen standing vocabulary" .
+eco:UNKNOWN a skos:Concept ; skos:inScheme eco:StandingScheme ; skos:prefLabel "UNKNOWN" .
+eco:PARTIAL_ALIVE a skos:Concept ; skos:inScheme eco:StandingScheme ; skos:prefLabel "PARTIAL_ALIVE" .
+eco:ALIVE a skos:Concept ; skos:inScheme eco:StandingScheme ; skos:prefLabel "ALIVE" ;
+    eco:aliveDefinition "Observed execution against the exact admitted subject produced the claimed consequence and a replay-verifiable receipt." .
+eco:BLOCKED a skos:Concept ; skos:inScheme eco:StandingScheme ; skos:prefLabel "BLOCKED" .
+eco:BUILD_BROKEN a skos:Concept ; skos:inScheme eco:StandingScheme ; skos:prefLabel "BUILD_BROKEN" .
+eco:UNSUPPORTED a skos:Concept ; skos:inScheme eco:StandingScheme ; skos:prefLabel "UNSUPPORTED" .
+eco:REFUSED a skos:Concept ; skos:inScheme eco:StandingScheme ; skos:prefLabel "REFUSED" .

@@ -1,0 +1,33 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+eco:Pack a <http://www.w3.org/2000/01/rdf-schema#Class> .
+eco:packName a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:packRole a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:packStanding a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+
+eco:dfcm-full-deployment-pack a eco:Pack, dcat:Dataset, prov:Entity ;
+    eco:packName "dfcm-full-deployment-pack" ;
+    eco:packRole "constitutional-control-plane" ;
+    eco:packStanding "ADMITTED_DEPENDENCY" .
+
+eco:ggen-combinatorial-maximalism-pack a eco:Pack, dcat:Dataset, prov:Entity ;
+    eco:packName "ggen-combinatorial-maximalism-pack" ;
+    eco:packRole "reversible-candidate-manufacture" ;
+    eco:packStanding "ADMITTED_DEPENDENCY" .
+
+eco:ggen-ecosystem-ocel-pack a eco:Pack ; eco:packName "ggen-ecosystem-ocel-pack" ; eco:packRole "ecosystem-event-log" ; eco:packStanding "CANDIDATE" .
+eco:ggen-constitution-pack a eco:Pack ; eco:packName "ggen-constitution-pack" ; eco:packRole "ggen-law" ; eco:packStanding "CANDIDATE" .
+eco:ggen-project-boundary-pack a eco:Pack ; eco:packName "ggen-project-boundary-pack" ; eco:packRole "project-boundary" ; eco:packStanding "CANDIDATE" .
+eco:ggen-verify-pack a eco:Pack ; eco:packName "ggen-verify-pack" ; eco:packRole "verification" ; eco:packStanding "CANDIDATE" .
+eco:standing-ladder-pack a eco:Pack ; eco:packName "standing-ladder-pack" ; eco:packRole "standing" ; eco:packStanding "CANDIDATE" .
+eco:shacl-projection-pack a eco:Pack ; eco:packName "shacl-projection-pack" ; eco:packRole "admission-projection" ; eco:packStanding "CANDIDATE" .
+eco:star-toml-pack a eco:Pack ; eco:packName "star-toml-pack" ; eco:packRole "typed-config-admission" ; eco:packStanding "CANDIDATE" .
+eco:github-cloud-operating-doctrine-pack a eco:Pack ; eco:packName "github-cloud-operating-doctrine-pack" ; eco:packRole "cloud-github-doctrine" ; eco:packStanding "CANDIDATE" .
+eco:ggen-release-pack a eco:Pack ; eco:packName "ggen-release-pack" ; eco:packRole "release" ; eco:packStanding "CANDIDATE" .
+eco:runtime-evidence-authenticity-control-pack a eco:Pack ; eco:packName "runtime-evidence-authenticity-control-pack" ; eco:packRole "evidence-authenticity" ; eco:packStanding "CANDIDATE" .
+eco:option-capital-hypergraph-pack a eco:Pack ; eco:packName "option-capital-hypergraph-pack" ; eco:packRole "option-capital" ; eco:packStanding "CANDIDATE" .
+eco:composition-leverage-matrix-pack a eco:Pack ; eco:packName "composition-leverage-matrix-pack" ; eco:packRole "composition-leverage" ; eco:packStanding "CANDIDATE" .
+eco:closed-loop-option-capital-pack a eco:Pack ; eco:packName "closed-loop-option-capital-pack" ; eco:packRole "closed-loop-options" ; eco:packStanding "CANDIDATE" .

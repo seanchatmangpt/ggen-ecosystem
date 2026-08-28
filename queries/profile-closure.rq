@@ -1,0 +1,8 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT ?profile ?title ?capability ?repository ?pack WHERE {
+  ?profile a eco:Profile ; dcterms:title ?title ; eco:includesCapability ?capability .
+  OPTIONAL { ?profile eco:includesRepository ?repository }
+  OPTIONAL { ?profile eco:includesPack ?pack }
+}
+ORDER BY ?title ?capability ?repository ?pack

@@ -1,0 +1,18 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+eco:ExclusionScheme a skos:ConceptScheme ; skos:prefLabel "ggen ecosystem exclusions" .
+eco:NoAmbientExecution a skos:Concept ; skos:inScheme eco:ExclusionScheme ; skos:prefLabel "no ambient execution authority" .
+eco:NoUnreceiptedActuation a skos:Concept ; skos:inScheme eco:ExclusionScheme ; skos:prefLabel "no unreceipted actuation" .
+eco:NoHookActuation a skos:Concept ; skos:inScheme eco:ExclusionScheme ; skos:prefLabel "hooks manufacture intents only" .
+eco:NoProjectionAuthority a skos:Concept ; skos:inScheme eco:ExclusionScheme ; skos:prefLabel "generated projections are not authority" .
+eco:NoInspectionAsExecution a skos:Concept ; skos:inScheme eco:ExclusionScheme ; skos:prefLabel "inspection is not execution" .
+eco:NoWorkflowAsSuccess a skos:Concept ; skos:inScheme eco:ExclusionScheme ; skos:prefLabel "workflow definition is not successful run" .
+eco:NoRepoAsMount a skos:Concept ; skos:inScheme eco:ExclusionScheme ; skos:prefLabel "repository object is not a mounted tree" .
+eco:NoNamedReceiptAsReceipt a skos:Concept ; skos:inScheme eco:ExclusionScheme ; skos:prefLabel "named receipt is not verified receipt" .
+
+# Publication authority is independent of read/observation authority.
+eco:NoPrivateIdentityProjection a eco:Exclusion ;
+    dcterms:title "No private identity projection" ;
+    dcterms:description "A public projection MUST NOT disclose a non-public repository identity merely because the observer can read it." .

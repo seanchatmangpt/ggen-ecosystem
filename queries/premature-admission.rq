@@ -1,0 +1,6 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+# Falsifier: a census candidate is also asserted as admitted Repository by census projection.
+SELECT ?repo
+WHERE {
+  ?repo a eco:RepositoryCandidate, eco:Repository .
+}

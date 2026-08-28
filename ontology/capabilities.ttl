@@ -1,0 +1,23 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+eco:Capability a rdfs:Class .
+
+eco:CapabilityScheme a skos:ConceptScheme ; skos:prefLabel "ggen ecosystem capabilities" .
+
+eco:DeterministicManufacture a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "deterministic manufacture" .
+eco:GraphAdmission a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "graph admission" .
+eco:ReceiptReplay a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "receipt and replay" .
+eco:PackComposition a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "pack composition" .
+eco:ExecutableKnowledge a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "executable knowledge" .
+eco:PackDistribution a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "pack distribution" .
+eco:EcosystemComposition a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "ecosystem composition" .
+eco:ClosureResolution a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "dependency closure resolution" .
+eco:ProfileProjection a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "profile projection" .
+eco:Qualification a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "qualification" .
+eco:CloudBootstrap a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "cloud-session bootstrap" .
+eco:PlatformEngineering a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "platform engineering" .
+eco:ProcessIntelligence a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "process intelligence" .
+eco:AutoFDE a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "autonomous field deployment engineering" .
+eco:GitHubFactory a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "GitHub software factory" .

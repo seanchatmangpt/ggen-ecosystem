@@ -1,0 +1,103 @@
+@prefix cmd: <https://chatmangpt.com/ontology/cmd#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Reversible bootstrap design space: 3 binary dimensions => 8 exhaustive candidates.
+<https://ggen.dev/ecosystem/design/bootstrap>
+    a cmd:DesignSpace ;
+    dcterms:title "ggen ecosystem bootstrap construction space" ;
+    cmd:crateName "ggen-ecosystem-bootstrap" ;
+    cmd:binaryName "ggen-ecosystem-bootstrap" ;
+    cmd:version "26.8.27" ;
+    cmd:coverageMode "exhaustive" ;
+    cmd:expectedCandidateCount 8 ;
+    cmd:maxCandidates 8 ;
+    cmd:hasDimension
+        <https://ggen.dev/ecosystem/dimension/transport>,
+        <https://ggen.dev/ecosystem/dimension/knowledge>,
+        <https://ggen.dev/ecosystem/dimension/execution> ;
+    cmd:hasCandidate
+        <https://ggen.dev/ecosystem/candidate/001>,
+        <https://ggen.dev/ecosystem/candidate/002>,
+        <https://ggen.dev/ecosystem/candidate/003>,
+        <https://ggen.dev/ecosystem/candidate/004>,
+        <https://ggen.dev/ecosystem/candidate/005>,
+        <https://ggen.dev/ecosystem/candidate/006>,
+        <https://ggen.dev/ecosystem/candidate/007>,
+        <https://ggen.dev/ecosystem/candidate/008> ;
+    cmd:hasBroker <https://ggen.dev/ecosystem/broker/brce> .
+
+<https://ggen.dev/ecosystem/dimension/transport>
+    a cmd:Dimension ; cmd:name "transport" ; cmd:order 1 ;
+    cmd:hasOption <https://ggen.dev/ecosystem/option/sibling-checkout>, <https://ggen.dev/ecosystem/option/exact-archive> .
+
+<https://ggen.dev/ecosystem/option/sibling-checkout>
+    a cmd:Option ; cmd:name "sibling-checkout" ;
+    cmd:belongsToDimension <https://ggen.dev/ecosystem/dimension/transport> ;
+    cmd:reversible true ; cmd:resourceCost 1.0 .
+
+<https://ggen.dev/ecosystem/option/exact-archive>
+    a cmd:Option ; cmd:name "exact-archive" ;
+    cmd:belongsToDimension <https://ggen.dev/ecosystem/dimension/transport> ;
+    cmd:reversible true ; cmd:resourceCost 1.2 .
+
+<https://ggen.dev/ecosystem/dimension/knowledge>
+    a cmd:Dimension ; cmd:name "knowledge" ; cmd:order 2 ;
+    cmd:hasOption <https://ggen.dev/ecosystem/option/foundation-packs>, <https://ggen.dev/ecosystem/option/maximal-profile> .
+
+<https://ggen.dev/ecosystem/option/foundation-packs>
+    a cmd:Option ; cmd:name "foundation-packs" ;
+    cmd:belongsToDimension <https://ggen.dev/ecosystem/dimension/knowledge> ;
+    cmd:reversible true ; cmd:resourceCost 1.0 .
+
+<https://ggen.dev/ecosystem/option/maximal-profile>
+    a cmd:Option ; cmd:name "maximal-profile" ;
+    cmd:belongsToDimension <https://ggen.dev/ecosystem/dimension/knowledge> ;
+    cmd:reversible true ; cmd:resourceCost 2.0 .
+
+<https://ggen.dev/ecosystem/dimension/execution>
+    a cmd:Dimension ; cmd:name "execution" ; cmd:order 3 ;
+    cmd:hasOption <https://ggen.dev/ecosystem/option/prebuilt-ggen>, <https://ggen.dev/ecosystem/option/source-built-ggen> .
+
+<https://ggen.dev/ecosystem/option/prebuilt-ggen>
+    a cmd:Option ; cmd:name "prebuilt-ggen" ;
+    cmd:belongsToDimension <https://ggen.dev/ecosystem/dimension/execution> ;
+    cmd:reversible true ; cmd:resourceCost 1.0 .
+
+<https://ggen.dev/ecosystem/option/source-built-ggen>
+    a cmd:Option ; cmd:name "source-built-ggen" ;
+    cmd:belongsToDimension <https://ggen.dev/ecosystem/dimension/execution> ;
+    cmd:reversible true ; cmd:resourceCost 3.0 .
+
+<https://ggen.dev/ecosystem/broker/brce>
+    a cmd:Broker ;
+    cmd:name "ggen-ecosystem-brce" ;
+    cmd:rootPath "generated" ;
+    cmd:receiptAlgorithm "blake3" ;
+    cmd:replayMode "exact-output" .
+
+# Source candidates remain CANDIDATE. Verification and authorization are runtime evidence.
+<https://ggen.dev/ecosystem/candidate/001> a cmd:Candidate ; cmd:name "sibling-foundation-prebuilt" ; cmd:standing "CANDIDATE" ;
+    cmd:selectsOption <https://ggen.dev/ecosystem/option/sibling-checkout>, <https://ggen.dev/ecosystem/option/foundation-packs>, <https://ggen.dev/ecosystem/option/prebuilt-ggen> ;
+    cmd:outputRelativePath "generated/candidates/001" .
+<https://ggen.dev/ecosystem/candidate/002> a cmd:Candidate ; cmd:name "sibling-foundation-source" ; cmd:standing "CANDIDATE" ;
+    cmd:selectsOption <https://ggen.dev/ecosystem/option/sibling-checkout>, <https://ggen.dev/ecosystem/option/foundation-packs>, <https://ggen.dev/ecosystem/option/source-built-ggen> ;
+    cmd:outputRelativePath "generated/candidates/002" .
+<https://ggen.dev/ecosystem/candidate/003> a cmd:Candidate ; cmd:name "sibling-maximal-prebuilt" ; cmd:standing "CANDIDATE" ;
+    cmd:selectsOption <https://ggen.dev/ecosystem/option/sibling-checkout>, <https://ggen.dev/ecosystem/option/maximal-profile>, <https://ggen.dev/ecosystem/option/prebuilt-ggen> ;
+    cmd:outputRelativePath "generated/candidates/003" .
+<https://ggen.dev/ecosystem/candidate/004> a cmd:Candidate ; cmd:name "sibling-maximal-source" ; cmd:standing "CANDIDATE" ;
+    cmd:selectsOption <https://ggen.dev/ecosystem/option/sibling-checkout>, <https://ggen.dev/ecosystem/option/maximal-profile>, <https://ggen.dev/ecosystem/option/source-built-ggen> ;
+    cmd:outputRelativePath "generated/candidates/004" .
+<https://ggen.dev/ecosystem/candidate/005> a cmd:Candidate ; cmd:name "archive-foundation-prebuilt" ; cmd:standing "CANDIDATE" ;
+    cmd:selectsOption <https://ggen.dev/ecosystem/option/exact-archive>, <https://ggen.dev/ecosystem/option/foundation-packs>, <https://ggen.dev/ecosystem/option/prebuilt-ggen> ;
+    cmd:outputRelativePath "generated/candidates/005" .
+<https://ggen.dev/ecosystem/candidate/006> a cmd:Candidate ; cmd:name "archive-foundation-source" ; cmd:standing "CANDIDATE" ;
+    cmd:selectsOption <https://ggen.dev/ecosystem/option/exact-archive>, <https://ggen.dev/ecosystem/option/foundation-packs>, <https://ggen.dev/ecosystem/option/source-built-ggen> ;
+    cmd:outputRelativePath "generated/candidates/006" .
+<https://ggen.dev/ecosystem/candidate/007> a cmd:Candidate ; cmd:name "archive-maximal-prebuilt" ; cmd:standing "CANDIDATE" ;
+    cmd:selectsOption <https://ggen.dev/ecosystem/option/exact-archive>, <https://ggen.dev/ecosystem/option/maximal-profile>, <https://ggen.dev/ecosystem/option/prebuilt-ggen> ;
+    cmd:outputRelativePath "generated/candidates/007" .
+<https://ggen.dev/ecosystem/candidate/008> a cmd:Candidate ; cmd:name "archive-maximal-source" ; cmd:standing "CANDIDATE" ;
+    cmd:selectsOption <https://ggen.dev/ecosystem/option/exact-archive>, <https://ggen.dev/ecosystem/option/maximal-profile>, <https://ggen.dev/ecosystem/option/source-built-ggen> ;
+    cmd:outputRelativePath "generated/candidates/008" .

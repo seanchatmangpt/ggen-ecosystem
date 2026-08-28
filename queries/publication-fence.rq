@@ -1,0 +1,7 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+# Falsifier: a census candidate projected publicly without explicit publicProjection=true.
+SELECT ?repo
+WHERE {
+  ?repo a eco:RepositoryCandidate .
+  FILTER NOT EXISTS { ?repo eco:publicProjection true }
+}
