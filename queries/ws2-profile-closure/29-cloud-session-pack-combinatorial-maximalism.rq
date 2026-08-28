@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:cloud-session eco:includesPack eco:ggen-combinatorial-maximalism-pack . }
