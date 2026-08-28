@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. <https://ggen.dev/ecosystem/interoperability/igniter-rollback-boundary> a eco:InteroperabilityContract; eco:standing "CANDIDATE"; eco:authorityCeiling "CONSTRUCT"; eco:purpose "Igniter changes are independently reversible by semantic unit.".
