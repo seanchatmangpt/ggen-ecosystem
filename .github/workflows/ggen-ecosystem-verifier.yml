@@ -62,3 +62,7 @@ jobs:
         run: |
           python3 -c "import tomllib; tomllib.load(open('ggen.toml','rb'))"
 
+      - name: Verify ecosystem-lock-parse
+        run: |
+          python3 -c "import tomllib; tomllib.load(open('ecosystem.lock.toml','rb'))"
+
