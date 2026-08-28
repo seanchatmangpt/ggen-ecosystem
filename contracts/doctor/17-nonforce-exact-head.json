@@ -1,0 +1,1 @@
+{"expected":"verify the exact head","failure_standing":"PARTIAL_ALIVE","id":"nonforce-exact-head","path":"AGENTS.md","predicate":"contains","remediation":"verify exact published head"}
