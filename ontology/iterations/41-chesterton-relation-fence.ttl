@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ChestertonRelationFence a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "relation removal fence";skos:definition "Removing an existing semantic relation requires preserving why it existed before replacement or deletion.";eco:falsifier "Deleting a relation without its prior rationale falsifies this invariant.".
