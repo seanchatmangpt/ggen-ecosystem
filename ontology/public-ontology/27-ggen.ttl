@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix map:<https://ggen.dev/ecosystem/mapping#>. map:mapping-27 a map:PublicOntologyMapping; map:sourceTerm eco:ggen; map:targetTerm <http://www.w3.org/ns/dcat#Dataset>; map:projectionKind "instance-projection"; map:falsifier "Refuse on source disappearance, semantic strengthening, or authority amplification.".
