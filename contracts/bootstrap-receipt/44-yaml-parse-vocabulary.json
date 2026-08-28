@@ -1,0 +1,8 @@
+{
+  "id": "yaml-parse-vocabulary",
+  "path": "/verification/independent_yaml_parse",
+  "op": "in",
+  "expected": [
+    "PASS"
+  ]
+}
