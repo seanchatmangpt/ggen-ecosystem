@@ -1,21 +1,25 @@
-version = 1
-generated_from = "observed GitHub refs"
-updated_at = "2026-08-28T06:55:00Z"
+version = 2
+base_main_sha = "9d5882fca60e058e1b0dfefad8b45d277e1f5059"
+updated_at = "2026-08-28T07:36:30Z"
 
-[repositories.ggen]
-url = "https://github.com/seanchatmangpt/ggen"
-ref = "main"
-sha = "df1e138a64c80e41090cff7c84fb62d77e03b734"
-role = "manufacturer"
+[ggen]
+release = "v26.8.27"
+commit_sha = "df1e138a64c80e41090cff7c84fb62d77e03b734"
+linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035"
+observed_executable_sha256 = "01d0f5e624d12eeda503db4fb4b00618472bd775ee4850c9a2f850651db76680"
 
-[repositories.ggen-marketplace]
-url = "https://github.com/seanchatmangpt/ggen-marketplace"
-ref = "main"
-sha = "9b2a278a16633336ded6c14bfbb2185763753319"
-role = "executable-knowledge"
+[ggen_marketplace]
+sha = "4c4232515b43d40cef8288c43eacfab2c31ab485"
+repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 
-[bootstrap]
-layout = "siblings"
-ecosystem_dir = "ggen-ecosystem"
-ggen_dir = "ggen"
-marketplace_dir = "ggen-marketplace"
+[manufacturing]
+manifest = "ggen.toml"
+ontology = "ontology.ttl"
+workflow = ".github/workflows/ggen-ecosystem-sync.yml"
+bootstrap_receipt = "receipts/bootstrap-ggen-ecosystem-sync.json"
+
+[catalog]
+owner = "seanchatmangpt"
+visibility = "public"
+mode = "complete-owner-catalog"
+private_identity_projection = false

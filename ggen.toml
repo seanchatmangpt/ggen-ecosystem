@@ -2,66 +2,10 @@
 name = "ggen-ecosystem"
 
 [ontology]
-source = "ecosystem.ttl"
-
-[ontology.prefixes]
-eco = "https://ggen.dev/ecosystem#"
-cmd = "https://chatmangpt.com/ontology/cmd#"
-prov = "http://www.w3.org/ns/prov#"
-dcat = "http://www.w3.org/ns/dcat#"
-dcterms = "http://purl.org/dc/terms/"
-skos = "http://www.w3.org/2004/02/skos/core#"
-odrl = "http://www.w3.org/ns/odrl/2/"
-sh = "http://www.w3.org/ns/shacl#"
+source = "ontology.ttl"
 
 [packs]
-dfcm-full-deployment-pack = { path = "../ggen-marketplace/packs/dfcm-full-deployment-pack", extra_ontologies = [
-  "ontology/repositories.ttl",
-  "ontology/repository-census.ttl",
-  "ontology/repository-census-01.ttl",
-  "ontology/repository-census-02.ttl",
-  "ontology/repository-census-03.ttl",
-  "ontology/repository-census-04.ttl",
-  "ontology/capabilities.ttl",
-  "ontology/packs.ttl",
-  "ontology/profiles.ttl",
-  "ontology/authority.ttl",
-  "ontology/standing.ttl",
-  "ontology/dfcm-design-space.ttl",
-  "admission/policies.ttl",
-  "admission/exclusions.ttl",
-  "admission/privacy.ttl",
-  "admission/shapes.ttl",
-  "profiles/cloud-session.ttl",
-  "profiles/platform-engineering.ttl",
-  "profiles/process-intelligence.ttl",
-  "profiles/autofde.ttl",
-  "profiles/everything.ttl",
-] }
-ggen-combinatorial-maximalism-pack = { path = "../ggen-marketplace/packs/ggen-combinatorial-maximalism-pack", extra_ontologies = [
-  "ontology/repositories.ttl",
-  "ontology/repository-census.ttl",
-  "ontology/repository-census-01.ttl",
-  "ontology/repository-census-02.ttl",
-  "ontology/repository-census-03.ttl",
-  "ontology/repository-census-04.ttl",
-  "ontology/capabilities.ttl",
-  "ontology/packs.ttl",
-  "ontology/profiles.ttl",
-  "ontology/authority.ttl",
-  "ontology/standing.ttl",
-  "ontology/dfcm-design-space.ttl",
-  "admission/policies.ttl",
-  "admission/exclusions.ttl",
-  "admission/privacy.ttl",
-  "admission/shapes.ttl",
-  "profiles/cloud-session.ttl",
-  "profiles/platform-engineering.ttl",
-  "profiles/process-intelligence.ttl",
-  "profiles/autofde.ttl",
-  "profiles/everything.ttl",
-] }
+github-actions = { git = "https://github.com/seanchatmangpt/ggen-marketplace.git", version = "4c4232515b43d40cef8288c43eacfab2c31ab485", subdir = "packs/github-actions-pack" }
 
 [templates]
 dir = "templates"
-aggregate_modules = false

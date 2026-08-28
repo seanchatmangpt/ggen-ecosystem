@@ -1,0 +1,33 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+# Complete public GitHub owner-catalog scope. Enumeration is a projection;
+# the membership predicate is the canonical boundary so new public repos are
+# not silently outside the ecosystem between census refreshes.
+eco:github-owner-catalog
+    a dcat:Catalog, prov:Entity ;
+    dcterms:title "Complete public GitHub repository catalog for seanchatmangpt" ;
+    dcterms:description "All public GitHub repositories whose owner login is seanchatmangpt. Presence in this catalog is observation, not dependency/profile admission." ;
+    eco:ownerLogin "seanchatmangpt" ;
+    eco:repositoryPredicate "owner=seanchatmangpt AND visibility=public" ;
+    eco:censusMode "complete-public-owner-catalog" ;
+    eco:catalogStanding "OBSERVED_SCOPE" ;
+    eco:priorityEnumeration eco:repository-census-priority-subset .
+
+eco:repository-census-priority-subset
+    a dcat:Dataset ;
+    dcterms:title "High-signal enumerated ecosystem repository candidates" ;
+    dcterms:description "Materialized repository candidates used by the initial semantic profiles. It is a subset of the complete public owner catalog, not the catalog boundary itself." .
+
+# The maximal profile ranges over the complete public catalog while retaining
+# relation-scoped admission: catalog membership never grants DO authority.
+eco:everything eco:includesCatalog eco:github-owner-catalog .
+
+eco:ownerLogin a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:repositoryPredicate a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:censusMode a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:catalogStanding a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:priorityEnumeration a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:includesCatalog a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
