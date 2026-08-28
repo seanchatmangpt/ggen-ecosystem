@@ -1,0 +1,6 @@
+{
+  "id": "marketplace-sha-exact",
+  "path": "/marketplace/sha",
+  "op": "equals",
+  "expected": "4c4232515b43d40cef8288c43eacfab2c31ab485"
+}

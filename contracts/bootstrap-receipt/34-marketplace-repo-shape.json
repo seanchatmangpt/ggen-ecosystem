@@ -1,0 +1,6 @@
+{
+  "id": "marketplace-repo-shape",
+  "path": "/marketplace/repository",
+  "op": "regex",
+  "expected": "[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+"
+}

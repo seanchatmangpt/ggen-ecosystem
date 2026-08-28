@@ -1,0 +1,6 @@
+{
+  "id": "bytes-match-bool",
+  "path": "/verification/generated_bytes_match_recorded_sha256",
+  "op": "type",
+  "expected": "bool"
+}

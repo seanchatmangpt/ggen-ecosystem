@@ -1,0 +1,6 @@
+{
+  "id": "binary-sha-exact",
+  "path": "/ggen/binary_sha256",
+  "op": "equals",
+  "expected": "01d0f5e624d12eeda503db4fb4b00618472bd775ee4850c9a2f850651db76680"
+}

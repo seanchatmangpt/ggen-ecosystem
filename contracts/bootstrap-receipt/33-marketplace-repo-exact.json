@@ -1,0 +1,6 @@
+{
+  "id": "marketplace-repo-exact",
+  "path": "/marketplace/repository",
+  "op": "equals",
+  "expected": "seanchatmangpt/ggen-marketplace"
+}

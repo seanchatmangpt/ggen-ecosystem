@@ -1,0 +1,6 @@
+{
+  "id": "standing-alive-shape",
+  "path": "/standing",
+  "op": "regex",
+  "expected": "ALIVE\\[[A-Z_]+\\]"
+}

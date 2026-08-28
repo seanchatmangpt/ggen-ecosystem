@@ -1,0 +1,6 @@
+{
+  "id": "artifact-sha-shape",
+  "path": "/artifact_sha256",
+  "op": "regex",
+  "expected": "[0-9a-f]{64}"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "graph-hash-exact",
+  "path": "/ggen/graph_hash",
+  "op": "equals",
+  "expected": "27500c768263ba41ad5343a08a8d521c1f12c06e74d7089c4650a298d0b02ad2"
+}

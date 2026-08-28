@@ -1,0 +1,6 @@
+{
+  "id": "artifact-id-type",
+  "path": "/manufacturer/artifact_id",
+  "op": "type",
+  "expected": "int"
+}

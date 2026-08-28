@@ -1,0 +1,6 @@
+{
+  "id": "verification-path-exact",
+  "path": "/verification/generated_path",
+  "op": "equals",
+  "expected": ".github/workflows/ggen-ecosystem-sync.yml"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "release-asset-sha-shape",
+  "path": "/ggen/release_asset_sha256",
+  "op": "regex",
+  "expected": "[0-9a-f]{64}"
+}

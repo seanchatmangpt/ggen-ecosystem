@@ -1,0 +1,6 @@
+{
+  "id": "artifact-id-exact",
+  "path": "/manufacturer/artifact_id",
+  "op": "equals",
+  "expected": 9677675572
+}
