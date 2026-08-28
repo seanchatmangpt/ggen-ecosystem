@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:DryRunNonActuation a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "dry run is non-actuating";skos:definition "Dry-run manufacture may construct evidence but must not write generated consequences to the repository.";eco:falsifier "A dry run mutating repository projections falsifies this invariant.".
