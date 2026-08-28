@@ -1,0 +1,1 @@
+ASK { <https://ggen.dev/ecosystem#NoPrivateIdentityProjection> <http://purl.org/dc/terms/description> "A public projection MUST NOT disclose a non-public repository identity merely because the observer can read it." . }
