@@ -106,3 +106,7 @@ jobs:
         run: |
           grep -q ggen-x86_64-unknown-linux-gnu.tar.gz .github/workflows/ggen-ecosystem-sync.yml
 
+      - name: Verify asset-sha-check
+        run: |
+          grep -q sha256sum .github/workflows/ggen-ecosystem-sync.yml
+
