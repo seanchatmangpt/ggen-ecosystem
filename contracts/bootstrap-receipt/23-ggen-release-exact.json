@@ -1,0 +1,6 @@
+{
+  "id": "ggen-release-exact",
+  "path": "/ggen/release",
+  "op": "equals",
+  "expected": "v26.8.27"
+}
