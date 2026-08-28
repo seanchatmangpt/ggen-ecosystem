@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:AuthorityBoundaryDiscovery a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Authority Boundary Discovery"; skos:definition "Evidence that discovers or confirms a SELECT, CONSTRUCT, or DO authority boundary." .
