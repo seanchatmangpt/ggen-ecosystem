@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:CIEvidenceOnly a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "CI is evidence transport";skos:definition "CI status transports evidence and does not itself grant execution authority or standing.";eco:falsifier "A green status alone granting ALIVE or DO authority falsifies this invariant.".
