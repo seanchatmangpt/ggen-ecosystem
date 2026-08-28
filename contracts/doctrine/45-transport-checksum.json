@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/TRANSPORT.md",
+  "value": "checksum-pinned GGen release",
+  "capability": "transport-checksum"
+}

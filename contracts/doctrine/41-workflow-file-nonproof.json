@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/STANDING.md",
+  "value": "A workflow file is not evidence that it ran",
+  "capability": "workflow-file-nonproof"
+}

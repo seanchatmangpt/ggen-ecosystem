@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/ADMISSION.md",
+  "value": "A workflow definition does not imply a successful run",
+  "capability": "workflow-nonexecution"
+}

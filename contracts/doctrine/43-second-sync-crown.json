@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/STANDING.md",
+  "value": "a second sync establishes deterministic replay/idempotence",
+  "capability": "second-sync-crown"
+}

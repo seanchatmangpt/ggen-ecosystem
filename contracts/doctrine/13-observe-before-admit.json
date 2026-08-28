@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/ARCHITECTURE.md",
+  "value": "observed repository/capability graph",
+  "capability": "observe-before-admit"
+}

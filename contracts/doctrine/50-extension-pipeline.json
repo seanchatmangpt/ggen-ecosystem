@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/EXTENSION.md",
+  "value": "observe -> candidate -> admit relation -> close dependencies -> construct -> execute -> receipt -> replay -> standing",
+  "capability": "extension-pipeline"
+}
