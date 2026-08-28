@@ -1,0 +1,5 @@
+@prefix calc: <https://ggen.io/ecosystem/calculus#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+calc:generated-projection a skos:Concept, prov:Entity ; skos:inScheme calc:ArchitectureCalculus ; skos:prefLabel "Generated Projection" ; dcterms:description "Manufactured consequence of semantic sources; never an editing surface or ambient authority." ; dcterms:source <https://github.com/seanchatmangpt/ggen-ecosystem/blob/main/AGENTS.md> .
