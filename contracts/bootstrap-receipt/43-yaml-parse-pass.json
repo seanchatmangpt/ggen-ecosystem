@@ -1,0 +1,6 @@
+{
+  "id": "yaml-parse-pass",
+  "path": "/verification/independent_yaml_parse",
+  "op": "equals",
+  "expected": "PASS"
+}
