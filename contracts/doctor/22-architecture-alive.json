@@ -1,0 +1,1 @@
+{"expected":"Only observed exact-subject execution may crown `ALIVE`","failure_standing":"PARTIAL_ALIVE","id":"architecture-alive","path":"docs/ARCHITECTURE.md","predicate":"contains","remediation":"execute exact admitted subject"}
