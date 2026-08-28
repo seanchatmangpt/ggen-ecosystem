@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/STANDING.md",
+  "value": "`BUILD_BROKEN` — the verifier cannot currently be reached because the build boundary is broken",
+  "capability": "build-broken-definition"
+}
