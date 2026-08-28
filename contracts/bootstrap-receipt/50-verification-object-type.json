@@ -1,0 +1,6 @@
+{
+  "id": "verification-object-type",
+  "path": "/verification",
+  "op": "type",
+  "expected": "dict"
+}
