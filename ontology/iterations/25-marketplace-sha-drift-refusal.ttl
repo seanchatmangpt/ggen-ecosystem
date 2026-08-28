@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:MarketplaceShaDriftRefusal a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "marketplace SHA drift refusal";skos:definition "Every admitted pack version must equal the invocation marketplace SHA.";eco:falsifier "A pack version differing from the admitted marketplace SHA without refusal falsifies this invariant.".
