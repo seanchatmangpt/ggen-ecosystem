@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:star-toml-pack eco:packRole "typed-config-admission" . }
