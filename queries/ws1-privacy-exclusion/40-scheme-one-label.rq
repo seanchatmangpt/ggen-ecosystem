@@ -1,0 +1,4 @@
+ASK {
+  { SELECT (COUNT(?v) AS ?n) WHERE { <https://ggen.dev/ecosystem#ExclusionScheme> <http://www.w3.org/2004/02/skos/core#prefLabel> ?v . } }
+  FILTER(?n = 1)
+}

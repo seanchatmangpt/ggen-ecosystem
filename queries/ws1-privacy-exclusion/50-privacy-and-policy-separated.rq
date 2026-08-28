@@ -1,0 +1,5 @@
+ASK {
+  <https://ggen.dev/ecosystem#PublicProjectionFence> a <http://www.w3.org/ns/odrl/2/Policy> .
+  <https://ggen.dev/ecosystem#NoPrivateIdentityProjection> a <https://ggen.dev/ecosystem#Exclusion> .
+  FILTER(<https://ggen.dev/ecosystem#PublicProjectionFence> != <https://ggen.dev/ecosystem#NoPrivateIdentityProjection>)
+}

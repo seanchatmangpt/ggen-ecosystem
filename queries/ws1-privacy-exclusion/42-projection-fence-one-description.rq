@@ -1,0 +1,4 @@
+ASK {
+  { SELECT (COUNT(?v) AS ?n) WHERE { <https://ggen.dev/ecosystem#PublicProjectionFence> <http://purl.org/dc/terms/description> ?v . } }
+  FILTER(?n = 1)
+}

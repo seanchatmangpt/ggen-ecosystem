@@ -1,0 +1,3 @@
+ASK {
+ <https://ggen.dev/ecosystem#NoPrivateIdentityProjection> a <https://ggen.dev/ecosystem#Exclusion> .
+}

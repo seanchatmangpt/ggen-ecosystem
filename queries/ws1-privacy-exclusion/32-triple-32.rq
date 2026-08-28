@@ -1,0 +1,1 @@
+ASK { <https://ggen.dev/ecosystem#PublicProjectionFence> <http://purl.org/dc/terms/description> "The public ggen-ecosystem graph may project a repository identity only when that identity is already public or explicit publication authority exists. Private identities remain outside this public projection." . }
