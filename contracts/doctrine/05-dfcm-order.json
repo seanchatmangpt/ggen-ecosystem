@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "AGENTS.md",
+  "value": "Preserve -> Fence -> Calculus -> Exclusions -> Falsifier -> Extension -> Operationalization",
+  "capability": "dfcm-order"
+}
