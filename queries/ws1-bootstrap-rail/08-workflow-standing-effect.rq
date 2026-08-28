@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# WS1 bootstrap-rail contract: workflow-standing-effect
+ASK { ex:workflow gha:standingEffect "successful execution proves read-only deterministic manufacture; repository mutation authority remains external" . }
