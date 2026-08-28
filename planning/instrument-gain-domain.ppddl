@@ -1,0 +1,40 @@
+(define (domain ggen-ecosystem-instrument-gain)
+  (:requirements :strips)
+  (:predicates
+    (ggen-instrument-merged)
+    (ecosystem-base-current)
+    (capability-vocabulary-admitted)
+    (ggen-capabilities-bound)
+    (provenance-bound)
+    (ppddl-plan-recorded)
+    (ecosystem-pr-open)
+    (ecosystem-merged))
+
+  (:action admit-capability-vocabulary
+    :precondition (and (ggen-instrument-merged) (ecosystem-base-current))
+    :effect (capability-vocabulary-admitted))
+
+  (:action bind-ggen-capabilities
+    :precondition (capability-vocabulary-admitted)
+    :effect (ggen-capabilities-bound))
+
+  (:action bind-provenance
+    :precondition (and (ggen-capabilities-bound) (ggen-instrument-merged))
+    :effect (provenance-bound))
+
+  (:action record-ppddl-plan
+    :precondition (provenance-bound)
+    :effect (ppddl-plan-recorded))
+
+  (:action publish-ecosystem-pr
+    :precondition (and (ecosystem-base-current)
+                       (capability-vocabulary-admitted)
+                       (ggen-capabilities-bound)
+                       (provenance-bound)
+                       (ppddl-plan-recorded))
+    :effect (ecosystem-pr-open))
+
+  (:action merge-ecosystem-pr
+    :precondition (and (ecosystem-pr-open) (ecosystem-base-current))
+    :effect (ecosystem-merged))
+)
