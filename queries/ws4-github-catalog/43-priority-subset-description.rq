@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { eco:repository-census-priority-subset dcterms:description "Materialized repository candidates used by the initial semantic profiles. It is a subset of the complete public owner catalog, not the catalog boundary itself." . }
