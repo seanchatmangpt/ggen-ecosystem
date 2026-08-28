@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:repo-candidate-ash_supabase eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" . }
