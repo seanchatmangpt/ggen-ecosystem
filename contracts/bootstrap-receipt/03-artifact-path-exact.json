@@ -1,0 +1,6 @@
+{
+  "id": "artifact-path-exact",
+  "path": "/artifact",
+  "op": "equals",
+  "expected": ".github/workflows/ggen-ecosystem-sync.yml"
+}
