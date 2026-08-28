@@ -74,3 +74,7 @@ jobs:
         run: |
           test ! -d packs
 
+      - name: Verify sync-workflow-present
+        run: |
+          test -f .github/workflows/ggen-ecosystem-sync.yml
+
