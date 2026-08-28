@@ -1,0 +1,6 @@
+{
+  "id": "checkout-sha-shape",
+  "path": "/manufacturer/github_checkout_sha",
+  "op": "regex",
+  "expected": "[0-9a-f]{40}"
+}
