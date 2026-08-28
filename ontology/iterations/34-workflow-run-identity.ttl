@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:WorkflowRunIdentity a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "workflow run identity";skos:definition "Hosted execution evidence binds the exact workflow run identity alongside subject and producer identities.";eco:falsifier "A hosted receipt that cannot identify its run falsifies this invariant.".
