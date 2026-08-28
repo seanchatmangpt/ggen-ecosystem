@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# WS1 bootstrap-rail contract: workflow-file-name
+ASK { ex:workflow gha:fileName "ggen-ecosystem-sync.yml" . }
