@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# Falsifier: false when the canonical workflow loses gha:Workflow typing.
+ASK WHERE { ex:workflow a gha:Workflow . }
