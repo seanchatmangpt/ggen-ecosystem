@@ -1,0 +1,5 @@
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+ASK {
+  ex:construct gha:failureClassification "REFUSED or BUILD_BROKEN before repository write authority exists" .
+}
