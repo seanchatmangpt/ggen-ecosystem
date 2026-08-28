@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:ExecutionEvidence a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Execution Evidence"; skos:definition "Evidence produced by observed execution against the exact admitted subject." .
