@@ -1,0 +1,5 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK {
+  { SELECT (COUNT(DISTINCT ?r) AS ?n) WHERE { ?r a eco:RepositoryCandidate . } }
+  FILTER(?n = 15)
+}
