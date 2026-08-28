@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:repo-candidate-ggen_igniter eco:sourceUrl "https://github.com/seanchatmangpt/ggen_igniter" . }
