@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+SELECT * WHERE { FILTER NOT EXISTS { eco:cloud-session-observation eco:requiredLayout "sibling-checkouts" } }
