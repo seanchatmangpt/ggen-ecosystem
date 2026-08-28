@@ -1,0 +1,11 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+ASK {
+  FILTER NOT EXISTS {
+    ?s skos:inScheme eco:StandingScheme .
+    { SELECT ?s (COUNT(?label) AS ?n) WHERE { ?s skos:prefLabel ?label . } GROUP BY ?s }
+    FILTER(?n != 1)
+  }
+}
