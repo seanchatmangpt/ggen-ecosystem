@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix map:<https://ggen.dev/ecosystem/mapping#>. map:mapping-20 a map:PublicOntologyMapping; map:sourceTerm eco:ObservationalFrontier; map:targetTerm <http://www.w3.org/2004/02/skos/core#Concept>; map:projectionKind "class-projection"; map:falsifier "Refuse on source disappearance, semantic strengthening, or authority amplification.".
