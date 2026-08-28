@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "AGENTS.md",
+  "value": "A failed edge is topology, not graph failure",
+  "capability": "failed-edge-topology"
+}
