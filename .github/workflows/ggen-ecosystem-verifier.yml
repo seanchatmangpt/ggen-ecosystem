@@ -86,3 +86,7 @@ jobs:
         run: |
           grep -q 'contents: read' .github/workflows/ggen-ecosystem-sync.yml
 
+      - name: Verify workflow-dispatch
+        run: |
+          grep -q workflow_dispatch .github/workflows/ggen-ecosystem-sync.yml
+
