@@ -118,3 +118,7 @@ jobs:
         run: |
           ! grep -q 'cargo build' .github/workflows/ggen-ecosystem-sync.yml
 
+      - name: Verify no-ggen-init
+        run: |
+          ! grep -q 'ggen init' .github/workflows/ggen-ecosystem-sync.yml
+
