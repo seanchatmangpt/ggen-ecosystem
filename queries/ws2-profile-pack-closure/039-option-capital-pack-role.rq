@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:option-capital-hypergraph-pack eco:packRole "option-capital" . }
