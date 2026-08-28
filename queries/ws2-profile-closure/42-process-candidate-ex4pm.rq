@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:process-intelligence eco:includesCandidateRepository eco:repo-candidate-ex4pm . }
