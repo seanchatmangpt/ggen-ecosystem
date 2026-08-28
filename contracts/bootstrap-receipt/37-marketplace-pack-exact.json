@@ -1,0 +1,6 @@
+{
+  "id": "marketplace-pack-exact",
+  "path": "/marketplace/pack",
+  "op": "equals",
+  "expected": "packs/github-actions-pack"
+}
