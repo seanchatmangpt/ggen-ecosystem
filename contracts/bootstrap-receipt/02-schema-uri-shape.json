@@ -1,0 +1,6 @@
+{
+  "id": "schema-uri-shape",
+  "path": "/schema",
+  "op": "regex",
+  "expected": "https://ggen\\.dev/receipts/ecosystem-bootstrap/v1"
+}
