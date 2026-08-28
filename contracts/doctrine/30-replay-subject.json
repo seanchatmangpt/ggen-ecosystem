@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/REPLAY.md",
+  "value": "Replay reconstructs the same admitted subject",
+  "capability": "replay-subject"
+}
