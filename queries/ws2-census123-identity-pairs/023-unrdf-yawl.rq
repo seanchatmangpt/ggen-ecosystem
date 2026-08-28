@@ -1,0 +1,6 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  eco:repo-candidate-unrdf-yawl dcterms:identifier "seanchatmangpt/unrdf-yawl" ;
+      eco:sourceUrl "https://github.com/seanchatmangpt/unrdf-yawl" .
+}

@@ -1,0 +1,6 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  eco:repo-candidate-ggen-create dcterms:identifier "seanchatmangpt/ggen-create" ;
+      eco:sourceUrl "https://github.com/seanchatmangpt/ggen-create" .
+}

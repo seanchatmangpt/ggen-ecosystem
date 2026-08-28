@@ -1,0 +1,6 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  eco:repo-candidate-autofde dcterms:identifier "seanchatmangpt/autofde" ;
+      eco:sourceUrl "https://github.com/seanchatmangpt/autofde" .
+}

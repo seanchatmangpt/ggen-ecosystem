@@ -1,0 +1,6 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  eco:repo-candidate-SREGym dcterms:identifier "seanchatmangpt/SREGym" ;
+      eco:sourceUrl "https://github.com/seanchatmangpt/SREGym" .
+}
