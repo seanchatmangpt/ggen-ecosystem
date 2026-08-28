@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:ToolVersionEvidence a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Tool Version Evidence"; skos:definition "Evidence identifying the exact version of a verifier or execution tool." .
