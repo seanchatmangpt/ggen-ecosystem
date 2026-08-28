@@ -1,0 +1,6 @@
+{
+  "id": "pack-blake3-exact",
+  "path": "/marketplace/pack_content_blake3",
+  "op": "equals",
+  "expected": "1ce72f06a115995a37b9416013d607d4898f3cd707819681a76f663d69c99da8"
+}
