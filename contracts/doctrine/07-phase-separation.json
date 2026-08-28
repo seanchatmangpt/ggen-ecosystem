@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "AGENTS.md",
+  "value": "`SELECT`, `CONSTRUCT`, and `DO` are distinct",
+  "capability": "phase-separation"
+}

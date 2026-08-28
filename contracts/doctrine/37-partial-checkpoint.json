@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/STANDING.md",
+  "value": "`PARTIAL_ALIVE` — bounded checkpoint executed successfully; crown claim remains open",
+  "capability": "partial-checkpoint"
+}

@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/STANDING.md",
+  "value": "`ggen receipt verify` succeeds",
+  "capability": "receipt-verify-crown"
+}

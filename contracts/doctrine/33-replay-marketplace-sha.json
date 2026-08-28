@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/REPLAY.md",
+  "value": "marketplace SHA `4c4232515b43d40cef8288c43eacfab2c31ab485`",
+  "capability": "replay-marketplace-sha"
+}

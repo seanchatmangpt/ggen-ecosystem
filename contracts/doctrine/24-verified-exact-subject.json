@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/ADMISSION.md",
+  "value": "**verified** — an executable verifier closed the stated predicate on the exact subject",
+  "capability": "verified-exact-subject"
+}

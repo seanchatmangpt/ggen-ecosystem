@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "AGENTS.md",
+  "value": "Only a receipted broker may perform `DO`",
+  "capability": "brce-exclusive-do"
+}
