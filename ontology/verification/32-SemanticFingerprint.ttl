@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:SemanticFingerprint a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Semantic Fingerprint"; skos:definition "A digest over semantic purpose and acceptance edge used for cross-workstation deduplication." .
