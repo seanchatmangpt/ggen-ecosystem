@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/ADMISSION.md",
+  "value": "**unknown** — not admitted",
+  "capability": "unknown-nonadmission"
+}
