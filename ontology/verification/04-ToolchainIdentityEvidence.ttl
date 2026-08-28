@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:ToolchainIdentityEvidence a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Toolchain Identity Evidence"; skos:definition "Evidence identifying the exact verifier, compiler, runtime, or toolchain used." .
