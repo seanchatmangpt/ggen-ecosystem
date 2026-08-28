@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# WS1 bootstrap-rail contract: install-asset-env
+ASK { ex:install gha:envVar "GGEN_ASSET_SHA256: ${{ inputs.ggen_asset_sha256 }}" . }
