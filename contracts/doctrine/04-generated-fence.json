@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "AGENTS.md",
+  "value": "Generated outputs are never editing surfaces",
+  "capability": "generated-fence"
+}
