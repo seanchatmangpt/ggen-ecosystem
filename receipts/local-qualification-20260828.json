@@ -1,0 +1,47 @@
+{
+  "type": "local_qualification_receipt",
+  "standing": "PARTIAL_ALIVE[LOCAL_CAPSULE]",
+  "timestamp_utc": "2026-08-28T23:55:00Z",
+  "subject": {
+    "ecosystem_commit": "c779aec20d9c93727c7ad4464f1dd52ac8e066e4",
+    "ggen_submodule_commit": "",
+    "marketplace_submodule_commit": "",
+    "local_image_id": "sha256:5964b6d5e970318176d82b7f7c842e53ef9c0acf4b47dbf9282d72051d9c77df",
+    "local_image_tag": "ggen-ecosystem:qual"
+  },
+  "checks": {
+    "pack_tree_correspondence": {
+      "source": "vendor/ggen-marketplace/packs",
+      "image_path": "/opt/ggen-marketplace/packs",
+      "file_count": 8938,
+      "source_sha256": "4dbf5ac25ddc49c6b1173a0ce5ef15f83859a38871dcbd86165187300be99503",
+      "image_sha256": "4dbf5ac25ddc49c6b1173a0ce5ef15f83859a38871dcbd86165187300be99503",
+      "result": "MATCH"
+    },
+    "ggen_binary_identity": {
+      "path_in_image": "/usr/local/bin/ggen",
+      "sha256": "17e8ca0163d41717c5aa82074117594f9df8297c3efa9cc2edb8a4131e98f3b8",
+      "version": "26.8.28"
+    },
+    "fresh_consumer_rehearsal": {
+      "graph_hash_hex": "6ca4912ecadf8b6c81e90a9e80f23c1a033539d57d2452529109a0339bb6b58c",
+      "written": ["generated/hello.txt"],
+      "result": "PASS"
+    },
+    "replay_determinism": {
+      "second_run_graph_hash_hex": "6ca4912ecadf8b6c81e90a9e80f23c1a033539d57d2452529109a0339bb6b58c",
+      "second_run_decision": "skipped: unchanged: content identical",
+      "result": "PASS (idempotent, identical graph hash)"
+    },
+    "clean_room": {
+      "conditions": "docker --network none, env -i (no host PATH/HOME/GGEN_* vars), fresh consumer directory",
+      "graph_hash_hex": "6ca4912ecadf8b6c81e90a9e80f23c1a033539d57d2452529109a0339bb6b58c",
+      "result": "PASS (no ambient host/network dependency)"
+    }
+  },
+  "not_covered": [
+    "GHCR publish and digest-addressed pull (no registry credentials this session)",
+    "act-driven execution of the generated GitHub Actions workflow (not run this pass)",
+    "receipt sealing via mcp__oclnr affidavit chain (different tool domain, not applicable to this receipt)"
+  ]
+}
