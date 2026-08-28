@@ -1,0 +1,6 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  { SELECT (COUNT(?r) AS ?n) WHERE { eco:InstrumentGainCalibrationEvidence dcterms:relation ?r . } }
+  FILTER (?n = 6)
+}
