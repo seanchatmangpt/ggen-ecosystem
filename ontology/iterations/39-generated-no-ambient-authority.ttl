@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:GeneratedNoAmbientAuthority a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "generated artifact has no ambient authority";skos:definition "Generated artifacts remain constructed evidence until separately admitted for actuation.";eco:falsifier "Generated existence alone granting DO authority falsifies this invariant.".
