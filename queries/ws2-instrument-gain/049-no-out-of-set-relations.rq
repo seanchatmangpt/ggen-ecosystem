@@ -1,0 +1,8 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  FILTER NOT EXISTS {
+    eco:InstrumentGainCalibrationEvidence dcterms:relation ?r .
+    FILTER (?r NOT IN (eco:InstrumentGainCalibration, eco:ExperimentalReach, eco:EffectiveAperture, eco:Operationalization, eco:ObservationalFrontier, eco:StoredExecutableWork))
+  }
+}
