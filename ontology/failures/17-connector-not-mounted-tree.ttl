@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure17ConnectorNotMountedTree a eco:TypedFailure,skos:Concept; skos:prefLabel "CONNECTOR_NOT_MOUNTED_TREE"; eco:failurePhase "transport"; eco:standingOnFailure "BLOCKED"; eco:remediation "materialize exact tree via lawful transport"; eco:retryPolicy "alternative-edge".
