@@ -46,3 +46,7 @@ jobs:
         run: |
           grep -q c779aec20d9c93727c7ad4464f1dd52ac8e066e4 ggen.toml
 
+      - name: Verify release-pin
+        run: |
+          grep -q v26.8.28 ontology.ttl
+
