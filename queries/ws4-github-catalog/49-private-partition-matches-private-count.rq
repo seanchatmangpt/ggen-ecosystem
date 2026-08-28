@@ -1,0 +1,6 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK {
+  eco:protected-private-observation-partition eco:observedRepositoryCount ?partitionCount .
+  eco:github-owner-census-2026-08-28 eco:observedPrivateRepositoryCount ?privateCount .
+  FILTER(?partitionCount = ?privateCount)
+}
