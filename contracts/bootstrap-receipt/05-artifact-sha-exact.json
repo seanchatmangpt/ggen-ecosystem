@@ -1,0 +1,6 @@
+{
+  "id": "artifact-sha-exact",
+  "path": "/artifact_sha256",
+  "op": "equals",
+  "expected": "e03c5da8306d7b7073787c5d4172cfecafd296a4283adb05272ae465b392308e"
+}
