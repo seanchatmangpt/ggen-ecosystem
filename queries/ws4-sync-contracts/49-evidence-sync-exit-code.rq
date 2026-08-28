@@ -1,0 +1,2 @@
+# WS4 invariant 49: receipt binds observed sync exit code
+ASK { <https://ggen.io/ecosystem/github-sync#evidence> <http://seanchatmangpt.github.io/packs/github-actions#runCommand> ?v . FILTER(CONTAINS(STR(?v), "sync_exit_code")) }
