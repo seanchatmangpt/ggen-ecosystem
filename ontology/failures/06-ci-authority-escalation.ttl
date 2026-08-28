@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure06CiAuthorityEscalation a eco:TypedFailure,skos:Concept; skos:prefLabel "CI_AUTHORITY_ESCALATION"; eco:failurePhase "authority"; eco:standingOnFailure "REFUSED:CI_AUTHORITY"; eco:remediation "treat CI as evidence transport only"; eco:retryPolicy "same-subject".
