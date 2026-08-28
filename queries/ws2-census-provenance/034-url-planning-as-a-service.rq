@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:repo-candidate-planning-as-a-service eco:sourceUrl "https://github.com/seanchatmangpt/planning-as-a-service" . }
