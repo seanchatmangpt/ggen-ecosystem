@@ -70,3 +70,7 @@ jobs:
         run: |
           git diff --check
 
+      - name: Verify no-consumer-local-packs
+        run: |
+          test ! -d packs
+
