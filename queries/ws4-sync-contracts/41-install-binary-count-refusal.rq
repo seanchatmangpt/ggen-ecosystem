@@ -1,0 +1,2 @@
+# WS4 invariant 41: ambiguous release assets remain refused
+ASK { <https://ggen.io/ecosystem/github-sync#install> <http://seanchatmangpt.github.io/packs/github-actions#runCommand> ?v . FILTER(CONTAINS(STR(?v), "REFUSED[GGEN_ASSET_BINARY_COUNT]")) }
