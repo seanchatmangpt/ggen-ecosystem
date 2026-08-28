@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure28UnknownAdmitted a eco:TypedFailure,skos:Concept; skos:prefLabel "UNKNOWN_ADMITTED"; eco:failurePhase "admission"; eco:standingOnFailure "REFUSED:UNKNOWN_ADMITTED"; eco:remediation "return fact to UNKNOWN until evidence closes"; eco:retryPolicy "same-subject".
