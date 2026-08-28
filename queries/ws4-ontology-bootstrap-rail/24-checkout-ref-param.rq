@@ -1,0 +1,5 @@
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+ASK {
+  ex:checkout gha:withParam "ref: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha || github.sha }}" .
+}
