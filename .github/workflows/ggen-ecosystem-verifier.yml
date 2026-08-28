@@ -30,3 +30,7 @@ jobs:
         run: |
           test -f ecosystem.ttl
 
+      - name: Verify ecosystem-lock-present
+        run: |
+          test -f ecosystem.lock.toml
+
