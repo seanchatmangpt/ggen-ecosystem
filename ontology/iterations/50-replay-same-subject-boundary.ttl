@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ReplaySameSubjectBoundary a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "replay same-subject boundary";skos:definition "Replay tests the same admitted subject boundary rather than a nearby or successor subject.";eco:falsifier "Using a different subject to claim replay equivalence falsifies this invariant.".
