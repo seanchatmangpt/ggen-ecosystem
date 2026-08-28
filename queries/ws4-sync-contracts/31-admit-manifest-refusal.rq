@@ -1,0 +1,2 @@
+# WS4 invariant 31: missing ggen manifest remains refused
+ASK { <https://ggen.io/ecosystem/github-sync#admit> <http://seanchatmangpt.github.io/packs/github-actions#runCommand> ?v . FILTER(CONTAINS(STR(?v), "REFUSED[GGEN_MANIFEST_MISSING]")) }
