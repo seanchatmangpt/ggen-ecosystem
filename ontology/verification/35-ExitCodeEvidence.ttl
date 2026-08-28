@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:ExitCodeEvidence a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Exit Code Evidence"; skos:definition "Evidence preserving the exact process exit code from an observed execution." .
