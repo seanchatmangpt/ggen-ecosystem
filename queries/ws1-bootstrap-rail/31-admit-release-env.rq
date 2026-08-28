@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# WS1 bootstrap-rail contract: admit-release-env
+ASK { ex:admit gha:envVar "GGEN_RELEASE: ${{ inputs.ggen_release }}" . }

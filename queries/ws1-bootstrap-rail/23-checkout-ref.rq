@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# WS1 bootstrap-rail contract: checkout-ref
+ASK { ex:checkout gha:withParam "ref: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha || github.sha }}" . }

@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# WS1 bootstrap-rail contract: cache-name
+ASK { ex:cache gha:stepName "Restore untrusted native GGen pack cache" . }

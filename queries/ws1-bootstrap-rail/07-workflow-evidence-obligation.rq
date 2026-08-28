@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# WS1 bootstrap-rail contract: workflow-evidence-obligation
+ASK { ex:workflow gha:evidenceObligation "bind exact candidate SHA, GGen release digest, marketplace SHA, pack identities, generated patch digest, intrinsic GGen receipt, and GitHub run identity" . }

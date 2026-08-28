@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# WS1 bootstrap-rail contract: construct-failure-class
+ASK { ex:construct gha:failureClassification "REFUSED or BUILD_BROKEN before repository write authority exists" . }
