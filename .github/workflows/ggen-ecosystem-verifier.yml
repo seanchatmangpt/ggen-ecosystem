@@ -50,3 +50,7 @@ jobs:
         run: |
           grep -q v26.8.28 ontology.ttl
 
+      - name: Verify asset-digest-pin
+        run: |
+          grep -q ccb9fe78ef0c84d8b240b45beb6e73f47e2c930d5db3efcf9a0e58dfe071d313 ontology.ttl
+
