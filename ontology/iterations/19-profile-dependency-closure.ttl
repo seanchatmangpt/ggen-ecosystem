@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ProfileDependencyClosure a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "profile dependency closure";skos:definition "An admitted profile resolves to a dependency-closed repository, pack, and capability set.";eco:falsifier "A profile omitting a required dependency falsifies closure.".
