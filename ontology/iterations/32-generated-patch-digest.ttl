@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:GeneratedPatchDigest a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "generated patch digest";skos:definition "Manufacture evidence binds the exact generated patch digest before standing is evaluated.";eco:falsifier "Claiming deterministic consequence without a bound patch identity falsifies this invariant.".
