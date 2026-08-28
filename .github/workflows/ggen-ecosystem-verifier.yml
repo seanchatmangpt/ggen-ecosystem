@@ -90,3 +90,7 @@ jobs:
         run: |
           grep -q workflow_dispatch .github/workflows/ggen-ecosystem-sync.yml
 
+      - name: Verify workflow-call
+        run: |
+          grep -q workflow_call .github/workflows/ggen-ecosystem-sync.yml
+
