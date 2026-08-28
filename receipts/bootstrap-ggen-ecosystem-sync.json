@@ -1,0 +1,33 @@
+{
+  "schema": "https://ggen.dev/receipts/ecosystem-bootstrap/v1",
+  "artifact": ".github/workflows/ggen-ecosystem-sync.yml",
+  "artifact_sha256": "e03c5da8306d7b7073787c5d4172cfecafd296a4283adb05272ae465b392308e",
+  "standing": "ALIVE[MANUFACTURE_ARTIFACT]",
+  "manufacturer": {
+    "repository": "seanchatmangpt/ggen",
+    "branch_head_sha": "dcd363b5bcc0ba526bb6ce5e6bc4ea5db0a1a716",
+    "github_checkout_sha": "44a6fde0a38d6d940bdd2b5ff35063d7fc358836",
+    "workflow_run_id": 33150915638,
+    "workflow_job_id": 98782446151,
+    "artifact_id": 9677675572,
+    "artifact_digest": "sha256:0455db2b422807c78e64324a009cd7b2d393538be72eef543512df05ab6e80b5"
+  },
+  "ggen": {
+    "release": "v26.8.27",
+    "release_asset_sha256": "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035",
+    "binary_sha256": "01d0f5e624d12eeda503db4fb4b00618472bd775ee4850c9a2f850651db76680",
+    "sync_exit_code": 0,
+    "graph_hash": "27500c768263ba41ad5343a08a8d521c1f12c06e74d7089c4650a298d0b02ad2"
+  },
+  "marketplace": {
+    "repository": "seanchatmangpt/ggen-marketplace",
+    "sha": "4c4232515b43d40cef8288c43eacfab2c31ab485",
+    "pack": "packs/github-actions-pack",
+    "pack_content_blake3": "1ce72f06a115995a37b9416013d607d4898f3cd707819681a76f663d69c99da8"
+  },
+  "verification": {
+    "generated_path": ".github/workflows/ggen-ecosystem-sync.yml",
+    "independent_yaml_parse": "PASS",
+    "generated_bytes_match_recorded_sha256": true
+  }
+}
