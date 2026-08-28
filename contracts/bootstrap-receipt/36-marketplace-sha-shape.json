@@ -1,0 +1,6 @@
+{
+  "id": "marketplace-sha-shape",
+  "path": "/marketplace/sha",
+  "op": "regex",
+  "expected": "[0-9a-f]{40}"
+}
