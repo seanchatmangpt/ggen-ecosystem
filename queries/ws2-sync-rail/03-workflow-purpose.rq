@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# Falsifier: false when the semantic workflow purpose drifts.
+ASK WHERE { ex:workflow gha:purpose "GGen Ecosystem Sync" . }
