@@ -1,0 +1,2 @@
+# WS4 invariant 25: admission remains second construct step
+ASK { <https://ggen.io/ecosystem/github-sync#admit> <http://seanchatmangpt.github.io/packs/github-actions#stepOrder> 2 . }
