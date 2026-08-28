@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ReceiptConsequenceBinding a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "receipt binds consequence";skos:definition "A receipt records the observable consequence produced by an authorized actuation.";eco:falsifier "A receipt that cannot identify its consequence falsifies this invariant.".
