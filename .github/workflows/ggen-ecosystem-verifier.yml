@@ -82,3 +82,7 @@ jobs:
         run: |
           grep -q 'GGen Ecosystem Sync' .github/workflows/ggen-ecosystem-sync.yml
 
+      - name: Verify read-permission-ceiling
+        run: |
+          grep -q 'contents: read' .github/workflows/ggen-ecosystem-sync.yml
+
