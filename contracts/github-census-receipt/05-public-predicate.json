@@ -1,0 +1,1 @@
+{"expected":"owner=seanchatmangpt AND visibility=public","id":"public-predicate","op":"eq","path":"public_catalog_predicate"}
