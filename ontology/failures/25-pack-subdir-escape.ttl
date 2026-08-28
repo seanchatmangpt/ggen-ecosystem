@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure25PackSubdirEscape a eco:TypedFailure,skos:Concept; skos:prefLabel "PACK_SUBDIR_ESCAPE"; eco:failurePhase "closure"; eco:standingOnFailure "REFUSED:PACK_SUBDIR_ESCAPE"; eco:remediation "confine pack path to admitted marketplace subtree"; eco:retryPolicy "same-subject".

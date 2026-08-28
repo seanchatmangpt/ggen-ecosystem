@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure37CacheAsStanding a eco:TypedFailure,skos:Concept; skos:prefLabel "CACHE_AS_STANDING"; eco:failurePhase "standing"; eco:standingOnFailure "REFUSED:CACHE_AS_STANDING"; eco:remediation "treat cache as acceleration only"; eco:retryPolicy "same-subject".

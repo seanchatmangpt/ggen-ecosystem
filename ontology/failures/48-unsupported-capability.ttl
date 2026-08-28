@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure48UnsupportedCapability a eco:TypedFailure,skos:Concept; skos:prefLabel "UNSUPPORTED_CAPABILITY"; eco:failurePhase "capability"; eco:standingOnFailure "UNSUPPORTED"; eco:remediation "preserve boundary and choose another lawful iteration"; eco:retryPolicy "alternative-edge".

@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure13ReplayEnvironmentDrift a eco:TypedFailure,skos:Concept; skos:prefLabel "REPLAY_ENVIRONMENT_DRIFT"; eco:failurePhase "replay"; eco:standingOnFailure "REFUSED:REPLAY_ENVIRONMENT_DRIFT"; eco:remediation "materialize pinned environment capsule"; eco:retryPolicy "same-subject".

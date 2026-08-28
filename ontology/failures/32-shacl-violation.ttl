@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure32ShaclViolation a eco:TypedFailure,skos:Concept; skos:prefLabel "SHACL_VIOLATION"; eco:failurePhase "validation"; eco:standingOnFailure "REFUSED:SHACL_VIOLATION"; eco:remediation "repair source graph until shape validates"; eco:retryPolicy "same-subject".

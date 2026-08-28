@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure40ForcePushRequired a eco:TypedFailure,skos:Concept; skos:prefLabel "FORCE_PUSH_REQUIRED"; eco:failurePhase "git"; eco:standingOnFailure "REFUSED:FORCE_PUSH_REQUIRED"; eco:remediation "preserve branch lineage; create new purpose branch"; eco:retryPolicy "new-subject".

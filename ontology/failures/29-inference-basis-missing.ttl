@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure29InferenceBasisMissing a eco:TypedFailure,skos:Concept; skos:prefLabel "INFERENCE_BASIS_MISSING"; eco:failurePhase "admission"; eco:standingOnFailure "REFUSED:INFERENCE_BASIS_MISSING"; eco:remediation "record reversible inference basis"; eco:retryPolicy "same-subject".
