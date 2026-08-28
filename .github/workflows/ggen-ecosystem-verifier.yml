@@ -22,3 +22,7 @@ jobs:
         run: |
           test -f ontology.ttl
 
+      - name: Verify lock-present
+        run: |
+          test -f ggen.lock
+
