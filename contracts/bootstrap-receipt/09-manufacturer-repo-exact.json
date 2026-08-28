@@ -1,0 +1,6 @@
+{
+  "id": "manufacturer-repo-exact",
+  "path": "/manufacturer/repository",
+  "op": "equals",
+  "expected": "seanchatmangpt/ggen"
+}
