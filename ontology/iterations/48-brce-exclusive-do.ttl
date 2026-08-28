@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:BRCEExclusiveDo a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "BRCE is the exclusive DO path";skos:definition "Consequential mutation may occur only through an admitted receipted broker path.";eco:falsifier "Any consequential mutation outside the admitted receipted broker path falsifies this invariant.".
