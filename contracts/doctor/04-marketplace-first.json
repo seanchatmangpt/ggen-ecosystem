@@ -1,0 +1,1 @@
+{"expected":"Prefer existing `ggen-marketplace` packs","failure_standing":"PARTIAL_ALIVE","id":"marketplace-first","path":"AGENTS.md","predicate":"contains","remediation":"reuse marketplace knowledge before local duplication"}

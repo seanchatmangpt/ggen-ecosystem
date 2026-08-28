@@ -1,0 +1,1 @@
+{"expected":"BLAKE3 receipt","failure_standing":"PARTIAL_ALIVE","id":"architecture-blake3","path":"docs/ARCHITECTURE.md","predicate":"contains","remediation":"bind consequence in BLAKE3 receipt"}

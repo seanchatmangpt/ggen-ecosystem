@@ -1,0 +1,1 @@
+{"expected":"connector object is not a mounted tree","failure_standing":"PARTIAL_ALIVE","id":"connector-not-tree","path":"AGENTS.md","predicate":"contains","remediation":"materialize exact subject before execution"}

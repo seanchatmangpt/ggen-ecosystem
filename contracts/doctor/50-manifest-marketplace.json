@@ -1,0 +1,1 @@
+{"expected":"4c4232515b43d40cef8288c43eacfab2c31ab485","failure_standing":"BLOCKED","id":"manifest-marketplace","path":"ggen.toml","predicate":"contains","remediation":"align manifest marketplace SHA"}

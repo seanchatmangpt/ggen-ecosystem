@@ -1,0 +1,1 @@
+{"expected":"ggen.commit_sha=df1e138a64c80e41090cff7c84fb62d77e03b734","failure_standing":"BLOCKED","id":"lock-ggen-sha","path":"ecosystem.lock.toml","predicate":"toml_eq","remediation":"restore locked GGen SHA"}

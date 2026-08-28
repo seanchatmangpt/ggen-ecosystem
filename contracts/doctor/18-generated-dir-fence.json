@@ -1,0 +1,1 @@
+{"expected":"`generated/`, `consumer/`, and `.ggen-v2/`","failure_standing":"REFUSED:GENERATED_EDIT_SURFACE","id":"generated-dir-fence","path":"AGENTS.md","predicate":"contains","remediation":"edit semantic source/pack instead"}

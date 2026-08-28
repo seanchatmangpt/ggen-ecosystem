@@ -1,0 +1,8 @@
+{
+  "expected": "canonical composition root",
+  "failure_standing": "BUILD_BROKEN",
+  "id": "composition-root",
+  "path": "AGENTS.md",
+  "predicate": "contains",
+  "remediation": "restore composition-root doctrine"
+}

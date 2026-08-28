@@ -1,0 +1,1 @@
+{"expected":"project.name=ggen-ecosystem","failure_standing":"BUILD_BROKEN","id":"manifest-project","path":"ggen.toml","predicate":"toml_eq","remediation":"restore manifest project identity"}

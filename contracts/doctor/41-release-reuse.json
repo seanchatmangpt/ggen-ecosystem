@@ -1,0 +1,1 @@
+{"expected":"source, validator, toolchain, configuration, and environment identities","failure_standing":"PARTIAL_ALIVE","id":"release-reuse","path":"docs/RELEASE.md","predicate":"contains","remediation":"prove ALIVE reuse identity"}

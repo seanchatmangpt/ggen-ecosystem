@@ -1,0 +1,1 @@
+{"expected":"Ontology/admission/profile sources outrank generated projections","failure_standing":"REFUSED:SOURCE_AUTHORITY_DRIFT","id":"source-authority","path":"AGENTS.md","predicate":"contains","remediation":"repair authored source authority"}

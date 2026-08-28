@@ -1,0 +1,1 @@
+{"expected":"CI is evidence transport, not authority","failure_standing":"REFUSED:CI_AUTHORITY","id":"ci-not-authority","path":"AGENTS.md","predicate":"contains","remediation":"demote CI to evidence transport"}
