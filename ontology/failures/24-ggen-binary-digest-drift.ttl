@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure24GgenBinaryDigestDrift a eco:TypedFailure,skos:Concept; skos:prefLabel "GGEN_BINARY_DIGEST_DRIFT"; eco:failurePhase "closure"; eco:standingOnFailure "REFUSED:GGEN_BINARY_DIGEST_DRIFT"; eco:remediation "install checksum-pinned binary"; eco:retryPolicy "same-subject".

@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure11ReplaySubjectMismatch a eco:TypedFailure,skos:Concept; skos:prefLabel "REPLAY_SUBJECT_MISMATCH"; eco:failurePhase "replay"; eco:standingOnFailure "REFUSED:REPLAY_SUBJECT_MISMATCH"; eco:remediation "replay identical admitted subject boundary"; eco:retryPolicy "new-subject".

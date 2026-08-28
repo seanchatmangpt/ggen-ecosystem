@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure04AmbientDo a eco:TypedFailure,skos:Concept; skos:prefLabel "AMBIENT_DO"; eco:failurePhase "authority"; eco:standingOnFailure "REFUSED:AMBIENT_DO"; eco:remediation "route actuation through BRCE"; eco:retryPolicy "same-subject".

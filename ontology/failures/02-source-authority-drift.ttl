@@ -1,0 +1,3 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+eco:Failure02SourceAuthorityDrift a eco:TypedFailure, skos:Concept ; skos:prefLabel "SOURCE_AUTHORITY_DRIFT" ; eco:failurePhase "admission" ; eco:standingOnFailure "REFUSED:SOURCE_AUTHORITY_DRIFT" ; eco:retryPolicy "same-subject" ; eco:remediation "repair authored semantic source; do not patch projection" ; eco:authorityEffect "no ambient DO authority granted" ; eco:receiptRequirement "preserve exact subject, failed transition, evidence, and selected fallback" .

@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure43EmptyCommit a eco:TypedFailure,skos:Concept; skos:prefLabel "EMPTY_COMMIT"; eco:failurePhase "manufacture"; eco:standingOnFailure "REFUSED:EMPTY_COMMIT"; eco:remediation "replace with semantic change or exclude from takt"; eco:retryPolicy "same-subject".

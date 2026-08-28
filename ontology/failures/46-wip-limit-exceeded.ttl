@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure46WipLimitExceeded a eco:TypedFailure,skos:Concept; skos:prefLabel "WIP_LIMIT_EXCEEDED"; eco:failurePhase "manufacture"; eco:standingOnFailure "BLOCKED"; eco:remediation "finish or park work until WIP <= 3"; eco:retryPolicy "same-subject".

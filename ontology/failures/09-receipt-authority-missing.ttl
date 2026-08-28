@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure09ReceiptAuthorityMissing a eco:TypedFailure,skos:Concept; skos:prefLabel "RECEIPT_AUTHORITY_MISSING"; eco:failurePhase "receipt"; eco:standingOnFailure "PARTIAL_ALIVE"; eco:remediation "record broker/authority identity in receipt"; eco:retryPolicy "same-subject".

@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure23GgenReleaseDrift a eco:TypedFailure,skos:Concept; skos:prefLabel "GGEN_RELEASE_DRIFT"; eco:failurePhase "closure"; eco:standingOnFailure "REFUSED:GGEN_RELEASE_DRIFT"; eco:remediation "materialize locked GGen release"; eco:retryPolicy "same-subject".
