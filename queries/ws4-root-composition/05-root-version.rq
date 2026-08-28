@@ -1,0 +1,8 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+ASK {
+eco:ggen-ecosystem dcterms:hasVersion "26.8.27" .
+}
