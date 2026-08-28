@@ -78,3 +78,7 @@ jobs:
         run: |
           test -f .github/workflows/ggen-ecosystem-sync.yml
 
+      - name: Verify sync-workflow-name
+        run: |
+          grep -q 'GGen Ecosystem Sync' .github/workflows/ggen-ecosystem-sync.yml
+
