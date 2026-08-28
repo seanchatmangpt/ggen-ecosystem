@@ -1,0 +1,8 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+ASK {
+  FILTER NOT EXISTS {
+    ?r a eco:RepositoryCandidate .
+    FILTER NOT EXISTS { ?r a prov:Entity . }
+  }
+}
