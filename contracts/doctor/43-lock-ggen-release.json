@@ -1,0 +1,1 @@
+{"expected":"ggen.release=v26.8.27","failure_standing":"BLOCKED","id":"lock-ggen-release","path":"ecosystem.lock.toml","predicate":"toml_eq","remediation":"restore locked GGen release"}
