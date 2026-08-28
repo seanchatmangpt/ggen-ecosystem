@@ -1,0 +1,5 @@
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+ASK {
+  ex:cache gha:usesAction "actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5" .
+}
