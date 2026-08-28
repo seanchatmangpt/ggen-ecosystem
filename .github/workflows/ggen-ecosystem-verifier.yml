@@ -34,3 +34,7 @@ jobs:
         run: |
           test -f ecosystem.lock.toml
 
+      - name: Verify doctrine-present
+        run: |
+          test -f AGENTS.md
+
