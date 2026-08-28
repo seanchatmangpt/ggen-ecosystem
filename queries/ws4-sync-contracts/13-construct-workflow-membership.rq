@@ -1,0 +1,2 @@
+# WS4 invariant 13: construct remains in canonical workflow
+ASK { <https://ggen.io/ecosystem/github-sync#construct> <http://seanchatmangpt.github.io/packs/github-actions#inWorkflow> <https://ggen.io/ecosystem/github-sync#workflow> . }
