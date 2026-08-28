@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix map:<https://ggen.dev/ecosystem/mapping#>. map:mapping-40 a map:PublicOntologyMapping; map:sourceTerm eco:manufacturedBy; map:targetTerm <http://www.w3.org/ns/prov#wasGeneratedBy>; map:projectionKind "property-projection"; map:falsifier "Refuse on source disappearance, semantic strengthening, or authority amplification.".
