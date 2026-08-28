@@ -1,0 +1,8 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+eco:BrceDoBoundary a eco:Capability, skos:Concept ;
+  skos:inScheme eco:CapabilityScheme ;
+  skos:prefLabel "BRCE DO boundary" ;
+  skos:broader eco:Qualification ;
+  skos:scopeNote "Reversible ecosystem capability slice. Admission does not grant ambient DO authority." .
