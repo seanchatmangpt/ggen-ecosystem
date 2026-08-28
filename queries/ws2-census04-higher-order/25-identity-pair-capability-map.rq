@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { eco:repo-candidate-capability-map dcterms:identifier "seanchatmangpt/capability-map" ; eco:sourceUrl "https://github.com/seanchatmangpt/capability-map" . }
