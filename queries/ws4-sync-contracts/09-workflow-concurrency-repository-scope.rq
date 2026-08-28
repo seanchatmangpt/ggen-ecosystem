@@ -1,0 +1,2 @@
+# WS4 invariant 09: concurrency scope remains repository-bound
+ASK { <https://ggen.io/ecosystem/github-sync#workflow> <http://seanchatmangpt.github.io/packs/github-actions#concurrencyPolicy> ?v . FILTER(CONTAINS(STR(?v), "github.repository")) }
