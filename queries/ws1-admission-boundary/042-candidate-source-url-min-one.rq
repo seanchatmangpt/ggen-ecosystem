@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+ASK WHERE { eco:RepositoryCandidateShape sh:property ?p . ?p sh:path eco:sourceUrl ; sh:minCount 1 . }
