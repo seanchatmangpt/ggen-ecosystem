@@ -1,0 +1,6 @@
+{
+  "id": "workflow-job-exact",
+  "path": "/manufacturer/workflow_job_id",
+  "op": "equals",
+  "expected": 98782446151
+}

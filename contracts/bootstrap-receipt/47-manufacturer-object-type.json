@@ -1,0 +1,6 @@
+{
+  "id": "manufacturer-object-type",
+  "path": "/manufacturer",
+  "op": "type",
+  "expected": "dict"
+}

@@ -1,0 +1,6 @@
+{
+  "id": "verification-path-matches-artifact",
+  "path": "/verification/generated_path",
+  "op": "same_as",
+  "other_path": "/artifact"
+}

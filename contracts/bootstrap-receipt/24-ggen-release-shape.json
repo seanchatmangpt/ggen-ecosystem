@@ -1,0 +1,6 @@
+{
+  "id": "ggen-release-shape",
+  "path": "/ggen/release",
+  "op": "regex",
+  "expected": "v\\d+\\.\\d+\\.\\d+"
+}

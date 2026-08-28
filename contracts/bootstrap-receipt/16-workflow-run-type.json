@@ -1,0 +1,6 @@
+{
+  "id": "workflow-run-type",
+  "path": "/manufacturer/workflow_run_id",
+  "op": "type",
+  "expected": "int"
+}

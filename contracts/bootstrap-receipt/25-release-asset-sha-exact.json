@@ -1,0 +1,6 @@
+{
+  "id": "release-asset-sha-exact",
+  "path": "/ggen/release_asset_sha256",
+  "op": "equals",
+  "expected": "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035"
+}

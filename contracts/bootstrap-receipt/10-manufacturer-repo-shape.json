@@ -1,0 +1,6 @@
+{
+  "id": "manufacturer-repo-shape",
+  "path": "/manufacturer/repository",
+  "op": "regex",
+  "expected": "[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+"
+}

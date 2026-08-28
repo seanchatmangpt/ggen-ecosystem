@@ -1,0 +1,6 @@
+{
+  "id": "marketplace-pack-confined",
+  "path": "/marketplace/pack",
+  "op": "regex",
+  "expected": "packs/[A-Za-z0-9_.-]+"
+}

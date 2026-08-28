@@ -1,0 +1,6 @@
+{
+  "id": "ggen-object-type",
+  "path": "/ggen",
+  "op": "type",
+  "expected": "dict"
+}

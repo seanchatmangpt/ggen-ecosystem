@@ -1,0 +1,6 @@
+{
+  "id": "artifact-digest-shape",
+  "path": "/manufacturer/artifact_digest",
+  "op": "regex",
+  "expected": "sha256:[0-9a-f]{64}"
+}

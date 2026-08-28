@@ -1,0 +1,6 @@
+{
+  "id": "graph-hash-shape",
+  "path": "/ggen/graph_hash",
+  "op": "regex",
+  "expected": "[0-9a-f]{64}"
+}

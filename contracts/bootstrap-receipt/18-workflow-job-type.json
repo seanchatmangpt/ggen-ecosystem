@@ -1,0 +1,6 @@
+{
+  "id": "workflow-job-type",
+  "path": "/manufacturer/workflow_job_id",
+  "op": "type",
+  "expected": "int"
+}

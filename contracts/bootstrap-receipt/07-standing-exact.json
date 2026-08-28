@@ -1,0 +1,6 @@
+{
+  "id": "standing-exact",
+  "path": "/standing",
+  "op": "equals",
+  "expected": "ALIVE[MANUFACTURE_ARTIFACT]"
+}

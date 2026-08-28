@@ -1,0 +1,6 @@
+{
+  "id": "sync-exit-zero",
+  "path": "/ggen/sync_exit_code",
+  "op": "equals",
+  "expected": 0
+}
