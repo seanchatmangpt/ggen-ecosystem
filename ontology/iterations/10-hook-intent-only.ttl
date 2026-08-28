@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:HookIntentOnly a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "hooks emit intents only";skos:definition "Hooks may manufacture intents but cannot actuate consequences.";eco:falsifier "A hook directly mutating an external subject falsifies this invariant.".

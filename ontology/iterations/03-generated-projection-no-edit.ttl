@@ -1,0 +1,2 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+eco:GeneratedProjectionFence a eco:GovernanceInvariant, skos:Concept ; skos:prefLabel "generated projection fence" ; skos:definition "Generated workflow and projection surfaces are consequences, not editing surfaces." ; eco:falsifier "A direct manual edit to a generated projection falsifies this fence." .

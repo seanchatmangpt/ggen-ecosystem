@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:EvidenceRetentionIntent a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "evidence retention intent";skos:definition "Replay evidence has an explicit retention horizon and is not assumed permanent merely because a workflow ran.";eco:falsifier "Relying on expired evidence as durable replay material falsifies this invariant.".

@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ExternalIdentityLock a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "external identity lock";skos:definition "External producer and dependency identities are recorded separately from semantic selection.";eco:falsifier "An admitted external dependency without an exact identity falsifies the lock.".

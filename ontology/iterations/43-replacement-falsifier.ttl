@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ReplacementFalsifier a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "replacement falsifier";skos:definition "Every semantic replacement declares an observation that would prove the replacement insufficient.";eco:falsifier "A replacement with no falsifiable failure condition falsifies this invariant.".

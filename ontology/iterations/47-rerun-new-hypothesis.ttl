@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:RerunRequiresNewHypothesis a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "rerun requires new hypothesis";skos:definition "An unchanged failing verifier is not rerun until a new repair hypothesis changes the tested condition.";eco:falsifier "Replaying an unchanged failure without a new hypothesis falsifies this invariant.".

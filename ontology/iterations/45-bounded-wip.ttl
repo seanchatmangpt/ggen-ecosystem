@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:BoundedWorkInProgress a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "bounded work in progress";skos:definition "Concurrent manufacture remains within the declared WIP ceiling so lineage and receipts stay attributable.";eco:falsifier "Exceeding the admitted WIP ceiling without re-admission falsifies this invariant.".

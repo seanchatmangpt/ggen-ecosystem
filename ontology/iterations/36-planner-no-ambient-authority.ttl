@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:PlannerNoAmbientAuthority a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "planner output has no ambient authority";skos:definition "Planner output may select a candidate action but cannot itself authorize DO.";eco:falsifier "A planner output bypassing admission and broker authority falsifies this invariant.".

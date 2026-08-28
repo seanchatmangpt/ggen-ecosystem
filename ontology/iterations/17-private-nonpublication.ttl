@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:PrivateNonpublication a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "private identity nonpublication";skos:definition "Observation authority over private repositories does not grant publication authority in the public composition root.";eco:falsifier "Publishing a private repository identity solely because it was observed falsifies this invariant.".

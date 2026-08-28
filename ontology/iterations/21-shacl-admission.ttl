@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:SHACLAdmissionGate a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "SHACL admission gate";skos:definition "Graph admission must satisfy declared structural constraints before entering closure.";eco:falsifier "A graph admitted despite a declared SHACL violation falsifies this invariant.".

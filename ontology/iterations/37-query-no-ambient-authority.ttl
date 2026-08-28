@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:QueryNoAmbientAuthority a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "query output has no ambient authority";skos:definition "Semantic query results may inform selection but cannot directly actuate consequences.";eco:falsifier "A query result directly causing DO falsifies this invariant.".

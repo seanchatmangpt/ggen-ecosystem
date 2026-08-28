@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ExactHeadMismatchRefusal a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "exact-head mismatch refusal";skos:definition "Execution must stop when the checked-out head differs from the admitted candidate SHA.";eco:falsifier "Continuing after an exact-head mismatch falsifies this invariant.".

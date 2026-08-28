@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ModelNoAmbientAuthority a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "model output has no ambient authority";skos:definition "Model output may inform SELECT or CONSTRUCT but cannot directly authorize DO.";eco:falsifier "A model output directly authorizing irreversible actuation falsifies this invariant.".
