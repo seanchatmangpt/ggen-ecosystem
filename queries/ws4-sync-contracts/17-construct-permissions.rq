@@ -1,0 +1,2 @@
+# WS4 invariant 17: construct permissions remain read-only
+ASK { <https://ggen.io/ecosystem/github-sync#construct> <http://seanchatmangpt.github.io/packs/github-actions#jobPermissions> "contents: read" . }
