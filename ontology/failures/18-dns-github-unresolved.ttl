@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure18DnsGithubUnresolved a eco:TypedFailure,skos:Concept; skos:prefLabel "DNS_GITHUB_UNRESOLVED"; eco:failurePhase "transport"; eco:standingOnFailure "BLOCKED"; eco:remediation "switch to connector/archive/artifact/object reconstruction"; eco:retryPolicy "alternative-edge".
