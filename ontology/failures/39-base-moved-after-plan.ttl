@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure39BaseMovedAfterPlan a eco:TypedFailure,skos:Concept; skos:prefLabel "BASE_MOVED_AFTER_PLAN"; eco:failurePhase "git"; eco:standingOnFailure "REFUSED:BASE_MOVED_AFTER_PLAN"; eco:remediation "replan from new exact base"; eco:retryPolicy "new-subject".
