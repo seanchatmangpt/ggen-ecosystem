@@ -1,0 +1,2 @@
+# WS4 invariant 04: workflow permission ceiling stays read-only
+ASK { <https://ggen.io/ecosystem/github-sync#workflow> <http://seanchatmangpt.github.io/packs/github-actions#permissionCeiling> "contents: read" . }
