@@ -58,3 +58,7 @@ jobs:
         run: |
           grep -q c779aec20d9c93727c7ad4464f1dd52ac8e066e4 ontology.ttl
 
+      - name: Verify toml-parse
+        run: |
+          python3 -c "import tomllib; tomllib.load(open('ggen.toml','rb'))"
+
