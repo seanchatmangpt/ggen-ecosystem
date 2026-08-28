@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { eco:github-owner-census-2026-08-28 dcterms:title "Exact GitHub owner census observed 2026-08-28" . }

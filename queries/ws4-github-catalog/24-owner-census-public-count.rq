@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:github-owner-census-2026-08-28 eco:observedPublicRepositoryCount 300 . }

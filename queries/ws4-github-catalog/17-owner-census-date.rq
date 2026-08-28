@@ -1,0 +1,4 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+ASK { eco:github-owner-census-2026-08-28 dcterms:date "2026-08-28"^^xsd:date . }
