@@ -1,0 +1,58 @@
+{
+  "schema": "https://ggen.dev/receipts/github-ecosystem-census/v1",
+  "observation_date": "2026-08-28",
+  "owner_login": "seanchatmangpt",
+  "membership_predicate": "repository.owner.login == 'seanchatmangpt'",
+  "identity_key": "repository.id",
+  "counts": {
+    "total_owned_repositories": 378,
+    "public_repositories": 300,
+    "private_repositories": 78
+  },
+  "enumeration_evidence": {
+    "owner_page_size": 100,
+    "owner_nonempty_pages_zero_based": [0, 1, 2, 3],
+    "owner_first_empty_page_zero_based": 4,
+    "owner_last_present_item_zero_based": 377,
+    "owner_first_absent_item_zero_based": 378,
+    "public_last_present_one_based": 300,
+    "public_first_absent_one_based": 301,
+    "private_last_present_one_based": 78,
+    "private_first_absent_one_based": 79
+  },
+  "public_root_privacy": {
+    "private_partition": "PROTECTED_PRIVATE_PARTITION",
+    "private_identity_materialization": false,
+    "prohibited_public_fields": [
+      "private repository name",
+      "private repository id",
+      "private repository url",
+      "private repository ref",
+      "private repository sha",
+      "private repository description",
+      "private repository size"
+    ]
+  },
+  "durable_identity_policy": {
+    "repository_identity": "GitHub repository ID",
+    "mutable_state": ["name", "visibility", "archived", "default_branch", "default_branch_head_sha"]
+  },
+  "constitutional_repositories": {
+    "ggen": {
+      "repository_id": 1071971708,
+      "role": "MANUFACTURING_ENGINE"
+    },
+    "ggen-marketplace": {
+      "repository_id": 1328598648,
+      "role": "PACK_DISTRIBUTION",
+      "admitted_pack_commit": "4c4232515b43d40cef8288c43eacfab2c31ab485"
+    },
+    "ggen-ecosystem": {
+      "repository_id": 1349290571,
+      "role": "COMPOSITION_AND_STANDING_ROOT",
+      "base_main_sha": "9d5882fca60e058e1b0dfefad8b45d277e1f5059"
+    }
+  },
+  "claim_ceiling": "EXACT_OWNED_REPOSITORY_CARDINALITY_AND_PRIVACY_PRESERVING_MEMBERSHIP_CLOSURE",
+  "standing": "ALIVE[CENSUS_CARDINALITY]"
+}
