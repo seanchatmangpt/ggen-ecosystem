@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:PublicCatalogObservationOnly a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "public catalog is observation only";skos:definition "Catalog membership records observation and does not imply ecosystem admission.";eco:falsifier "Catalog presence automatically granting admission falsifies this invariant.".
