@@ -1,0 +1,12 @@
+PREFIX cmd: <https://chatmangpt.com/ontology/cmd#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  <https://ggen.dev/ecosystem/design/bootstrap> cmd:hasCandidate <https://ggen.dev/ecosystem/candidate/001> .
+  <https://ggen.dev/ecosystem/design/bootstrap> cmd:hasCandidate <https://ggen.dev/ecosystem/candidate/002> .
+  <https://ggen.dev/ecosystem/design/bootstrap> cmd:hasCandidate <https://ggen.dev/ecosystem/candidate/003> .
+  <https://ggen.dev/ecosystem/design/bootstrap> cmd:hasCandidate <https://ggen.dev/ecosystem/candidate/004> .
+  <https://ggen.dev/ecosystem/design/bootstrap> cmd:hasCandidate <https://ggen.dev/ecosystem/candidate/005> .
+  <https://ggen.dev/ecosystem/design/bootstrap> cmd:hasCandidate <https://ggen.dev/ecosystem/candidate/006> .
+  <https://ggen.dev/ecosystem/design/bootstrap> cmd:hasCandidate <https://ggen.dev/ecosystem/candidate/007> .
+  <https://ggen.dev/ecosystem/design/bootstrap> cmd:hasCandidate <https://ggen.dev/ecosystem/candidate/008> .
+}

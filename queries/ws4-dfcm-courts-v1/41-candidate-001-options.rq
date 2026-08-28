@@ -1,0 +1,7 @@
+PREFIX cmd: <https://chatmangpt.com/ontology/cmd#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  <https://ggen.dev/ecosystem/candidate/001> cmd:selectsOption <https://ggen.dev/ecosystem/option/sibling-checkout> ;
+      cmd:selectsOption <https://ggen.dev/ecosystem/option/foundation-packs> ;
+      cmd:selectsOption <https://ggen.dev/ecosystem/option/prebuilt-ggen> .
+}
