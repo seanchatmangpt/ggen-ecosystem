@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { eco:repo-candidate-chatman-ecosystem dcterms:identifier "seanchatmangpt/chatman-ecosystem" ; eco:sourceUrl "https://github.com/seanchatmangpt/chatman-ecosystem" . }

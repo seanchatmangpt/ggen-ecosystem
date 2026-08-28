@@ -1,0 +1,9 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  FILTER NOT EXISTS {
+    ?a a eco:RepositoryCandidate ; dcterms:identifier ?id .
+    ?b a eco:RepositoryCandidate ; dcterms:identifier ?id .
+    FILTER(?a != ?b)
+  }
+}

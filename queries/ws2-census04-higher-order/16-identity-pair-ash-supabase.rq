@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { eco:repo-candidate-ash_supabase dcterms:identifier "seanchatmangpt/ash_supabase" ; eco:sourceUrl "https://github.com/seanchatmangpt/ash_supabase" . }

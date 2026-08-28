@@ -1,0 +1,8 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK {
+  FILTER NOT EXISTS {
+    ?a a eco:RepositoryCandidate ; eco:sourceUrl ?url .
+    ?b a eco:RepositoryCandidate ; eco:sourceUrl ?url .
+    FILTER(?a != ?b)
+  }
+}
