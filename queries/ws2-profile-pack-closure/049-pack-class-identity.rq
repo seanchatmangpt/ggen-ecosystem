@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:Pack a <http://www.w3.org/2000/01/rdf-schema#Class> . }
