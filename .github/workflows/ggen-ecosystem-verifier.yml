@@ -98,3 +98,7 @@ jobs:
         run: |
           grep -q 'ggen sync run' .github/workflows/ggen-ecosystem-sync.yml
 
+      - name: Verify dry-run-path
+        run: |
+          grep -q -- '--dry-run' .github/workflows/ggen-ecosystem-sync.yml
+
