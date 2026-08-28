@@ -42,3 +42,7 @@ jobs:
         run: |
           grep -q 'name = "ggen-ecosystem"' ggen.toml
 
+      - name: Verify marketplace-pin
+        run: |
+          grep -q c779aec20d9c93727c7ad4464f1dd52ac8e066e4 ggen.toml
+
