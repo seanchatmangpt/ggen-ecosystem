@@ -1,0 +1,6 @@
+{
+  "id": "artifact-digest-exact",
+  "path": "/manufacturer/artifact_digest",
+  "op": "equals",
+  "expected": "sha256:0455db2b422807c78e64324a009cd7b2d393538be72eef543512df05ab6e80b5"
+}
