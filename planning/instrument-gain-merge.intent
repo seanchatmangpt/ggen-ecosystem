@@ -1,5 +1,0 @@
-repo=seanchatmangpt/ggen-ecosystem
-base=bcc1595b0d37a69fdaa70c01aabe5e5350135225
-head=bf625f8a18eba39fc45f9acfda82e4a4ccd049c3
-authorized_by=user_request
-expected_action=merge-ecosystem-pr
