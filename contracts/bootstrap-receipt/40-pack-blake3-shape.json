@@ -1,0 +1,6 @@
+{
+  "id": "pack-blake3-shape",
+  "path": "/marketplace/pack_content_blake3",
+  "op": "regex",
+  "expected": "[0-9a-f]{64}"
+}
