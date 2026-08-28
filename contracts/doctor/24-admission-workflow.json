@@ -1,0 +1,1 @@
+{"expected":"workflow definition does not imply a successful run","failure_standing":"PARTIAL_ALIVE","id":"admission-workflow","path":"docs/ADMISSION.md","predicate":"contains","remediation":"execute workflow or local equivalent"}
