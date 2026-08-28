@@ -1,0 +1,16 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+eco:Failure01ExactHeadMismatch
+    a eco:TypedFailure, skos:Concept ;
+    skos:prefLabel "EXACT_HEAD_MISMATCH" ;
+    eco:failureCode "EXACT_HEAD_MISMATCH" ;
+    eco:failurePhase "admission" ;
+    eco:standingOnFailure "REFUSED:EXACT_HEAD_MISMATCH" ;
+    eco:retryPolicy "new-subject" ;
+    eco:remediation "refresh exact base/head identity before mutation" ;
+    eco:authorityEffect "no ambient DO authority granted" ;
+    eco:receiptRequirement "preserve exact subject, failed transition, evidence, and selected fallback" ;
+    dcterms:source "AGENTS.md + repository doctrine" ;
+    eco:portfolioRole "PRIMARY" .
