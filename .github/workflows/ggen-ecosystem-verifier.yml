@@ -110,3 +110,7 @@ jobs:
         run: |
           grep -q sha256sum .github/workflows/ggen-ecosystem-sync.yml
 
+      - name: Verify marketplace-input
+        run: |
+          grep -q marketplace_sha .github/workflows/ggen-ecosystem-sync.yml
+
