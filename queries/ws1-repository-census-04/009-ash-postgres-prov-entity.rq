@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+ASK { eco:repo-candidate-ash_postgres a prov:Entity . }
