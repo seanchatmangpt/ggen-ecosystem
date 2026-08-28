@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:AliveExactExecution a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "ALIVE requires exact execution";skos:definition "ALIVE standing requires observed execution against the exact admitted subject.";eco:falsifier "Inspection, workflow presence, or stale execution alone crowning ALIVE falsifies this invariant.".
