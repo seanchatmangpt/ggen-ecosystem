@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:FingerprintUniqueness a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Fingerprint Uniqueness"; skos:definition "Evidence that planned semantic fingerprints are unique within the admitted work portfolio." .
