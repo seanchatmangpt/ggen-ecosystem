@@ -1,0 +1,2 @@
+# WS4 invariant 03: workflow purpose remains explicit
+ASK { <https://ggen.io/ecosystem/github-sync#workflow> <http://seanchatmangpt.github.io/packs/github-actions#purpose> "GGen Ecosystem Sync" . }
