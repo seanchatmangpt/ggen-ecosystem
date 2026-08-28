@@ -1,0 +1,1 @@
+{"expected":"a named receipt is not a verified receipt","failure_standing":"PARTIAL_ALIVE","id":"receipt-name-not-proof","path":"AGENTS.md","predicate":"contains","remediation":"execute receipt verifier"}
