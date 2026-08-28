@@ -1,0 +1,6 @@
+{
+  "id": "checkout-sha-exact",
+  "path": "/manufacturer/github_checkout_sha",
+  "op": "equals",
+  "expected": "44a6fde0a38d6d940bdd2b5ff35063d7fc358836"
+}
