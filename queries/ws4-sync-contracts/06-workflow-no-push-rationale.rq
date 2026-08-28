@@ -1,0 +1,2 @@
+# WS4 invariant 06: workflow_call/manual replay rationale remains explicit
+ASK { <https://ggen.io/ecosystem/github-sync#workflow> <http://seanchatmangpt.github.io/packs/github-actions#noPushTriggerReason> ?v . FILTER(CONTAINS(LCASE(STR(?v)), "reusable workflow_call")) }
