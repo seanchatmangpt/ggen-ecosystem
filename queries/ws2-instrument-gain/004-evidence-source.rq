@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { eco:InstrumentGainCalibrationEvidence dcterms:source <https://github.com/seanchatmangpt/ggen/commit/1f466fc30d455ea2959b90e7c801bf679185e252> . }

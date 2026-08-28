@@ -1,0 +1,5 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK {
+  VALUES ?cap { eco:InstrumentGainCalibration eco:ExperimentalReach eco:EffectiveAperture eco:Operationalization eco:ObservationalFrontier eco:StoredExecutableWork }
+  FILTER NOT EXISTS { FILTER NOT EXISTS { eco:ggen eco:providesCapability ?cap . } }
+}
