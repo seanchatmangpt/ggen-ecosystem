@@ -1,0 +1,1 @@
+{"expected":"catalog.private_identity_projection=false","failure_standing":"REFUSED:PRIVATE_PROJECTION","id":"lock-private-projection","path":"ecosystem.lock.toml","predicate":"toml_eq","remediation":"disable private identity projection"}
