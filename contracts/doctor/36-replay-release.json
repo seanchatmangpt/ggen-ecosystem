@@ -1,0 +1,1 @@
+{"expected":"GGen release `v26.8.27`","failure_standing":"BLOCKED","id":"replay-release","path":"docs/REPLAY.md","predicate":"contains","remediation":"materialize locked GGen release"}
