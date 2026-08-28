@@ -1,0 +1,4 @@
+ASK {
+  { SELECT (COUNT(?v) AS ?n) WHERE { <https://ggen.dev/ecosystem#NoPrivateIdentityProjection> <http://purl.org/dc/terms/description> ?v . } }
+  FILTER(?n = 2)
+}
