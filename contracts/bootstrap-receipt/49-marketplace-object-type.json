@@ -1,0 +1,6 @@
+{
+  "id": "marketplace-object-type",
+  "path": "/marketplace",
+  "op": "type",
+  "expected": "dict"
+}
