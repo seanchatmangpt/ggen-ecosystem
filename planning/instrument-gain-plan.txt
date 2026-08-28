@@ -1,0 +1,8 @@
+; BFS shortest plan for instrument-gain-domain.ppddl
+0: (admit-capability-vocabulary)
+1: (bind-ggen-capabilities)
+2: (bind-provenance)
+3: (record-ppddl-plan)
+4: (publish-ecosystem-pr)
+5: (merge-ecosystem-pr)
+; length = 6

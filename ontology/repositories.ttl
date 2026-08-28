@@ -24,7 +24,9 @@ eco:ggen
     dcterms:title "ggen" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/ggen" ;
     eco:independentVersioning true ;
-    eco:providesCapability eco:DeterministicManufacture, eco:GraphAdmission, eco:ReceiptReplay, eco:PackComposition .
+    eco:providesCapability eco:DeterministicManufacture, eco:GraphAdmission, eco:ReceiptReplay, eco:PackComposition,
+        eco:InstrumentGainCalibration, eco:ExperimentalReach, eco:EffectiveAperture,
+        eco:Operationalization, eco:ObservationalFrontier, eco:StoredExecutableWork .
 
 eco:ggen-marketplace
     a eco:Repository, dcat:Catalog, prov:Entity ;

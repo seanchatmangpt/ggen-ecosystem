@@ -21,3 +21,9 @@ eco:PlatformEngineering a eco:Capability, skos:Concept ; skos:inScheme eco:Capab
 eco:ProcessIntelligence a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "process intelligence" .
 eco:AutoFDE a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "autonomous field deployment engineering" .
 eco:GitHubFactory a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "GitHub software factory" .
+eco:InstrumentGainCalibration a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "instrument-gain calibration" .
+eco:ExperimentalReach a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "experimental reach" .
+eco:EffectiveAperture a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "effective aperture" .
+eco:Operationalization a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "operationalization" .
+eco:ObservationalFrontier a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "observational frontier" .
+eco:StoredExecutableWork a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "stored executable work" .

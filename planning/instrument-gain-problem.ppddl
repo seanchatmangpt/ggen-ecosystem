@@ -1,0 +1,12 @@
+(define (problem realize-instrument-gain-in-ggen-ecosystem)
+  (:domain ggen-ecosystem-instrument-gain)
+  (:init
+    (ggen-instrument-merged)
+    (ecosystem-base-current))
+  (:goal (and
+    (capability-vocabulary-admitted)
+    (ggen-capabilities-bound)
+    (provenance-bound)
+    (ppddl-plan-recorded)
+    (ecosystem-merged)))
+)
