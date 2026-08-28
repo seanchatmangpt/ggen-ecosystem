@@ -1,0 +1,11 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+eco:PublicProjectionFence a odrl:Policy ;
+    dcterms:title "Public ecosystem projection fence" ;
+    dcterms:description "The public ggen-ecosystem graph may project a repository identity only when that identity is already public or explicit publication authority exists. Private identities remain outside this public projection." .
+
+eco:NoPrivateIdentityProjection a eco:Exclusion ;
+    dcterms:title "No private repository identity projection" ;
+    dcterms:description "Observation access to a non-public repository does not confer publication authority. Preserve private candidates outside the public graph unless separately authorized." .

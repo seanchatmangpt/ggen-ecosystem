@@ -1,0 +1,53 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+eco:Profile a <http://www.w3.org/2000/01/rdf-schema#Class> .
+eco:includesCapability a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:includesRepository a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:includesCandidateRepository a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:includesPack a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:profileStanding a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:selectionPolicy a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:selectsProfile a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+
+eco:cloud-session a eco:Profile, prov:Plan ;
+    dcterms:title "cloud-session" ;
+    eco:includesRepository eco:ggen, eco:ggen-marketplace, eco:ggen-ecosystem-repository ;
+    eco:includesCapability eco:CloudBootstrap, eco:DeterministicManufacture, eco:ExecutableKnowledge, eco:ReceiptReplay ;
+    eco:includesPack eco:dfcm-full-deployment-pack, eco:ggen-combinatorial-maximalism-pack ;
+    eco:selectionPolicy "dependency-closed-minimum-with-maximal-reversible-options" ;
+    eco:profileStanding "CANDIDATE" .
+
+eco:platform-engineering a eco:Profile, prov:Plan ;
+    dcterms:title "platform-engineering" ;
+    eco:includesCapability eco:PlatformEngineering, eco:DeterministicManufacture, eco:ReceiptReplay ;
+    eco:includesCandidateRepository eco:repo-candidate-xaas, eco:repo-candidate-cargo-cicd, eco:repo-candidate-star-toml, eco:repo-candidate-swarmsh-v2, eco:repo-candidate-capability-map ;
+    eco:selectionPolicy "capability-closure-with-candidate-preservation" ;
+    eco:profileStanding "CANDIDATE" .
+
+eco:process-intelligence a eco:Profile, prov:Plan ;
+    dcterms:title "process-intelligence" ;
+    eco:includesCapability eco:ProcessIntelligence, eco:GraphAdmission, eco:ReceiptReplay ;
+    eco:includesCandidateRepository eco:repo-candidate-process-intelligence, eco:repo-candidate-ex4pm, eco:repo-candidate-ex4pm-plan, eco:repo-candidate-wasm4pm, eco:repo-candidate-wasm4pm-compat, eco:repo-candidate-pm4py, eco:repo-candidate-pm4py-rs, eco:repo-candidate-pm4py-mcp, eco:repo-candidate-pm4wasm, eco:repo-candidate-POWL, eco:repo-candidate-planning-as-a-service ;
+    eco:selectionPolicy "capability-closure-with-candidate-preservation" ;
+    eco:profileStanding "CANDIDATE" .
+
+eco:autofde a eco:Profile, prov:Plan ;
+    dcterms:title "autofde" ;
+    eco:includesCapability eco:AutoFDE, eco:GraphAdmission, eco:ReceiptReplay ;
+    eco:includesCandidateRepository eco:repo-candidate-autofde, eco:repo-candidate-autofde-lab, eco:repo-candidate-gymact, eco:repo-candidate-fdegym, eco:repo-candidate-SREGym, eco:repo-candidate-chatgptgym, eco:repo-candidate-claudecodegym, eco:repo-candidate-lifegym, eco:repo-candidate-rrgym ;
+    eco:selectionPolicy "capability-closure-with-candidate-preservation" ;
+    eco:profileStanding "CANDIDATE" .
+
+eco:everything a eco:Profile, prov:Plan ;
+    dcterms:title "everything" ;
+    eco:includesCapability eco:CloudBootstrap, eco:PlatformEngineering, eco:ProcessIntelligence, eco:AutoFDE, eco:GitHubFactory,
+        eco:DeterministicManufacture, eco:GraphAdmission, eco:ReceiptReplay, eco:ExecutableKnowledge, eco:EcosystemComposition ;
+    eco:includesPack eco:dfcm-full-deployment-pack, eco:ggen-combinatorial-maximalism-pack, eco:ggen-ecosystem-ocel-pack,
+        eco:ggen-constitution-pack, eco:ggen-project-boundary-pack, eco:ggen-verify-pack, eco:standing-ladder-pack,
+        eco:shacl-projection-pack, eco:star-toml-pack, eco:github-cloud-operating-doctrine-pack, eco:ggen-release-pack,
+        eco:runtime-evidence-authenticity-control-pack, eco:option-capital-hypergraph-pack,
+        eco:composition-leverage-matrix-pack, eco:closed-loop-option-capital-pack ;
+    eco:selectionPolicy "maximal-bounded-closure; repository census candidates retained externally in repository-census.ttl" ;
+    eco:profileStanding "CANDIDATE" .

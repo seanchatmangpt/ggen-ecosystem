@@ -1,0 +1,25 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+eco:Select a prov:Activity .
+eco:Construct a prov:Activity .
+eco:Do a prov:Activity .
+eco:Intent a prov:Entity .
+eco:Receipt a prov:Entity .
+eco:Replay a prov:Activity .
+eco:BRCE a prov:Agent .
+
+eco:selectPolicy a odrl:Policy ;
+    odrl:permission [ odrl:action eco:Select ] .
+
+eco:constructPolicy a odrl:Policy ;
+    odrl:permission [ odrl:action eco:Construct ] .
+
+eco:doPolicy a odrl:Policy ;
+    odrl:permission [ odrl:action eco:Do ; odrl:assignee eco:BRCE ] ;
+    odrl:obligation [ odrl:action eco:Receipt ] .
+
+eco:noAmbientDo a odrl:Prohibition ;
+    odrl:action eco:Do ;
+    odrl:assigner eco:ggen-ecosystem-repository .

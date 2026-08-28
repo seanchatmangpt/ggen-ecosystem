@@ -1,0 +1,9 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+# Public census projection only. This file deliberately contains no non-public repository identity.
+eco:RepositoryCandidate a <http://www.w3.org/2000/01/rdf-schema#Class> .
+eco:censusStanding a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:membershipBasis a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:publicProjection a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .

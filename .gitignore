@@ -1,0 +1,4 @@
+.ggen-v2/
+target/
+.DS_Store
+*.tmp

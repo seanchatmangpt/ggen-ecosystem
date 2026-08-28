@@ -1,0 +1,7 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+eco:everything-observation a prov:Entity ;
+    dcterms:title "maximal bounded ecosystem profile projection" ;
+    eco:selectsProfile eco:everything .

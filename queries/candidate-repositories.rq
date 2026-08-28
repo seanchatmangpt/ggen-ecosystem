@@ -1,0 +1,10 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT ?identifier ?basis
+WHERE {
+  ?repo a eco:RepositoryCandidate ;
+        dcterms:identifier ?identifier ;
+        eco:censusStanding "CANDIDATE" ;
+        eco:membershipBasis ?basis .
+}
+ORDER BY ?identifier

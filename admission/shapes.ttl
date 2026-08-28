@@ -1,0 +1,29 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+eco:RepositoryShape a sh:NodeShape ;
+    sh:targetClass eco:Repository ;
+    sh:property [ sh:path dcterms:identifier ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eco:sourceUrl ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eco:independentVersioning ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+eco:ProfileShape a sh:NodeShape ;
+    sh:targetClass eco:Profile ;
+    sh:property [ sh:path dcterms:title ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eco:includesCapability ; sh:minCount 1 ] ;
+    sh:property [ sh:path eco:selectionPolicy ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eco:profileStanding ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+eco:PackShape a sh:NodeShape ;
+    sh:targetClass eco:Pack ;
+    sh:property [ sh:path eco:packName ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eco:packRole ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eco:packStanding ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+eco:RepositoryCandidateShape a sh:NodeShape ;
+    sh:targetClass eco:RepositoryCandidate ;
+    sh:property [ sh:path dcterms:identifier ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eco:sourceUrl ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eco:censusStanding ; sh:hasValue "CANDIDATE" ] ;
+    sh:property [ sh:path eco:publicProjection ; sh:hasValue true ] .

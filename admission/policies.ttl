@@ -1,0 +1,15 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+eco:EcosystemAdmissionPolicy a odrl:Policy ;
+    odrl:permission [
+        odrl:action eco:Select ;
+        odrl:constraint [
+            odrl:leftOperand eco:evidenceState ;
+            odrl:operator odrl:isAnyOf ;
+            odrl:rightOperand ( "observed" "verified" "explicitly-inferred" )
+        ]
+    ] ;
+    odrl:prohibition [ odrl:action eco:AmbientActuation ] .
+
+eco:evidenceState a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .

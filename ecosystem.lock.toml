@@ -1,0 +1,21 @@
+version = 1
+generated_from = "observed GitHub refs"
+updated_at = "2026-08-28T06:55:00Z"
+
+[repositories.ggen]
+url = "https://github.com/seanchatmangpt/ggen"
+ref = "main"
+sha = "df1e138a64c80e41090cff7c84fb62d77e03b734"
+role = "manufacturer"
+
+[repositories.ggen-marketplace]
+url = "https://github.com/seanchatmangpt/ggen-marketplace"
+ref = "main"
+sha = "9b2a278a16633336ded6c14bfbb2185763753319"
+role = "executable-knowledge"
+
+[bootstrap]
+layout = "siblings"
+ecosystem_dir = "ggen-ecosystem"
+ggen_dir = "ggen"
+marketplace_dir = "ggen-marketplace"

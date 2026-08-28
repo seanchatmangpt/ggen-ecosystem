@@ -1,0 +1,44 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+eco:Repository a <http://www.w3.org/2000/01/rdf-schema#Class> .
+eco:dependsOn a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:providesCapability a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:consumesPack a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:verifiedBy a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:sourceUrl a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:independentVersioning a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:owns a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:doesNotOwn a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:defaultProfile a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:maximalProfile a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:manufacturedBy a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:knowledgeSource a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+
+eco:ggen
+    a eco:Repository, dcat:Dataset, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/ggen" ;
+    dcterms:title "ggen" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/ggen" ;
+    eco:independentVersioning true ;
+    eco:providesCapability eco:DeterministicManufacture, eco:GraphAdmission, eco:ReceiptReplay, eco:PackComposition .
+
+eco:ggen-marketplace
+    a eco:Repository, dcat:Catalog, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/ggen-marketplace" ;
+    dcterms:title "ggen-marketplace" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/ggen-marketplace" ;
+    eco:independentVersioning true ;
+    eco:providesCapability eco:ExecutableKnowledge, eco:PackDistribution .
+
+eco:ggen-ecosystem-repository
+    a eco:Repository, dcat:Dataset, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/ggen-ecosystem" ;
+    dcterms:title "ggen-ecosystem" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/ggen-ecosystem" ;
+    eco:independentVersioning true ;
+    eco:dependsOn eco:ggen, eco:ggen-marketplace ;
+    eco:providesCapability eco:EcosystemComposition, eco:ClosureResolution, eco:ProfileProjection, eco:Qualification .

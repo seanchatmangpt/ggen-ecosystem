@@ -1,0 +1,15 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+eco:cloud-session-observation a prov:Entity ;
+    dcterms:title "cloud-session profile projection" ;
+    eco:selectsProfile eco:cloud-session ;
+    eco:requiredLayout "sibling-checkouts" ;
+    eco:requiresExactLock true ;
+    eco:requiresReceiptReplay true ;
+    eco:allowsAmbientDo false .
+eco:requiredLayout a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:requiresExactLock a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:requiresReceiptReplay a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:allowsAmbientDo a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
