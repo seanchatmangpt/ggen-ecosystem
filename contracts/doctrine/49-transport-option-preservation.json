@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/TRANSPORT.md",
+  "value": "Transport failure changes topology; it does not revoke other lawful edges",
+  "capability": "transport-option-preservation"
+}
