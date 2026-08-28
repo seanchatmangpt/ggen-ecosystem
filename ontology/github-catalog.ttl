@@ -2,6 +2,7 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Complete public GitHub owner-catalog scope. Enumeration is a projection;
 # the membership predicate is the canonical boundary so new public repos are
@@ -14,12 +15,41 @@ eco:github-owner-catalog
     eco:repositoryPredicate "owner=seanchatmangpt AND visibility=public" ;
     eco:censusMode "complete-public-owner-catalog" ;
     eco:catalogStanding "OBSERVED_SCOPE" ;
-    eco:priorityEnumeration eco:repository-census-priority-subset .
+    eco:observedRepositoryCount 300 ;
+    eco:priorityEnumeration eco:repository-census-priority-subset ;
+    prov:wasDerivedFrom eco:github-owner-census-2026-08-28 .
 
 eco:repository-census-priority-subset
     a dcat:Dataset ;
     dcterms:title "High-signal enumerated ecosystem repository candidates" ;
     dcterms:description "Materialized repository candidates used by the initial semantic profiles. It is a subset of the complete public owner catalog, not the catalog boundary itself." .
+
+# Exact connected-account census receipt projected without disclosing private
+# repository identities. The total owner estate is an observation scope, not an
+# admission set. Private observations are represented only by cardinality.
+eco:github-owner-census-2026-08-28
+    a prov:Entity, dcat:Dataset ;
+    dcterms:title "Exact GitHub owner census observed 2026-08-28" ;
+    dcterms:date "2026-08-28"^^xsd:date ;
+    eco:ownerLogin "seanchatmangpt" ;
+    eco:ownerRepositoryPredicate "owner=seanchatmangpt" ;
+    eco:observedRepositoryCount 378 ;
+    eco:observedPublicRepositoryCount 300 ;
+    eco:observedPrivateRepositoryCount 78 ;
+    eco:privateIdentityProjection false ;
+    eco:censusStanding "ALIVE[EXACT_OWNER_CENSUS_CARDINALITY]" ;
+    eco:censusReceiptPath "receipts/github-ecosystem-census-2026-08-28.json" .
+
+# The private partition exists in the observed estate, but this public graph
+# intentionally carries no private name, repository ID, URL, ref, SHA,
+# description, or size. Observation authority is not publication authority.
+eco:protected-private-observation-partition
+    a dcat:Dataset ;
+    dcterms:title "Protected private GitHub observation partition" ;
+    eco:observedRepositoryCount 78 ;
+    eco:privateIdentityProjection false ;
+    eco:catalogStanding "PROTECTED_OBSERVATION_ONLY" ;
+    prov:wasDerivedFrom eco:github-owner-census-2026-08-28 .
 
 # The maximal profile ranges over the complete public catalog while retaining
 # relation-scoped admission: catalog membership never grants DO authority.
@@ -27,7 +57,14 @@ eco:everything eco:includesCatalog eco:github-owner-catalog .
 
 eco:ownerLogin a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 eco:repositoryPredicate a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:ownerRepositoryPredicate a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 eco:censusMode a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 eco:catalogStanding a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 eco:priorityEnumeration a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 eco:includesCatalog a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:observedRepositoryCount a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:observedPublicRepositoryCount a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:observedPrivateRepositoryCount a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:privateIdentityProjection a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:censusStanding a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:censusReceiptPath a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
