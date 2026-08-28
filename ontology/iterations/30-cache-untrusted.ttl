@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:CacheUntrusted a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "restored cache remains untrusted";skos:definition "Cache restoration may accelerate transport but cannot substitute for identity and digest admission.";eco:falsifier "Trusting cache contents without revalidation falsifies this invariant.".
