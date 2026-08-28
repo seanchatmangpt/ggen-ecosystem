@@ -1,0 +1,10 @@
+@prefix calc: <https://ggen.io/ecosystem/calculus#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+calc:ArchitectureCalculus
+    a skos:ConceptScheme, prov:Entity ;
+    skos:prefLabel "GGen Ecosystem Architecture Calculus" ;
+    dcterms:source <https://github.com/seanchatmangpt/ggen-ecosystem/blob/main/docs/ARCHITECTURE.md> ;
+    dcterms:description "Executable semantic vocabulary for the composition-root calculus: objects, morphisms, admission, closure, authority, actuation, receipt, replay, standing, extension, and publication boundaries." .
