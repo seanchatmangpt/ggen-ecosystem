@@ -18,3 +18,7 @@ jobs:
         run: |
           test -f ggen.toml
 
+      - name: Verify ontology-present
+        run: |
+          test -f ontology.ttl
+
