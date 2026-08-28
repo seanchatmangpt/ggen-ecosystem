@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:NonMarketplacePackRefusal a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "non-marketplace pack refusal";skos:definition "Consumer manufacture admits packs only from the canonical ggen-marketplace source.";eco:falsifier "A non-marketplace pack entering admitted manufacture falsifies this invariant.".
