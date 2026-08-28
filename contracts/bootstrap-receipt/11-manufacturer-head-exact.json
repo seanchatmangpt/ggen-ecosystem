@@ -1,0 +1,6 @@
+{
+  "id": "manufacturer-head-exact",
+  "path": "/manufacturer/branch_head_sha",
+  "op": "equals",
+  "expected": "dcd363b5bcc0ba526bb6ce5e6bc4ea5db0a1a716"
+}
