@@ -1,0 +1,6 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  eco:repo-candidate-pm4py-mcp dcterms:identifier "seanchatmangpt/pm4py-mcp" ;
+      eco:sourceUrl "https://github.com/seanchatmangpt/pm4py-mcp" .
+}

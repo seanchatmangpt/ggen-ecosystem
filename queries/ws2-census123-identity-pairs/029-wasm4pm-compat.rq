@@ -1,0 +1,6 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  eco:repo-candidate-wasm4pm-compat dcterms:identifier "seanchatmangpt/wasm4pm-compat" ;
+      eco:sourceUrl "https://github.com/seanchatmangpt/wasm4pm-compat" .
+}
