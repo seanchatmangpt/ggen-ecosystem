@@ -1,0 +1,2 @@
+# WS4 invariant 33: non-marketplace packs remain refused
+ASK { <https://ggen.io/ecosystem/github-sync#admit> <http://seanchatmangpt.github.io/packs/github-actions#runCommand> ?v . FILTER(CONTAINS(STR(?v), "REFUSED[NON_MARKETPLACE_PACK]")) }

@@ -1,0 +1,2 @@
+# WS4 invariant 02: workflow filename remains canonical
+ASK { <https://ggen.io/ecosystem/github-sync#workflow> <http://seanchatmangpt.github.io/packs/github-actions#fileName> "ggen-ecosystem-sync.yml" . }

@@ -1,0 +1,2 @@
+# WS4 invariant 36: cache restore remains third construct step
+ASK { <https://ggen.io/ecosystem/github-sync#cache> <http://seanchatmangpt.github.io/packs/github-actions#stepOrder> 3 . }

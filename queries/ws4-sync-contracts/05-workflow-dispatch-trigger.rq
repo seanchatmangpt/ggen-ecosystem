@@ -1,0 +1,2 @@
+# WS4 invariant 05: manual dispatch remains admitted
+ASK { <https://ggen.io/ecosystem/github-sync#workflow> <http://seanchatmangpt.github.io/packs/github-actions#trigger> <http://seanchatmangpt.github.io/packs/github-actions#EventWorkflowDispatch> . }

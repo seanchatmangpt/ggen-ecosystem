@@ -1,0 +1,2 @@
+# WS4 invariant 23: checkout action remains exact-SHA pinned
+ASK { <https://ggen.io/ecosystem/github-sync#checkout> <http://seanchatmangpt.github.io/packs/github-actions#usesAction> ?v . FILTER(CONTAINS(STR(?v), "d23441a48e516b6c34aea4fa41551a30e30af803")) }

@@ -1,0 +1,2 @@
+# WS4 invariant 14: construct job retains canonical name
+ASK { <https://ggen.io/ecosystem/github-sync#construct> <http://seanchatmangpt.github.io/packs/github-actions#jobName> "construct" . }

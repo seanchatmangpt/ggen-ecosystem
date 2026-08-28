@@ -1,0 +1,2 @@
+# WS4 invariant 43: sync failure remains observable for receipt manufacture
+ASK { <https://ggen.io/ecosystem/github-sync#sync> <http://seanchatmangpt.github.io/packs/github-actions#continueOnError> true . }

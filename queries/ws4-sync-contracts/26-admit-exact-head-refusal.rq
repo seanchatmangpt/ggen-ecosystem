@@ -1,0 +1,2 @@
+# WS4 invariant 26: exact-head mismatch remains a typed refusal
+ASK { <https://ggen.io/ecosystem/github-sync#admit> <http://seanchatmangpt.github.io/packs/github-actions#runCommand> ?v . FILTER(CONTAINS(STR(?v), "REFUSED[EXACT_HEAD_MISMATCH]")) }

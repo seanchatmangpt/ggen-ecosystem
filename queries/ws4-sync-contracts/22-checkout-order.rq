@@ -1,0 +1,2 @@
+# WS4 invariant 22: checkout remains first construct step
+ASK { <https://ggen.io/ecosystem/github-sync#checkout> <http://seanchatmangpt.github.io/packs/github-actions#stepOrder> 1 . }

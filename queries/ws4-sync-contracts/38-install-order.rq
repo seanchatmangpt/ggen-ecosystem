@@ -1,0 +1,2 @@
+# WS4 invariant 38: producer install remains fourth construct step
+ASK { <https://ggen.io/ecosystem/github-sync#install> <http://seanchatmangpt.github.io/packs/github-actions#stepOrder> 4 . }
