@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { eco:github-owner-catalog dcterms:description "All public GitHub repositories whose owner login is seanchatmangpt. Presence in this catalog is observation, not dependency/profile admission." . }
