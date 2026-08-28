@@ -1,0 +1,6 @@
+{
+  "id": "schema-exact",
+  "path": "/schema",
+  "op": "equals",
+  "expected": "https://ggen.dev/receipts/ecosystem-bootstrap/v1"
+}
