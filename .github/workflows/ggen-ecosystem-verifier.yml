@@ -122,3 +122,7 @@ jobs:
         run: |
           ! grep -q 'ggen init' .github/workflows/ggen-ecosystem-sync.yml
 
+      - name: Verify no-ggen-pack
+        run: |
+          ! grep -q 'ggen pack ' .github/workflows/ggen-ecosystem-sync.yml
+
