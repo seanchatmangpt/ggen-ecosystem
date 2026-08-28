@@ -1,0 +1,2 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#> PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK WHERE { ex:workflow gha:evidenceObligation ?v . FILTER(CONTAINS(LCASE(STR(?v)), "candidate sha")) }
