@@ -1,0 +1,7 @@
+ASK {
+  FILTER NOT EXISTS {
+    ?c <http://www.w3.org/2004/02/skos/core#inScheme> <https://ggen.dev/ecosystem#ExclusionScheme> ;
+       <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+    FILTER(STRLEN(STR(?label)) = 0)
+  }
+}

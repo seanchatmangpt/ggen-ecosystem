@@ -1,0 +1,5 @@
+ASK {
+  FILTER NOT EXISTS {
+    <https://ggen.dev/ecosystem#PublicProjectionFence> <http://www.w3.org/2004/02/skos/core#inScheme> <https://ggen.dev/ecosystem#ExclusionScheme> .
+  }
+}

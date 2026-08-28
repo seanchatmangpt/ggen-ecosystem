@@ -1,0 +1,9 @@
+ASK {
+  FILTER NOT EXISTS {
+    ?a <http://www.w3.org/2004/02/skos/core#inScheme> <https://ggen.dev/ecosystem#ExclusionScheme> ;
+       <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+    ?b <http://www.w3.org/2004/02/skos/core#inScheme> <https://ggen.dev/ecosystem#ExclusionScheme> ;
+       <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+    FILTER(?a != ?b)
+  }
+}

@@ -1,0 +1,1 @@
+ASK { <https://ggen.dev/ecosystem#NoPrivateIdentityProjection> <http://purl.org/dc/terms/description> "Observation access to a non-public repository does not confer publication authority. Preserve private candidates outside the public graph unless separately authorized." . }

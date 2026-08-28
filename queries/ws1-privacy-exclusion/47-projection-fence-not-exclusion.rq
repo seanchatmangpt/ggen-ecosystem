@@ -1,0 +1,3 @@
+ASK {
+  FILTER NOT EXISTS { <https://ggen.dev/ecosystem#PublicProjectionFence> a <https://ggen.dev/ecosystem#Exclusion> . }
+}
