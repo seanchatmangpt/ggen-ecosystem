@@ -1,0 +1,1 @@
+{"expected":"Hooks emit intents only","failure_standing":"REFUSED:HOOK_ACTUATION","id":"hooks-intent-only","path":"AGENTS.md","predicate":"contains","remediation":"remove hook actuation"}
