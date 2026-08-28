@@ -1,0 +1,1 @@
+{"expected":"UNKNOWN`, `PARTIAL_ALIVE`, `ALIVE`, `BLOCKED`, `BUILD_BROKEN`, `UNSUPPORTED`","failure_standing":"PARTIAL_ALIVE","id":"standing-vocabulary","path":"AGENTS.md","predicate":"contains","remediation":"restore canonical standing vocabulary"}
