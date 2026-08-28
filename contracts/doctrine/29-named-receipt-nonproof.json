@@ -1,0 +1,7 @@
+{
+  "schema": "https://ggen.dev/contracts/doctrine/v1",
+  "kind": "contains",
+  "path": "docs/ADMISSION.md",
+  "value": "A file named `receipt` does not imply a verified receipt",
+  "capability": "named-receipt-nonproof"
+}
