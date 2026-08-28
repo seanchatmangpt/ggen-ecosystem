@@ -45,6 +45,51 @@ The workflow is a generated consequence. Edit `ontology.ttl` or `ggen.toml`, the
 
 That makes GitHub the distribution layer while GGen and the marketplace pack remain the semantic/manufacturing authority.
 
+## Complete GitHub ecosystem closure
+
+`ecosystem/github-ecosystem.ttl` admits the complete owned GitHub estate by **set membership**, not by a brittle handwritten repository allowlist:
+
+```text
+E = { r | r.owner.login = seanchatmangpt }
+
+|E| = 378
+Epublic = 300
+Eprivate = 78
+```
+
+The cardinalities were closed against the connected GitHub account on 2026-08-28. Owner enumeration had four non-empty 100-item pages and the next page was empty; item 377 existed and item 378 did not. Independent visibility searches proved public item 300 exists while 301 does not, and private item 78 exists while 79 does not.
+
+### Identity law
+
+The durable identity of a member is its GitHub **repository ID**, not its current name, default branch, or branch-head SHA. Names and branch heads are mutable observations. This prevents routine renames, branch changes, and commits from rewriting ecosystem membership.
+
+The constitutional public identities are:
+
+| Repository | GitHub repository ID | Ecosystem role |
+| --- | ---: | --- |
+| `seanchatmangpt/ggen` | `1071971708` | `MANUFACTURING_ENGINE` |
+| `seanchatmangpt/ggen-marketplace` | `1328598648` | `PACK_DISTRIBUTION` |
+| `seanchatmangpt/ggen-ecosystem` | `1349290571` | `COMPOSITION_AND_STANDING_ROOT` |
+
+Every other owned repository is included extensionally by the owner predicate without surrendering its source identity or independent versioning.
+
+### Public/private partition
+
+`ggen-ecosystem` is public. Therefore the complete estate is represented as two partitions:
+
+```text
+PUBLIC_REPOSITORY_PARTITION        = 300 members
+PROTECTED_PRIVATE_REPOSITORY_PARTITION = 78 members
+```
+
+The public root **must not** materialize private repository names, IDs, URLs, refs, SHAs, descriptions, or sizes. The private partition is acknowledged and counted, but its identities remain protected. This is a closure boundary, not an omission.
+
+### Membership is not promotion
+
+Inclusion in the ecosystem means only that a repository is an observed member of the owned GitHub estate. It does **not** confer production standing, release standing, pack standing, merge authority, or actuation authority. Reference forks, experiments, products, platforms, research repositories, archives, and empty test repositories remain distinct subjects until separately classified and qualified.
+
+The machine-readable census receipt is `receipts/github-ecosystem-census-2026-08-28.json`.
+
 ## Provenance
 
 The initial workflow bytes were manufactured by the real GGen release through GitHub Actions, not authored directly:
@@ -64,10 +109,10 @@ The machine-readable bootstrap receipt is in `receipts/bootstrap-ggen-ecosystem-
 ## Authority boundary
 
 ```text
-SELECT / semantic inputs  -> ggen.toml + ontology.ttl
+SELECT / semantic inputs  -> ggen.toml + ontology.ttl + ecosystem/*.ttl
 CONSTRUCT                 -> ggen sync run
 EVIDENCE                  -> ggen.lock + receipts + GitHub artifact
 DO                         -> external authorized Git/GitHub merge path
 ```
 
-No workflow in this bootstrap path receives repository write authority.
+No workflow in this bootstrap path receives repository write authority. The complete GitHub census adds observation/composition standing only and grants no exception to the rule that consumer code is manufactured through admitted `ggen sync run` paths.
