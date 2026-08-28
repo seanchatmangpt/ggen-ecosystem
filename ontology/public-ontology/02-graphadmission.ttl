@@ -1,0 +1,5 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix map: <https://ggen.dev/ecosystem/mapping#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+map:mapping-02-graphadmission a map:PublicOntologyMapping ; map:sourceTerm eco:GraphAdmission ; map:targetTerm <http://www.w3.org/2004/02/skos/core#Concept> ; map:projectionKind "class-projection" ; dcterms:description "Capability instances project as SKOS Concepts for public taxonomy interoperability." ; prov:wasDerivedFrom <https://github.com/seanchatmangpt/ggen-ecosystem/commit/53d53adfb617a51f5a63ede0c286ebccdf496969> ; map:falsifier "Refuse if source disappears, target is stronger than source, or projection grants authority absent from the ecosystem ontology." .

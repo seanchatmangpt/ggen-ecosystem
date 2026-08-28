@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix map:<https://ggen.dev/ecosystem/mapping#>. map:mapping-43 a map:PublicOntologyMapping; map:sourceTerm eco:includesRepository; map:targetTerm <http://purl.org/dc/terms/hasPart>; map:projectionKind "property-projection"; map:falsifier "Refuse on source disappearance, semantic strengthening, or authority amplification.".

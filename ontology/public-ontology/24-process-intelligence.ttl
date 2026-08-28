@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix map:<https://ggen.dev/ecosystem/mapping#>. map:mapping-24 a map:PublicOntologyMapping; map:sourceTerm eco:process-intelligence; map:targetTerm <http://www.w3.org/ns/prov#Plan>; map:projectionKind "instance-projection"; map:falsifier "Refuse on source disappearance, semantic strengthening, or authority amplification.".
