@@ -1,0 +1,1 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>. eco:Failure36VerifierIdentityDrift a eco:TypedFailure,skos:Concept; skos:prefLabel "VERIFIER_IDENTITY_DRIFT"; eco:failurePhase "validation"; eco:standingOnFailure "REFUSED:VERIFIER_IDENTITY_DRIFT"; eco:remediation "pin validator identity before reuse"; eco:retryPolicy "same-subject".
