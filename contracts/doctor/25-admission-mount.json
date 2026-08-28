@@ -1,0 +1,1 @@
+{"expected":"path in a manifest does not imply the repository is mounted","failure_standing":"BLOCKED","id":"admission-mount","path":"docs/ADMISSION.md","predicate":"contains","remediation":"materialize exact repository tree"}
