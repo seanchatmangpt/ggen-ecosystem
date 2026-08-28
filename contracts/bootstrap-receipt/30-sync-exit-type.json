@@ -1,0 +1,6 @@
+{
+  "id": "sync-exit-type",
+  "path": "/ggen/sync_exit_code",
+  "op": "type",
+  "expected": "int"
+}
