@@ -1,0 +1,26 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# Exact merged evidence for the instrument-gain calibration realized in ggen.
+# The five measured dimensions remain capabilities, not ambient authority.
+eco:InstrumentGainCalibrationEvidence
+    a prov:Entity ;
+    dcterms:title "ggen instrument-gain calibration" ;
+    dcterms:identifier "1f466fc30d455ea2959b90e7c801bf679185e252" ;
+    dcterms:source <https://github.com/seanchatmangpt/ggen/commit/1f466fc30d455ea2959b90e7c801bf679185e252> ;
+    dcterms:relation eco:InstrumentGainCalibration,
+        eco:ExperimentalReach,
+        eco:EffectiveAperture,
+        eco:Operationalization,
+        eco:ObservationalFrontier,
+        eco:StoredExecutableWork ;
+    prov:specializationOf eco:ggen .
+
+eco:InstrumentGainCalibration skos:note "Calibration of the existing apparatus: manufacture controlled states, observe/falsify them, and bind the resulting instrument change without granting execution authority." .
+eco:ExperimentalReach skos:note "Distinct hypotheses the apparatus can instantiate and falsify." .
+eco:EffectiveAperture skos:note "Independent semantic contexts that can contribute to one coordinated observation." .
+eco:Operationalization skos:note "Discovered laws encoded into routine executable enforcement rather than human memory." .
+eco:ObservationalFrontier skos:note "Previously inaccessible design states made inspectable by the apparatus." .
+eco:StoredExecutableWork skos:note "Useful capability latent in existing executable knowledge without requiring a new implementation primitive." .
