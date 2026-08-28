@@ -1,0 +1,2 @@
+# WS4 invariant 48: evidence records the generated consequence hash
+ASK { <https://ggen.io/ecosystem/github-sync#evidence> <http://seanchatmangpt.github.io/packs/github-actions#runCommand> ?v . FILTER(CONTAINS(STR(?v), "patch_sha256")) }
