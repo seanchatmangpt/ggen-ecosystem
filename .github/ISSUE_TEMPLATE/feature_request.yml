@@ -1,0 +1,28 @@
+name: Feature / capability request
+description: Propose new ecosystem capability, profile, or pack integration
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: What real gap does this close? Cite the DoD row or doc section if one exists.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: >
+        Per this repo's DfCM model, prefer additive/reversible options over
+        destructive changes. If this touches the graph, does it enter as
+        CANDIDATE first?
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: This doesn't duplicate an existing ggen-marketplace pack
+        - label: This preserves existing profiles/transports rather than removing them

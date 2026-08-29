@@ -1,0 +1,20 @@
+version: 2
+updates:
+  # Note: .github/workflows/*.yml are GENERATED from ontology.ttl via
+  # `ggen sync run` (see CONTRIBUTING.md / AGENTS.md). Dependabot's PRs
+  # against generated action pins will be overwritten on the next real
+  # sync unless the same pin bump is also made in the ontology.ttl source
+  # facts that render them -- this entry surfaces real upstream Action
+  # version drift as a signal, not an auto-mergeable fix.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(actions)"
+  - package-ecosystem: "gitsubmodule"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(submodules)"

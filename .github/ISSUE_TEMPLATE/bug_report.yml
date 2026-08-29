@@ -1,0 +1,42 @@
+name: Bug report
+description: Something in the manufacturing pipeline, admission graph, or generated workflow is wrong
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Include the exact command and its real output (not a paraphrase).
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Exact commit SHA
+      description: "`git rev-parse HEAD` -- standing claims in this repo are scoped to an exact commit, not a branch name."
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Ontology / admission (ontology.ttl, admission/)
+        - Generated workflow (.github/workflows/*.yml)
+        - Container (Dockerfile, GHCR image)
+        - Marketplace pack (vendor/ggen-marketplace)
+        - Doctor / DoD / receipt tooling (scripts/, tests/)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of `just doctor` (or `bash scripts/doctor.sh`)
+      render: text
