@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-036",
+  "title": "Malformed ontology refusal",
+  "hypothesis": "Invalid Turtle is refused before graph admission.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:malformed-ontology",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "parse a fixture with an unterminated Turtle statement",
+  "oracle": [
+    "parser exits nonzero",
+    "no semantic query executes"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "MALFORMED_ONTOLOGY",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through MALFORMED_ONTOLOGY",
+  "semantic_fingerprint": "SJ-036:malformed-ontology"
+}
