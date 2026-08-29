@@ -1,0 +1,8 @@
+{
+  "expected": "replay result",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "release-replay-result",
+  "kind": "contains",
+  "remediation": "Record replay result.",
+  "source": "docs/RELEASE.md"
+}

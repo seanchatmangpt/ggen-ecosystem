@@ -1,0 +1,8 @@
+{
+  "expected": "ggen sync receipt",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "release-sync-receipt",
+  "kind": "contains",
+  "remediation": "Record sync receipt.",
+  "source": "docs/RELEASE.md"
+}

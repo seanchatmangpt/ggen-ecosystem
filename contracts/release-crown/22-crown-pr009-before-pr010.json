@@ -1,0 +1,8 @@
+{
+  "failure_standing": "BLOCKED",
+  "id": "crown-pr009-before-pr010",
+  "kind": "ordered_tokens",
+  "remediation": "Preserve immutable-production consumption before fresh-consumer crown.",
+  "source": "docs/DEFINITION-OF-DONE.md",
+  "tokens": ["PR-009", "PR-010"]
+}

@@ -1,0 +1,8 @@
+{
+  "expected": "second sync establishes deterministic replay/idempotence",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "standing-second-sync",
+  "kind": "contains",
+  "remediation": "Run deterministic second sync.",
+  "source": "docs/STANDING.md"
+}

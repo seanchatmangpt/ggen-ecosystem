@@ -1,0 +1,8 @@
+{
+  "expected": "`ggen receipt verify` succeeds",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "standing-receipt-verify",
+  "kind": "contains",
+  "remediation": "Verify receipt.",
+  "source": "docs/STANDING.md"
+}

@@ -1,0 +1,8 @@
+{
+  "expected": "fresh independent consumer",
+  "failure_standing": "UNKNOWN",
+  "id": "pr010-independent-consumer-crown",
+  "kind": "contains",
+  "remediation": "Execute a fresh independent consumer against immutable digest.",
+  "source": "docs/DEFINITION-OF-DONE.md"
+}

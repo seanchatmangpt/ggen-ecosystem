@@ -1,0 +1,8 @@
+{
+  "expected": "exact lock identities are materialized",
+  "failure_standing": "BLOCKED",
+  "id": "standing-lock-materialized",
+  "kind": "contains",
+  "remediation": "Materialize exact lock identities.",
+  "source": "docs/STANDING.md"
+}

@@ -1,0 +1,8 @@
+{
+  "expected": "The release is not `ALIVE` today.",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "crown-release-not-alive",
+  "kind": "contains",
+  "remediation": "Do not inflate release standing while crown chain remains open.",
+  "source": "docs/DEFINITION-OF-DONE.md"
+}

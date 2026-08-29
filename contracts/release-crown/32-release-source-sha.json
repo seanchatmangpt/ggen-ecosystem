@@ -1,0 +1,8 @@
+{
+  "expected": "ecosystem source SHA",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "release-source-sha",
+  "kind": "contains",
+  "remediation": "Record exact ecosystem source SHA.",
+  "source": "docs/RELEASE.md"
+}

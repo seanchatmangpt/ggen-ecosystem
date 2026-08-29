@@ -1,0 +1,8 @@
+{
+  "expected": "`ggen sync run` executes",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "standing-sync-executes",
+  "kind": "contains",
+  "remediation": "Execute canonical sync.",
+  "source": "docs/STANDING.md"
+}

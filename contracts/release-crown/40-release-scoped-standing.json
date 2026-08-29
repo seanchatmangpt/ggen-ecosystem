@@ -1,0 +1,8 @@
+{
+  "expected": "scoped standing",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "release-scoped-standing",
+  "kind": "contains",
+  "remediation": "Record scoped standing.",
+  "source": "docs/RELEASE.md"
+}

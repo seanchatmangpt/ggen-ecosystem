@@ -1,0 +1,8 @@
+{
+  "expected": "admitted repository/pack closure",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "release-repo-pack-closure",
+  "kind": "contains",
+  "remediation": "Record admitted repository/pack closure.",
+  "source": "docs/RELEASE.md"
+}

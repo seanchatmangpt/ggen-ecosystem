@@ -1,0 +1,8 @@
+{
+  "expected": "verifier identities and results",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "release-verifier-results",
+  "kind": "contains",
+  "remediation": "Record verifier identities/results.",
+  "source": "docs/RELEASE.md"
+}
