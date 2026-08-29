@@ -18,7 +18,7 @@ observed_executable_sha256 = "UNKNOWN-TODO"
 aarch64_apple_darwin_asset_sha256 = "82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42"
 
 [ggen_marketplace]
-sha = "c779aec20d9c93727c7ad4464f1dd52ac8e066e4"
+sha = "89adf4c8476f7edc8067fdbb1c256cfbfa22df6a"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 
 [submodules]
@@ -27,15 +27,21 @@ repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 ggen_path = "vendor/ggen"
 ggen_commit = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "c779aec20d9c93727c7ad4464f1dd52ac8e066e4"
+ggen_marketplace_commit = "89adf4c8476f7edc8067fdbb1c256cfbfa22df6a"
 
 [container]
 # Composed image: real `ggen` binary built from vendor/ggen (cargo build --release) + real
 # vendor/ggen-marketplace/packs/ copied in. Replaces the curl+sha256sum release-binary download
-# step in the generated sync workflow. digest is UNKNOWN until a real `docker build`+push runs.
+# step in the generated sync workflow. Published 2026-08-28 via a real `docker push` (explicit
+# user-confirmed, after refreshing the gh token with write:packages) -- verified by
+# `docker buildx imagetools inspect` and a fresh `docker pull` by this exact digest (no local
+# cache reuse), then exercised by a real, network-isolated fresh consumer (`ggen sync run`
+# against this digest, receipts/local-qualification-20260828.json + release receipt below).
+# Image is currently linux/arm64-only (built on this host, not yet multi-arch) -- see
+# docs/DEFINITION-OF-DONE.md PR-009 for the open amd64 gap.
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
-tag = "UNKNOWN-TODO-not-yet-built"
-digest = "UNKNOWN-TODO-not-yet-built"
+tag = "v26.8.28"
+digest = "sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c"
 
 [manufacturing]
 manifest = "ggen.toml"

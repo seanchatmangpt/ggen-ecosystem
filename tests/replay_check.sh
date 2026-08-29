@@ -234,15 +234,23 @@ echo "-- checking subject commit is present in local git history"
 if [[ "$DRY_RUN" -eq 1 ]]; then
   echo "   [dry-run] would run: git -C \"$REPO_ROOT\" cat-file -e \"${SUBJECT_COMMIT}^{commit}\""
   echo "   [dry-run] on failure this REFUSES as REFUSED[REPLAY_COMMIT_UNAVAILABLE]"
-  WORKTREE_DIR="/tmp/replay-check-<mktemp>"
+  WORKTREE_DIR="$REPO_ROOT/.replay-check-scratch/<mktemp>"
   echo "   [dry-run] would run: git -C \"$REPO_ROOT\" worktree add --detach \"$WORKTREE_DIR\" \"$SUBJECT_COMMIT\""
 else
   if ! git -C "$REPO_ROOT" cat-file -e "${SUBJECT_COMMIT}^{commit}" 2>/dev/null; then
     refuse "REPLAY_COMMIT_UNAVAILABLE" "subject.commit not present in local git history: $SUBJECT_COMMIT (refusing rather than replaying against a different tree)"
   fi
-  WORKTREE_DIR="$(mktemp -d /tmp/replay-check-XXXXXX)"
+  # NOTE: worktree is scratched under the repo tree (gitignored), not system /tmp --
+  # Colima (mounts: []) does not bind-mount macOS /tmp into the VM, so a container
+  # given a /tmp-based mount sees an empty directory with no error (same class of
+  # defect PR-015 hit and fixed for tests/test_container_smoke.sh).
+  mkdir -p "$REPO_ROOT/.replay-check-scratch"
+  WORKTREE_DIR="$(mktemp -d "$REPO_ROOT/.replay-check-scratch/replay-check-XXXXXX")"
   rmdir "$WORKTREE_DIR"
   git -C "$REPO_ROOT" worktree add --detach "$WORKTREE_DIR" "$SUBJECT_COMMIT" >/dev/null
+  # Submodule content is required (vendor/ggen-marketplace/packs) but `git worktree
+  # add` does not check out submodules by default.
+  git -C "$WORKTREE_DIR" submodule update --init --recursive >/dev/null
 fi
 
 # --- Step 6: re-invoke the exact command against the exact digest ---
@@ -256,11 +264,18 @@ if [[ "$DRY_RUN" -eq 1 ]]; then
   exit 0
 fi
 
-OUTPUT_FILE="$(mktemp /tmp/replay-check-output-XXXXXX)"
+mkdir -p "$REPO_ROOT/.replay-check-scratch"
+OUTPUT_FILE="$(mktemp "$REPO_ROOT/.replay-check-scratch/replay-check-output-XXXXXX")"
+STDERR_FILE="$(mktemp "$REPO_ROOT/.replay-check-scratch/replay-check-stderr-XXXXXX")"
 echo "-- running: docker run --rm -v \"$WORKTREE_DIR:/workspace\" -w /workspace \"$IMAGE_REF\" $EXEC_COMMAND"
+# consequence.digest hashes stdout ONLY -- ggen emits its structured JSON result on
+# stdout and non-deterministic tracing (wall-clock timestamps, per-run duration_ms)
+# on stderr; folding stderr into the hash (2>&1) made every replay a guaranteed
+# REPLAY_MISMATCH regardless of true determinism. stderr is still captured
+# separately (to $STDERR_FILE) for diagnostics on failure, just not hashed.
 # shellcheck disable=SC2086
-if ! docker run --rm -v "$WORKTREE_DIR:/workspace" -w /workspace "$IMAGE_REF" $EXEC_COMMAND >"$OUTPUT_FILE" 2>&1; then
-  echo "replay_check: replayed command exited non-zero (output captured in $OUTPUT_FILE)" >&2
+if ! docker run --rm -v "$WORKTREE_DIR:/workspace" -w /workspace "$IMAGE_REF" $EXEC_COMMAND >"$OUTPUT_FILE" 2>"$STDERR_FILE"; then
+  echo "replay_check: replayed command exited non-zero (stdout in $OUTPUT_FILE, stderr in $STDERR_FILE)" >&2
   exit 1
 fi
 

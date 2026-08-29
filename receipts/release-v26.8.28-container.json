@@ -1,0 +1,30 @@
+{
+  "schema": "https://ggen.dev/receipts/ecosystem-sync/v2",
+  "subject": {
+    "repository": "seanchatmangpt/ggen-ecosystem",
+    "commit": "e16feba269e9f51676418beacabce48aa7c1b19d"
+  },
+  "ecosystem": {
+    "version": "v26.8.28",
+    "ggen_commit": "c61ee99359c9dbc7b3cb71687976932a3e737ed4",
+    "marketplace_commit": "89adf4c8476f7edc8067fdbb1c256cfbfa22df6a",
+    "container_digest": "sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c"
+  },
+  "admission": {
+    "result": "ADMITTED"
+  },
+  "execution": {
+    "command": "ggen sync run --dry-run --format json-pretty",
+    "exit_code": 0
+  },
+  "consequence": {
+    "digest": "sha256:81ab0d364bcfc6967c907ac8c2dd7852ab72b08c16c4d5d3fee1e279507ebc59"
+  },
+  "verification": {
+    "doctor": "PARTIAL_ALIVE",
+    "chicago": "ALIVE",
+    "dod": "PARTIAL_ALIVE"
+  },
+  "standing": "PARTIAL_ALIVE",
+  "notes": "Real GHCR push (docker push, explicit user confirmation) succeeded 2026-08-28: first digest sha256:394503766b85... (PR-009 initial close), then superseded by sha256:b9e170233fe1... after a real bash-shell defect was found and fixed. Chain: (1) real fresh, network-isolated consumer executed ggen sync run against the digest -- closes PR-010; (2) real tests/replay_check.sh run against subject.commit's own worktree -- found and fixed two real script bugs (stdout+stderr both hashed, folding non-deterministic tracing timestamps into consequence.digest; and the same Colima /tmp-mount defect PR-015 already hit once, now fixed in this script too) -- final run: REPLAY MATCH, consequence digest identical -- closes PR-020; (3) `act workflow_dispatch -j construct` run against the composed container to simulate a real GitHub Actions execution -- found two real defects: generated workflow run: steps had no `shell:` key so GitHub's documented sh-fallback (when a container lacks bash) would break `set -o pipefail`/`[[ ... ]]` steps on real GitHub too (fixed at the marketplace pack source, packs/github-actions-pack/templates/workflow.yml.tmpl, PR seanchatmangpt/ggen-marketplace#392, merged, submodule pin bumped and workflow regenerated via real ggen sync run); and the container lacked bash (fixed in Dockerfile). After both fixes: real act run shows actions/checkout, ggen sync run, and the bash-pipefail receipt-binding step all PASS. Only actions/upload-artifact fails locally with 'crypto is not defined' -- a Node-18 (apt debian bookworm) vs act's own artifact-server WebCrypto expectation mismatch, not reproducible on real GitHub (GitHub's hosted runners inject their own newer Node for container-job JS actions via a bind-mounted /__e/ directory, independent of the image's own Node). PR-016 upgraded from PARTIAL_ALIVE (act --list only) to PARTIAL_ALIVE-with-real-execution-evidence: 3/4 real steps pass, the 4th fails for a documented act-only reason. Standing held at PARTIAL_ALIVE rather than ALIVE because the published image remains linux/arm64-only, not yet multi-arch verified for a standard amd64 GitHub-hosted runner."
+}
