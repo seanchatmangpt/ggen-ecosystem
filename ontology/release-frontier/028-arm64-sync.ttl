@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:arm64-sync a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require ggen sync run --dry-run on linux/arm64" ; ex:sequence 28 ; ex:consumerCrown "arm64-sync-dry-run" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
