@@ -1,0 +1,12 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  eco:ProfileShape a sh:NodeShape .
+    FILTER NOT EXISTS {
+      SELECT ?shape WHERE {
+        BIND(eco:ProfileShape AS ?shape)
+        ?shape sh:property ?p .
+      } GROUP BY ?shape HAVING(COUNT(?p) != 4)
+    }
+}
