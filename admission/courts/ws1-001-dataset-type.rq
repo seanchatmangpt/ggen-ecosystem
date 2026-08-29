@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+SELECT * WHERE { FILTER NOT EXISTS { eco:ggen-ecosystem a dcat:Dataset } }

@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT * WHERE { FILTER NOT EXISTS { eco:ggen-ecosystem a prov:Entity } }
