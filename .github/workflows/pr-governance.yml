@@ -33,7 +33,7 @@ jobs:
           while IFS= read -r -d '' f; do
             bash -n "$f"
           done < <(find scripts tests -type f -name '*.sh' -print0)
-      - name: Refuse direct edits to generated projections
+      - name: Refuse direct edits to generated sync projection
         shell: bash
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
@@ -45,14 +45,14 @@ jobs:
           authoritative=0
           for path in "${changed[@]}"; do
             case "$path" in
-              .github/workflows/*.yml|.github/workflows/*.yaml) generated=1 ;;
+              .github/workflows/ggen-ecosystem-sync.yml) generated=1 ;;
             esac
             case "$path" in
               ontology.ttl|ggen.toml|ggen.lock|ontology/*|vendor/ggen-marketplace/*) authoritative=1 ;;
             esac
           done
           if (( generated && ! authoritative )); then
-            echo 'REFUSED[GENERATED_PROJECTION_DIRECT_EDIT]: workflow projection changed without authoritative generator input.' >&2
+            echo 'REFUSED[GENERATED_PROJECTION_DIRECT_EDIT]: generated sync workflow changed without authoritative generator input.' >&2
             exit 1
           fi
           echo 'ALIVE: source-authority boundary admitted.'
