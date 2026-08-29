@@ -12,14 +12,22 @@ admission function, gymact.GitProvider is the real git-environment
 provider, and gymact.SQLiteReceiptLedger persists a real, queryable
 receipt to disk.
 
-Scope, stated honestly: this wires THREE of ecosystem_alive.py's five
+Scope, stated honestly: this wires FOUR of ecosystem_alive.py's five
 SAFE_REVERSIBLE repair actions (git submodule update, ggen sync run,
-docker build) through the real admit -> execute -> receipt path, gated on
-real scripts/doctor.sh sensor data so an already-ALIVE gate is skipped
-rather than needlessly re-executed. It does NOT yet cover the remaining
-two (fresh-consumer verify, the AUTHORITY-gated docker push -- the latter
+docker build, fresh-consumer verify) through the real admit -> execute ->
+receipt path, gated on real scripts/doctor.sh sensor data so an
+already-ALIVE gate is skipped rather than needlessly re-executed. It does
+NOT yet cover the remaining one (the AUTHORITY-gated docker push -- that
 stays outside this script's scope on purpose, matching ecosystem_alive.py's
 own SAFE/AUTHORITY split).
+
+The 4th action (fresh-consumer verify, gate "12-fresh-consumer") mirrors
+ecosystem_alive.py's plan_closure_autofde runner selection: it prefers the
+canonical host fallback script (tests/run-fresh-consumer-host.sh) when
+present on disk, else falls back to tests/run-fresh-consumer.sh with the
+local test image tag as its argument -- resolved once at import time below,
+not re-checked per invocation, since the choice of runner script is a
+repo-layout fact, not a per-run sensor observation.
 
 Correction (2026-08-29, verified by directly reading
 scripts/ecosystem_alive.py -- grep for `heapq`/`dijkstra` returns zero
@@ -128,6 +136,17 @@ SAFE_ACTIONS = [
         observer_ref="docker.image.inspect",
         observation_ref="doctor.sh:4-docker-image",
         gate="4-docker-image",
+    ),
+    SafeAction(
+        semantic_id="ggen-ecosystem.tests.verify_fresh_consumer",
+        capability_ref="fresh_consumer.verify",
+        argv=(["bash", "tests/run-fresh-consumer-host.sh"]
+              if (REPO_ROOT / "tests" / "run-fresh-consumer-host.sh").exists()
+              else ["bash", "tests/run-fresh-consumer.sh", "ggen-ecosystem:test"]),
+        effect_predicate="fresh_consumer_crown_verified",
+        observer_ref="tests.fresh_consumer.crown_check",
+        observation_ref="doctor.sh:12-fresh-consumer",
+        gate="12-fresh-consumer",
     ),
 ]
 
