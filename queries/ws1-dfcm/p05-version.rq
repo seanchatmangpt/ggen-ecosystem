@@ -1,0 +1,3 @@
+PREFIX cmd: <https://chatmangpt.com/ontology/cmd#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { <https://ggen.dev/ecosystem/design/bootstrap> cmd:version "26.8.27" . }
