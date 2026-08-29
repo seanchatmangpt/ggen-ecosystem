@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-033",
+  "title": "Stale source is refused",
+  "hypothesis": "Stale source is refused",
+  "acceptance_edge": "publication.stale-source-sha",
+  "evidence": [
+    "source sha drift"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "SOURCE_SHA_DRIFT"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[SOURCE_SHA_DRIFT]",
+  "semantic_fingerprint": "fp:publication:stale-source-sha:REFUSED:SOURCE_SHA_DRIFT"
+}
