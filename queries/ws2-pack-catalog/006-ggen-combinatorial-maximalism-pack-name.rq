@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:ggen-combinatorial-maximalism-pack eco:packName "ggen-combinatorial-maximalism-pack" . }
