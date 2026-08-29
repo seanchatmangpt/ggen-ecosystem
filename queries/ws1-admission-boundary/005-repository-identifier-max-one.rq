@@ -1,0 +1,7 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+ASK WHERE { eco:RepositoryShape sh:property ?p . ?p sh:path dcterms:identifier ; sh:maxCount 1 . }
