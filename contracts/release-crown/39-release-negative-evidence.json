@@ -1,0 +1,8 @@
+{
+  "expected": "typed refusals or unsupported edges",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "release-negative-evidence",
+  "kind": "contains",
+  "remediation": "Preserve typed negative evidence.",
+  "source": "docs/RELEASE.md"
+}
