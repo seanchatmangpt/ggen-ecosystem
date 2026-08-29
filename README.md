@@ -46,7 +46,7 @@ ggen.toml + ontology.ttl                     |
                         .github/workflows/ggen-ecosystem-container.yml
 ```
 
-Both generated workflows are a generated consequence of `ontology.ttl`. Edit its semantic inputs and regenerate with `ggen sync run`; do not hand-edit either generated workflow. A reusable composite Action (`use-ggen-ecosystem`, in `ggen-marketplace/packs/github-actions-pack/examples/consume-github-actions-pack/`) lets other repos run `ggen sync run` inside the same pinned container without a curl/binary step of their own.
+Both generated workflows are a generated consequence of `ontology.ttl`. Edit its semantic inputs and regenerate with `ggen sync run`; do not hand-edit either generated workflow. Other repositories should call the reusable `workflow_call` interface shown above; the marketplace pack is schema-only and does not contain a consumer Action.
 
 ## Local development
 

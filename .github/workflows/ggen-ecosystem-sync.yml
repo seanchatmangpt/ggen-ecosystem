@@ -115,6 +115,7 @@ jobs:
           set -euo pipefail
           [[ "$(git rev-parse HEAD)" = "$CANDIDATE_SHA" ]] || { echo 'REFUSED[EXACT_HEAD_MISMATCH]' >&2; exit 2; }
           [[ "$MARKETPLACE_SHA" =~ ^[0-9a-f]{40}$ ]] || { echo 'REFUSED[INVALID_MARKETPLACE_SHA]' >&2; exit 2; }
+          [[ "${{ inputs.ggen_container_image || 'ghcr.io/seanchatmangpt/ggen-ecosystem@sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c' }}" =~ @sha256:[0-9a-f]{64}$ ]] || { echo 'REFUSED[IMMUTABLE_CONTAINER_DIGEST_REQUIRED]' >&2; exit 2; }
           submodule_sha="$(git -C vendor/ggen-marketplace rev-parse HEAD)"
           [[ "$submodule_sha" = "$MARKETPLACE_SHA" ]] || { echo "REFUSED[MARKETPLACE_SUBMODULE_DRIFT]:${submodule_sha}:${MARKETPLACE_SHA}" >&2; exit 2; }
           mkdir -p "$RUNNER_TEMP/ggen-ecosystem-evidence"
