@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+ASK { eco:ggen a dcat:Dataset . }

@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { eco:ggen-marketplace dcterms:identifier "seanchatmangpt/ggen-marketplace" . }
