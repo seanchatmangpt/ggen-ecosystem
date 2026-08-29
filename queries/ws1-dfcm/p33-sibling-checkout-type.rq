@@ -1,0 +1,3 @@
+PREFIX cmd: <https://chatmangpt.com/ontology/cmd#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK { <https://ggen.dev/ecosystem/option/sibling-checkout> a cmd:Option . }
