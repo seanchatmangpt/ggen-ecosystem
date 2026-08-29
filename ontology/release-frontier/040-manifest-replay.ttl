@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:manifest-replay a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require manifest-digest replay against the same release subject" ; ex:sequence 40 ; ex:replay "manifest-digest" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
