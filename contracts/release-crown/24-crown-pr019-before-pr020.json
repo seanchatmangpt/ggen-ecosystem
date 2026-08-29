@@ -1,0 +1,8 @@
+{
+  "failure_standing": "BLOCKED",
+  "id": "crown-pr019-before-pr020",
+  "kind": "ordered_tokens",
+  "remediation": "Receipt production must precede replay crown.",
+  "source": "docs/DEFINITION-OF-DONE.md",
+  "tokens": ["PR-019", "PR-020"]
+}
