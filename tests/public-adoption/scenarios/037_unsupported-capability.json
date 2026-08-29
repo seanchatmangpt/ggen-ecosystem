@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-037",
+  "title": "Unsupported capability classification",
+  "hypothesis": "A requested capability absent from the pinned pack set is typed UNSUPPORTED.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:unsupported-capability",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "request a capability outside the discovered catalog",
+  "oracle": [
+    "result is UNSUPPORTED not UNKNOWN",
+    "next route identifies extension boundary"
+  ],
+  "expected_standing": "UNSUPPORTED",
+  "reason_code": "CAPABILITY_NOT_IN_CATALOG",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through CAPABILITY_NOT_IN_CATALOG",
+  "semantic_fingerprint": "SJ-037:unsupported-capability"
+}
