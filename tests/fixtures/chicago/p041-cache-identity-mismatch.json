@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P041",
+  "semantic_fingerprint": "4f5bbe5e",
+  "hypothesis": "cache-identity-mismatch must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "cache-identity-mismatch",
+  "invalid": {
+    "op": "eq",
+    "actual": "cache-old",
+    "expected": "cache-current"
+  },
+  "control": {
+    "op": "eq",
+    "actual": "cache-current",
+    "expected": "cache-current"
+  },
+  "expected_standing": "REFUSED[CACHE_IDENTITY_MISMATCH]",
+  "rollback": "revert P041",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}
