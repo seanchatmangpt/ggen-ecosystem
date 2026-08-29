@@ -1,0 +1,1 @@
+{"id":"ST42","kind":"transition","from":"UNSUPPORTED","to":"BLOCKED","rule":"Require evidence of a potentially supported path whose evaluation is prevented by an external/tooling/transport dependency; unsupported evidence is superseded only for that changed boundary.","exact_subject_required":true,"authority_effect":"NONE"}
