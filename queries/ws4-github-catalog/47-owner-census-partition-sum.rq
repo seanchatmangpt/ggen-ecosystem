@@ -1,0 +1,7 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK {
+  eco:github-owner-census-2026-08-28 eco:observedRepositoryCount ?total ;
+    eco:observedPublicRepositoryCount ?public ;
+    eco:observedPrivateRepositoryCount ?private .
+  FILTER(?total = (?public + ?private))
+}
