@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:amd64-marketplace a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require marketplace presence on linux/amd64 consumer" ; ex:sequence 25 ; ex:consumerCrown "amd64-marketplace" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
