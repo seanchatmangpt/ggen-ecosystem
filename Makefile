@@ -59,12 +59,13 @@ dod:
 		&& awk '/^## Roll-up/{p=1} p && /^## / && !/^## Roll-up/{p=0} p' docs/DEFINITION-OF-DONE.md \
 		|| cat docs/DEFINITION-OF-DONE.md
 
-# Verify a manufacturing receipt.
+# Verify a manufacturing receipt. Usage: make receipt-verify RECEIPT=path/to/receipt.json
 receipt-verify:
+	@test -n "$(RECEIPT)" || { echo "usage: make receipt-verify RECEIPT=<path>" >&2; exit 2; }
 	@if [ -x scripts/verify-receipt.sh ]; then \
-		scripts/verify-receipt.sh; \
+		scripts/verify-receipt.sh "$(RECEIPT)"; \
 	elif [ -f scripts/verify-receipt.sh ]; then \
-		sh scripts/verify-receipt.sh; \
+		sh scripts/verify-receipt.sh "$(RECEIPT)"; \
 	else \
 		echo "receipt-verify: TODO -- scripts/verify-receipt.sh not found yet"; \
 	fi
