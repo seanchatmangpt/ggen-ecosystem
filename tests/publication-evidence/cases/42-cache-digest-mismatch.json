@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-043",
+  "title": "Cache cannot override digest mismatch",
+  "hypothesis": "Cache cannot override digest mismatch",
+  "acceptance_edge": "publication.cache-digest-mismatch",
+  "evidence": [
+    "cache hit but expected digest mismatch"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "DIGEST_MISMATCH"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[DIGEST_MISMATCH]",
+  "semantic_fingerprint": "fp:publication:cache-digest-mismatch:REFUSED:DIGEST_MISMATCH"
+}
