@@ -1,0 +1,42 @@
+{
+  "name": "second-safe-failure-stops",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "a"
+      ],
+      "cost": 1,
+      "description": "a"
+    },
+    {
+      "argv": [
+        "b"
+      ],
+      "cost": 1,
+      "description": "b"
+    },
+    {
+      "argv": [
+        "c"
+      ],
+      "cost": 1,
+      "description": "c"
+    }
+  ],
+  "exits": [
+    0,
+    2
+  ],
+  "expect": {
+    "standing": "BUILD_BROKEN",
+    "calls": 2,
+    "receipts": 2,
+    "receipt": {
+      "exit": 2
+    }
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P043",
+  "semantic_fingerprint": "1dd53a72"
+}
