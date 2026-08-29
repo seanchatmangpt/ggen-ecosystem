@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-010",
+  "work_key": "WS4-SCB-010",
+  "title": "provenance build type",
+  "hypothesis": "The build type must identify the admitted GitHub Actions workflow builder.",
+  "acceptance_edge": "REFUSED[PROV_BUILD_TYPE]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/010_provenance-build-type.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/010_provenance-build-type.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-010:provenance-build-type",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "provenance.predicate.buildDefinition.buildType",
+    "value": "https://example.invalid/build"
+  },
+  "expected": "REFUSED[PROV_BUILD_TYPE]"
+}
