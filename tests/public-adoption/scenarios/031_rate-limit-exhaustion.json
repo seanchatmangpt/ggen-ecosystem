@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-031",
+  "title": "GitHub rate limit recovery",
+  "hypothesis": "Rate exhaustion preserves resumable state and avoids duplicate mutation.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:rate-limit-exhaustion",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "inject a 403 rate-limit response during discovery",
+  "oracle": [
+    "typed blocked result includes retry data",
+    "completed observations remain reusable"
+  ],
+  "expected_standing": "BLOCKED",
+  "reason_code": "GITHUB_RATE_LIMIT",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through GITHUB_RATE_LIMIT",
+  "semantic_fingerprint": "SJ-031:rate-limit-exhaustion"
+}
