@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P29","acceptance_edge":"git.merge.exact_head","semantic_purpose":"exact head must be inspected before merge","surface":"AGENTS.md","expected":"required","verifier":"doctrine_contains","falsifier":"fail_if_uninspected_head_mergeable","semantic_fingerprint":"c77ea8734771f9b67ca1989976abbf261b9491ea19be87a5f8a1fad383439613"}
