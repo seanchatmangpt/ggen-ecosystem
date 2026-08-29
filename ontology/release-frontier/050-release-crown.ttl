@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:release-crown a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Define the complete multi-arch release crown" ; ex:sequence 50 ; ex:crown "dual-platform+manifest+receipts+replay" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .

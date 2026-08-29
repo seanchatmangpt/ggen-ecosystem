@@ -1,0 +1,6 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+ex:dual-platform-set a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require dual-platform release composition" ; ex:sequence 3 ; ex:platformSet "linux/amd64,linux/arm64" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .

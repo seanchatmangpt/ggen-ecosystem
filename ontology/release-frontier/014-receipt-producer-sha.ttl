@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:receipt-producer-sha a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Bind ggen producer SHA into release receipts" ; ex:sequence 14 ; ex:receiptField "producer_sha" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .

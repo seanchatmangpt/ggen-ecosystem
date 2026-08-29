@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:partial-until-both a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Keep release standing PARTIAL_ALIVE until both platform crowns execute" ; ex:sequence 43 ; ex:standing "PARTIAL_ALIVE" ; ex:authorityCeiling "CONSTRUCT" .

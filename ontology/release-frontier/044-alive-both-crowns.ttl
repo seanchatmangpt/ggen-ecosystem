@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:alive-both-crowns a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Permit ALIVE only after both platform crowns and manifest replay succeed" ; ex:sequence 44 ; ex:standing "ALIVE" ; ex:authorityCeiling "CONSTRUCT" .

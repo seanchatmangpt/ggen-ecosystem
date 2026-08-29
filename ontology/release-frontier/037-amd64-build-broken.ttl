@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:amd64-build-broken a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Classify failed amd64 construction as BUILD_BROKEN" ; ex:sequence 37 ; ex:failure "BUILD_BROKEN[AMD64_BUILD]" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .

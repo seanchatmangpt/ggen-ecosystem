@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:amd64-pull a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require fresh linux/amd64 consumer pull" ; ex:sequence 21 ; ex:consumerCrown "amd64-pull" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .

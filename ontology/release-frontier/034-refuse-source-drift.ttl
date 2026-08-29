@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:refuse-source-drift a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Refuse source SHA drift during publication" ; ex:sequence 34 ; ex:refusal "REFUSED[SOURCE_SHA_DRIFT]" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .

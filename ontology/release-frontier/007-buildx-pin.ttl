@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:buildx-pin a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require immutable Buildx setup action identity" ; ex:sequence 7 ; ex:pinPolicy "immutable-sha" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
