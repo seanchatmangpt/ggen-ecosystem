@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-028",
+  "title": "Generated ownership collision",
+  "hypothesis": "A generated path already owned by a human surface is refused.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:ownership-collision",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "declare a generated output colliding with an authored sentinel",
+  "oracle": [
+    "collision is detected before write",
+    "sentinel digest remains unchanged"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "OWNERSHIP_COLLISION",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through OWNERSHIP_COLLISION",
+  "semantic_fingerprint": "SJ-028:ownership-collision"
+}
