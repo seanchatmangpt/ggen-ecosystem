@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:platform-digests a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require per-platform image digest evidence" ; ex:sequence 10 ; ex:evidence "platform-digests" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
