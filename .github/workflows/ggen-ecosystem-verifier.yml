@@ -1,0 +1,128 @@
+name: GGen Ecosystem Contract Verifier
+on:
+  workflow_dispatch:
+
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - name: Verify manifest-present
+        run: |
+          test -f ggen.toml
+
+      - name: Verify ontology-present
+        run: |
+          test -f ontology.ttl
+
+      - name: Verify lock-present
+        run: |
+          test -f ggen.lock
+
+      - name: Verify ecosystem-ontology-present
+        run: |
+          test -f ecosystem.ttl
+
+      - name: Verify ecosystem-lock-present
+        run: |
+          test -f ecosystem.lock.toml
+
+      - name: Verify doctrine-present
+        run: |
+          test -f AGENTS.md
+
+      - name: Verify project-name
+        run: |
+          grep -q 'name = "ggen-ecosystem"' ggen.toml
+
+      - name: Verify marketplace-pin
+        run: |
+          grep -q c779aec20d9c93727c7ad4464f1dd52ac8e066e4 ggen.toml
+
+      - name: Verify release-pin
+        run: |
+          grep -q v26.8.28 ontology.ttl
+
+      - name: Verify asset-digest-pin
+        run: |
+          grep -q ccb9fe78ef0c84d8b240b45beb6e73f47e2c930d5db3efcf9a0e58dfe071d313 ontology.ttl
+
+      - name: Verify marketplace-default-pin
+        run: |
+          grep -q c779aec20d9c93727c7ad4464f1dd52ac8e066e4 ontology.ttl
+
+      - name: Verify toml-parse
+        run: |
+          python3 -c "import tomllib; tomllib.load(open('ggen.toml','rb'))"
+
+      - name: Verify ecosystem-lock-parse
+        run: |
+          python3 -c "import tomllib; tomllib.load(open('ecosystem.lock.toml','rb'))"
+
+      - name: Verify git-diff-check
+        run: |
+          git diff --check
+
+      - name: Verify no-consumer-local-packs
+        run: |
+          test ! -d packs
+
+      - name: Verify sync-workflow-present
+        run: |
+          test -f .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify sync-workflow-name
+        run: |
+          grep -q 'GGen Ecosystem Sync' .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify read-permission-ceiling
+        run: |
+          grep -q 'contents: read' .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify workflow-dispatch
+        run: |
+          grep -q workflow_dispatch .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify workflow-call
+        run: |
+          grep -q workflow_call .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify sync-command
+        run: |
+          grep -q 'ggen sync run' .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify dry-run-path
+        run: |
+          grep -q -- '--dry-run' .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify linux-release-asset
+        run: |
+          grep -q ggen-x86_64-unknown-linux-gnu.tar.gz .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify asset-sha-check
+        run: |
+          grep -q sha256sum .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify marketplace-input
+        run: |
+          grep -q marketplace_sha .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify no-cargo-build
+        run: |
+          ! grep -q 'cargo build' .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify no-ggen-init
+        run: |
+          ! grep -q 'ggen init' .github/workflows/ggen-ecosystem-sync.yml
+
+      - name: Verify no-ggen-pack
+        run: |
+          ! grep -q 'ggen pack ' .github/workflows/ggen-ecosystem-sync.yml
+

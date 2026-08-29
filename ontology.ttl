@@ -276,3 +276,31 @@ ex:enforce
   echo "BUILD_BROKEN[GGEN_SYNC_RUN_FAILED]:${SYNC_EXIT_CODE:-not-run}" >&2
   exit 1
 fi""" .
+
+
+# Generated verifier workflow capability: every step below is semantic input; YAML remains GGen-owned.
+ex:verifier
+    a gha:Workflow ;
+    gha:fileName "ggen-ecosystem-verifier.yml" ;
+    gha:purpose "GGen Ecosystem Contract Verifier" ;
+    gha:permissionCeiling "contents: read" ;
+    gha:trigger gha:EventWorkflowDispatch ;
+    gha:noPushTriggerReason "manual deterministic ecosystem contract verifier" ;
+    gha:onBlock "workflow_dispatch:" ;
+    gha:evidenceObligation "each verifier step exits zero only when its named repository invariant holds" ;
+    gha:standingEffect "a green run proves the generated ecosystem contract verifier observed every encoded invariant" .
+
+ex:verifierJob
+    a gha:Job ;
+    gha:inWorkflow ex:verifier ;
+    gha:jobName "verify" ;
+    gha:runner "ubuntu-24.04" ;
+    gha:timeoutMinutes 10 ;
+    gha:jobPermissions "contents: read" ;
+    gha:failureClassification "BUILD_BROKEN when any encoded repository invariant is false" .
+
+ex:verifyStep01
+    a gha:Step ;
+    gha:inJob ex:verifierJob ; gha:stepOrder 1 ;
+    gha:stepName "Verify manifest-present" ;
+    gha:runCommand "test -f ggen.toml" .
