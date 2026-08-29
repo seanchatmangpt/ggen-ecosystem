@@ -1,0 +1,8 @@
+{
+  "expected": "generated verifier(s) execute where applicable",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "standing-generated-verifiers",
+  "kind": "contains",
+  "remediation": "Execute generated verifiers where applicable.",
+  "source": "docs/STANDING.md"
+}
