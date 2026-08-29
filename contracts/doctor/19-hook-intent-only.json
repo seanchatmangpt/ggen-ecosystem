@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P19","acceptance_edge":"authority.hook.intent_only","semantic_purpose":"hooks emit intents only","surface":"AGENTS.md","expected":"intent_only","verifier":"doctrine_contains","falsifier":"fail_if_hook_actuates","semantic_fingerprint":"75b737c4de4a0ceb0db44cc50aa4edfe076204a6e52c2f1503afe7c57e2e5e91"}
