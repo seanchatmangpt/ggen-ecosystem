@@ -1,0 +1,5 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK {
+  ex:containerBuildPush gha:withParam ?p . FILTER(CONTAINS(STR(?p), "ghcr.io/seanchatmangpt/ggen-ecosystem:"))
+}
