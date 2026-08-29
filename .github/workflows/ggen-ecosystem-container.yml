@@ -47,6 +47,8 @@ jobs:
           tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-amd64
           cache-to: type=gha,mode=max,scope=ggen-ecosystem-amd64
           cache-from: type=gha,scope=ggen-ecosystem-amd64
+          provenance: true
+          sbom: true
           platforms: linux/amd64
           push: true
           context: .
@@ -83,6 +85,8 @@ jobs:
           tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64
           cache-to: type=gha,mode=max,scope=ggen-ecosystem-arm64
           cache-from: type=gha,scope=ggen-ecosystem-arm64
+          provenance: true
+          sbom: true
           platforms: linux/arm64
           push: true
           context: .

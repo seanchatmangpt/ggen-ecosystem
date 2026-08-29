@@ -324,6 +324,14 @@ ex:containerAmd64BuildPush
     gha:withParam "context: ." ;
     gha:withParam "push: true" ;
     gha:withParam "platforms: linux/amd64" ;
+    # SBOM + SLSA provenance attestation (2026-08-29): docker/build-push-action@v6's
+    # real action.yml (verified at the pinned SHA 10e90e3645eae34f1e60eeb005ba3a3d33f178e8,
+    # https://github.com/docker/build-push-action/blob/10e90e3645eae34f1e60eeb005ba3a3d33f178e8/action.yml)
+    # declares `sbom` and `provenance` as native Bool/String inputs -- shorthand for
+    # --attest=type=sbom and --attest=type=provenance respectively. No custom
+    # attest-type wiring needed; the boolean with-params below are sufficient.
+    gha:withParam "sbom: true" ;
+    gha:withParam "provenance: true" ;
     # Real cache fix (2026-08-29): GitHub-hosted runners are a fresh VM per
     # job -- local BuildKit cache mounts never persist across separate
     # workflow runs. cache-from/cache-to type=gha is the actual mechanism
@@ -378,6 +386,11 @@ ex:containerArm64BuildPush
     gha:withParam "context: ." ;
     gha:withParam "push: true" ;
     gha:withParam "platforms: linux/arm64" ;
+    # SBOM + SLSA provenance attestation (2026-08-29): same native `sbom`/`provenance`
+    # Bool/String inputs verified on the amd64 step above -- see that step's comment
+    # for the exact action.yml source citation.
+    gha:withParam "sbom: true" ;
+    gha:withParam "provenance: true" ;
     gha:withParam "cache-from: type=gha,scope=ggen-ecosystem-arm64" ;
     gha:withParam "cache-to: type=gha,mode=max,scope=ggen-ecosystem-arm64" ;
     gha:withParam "tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64" .
