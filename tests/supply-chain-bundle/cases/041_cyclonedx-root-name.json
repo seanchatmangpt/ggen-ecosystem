@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-041",
+  "work_key": "WS4-SCB-041",
+  "title": "cyclonedx root name",
+  "hypothesis": "The root component must name ggen-ecosystem.",
+  "acceptance_edge": "REFUSED[CDX_ROOT_NAME]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/041_cyclonedx-root-name.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/041_cyclonedx-root-name.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-041:cyclonedx-root-name",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "cyclonedx.metadata.component.name",
+    "value": "other"
+  },
+  "expected": "REFUSED[CDX_ROOT_NAME]"
+}
