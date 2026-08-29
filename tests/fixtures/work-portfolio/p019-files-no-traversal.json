@@ -1,0 +1,12 @@
+{
+  "id": "P019",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P019",
+  "edge": "files-no-traversal",
+  "hypothesis": "Portfolio admission independently falsifies files-no-traversal.",
+  "semantic_fingerprint": "ff7ec3da178f021c",
+  "invalid": {
+    "files_no_traversal": false
+  },
+  "expected": "REFUSED[SURFACE_TRAVERSAL]",
+  "control": {}
+}
