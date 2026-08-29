@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-002",
+  "title": "Fresh anonymous recursive clone",
+  "hypothesis": "A stranger can materialize the exact public tree without credentials.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:fresh-anonymous-clone",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "git clone --recurse-submodules at the admitted SHA",
+  "oracle": [
+    "clone exits 0",
+    "both pinned submodules resolve"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-002:fresh-anonymous-clone"
+}
