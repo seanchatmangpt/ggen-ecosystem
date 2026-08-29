@@ -24,7 +24,7 @@
 # Exit code: 0 if no check emits BLOCKED/BUILD_BROKEN/UNKNOWN, else 1.
 
 set -u
-cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)" || exit 1
 
 FAIL=0
 verdict() {
