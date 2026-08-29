@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-045",
+  "title": "Build success alone cannot crown publication",
+  "hypothesis": "Build success alone cannot crown publication",
+  "acceptance_edge": "publication.build-success-no-push",
+  "evidence": [
+    "docker build complete; push false"
+  ],
+  "expected": {
+    "standing": "UNKNOWN",
+    "reason": "INSUFFICIENT_EVIDENCE"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from UNKNOWN[INSUFFICIENT_EVIDENCE]",
+  "semantic_fingerprint": "fp:publication:build-success-no-push:UNKNOWN:INSUFFICIENT_EVIDENCE"
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-024",
+  "title": "Index missing amd64 is refused",
+  "hypothesis": "Index missing amd64 is refused",
+  "acceptance_edge": "publication.manifest-missing-amd",
+  "evidence": [
+    "pushed linux/arm64 @sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "oci index @sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "manifest list missing linux/amd64"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "PARTIAL_MANIFEST"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[PARTIAL_MANIFEST]",
+  "semantic_fingerprint": "fp:publication:manifest-missing-amd:REFUSED:PARTIAL_MANIFEST"
+}

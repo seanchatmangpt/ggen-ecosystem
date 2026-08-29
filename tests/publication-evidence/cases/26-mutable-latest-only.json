@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-027",
+  "title": "Latest-only identity is refused",
+  "hypothesis": "Latest-only identity is refused",
+  "acceptance_edge": "publication.mutable-latest-only",
+  "evidence": [
+    "published ghcr.io/seanchatmangpt/ggen-ecosystem:latest"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "MUTABLE_IDENTITY"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[MUTABLE_IDENTITY]",
+  "semantic_fingerprint": "fp:publication:mutable-latest-only:REFUSED:MUTABLE_IDENTITY"
+}

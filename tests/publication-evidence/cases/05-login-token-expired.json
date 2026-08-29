@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-006",
+  "title": "Expired registry token is distinguished",
+  "hypothesis": "Expired registry token is distinguished",
+  "acceptance_edge": "publication.login-token-expired",
+  "evidence": [
+    "registry token expired"
+  ],
+  "expected": {
+    "standing": "BLOCKED",
+    "reason": "REGISTRY_AUTH"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from BLOCKED[REGISTRY_AUTH]",
+  "semantic_fingerprint": "fp:publication:login-token-expired:BLOCKED:REGISTRY_AUTH"
+}

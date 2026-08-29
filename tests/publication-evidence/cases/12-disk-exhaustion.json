@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-013",
+  "title": "Builder disk exhaustion is build-broken",
+  "hypothesis": "Builder disk exhaustion is build-broken",
+  "acceptance_edge": "publication.disk-exhaustion",
+  "evidence": [
+    "failed to write layer: no space left on device"
+  ],
+  "expected": {
+    "standing": "BUILD_BROKEN",
+    "reason": "DISK_EXHAUSTED"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from BUILD_BROKEN[DISK_EXHAUSTED]",
+  "semantic_fingerprint": "fp:publication:disk-exhaustion:BUILD_BROKEN:DISK_EXHAUSTED"
+}

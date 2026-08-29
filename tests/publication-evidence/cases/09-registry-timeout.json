@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-010",
+  "title": "Registry timeout is typed",
+  "hypothesis": "Registry timeout is typed",
+  "acceptance_edge": "publication.registry-timeout",
+  "evidence": [
+    "Get https://ghcr.io/v2/: i/o timeout"
+  ],
+  "expected": {
+    "standing": "BLOCKED",
+    "reason": "REGISTRY_TIMEOUT"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from BLOCKED[REGISTRY_TIMEOUT]",
+  "semantic_fingerprint": "fp:publication:registry-timeout:BLOCKED:REGISTRY_TIMEOUT"
+}

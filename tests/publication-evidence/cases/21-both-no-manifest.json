@@ -1,0 +1,19 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-022",
+  "title": "Two platform images without index remain partial",
+  "hypothesis": "Two platform images without index remain partial",
+  "acceptance_edge": "publication.both-no-manifest",
+  "evidence": [
+    "pushed linux/amd64 @sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "pushed linux/arm64 @sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  ],
+  "expected": {
+    "standing": "PARTIAL_ALIVE",
+    "reason": "MANIFEST_PENDING"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from PARTIAL_ALIVE[MANIFEST_PENDING]",
+  "semantic_fingerprint": "fp:publication:both-no-manifest:PARTIAL_ALIVE:MANIFEST_PENDING"
+}

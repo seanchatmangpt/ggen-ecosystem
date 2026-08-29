@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-038",
+  "title": "Ambient publication authority is refused",
+  "hypothesis": "Ambient publication authority is refused",
+  "acceptance_edge": "publication.unreceipted-do",
+  "evidence": [
+    "do_without_brce attempted push"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "UNAUTHORIZED_DO"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[UNAUTHORIZED_DO]",
+  "semantic_fingerprint": "fp:publication:unreceipted-do:REFUSED:UNAUTHORIZED_DO"
+}

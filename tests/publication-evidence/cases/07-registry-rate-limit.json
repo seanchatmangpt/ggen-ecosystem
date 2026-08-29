@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-008",
+  "title": "Registry throttling is typed",
+  "hypothesis": "Registry throttling is typed",
+  "acceptance_edge": "publication.registry-rate-limit",
+  "evidence": [
+    "toomanyrequests: rate limit exceeded"
+  ],
+  "expected": {
+    "standing": "BLOCKED",
+    "reason": "REGISTRY_RATE_LIMIT"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from BLOCKED[REGISTRY_RATE_LIMIT]",
+  "semantic_fingerprint": "fp:publication:registry-rate-limit:BLOCKED:REGISTRY_RATE_LIMIT"
+}

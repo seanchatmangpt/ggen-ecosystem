@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-018",
+  "title": "Unsupported s390x is explicit",
+  "hypothesis": "Unsupported s390x is explicit",
+  "acceptance_edge": "publication.unsupported-s390x",
+  "evidence": [
+    "no match for platform linux/s390x in manifest"
+  ],
+  "expected": {
+    "standing": "UNSUPPORTED",
+    "reason": "PLATFORM"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from UNSUPPORTED[PLATFORM]",
+  "semantic_fingerprint": "fp:publication:unsupported-s390x:UNSUPPORTED:PLATFORM"
+}

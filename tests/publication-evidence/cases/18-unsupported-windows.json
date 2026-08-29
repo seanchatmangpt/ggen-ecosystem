@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-019",
+  "title": "Unsupported Windows container is explicit",
+  "hypothesis": "Unsupported Windows container is explicit",
+  "acceptance_edge": "publication.unsupported-windows",
+  "evidence": [
+    "windows/amd64 unsupported by composed capsule"
+  ],
+  "expected": {
+    "standing": "UNSUPPORTED",
+    "reason": "PLATFORM"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from UNSUPPORTED[PLATFORM]",
+  "semantic_fingerprint": "fp:publication:unsupported-windows:UNSUPPORTED:PLATFORM"
+}

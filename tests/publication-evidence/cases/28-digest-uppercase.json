@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-029",
+  "title": "Uppercase digest is refused",
+  "hypothesis": "Uppercase digest is refused",
+  "acceptance_edge": "publication.digest-uppercase",
+  "evidence": [
+    "observed sha256:ABCDEF"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "DIGEST_FORMAT"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[DIGEST_FORMAT]",
+  "semantic_fingerprint": "fp:publication:digest-uppercase:REFUSED:DIGEST_FORMAT"
+}
