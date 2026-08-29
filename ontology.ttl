@@ -421,9 +421,10 @@ ex:containerMerge
     gha:dependsOn ex:containerBuildArm64 ;
     gha:jobPermissions """contents: read
 packages: write
-id-token: write""" ;
+id-token: write
+security-events: write""" ;
     gha:jobExtra "name: Merge into one multi-arch manifest" ;
-    gha:evidenceEmitted "published multi-arch manifest list digest, real per-platform digests underneath, and a keyless cosign signature (Fulcio cert + Rekor transparency-log entry) over that manifest-list digest" ;
+    gha:evidenceEmitted "published multi-arch manifest list digest, real per-platform digests underneath, a keyless cosign signature (Fulcio cert + Rekor transparency-log entry) over that manifest-list digest, and a Trivy SARIF vulnerability report uploaded to GitHub code scanning" ;
     gha:failureClassification "BUILD_BROKEN if manifest assembly fails; BUILD_BROKEN if keyless cosign signing fails" .
 
 ex:containerMergeLogin
@@ -466,3 +467,33 @@ DIGEST=$(docker buildx imagetools inspect "${IMAGE}" --format "{{json .Manifest}
 echo "Signing ${IMAGE}@${DIGEST} keylessly via GitHub OIDC (no signing key in this repo)"
 cosign sign --yes "${IMAGE}@${DIGEST}"
 """ .
+
+# Real container CVE scanning (2026-08-29): CodeQL (see .github/workflows/codeql.yml, hand-
+# authored, outside this ggen-generated rail) scans SOURCE only -- it never inspects the
+# published image's OS packages/dependency layers. Trivy against the just-published multi-arch
+# manifest closes that orthogonal gap: known-CVE table stakes for a Fortune-5 supply chain,
+# scanning the exact artifact that ships, not the source that built it. Ref resolved for real,
+# not assumed: `git ls-remote --tags https://github.com/aquasecurity/trivy-action.git` ->
+# v0.36.0 tag dereferences to commit ed142fd0673e97e23eac54620cfb913e5ce36c25 (confirmed against
+# the real GitHub release page, commit SHA ed142fd0673e97e23eac54620cfb913e5ce36c25, and its real
+# action.yaml at that commit exposing image-ref/format/output inputs). SARIF upload target
+# likewise resolved via `git ls-remote --tags https://github.com/github/codeql-action.git` ->
+# v4.37.9 dereferences to commit cdf488f595d80d6e07e03d4674febd5ab45fa938, whose real
+# upload-sarif/action.yml at that commit exposes the sarif_file input used below. Ordered after
+# cosign signing (stepOrder 5-6) so scanning covers the exact signed artifact.
+ex:containerMergeTrivyScan
+    a gha:Step ;
+    gha:inJob ex:containerMerge ; gha:stepOrder 5 ;
+    gha:stepName "Run Trivy vulnerability scanner on published image" ;
+    gha:usesAction "aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0" ;
+    gha:withParam "image-ref: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}" ;
+    gha:withParam "format: sarif" ;
+    gha:withParam "output: trivy-results.sarif" .
+
+ex:containerMergeSarifUpload
+    a gha:Step ;
+    gha:inJob ex:containerMerge ; gha:stepOrder 6 ;
+    gha:stepName "Upload Trivy scan results to GitHub code scanning" ;
+    gha:condition "always()" ;
+    gha:usesAction "github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9" ;
+    gha:withParam "sarif_file: trivy-results.sarif" .
