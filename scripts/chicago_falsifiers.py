@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Executable Chicago falsifier court with paired positive controls."""
 from __future__ import annotations
-import json,re,sys
+import json,re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent.parent
 FIXTURES=ROOT/"tests"/"fixtures"/"chicago"
