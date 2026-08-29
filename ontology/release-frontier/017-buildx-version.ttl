@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:buildx-version a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Record Buildx version as evidence" ; ex:sequence 17 ; ex:evidence "buildx-version" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
