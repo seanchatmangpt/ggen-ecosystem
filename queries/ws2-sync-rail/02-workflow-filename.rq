@@ -1,0 +1,4 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+# Falsifier: false when semantic source no longer targets the generated workflow filename.
+ASK WHERE { ex:workflow gha:fileName "ggen-ecosystem-sync.yml" . }

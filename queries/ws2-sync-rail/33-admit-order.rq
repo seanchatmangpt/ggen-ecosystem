@@ -1,0 +1,2 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#> PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK WHERE { ex:admit a gha:Step ; gha:inJob ex:construct ; gha:stepOrder 2 . }

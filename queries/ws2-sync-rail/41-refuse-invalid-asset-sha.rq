@@ -1,0 +1,2 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#> PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK WHERE { ex:admit gha:runCommand ?v . FILTER(CONTAINS(STR(?v), "REFUSED[INVALID_GGEN_ASSET_SHA256]")) }
