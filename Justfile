@@ -4,9 +4,10 @@
 default:
     @just --list
 
-# Canonical plant-wide qualification court (12 courts, 59+ real assertions, 0 mocks)
+# Canonical Chicago qualification: real composed image, real write path, replay,
+# independent second consumer, and real negative refusal. No dry-runs or modeled gates.
 chicago:
-    @tests/test_container_smoke.sh
+    @bash tests/chicago_consumer.sh
 
 # Attempt bounded closure toward ALIVE, executing only safe reversible repairs
 alive:
@@ -65,11 +66,12 @@ plan:
 graph:
     @cat ontology/gates.ttl 2>/dev/null || python3 scripts/ecosystem_alive.py --explain
 
-# Real wall-clock timing benchmark of `ggen sync run --dry-run` (20 runs, min/max/mean/p50/p95)
+# Real wall-clock timing benchmark of `ggen sync run --dry-run` (20 runs, min/max/mean/p50/p95).
+# Benchmark evidence is performance-only and cannot earn Chicago standing.
 bench:
     @bash scripts/benchmark.sh --runs 20
 
-# Real concurrency stress test: N parallel `ggen sync run` processes, asserts identical
-# graph_hash_hex across all of them and that ggen.lock stays untouched under --dry-run
+# Real concurrency stress test under --dry-run. Stress evidence is diagnostic and
+# cannot earn Chicago standing because it does not execute the write consequence.
 stress:
     @bash scripts/stress_test.sh --parallel 16
