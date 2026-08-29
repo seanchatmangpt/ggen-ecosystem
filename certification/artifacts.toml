@@ -1,0 +1,78 @@
+schema_version = 1
+
+# mfact contribution: path names do not imply authority. Every load-bearing
+# artifact has an explicit class, producer, source relation, and standing ceiling.
+# Runtime certification hashes the observed bytes into its receipt rather than
+# trusting this file to contain manually maintained release hashes.
+
+[[artifact]]
+path = "ontology.ttl"
+kind = "source"
+producer = "ecosystem"
+standing_authority = true
+load_bearing = true
+
+[[artifact]]
+path = "ggen.toml"
+kind = "source"
+producer = "ecosystem"
+standing_authority = true
+load_bearing = true
+
+[[artifact]]
+path = ".github/workflows/ggen-ecosystem-sync.yml"
+kind = "projection"
+producer = "ggen"
+source = "ontology.ttl"
+standing_authority = false
+load_bearing = true
+
+[[artifact]]
+path = ".github/workflows/ggen-ecosystem-container.yml"
+kind = "projection"
+producer = "ggen"
+source = "ontology.ttl"
+standing_authority = false
+load_bearing = true
+
+[[artifact]]
+path = "Dockerfile"
+kind = "constructor"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = true
+
+[[artifact]]
+path = "ecosystem.lock.toml"
+kind = "control"
+producer = "ecosystem"
+standing_authority = true
+load_bearing = true
+
+[[artifact]]
+path = "receipts/release-v26.8.28-container.json"
+kind = "evidence"
+producer = "verification"
+standing_authority = true
+load_bearing = false
+
+[[artifact]]
+path = "receipts/bootstrap-ggen-ecosystem-sync.json"
+kind = "historical_evidence"
+producer = "ggen"
+standing_authority = false
+load_bearing = false
+
+[[artifact]]
+path = "docs/DEFINITION-OF-DONE.md"
+kind = "documentation"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = false
+
+[[artifact]]
+path = "scripts/verify-receipt.sh"
+kind = "verifier"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = false
