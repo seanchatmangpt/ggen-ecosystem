@@ -36,6 +36,15 @@ dod:
 verify:
     @bash scripts/verify-provenance.sh
 
+# mfact-style certification court: bind producer pins, artifact authority,
+# release evidence, Git lineage, and scoped standing without manufacturing ALIVE.
+certify:
+    @python3 scripts/certify_ecosystem.py --root .
+
+# Adversarial unit court for certification promotion/refusal rules.
+certify-test:
+    @python3 -m unittest tests.test_mfact_certification -v
+
 # Reproduce prior receipt evidence deterministically
 replay:
     @bash tests/determinism_check.sh

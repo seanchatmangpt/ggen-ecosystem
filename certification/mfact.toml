@@ -1,0 +1,47 @@
+schema_version = 1
+name = "ggen-ecosystem-mfact-certification"
+source_repository = "https://github.com/seanchatmangpt/mfact"
+source_sha = "8a62a7c28e935b9afd05c68f455f475423ec0a7a"
+source_doctrine = "ggen projects; target systems verify; mfact-style courts certify scoped standing"
+authority_ceiling = "VERIFY"
+lockfile = "ecosystem.lock.toml"
+artifact_ledger = "certification/artifacts.toml"
+release_receipt = "receipts/release-v26.8.28-container.json"
+
+[policy]
+require_exact_producer_pin_match = true
+require_immutable_container_digest = true
+require_admitted_release_receipt = true
+require_zero_exit_release_execution = true
+require_receipt_subject_ancestor = true
+require_artifact_ledger = true
+forbid_generated_projection_standing_authority = true
+allow_historical_release_evidence = true
+historical_evidence_ceiling = "PARTIAL_ALIVE"
+require_no_placeholder_for_alive = true
+
+[standing]
+valid = [
+  "UNKNOWN",
+  "PARTIAL_ALIVE",
+  "ALIVE",
+  "BLOCKED",
+  "BUILD_BROKEN",
+  "UNSUPPORTED",
+  "REFUSED",
+]
+
+# These paths define the release-carrying manufacturing subject. Changes after
+# the release receipt do not invalidate old evidence, but they prevent that old
+# receipt from certifying the new head as ALIVE until fresh execution/replay is
+# observed. This is the mfact distinction between evidence existence and subject
+# standing.
+[subject]
+load_bearing_paths = [
+  "ecosystem.lock.toml",
+  "ggen.toml",
+  "ontology.ttl",
+  "Dockerfile",
+  ".github/workflows/ggen-ecosystem-sync.yml",
+  ".github/workflows/ggen-ecosystem-container.yml",
+]
