@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Design question / discussion
+    url: https://github.com/seanchatmangpt/ggen-ecosystem/discussions
+    about: Use Discussions for open-ended architecture, design, and ecosystem questions.
   - name: Support and routing guide
     url: https://github.com/seanchatmangpt/ggen-ecosystem/blob/main/SUPPORT.md
     about: Choose the narrowest issue form and evidence contract for your request.
