@@ -1,0 +1,14 @@
+{
+  "acceptance_edge": "repository.identity.default_branch",
+  "closure_path": "doctor report -> typed standing",
+  "expected": "main",
+  "falsifier": {"kind":"repository_doctor_check","result":"fail_if_mismatch"},
+  "hypothesis": "git/ref satisfies main",
+  "plan_id": "P01",
+  "schema": "ggen-ecosystem/doctor-contract/v1",
+  "semantic_fingerprint": "b27c6e09908b4d8ce1e718483b8762f062d02579cc2b9852826c0f84f19defc7",
+  "semantic_purpose": "default branch resolves to main",
+  "surface": "git/ref",
+  "verifier": {"kind":"repository_doctor_check","result":"must_pass"},
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-doctor-contracts-v1"
+}
