@@ -1,0 +1,1 @@
+{"id":"ST45","kind":"transition","from":"REFUSED","to":"UNKNOWN","rule":"Require the refusal basis to expire, be withdrawn, or lose subject correspondence without enough evidence to classify the next state.","exact_subject_required":true,"authority_effect":"NONE"}
