@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:brce-push-boundary a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Route publication DO through a receipted broker only" ; ex:sequence 45 ; ex:authority "BRCE" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
