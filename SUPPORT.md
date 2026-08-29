@@ -1,9 +1,9 @@
 # Support
 
-For reproducible manufacture failures, open an issue with the exact consumer SHA,
-workflow run, capsule digest, marketplace SHA, pack, receipt, replay result, and the
-smallest failing command. Use the failure-routing guide to identify the likely owner.
+Use GitHub Issues for reproducible defects and bounded capability requests. Choose the closest issue form and include the exact repository/ref/SHA, the command that was executed, exit status, observed standing, and the narrowest reproducible evidence.
 
-Questions about a pack belong with that pack; questions about generated projections
-belong with the owning source or marketplace pack; transport and digest failures
-belong with the ecosystem release surface.
+For security vulnerabilities, follow `SECURITY.md` rather than opening a public issue.
+
+Before filing, run `just doctor` when possible. A failed GitHub Actions run is evidence transport, not the entire diagnosis; include the relevant job/log boundary and any local verifier result. Generated projections are not editing surfaces, so reports about generated output should identify the authoritative ontology/config/pack input that produced it when known.
+
+Support questions that do not identify an executable subject may be converted into documentation or capability requests rather than treated as defects.
