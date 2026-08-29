@@ -1,0 +1,12 @@
+{
+  "id": "P044",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P044",
+  "edge": "commands-recorded",
+  "hypothesis": "Portfolio admission independently falsifies commands-recorded.",
+  "semantic_fingerprint": "82ba5c936f310cbf",
+  "invalid": {
+    "commands_recorded": false
+  },
+  "expected": "REFUSED[COMMAND_EVIDENCE_MISSING]",
+  "control": {}
+}
