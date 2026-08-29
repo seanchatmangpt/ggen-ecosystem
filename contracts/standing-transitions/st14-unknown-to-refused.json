@@ -1,0 +1,1 @@
+{"id":"ST14","kind":"transition","from":"UNKNOWN","to":"REFUSED","rule":"Require a typed policy, admission, or authority refusal with explicit refusal reason.","exact_subject_required":true,"authority_effect":"NONE"}
