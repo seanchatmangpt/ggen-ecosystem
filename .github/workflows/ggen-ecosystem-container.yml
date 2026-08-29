@@ -45,6 +45,8 @@ jobs:
         uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
         with:
           tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-amd64
+          cache-to: type=gha,mode=max,scope=ggen-ecosystem-amd64
+          cache-from: type=gha,scope=ggen-ecosystem-amd64
           platforms: linux/amd64
           push: true
           context: .
@@ -79,6 +81,8 @@ jobs:
         uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
         with:
           tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64
+          cache-to: type=gha,mode=max,scope=ggen-ecosystem-arm64
+          cache-from: type=gha,scope=ggen-ecosystem-arm64
           platforms: linux/arm64
           push: true
           context: .

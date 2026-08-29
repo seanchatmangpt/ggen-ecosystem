@@ -324,6 +324,15 @@ ex:containerAmd64BuildPush
     gha:withParam "context: ." ;
     gha:withParam "push: true" ;
     gha:withParam "platforms: linux/amd64" ;
+    # Real cache fix (2026-08-29): GitHub-hosted runners are a fresh VM per
+    # job -- local BuildKit cache mounts never persist across separate
+    # workflow runs. cache-from/cache-to type=gha is the actual mechanism
+    # that persists build-layer cache (including this cargo build layer)
+    # across runs via GitHub's own Actions cache service. Scoped per
+    # architecture (amd64/arm64 build independently, different layer
+    # digests, must not share one cache key).
+    gha:withParam "cache-from: type=gha,scope=ggen-ecosystem-amd64" ;
+    gha:withParam "cache-to: type=gha,mode=max,scope=ggen-ecosystem-amd64" ;
     gha:withParam "tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-amd64" .
 
 ex:containerBuildArm64
@@ -369,6 +378,8 @@ ex:containerArm64BuildPush
     gha:withParam "context: ." ;
     gha:withParam "push: true" ;
     gha:withParam "platforms: linux/arm64" ;
+    gha:withParam "cache-from: type=gha,scope=ggen-ecosystem-arm64" ;
+    gha:withParam "cache-to: type=gha,mode=max,scope=ggen-ecosystem-arm64" ;
     gha:withParam "tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64" .
 
 ex:containerMerge
