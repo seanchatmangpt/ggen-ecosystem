@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-scripts/autonomics_gymact.py — v1 of the real gymact-admitted, receipted
+scripts/autonomics_gymact.py — v3 of the real gymact-admitted, receipted
 autonomics path for ggen-ecosystem's safe repair actions.
 
 Real integration (not a mock): every step below calls the actual `gymact`
@@ -12,17 +12,35 @@ admission function, gymact.GitProvider is the real git-environment
 provider, and gymact.SQLiteReceiptLedger persists a real, queryable
 receipt to disk.
 
-Scope, stated honestly: this is v2 -- it wires TWO of ecosystem_alive.py's
-five SAFE_REVERSIBLE repair actions (git submodule update, ggen sync run)
-through the real admit -> execute -> receipt path, replacing the ad hoc
-`subprocess.run(...)` under `--apply-safe` for those two. It does NOT yet
-cover the remaining three (docker build, fresh-consumer verify, the
-AUTHORITY-gated docker push -- the last of which stays outside this
-script's scope on purpose, matching ecosystem_alive.py's own SAFE/AUTHORITY
-split), and does not yet replace the hand-rolled Dijkstra planner
-(plan_closure_autofde) with a real autofde_lab solver over a real Domain --
-extending this pattern to the rest of the safe-action set is the natural
-next slice, not claimed as done here.
+Scope, stated honestly: this wires THREE of ecosystem_alive.py's five
+SAFE_REVERSIBLE repair actions (git submodule update, ggen sync run,
+docker build) through the real admit -> execute -> receipt path, gated on
+real scripts/doctor.sh sensor data so an already-ALIVE gate is skipped
+rather than needlessly re-executed. It does NOT yet cover the remaining
+two (fresh-consumer verify, the AUTHORITY-gated docker push -- the latter
+stays outside this script's scope on purpose, matching ecosystem_alive.py's
+own SAFE/AUTHORITY split).
+
+Correction (2026-08-29, verified by directly reading
+scripts/ecosystem_alive.py -- grep for `heapq`/`dijkstra` returns zero
+matches): plan_closure_autofde is NOT a Dijkstra/graph-search planner, an
+earlier commit message in this file's history mischaracterized it as one.
+It builds a fixed list of up to 5 step-dicts by checking each gate's
+`standing != ALIVE`, then does one `sorted(..., key=(is_authority, cost,
+index))` -- a stable priority sort over a static action list, no state
+expansion, no edges. Replacing it with a real autofde_lab Domain+solver
+(e.g. AStar under DeterministicTransitions) was investigated for real
+against vendor/autofde-lab/src/autofde_lab/domains.py and hub/solver/{vi,
+simple_greedy,astar}: VI needs EnumerableTransitions and optimizes reward
+over a full state-space enumeration (real overkill for 5 independent
+actions); SimpleGreedy has no lookahead and can't express the
+authority-last constraint; neither solves a problem that exists yet,
+because plan_closure_autofde has no actual action *preconditions* today
+(each gate's need is independent, not "docker build requires submodules
+synced first"). Building a Domain/solver now would be real code with no
+behavioral gain over the existing sort -- deferred on purpose until gates
+gain real preconditions, at which point AStar is the right fit (works
+under plain DeterministicTransitions, optimizes cost-to-goal directly).
 
 Requires: /Users/sac/autofde-lab/.venv (real gymact + autofde_lab
 dependency closure) -- run via that interpreter, not system python3.
