@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:oci-index a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require an OCI image index for multi-arch publication" ; ex:sequence 4 ; ex:manifestMediaType "application/vnd.oci.image.index.v1+json" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
