@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-046",
+  "work_key": "WS4-SCB-046",
+  "title": "cyclonedx marketplace component",
+  "hypothesis": "The component graph must retain Marketplace.",
+  "acceptance_edge": "REFUSED[CDX_MARKETPLACE_COMPONENT]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/046_cyclonedx-marketplace-component.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/046_cyclonedx-marketplace-component.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-046:cyclonedx-marketplace-component",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "cyclonedx.components.1",
+    "op": "delete"
+  },
+  "expected": "REFUSED[CDX_MARKETPLACE_COMPONENT]"
+}
