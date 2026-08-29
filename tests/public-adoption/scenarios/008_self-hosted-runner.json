@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-008",
+  "title": "Self-hosted runner",
+  "hypothesis": "A self-hosted runner is diagnosed before construction.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:self-hosted-runner",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "run doctor then construct on a clean self-hosted fixture",
+  "oracle": [
+    "missing prerequisites are typed",
+    "no DO occurs before admission"
+  ],
+  "expected_standing": "PARTIAL_ALIVE",
+  "reason_code": "RUNNER_ENVIRONMENT_DEPENDENT",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through RUNNER_ENVIRONMENT_DEPENDENT",
+  "semantic_fingerprint": "SJ-008:self-hosted-runner"
+}
