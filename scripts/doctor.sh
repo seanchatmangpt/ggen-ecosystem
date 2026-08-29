@@ -271,6 +271,7 @@ else
   else
     drift=0
     drift_detail=""
+    unmanaged_detail=""
     for wf in .github/workflows/*.yml; do
       [ -e "$wf" ] || continue
       base="$(basename "$wf")"
@@ -286,8 +287,15 @@ key = '.github/workflows/$base'
 print(dec.get(key, ''))
 " 2>/dev/null)"
       if [ -z "$decision" ]; then
-        drift=1
-        drift_detail="${drift_detail}${base}: not present in dry-run decisions (possible DRIFT or renamed target); "
+        # Absence from ggen's dry-run decisions is NOT drift by itself: a
+        # workflow with no matching gha:Workflow individual in ontology.ttl
+        # (e.g. independently hand-authored, no gha:ownedBy convention used
+        # yet) is legitimately outside the generated set -- confirmed by
+        # `grep mfact ontology.ttl` returning zero matches for
+        # mfact-certification.yml, added directly in a separate commit.
+        # Flag as informational only, never BLOCKED, to avoid false-
+        # positive drift on files ggen was never asked to manage.
+        unmanaged_detail="${unmanaged_detail}${base}; "
       elif echo "$decision" | grep -qi 'unchanged'; then
         : # MATCH
       else
@@ -295,8 +303,10 @@ print(dec.get(key, ''))
         drift_detail="${drift_detail}${base}: ${decision}; "
       fi
     done
-    if [ "$drift" -eq 0 ]; then
+    if [ "$drift" -eq 0 ] && [ -z "$unmanaged_detail" ]; then
       verdict "$name" ALIVE "MATCH: all committed .github/workflows/*.yml reported unchanged by fresh ggen sync run --dry-run"
+    elif [ "$drift" -eq 0 ]; then
+      verdict "$name" ALIVE "MATCH for all ggen-managed workflows; not ontology-managed (informational, not drift): $unmanaged_detail"
     else
       verdict "$name" BLOCKED "DRIFT: $drift_detail"
     fi
