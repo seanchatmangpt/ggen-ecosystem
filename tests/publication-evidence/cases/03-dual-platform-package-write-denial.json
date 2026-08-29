@@ -1,0 +1,19 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-004",
+  "title": "Dual platform write denials preserve one typed blocker",
+  "hypothesis": "Dual platform write denials preserve one typed blocker",
+  "acceptance_edge": "publication.dual-platform-package-write-denial",
+  "evidence": [
+    "arm64 permission_denied: write_package",
+    "amd64 permission_denied: write_package"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "PACKAGE_WRITE_PERMISSION"
+  },
+  "observed_source": "GitHub Actions run 33249382665",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[PACKAGE_WRITE_PERMISSION]",
+  "semantic_fingerprint": "fp:publication:dual-platform-package-write-denial:REFUSED:PACKAGE_WRITE_PERMISSION"
+}
