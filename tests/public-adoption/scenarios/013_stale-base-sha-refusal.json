@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-013",
+  "title": "Stale base refusal",
+  "hypothesis": "A generated change based on a moved default branch is refused.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:stale-base-sha-refusal",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "compare admitted base to current main before publication",
+  "oracle": [
+    "mismatch produces typed refusal",
+    "branch is not silently rebased"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "STALE_BASE_SHA",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through STALE_BASE_SHA",
+  "semantic_fingerprint": "SJ-013:stale-base-sha-refusal"
+}
