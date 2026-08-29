@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P047",
+  "semantic_fingerprint": "35772a20",
+  "hypothesis": "attestation-subject-mismatch must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "attestation-subject-mismatch",
+  "invalid": {
+    "op": "eq",
+    "actual": "artifact-b",
+    "expected": "artifact-a"
+  },
+  "control": {
+    "op": "eq",
+    "actual": "artifact-a",
+    "expected": "artifact-a"
+  },
+  "expected_standing": "REFUSED[ATTESTATION_SUBJECT_MISMATCH]",
+  "rollback": "revert P047",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}
