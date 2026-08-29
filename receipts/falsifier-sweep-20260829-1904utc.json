@@ -1,0 +1,18 @@
+{
+  "sweep": "combined falsifier suite, post supply-chain-manufacture merge",
+  "timestamp_utc": "2026-08-29T19:04:00Z",
+  "base_commit": "d5a0de81",
+  "suites": {
+    "tests/release_frontier": "45/50 (5 correctly-deferred multi-arch crown falsifiers)",
+    "tests/doctor_contracts": "50/50",
+    "tests/replay_contracts": "50/50",
+    "tests/container-runtime": "50/50"
+  },
+  "total": "195/200",
+  "concurrent_automation": "manufacturing/supply-chain (ontology-generated evidence-case court, PR #181 merged, real CI success on 3 recent runs) -- separate ontology.ttl/workflow, no conflict with root ontology.ttl work",
+  "in_flight": [
+    "6-agent ERRC-CREATE swarm (SBOM+provenance, cosign signing, trivy scan, CHANGELOG.md, GOVERNANCE.md, third-party notices)",
+    "real multi-arch CI build blocked on GHCR package repo-link (still not done as of this receipt)",
+    "local cache-mount validation build in progress (real, confirmed active via colima ps)"
+  ]
+}
