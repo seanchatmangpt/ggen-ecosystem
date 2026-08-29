@@ -1,0 +1,1 @@
+{"expected_exit":1,"id":"manifest-no-pack-path","must_contain":["no pack paths"],"replace_files":{"ggen.toml":"[project]\nname=\"x\"\n"}}
