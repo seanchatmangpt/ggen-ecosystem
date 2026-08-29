@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-007",
+  "title": "Hosted GitHub runner",
+  "hypothesis": "The reusable workflow constructs on a hosted Linux runner.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:hosted-github-runner",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "dispatch construct on ubuntu runner",
+  "oracle": [
+    "checkout includes submodules",
+    "receipt artifact is uploaded"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-007:hosted-github-runner"
+}
