@@ -1,0 +1,12 @@
+{
+  "id": "P004",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P004",
+  "edge": "head-exact-sha",
+  "hypothesis": "Portfolio admission independently falsifies head-exact-sha.",
+  "semantic_fingerprint": "abcac5cd20b13bfb",
+  "invalid": {
+    "head_sha": "latest"
+  },
+  "expected": "REFUSED[HEAD_SHA_MUTABLE]",
+  "control": {}
+}

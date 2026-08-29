@@ -1,0 +1,12 @@
+{
+  "id": "P034",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P034",
+  "edge": "message-authority",
+  "hypothesis": "Portfolio admission independently falsifies message-authority.",
+  "semantic_fingerprint": "1da5bc820d2ce456",
+  "invalid": {
+    "message_routes_authorized": false
+  },
+  "expected": "REFUSED[MESSAGE_AUTHORITY]",
+  "control": {}
+}

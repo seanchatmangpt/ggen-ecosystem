@@ -1,0 +1,12 @@
+{
+  "id": "P027",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P027",
+  "edge": "immutable-source-refs",
+  "hypothesis": "Portfolio admission independently falsifies immutable-source-refs.",
+  "semantic_fingerprint": "ea32b06e4dd142f0",
+  "invalid": {
+    "mutable_ref_count": 1
+  },
+  "expected": "REFUSED[MUTABLE_IDENTITY]",
+  "control": {}
+}

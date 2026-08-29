@@ -1,0 +1,12 @@
+{
+  "id": "P010",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P010",
+  "edge": "acceptance-edge-uniqueness",
+  "hypothesis": "Portfolio admission independently falsifies acceptance-edge-uniqueness.",
+  "semantic_fingerprint": "3171e15fc3d5f97d",
+  "invalid": {
+    "acceptance_edges_unique": false
+  },
+  "expected": "REFUSED[DUPLICATE_ACCEPTANCE_EDGE]",
+  "control": {}
+}

@@ -1,0 +1,12 @@
+{
+  "id": "P030",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P030",
+  "edge": "brce-only-do",
+  "hypothesis": "Portfolio admission independently falsifies brce-only-do.",
+  "semantic_fingerprint": "3fc8c8da1ae25bec",
+  "invalid": {
+    "unreceipted_do_route_count": 1
+  },
+  "expected": "REFUSED[UNRECEIPTED_DO]",
+  "control": {}
+}

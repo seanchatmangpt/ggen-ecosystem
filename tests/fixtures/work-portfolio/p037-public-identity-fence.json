@@ -1,0 +1,12 @@
+{
+  "id": "P037",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P037",
+  "edge": "public-identity-fence",
+  "hypothesis": "Portfolio admission independently falsifies public-identity-fence.",
+  "semantic_fingerprint": "b0de84466d5a3a42",
+  "invalid": {
+    "private_identity_count": 1
+  },
+  "expected": "REFUSED[PRIVATE_IDENTITY_DISCLOSURE]",
+  "control": {}
+}

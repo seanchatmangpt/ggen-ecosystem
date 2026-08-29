@@ -1,0 +1,12 @@
+{
+  "id": "P049",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P049",
+  "edge": "handoff-defined",
+  "hypothesis": "Portfolio admission independently falsifies handoff-defined.",
+  "semantic_fingerprint": "4abe2e17338b09fb",
+  "invalid": {
+    "next_hour_handoff_defined": false
+  },
+  "expected": "REFUSED[HANDOFF_MISSING]",
+  "control": {}
+}

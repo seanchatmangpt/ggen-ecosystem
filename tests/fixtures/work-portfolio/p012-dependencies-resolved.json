@@ -1,0 +1,12 @@
+{
+  "id": "P012",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P012",
+  "edge": "dependencies-resolved",
+  "hypothesis": "Portfolio admission independently falsifies dependencies-resolved.",
+  "semantic_fingerprint": "88c5be8995d385d7",
+  "invalid": {
+    "dependencies_resolved": false
+  },
+  "expected": "REFUSED[UNKNOWN_DEPENDENCY]",
+  "control": {}
+}

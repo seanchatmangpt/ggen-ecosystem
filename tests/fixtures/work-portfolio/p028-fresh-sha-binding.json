@@ -1,0 +1,12 @@
+{
+  "id": "P028",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P028",
+  "edge": "fresh-sha-binding",
+  "hypothesis": "Portfolio admission independently falsifies fresh-sha-binding.",
+  "semantic_fingerprint": "4fa8505ffd165c3d",
+  "invalid": {
+    "stale_sha_count": 1
+  },
+  "expected": "REFUSED[STALE_SHA]",
+  "control": {}
+}

@@ -1,0 +1,12 @@
+{
+  "id": "P033",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P033",
+  "edge": "merge-exact-head",
+  "hypothesis": "Portfolio admission independently falsifies merge-exact-head.",
+  "semantic_fingerprint": "384fac53f3656d9d",
+  "invalid": {
+    "merge_exact_head_guarded": false
+  },
+  "expected": "REFUSED[MERGE_HEAD_UNGUARDED]",
+  "control": {}
+}

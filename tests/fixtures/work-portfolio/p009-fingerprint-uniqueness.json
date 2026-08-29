@@ -1,0 +1,12 @@
+{
+  "id": "P009",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P009",
+  "edge": "fingerprint-uniqueness",
+  "hypothesis": "Portfolio admission independently falsifies fingerprint-uniqueness.",
+  "semantic_fingerprint": "ccb108c470182748",
+  "invalid": {
+    "fingerprints_unique": false
+  },
+  "expected": "REFUSED[DUPLICATE_FINGERPRINT]",
+  "control": {}
+}
