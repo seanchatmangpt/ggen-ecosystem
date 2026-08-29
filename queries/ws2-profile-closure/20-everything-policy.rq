@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:everything eco:selectionPolicy "maximal-bounded-closure; repository census candidates retained externally in repository-census.ttl" . }
