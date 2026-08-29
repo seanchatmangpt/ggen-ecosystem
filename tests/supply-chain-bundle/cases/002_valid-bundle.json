@@ -1,0 +1,19 @@
+{
+  "case_id": "SCB-002",
+  "work_key": "WS4-SCB-002",
+  "title": "valid bundle",
+  "hypothesis": "A canonical exact-identity bundle passes every format and cross-format court.",
+  "acceptance_edge": "ALIVE",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/002_valid-bundle.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/002_valid-bundle.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-002:valid-bundle",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {},
+  "expected": "ALIVE"
+}

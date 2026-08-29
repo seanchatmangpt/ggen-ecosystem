@@ -1,0 +1,24 @@
+{
+  "case_id": "SCB-006",
+  "work_key": "WS4-SCB-006",
+  "title": "provenance digest algorithm",
+  "hypothesis": "The subject digest algorithm must be exactly sha256.",
+  "acceptance_edge": "REFUSED[PROV_SUBJECT_DIGEST_ALGORITHM]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/006_provenance-digest-algorithm.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/006_provenance-digest-algorithm.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-006:provenance-digest-algorithm",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "provenance.subject.0.digest",
+    "value": {
+      "sha512": "aa"
+    }
+  },
+  "expected": "REFUSED[PROV_SUBJECT_DIGEST_ALGORITHM]"
+}

@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-031",
+  "work_key": "WS4-SCB-031",
+  "title": "spdx describes",
+  "hypothesis": "The SPDX document must DESCRIBE the ecosystem root package.",
+  "acceptance_edge": "REFUSED[SPDX_DESCRIBES]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/031_spdx-describes.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/031_spdx-describes.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-031:spdx-describes",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "spdx.relationships.0",
+    "op": "delete"
+  },
+  "expected": "REFUSED[SPDX_DESCRIBES]"
+}

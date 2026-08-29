@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-034",
+  "work_key": "WS4-SCB-034",
+  "title": "spdx autofde package",
+  "hypothesis": "The SPDX package set must retain AutoFDE Lab.",
+  "acceptance_edge": "REFUSED[SPDX_AUTOFDE_PACKAGE]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/034_spdx-autofde-package.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/034_spdx-autofde-package.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-034:spdx-autofde-package",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "spdx.packages.3",
+    "op": "delete"
+  },
+  "expected": "REFUSED[SPDX_AUTOFDE_PACKAGE]"
+}

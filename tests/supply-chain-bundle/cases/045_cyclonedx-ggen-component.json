@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-045",
+  "work_key": "WS4-SCB-045",
+  "title": "cyclonedx ggen component",
+  "hypothesis": "The component graph must retain GGen.",
+  "acceptance_edge": "REFUSED[CDX_GGEN_COMPONENT]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/045_cyclonedx-ggen-component.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/045_cyclonedx-ggen-component.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-045:cyclonedx-ggen-component",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "cyclonedx.components.0",
+    "op": "delete"
+  },
+  "expected": "REFUSED[CDX_GGEN_COMPONENT]"
+}

@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-015",
+  "work_key": "WS4-SCB-015",
+  "title": "provenance marketplace material",
+  "hypothesis": "The Marketplace material must match its locked gitlink.",
+  "acceptance_edge": "REFUSED[PROV_MARKETPLACE_MATERIAL]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/015_provenance-marketplace-material.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/015_provenance-marketplace-material.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-015:provenance-marketplace-material",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit",
+    "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "expected": "REFUSED[PROV_MARKETPLACE_MATERIAL]"
+}
