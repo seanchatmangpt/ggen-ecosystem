@@ -1,0 +1,5 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK {
+  ex:containerCheckout gha:stepName "Checkout with submodules" . ex:containerLogin gha:stepName "Log in to GHCR" . ex:containerBuildPush gha:stepName "Build and push composed image" .
+}
