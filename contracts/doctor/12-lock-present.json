@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P12","acceptance_edge":"composition.lock.present","semantic_purpose":"ecosystem.lock.toml must exist","surface":"ecosystem.lock.toml","expected":"present","verifier":"file_exists","falsifier":"fail_if_missing","semantic_fingerprint":"7ee27331e3b74c59fe85280a797e005f30584b1dc10505137ef8e4ec2c2d23b9"}

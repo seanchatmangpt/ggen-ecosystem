@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P13","acceptance_edge":"distribution.dockerfile.present","semantic_purpose":"Dockerfile must exist","surface":"Dockerfile","expected":"present","verifier":"file_exists","falsifier":"fail_if_missing","semantic_fingerprint":"cb593836a141060077696273aad811647d5c4368f67f5e3d4233d320a140575b"}

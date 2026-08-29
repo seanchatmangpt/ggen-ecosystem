@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P28","acceptance_edge":"git.push.no_force","semantic_purpose":"publication must not force-push","surface":"AGENTS.md","expected":"forbidden","verifier":"doctrine_contains","falsifier":"fail_if_force_push_allowed","semantic_fingerprint":"c4dedda250d87b18718f8c43c6b4cadbcec623614626e332fd59e55d71f8e9ca"}

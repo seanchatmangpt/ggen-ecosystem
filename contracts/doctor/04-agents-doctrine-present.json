@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P04","acceptance_edge":"doctrine.root.present","semantic_purpose":"root AGENTS.md must exist","surface":"AGENTS.md","expected":"present","verifier":"file_exists","falsifier":"fail_if_missing","semantic_fingerprint":"38123aa267fe10ce42899e08747fccb881bfd415d33914dde61682ba00d836ee"}
