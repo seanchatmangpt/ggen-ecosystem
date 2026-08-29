@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P02","acceptance_edge":"repository.identity.base_sha","semantic_purpose":"base ref resolves to exact 40-hex SHA","surface":"git/ref","expected":"exact_sha","verifier":"resolve_ref","falsifier":"reject_non_exact_sha","semantic_fingerprint":"0a51cf53c4c23431ef139a380f931226390956368160c1497948e856982159aa"}
