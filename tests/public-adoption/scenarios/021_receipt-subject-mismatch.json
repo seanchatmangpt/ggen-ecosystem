@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-021",
+  "title": "Receipt mismatch refusal",
+  "hypothesis": "A receipt for different producer bytes is refused.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:receipt-subject-mismatch",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "verify a receipt with one altered producer SHA",
+  "oracle": [
+    "validator exits nonzero",
+    "reason names subject mismatch"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "RECEIPT_SUBJECT_MISMATCH",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through RECEIPT_SUBJECT_MISMATCH",
+  "semantic_fingerprint": "SJ-021:receipt-subject-mismatch"
+}
