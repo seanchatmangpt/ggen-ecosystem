@@ -1,0 +1,36 @@
+name: Real Chicago Consumer Matrix
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  chicago:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Admit official GGen release
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL -o "$RUNNER_TEMP/ggen.tar.gz" https://github.com/seanchatmangpt/ggen/releases/download/v26.8.28/ggen-x86_64-unknown-linux-gnu.tar.gz
+          echo 'ccb9fe78ef0c84d8b240b45beb6e73f47e2c930d5db3efcf9a0e58dfe071d313  '${RUNNER_TEMP}'/ggen.tar.gz' | sha256sum -c -
+          tar --no-same-owner -xzf "$RUNNER_TEMP/ggen.tar.gz" -C "$RUNNER_TEMP"
+          "$RUNNER_TEMP/ggen" --version | grep -Fx 'ggen 26.8.28'
+      - name: Execute all real Chicago consumers twice
+        run: python3 tools/chicago_consumer_matrix.py --ggen "$RUNNER_TEMP/ggen" --all --json | tee "$RUNNER_TEMP/chicago-consumer-receipt.json"
+      - name: Upload execution receipt
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: chicago-consumer-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/chicago-consumer-receipt.json
+          if-no-files-found: error
