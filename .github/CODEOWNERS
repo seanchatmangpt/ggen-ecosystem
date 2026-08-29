@@ -1,14 +1,20 @@
-# Default ownership for the composition root.
+# Default ownership keeps review routing deterministic for a single-owner public repository.
 * @seanchatmangpt
 
-# GitHub control surfaces and release/security policy.
-/.github/ @seanchatmangpt
-/SECURITY.md @seanchatmangpt
-/AGENTS.md @seanchatmangpt
-
-# Semantic sources and certification policy require composition-root review.
+# Semantic authority and manufacture inputs.
 /ontology.ttl @seanchatmangpt
 /ggen.toml @seanchatmangpt
-/ggen.lock @seanchatmangpt
 /ecosystem.lock.toml @seanchatmangpt
+/admission/ @seanchatmangpt
 /certification/ @seanchatmangpt
+
+# Generated manufacturing projections: review only; repair their semantic source.
+/.github/workflows/ggen-ecosystem-*.yml @seanchatmangpt
+
+# Security, release, and execution boundaries.
+/.github/workflows/ @seanchatmangpt
+/Dockerfile @seanchatmangpt
+/.gitmodules @seanchatmangpt
+/vendor/ @seanchatmangpt
+/receipts/ @seanchatmangpt
+/SECURITY.md @seanchatmangpt

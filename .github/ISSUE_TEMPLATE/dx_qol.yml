@@ -1,0 +1,55 @@
+name: Developer experience / QoL
+description: Report repeated friction, confusing ergonomics, slow feedback, or avoidable operator work.
+title: "dx: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Optimize the whole journey, not only the command that is visibly slow. Prefer measurable reductions in steps, ambiguity, latency, retries, or cognitive load.
+  - type: textarea
+    id: journey
+    attributes:
+      label: Current journey
+      description: List the actual steps from intent to verified consequence.
+      placeholder: |
+        1. Clone...
+        2. Run...
+        3. Diagnose...
+    validations:
+      required: true
+  - type: textarea
+    id: friction
+    attributes:
+      label: Repeated friction
+      description: What is unnecessarily manual, ambiguous, slow, or easy to do incorrectly?
+    validations:
+      required: true
+  - type: input
+    id: frequency
+    attributes:
+      label: Frequency / scale
+      placeholder: Every PR; 25 consumer repos; 5 workstations/hour
+  - type: textarea
+    id: desired
+    attributes:
+      label: Desired DX invariant
+      description: Express the improved condition in a testable way.
+      placeholder: A new contributor can reach a typed doctor result with one documented command.
+    validations:
+      required: true
+  - type: textarea
+    id: falsifier
+    attributes:
+      label: Acceptance / falsifier
+      description: What real test would prove the improvement exists and has not merely been documented?
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Manufacturing boundary
+      options:
+        - label: This proposal does not require hand-editing a GGen-generated projection.
+        - label: Any requested write authority is explicit rather than ambient.

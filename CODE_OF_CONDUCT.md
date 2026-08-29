@@ -1,9 +1,24 @@
-# Code of Conduct
+# Contributor Conduct
 
-This project welcomes good-faith technical participation. Keep collaboration focused on evidence, reproducibility, and respectful disagreement.
+This project expects technical disagreement to remain evidence-centered and respectful.
 
-Contributors are expected to discuss people and ideas without harassment, threats, discrimination, doxxing, sexualized attention, or sustained personal attacks. Technical disagreement is welcome; attack claims with evidence rather than people. Preserve failures and falsifiers rather than hiding them, and never pressure another contributor to disclose credentials, private repository identities, or other sensitive information.
+## Expected behavior
 
-Project maintainers may edit, hide, lock, or remove contributions that violate these expectations and may restrict participation for repeated or severe violations. Reports involving security vulnerabilities should use the private process in `SECURITY.md`. Other conduct concerns may be raised privately with the repository owner.
+Contributors should:
 
-This policy applies to repository issues, pull requests, reviews, discussions connected to the project, and other spaces where someone is representing the project.
+- distinguish observation from inference and claim only the standing supported by evidence;
+- critique designs, code, tests, and claims rather than people;
+- preserve reproducible failure evidence instead of hiding or smoothing over negative results;
+- disclose relevant conflicts of interest and security concerns promptly;
+- respect repository authority boundaries, especially generated artifacts, release credentials, and private vulnerability reports;
+- make review comments specific enough that another contributor can reproduce the concern.
+
+## Unacceptable behavior
+
+Harassment, threats, discriminatory abuse, doxxing, deliberate disruption, credential exposure, knowingly fabricated evidence, or attempts to bypass repository security and review controls are not acceptable.
+
+## Enforcement
+
+Repository maintainers may edit, hide, lock, or remove contributions and may restrict participation when behavior materially violates this contract. Security-sensitive incidents should be reported privately using the process in `SECURITY.md`.
+
+The goal of enforcement is a high-signal engineering environment in which disagreements can be resolved by tests, receipts, replay, and explicit authority rather than escalation through rhetoric.
