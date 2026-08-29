@@ -10,10 +10,12 @@ on:
       - "certification/**"
       - "scripts/certify_ecosystem.py"
       - "tests/test_mfact_certification.py"
+      - "tests/lock_contracts/**"
       - "ecosystem.lock.toml"
       - "ggen.toml"
       - "ontology.ttl"
       - "Dockerfile"
+      - "docs/CURRENT-RELEASE-STANDING.md"
       - "receipts/release-v26.8.28-container.json"
       - ".github/workflows/ggen-ecosystem-sync.yml"
       - ".github/workflows/ggen-ecosystem-container.yml"
@@ -24,10 +26,12 @@ on:
       - "certification/**"
       - "scripts/certify_ecosystem.py"
       - "tests/test_mfact_certification.py"
+      - "tests/lock_contracts/**"
       - "ecosystem.lock.toml"
       - "ggen.toml"
       - "ontology.ttl"
       - "Dockerfile"
+      - "docs/CURRENT-RELEASE-STANDING.md"
       - "receipts/release-v26.8.28-container.json"
       - ".github/workflows/ggen-ecosystem-sync.yml"
       - ".github/workflows/ggen-ecosystem-container.yml"
@@ -69,6 +73,9 @@ jobs:
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.12"
+
+      - name: Verify lock, gitlink, and blocked-capsule correspondence
+        run: python3 -m unittest tests.lock_contracts.test_ecosystem_lock_consistency -v
 
       - name: Run certification falsifiers
         run: python3 -m unittest tests.test_mfact_certification -v
