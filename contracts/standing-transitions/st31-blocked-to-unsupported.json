@@ -1,0 +1,1 @@
+{"id":"ST31","kind":"transition","from":"BLOCKED","to":"UNSUPPORTED","rule":"Require capability inspection showing the blocked operation is not implementable by the available capability surface, rather than merely inaccessible.","exact_subject_required":true,"authority_effect":"NONE"}
