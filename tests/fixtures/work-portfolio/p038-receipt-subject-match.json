@@ -1,0 +1,12 @@
+{
+  "id": "P038",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P038",
+  "edge": "receipt-subject-match",
+  "hypothesis": "Portfolio admission independently falsifies receipt-subject-match.",
+  "semantic_fingerprint": "3458b0803aaf889c",
+  "invalid": {
+    "receipt_subject_match": false
+  },
+  "expected": "REFUSED[RECEIPT_SUBJECT_MISMATCH]",
+  "control": {}
+}
