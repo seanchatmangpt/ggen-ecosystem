@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-019",
+  "title": "Full qualification ladder",
+  "hypothesis": "The documented qualification command exercises all required gates in order.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:full-qualification",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "run the full qualification entrypoint",
+  "oracle": [
+    "each gate reports exit status",
+    "roll-up cannot exceed weakest gate"
+  ],
+  "expected_standing": "PARTIAL_ALIVE",
+  "reason_code": "TOOLCHAIN_ENVIRONMENT_DEPENDENT",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through TOOLCHAIN_ENVIRONMENT_DEPENDENT",
+  "semantic_fingerprint": "SJ-019:full-qualification"
+}
