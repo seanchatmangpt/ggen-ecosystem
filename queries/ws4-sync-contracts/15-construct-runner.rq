@@ -1,0 +1,2 @@
+# WS4 invariant 15: construct runner remains pinned
+ASK { <https://ggen.io/ecosystem/github-sync#construct> <http://seanchatmangpt.github.io/packs/github-actions#runner> "ubuntu-24.04" . }

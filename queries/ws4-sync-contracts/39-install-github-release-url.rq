@@ -1,0 +1,2 @@
+# WS4 invariant 39: GGen producer remains distributed from canonical GitHub Releases
+ASK { <https://ggen.io/ecosystem/github-sync#install> <http://seanchatmangpt.github.io/packs/github-actions#runCommand> ?v . FILTER(CONTAINS(STR(?v), "github.com/seanchatmangpt/ggen/releases/download")) }

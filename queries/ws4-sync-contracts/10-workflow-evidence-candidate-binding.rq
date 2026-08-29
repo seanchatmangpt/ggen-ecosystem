@@ -1,0 +1,2 @@
+# WS4 invariant 10: evidence obligation binds candidate SHA
+ASK { <https://ggen.io/ecosystem/github-sync#workflow> <http://seanchatmangpt.github.io/packs/github-actions#evidenceObligation> ?v . FILTER(CONTAINS(LCASE(STR(?v)), "candidate sha")) }

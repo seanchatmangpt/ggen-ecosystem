@@ -1,0 +1,2 @@
+# WS4 invariant 27: malformed GGen release tags remain refused
+ASK { <https://ggen.io/ecosystem/github-sync#admit> <http://seanchatmangpt.github.io/packs/github-actions#runCommand> ?v . FILTER(CONTAINS(STR(?v), "REFUSED[INVALID_GGEN_RELEASE_TAG]")) }

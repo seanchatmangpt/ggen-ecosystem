@@ -1,0 +1,2 @@
+# WS4 invariant 01: workflow resource retains Workflow type
+ASK { <https://ggen.io/ecosystem/github-sync#workflow> a <http://seanchatmangpt.github.io/packs/github-actions#Workflow> . }

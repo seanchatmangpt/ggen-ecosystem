@@ -1,0 +1,2 @@
+# WS4 invariant 08: reusable input exposes exact marketplace SHA
+ASK { <https://ggen.io/ecosystem/github-sync#workflow> <http://seanchatmangpt.github.io/packs/github-actions#onBlock> ?v . FILTER(CONTAINS(STR(?v), "marketplace_sha:")) }

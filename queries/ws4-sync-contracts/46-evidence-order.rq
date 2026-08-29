@@ -1,0 +1,2 @@
+# WS4 invariant 46: evidence binding remains sixth construct step
+ASK { <https://ggen.io/ecosystem/github-sync#evidence> <http://seanchatmangpt.github.io/packs/github-actions#stepOrder> 6 . }

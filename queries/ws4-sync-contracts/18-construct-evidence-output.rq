@@ -1,0 +1,2 @@
+# WS4 invariant 18: construct emits replayable patch evidence
+ASK { <https://ggen.io/ecosystem/github-sync#construct> <http://seanchatmangpt.github.io/packs/github-actions#evidenceEmitted> ?v . FILTER(CONTAINS(LCASE(STR(?v)), "patch")) }

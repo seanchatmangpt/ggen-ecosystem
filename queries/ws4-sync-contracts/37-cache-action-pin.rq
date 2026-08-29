@@ -1,0 +1,2 @@
+# WS4 invariant 37: cache action remains exact-SHA pinned
+ASK { <https://ggen.io/ecosystem/github-sync#cache> <http://seanchatmangpt.github.io/packs/github-actions#usesAction> ?v . FILTER(CONTAINS(STR(?v), "caa296126883cff596d87d8935842f9db880ef25")) }

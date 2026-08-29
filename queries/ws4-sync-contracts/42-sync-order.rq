@@ -1,0 +1,2 @@
+# WS4 invariant 42: sync remains fifth construct step
+ASK { <https://ggen.io/ecosystem/github-sync#sync> <http://seanchatmangpt.github.io/packs/github-actions#stepOrder> 5 . }
