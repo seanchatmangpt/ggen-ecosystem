@@ -1,5 +1,11 @@
 # ggen-ecosystem
 
+[![GGen Ecosystem Sync](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-sync.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-sync.yml)
+[![Container Build & Publish](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-container.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-container.yml)
+[![Container](https://img.shields.io/badge/ghcr.io-ggen--ecosystem-blue)](https://github.com/seanchatmangpt/ggen-ecosystem/pkgs/container/ggen-ecosystem)
+[![Definition of Done](https://img.shields.io/badge/DoD-18%20ALIVE%20%2F%203%20PARTIAL__ALIVE-brightgreen)](docs/DEFINITION-OF-DONE.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Canonical governed composition root for the ggen ecosystem.
 
 This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
@@ -34,8 +40,19 @@ A `Makefile` at the repo root wraps the common contributor workflows:
 - `make submodules` -- `git submodule update --init --recursive`; populates/updates `vendor/ggen` and `vendor/ggen-marketplace`.
 - `make image` -- `docker build -t ggen-ecosystem:local .`; builds the composed container from the Dockerfile and the vendored submodules.
 - `make sync` -- removes any stale `ggen.lock`, then runs `ggen sync run --dry-run` followed by a real `ggen sync run` against `ontology.ttl`/`ggen.toml`.
-- `make doctor` -- runs `scripts/doctor.sh` if present; otherwise prints a placeholder note (no such script exists in this repo yet).
+- `make doctor` -- runs `scripts/doctor.sh` (11 real checks, no mocks; JSON via `--json`).
 - `make verify` -- chains all of the above in order: `submodules` -> `image` -> `sync` -> `doctor`.
+
+A `Justfile` provides the fuller canonical operator surface (`just --list` for all recipes):
+
+- `just chicago` -- the real, no-mocks container smoke test (`tests/test_container_smoke.sh`).
+- `just alive` / `just doctor` / `just dod` / `just replay` / `just falsify` -- the closed loop:
+  observe -> diagnose -> plan -> repair -> verify -> receipt -> standing.
+- `just bench` -- real wall-clock timing of `ggen sync run --dry-run` (20 runs, min/max/mean/p50/p95).
+  Latest measured result: p50 96ms, p95 203ms (`receipts/benchmark-sync-dryrun-20260829.json`).
+- `just stress` -- real concurrency stress test: N parallel `ggen sync run` processes must all exit
+  0 and report the identical `graph_hash_hex`. Verified PASS at 16-way and 64-way parallelism
+  (`receipts/stress-test-64way-20260829.json`).
 
 ### Exact producer pins
 
