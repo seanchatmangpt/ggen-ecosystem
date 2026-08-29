@@ -1,0 +1,1 @@
+{"id":"ST26","kind":"transition","from":"ALIVE","to":"REFUSED","rule":"Require a new typed policy, admission, or authority refusal for the current subject; prior ALIVE evidence does not override present authority limits.","exact_subject_required":true,"authority_effect":"NONE"}
