@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:runner-identity a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Record hosted runner identity in evidence" ; ex:sequence 19 ; ex:evidence "runner-identity" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
