@@ -1,95 +1,94 @@
 # ggen-ecosystem
 
-[![GGen Ecosystem Sync](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-sync.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-sync.yml)
-[![Container Build & Publish](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-container.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-container.yml)
-[![MFact Certification](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/mfact-certification.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/mfact-certification.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
 Canonical governed composition root for the ggen ecosystem.
 
-> **Current release standing:** `ALIVE`. Issue #146 (`BLOCKED[GHCR_MANIFEST_UNKNOWN]`) is closed: the composed capsule digest (`sha256:b9e170233fe1...`) was never broken -- the GHCR package was private, which GHCR reports as `manifest unknown` to unauthorized pulls rather than an access-denied error. Fixed by changing the package to public (2026-08-29); re-verified with a genuinely unauthenticated `docker logout` + full local cache removal + fresh pull + in-capsule `ggen --version`, all real, all passing. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
-
-This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
+This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories.
 
 ## Manufacturing contract
 
-The repository is a first-class GGen consumer. `ggen` itself is consumed by building it from the real `vendor/ggen` submodule into a composed container (bundled with the real `vendor/ggen-marketplace/packs/`), published to GHCR — not by downloading a release binary tarball:
+The repository is a first-class GGen consumer:
 
 ```text
-vendor/ggen (submodule)        vendor/ggen-marketplace (submodule)
-        |                              |
-        v                              v
-      Dockerfile  ------------------->  ghcr.io/seanchatmangpt/ggen-ecosystem:<tag>
-                                              |
-ggen.toml + ontology.ttl                     |
-        |                                    v
-        +----------------------->  ggen sync run  (runs INSIDE that container)
-                                              |
-                                              v
-                        .github/workflows/ggen-ecosystem-sync.yml
-                        .github/workflows/ggen-ecosystem-container.yml
+ggen.toml + ontology.ttl
+        +
+ggen-marketplace@4c4232515b43d40cef8288c43eacfab2c31ab485
+        |
+        v
+    ggen sync run
+        |
+        v
+.github/workflows/ggen-ecosystem-sync.yml
 ```
 
-Both generated workflows are a generated consequence of `ontology.ttl`. Edit its semantic inputs and regenerate with `ggen sync run`; do not hand-edit either generated workflow. A reusable composite Action (`use-ggen-ecosystem`, in `ggen-marketplace/packs/github-actions-pack/examples/consume-github-actions-pack/`) lets other repos run `ggen sync run` inside the same pinned container without a curl/binary step of their own.
-
-## Local development
-
-This repo vendors `ggen` and `ggen-marketplace` as real git submodules. A plain `git clone` does **not** populate them -- clone with `git clone --recurse-submodules <url>` to get everything in one step, or if you already have a plain clone, run `git submodule update --init --recursive` (also exposed as `make submodules`) before doing anything else.
-
-A `Makefile` at the repo root wraps the common contributor workflows:
-
-- `make submodules` -- `git submodule update --init --recursive`; populates/updates `vendor/ggen` and `vendor/ggen-marketplace`.
-- `make image` -- `docker build -t ggen-ecosystem:local .`; builds the composed container from the Dockerfile and the vendored submodules.
-- `make sync` -- removes any stale `ggen.lock`, then runs `ggen sync run --dry-run` followed by a real `ggen sync run` against `ontology.ttl`/`ggen.toml`.
-- `make doctor` -- runs `scripts/doctor.sh` (11 real checks, no mocks; JSON via `--json`).
-- `make verify` -- chains all of the above in order: `submodules` -> `image` -> `sync` -> `doctor`.
-
-A `Justfile` provides the fuller canonical operator surface (`just --list` for all recipes):
-
-- `just chicago` -- the real, no-mocks container smoke test (`tests/test_container_smoke.sh`).
-- `just alive` / `just doctor` / `just dod` / `just replay` / `just falsify` -- the closed loop:
-  observe -> diagnose -> plan -> repair -> verify -> receipt -> standing.
-- `just bench` -- real wall-clock timing of `ggen sync run --dry-run` (20 runs, min/max/mean/p50/p95).
-  Latest measured result: p50 96ms, p95 203ms (`receipts/benchmark-sync-dryrun-20260829.json`).
-- `just stress` -- real concurrency stress test: N parallel `ggen sync run` processes must all exit
-  0 and report the identical `graph_hash_hex`. Verified PASS at 16-way and 64-way parallelism
-  (`receipts/stress-test-64way-20260829.json`).
+The workflow is a generated consequence. Edit `ontology.ttl` or `ggen.toml`, then regenerate with `ggen sync run`; do not hand-edit the workflow.
 
 ### Exact producer pins
 
-- GGen release: `v26.8.28` (real published GitHub release, verified via prior release evidence)
-- GGen source commit: `c61ee99359c9dbc7b3cb71687976932a3e737ed4` (matches the `vendor/ggen` gitlink)
-- GGen aarch64-apple-darwin release asset SHA-256 (historical; no longer the consumption path): `82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42`
-- Marketplace commit: `89adf4c8476f7edc8067fdbb1c256cfbfa22df6a` (matches `ecosystem.lock.toml` and the `vendor/ggen-marketplace` gitlink)
-- AutoFDE Lab commit: `a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09` (matches `ecosystem.lock.toml` and the `vendor/autofde-lab` gitlink)
-- Marketplace pack: `packs/github-actions-pack` (sourced via local submodule `path =`, not `git =`/`version =`)
-- Historical composed-container digest: `sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` — **not currently admitted as pullable**; republish and re-crown are tracked in issue #146.
-
-## Maximum ecosystem graph
-
-The manufacturing rail above is the proven operational path when its exact capsule identity is admitted. The semantic control plane around it is intentionally larger:
-
-```text
-complete public GitHub owner catalog
-        -> observed/candidate repository graph
-        -> admission + privacy fence
-        -> capability/profile closure
-        -> DfCM reversible design space
-        -> deterministic manufacture
-        -> BRCE-bounded DO
-        -> receipt + replay
-        -> scoped standing
-```
-
-The maximal repository scope is **every public repository owned by `seanchatmangpt`**, represented canonically by the predicate `owner=seanchatmangpt AND visibility=public` in `ontology/github-catalog.ttl`. The enumerated repository-census shards are a high-signal materialized subset for initial profile reasoning; they are not the boundary of the `everything` profile.
-
-Catalog membership is observation, not admission. It grants no dependency edge, compatibility claim, execution status, or mutation authority by itself. Private repository identities are not projected into this public repository.
-
-Five semantic profiles are defined: `cloud-session`, `platform-engineering`, `process-intelligence`, `autofde`, and `everything`. The source DfCM bootstrap space preserves eight exhaustive reversible construction candidates across transport, knowledge closure, and execution mode.
+- GGen release: `v26.8.27`
+- Linux x86_64 release asset SHA-256: `ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035`
+- GGen executable SHA-256 observed during manufacture: `01d0f5e624d12eeda503db4fb4b00618472bd775ee4850c9a2f850651db76680`
+- Marketplace commit: `4c4232515b43d40cef8288c43eacfab2c31ab485`
+- Marketplace pack: `packs/github-actions-pack`
+- Pack content BLAKE3: `1ce72f06a115995a37b9416013d607d4898f3cd707819681a76f663d69c99da8`
 
 ## GitHub-native cloud bootstrap
 
-`.github/workflows/ggen-ecosystem-sync.yml` is both a reusable `workflow_call` target and a manual `workflow_dispatch` rail. It checks out the exact candidate (with submodules), admits exact producer/pack identities, runs its `construct` job **inside** the pinned `ghcr.io/seanchatmangpt/ggen-ecosystem` container, executes `ggen sync run`, and captures deterministic replay evidence while keeping repository mutation authority outside the workflow (`contents: read` only). `.github/workflows/ggen-ecosystem-container.yml` builds and publishes that container from `vendor/ggen` + `vendor/ggen-marketplace` on tag push or manual dispatch. The workflow definition is present, but the current capsule must be republished before this path can regain `ALIVE` standing.
+`.github/workflows/ggen-ecosystem-sync.yml` is both a reusable `workflow_call` target and a manual `workflow_dispatch` rail. It:
+
+1. checks out the exact candidate with persisted credentials disabled;
+2. fails closed unless every `[packs]` entry is an exact commit under `seanchatmangpt/ggen-marketplace/packs/*`;
+3. restores an untrusted GitHub Actions cache for GGen's native `.ggen-v2/git-packs` transport cache, keyed by marketplace SHA;
+4. downloads the pinned prebuilt GGen Linux release asset and verifies its SHA-256;
+5. invokes `ggen sync run` as the manufacturing boundary;
+6. captures the generated patch, GGen lock/receipt, pack identities, logs, and replay receipt as a GitHub artifact;
+7. keeps repository mutation authority outside this workflow (`contents: read` only).
+
+That makes GitHub the distribution layer while GGen and the marketplace pack remain the semantic/manufacturing authority.
+
+## Complete GitHub ecosystem closure
+
+`ecosystem/github-ecosystem.ttl` admits the complete owned GitHub estate by **set membership**, not by a brittle handwritten repository allowlist:
+
+```text
+E = { r | r.owner.login = seanchatmangpt }
+
+|E| = 378
+Epublic = 300
+Eprivate = 78
+```
+
+The cardinalities were closed against the connected GitHub account on 2026-08-28. Owner enumeration had four non-empty 100-item pages and the next page was empty; item 377 existed and item 378 did not. Independent visibility searches proved public item 300 exists while 301 does not, and private item 78 exists while 79 does not.
+
+### Identity law
+
+The durable identity of a member is its GitHub **repository ID**, not its current name, default branch, or branch-head SHA. Names and branch heads are mutable observations. This prevents routine renames, branch changes, and commits from rewriting ecosystem membership.
+
+The constitutional public identities are:
+
+| Repository | GitHub repository ID | Ecosystem role |
+| --- | ---: | --- |
+| `seanchatmangpt/ggen` | `1071971708` | `MANUFACTURING_ENGINE` |
+| `seanchatmangpt/ggen-marketplace` | `1328598648` | `PACK_DISTRIBUTION` |
+| `seanchatmangpt/ggen-ecosystem` | `1349290571` | `COMPOSITION_AND_STANDING_ROOT` |
+
+Every other owned repository is included extensionally by the owner predicate without surrendering its source identity or independent versioning.
+
+### Public/private partition
+
+`ggen-ecosystem` is public. Therefore the complete estate is represented as two partitions:
+
+```text
+PUBLIC_REPOSITORY_PARTITION        = 300 members
+PROTECTED_PRIVATE_REPOSITORY_PARTITION = 78 members
+```
+
+The public root **must not** materialize private repository names, IDs, URLs, refs, SHAs, descriptions, or sizes. The private partition is acknowledged and counted, but its identities remain protected. This is a closure boundary, not an omission.
+
+### Membership is not promotion
+
+Inclusion in the ecosystem means only that a repository is an observed member of the owned GitHub estate. It does **not** confer production standing, release standing, pack standing, merge authority, or actuation authority. Reference forks, experiments, products, platforms, research repositories, archives, and empty test repositories remain distinct subjects until separately classified and qualified.
+
+The machine-readable census receipt is `receipts/github-ecosystem-census-2026-08-28.json`.
 
 ## Provenance
 
@@ -105,15 +104,15 @@ The initial workflow bytes were manufactured by the real GGen release through Gi
 - `ggen sync run` exit: `0`
 - independent YAML parse: `PASS`
 
-The machine-readable bootstrap receipt is in `receipts/bootstrap-ggen-ecosystem-sync.json`. It is historical evidence; it does not certify the current repository head or current GHCR availability.
+The machine-readable bootstrap receipt is in `receipts/bootstrap-ggen-ecosystem-sync.json`.
 
 ## Authority boundary
 
 ```text
-SELECT / semantic inputs  -> ontology and profile/admission graphs
-CONSTRUCT                  -> ggen sync run / deterministic projections
-EVIDENCE                   -> locks + receipts + replay artifacts
+SELECT / semantic inputs  -> ggen.toml + ontology.ttl + ecosystem/*.ttl
+CONSTRUCT                 -> ggen sync run
+EVIDENCE                  -> ggen.lock + receipts + GitHub artifact
 DO                         -> external authorized Git/GitHub merge path
 ```
 
-No graph, planner, hook, generated projection, or workflow receives ambient DO authority.
+No workflow in this bootstrap path receives repository write authority. The complete GitHub census adds observation/composition standing only and grants no exception to the rule that consumer code is manufactured through admitted `ggen sync run` paths.

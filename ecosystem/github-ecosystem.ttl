@@ -1,0 +1,118 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Constitutional GitHub ecosystem closure.
+# Membership is defined by GitHub ownership, not by a brittle handwritten list.
+# Durable identity is GitHub repository ID. Branch names and head SHAs are
+# observations, not constitutional identity, and therefore are not frozen here.
+
+eco:RepositoryEcosystem a skos:Concept ;
+    skos:prefLabel "Repository ecosystem" .
+
+eco:RepositoryPartition a skos:Concept ;
+    skos:prefLabel "Repository partition" .
+
+eco:DurableRepositoryIdentity a skos:Concept ;
+    skos:prefLabel "Durable GitHub repository identity" .
+
+eco:MutableRepositoryState a skos:Concept ;
+    skos:prefLabel "Mutable repository state" .
+
+eco:GitHubEcosystem a dcat:Catalog, prov:Entity ;
+    dcterms:title "seanchatmangpt GitHub ecosystem" ;
+    dcterms:identifier "github-owner:seanchatmangpt" ;
+    eco:ownerLogin "seanchatmangpt" ;
+    eco:membershipPredicate "repository.owner.login == 'seanchatmangpt'" ;
+    eco:repositoryCount 378 ;
+    eco:hasPartition eco:PublicRepositoryPartition, eco:ProtectedPrivateRepositoryPartition ;
+    eco:identityPolicy eco:RepositoryIdentityPolicy ;
+    eco:statePolicy eco:RepositoryStatePolicy ;
+    eco:privacyPolicy eco:PrivateRepositoryNonDisclosure ;
+    eco:standing "ALIVE[CENSUS_CARDINALITY]" ;
+    prov:wasGeneratedBy eco:GitHubCensus20260828 .
+
+eco:PublicRepositoryPartition a dcat:Dataset, eco:RepositoryPartition ;
+    dcterms:title "Public owned repositories" ;
+    eco:membershipPredicate "repository.owner.login == 'seanchatmangpt' && repository.visibility == 'public'" ;
+    eco:repositoryCount 300 ;
+    eco:disclosure "PUBLIC_METADATA_ADMISSIBLE" ;
+    eco:standing "ALIVE[CARDINALITY]" .
+
+eco:ProtectedPrivateRepositoryPartition a dcat:Dataset, eco:RepositoryPartition ;
+    dcterms:title "Protected private owned repositories" ;
+    eco:membershipPredicate "repository.owner.login == 'seanchatmangpt' && repository.visibility == 'private'" ;
+    eco:repositoryCount 78 ;
+    eco:disclosure "PROTECTED_PRIVATE_PARTITION" ;
+    eco:standing "ALIVE[CARDINALITY_WITH_IDENTITIES_WITHHELD]" ;
+    odrl:hasPolicy eco:PrivateRepositoryNonDisclosure .
+
+eco:PrivateRepositoryNonDisclosure a odrl:Policy ;
+    dcterms:title "Public root private-repository non-disclosure" ;
+    odrl:prohibition [
+        a odrl:Prohibition ;
+        odrl:action odrl:distribute ;
+        odrl:target eco:ProtectedPrivateRepositoryPartition
+    ] ;
+    eco:rule "A public ggen-ecosystem artifact MUST NOT materialize private repository names, IDs, URLs, refs, SHAs, descriptions, or sizes." .
+
+eco:RepositoryIdentityPolicy a eco:DurableRepositoryIdentity ;
+    dcterms:title "GitHub repository ID is durable membership identity" ;
+    eco:identityKey "repository.id" ;
+    eco:rule "Repository membership identity MUST be the stable GitHub repository ID; rename and default-branch movement MUST NOT create a new ecosystem member." .
+
+eco:RepositoryStatePolicy a eco:MutableRepositoryState ;
+    dcterms:title "Branch and commit state are observations" ;
+    eco:observedFields "name, visibility, archived, default_branch, default_branch_head_sha" ;
+    eco:rule "Default branch and head SHA MUST be observed live when needed and MUST NOT be confused with durable repository identity." .
+
+eco:GitHubCensus20260828 a prov:Activity ;
+    dcterms:date "2026-08-28"^^xsd:date ;
+    eco:source "GitHub connected-account repository enumeration and repository search" ;
+    eco:pageSize 100 ;
+    eco:nonEmptyOwnerPages 4 ;
+    eco:firstEmptyOwnerPage 4 ;
+    eco:publicLastPresentOrdinal 300 ;
+    eco:publicFirstAbsentOrdinal 301 ;
+    eco:privateLastPresentOrdinal 78 ;
+    eco:privateFirstAbsentOrdinal 79 ;
+    eco:resultTotal 378 ;
+    eco:resultPublic 300 ;
+    eco:resultPrivate 78 ;
+    eco:standing "ALIVE[EXACT_CARDINALITY]" .
+
+# The three constitutional producer/distribution identities are named explicitly.
+# All other members are admitted extensionally by the owner predicate above.
+
+eco:GGenRepository a dcat:Dataset ;
+    dcterms:identifier "1071971708" ;
+    dcterms:title "seanchatmangpt/ggen" ;
+    eco:ecosystemRole "MANUFACTURING_ENGINE" ;
+    eco:visibility "public" .
+
+eco:GGenMarketplaceRepository a dcat:Dataset ;
+    dcterms:identifier "1328598648" ;
+    dcterms:title "seanchatmangpt/ggen-marketplace" ;
+    eco:ecosystemRole "PACK_DISTRIBUTION" ;
+    eco:visibility "public" ;
+    eco:pinnedPackCommit "4c4232515b43d40cef8288c43eacfab2c31ab485" .
+
+eco:GGenEcosystemRepository a dcat:Dataset ;
+    dcterms:identifier "1349290571" ;
+    dcterms:title "seanchatmangpt/ggen-ecosystem" ;
+    eco:ecosystemRole "COMPOSITION_AND_STANDING_ROOT" ;
+    eco:visibility "public" .
+
+# Closure law: inclusion grants observation/composition standing only.
+# It never promotes an arbitrary repository to production or grants mutation authority.
+eco:ClosureLaw a skos:Concept ;
+    skos:prefLabel "Ecosystem closure law" ;
+    eco:rule "Every repository owned by seanchatmangpt is a member of the ecosystem census." ;
+    eco:rule "Membership is not production standing, release standing, merge authority, pack standing, or actuation authority." ;
+    eco:rule "Private membership is acknowledged without public identity disclosure." ;
+    eco:rule "Source identity and independent versioning remain in each member repository." ;
+    eco:rule "Consumer code remains manufactured through admitted ggen sync run paths; this graph grants no code-writing exception." .
