@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P06","acceptance_edge":"doctrine.generated.dir_fence","semantic_purpose":"generated/ is not an editing surface","surface":"generated/","expected":"generated","verifier":"doctrine_fence","falsifier":"fail_on_direct_edit","semantic_fingerprint":"c8f4a198c51f021d7fd9b84dd39cf26240ea117a6e57cb6a1044674914679d95"}
