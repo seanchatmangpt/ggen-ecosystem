@@ -6,13 +6,14 @@ This repository is a governed semantic software-manufacturing composition root r
 
 Use `SUPPORT.md` and the GitHub issue chooser rather than a blank issue:
 
+- open-ended architecture/design/ecosystem question → GitHub Discussions;
 - reproducible defect → Bug Report;
 - desired capability → Feature Request or Capability Gap;
 - repeated contributor/operator friction → Developer Experience / QoL;
 - missing/stale/contradictory docs → Documentation Gap;
 - security vulnerability → private GitHub Security Advisory, never a public issue.
 
-GitHub Discussions are not currently enabled for this repository, so contributor guidance must not route users there.
+GitHub Discussions are currently enabled; use them for exploratory conversation that does not yet have a falsifiable issue/PR acceptance contract.
 
 ## Before you start
 
@@ -53,7 +54,7 @@ For multi-line local commit messages, prefer `git commit -F <message-file>` to a
 
 ## GitHub-native DX
 
-`docs/GITHUB-DX.md` is the capability map for issue forms, CODEOWNERS, Dependabot, labeling, Dependency Review, CodeQL, repository hygiene, supply-chain attestations, release notes, and Copilot instructions/agents/prompts/setup.
+`docs/GITHUB-DX.md` is the capability map for Codespaces/devcontainers, issue forms, Discussions, CODEOWNERS, Dependabot, labeling, Dependency Review, CodeQL, repository hygiene, supply-chain attestations, release notes, citation metadata, and Copilot instructions/agents/prompts/setup.
 
 Run:
 
@@ -61,4 +62,4 @@ Run:
 just github-dx
 ```
 
-before proposing GitHub workflow or collaboration changes. The court is read-only and fails closed on mutable Action refs, missing workflow permissions, unsafe `pull_request_target` patterns, dead Discussions routing, and other repository-native drift.
+before proposing GitHub workflow or collaboration changes. The court is read-only and fails closed on mutable Action refs, missing workflow permissions, unsafe `pull_request_target` patterns, incomplete issue/security routing, and other repository-native drift.
