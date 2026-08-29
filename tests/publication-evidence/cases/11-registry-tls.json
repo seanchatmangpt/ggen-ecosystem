@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-012",
+  "title": "Registry TLS failure is typed",
+  "hypothesis": "Registry TLS failure is typed",
+  "acceptance_edge": "publication.registry-tls",
+  "evidence": [
+    "x509 certificate signed by unknown authority"
+  ],
+  "expected": {
+    "standing": "BLOCKED",
+    "reason": "REGISTRY_TLS"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from BLOCKED[REGISTRY_TLS]",
+  "semantic_fingerprint": "fp:publication:registry-tls:BLOCKED:REGISTRY_TLS"
+}
