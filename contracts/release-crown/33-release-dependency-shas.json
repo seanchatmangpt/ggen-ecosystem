@@ -1,0 +1,8 @@
+{
+  "expected": "exact manufacturing dependency SHAs",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "release-dependency-shas",
+  "kind": "contains",
+  "remediation": "Record exact dependency SHAs.",
+  "source": "docs/RELEASE.md"
+}
