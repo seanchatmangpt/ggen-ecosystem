@@ -1,0 +1,1 @@
+{"expected_exit":0,"id":"pack-two-valid","mkdir":["vendor/ggen-marketplace/packs/second"],"must_contain":["2 pack path(s)"],"replace_files":{"ggen.toml":"[packs]\na={ path = \"vendor/ggen-marketplace/packs/github-actions-pack\" }\nb={ path = \"vendor/ggen-marketplace/packs/second\" }\n"}}
