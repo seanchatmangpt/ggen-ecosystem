@@ -1,0 +1,32 @@
+{
+  "name": "executor-stops-after-failure",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "first"
+      ],
+      "cost": 1,
+      "description": "first"
+    },
+    {
+      "argv": [
+        "second"
+      ],
+      "cost": 1,
+      "description": "second"
+    }
+  ],
+  "exits": [
+    1
+  ],
+  "expect": {
+    "standing": "BUILD_BROKEN",
+    "calls": 1,
+    "receipts": 1,
+    "receipt": {}
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P039",
+  "semantic_fingerprint": "be926aab"
+}
