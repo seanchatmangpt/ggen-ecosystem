@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:rollback-manifest-tag a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Define rollback as retagging an admitted prior manifest digest" ; ex:sequence 49 ; ex:rollback "prior-manifest-digest" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
