@@ -271,7 +271,7 @@ ex:containerBuild
     gha:inWorkflow ex:containerWorkflow ;
     gha:jobName "build-and-push" ;
     gha:runner "ubuntu-24.04" ;
-    gha:timeoutMinutes 30 ;
+    gha:timeoutMinutes 120 ;
     gha:jobPermissions """contents: read
 packages: write""" ;
     gha:jobExtra "name: Build and publish composed ggen-ecosystem container" ;
