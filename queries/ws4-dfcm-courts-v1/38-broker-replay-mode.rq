@@ -1,0 +1,5 @@
+PREFIX cmd: <https://chatmangpt.com/ontology/cmd#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+ASK {
+  <https://ggen.dev/ecosystem/broker/brce> cmd:replayMode "exact-output" .
+}
