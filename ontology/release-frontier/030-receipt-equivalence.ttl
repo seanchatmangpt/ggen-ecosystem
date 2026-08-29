@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:receipt-equivalence a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require receipt schema equivalence across architectures" ; ex:sequence 30 ; ex:equivalence "receipt-schema" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
