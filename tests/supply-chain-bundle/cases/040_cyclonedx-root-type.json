@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-040",
+  "work_key": "WS4-SCB-040",
+  "title": "cyclonedx root type",
+  "hypothesis": "The root component must be typed as a container.",
+  "acceptance_edge": "REFUSED[CDX_ROOT_TYPE]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/040_cyclonedx-root-type.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/040_cyclonedx-root-type.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-040:cyclonedx-root-type",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "cyclonedx.metadata.component.type",
+    "value": "library"
+  },
+  "expected": "REFUSED[CDX_ROOT_TYPE]"
+}
