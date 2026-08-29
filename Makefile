@@ -52,7 +52,7 @@ dod:
 # Verify a manufacturing receipt.
 receipt-verify:
 	@if [ -x scripts/verify-receipt.sh ]; then \
-		scripts/verify-receipt.sh; \
+		scripts/verify-receipt.sh $${RECEIPT:-receipts/release-v26.8.28-container.json}; \
 	elif [ -f scripts/verify-receipt.sh ]; then \
 		sh scripts/verify-receipt.sh; \
 	else \
@@ -62,7 +62,7 @@ receipt-verify:
 # Dry-run replay check.
 replay:
 	@if [ -x tests/replay_check.sh ]; then \
-		tests/replay_check.sh --dry-run; \
+		tests/replay_check.sh --dry-run $${RECEIPT:-receipts/release-v26.8.28-container.json}; \
 	elif [ -f tests/replay_check.sh ]; then \
 		sh tests/replay_check.sh --dry-run; \
 	else \

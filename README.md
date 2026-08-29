@@ -2,6 +2,29 @@
 
 Canonical governed composition root for the ggen ecosystem.
 
+## Five-minute customer path
+
+You do not need to install GGen, clone the marketplace, or edit generated YAML. Add a
+caller workflow to your repository that invokes the reusable workflow at this exact
+repository/ref, then commit your own `ggen.toml` and ontology instance data:
+
+```yaml
+name: Manufacture
+on: [pull_request, workflow_dispatch]
+jobs:
+  ggen:
+    uses: seanchatmangpt/ggen-ecosystem/.github/workflows/ggen-ecosystem-sync.yml@main
+    with:
+      ggen_container_image: ghcr.io/seanchatmangpt/ggen-ecosystem@sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c
+      marketplace_sha: 89adf4c8476f7edc8067fdbb1c256cfbfa22df6a
+```
+
+The workflow produces a patch and replay receipt. Treat the result as a candidate
+until the exact-head court succeeds; generated files are never hand-edited.
+
+See [docs/QUICKSTART.md](docs/QUICKSTART.md) for a complete starter journey and
+[docs/FAILURE-ROUTING.md](docs/FAILURE-ROUTING.md) for typed recovery.
+
 This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
 
 ## Manufacturing contract
@@ -42,9 +65,9 @@ A `Makefile` at the repo root wraps the common contributor workflows:
 - GGen release: `v26.8.28` (real published GitHub release, verified via `gh release list`/`gh release view`)
 - GGen source commit: `c61ee99359c9dbc7b3cb71687976932a3e737ed4` (resolved via `git ls-remote --tags`; matches the `vendor/ggen` submodule pin)
 - GGen aarch64-apple-darwin release asset SHA-256 (verified via `gh release download` + `shasum -a 256`, historical — no longer the consumption path): `82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42`
-- Marketplace commit: `c779aec20d9c93727c7ad4464f1dd52ac8e066e4` (matches the `vendor/ggen-marketplace` submodule pin)
+- Marketplace commit: `89adf4c8476f7edc8067fdbb1c256cfbfa22df6a` (matches the `vendor/ggen-marketplace` submodule pin)
 - Marketplace pack: `packs/github-actions-pack` (sourced via local submodule `path =`, not `git =`/`version =`)
-- Composed container: `ghcr.io/seanchatmangpt/ggen-ecosystem` — tag/digest `UNKNOWN-TODO` until a real `docker build`+push runs (see `.github/workflows/ggen-ecosystem-container.yml`)
+- Composed container: `ghcr.io/seanchatmangpt/ggen-ecosystem@sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` (immutable release capsule; multi-architecture publication is required for subsequent releases)
 
 ## Maximum ecosystem graph
 
