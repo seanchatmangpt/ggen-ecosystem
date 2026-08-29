@@ -1,0 +1,1 @@
+{"id":"ST12","kind":"transition","from":"UNKNOWN","to":"BUILD_BROKEN","rule":"Require observed execution reaching a build or test boundary and failing there.","exact_subject_required":true,"authority_effect":"NONE"}
