@@ -1,0 +1,49 @@
+name: Supply Chain Manufacture
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "manufacturing/supply-chain/**"
+      - "tools/verify_supply_chain_bundle.py"
+      - ".github/workflows/supply-chain-manufacture.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-head:
+    name: GGen manufacture and executable court
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact subject
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Install exact GGen release
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/ggen.tar.gz"
+          curl --fail --location --retry 3 --retry-all-errors \
+            --proto '=https' --tlsv1.2 \
+            -o "$archive" \
+            https://github.com/seanchatmangpt/ggen/releases/download/v26.8.27/ggen-x86_64-unknown-linux-gnu.tar.gz
+          echo "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035  $archive" | sha256sum --check --strict
+          mkdir -p "$RUNNER_TEMP/ggen"
+          tar -xzf "$archive" -C "$RUNNER_TEMP/ggen"
+          bin="$(find "$RUNNER_TEMP/ggen" -type f -name ggen -print -quit)"
+          test -n "$bin"
+          chmod +x "$bin"
+          echo "$(dirname "$bin")" >> "$GITHUB_PATH"
+      - name: Manufacture from admitted graph
+        working-directory: manufacturing/supply-chain
+        run: ggen sync run
+      - name: Refuse projection drift
+        run: git diff --exit-code -- manufacturing/supply-chain/generated/supply-chain-evidence-cases.json
+      - name: Execute manufactured court
+        run: python3 tools/verify_supply_chain_bundle.py

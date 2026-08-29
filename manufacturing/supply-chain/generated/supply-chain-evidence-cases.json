@@ -1,0 +1,525 @@
+{
+  "schema": "ggen.supply-chain-evidence.court/v1",
+  "cases": [
+    {
+      "case_id": "SCB-002",
+      "ordinal": 2,
+      "title": "valid bundle",
+      "expected": "ALIVE",
+      "law_family": "cross-format",
+      "semantic_fingerprint": "SCB-002:valid-bundle",
+      "mutation": {},
+      "assertion": {"op":"always"}
+    },
+    {
+      "case_id": "SCB-003",
+      "ordinal": 3,
+      "title": "provenance statement type",
+      "expected": "REFUSED[PROV_TYPE]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-003:provenance-statement-type",
+      "mutation": {"path":"provenance._type","value":"https://in-toto.io/Statement/v0.1"},
+      "assertion": {"op":"eq","path":"provenance._type","value":"https://in-toto.io/Statement/v1"}
+    },
+    {
+      "case_id": "SCB-004",
+      "ordinal": 4,
+      "title": "provenance subject count",
+      "expected": "REFUSED[PROV_SUBJECT_COUNT]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-004:provenance-subject-count",
+      "mutation": {"path":"provenance.subject","value":[]},
+      "assertion": {"op":"len_eq","path":"provenance.subject","value":1}
+    },
+    {
+      "case_id": "SCB-005",
+      "ordinal": 5,
+      "title": "provenance subject name",
+      "expected": "REFUSED[PROV_SUBJECT_NAME]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-005:provenance-subject-name",
+      "mutation": {"path":"provenance.subject.0.name","value":"ghcr.io/example/wrong@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "assertion": {"op":"eq","path":"provenance.subject.0.name","value":"$subject"}
+    },
+    {
+      "case_id": "SCB-006",
+      "ordinal": 6,
+      "title": "provenance digest algorithm",
+      "expected": "REFUSED[PROV_SUBJECT_DIGEST_ALGORITHM]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-006:provenance-digest-algorithm",
+      "mutation": {"path":"provenance.subject.0.digest","value":{"sha512":"aa"}},
+      "assertion": {"op":"keys_eq","path":"provenance.subject.0.digest","value":["sha256"]}
+    },
+    {
+      "case_id": "SCB-007",
+      "ordinal": 7,
+      "title": "provenance digest shape",
+      "expected": "REFUSED[PROV_SUBJECT_DIGEST_SHAPE]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-007:provenance-digest-shape",
+      "mutation": {"path":"provenance.subject.0.digest.sha256","value":"not-a-digest"},
+      "assertion": {"op":"regex","path":"provenance.subject.0.digest.sha256","value":"^[0-9a-f]{64}$"}
+    },
+    {
+      "case_id": "SCB-008",
+      "ordinal": 8,
+      "title": "provenance digest drift",
+      "expected": "REFUSED[PROV_SUBJECT_DIGEST_DRIFT]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-008:provenance-digest-drift",
+      "mutation": {"path":"provenance.subject.0.digest.sha256","value":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "assertion": {"op":"eq","path":"provenance.subject.0.digest.sha256","value":"$digest"}
+    },
+    {
+      "case_id": "SCB-009",
+      "ordinal": 9,
+      "title": "provenance predicate type",
+      "expected": "REFUSED[PROV_PREDICATE_TYPE]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-009:provenance-predicate-type",
+      "mutation": {"path":"provenance.predicateType","value":"https://slsa.dev/provenance/v0.2"},
+      "assertion": {"op":"eq","path":"provenance.predicateType","value":"https://slsa.dev/provenance/v1"}
+    },
+    {
+      "case_id": "SCB-010",
+      "ordinal": 10,
+      "title": "provenance build type",
+      "expected": "REFUSED[PROV_BUILD_TYPE]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-010:provenance-build-type",
+      "mutation": {"path":"provenance.predicate.buildDefinition.buildType","value":"https://example.invalid/build"},
+      "assertion": {"op":"eq","path":"provenance.predicate.buildDefinition.buildType","value":"https://github.com/Attestations/GitHubActionsWorkflow@v1"}
+    },
+    {
+      "case_id": "SCB-011",
+      "ordinal": 11,
+      "title": "provenance source uri",
+      "expected": "REFUSED[PROV_SOURCE_URI]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-011:provenance-source-uri",
+      "mutation": {"path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"git+https://github.com/example/fork"},
+      "assertion": {"op":"eq","path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"git+https://github.com/seanchatmangpt/ggen-ecosystem"}
+    },
+    {
+      "case_id": "SCB-012",
+      "ordinal": 12,
+      "title": "provenance source digest",
+      "expected": "REFUSED[PROV_SOURCE_DIGEST]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-012:provenance-source-digest",
+      "mutation": {"path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"0000000000000000000000000000000000000000"},
+      "assertion": {"op":"eq","path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"$head"}
+    },
+    {
+      "case_id": "SCB-013",
+      "ordinal": 13,
+      "title": "provenance workflow mutable",
+      "expected": "REFUSED[PROV_WORKFLOW_REF_MUTABLE]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-013:provenance-workflow-mutable",
+      "mutation": {"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/ggen-ecosystem-container.yml@main"},
+      "assertion": {"op":"ends_with","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"@$head"}
+    },
+    {
+      "case_id": "SCB-014",
+      "ordinal": 14,
+      "title": "provenance ggen material",
+      "expected": "REFUSED[PROV_GGEN_MATERIAL]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-014:provenance-ggen-material",
+      "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.0.digest.gitCommit","value":"0000000000000000000000000000000000000000"},
+      "assertion": {"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.0.digest.gitCommit","value":"$ggen"}
+    },
+    {
+      "case_id": "SCB-015",
+      "ordinal": 15,
+      "title": "provenance marketplace material",
+      "expected": "REFUSED[PROV_MARKETPLACE_MATERIAL]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-015:provenance-marketplace-material",
+      "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit","value":"0000000000000000000000000000000000000000"},
+      "assertion": {"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit","value":"$market"}
+    },
+    {
+      "case_id": "SCB-016",
+      "ordinal": 16,
+      "title": "provenance autofde material",
+      "expected": "REFUSED[PROV_AUTOFDE_MATERIAL]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-016:provenance-autofde-material",
+      "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.2.digest.gitCommit","value":"0000000000000000000000000000000000000000"},
+      "assertion": {"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.2.digest.gitCommit","value":"$autofde"}
+    },
+    {
+      "case_id": "SCB-017",
+      "ordinal": 17,
+      "title": "provenance builder id",
+      "expected": "REFUSED[PROV_BUILDER_ID]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-017:provenance-builder-id",
+      "mutation": {"path":"provenance.predicate.runDetails.builder.id","value":"https://example.invalid/builder"},
+      "assertion": {"op":"eq","path":"provenance.predicate.runDetails.builder.id","value":"https://github.com/actions/runner/github-hosted"}
+    },
+    {
+      "case_id": "SCB-018",
+      "ordinal": 18,
+      "title": "provenance invocation id",
+      "expected": "REFUSED[PROV_INVOCATION_ID]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-018:provenance-invocation-id",
+      "mutation": {"path":"provenance.predicate.runDetails.metadata.invocationId","value":"not-a-run"},
+      "assertion": {"op":"starts_with","path":"provenance.predicate.runDetails.metadata.invocationId","value":"https://github.com/seanchatmangpt/ggen-ecosystem/actions/runs/"}
+    },
+    {
+      "case_id": "SCB-019",
+      "ordinal": 19,
+      "title": "provenance started on",
+      "expected": "REFUSED[PROV_STARTED_ON]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-019:provenance-started-on",
+      "mutation": {"path":"provenance.predicate.runDetails.metadata.startedOn","value":"not-a-time"},
+      "assertion": {"op":"datetime","path":"provenance.predicate.runDetails.metadata.startedOn"}
+    },
+    {
+      "case_id": "SCB-020",
+      "ordinal": 20,
+      "title": "provenance finished on",
+      "expected": "REFUSED[PROV_FINISHED_ON]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-020:provenance-finished-on",
+      "mutation": {"path":"provenance.predicate.runDetails.metadata.finishedOn","value":"not-a-time"},
+      "assertion": {"op":"datetime","path":"provenance.predicate.runDetails.metadata.finishedOn"}
+    },
+    {
+      "case_id": "SCB-021",
+      "ordinal": 21,
+      "title": "provenance time order",
+      "expected": "REFUSED[PROV_TIME_ORDER]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-021:provenance-time-order",
+      "mutation": {"path":"provenance.predicate.runDetails.metadata.finishedOn","value":"2026-08-29T08:00:00Z"},
+      "assertion": {"finish":"provenance.predicate.runDetails.metadata.finishedOn","op":"time_order","start":"provenance.predicate.runDetails.metadata.startedOn"}
+    },
+    {
+      "case_id": "SCB-022",
+      "ordinal": 22,
+      "title": "spdx version",
+      "expected": "REFUSED[SPDX_VERSION]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-022:spdx-version",
+      "mutation": {"path":"spdx.spdxVersion","value":"SPDX-2.2"},
+      "assertion": {"op":"eq","path":"spdx.spdxVersion","value":"SPDX-2.3"}
+    },
+    {
+      "case_id": "SCB-023",
+      "ordinal": 23,
+      "title": "spdx data license",
+      "expected": "REFUSED[SPDX_DATA_LICENSE]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-023:spdx-data-license",
+      "mutation": {"path":"spdx.dataLicense","value":"NOASSERTION"},
+      "assertion": {"op":"eq","path":"spdx.dataLicense","value":"CC0-1.0"}
+    },
+    {
+      "case_id": "SCB-024",
+      "ordinal": 24,
+      "title": "spdx document id",
+      "expected": "REFUSED[SPDX_DOCUMENT_ID]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-024:spdx-document-id",
+      "mutation": {"path":"spdx.SPDXID","value":"SPDXRef-WRONG"},
+      "assertion": {"op":"eq","path":"spdx.SPDXID","value":"SPDXRef-DOCUMENT"}
+    },
+    {
+      "case_id": "SCB-025",
+      "ordinal": 25,
+      "title": "spdx namespace",
+      "expected": "REFUSED[SPDX_NAMESPACE]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-025:spdx-namespace",
+      "mutation": {"path":"spdx.documentNamespace","value":"urn:not-http"},
+      "assertion": {"op":"starts_with","path":"spdx.documentNamespace","value":"https://"}
+    },
+    {
+      "case_id": "SCB-026",
+      "ordinal": 26,
+      "title": "spdx creator",
+      "expected": "REFUSED[SPDX_CREATOR]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-026:spdx-creator",
+      "mutation": {"path":"spdx.creationInfo.creators","value":[]},
+      "assertion": {"op":"len_ge","path":"spdx.creationInfo.creators","value":1}
+    },
+    {
+      "case_id": "SCB-027",
+      "ordinal": 27,
+      "title": "spdx created",
+      "expected": "REFUSED[SPDX_CREATED]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-027:spdx-created",
+      "mutation": {"path":"spdx.creationInfo.created","value":"not-a-time"},
+      "assertion": {"op":"datetime","path":"spdx.creationInfo.created"}
+    },
+    {
+      "case_id": "SCB-028",
+      "ordinal": 28,
+      "title": "spdx root package",
+      "expected": "REFUSED[SPDX_ROOT_PACKAGE]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-028:spdx-root-package",
+      "mutation": {"op":"delete","path":"spdx.packages.0"},
+      "assertion": {"key":"SPDXID","op":"find_exists","path":"spdx.packages","value":"SPDXRef-Package-ggen-ecosystem"}
+    },
+    {
+      "case_id": "SCB-029",
+      "ordinal": 29,
+      "title": "spdx root version",
+      "expected": "REFUSED[SPDX_ROOT_VERSION]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-029:spdx-root-version",
+      "mutation": {"path":"spdx.packages.0.versionInfo","value":"wrong"},
+      "assertion": {"field":"versionInfo","key":"SPDXID","match":"SPDXRef-Package-ggen-ecosystem","op":"find_eq","path":"spdx.packages","value":"$tag"}
+    },
+    {
+      "case_id": "SCB-030",
+      "ordinal": 30,
+      "title": "spdx root checksum",
+      "expected": "REFUSED[SPDX_ROOT_CHECKSUM]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-030:spdx-root-checksum",
+      "mutation": {"path":"spdx.packages.0.checksums.0.checksumValue","value":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "assertion": {"field":"checksums","key":"SPDXID","match":"SPDXRef-Package-ggen-ecosystem","op":"nested_any","path":"spdx.packages","where":{"algorithm":"SHA256","checksumValue":"$digest"}}
+    },
+    {
+      "case_id": "SCB-031",
+      "ordinal": 31,
+      "title": "spdx describes",
+      "expected": "REFUSED[SPDX_DESCRIBES]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-031:spdx-describes",
+      "mutation": {"op":"delete","path":"spdx.relationships.0"},
+      "assertion": {"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-ggen-ecosystem","relationshipType":"DESCRIBES","spdxElementId":"SPDXRef-DOCUMENT"}}
+    },
+    {
+      "case_id": "SCB-032",
+      "ordinal": 32,
+      "title": "spdx ggen package",
+      "expected": "REFUSED[SPDX_GGEN_PACKAGE]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-032:spdx-ggen-package",
+      "mutation": {"op":"delete","path":"spdx.packages.1"},
+      "assertion": {"key":"SPDXID","op":"find_exists","path":"spdx.packages","value":"SPDXRef-Package-ggen"}
+    },
+    {
+      "case_id": "SCB-033",
+      "ordinal": 33,
+      "title": "spdx marketplace package",
+      "expected": "REFUSED[SPDX_MARKETPLACE_PACKAGE]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-033:spdx-marketplace-package",
+      "mutation": {"op":"delete","path":"spdx.packages.2"},
+      "assertion": {"key":"SPDXID","op":"find_exists","path":"spdx.packages","value":"SPDXRef-Package-marketplace"}
+    },
+    {
+      "case_id": "SCB-034",
+      "ordinal": 34,
+      "title": "spdx autofde package",
+      "expected": "REFUSED[SPDX_AUTOFDE_PACKAGE]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-034:spdx-autofde-package",
+      "mutation": {"op":"delete","path":"spdx.packages.3"},
+      "assertion": {"key":"SPDXID","op":"find_exists","path":"spdx.packages","value":"SPDXRef-Package-autofde"}
+    },
+    {
+      "case_id": "SCB-035",
+      "ordinal": 35,
+      "title": "cyclonedx format",
+      "expected": "REFUSED[CDX_FORMAT]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-035:cyclonedx-format",
+      "mutation": {"path":"cyclonedx.bomFormat","value":"NotCycloneDX"},
+      "assertion": {"op":"eq","path":"cyclonedx.bomFormat","value":"CycloneDX"}
+    },
+    {
+      "case_id": "SCB-036",
+      "ordinal": 36,
+      "title": "cyclonedx spec version",
+      "expected": "REFUSED[CDX_SPEC_VERSION]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-036:cyclonedx-spec-version",
+      "mutation": {"path":"cyclonedx.specVersion","value":"1.5"},
+      "assertion": {"op":"eq","path":"cyclonedx.specVersion","value":"1.6"}
+    },
+    {
+      "case_id": "SCB-037",
+      "ordinal": 37,
+      "title": "cyclonedx serial",
+      "expected": "REFUSED[CDX_SERIAL]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-037:cyclonedx-serial",
+      "mutation": {"path":"cyclonedx.serialNumber","value":"not-a-uuid"},
+      "assertion": {"op":"regex","path":"cyclonedx.serialNumber","value":"^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"}
+    },
+    {
+      "case_id": "SCB-038",
+      "ordinal": 38,
+      "title": "cyclonedx document version",
+      "expected": "REFUSED[CDX_VERSION]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-038:cyclonedx-document-version",
+      "mutation": {"path":"cyclonedx.version","value":0},
+      "assertion": {"op":"int_ge","path":"cyclonedx.version","value":1}
+    },
+    {
+      "case_id": "SCB-039",
+      "ordinal": 39,
+      "title": "cyclonedx timestamp",
+      "expected": "REFUSED[CDX_TIMESTAMP]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-039:cyclonedx-timestamp",
+      "mutation": {"path":"cyclonedx.metadata.timestamp","value":"not-a-time"},
+      "assertion": {"op":"datetime","path":"cyclonedx.metadata.timestamp"}
+    },
+    {
+      "case_id": "SCB-040",
+      "ordinal": 40,
+      "title": "cyclonedx root type",
+      "expected": "REFUSED[CDX_ROOT_TYPE]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-040:cyclonedx-root-type",
+      "mutation": {"path":"cyclonedx.metadata.component.type","value":"application"},
+      "assertion": {"op":"eq","path":"cyclonedx.metadata.component.type","value":"container"}
+    },
+    {
+      "case_id": "SCB-041",
+      "ordinal": 41,
+      "title": "cyclonedx root name",
+      "expected": "REFUSED[CDX_ROOT_NAME]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-041:cyclonedx-root-name",
+      "mutation": {"path":"cyclonedx.metadata.component.name","value":"wrong"},
+      "assertion": {"op":"eq","path":"cyclonedx.metadata.component.name","value":"ggen-ecosystem"}
+    },
+    {
+      "case_id": "SCB-042",
+      "ordinal": 42,
+      "title": "cyclonedx root version",
+      "expected": "REFUSED[CDX_ROOT_VERSION]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-042:cyclonedx-root-version",
+      "mutation": {"path":"cyclonedx.metadata.component.version","value":"wrong"},
+      "assertion": {"op":"eq","path":"cyclonedx.metadata.component.version","value":"$tag"}
+    },
+    {
+      "case_id": "SCB-043",
+      "ordinal": 43,
+      "title": "cyclonedx root ref",
+      "expected": "REFUSED[CDX_ROOT_REF]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-043:cyclonedx-root-ref",
+      "mutation": {"path":"cyclonedx.metadata.component.bom-ref","value":"wrong"},
+      "assertion": {"op":"eq","path":"cyclonedx.metadata.component.bom-ref","value":"$subject"}
+    },
+    {
+      "case_id": "SCB-044",
+      "ordinal": 44,
+      "title": "cyclonedx root hash",
+      "expected": "REFUSED[CDX_ROOT_HASH]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-044:cyclonedx-root-hash",
+      "mutation": {"path":"cyclonedx.metadata.component.hashes.0.content","value":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "assertion": {"op":"nested_any_simple","path":"cyclonedx.metadata.component.hashes","where":{"alg":"SHA-256","content":"$digest"}}
+    },
+    {
+      "case_id": "SCB-045",
+      "ordinal": 45,
+      "title": "cyclonedx ggen component",
+      "expected": "REFUSED[CDX_GGEN_COMPONENT]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-045:cyclonedx-ggen-component",
+      "mutation": {"path":"cyclonedx.components.0.version","value":"0000000000000000000000000000000000000000"},
+      "assertion": {"field":"version","key":"name","match":"ggen","op":"find_eq","path":"cyclonedx.components","value":"$ggen"}
+    },
+    {
+      "case_id": "SCB-046",
+      "ordinal": 46,
+      "title": "cyclonedx marketplace component",
+      "expected": "REFUSED[CDX_MARKETPLACE_COMPONENT]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-046:cyclonedx-marketplace-component",
+      "mutation": {"path":"cyclonedx.components.1.version","value":"0000000000000000000000000000000000000000"},
+      "assertion": {"field":"version","key":"name","match":"ggen-marketplace","op":"find_eq","path":"cyclonedx.components","value":"$market"}
+    },
+    {
+      "case_id": "SCB-047",
+      "ordinal": 47,
+      "title": "cyclonedx autofde component",
+      "expected": "REFUSED[CDX_AUTOFDE_COMPONENT]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-047:cyclonedx-autofde-component",
+      "mutation": {"path":"cyclonedx.components.2.version","value":"0000000000000000000000000000000000000000"},
+      "assertion": {"field":"version","key":"name","match":"autofde-lab","op":"find_eq","path":"cyclonedx.components","value":"$autofde"}
+    },
+    {
+      "case_id": "SCB-048",
+      "ordinal": 48,
+      "title": "cyclonedx dependency closure",
+      "expected": "REFUSED[CDX_DEPENDENCY_CLOSURE]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-048:cyclonedx-dependency-closure",
+      "mutation": {"path":"cyclonedx.dependencies.0.dependsOn","value":[]},
+      "assertion": {"op":"set_eq","path":"cyclonedx.dependencies.0.dependsOn","value":["ggen@$ggen","ggen-marketplace@$market","autofde-lab@$autofde"]}
+    },
+    {
+      "case_id": "SCB-049",
+      "ordinal": 49,
+      "title": "cross format digest",
+      "expected": "REFUSED[CROSS_FORMAT_DIGEST]",
+      "law_family": "cross-format",
+      "semantic_fingerprint": "SCB-049:cross-format-digest",
+      "mutation": {"path":"spdx.packages.0.checksums.0.checksumValue","value":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "assertion": {"op":"all_equal","paths":["provenance.subject.0.digest.sha256","spdx.packages.0.checksums.0.checksumValue","cyclonedx.metadata.component.hashes.0.content"]}
+    },
+    {
+      "case_id": "SCB-050",
+      "ordinal": 50,
+      "title": "cross format version",
+      "expected": "REFUSED[CROSS_FORMAT_VERSION]",
+      "law_family": "cross-format",
+      "semantic_fingerprint": "SCB-050:cross-format-version",
+      "mutation": {"path":"spdx.packages.0.versionInfo","value":"wrong"},
+      "assertion": {"op":"all_equal","paths":["$tag","spdx.packages.0.versionInfo","cyclonedx.metadata.component.version"]}
+    },
+    {
+      "case_id": "SCB-051",
+      "ordinal": 51,
+      "title": "placeholder refusal",
+      "expected": "REFUSED[PLACEHOLDER_VALUE]",
+      "law_family": "hygiene",
+      "semantic_fingerprint": "SCB-051:placeholder-refusal",
+      "mutation": {"path":"cyclonedx.metadata.timestamp","value":"TODO"},
+      "assertion": {"op":"no_value_regex","value":"UNKNOWN|TODO|PLACEHOLDER|EXAMPLE"}
+    },
+    {
+      "case_id": "SCB-052",
+      "ordinal": 52,
+      "title": "mutable subject refusal",
+      "expected": "REFUSED[MUTABLE_SUBJECT_IDENTITY]",
+      "law_family": "identity",
+      "semantic_fingerprint": "SCB-052:mutable-subject-refusal",
+      "mutation": {"path":"provenance.subject.0.name","value":"ghcr.io/seanchatmangpt/ggen-ecosystem:latest"},
+      "assertion": {"op":"contains","path":"provenance.subject.0.name","value":"@sha256:"}
+    },
+    {
+      "case_id": "SCB-053",
+      "ordinal": 53,
+      "title": "secret leak refusal",
+      "expected": "REFUSED[SECRET_LEAK]",
+      "law_family": "hygiene",
+      "semantic_fingerprint": "SCB-053:secret-leak-refusal",
+      "mutation": {"path":"provenance.predicate.secret","value":"leaked"},
+      "assertion": {"key_regex":"token|password|secret|private[_-]?key","op":"no_secret_values"}
+    }
+  ]
+}
