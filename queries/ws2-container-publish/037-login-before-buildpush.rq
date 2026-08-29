@@ -1,0 +1,5 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK {
+  ex:containerLogin gha:stepOrder ?a . ex:containerBuildPush gha:stepOrder ?b . FILTER(?a < ?b)
+}
