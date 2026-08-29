@@ -25,7 +25,7 @@ cd "$REPO_ROOT"
 echo "== ggen-ecosystem benchmark: $RUNS runs of \`ggen sync run --dry-run\` ==" >&2
 
 times_ms=()
-for _run_idx in $(seq 1 "$RUNS"); do
+for i in $(seq 1 "$RUNS"); do
   start=$(python3 -c 'import time; print(time.time_ns())')
   ggen sync run --dry-run --format quiet >/dev/null 2>&1
   end=$(python3 -c 'import time; print(time.time_ns())')

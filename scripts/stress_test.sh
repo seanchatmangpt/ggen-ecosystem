@@ -39,8 +39,9 @@ for i in $(seq 1 "$PARALLEL"); do
   pids+=("$!")
 done
 
+fail=0
 for pid in "${pids[@]}"; do
-  wait "$pid" || true  # real per-process exit codes are checked below via run-N.exit files
+  wait "$pid" || fail=1
 done
 
 LOCK_HASH_AFTER=$(shasum -a 256 ggen.lock | awk '{print $1}')
