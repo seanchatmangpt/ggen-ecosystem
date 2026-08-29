@@ -1,0 +1,58 @@
+name: Incident / regression
+about: Report a production, release, manufacturing, or verification regression with exact evidence.
+title: "[incident] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Preserve the failed boundary before repair. Do not redact the exact subject identity unless it contains a secret.
+  - type: input
+    id: subject
+    attributes:
+      label: Exact subject
+      description: Repository/ref/SHA, release digest, or other immutable identity.
+      placeholder: seanchatmangpt/ggen-ecosystem@<sha>
+    validations:
+      required: true
+  - type: input
+    id: command
+    attributes:
+      label: Command or actuation
+      placeholder: just doctor
+    validations:
+      required: true
+  - type: dropdown
+    id: standing
+    attributes:
+      label: Observed standing
+      options:
+        - UNKNOWN
+        - PARTIAL_ALIVE
+        - ALIVE
+        - BLOCKED
+        - BUILD_BROKEN
+        - UNSUPPORTED
+        - REFUSED
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed evidence
+      description: Include exit status, failing gate, relevant log boundary, and receipt/replay identity if present.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected consequence
+    validations:
+      required: true
+  - type: textarea
+    id: falsifier
+    attributes:
+      label: Falsifier / reproduction
+      description: Smallest deterministic sequence that reproduces the failure.
+    validations:
+      required: true
