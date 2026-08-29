@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-009",
+  "work_key": "WS4-SCB-009",
+  "title": "provenance predicate type",
+  "hypothesis": "The provenance predicate must use SLSA v1.",
+  "acceptance_edge": "REFUSED[PROV_PREDICATE_TYPE]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/009_provenance-predicate-type.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/009_provenance-predicate-type.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-009:provenance-predicate-type",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "provenance.predicateType",
+    "value": "https://slsa.dev/provenance/v0.2"
+  },
+  "expected": "REFUSED[PROV_PREDICATE_TYPE]"
+}
