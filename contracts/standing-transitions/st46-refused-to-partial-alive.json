@@ -1,0 +1,1 @@
+{"id":"ST46","kind":"transition","from":"REFUSED","to":"PARTIAL_ALIVE","rule":"Require removal of the refusal plus bounded positive execution evidence; removal of refusal alone is not positive standing.","exact_subject_required":true,"authority_effect":"NONE"}
