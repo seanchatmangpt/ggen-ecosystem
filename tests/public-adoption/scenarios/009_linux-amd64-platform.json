@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-009",
+  "title": "Linux amd64 image",
+  "hypothesis": "The published capsule supports linux/amd64.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:linux-amd64-platform",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "inspect manifest and execute smoke on amd64",
+  "oracle": [
+    "manifest lists linux/amd64",
+    "binary starts successfully"
+  ],
+  "expected_standing": "BLOCKED",
+  "reason_code": "IMAGE_PLATFORM_AMD64_MISSING",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through IMAGE_PLATFORM_AMD64_MISSING",
+  "semantic_fingerprint": "SJ-009:linux-amd64-platform"
+}
