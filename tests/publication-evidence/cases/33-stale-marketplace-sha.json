@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-034",
+  "title": "Stale marketplace is refused",
+  "hypothesis": "Stale marketplace is refused",
+  "acceptance_edge": "publication.stale-marketplace-sha",
+  "evidence": [
+    "marketplace sha drift"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "MARKETPLACE_SHA_DRIFT"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[MARKETPLACE_SHA_DRIFT]",
+  "semantic_fingerprint": "fp:publication:stale-marketplace-sha:REFUSED:MARKETPLACE_SHA_DRIFT"
+}
