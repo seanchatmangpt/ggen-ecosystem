@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-018",
+  "work_key": "WS4-SCB-018",
+  "title": "provenance invocation id",
+  "hypothesis": "The invocation must bind a canonical Actions run URL.",
+  "acceptance_edge": "REFUSED[PROV_INVOCATION_ID]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/018_provenance-invocation-id.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/018_provenance-invocation-id.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-018:provenance-invocation-id",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "provenance.predicate.runDetails.metadata.invocationId",
+    "value": "local-shell"
+  },
+  "expected": "REFUSED[PROV_INVOCATION_ID]"
+}
