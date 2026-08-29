@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P013",
+  "semantic_fingerprint": "6383d169",
+  "hypothesis": "receipt-subject-mismatch must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "receipt-subject-mismatch",
+  "invalid": {
+    "op": "eq",
+    "actual": "head-b",
+    "expected": "head-a"
+  },
+  "control": {
+    "op": "eq",
+    "actual": "head-a",
+    "expected": "head-a"
+  },
+  "expected_standing": "REFUSED[RECEIPT_SUBJECT_MISMATCH]",
+  "rollback": "revert P013",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}
