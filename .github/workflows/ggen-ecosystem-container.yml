@@ -15,14 +15,14 @@ permissions:
   contents: read
 
 jobs:
-  build-and-push:
+  build-amd64:
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    timeout-minutes: 30
     permissions:
       contents: read
       packages: write
 
-    name: Build and publish composed ggen-ecosystem container
+    name: Build and push linux/amd64 image
 
     steps:
       - name: Checkout with submodules
@@ -38,17 +38,79 @@ jobs:
           username: ${{ github.actor }}
           registry: ghcr.io
         
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+        
+      - name: Build and push linux/amd64
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-amd64
+          platforms: linux/amd64
+          push: true
+          context: .
+        
+  build-arm64:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write
+
+    name: Build and push linux/arm64 image
+
+    steps:
+      - name: Checkout with submodules
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          submodules: recursive
+        
+      - name: Log in to GHCR
+        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3
+        with:
+          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ github.actor }}
+          registry: ghcr.io
         
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
         
-      - name: Build and push composed image
+      - name: Build and push linux/arm64
         uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
         with:
-          tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }},ghcr.io/seanchatmangpt/ggen-ecosystem:latest
-          platforms: linux/amd64,linux/arm64
+          tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64
+          platforms: linux/arm64
           push: true
           context: .
         
+  merge-manifest:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    needs: [build-arm64,build-amd64]
+    permissions:
+      contents: read
+      packages: write
+
+    name: Merge into one multi-arch manifest
+
+    steps:
+      - name: Log in to GHCR
+        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3
+        with:
+          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ github.actor }}
+          registry: ghcr.io
+        
+      - name: Create and push multi-arch manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${{ inputs.image_tag || github.ref_name }}"
+          docker buildx imagetools create \
+            -t "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}" \
+            -t "ghcr.io/seanchatmangpt/ggen-ecosystem:latest" \
+            "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}-amd64" \
+            "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}-arm64"
+          docker buildx imagetools inspect "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}"
+          
+
