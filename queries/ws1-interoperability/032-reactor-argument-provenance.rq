@@ -1,0 +1,2 @@
+PREFIX eco:<https://ggen.dev/ecosystem#>
+ASK { <https://ggen.dev/ecosystem/interoperability/reactor-argument-provenance> a eco:InteroperabilityContract ; eco:standing "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" . }
