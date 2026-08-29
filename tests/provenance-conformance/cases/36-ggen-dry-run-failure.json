@@ -1,0 +1,1 @@
+{"expected_exit":1,"ggen_mode":"fail","id":"ggen-dry-run-failure","must_contain":["BUILD_BROKEN"]}
