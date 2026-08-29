@@ -1,0 +1,12 @@
+{
+  "id": "P043",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P043",
+  "edge": "standing-vocabulary",
+  "hypothesis": "Portfolio admission independently falsifies standing-vocabulary.",
+  "semantic_fingerprint": "51c42650b3b7e7ca",
+  "invalid": {
+    "statuses_valid": false
+  },
+  "expected": "REFUSED[INVALID_STANDING]",
+  "control": {}
+}
