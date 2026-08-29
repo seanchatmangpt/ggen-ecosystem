@@ -1,16 +1,14 @@
 version = 2
-base_main_sha = "9d5882fca60e058e1b0dfefad8b45d277e1f5059"
-updated_at = "2026-08-28T07:36:30Z"
+base_main_sha = "f42aa25c4974a0d5a701ed0e08f3bce46d69d115"
+updated_at = "2026-08-29T08:00:00Z"
 
 [ggen]
 # 2026-08-28: v26.8.27 pin (commit_sha/linux_x86_64_asset_sha256/observed_executable_sha256
 # below) had no matching real-evidence citation in this session and was superseded by a real
 # published release (gh release list/gh release view/gh release download + shasum -a 256).
-# Binary-release consumption is itself now superseded: [container] below is the real consumption
-# path (build-from-submodule-source container, not a downloaded release binary) per the
-# 2026-08-28 "replace binary download with submodule+container" change. commit_sha is now real
-# (resolved via `git ls-remote --tags`, matches vendor/ggen submodule pin below); the two asset
-# sha256 fields are historical/no-longer-load-bearing now that the container path is real.
+# Binary-release consumption is itself now superseded: [container] below is the intended
+# consumption path (build-from-submodule-source container, not a downloaded release binary).
+# The source identity remains exact; capsule availability is tracked separately in [container].
 release = "v26.8.28"
 commit_sha = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
 linux_x86_64_asset_sha256 = "UNKNOWN-TODO"
@@ -23,27 +21,26 @@ repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 
 [submodules]
 # Real git submodules added 2026-08-28 (`git submodule add`), replacing the URL+pinned-SHA-in-TOML
-# only approach for these two sibling repos. Verify with `git submodule status`.
+# only approach for these sibling repos. Verify each value against the exact gitlink in the tree.
 ggen_path = "vendor/ggen"
 ggen_commit = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
 ggen_marketplace_path = "vendor/ggen-marketplace"
 ggen_marketplace_commit = "89adf4c8476f7edc8067fdbb1c256cfbfa22df6a"
 autofde_lab_path = "vendor/autofde-lab"
-autofde_lab_commit = "8ece5884c6e776093cd08beb80c5d1c9a8d05a3d"
+autofde_lab_commit = "a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09"
 
 [container]
-# Composed image: real `ggen` binary built from vendor/ggen (cargo build --release) + real
-# vendor/ggen-marketplace/packs/ copied in. Replaces the curl+sha256sum release-binary download
-# step in the generated sync workflow. Published 2026-08-28 via a real `docker push` (explicit
-# user-confirmed, after refreshing the gh token with write:packages) -- verified by
-# `docker buildx imagetools inspect` and a fresh `docker pull` by this exact digest (no local
-# cache reuse), then exercised by a real, network-isolated fresh consumer (`ggen sync run`
-# against this digest, receipts/local-qualification-20260828.json + release receipt below).
-# Image is currently linux/arm64-only (built on this host, not yet multi-arch) -- see
-# docs/DEFINITION-OF-DONE.md PR-009 for the open amd64 gap.
+# Intended composed image identity. A later hosted-run replay (Actions run 33238309149) observed
+# this exact digest returning `manifest unknown` during job-container initialization. Preserve the
+# digest as failure/provenance evidence, but do not treat it as a currently pullable capsule.
+# Publication must be repeated and a fresh pull + consumer execution observed before promotion.
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
 tag = "v26.8.28"
 digest = "sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c"
+standing = "BLOCKED"
+failure = "manifest-unknown"
+observed_failure_run = 33238309149
+requires_republish = true
 
 [manufacturing]
 manifest = "ggen.toml"
@@ -59,6 +56,10 @@ owner = "seanchatmangpt"
 visibility = "public"
 mode = "complete-owner-catalog"
 private_identity_projection = false
+# These counts are a dated observation receipt, not live ecosystem membership or current owner
+# cardinality. Re-census before using them as a current projection.
+standing = "PARTIAL_ALIVE"
+observation_scope = "owner-census-2026-08-28"
 observed_public_repositories = 300
 observed_private_repositories = 78
 observed_total_owned_repositories = 378
