@@ -1,0 +1,14 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+ASK {
+  ?failure a eco:TypedFailure, skos:Concept ;
+           skos:prefLabel "UNRECEIPTED_ACTUATION" ;
+           eco:failurePhase ?phase ;
+           eco:standingOnFailure ?standing ;
+           eco:remediation ?remediation ;
+           eco:retryPolicy ?retryPolicy .
+  FILTER(STRLEN(STR(?phase)) > 0)
+  FILTER(STRLEN(STR(?standing)) > 0)
+  FILTER(STRLEN(STR(?remediation)) > 0)
+  FILTER(STRLEN(STR(?retryPolicy)) > 0)
+}
