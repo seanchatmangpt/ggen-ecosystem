@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-038",
+  "title": "Security report intake",
+  "hypothesis": "Security-sensitive reports are routed away from public issue disclosure.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:security-intake",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "submit the documented security intake scenario",
+  "oracle": [
+    "private reporting route is identified",
+    "public secret content is refused"
+  ],
+  "expected_standing": "PARTIAL_ALIVE",
+  "reason_code": "SECURITY_POLICY_SURFACE_MISSING",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through SECURITY_POLICY_SURFACE_MISSING",
+  "semantic_fingerprint": "SJ-038:security-intake"
+}
