@@ -73,7 +73,7 @@ COPY vendor/ggen-marketplace/packs/ /opt/ggen-marketplace/packs/
 COPY vendor/autofde-lab/src/ /opt/autofde-lab/src/
 
 ENV GGEN_MARKETPLACE_ROOT=/opt/ggen-marketplace
-ENV PYTHONPATH="/opt/autofde-lab/src:${PYTHONPATH:-}"
+ENV PYTHONPATH="/opt/autofde-lab/src"
 ENV PATH="/usr/local/bin:${PATH}"
 
 RUN ggen --version || true
