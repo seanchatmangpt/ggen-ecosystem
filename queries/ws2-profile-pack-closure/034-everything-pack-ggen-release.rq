@@ -1,0 +1,2 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK { eco:everything eco:includesPack eco:ggen-release-pack . }
