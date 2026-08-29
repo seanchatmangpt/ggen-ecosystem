@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-031",
+  "title": "Observed and expected digests mismatch",
+  "hypothesis": "Observed and expected digests mismatch",
+  "acceptance_edge": "publication.digest-mismatch",
+  "evidence": [
+    "cache hit but expected digest mismatch"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "DIGEST_MISMATCH"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[DIGEST_MISMATCH]",
+  "semantic_fingerprint": "fp:publication:digest-mismatch:REFUSED:DIGEST_MISMATCH"
+}

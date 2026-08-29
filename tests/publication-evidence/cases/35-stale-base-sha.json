@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-036",
+  "title": "Base drift is refused",
+  "hypothesis": "Base drift is refused",
+  "acceptance_edge": "publication.stale-base-sha",
+  "evidence": [
+    "stale base sha"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "STALE_SHA"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[STALE_SHA]",
+  "semantic_fingerprint": "fp:publication:stale-base-sha:REFUSED:STALE_SHA"
+}

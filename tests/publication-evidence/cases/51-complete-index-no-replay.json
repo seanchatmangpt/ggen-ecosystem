@@ -1,0 +1,22 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-052",
+  "title": "Complete consumers without replay remain partial",
+  "hypothesis": "Complete consumers without replay remain partial",
+  "acceptance_edge": "publication.complete-index-no-replay",
+  "evidence": [
+    "pushed linux/amd64 @sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "pushed linux/arm64 @sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "oci index @sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "consumer linux/amd64 exit 0",
+    "consumer linux/arm64 exit 0"
+  ],
+  "expected": {
+    "standing": "PARTIAL_ALIVE",
+    "reason": "REPLAY_PENDING"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from PARTIAL_ALIVE[REPLAY_PENDING]",
+  "semantic_fingerprint": "fp:publication:complete-index-no-replay:PARTIAL_ALIVE:REPLAY_PENDING"
+}

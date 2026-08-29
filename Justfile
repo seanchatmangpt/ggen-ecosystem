@@ -36,6 +36,14 @@ dod:
 verify:
     @bash scripts/verify-provenance.sh
 
+# Classify bounded GHCR/OCI observations without publishing or granting DO.
+publication-evidence:
+    @python3 tools/classify_container_publication.py --require-count 52
+
+# Full publication-evidence self-test + exact 52-case conformance court.
+publication-evidence-test:
+    @python3 tools/classify_container_publication.py --self-test --require-count 52
+
 # mfact-style certification court: bind producer pins, artifact authority,
 # release evidence, Git lineage, and scoped standing without manufacturing ALIVE.
 certify:

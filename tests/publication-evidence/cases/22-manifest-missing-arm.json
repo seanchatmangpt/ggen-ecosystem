@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-023",
+  "title": "Index missing arm64 is refused",
+  "hypothesis": "Index missing arm64 is refused",
+  "acceptance_edge": "publication.manifest-missing-arm",
+  "evidence": [
+    "pushed linux/amd64 @sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "oci index @sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "manifest list missing linux/arm64"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "PARTIAL_MANIFEST"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[PARTIAL_MANIFEST]",
+  "semantic_fingerprint": "fp:publication:manifest-missing-arm:REFUSED:PARTIAL_MANIFEST"
+}

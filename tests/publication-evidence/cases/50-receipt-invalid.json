@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-051",
+  "title": "Invalid publication receipt is refused",
+  "hypothesis": "Invalid publication receipt is refused",
+  "acceptance_edge": "publication.receipt-invalid",
+  "evidence": [
+    "receipt schema invalid"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "RECEIPT_INVALID"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[RECEIPT_INVALID]",
+  "semantic_fingerprint": "fp:publication:receipt-invalid:REFUSED:RECEIPT_INVALID"
+}

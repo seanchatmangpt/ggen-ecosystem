@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-003",
+  "title": "Exact observed amd64 GHCR write denial is refused",
+  "hypothesis": "Exact observed amd64 GHCR write denial is refused",
+  "acceptance_edge": "publication.observed-amd64-package-write-denial",
+  "evidence": [
+    "2026-08-29 amd64 ERROR failed to push ghcr.io/seanchatmangpt/ggen-ecosystem:v26.8.28-amd64: denied: permission_denied: write_package"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "PACKAGE_WRITE_PERMISSION"
+  },
+  "observed_source": "GitHub Actions run 33249382665",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[PACKAGE_WRITE_PERMISSION]",
+  "semantic_fingerprint": "fp:publication:observed-amd64-package-write-denial:REFUSED:PACKAGE_WRITE_PERMISSION"
+}

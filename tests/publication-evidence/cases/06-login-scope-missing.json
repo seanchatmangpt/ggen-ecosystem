@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-007",
+  "title": "Missing authentication scope is distinguished from package ACL",
+  "hypothesis": "Missing authentication scope is distinguished from package ACL",
+  "acceptance_edge": "publication.login-scope-missing",
+  "evidence": [
+    "denied: insufficient_scope"
+  ],
+  "expected": {
+    "standing": "BLOCKED",
+    "reason": "REGISTRY_AUTH"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from BLOCKED[REGISTRY_AUTH]",
+  "semantic_fingerprint": "fp:publication:login-scope-missing:BLOCKED:REGISTRY_AUTH"
+}

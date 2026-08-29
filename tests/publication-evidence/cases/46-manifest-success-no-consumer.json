@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-047",
+  "title": "Index publication without consumer is partial",
+  "hypothesis": "Index publication without consumer is partial",
+  "acceptance_edge": "publication.manifest-success-no-consumer",
+  "evidence": [
+    "pushed linux/amd64 @sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "pushed linux/arm64 @sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "oci index @sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  ],
+  "expected": {
+    "standing": "PARTIAL_ALIVE",
+    "reason": "CONSUMER_PENDING"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from PARTIAL_ALIVE[CONSUMER_PENDING]",
+  "semantic_fingerprint": "fp:publication:manifest-success-no-consumer:PARTIAL_ALIVE:CONSUMER_PENDING"
+}

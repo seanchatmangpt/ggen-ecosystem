@@ -1,0 +1,23 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-053",
+  "title": "Both immutable platforms, index, consumers and replay crown alive",
+  "hypothesis": "Both immutable platforms, index, consumers and replay crown alive",
+  "acceptance_edge": "publication.complete-multiarch-crown",
+  "evidence": [
+    "pushed linux/amd64 @sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "pushed linux/arm64 @sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "oci index @sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "consumer linux/amd64 exit 0",
+    "consumer linux/arm64 exit 0",
+    "replay match"
+  ],
+  "expected": {
+    "standing": "ALIVE",
+    "reason": "MULTIARCH_PUBLISHED"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from ALIVE[MULTIARCH_PUBLISHED]",
+  "semantic_fingerprint": "fp:publication:complete-multiarch-crown:ALIVE:MULTIARCH_PUBLISHED"
+}

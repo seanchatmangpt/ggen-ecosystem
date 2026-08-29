@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-044",
+  "title": "Cache-only success cannot crown publication",
+  "hypothesis": "Cache-only success cannot crown publication",
+  "acceptance_edge": "publication.cache-hit-no-registry-evidence",
+  "evidence": [
+    "cache hit no registry observation"
+  ],
+  "expected": {
+    "standing": "UNKNOWN",
+    "reason": "INSUFFICIENT_EVIDENCE"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from UNKNOWN[INSUFFICIENT_EVIDENCE]",
+  "semantic_fingerprint": "fp:publication:cache-hit-no-registry-evidence:UNKNOWN:INSUFFICIENT_EVIDENCE"
+}

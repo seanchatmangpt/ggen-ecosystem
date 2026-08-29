@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ggen.dev/schemas/publication-evidence-case.schema.json",
+  "title": "GGen Ecosystem Publication Evidence Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "title", "hypothesis", "acceptance_edge", "evidence", "expected", "observed_source", "authority_ceiling", "falsifier", "semantic_fingerprint"],
+  "properties": {
+    "schema": {"const": "ggen-ecosystem/publication-evidence-case/v1"},
+    "id": {"type": "string", "pattern": "^PUB-[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1},
+    "hypothesis": {"type": "string", "minLength": 1},
+    "acceptance_edge": {"type": "string", "pattern": "^publication\\."},
+    "evidence": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["standing", "reason"],
+      "properties": {
+        "standing": {"enum": ["UNKNOWN", "PARTIAL_ALIVE", "ALIVE", "BLOCKED", "BUILD_BROKEN", "UNSUPPORTED", "REFUSED"]},
+        "reason": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"}
+      }
+    },
+    "observed_source": {"type": "string", "minLength": 1},
+    "authority_ceiling": {"const": "VERIFY"},
+    "falsifier": {"type": "string", "minLength": 1},
+    "semantic_fingerprint": {"type": "string", "minLength": 1}
+  }
+}

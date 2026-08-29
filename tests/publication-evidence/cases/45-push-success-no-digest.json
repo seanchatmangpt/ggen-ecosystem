@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-046",
+  "title": "Push without digest cannot crown publication",
+  "hypothesis": "Push without digest cannot crown publication",
+  "acceptance_edge": "publication.push-success-no-digest",
+  "evidence": [
+    "pushed no digest"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "MUTABLE_IDENTITY"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[MUTABLE_IDENTITY]",
+  "semantic_fingerprint": "fp:publication:push-success-no-digest:REFUSED:MUTABLE_IDENTITY"
+}

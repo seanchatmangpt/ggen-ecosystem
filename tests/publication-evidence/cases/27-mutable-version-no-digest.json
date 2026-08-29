@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-028",
+  "title": "Version tag without digest remains mutable",
+  "hypothesis": "Version tag without digest remains mutable",
+  "acceptance_edge": "publication.mutable-version-no-digest",
+  "evidence": [
+    "published ghcr.io/seanchatmangpt/ggen-ecosystem:v26.8.28 without digest"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "MUTABLE_IDENTITY"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[MUTABLE_IDENTITY]",
+  "semantic_fingerprint": "fp:publication:mutable-version-no-digest:REFUSED:MUTABLE_IDENTITY"
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-049",
+  "title": "Published index with arm64 consumer failure is partial",
+  "hypothesis": "Published index with arm64 consumer failure is partial",
+  "acceptance_edge": "publication.consumer-arm-fails",
+  "evidence": [
+    "pushed linux/amd64 @sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "pushed linux/arm64 @sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "oci index @sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "amd64 consumer exit 0",
+    "arm64 consumer failed"
+  ],
+  "expected": {
+    "standing": "PARTIAL_ALIVE",
+    "reason": "ARM64_CONSUMER_FAILED"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from PARTIAL_ALIVE[ARM64_CONSUMER_FAILED]",
+  "semantic_fingerprint": "fp:publication:consumer-arm-fails:PARTIAL_ALIVE:ARM64_CONSUMER_FAILED"
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-021",
+  "title": "One arm64 publication is partial",
+  "hypothesis": "One arm64 publication is partial",
+  "acceptance_edge": "publication.arm64-only",
+  "evidence": [
+    "pushed linux/arm64 @sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  ],
+  "expected": {
+    "standing": "PARTIAL_ALIVE",
+    "reason": "ARM64_ONLY"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from PARTIAL_ALIVE[ARM64_ONLY]",
+  "semantic_fingerprint": "fp:publication:arm64-only:PARTIAL_ALIVE:ARM64_ONLY"
+}

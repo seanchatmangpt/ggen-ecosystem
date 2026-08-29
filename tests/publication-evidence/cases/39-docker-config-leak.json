@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-040",
+  "title": "Docker auth leakage is refused",
+  "hypothesis": "Docker auth leakage is refused",
+  "acceptance_edge": "publication.docker-config-leak",
+  "evidence": [
+    "docker config {\"auths\":{\"ghcr.io\":{\"auth\":\"dXNlcjpwYXNz\"}}}"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "SECRET_EXPOSURE"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[SECRET_EXPOSURE]",
+  "semantic_fingerprint": "fp:publication:docker-config-leak:REFUSED:SECRET_EXPOSURE"
+}

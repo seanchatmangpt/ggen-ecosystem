@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-026",
+  "title": "Single-image media type cannot crown multiarch",
+  "hypothesis": "Single-image media type cannot crown multiarch",
+  "acceptance_edge": "publication.manifest-wrong-media-type",
+  "evidence": [
+    "mediaType application/vnd.oci.image.manifest.v1+json"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "NOT_OCI_INDEX"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[NOT_OCI_INDEX]",
+  "semantic_fingerprint": "fp:publication:manifest-wrong-media-type:REFUSED:NOT_OCI_INDEX"
+}

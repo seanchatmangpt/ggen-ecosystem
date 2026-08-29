@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-009",
+  "title": "Registry DNS failure is typed",
+  "hypothesis": "Registry DNS failure is typed",
+  "acceptance_edge": "publication.registry-dns",
+  "evidence": [
+    "dial tcp: lookup ghcr.io: could not resolve host"
+  ],
+  "expected": {
+    "standing": "BLOCKED",
+    "reason": "REGISTRY_DNS"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from BLOCKED[REGISTRY_DNS]",
+  "semantic_fingerprint": "fp:publication:registry-dns:BLOCKED:REGISTRY_DNS"
+}

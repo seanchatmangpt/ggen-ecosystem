@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-050",
+  "title": "Replay mismatch refuses crown",
+  "hypothesis": "Replay mismatch refuses crown",
+  "acceptance_edge": "publication.replay-mismatch",
+  "evidence": [
+    "replay consequence mismatch"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "REPLAY_MISMATCH"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[REPLAY_MISMATCH]",
+  "semantic_fingerprint": "fp:publication:replay-mismatch:REFUSED:REPLAY_MISMATCH"
+}
