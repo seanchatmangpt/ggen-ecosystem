@@ -1,0 +1,1 @@
+{"id":"ST36","kind":"transition","from":"BUILD_BROKEN","to":"BLOCKED","rule":"Require a new external/tooling/transport dependency that prevents the next diagnostic or repair execution; the original build failure remains historical evidence.","exact_subject_required":true,"authority_effect":"NONE"}
