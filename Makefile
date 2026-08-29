@@ -1,6 +1,16 @@
-.PHONY: submodules image sync doctor verify chicago dod receipt-verify replay
+.PHONY: alive explain next submodules image sync doctor verify chicago dod receipt-verify replay
 
-# Initialize/update vendored submodules (vendor/ggen, vendor/ggen-marketplace).
+# The 1000x Unified Developer Interface: AutoFDE-powered self-closing loop.
+alive:
+	python3 scripts/ecosystem_alive.py --apply-safe
+
+explain:
+	python3 scripts/ecosystem_alive.py --explain
+
+next:
+	python3 scripts/ecosystem_alive.py --next
+
+# Initialize/update vendored submodules (vendor/ggen, vendor/ggen-marketplace, vendor/autofde-lab).
 submodules:
 	git submodule update --init --recursive
 

@@ -9,18 +9,31 @@
 set -u
 cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
+JSON_MODE=0
+if [ "${1:-}" = "--json" ]; then
+  JSON_MODE=1
+fi
+
 FAIL=0
+RESULTS=()
 verdict() {
   # verdict <CHECK_NAME> <VERDICT> <detail...>
   local name="$1"; local v="$2"; shift 2
-  printf '[%s] %-14s %s\n' "$name" "$v" "$*"
+  local detail="$*"
+  if [ "$JSON_MODE" -eq 0 ]; then
+    printf '[%s] %-14s %s\n' "$name" "$v" "$detail"
+  else
+    RESULTS+=("{\"gate\": \"$name\", \"standing\": \"$v\", \"detail\": \"$(echo "$detail" | sed 's/"/\\"/g')\"}")
+  fi
   case "$v" in
     BLOCKED|BUILD_BROKEN|UNKNOWN) FAIL=1 ;;
   esac
 }
 
-echo "== ggen-ecosystem doctor.sh — v26.8.28 submodule+container manufacturing =="
-echo
+if [ "$JSON_MODE" -eq 0 ]; then
+  echo "== ggen-ecosystem doctor.sh — v26.8.28 submodule+container manufacturing =="
+  echo
+fi
 
 # --- (1) submodules initialized and checked out ---------------------------
 name="1-submodules"
@@ -152,14 +165,16 @@ if [ ! -f ecosystem.lock.toml ]; then
 else
   todo_lines="$(grep -n 'UNKNOWN-TODO' ecosystem.lock.toml || true)"
   if [ -z "$todo_lines" ]; then
-    verdict "$name" ALIVE "no UNKNOWN-TODO placeholders remain in ecosystem.lock.toml"
+      verdict "$name" ALIVE "no UNKNOWN-TODO placeholders remain in ecosystem.lock.toml"
   else
     n="$(echo "$todo_lines" | grep -c '.')"
-    verdict "$name" PARTIAL_ALIVE "$n documented UNKNOWN-TODO placeholder(s) present (honestly marked pending, not a failure):"
-    echo "$todo_lines" | sed 's/^/    line /'
+    verdict "$name" PARTIAL_ALIVE "$n documented UNKNOWN-TODO placeholder(s) present (honestly marked pending, not a failure)"
+    if [ "$JSON_MODE" -eq 0 ]; then
+      echo "$todo_lines" | sed 's/^/    line /'
+    fi
   fi
 fi
-echo
+[ "$JSON_MODE" -eq 0 ] && echo
 
 # --- (6) vendor/ggen-marketplace commit matches ecosystem.lock.toml ---------
 name="6-marketplace-pin"
@@ -337,7 +352,11 @@ if d:
     verdict "$name" BLOCKED "IMAGE_NOT_YET_BUILT — none of [${candidates[*]}] present locally (no docker build/pull attempted by this script)"
   fi
 fi
-echo
 
-echo "== summary: $([ "$FAIL" -eq 0 ] && echo 'no BLOCKED/BUILD_BROKEN/UNKNOWN verdicts' || echo 'one or more checks BLOCKED/BUILD_BROKEN/UNKNOWN — see above') =="
+if [ "$JSON_MODE" -eq 1 ]; then
+  IFS=,
+  echo "{\"subject\": \"seanchatmangpt/ggen-ecosystem\", \"fail\": $FAIL, \"gates\": [${RESULTS[*]}]}"
+else
+  echo "== summary: $([ "$FAIL" -eq 0 ] && echo 'no BLOCKED/BUILD_BROKEN/UNKNOWN verdicts' || echo 'one or more checks BLOCKED/BUILD_BROKEN/UNKNOWN — see above') =="
+fi
 exit "$FAIL"
