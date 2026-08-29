@@ -1,0 +1,12 @@
+{
+  "id": "P001",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P001",
+  "edge": "plan-id-format",
+  "hypothesis": "Portfolio admission independently falsifies plan-id-format.",
+  "semantic_fingerprint": "8288619215dc8430",
+  "invalid": {
+    "plan_id": "bad id"
+  },
+  "expected": "REFUSED[PLAN_ID_FORMAT]",
+  "control": {}
+}
