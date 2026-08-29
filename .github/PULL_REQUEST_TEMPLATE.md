@@ -1,44 +1,65 @@
-## Subject
+## Intent
 
-- Repository: `seanchatmangpt/ggen-ecosystem`
-- Base ref: `main`
-- Exact base SHA: `<sha>`
-- Exact head SHA: `<sha>`
+<!-- One sentence: what invariant or customer journey changes? -->
 
-## What this changes
+## Exact subjects
 
-<!-- One or two sentences. If this regenerates the sync workflow, name the authoritative ontology/config/pack input that changed. -->
+- Base `main`: `________________` (40-char SHA)
+- Proposed head: `________________` (40-char SHA)
+- GGen / Marketplace / capsule identities changed? `no / yes — list exact identities`
 
-## Standing and evidence
+## Authority classification
 
-<!-- Use only the standing vocabulary from AGENTS.md. Paste commands plus exits/output; GitHub status metadata alone is not execution proof. -->
+- [ ] Semantic source / admission input
+- [ ] Hand-authored verifier, test, docs, or DX surface
+- [ ] Generated projection (must be produced by its declared manufacturer; never hand-edited)
+- [ ] Release / package / external DO path
 
-Standing: `UNKNOWN`
-
-- [ ] Narrowest relevant verifier executed
-- [ ] `just doctor` (or `bash scripts/doctor.sh`) executed when the environment supports it
-- [ ] If certification changed: `just certify-test` executed
-- [ ] If the container/customer journey changed: `just chicago` executed or the unavailable boundary is typed below
-- [ ] Exact PR head re-read after the last push
+If generated, name the semantic source and real manufacturing command:
 
 ```text
-command: <exact command>
-exit: <exit code>
-output: <bounded evidence>
+source:
+command:
+receipt:
 ```
 
-## Generated projections
+## Verification
 
-- [ ] `.github/workflows/ggen-ecosystem-sync.yml`, `generated/`, `consumer/`, and `.ggen-v2/` were not hand-edited
-- [ ] If a generated projection changed, its authoritative semantic input changed in the same lineage and real `ggen sync run` evidence is attached
+<!-- Real commands + real output. Inspection is not execution. -->
 
-## Authority / actuation
+- [ ] `just github-dx` or the relevant GitHub DX court passes
+- [ ] `just doctor` / `just explain` run when the change affects ecosystem standing
+- [ ] Relevant narrow tests pass before broader tests
+- [ ] Generated workflow changes, if any, were regenerated from semantic source and reviewed as projections
+- [ ] No verifier or CI workflow conferred standing beyond its authority ceiling
 
-- [ ] SELECT, CONSTRUCT, and DO remain separated
-- [ ] No new ambient write authority or secret exposure was introduced
-- [ ] Any actuation path retains a receipt/replay boundary
+```text
+<paste concise real command output or link exact-head GitHub Actions evidence>
+```
 
-## Review receipt
+## Standing
 
-- Falsifier: `<what would prove this change wrong>`
-- Remaining blocker or exclusion: `<none or typed boundary>`
+Before: `________________`
+
+After: `________________`
+
+Evidence scope / remaining gaps:
+
+<!-- Use UNKNOWN / PARTIAL_ALIVE / ALIVE / BLOCKED / BUILD_BROKEN / UNSUPPORTED / REFUSED with typed reasons. -->
+
+## Risk and rollback
+
+- Irreversible effects: `none / describe`
+- Security or permission change: `none / describe exact permission delta`
+- Rollback: `revert this PR / describe other bounded rollback`
+
+## Review checklist
+
+- [ ] Base SHA was resolved before mutation; the PR does not silently assume a moving base.
+- [ ] All third-party GitHub Actions added or changed are pinned to an exact commit SHA.
+- [ ] Workflow permissions are explicit and least-privilege.
+- [ ] `pull_request_target` is not combined with checkout/execution of untrusted PR code.
+- [ ] No secret, token, private repository identity, or credential material is committed or logged.
+- [ ] Historical receipts are not promoted into current-head proof.
+- [ ] Generated files are not treated as semantic editing surfaces.
+- [ ] The PR has an independent falsifier for its main claim.

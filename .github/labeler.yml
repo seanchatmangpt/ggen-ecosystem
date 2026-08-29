@@ -1,0 +1,20 @@
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "docs/**"
+
+enhancement:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+          - "admission/**"
+          - "certification/**"
+          - "scripts/**"
+          - "tests/**"
+          - "templates/**"
+          - "ontology.ttl"
+          - "ggen.toml"
+          - "ecosystem.lock.toml"
+          - "Dockerfile"
+          - ".gitmodules"
