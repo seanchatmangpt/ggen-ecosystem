@@ -1,0 +1,12 @@
+{
+  "id": "P032",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P032",
+  "edge": "deployment-authority",
+  "hypothesis": "Portfolio admission independently falsifies deployment-authority.",
+  "semantic_fingerprint": "11d5545e0396e5f8",
+  "invalid": {
+    "deployment_routes_authorized": false
+  },
+  "expected": "REFUSED[DEPLOYMENT_AUTHORITY]",
+  "control": {}
+}

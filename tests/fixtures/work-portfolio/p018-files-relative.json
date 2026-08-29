@@ -1,0 +1,12 @@
+{
+  "id": "P018",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P018",
+  "edge": "files-relative",
+  "hypothesis": "Portfolio admission independently falsifies files-relative.",
+  "semantic_fingerprint": "37cb5d636a825299",
+  "invalid": {
+    "files_relative": false
+  },
+  "expected": "REFUSED[ABSOLUTE_SURFACE]",
+  "control": {}
+}

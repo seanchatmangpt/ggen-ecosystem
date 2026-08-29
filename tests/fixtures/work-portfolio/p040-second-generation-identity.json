@@ -1,0 +1,12 @@
+{
+  "id": "P040",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P040",
+  "edge": "second-generation-identity",
+  "hypothesis": "Portfolio admission independently falsifies second-generation-identity.",
+  "semantic_fingerprint": "ca5a8d70b2e7fbfa",
+  "invalid": {
+    "second_generation_identical": false
+  },
+  "expected": "REFUSED[SECOND_GENERATION_DRIFT]",
+  "control": {}
+}

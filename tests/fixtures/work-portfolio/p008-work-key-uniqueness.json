@@ -1,0 +1,12 @@
+{
+  "id": "P008",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P008",
+  "edge": "work-key-uniqueness",
+  "hypothesis": "Portfolio admission independently falsifies work-key-uniqueness.",
+  "semantic_fingerprint": "41518a6c60ef8552",
+  "invalid": {
+    "work_keys_unique": false
+  },
+  "expected": "REFUSED[DUPLICATE_WORK_KEY]",
+  "control": {}
+}

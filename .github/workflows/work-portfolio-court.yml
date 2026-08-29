@@ -1,0 +1,21 @@
+name: Work Portfolio Court
+on:
+  pull_request:
+    paths:
+      - "scripts/validate_work_portfolio.py"
+      - "tests/fixtures/work-portfolio/**"
+      - ".github/workflows/work-portfolio-court.yml"
+permissions:
+  contents: read
+jobs:
+  court:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile validator
+        run: python3 -m py_compile scripts/validate_work_portfolio.py
+      - name: Execute 50-edge admission court
+        run: python3 scripts/validate_work_portfolio.py --min-cases 50

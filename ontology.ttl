@@ -266,53 +266,144 @@ push:
     gha:evidenceObligation "bind exact candidate SHA, submodule commits, and the published image digest" ;
     gha:standingEffect "a pushed image is evidence only for the exact submodule commits and Dockerfile content that produced it" .
 
-ex:containerBuild
+# Real, evidence-driven design (2026-08-29): a single job with QEMU +
+# `platforms: linux/amd64,linux/arm64` was tried first and genuinely hit
+# its own 120-minute job timeout (run 33244628216, started 09:04:37Z,
+# cancelled 11:04:54Z -- exactly 120:17 elapsed) mid-compile of the
+# QEMU-emulated arm64 half; QEMU cross-compilation of a full Rust
+# workspace with LTO is too slow for any reasonable CI budget. Replaced
+# with the correct pattern: two NATIVE per-architecture build jobs (no
+# QEMU at all) using GitHub's free public-repo arm64-hosted runner
+# (`ubuntu-24.04-arm`, confirmed real via
+# https://github.blog/changelog/2025-01-16-linux-arm64-hosted-runners-now-available-for-free-in-public-repositories-public-preview/),
+# each pushing its own single-platform tag, then a merge job combines them
+# into one real multi-arch manifest list via `docker buildx imagetools
+# create` -- no image rebuild, just a manifest-list assembly, seconds not
+# hours.
+
+ex:containerBuildAmd64
     a gha:Job ;
     gha:inWorkflow ex:containerWorkflow ;
-    gha:jobName "build-and-push" ;
+    gha:jobName "build-amd64" ;
     gha:runner "ubuntu-24.04" ;
-    gha:timeoutMinutes 120 ;
+    gha:timeoutMinutes 30 ;
     gha:jobPermissions """contents: read
 packages: write""" ;
-    gha:jobExtra "name: Build and publish composed ggen-ecosystem container" ;
-    gha:evidenceEmitted "published container digest bound to exact submodule commits" ;
-    gha:failureClassification "BUILD_BROKEN if the multi-stage build fails" .
+    gha:jobExtra "name: Build and push linux/amd64 image" ;
+    gha:evidenceEmitted "published linux/amd64 image digest" ;
+    gha:failureClassification "BUILD_BROKEN if the amd64 build fails" .
 
-ex:containerCheckout
+ex:containerAmd64Checkout
     a gha:Step ;
-    gha:inJob ex:containerBuild ; gha:stepOrder 1 ;
+    gha:inJob ex:containerBuildAmd64 ; gha:stepOrder 1 ;
     gha:stepName "Checkout with submodules" ;
     gha:usesAction "actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6" ;
     gha:withParam "submodules: recursive" ;
     gha:withParam "persist-credentials: false" .
 
-ex:containerLogin
+ex:containerAmd64Login
     a gha:Step ;
-    gha:inJob ex:containerBuild ; gha:stepOrder 2 ;
+    gha:inJob ex:containerBuildAmd64 ; gha:stepOrder 2 ;
     gha:stepName "Log in to GHCR" ;
     gha:usesAction "docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3" ;
     gha:withParam "registry: ghcr.io" ;
     gha:withParam "username: ${{ github.actor }}" ;
     gha:withParam "password: ${{ secrets.GITHUB_TOKEN }}" .
 
-ex:containerQemu
+ex:containerAmd64Buildx
     a gha:Step ;
-    gha:inJob ex:containerBuild ; gha:stepOrder 3 ;
-    gha:stepName "Set up QEMU" ;
-    gha:usesAction "docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3" .
-
-ex:containerBuildx
-    a gha:Step ;
-    gha:inJob ex:containerBuild ; gha:stepOrder 4 ;
+    gha:inJob ex:containerBuildAmd64 ; gha:stepOrder 3 ;
     gha:stepName "Set up Docker Buildx" ;
     gha:usesAction "docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3" .
 
-ex:containerBuildPush
+ex:containerAmd64BuildPush
     a gha:Step ;
-    gha:inJob ex:containerBuild ; gha:stepOrder 5 ;
-    gha:stepName "Build and push composed image" ;
+    gha:inJob ex:containerBuildAmd64 ; gha:stepOrder 4 ;
+    gha:stepName "Build and push linux/amd64" ;
     gha:usesAction "docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6" ;
     gha:withParam "context: ." ;
     gha:withParam "push: true" ;
-    gha:withParam "platforms: linux/amd64,linux/arm64" ;
-    gha:withParam "tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }},ghcr.io/seanchatmangpt/ggen-ecosystem:latest" .
+    gha:withParam "platforms: linux/amd64" ;
+    gha:withParam "tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-amd64" .
+
+ex:containerBuildArm64
+    a gha:Job ;
+    gha:inWorkflow ex:containerWorkflow ;
+    gha:jobName "build-arm64" ;
+    gha:runner "ubuntu-24.04-arm" ;
+    gha:timeoutMinutes 30 ;
+    gha:jobPermissions """contents: read
+packages: write""" ;
+    gha:jobExtra "name: Build and push linux/arm64 image" ;
+    gha:evidenceEmitted "published linux/arm64 image digest" ;
+    gha:failureClassification "BUILD_BROKEN if the arm64 build fails" .
+
+ex:containerArm64Checkout
+    a gha:Step ;
+    gha:inJob ex:containerBuildArm64 ; gha:stepOrder 1 ;
+    gha:stepName "Checkout with submodules" ;
+    gha:usesAction "actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6" ;
+    gha:withParam "submodules: recursive" ;
+    gha:withParam "persist-credentials: false" .
+
+ex:containerArm64Login
+    a gha:Step ;
+    gha:inJob ex:containerBuildArm64 ; gha:stepOrder 2 ;
+    gha:stepName "Log in to GHCR" ;
+    gha:usesAction "docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3" ;
+    gha:withParam "registry: ghcr.io" ;
+    gha:withParam "username: ${{ github.actor }}" ;
+    gha:withParam "password: ${{ secrets.GITHUB_TOKEN }}" .
+
+ex:containerArm64Buildx
+    a gha:Step ;
+    gha:inJob ex:containerBuildArm64 ; gha:stepOrder 3 ;
+    gha:stepName "Set up Docker Buildx" ;
+    gha:usesAction "docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3" .
+
+ex:containerArm64BuildPush
+    a gha:Step ;
+    gha:inJob ex:containerBuildArm64 ; gha:stepOrder 4 ;
+    gha:stepName "Build and push linux/arm64" ;
+    gha:usesAction "docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6" ;
+    gha:withParam "context: ." ;
+    gha:withParam "push: true" ;
+    gha:withParam "platforms: linux/arm64" ;
+    gha:withParam "tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64" .
+
+ex:containerMerge
+    a gha:Job ;
+    gha:inWorkflow ex:containerWorkflow ;
+    gha:jobName "merge-manifest" ;
+    gha:runner "ubuntu-24.04" ;
+    gha:timeoutMinutes 10 ;
+    gha:dependsOn ex:containerBuildAmd64 ;
+    gha:dependsOn ex:containerBuildArm64 ;
+    gha:jobPermissions """contents: read
+packages: write""" ;
+    gha:jobExtra "name: Merge into one multi-arch manifest" ;
+    gha:evidenceEmitted "published multi-arch manifest list digest, real per-platform digests underneath" ;
+    gha:failureClassification "BUILD_BROKEN if manifest assembly fails" .
+
+ex:containerMergeLogin
+    a gha:Step ;
+    gha:inJob ex:containerMerge ; gha:stepOrder 1 ;
+    gha:stepName "Log in to GHCR" ;
+    gha:usesAction "docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3" ;
+    gha:withParam "registry: ghcr.io" ;
+    gha:withParam "username: ${{ github.actor }}" ;
+    gha:withParam "password: ${{ secrets.GITHUB_TOKEN }}" .
+
+ex:containerMergeCreate
+    a gha:Step ;
+    gha:inJob ex:containerMerge ; gha:stepOrder 2 ;
+    gha:stepName "Create and push multi-arch manifest" ;
+    gha:runCommand """set -euo pipefail
+TAG="${{ inputs.image_tag || github.ref_name }}"
+docker buildx imagetools create \\
+  -t "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}" \\
+  -t "ghcr.io/seanchatmangpt/ggen-ecosystem:latest" \\
+  "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}-amd64" \\
+  "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}-arm64"
+docker buildx imagetools inspect "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}"
+""" .

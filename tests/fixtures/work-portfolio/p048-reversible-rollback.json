@@ -1,0 +1,12 @@
+{
+  "id": "P048",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P048",
+  "edge": "reversible-rollback",
+  "hypothesis": "Portfolio admission independently falsifies reversible-rollback.",
+  "semantic_fingerprint": "09a33b40aaa97440",
+  "invalid": {
+    "rollback_reversible": false
+  },
+  "expected": "REFUSED[IRREVERSIBLE_ROLLBACK]",
+  "control": {}
+}

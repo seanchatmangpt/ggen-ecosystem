@@ -7,7 +7,7 @@
 # Exit code: 0 if no check emitted BLOCKED/BUILD_BROKEN/UNKNOWN, else 1.
 
 set -u
-cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)" || exit 1
 
 JSON_MODE=0
 if [ "${1:-}" = "--json" ]; then
