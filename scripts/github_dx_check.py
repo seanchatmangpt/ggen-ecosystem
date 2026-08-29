@@ -1,22 +1,19 @@
 #!/usr/bin/env python3
 """Fail-closed, read-only checks for the repository's GitHub-native DX surface."""
 from __future__ import annotations
-
-import argparse
-import json
-import re
-import sys
-import tomllib
+import argparse, json, re, sys, tomllib
 from pathlib import Path
 
 PINNED_ACTION_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)?@[0-9a-f]{40}$")
 USES_RE = re.compile(r"^\s*-?\s*uses:\s*([^\s#]+)", re.MULTILINE)
 
 REQUIRED = [
+    ".devcontainer/devcontainer.json",
     ".github/CODEOWNERS",
     ".github/PULL_REQUEST_TEMPLATE.md",
     ".github/ISSUE_TEMPLATE/bug_report.yml",
     ".github/ISSUE_TEMPLATE/feature_request.yml",
+    ".github/ISSUE_TEMPLATE/incident.yml",
     ".github/ISSUE_TEMPLATE/documentation.yml",
     ".github/ISSUE_TEMPLATE/dx_qol.yml",
     ".github/ISSUE_TEMPLATE/capability_gap.yml",
@@ -26,20 +23,20 @@ REQUIRED = [
     ".github/copilot-instructions.md",
     ".github/workflows/dependency-review.yml",
     ".github/workflows/codeql.yml",
+    ".github/workflows/pr-governance.yml",
     ".github/workflows/pr-labeler.yml",
     ".github/workflows/pr-title.yml",
     ".github/workflows/repo-hygiene.yml",
     ".github/workflows/copilot-setup-steps.yml",
     ".github/workflows/supply-chain-attestation.yml",
+    "CITATION.cff",
     "SECURITY.md",
     "SUPPORT.md",
     "CODE_OF_CONDUCT.md",
 ]
 
-
 def record(checks: list[dict[str, object]], name: str, ok: bool, detail: str) -> None:
     checks.append({"name": name, "ok": ok, "detail": detail})
-
 
 def main() -> int:
     parser = argparse.ArgumentParser()
@@ -52,7 +49,6 @@ def main() -> int:
     missing = [path for path in REQUIRED if not (root / path).is_file()]
     record(checks, "github_required_surfaces", not missing, "missing=" + ",".join(missing) if missing else f"{len(REQUIRED)} required surfaces present")
 
-    # Parse all TOML contracts with the Python standard library.
     toml_failures: list[str] = []
     for path in sorted(root.rglob("*.toml")):
         if ".git" in path.parts or "vendor" in path.parts:
@@ -60,7 +56,7 @@ def main() -> int:
         try:
             with path.open("rb") as handle:
                 tomllib.load(handle)
-        except Exception as exc:  # noqa: BLE001 - diagnostic court must report the exact parser failure
+        except Exception as exc:
             toml_failures.append(f"{path.relative_to(root)}:{exc}")
     record(checks, "toml_parse", not toml_failures, "; ".join(toml_failures) if toml_failures else "all non-vendored TOML parsed")
 
@@ -94,7 +90,12 @@ def main() -> int:
 
     issue_config = root / ".github/ISSUE_TEMPLATE/config.yml"
     issue_text = issue_config.read_text(encoding="utf-8") if issue_config.is_file() else ""
-    record(checks, "issue_chooser_no_disabled_discussions_link", "/discussions" not in issue_text, "no Discussions dead-end" if "/discussions" not in issue_text else "disabled Discussions URL remains")
+    route_ok = (
+        "blank_issues_enabled: false" in issue_text
+        and "SUPPORT.md" in issue_text
+        and "/security/advisories/new" in issue_text
+    )
+    record(checks, "issue_chooser_structured_routes", route_ok, "blank issues disabled; support and private-security routes present" if route_ok else "issue chooser routing contract incomplete")
 
     codeowners = root / ".github/CODEOWNERS"
     owner_text = codeowners.read_text(encoding="utf-8") if codeowners.is_file() else ""
@@ -117,7 +118,6 @@ def main() -> int:
             print(f"{'PASS' if item['ok'] else 'FAIL'} {item['name']}: {item['detail']}")
         print(f"{result['standing']} — {result['summary']['passed']}/{result['summary']['total']}")
     return 0 if ok else 1
-
 
 if __name__ == "__main__":
     sys.exit(main())
