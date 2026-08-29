@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-020",
+  "title": "One amd64 publication is partial",
+  "hypothesis": "One amd64 publication is partial",
+  "acceptance_edge": "publication.amd64-only",
+  "evidence": [
+    "pushed linux/amd64 @sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  ],
+  "expected": {
+    "standing": "PARTIAL_ALIVE",
+    "reason": "AMD64_ONLY"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from PARTIAL_ALIVE[AMD64_ONLY]",
+  "semantic_fingerprint": "fp:publication:amd64-only:PARTIAL_ALIVE:AMD64_ONLY"
+}
