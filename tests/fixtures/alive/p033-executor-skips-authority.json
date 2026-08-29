@@ -1,0 +1,24 @@
+{
+  "name": "executor-skips-authority",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "push"
+      ],
+      "cost": 10,
+      "description": "push",
+      "authority": "packages:write"
+    }
+  ],
+  "exits": [],
+  "expect": {
+    "standing": "PARTIAL_ALIVE",
+    "calls": 0,
+    "receipts": 0,
+    "receipt": {}
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P033",
+  "semantic_fingerprint": "06414ae4"
+}
