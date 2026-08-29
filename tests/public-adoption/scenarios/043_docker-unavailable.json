@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-043",
+  "title": "Docker unavailable diagnosis",
+  "hypothesis": "The no-install route diagnoses absence of its container runtime.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:docker-unavailable",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "run local preflight with Docker removed from PATH",
+  "oracle": [
+    "result is typed BLOCKED",
+    "native fallback is not invented"
+  ],
+  "expected_standing": "BLOCKED",
+  "reason_code": "DOCKER_UNAVAILABLE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through DOCKER_UNAVAILABLE",
+  "semantic_fingerprint": "SJ-043:docker-unavailable"
+}
