@@ -1,0 +1,58 @@
+name: PR Governance
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: pr-governance-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  source-authority:
+    name: Source authority and syntax
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Compile Python control surfaces
+        run: python3 -m compileall -q scripts tests
+      - name: Validate shell syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' f; do
+            bash -n "$f"
+          done < <(find scripts tests -type f -name '*.sh' -print0)
+      - name: Refuse direct edits to generated projections
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          mapfile -t changed < <(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+          generated=0
+          authoritative=0
+          for path in "${changed[@]}"; do
+            case "$path" in
+              .github/workflows/*.yml|.github/workflows/*.yaml) generated=1 ;;
+            esac
+            case "$path" in
+              ontology.ttl|ggen.toml|ggen.lock|ontology/*|vendor/ggen-marketplace/*) authoritative=1 ;;
+            esac
+          done
+          if (( generated && ! authoritative )); then
+            echo 'REFUSED[GENERATED_PROJECTION_DIRECT_EDIT]: workflow projection changed without authoritative generator input.' >&2
+            exit 1
+          fi
+          echo 'ALIVE: source-authority boundary admitted.'
