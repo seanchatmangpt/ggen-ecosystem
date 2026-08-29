@@ -1,0 +1,54 @@
+name: Bootstrap GGen Ecosystem
+description: Validate or initialize the exact checked-out ecosystem and run read-only repository courts.
+inputs:
+  initialize-submodules:
+    description: Initialize recursive git submodules before verification.
+    required: false
+    default: "false"
+  run-lock-court:
+    description: Run exact gitlink/lock correspondence falsifiers.
+    required: false
+    default: "true"
+  run-certification-tests:
+    description: Run mfact certification unit falsifiers.
+    required: false
+    default: "true"
+outputs:
+  subject-sha:
+    description: Exact repository SHA observed by the bootstrap action.
+    value: ${{ steps.subject.outputs.sha }}
+runs:
+  using: composite
+  steps:
+    - id: subject
+      name: Resolve exact subject
+      shell: bash
+      run: |
+        set -euo pipefail
+        sha="$(git rev-parse HEAD)"
+        [[ "$sha" =~ ^[0-9a-f]{40}$ ]] || { echo "REFUSED[INVALID_SUBJECT_SHA]:$sha" >&2; exit 2; }
+        echo "sha=$sha" >> "$GITHUB_OUTPUT"
+        echo "subject=$GITHUB_REPOSITORY@$sha"
+
+    - name: Initialize admitted submodules
+      if: ${{ inputs.initialize-submodules == 'true' }}
+      shell: bash
+      run: git submodule update --init --recursive
+
+    - name: Observe submodule state
+      shell: bash
+      run: git submodule status --recursive
+
+    - name: Run GitHub DX court
+      shell: bash
+      run: python3 scripts/github_dx_check.py --root .
+
+    - name: Run lock correspondence court
+      if: ${{ inputs.run-lock-court == 'true' }}
+      shell: bash
+      run: python3 -m unittest tests.lock_contracts.test_ecosystem_lock_consistency -v
+
+    - name: Run certification falsifiers
+      if: ${{ inputs.run-certification-tests == 'true' }}
+      shell: bash
+      run: python3 -m unittest tests.test_mfact_certification -v

@@ -1,0 +1,30 @@
+name: Pull Request Title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-title-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  title:
+    name: Enforce semantic PR title
+    runs-on: ubuntu-24.04
+    env:
+      PR_TITLE: ${{ github.event.pull_request.title }}
+    steps:
+      - name: Validate title
+        shell: bash
+        run: |
+          set -euo pipefail
+          pattern='^(feat|fix|docs|test|ci|chore|refactor|perf|build|revert|security|dx)(\([a-z0-9._/-]+\))?!?: .+'
+          if [[ ! "$PR_TITLE" =~ $pattern ]]; then
+            echo "REFUSED[PR_TITLE_CONTRACT]: $PR_TITLE" >&2
+            echo "Expected: type(scope): summary (scope optional; ! allowed for breaking changes)." >&2
+            exit 1
+          fi

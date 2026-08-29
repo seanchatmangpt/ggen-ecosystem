@@ -1,28 +1,26 @@
 changelog:
   exclude:
-    labels:
-      - skip-changelog
     authors:
-      - dependabot
+      - dependabot[bot]
   categories:
-    - title: Breaking changes
-      labels:
-        - breaking-change
-    - title: Features
+    - title: "🚀 Capabilities and enhancements"
       labels:
         - enhancement
-        - feature
-    - title: Fixes
+    - title: "🐛 Fixes"
       labels:
         - bug
-        - fix
-    - title: Documentation and DX
+    - title: "📚 Documentation"
       labels:
         - documentation
-        - dx
-    - title: Security
+    - title: "🔒 Security and supply chain"
       labels:
         - security
-    - title: Other changes
+    - title: "🧰 Developer experience"
+      labels:
+        - dx
+    - title: "📦 Dependency movement"
+      labels:
+        - dependencies
+    - title: "Other changes"
       labels:
         - "*"

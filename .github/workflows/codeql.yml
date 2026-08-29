@@ -6,33 +6,41 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: "17 9 * * 3"
+    - cron: "17 11 * * 2"
   workflow_dispatch:
 
 permissions:
   contents: read
+  actions: read
+  packages: read
   security-events: write
 
 concurrency:
   group: codeql-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  analyze-python:
-    name: Analyze Python
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+  analyze:
+    name: Analyze ${{ matrix.language }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [python, actions]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout exact subject
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          fetch-depth: 0
+
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4
         with:
-          languages: python
-          build-mode: none
+          languages: ${{ matrix.language }}
+          queries: security-extended
+
       - name: Analyze
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4
         with:
-          category: /language:python
+          category: /language:${{ matrix.language }}
