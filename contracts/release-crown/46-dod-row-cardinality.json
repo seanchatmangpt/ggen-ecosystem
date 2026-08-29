@@ -1,0 +1,9 @@
+{
+  "count": 21,
+  "failure_standing": "REFUSED:DOD_CARDINALITY_DRIFT",
+  "id": "dod-row-cardinality",
+  "kind": "regex_count",
+  "pattern": "\\| PR-\\d{3} \\|",
+  "remediation": "Keep PR-001..PR-021 matrix complete.",
+  "source": "docs/DEFINITION-OF-DONE.md"
+}
