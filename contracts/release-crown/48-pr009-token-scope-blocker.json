@@ -1,0 +1,8 @@
+{
+  "expected": "write:packages",
+  "failure_standing": "BLOCKED",
+  "id": "pr009-token-scope-blocker",
+  "kind": "contains",
+  "remediation": "Acquire package-write scope before immutable GHCR publication.",
+  "source": "docs/DEFINITION-OF-DONE.md"
+}
