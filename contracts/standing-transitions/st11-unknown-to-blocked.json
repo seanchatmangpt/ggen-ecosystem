@@ -1,0 +1,1 @@
+{"id":"ST11","kind":"transition","from":"UNKNOWN","to":"BLOCKED","rule":"Require observed external, tooling, transport, or authority dependency preventing the next lawful step.","exact_subject_required":true,"authority_effect":"NONE"}
