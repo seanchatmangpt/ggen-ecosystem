@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-006",
+  "title": "Local no-install path",
+  "hypothesis": "A stranger with Docker need not install GGen on the host.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:local-no-install-container",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "docker run the pinned digest with a mounted fixture",
+  "oracle": [
+    "host ggen absence is tolerated",
+    "container command exits 0"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-006:local-no-install-container"
+}
