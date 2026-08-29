@@ -1,0 +1,22 @@
+{
+  "name": "lower-cost-safe-first",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "1-submodules",
+      "standing": "BLOCKED"
+    },
+    {
+      "gate": "9-workflow-drift",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "step_count": 2,
+    "first_action": "ggen sync run",
+    "total_cost": 3
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P020",
+  "semantic_fingerprint": "1bd9c2a2"
+}

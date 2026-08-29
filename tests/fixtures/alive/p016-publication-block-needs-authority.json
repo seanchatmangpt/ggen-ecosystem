@@ -1,0 +1,17 @@
+{
+  "name": "publication-block-needs-authority",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "13-image-publication",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "step_count": 1,
+    "first_type": "AUTHORITY_REQUIRED"
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P016",
+  "semantic_fingerprint": "9fdb850b"
+}

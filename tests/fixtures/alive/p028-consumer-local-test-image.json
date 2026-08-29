@@ -1,0 +1,16 @@
+{
+  "name": "consumer-local-test-image",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "12-fresh-consumer",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "action_contains": "ggen-ecosystem:test"
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P028",
+  "semantic_fingerprint": "afe60c19"
+}

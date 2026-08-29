@@ -1,0 +1,33 @@
+{
+  "name": "authority-after-failure-never-runs",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "safe"
+      ],
+      "cost": 1,
+      "description": "safe"
+    },
+    {
+      "argv": [
+        "push"
+      ],
+      "cost": 1,
+      "description": "push",
+      "authority": "packages:write"
+    }
+  ],
+  "exits": [
+    1
+  ],
+  "expect": {
+    "standing": "BUILD_BROKEN",
+    "calls": 1,
+    "receipts": 1,
+    "receipt": {}
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P048",
+  "semantic_fingerprint": "55a30f7d"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "all-alive-has-no-work",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "1-submodules",
+      "standing": "ALIVE"
+    },
+    {
+      "gate": "9-workflow-drift",
+      "standing": "ALIVE"
+    }
+  ],
+  "expect": {
+    "status": "ALIVE",
+    "step_count": 0
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P003",
+  "semantic_fingerprint": "e2cbdd2b"
+}

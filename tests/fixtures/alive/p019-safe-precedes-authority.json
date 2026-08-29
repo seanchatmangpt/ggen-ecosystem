@@ -1,0 +1,21 @@
+{
+  "name": "safe-precedes-authority",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "13-image-publication",
+      "standing": "BLOCKED"
+    },
+    {
+      "gate": "11-image-presence",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "step_count": 2,
+    "first_type": "SAFE_REVERSIBLE"
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P019",
+  "semantic_fingerprint": "5358ea0b"
+}

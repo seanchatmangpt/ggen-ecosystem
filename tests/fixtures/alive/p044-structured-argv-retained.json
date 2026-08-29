@@ -1,0 +1,31 @@
+{
+  "name": "structured-argv-retained",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "x",
+        "a b"
+      ],
+      "cost": 1,
+      "description": "x"
+    }
+  ],
+  "exits": [
+    0
+  ],
+  "expect": {
+    "standing": "ALIVE",
+    "calls": 1,
+    "receipts": 1,
+    "receipt": {
+      "argv": [
+        "x",
+        "a b"
+      ]
+    }
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P044",
+  "semantic_fingerprint": "3b1eada1"
+}
