@@ -5,14 +5,65 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 from pathlib import Path
-from typing import Callable
+from typing import Callable, Iterable
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ALIVE = "ALIVE"
 SAFE = "SAFE_REVERSIBLE"
 AUTHORITY = "AUTHORITY_REQUIRED"
+
+_IMMUTABLE_CAPSULE = re.compile(r"^.+@sha256:[0-9a-fA-F]{64}$")
+_GENERATED_WORKFLOW_PREFIX = ".github/workflows/"
+_GENERATED_WORKFLOW_SUFFIXES = (".yml", ".yaml")
+_AUTHORITATIVE_GENERATOR_INPUTS = (
+    "ontology.ttl",
+    "ggen.toml",
+    "ggen.lock",
+    "ontology/",
+    "vendor/ggen-marketplace/",
+)
+
+
+def admit_capsule_identity(reference: str, *, available: bool) -> dict:
+    """Admit only an immutable, presently resolvable OCI capsule identity."""
+    if not _IMMUTABLE_CAPSULE.fullmatch(reference):
+        return {"standing": "REFUSED[MUTABLE_CAPSULE_IDENTITY]", "reference": reference}
+    if not available:
+        return {"standing": "REFUSED[CAPSULE_IDENTITY_UNAVAILABLE]", "reference": reference}
+    return {"standing": ALIVE, "reference": reference}
+
+
+def _is_generated_workflow(path: str) -> bool:
+    return path.startswith(_GENERATED_WORKFLOW_PREFIX) and path.endswith(_GENERATED_WORKFLOW_SUFFIXES)
+
+
+def _is_authoritative_generator_input(path: str) -> bool:
+    return any(path == prefix or path.startswith(prefix) for prefix in _AUTHORITATIVE_GENERATOR_INPUTS)
+
+
+def admit_projection_change(paths: Iterable[str]) -> dict:
+    """Reject direct edits to generated workflows without an authoritative source delta."""
+    normalized = tuple(sorted(set(paths)))
+    generated = tuple(path for path in normalized if _is_generated_workflow(path))
+    if generated and not any(_is_authoritative_generator_input(path) for path in normalized):
+        return {
+            "standing": "REFUSED[GENERATED_PROJECTION_DIRECT_EDIT]",
+            "generated": generated,
+            "paths": normalized,
+        }
+    return {"standing": ALIVE, "generated": generated, "paths": normalized}
+
+
+def select_consumer_execution(*, container_available: bool, host_available: bool) -> dict:
+    """Choose the strongest available stranger-journey execution surface deterministically."""
+    if container_available:
+        return {"standing": ALIVE, "route": "container"}
+    if host_available:
+        return {"standing": ALIVE, "route": "host"}
+    return {"standing": "UNSUPPORTED[NO_CONSUMER_EXECUTION_SURFACE]", "route": None}
 
 
 def run_doctor_sensor() -> dict:
@@ -52,8 +103,13 @@ def plan_closure_autofde(gates: list[dict]) -> dict:
         steps.append(_step(["docker", "build", "-t", "ggen-ecosystem:test", "."], 5,
                            "Build local container substrate"))
     if by_name.get("12-fresh-consumer", {}).get("standing") not in (None, ALIVE):
-        steps.append(_step(["bash", "tests/run-fresh-consumer.sh", "ggen-ecosystem:test"], 2,
-                           "Verify fresh consumer crown"))
+        host_runner = REPO_ROOT / "tests" / "run-fresh-consumer-host.sh"
+        if host_runner.exists():
+            steps.append(_step(["bash", str(host_runner.relative_to(REPO_ROOT))], 1,
+                               "Verify fresh consumer crown through canonical host fallback"))
+        else:
+            steps.append(_step(["bash", "tests/run-fresh-consumer.sh", "ggen-ecosystem:test"], 2,
+                               "Verify fresh consumer crown"))
     if by_name.get("13-image-publication", {}).get("standing") not in (None, ALIVE):
         steps.append(_step(["docker", "push", "ghcr.io/seanchatmangpt/ggen-ecosystem:v26.8.28"], 10,
                            "Publish release container to GitHub Container Registry",
