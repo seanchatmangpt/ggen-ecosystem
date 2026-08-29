@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-016",
+  "title": "Cargo compile failure is build-broken",
+  "hypothesis": "Cargo compile failure is build-broken",
+  "acceptance_edge": "publication.cargo-compile",
+  "evidence": [
+    "cargo build failed with exit code 101"
+  ],
+  "expected": {
+    "standing": "BUILD_BROKEN",
+    "reason": "TOOLCHAIN"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from BUILD_BROKEN[TOOLCHAIN]",
+  "semantic_fingerprint": "fp:publication:cargo-compile:BUILD_BROKEN:TOOLCHAIN"
+}
