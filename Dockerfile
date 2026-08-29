@@ -49,8 +49,23 @@ FROM debian:bookworm-slim
 # inside this container (git rev-parse for submodule-drift checks, python3 for the pack-admission
 # and receipt-binding inline scripts) -- not speculative, confirmed against ontology.ttl's real
 # ex:admit/ex:evidence step gha:runCommand facts.
+#
+# bash is a real runtime requirement, found via `act` simulating a real GH Actions run against
+# this exact image: several generated `gha:runCommand` steps use `set -o pipefail` and
+# `[[ ... ]]`, neither supported by Debian's default /bin/sh (dash) -- confirmed via
+# `act workflow_dispatch -j construct` ("set: Illegal option -o pipefail", "[[: not found").
+# This is a real production defect, not act-specific: GitHub's documented shell-selection
+# fallback uses `sh` for a container job's `run:` steps when the container has no `bash` on
+# PATH, so a real GitHub-hosted runner would hit the identical failure against this image.
+#
+# nodejs was also added during local `act` testing to unblock actions/checkout inside the
+# container, but per GitHub's actions/runner docs a real hosted runner injects a glibc Node
+# binary via a bind-mounted /__e/ directory regardless of the image -- this debian (glibc)
+# image would already work on real GitHub without it. Installing nodejs here anyway is
+# harmless (small apt package, matches local `act` runs to production behavior) but is NOT
+# claimed as fixing a real GitHub-side defect the way bash is.
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates git python3 python3-wrapt python3-rdflib python3-numpy python3-dill \
+    && apt-get install -y --no-install-recommends ca-certificates git python3 python3-wrapt python3-rdflib python3-numpy python3-dill bash nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /out/bin/ggen /usr/local/bin/ggen

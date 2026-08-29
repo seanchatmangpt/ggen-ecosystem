@@ -90,6 +90,7 @@ jobs:
           MARKETPLACE_SHA: ${{ inputs.marketplace_sha }}
           GGEN_CONTAINER_TAG: ${{ inputs.ggen_container_tag }}
           CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha || github.sha }}
+        shell: bash
         run: |
           set -euo pipefail
           [[ "$(git rev-parse HEAD)" = "$CANDIDATE_SHA" ]] || { echo 'REFUSED[EXACT_HEAD_MISMATCH]' >&2; exit 2; }
@@ -139,6 +140,7 @@ jobs:
           GGEN_DRY_RUN: ${{ inputs.dry_run }}
           GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory }}
         continue-on-error: true
+        shell: bash
         run: |
           set -uo pipefail
           mkdir -p "$RUNNER_TEMP/ggen-ecosystem-evidence"
@@ -161,6 +163,7 @@ jobs:
           MARKETPLACE_SHA: ${{ inputs.marketplace_sha }}
           GGEN_CONTAINER_TAG: ${{ inputs.ggen_container_tag }}
           CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha || github.sha }}
+        shell: bash
         run: |
           set -euo pipefail
           tmp="$RUNNER_TEMP/ggen-ecosystem-evidence"
@@ -214,6 +217,7 @@ jobs:
         if: always()
         env:
           SYNC_EXIT_CODE: ${{ steps.sync.outputs.exit_code }}
+        shell: bash
         run: |
           if [[ "${SYNC_EXIT_CODE:-not-run}" != 0 ]]; then
             echo "BUILD_BROKEN[GGEN_SYNC_RUN_FAILED]:${SYNC_EXIT_CODE:-not-run}" >&2

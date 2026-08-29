@@ -5,3 +5,5 @@ vendor/*/target/
 tests/.scratch-*/
 .DS_Store
 *.tmp
+.qual-scratch/
+.replay-check-scratch/

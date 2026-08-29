@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P20","acceptance_edge":"authority.brce.exclusive_do","semantic_purpose":"only receipted broker may perform DO","surface":"AGENTS.md","expected":"receipted_broker","verifier":"doctrine_contains","falsifier":"fail_if_ambient_do","semantic_fingerprint":"e21210596bb08ba87fc5918519c56561ad8ff79e9faf7767fdb0a1bd4cb0dece"}

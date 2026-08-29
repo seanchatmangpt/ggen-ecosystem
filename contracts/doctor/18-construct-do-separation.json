@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P18","acceptance_edge":"authority.construct_do.separate","semantic_purpose":"CONSTRUCT and DO must remain distinct","surface":"AGENTS.md","expected":"separate","verifier":"doctrine_contains","falsifier":"fail_on_collapse","semantic_fingerprint":"ec585fd59796dc4772ab9fc3cf74857fafc6a4367c1409035250c1d11a4f7161"}

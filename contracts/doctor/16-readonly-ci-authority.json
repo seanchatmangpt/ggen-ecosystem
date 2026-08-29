@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P16","acceptance_edge":"authority.ci.readonly","semantic_purpose":"CI evidence has no ambient DO authority","surface":"AGENTS.md","expected":"ci_evidence_only","verifier":"doctrine_contains","falsifier":"fail_if_ci_grants_do","semantic_fingerprint":"d1625d43482276511dd1e45d62cfc87b0ffe7d45351118f793fa2d820c455c3a"}

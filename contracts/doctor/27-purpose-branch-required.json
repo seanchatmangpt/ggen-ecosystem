@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P27","acceptance_edge":"git.branch.purpose","semantic_purpose":"manufacture uses a purpose branch","surface":"AGENTS.md","expected":"required","verifier":"doctrine_contains","falsifier":"fail_if_default_branch_mutated","semantic_fingerprint":"12e37d50117d4a8601bddad2a95d123b34e90c1cedd429392d83a14abaf75104"}
