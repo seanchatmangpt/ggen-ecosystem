@@ -1,0 +1,138 @@
+{
+  "total": 44,
+  "alive": 44,
+  "results": {
+    "aostar": {
+      "status": "ALIVE"
+    },
+    "ars": {
+      "status": "ALIVE"
+    },
+    "astar": {
+      "status": "ALIVE"
+    },
+    "bfws": {
+      "status": "ALIVE"
+    },
+    "cgp": {
+      "status": "ALIVE"
+    },
+    "despot": {
+      "status": "ALIVE"
+    },
+    "do_solver": {
+      "status": "ALIVE"
+    },
+    "dspy_policy": {
+      "status": "ALIVE"
+    },
+    "ehc": {
+      "status": "ALIVE"
+    },
+    "fret": {
+      "status": "ALIVE"
+    },
+    "gpci": {
+      "status": "ALIVE"
+    },
+    "hsvi": {
+      "status": "ALIVE"
+    },
+    "idual": {
+      "status": "ALIVE"
+    },
+    "ilaostar": {
+      "status": "ALIVE"
+    },
+    "iw": {
+      "status": "ALIVE"
+    },
+    "ldfs": {
+      "status": "ALIVE"
+    },
+    "lrtastar": {
+      "status": "ALIVE"
+    },
+    "lrtdp": {
+      "status": "ALIVE"
+    },
+    "mahd": {
+      "status": "ALIVE"
+    },
+    "martdp": {
+      "status": "ALIVE"
+    },
+    "maxent_irl": {
+      "status": "ALIVE"
+    },
+    "mcts": {
+      "status": "ALIVE"
+    },
+    "mdplp": {
+      "status": "ALIVE"
+    },
+    "meta_policy_scheduling": {
+      "status": "ALIVE"
+    },
+    "openevolve": {
+      "status": "ALIVE"
+    },
+    "p_astar": {
+      "status": "ALIVE"
+    },
+    "pddl": {
+      "status": "ALIVE"
+    },
+    "pi": {
+      "status": "ALIVE"
+    },
+    "pile_policy_scheduling": {
+      "status": "ALIVE"
+    },
+    "pomcp": {
+      "status": "ALIVE"
+    },
+    "ray_rllib": {
+      "status": "ALIVE"
+    },
+    "rddl": {
+      "status": "ALIVE"
+    },
+    "riw": {
+      "status": "ALIVE"
+    },
+    "rtdp_bel": {
+      "status": "ALIVE"
+    },
+    "sarsop": {
+      "status": "ALIVE"
+    },
+    "simple_greedy": {
+      "status": "ALIVE"
+    },
+    "ssipp": {
+      "status": "ALIVE"
+    },
+    "sspdethindsight": {
+      "status": "ALIVE"
+    },
+    "sspplanmerger": {
+      "status": "ALIVE"
+    },
+    "sspreplan": {
+      "status": "ALIVE"
+    },
+    "stable_baselines": {
+      "status": "ALIVE"
+    },
+    "up": {
+      "status": "ALIVE"
+    },
+    "vi": {
+      "status": "ALIVE"
+    },
+    "witness": {
+      "status": "ALIVE"
+    }
+  }
+}
