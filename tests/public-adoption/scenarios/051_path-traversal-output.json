@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-051",
+  "title": "Output path traversal refusal",
+  "hypothesis": "A generated path cannot escape the admitted repository root.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:path-traversal-output",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "request an output path containing parent traversal",
+  "oracle": [
+    "path is refused before write",
+    "outside sentinel remains unchanged"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "OUTPUT_PATH_TRAVERSAL",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through OUTPUT_PATH_TRAVERSAL",
+  "semantic_fingerprint": "SJ-051:path-traversal-output"
+}
