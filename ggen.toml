@@ -5,11 +5,7 @@ name = "ggen-ecosystem"
 source = "ontology.ttl"
 
 [packs]
-# Sourced from the real vendor/ggen-marketplace git submodule (pinned commit
-# 89adf4c8476f7edc8067fdbb1c256cfbfa22df6a -- see [submodules] in ecosystem.lock.toml),
-# not a git+version fetch -- confirmed schema via ggen's own
-# crates/ggen-config/src/config_schema.rs test `[packs.mypack] path = "../mypack"`.
-github-actions = { path = "vendor/ggen-marketplace/packs/github-actions-pack" }
+github-actions = { git = "https://github.com/seanchatmangpt/ggen-marketplace.git", version = "c779aec20d9c93727c7ad4464f1dd52ac8e066e4", subdir = "packs/github-actions-pack" }
 
 [templates]
 dir = "templates"

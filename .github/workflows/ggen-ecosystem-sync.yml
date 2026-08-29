@@ -2,13 +2,18 @@ name: GGen Ecosystem Sync
 on:
   workflow_call:
     inputs:
-      ggen_container_tag:
-        description: Exact tag of the composed ggen-ecosystem container (ggen binary + marketplace packs)
+      ggen_release:
+        description: Exact ggen release tag
         required: false
         type: string
         default: v26.8.28
+      ggen_asset_sha256:
+        description: SHA256 of the Linux release asset
+        required: false
+        type: string
+        default: ccb9fe78ef0c84d8b240b45beb6e73f47e2c930d5db3efcf9a0e58dfe071d313
       marketplace_sha:
-        description: Exact ggen marketplace commit required by every pack (must match vendor/ggen-marketplace submodule pin)
+        description: Exact ggen marketplace commit required by every pack
         required: false
         type: string
         default: c779aec20d9c93727c7ad4464f1dd52ac8e066e4
@@ -29,13 +34,18 @@ on:
         default: 7
   workflow_dispatch:
     inputs:
-      ggen_container_tag:
-        description: Exact tag of the composed ggen-ecosystem container (ggen binary + marketplace packs)
+      ggen_release:
+        description: Exact ggen release tag
         required: true
         type: string
         default: v26.8.28
+      ggen_asset_sha256:
+        description: SHA256 of the Linux release asset
+        required: true
+        type: string
+        default: ccb9fe78ef0c84d8b240b45beb6e73f47e2c930d5db3efcf9a0e58dfe071d313
       marketplace_sha:
-        description: Exact ggen marketplace commit required by every pack (must match vendor/ggen-marketplace submodule pin)
+        description: Exact ggen marketplace commit required by every pack
         required: true
         type: string
         default: c779aec20d9c93727c7ad4464f1dd52ac8e066e4
@@ -72,14 +82,11 @@ jobs:
       contents: read
 
     name: Deterministic ecosystem manufacture
-    container:
-      image: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.ggen_container_tag }}
 
     steps:
       - name: Checkout exact candidate
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
-          submodules: recursive
           persist-credentials: false
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha || github.sha }}
@@ -88,15 +95,15 @@ jobs:
         env:
           GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory }}
           MARKETPLACE_SHA: ${{ inputs.marketplace_sha }}
-          GGEN_CONTAINER_TAG: ${{ inputs.ggen_container_tag }}
+          GGEN_ASSET_SHA256: ${{ inputs.ggen_asset_sha256 }}
+          GGEN_RELEASE: ${{ inputs.ggen_release }}
           CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha || github.sha }}
-        shell: bash
         run: |
           set -euo pipefail
           [[ "$(git rev-parse HEAD)" = "$CANDIDATE_SHA" ]] || { echo 'REFUSED[EXACT_HEAD_MISMATCH]' >&2; exit 2; }
+          [[ "$GGEN_RELEASE" =~ ^v[0-9]+[.][0-9]+[.][0-9]+([.+-][0-9A-Za-z.-]+)?$ ]] || { echo 'REFUSED[INVALID_GGEN_RELEASE_TAG]' >&2; exit 2; }
+          [[ "$GGEN_ASSET_SHA256" =~ ^[0-9a-f]{64}$ ]] || { echo 'REFUSED[INVALID_GGEN_ASSET_SHA256]' >&2; exit 2; }
           [[ "$MARKETPLACE_SHA" =~ ^[0-9a-f]{40}$ ]] || { echo 'REFUSED[INVALID_MARKETPLACE_SHA]' >&2; exit 2; }
-          submodule_sha="$(git -C vendor/ggen-marketplace rev-parse HEAD)"
-          [[ "$submodule_sha" = "$MARKETPLACE_SHA" ]] || { echo "REFUSED[MARKETPLACE_SUBMODULE_DRIFT]:${submodule_sha}:${MARKETPLACE_SHA}" >&2; exit 2; }
           mkdir -p "$RUNNER_TEMP/ggen-ecosystem-evidence"
           export GGEN_PACK_RECEIPT="$RUNNER_TEMP/ggen-ecosystem-evidence/packs.json"
           python3 - <<'PY'
@@ -113,19 +120,24 @@ jobs:
           packs = doc.get('packs')
           if not isinstance(packs, dict) or not packs:
               raise SystemExit('REFUSED[MARKETPLACE_PACKS_REQUIRED]')
+          expected = os.environ['MARKETPLACE_SHA']
           admitted = []
           for alias, ref in sorted(packs.items()):
               if not isinstance(ref, dict):
-                  raise SystemExit(f'REFUSED[PACK_REF_NOT_TABLE]:{alias}')
-              path = str(ref.get('path', ''))
-              if not path:
-                  raise SystemExit(f'REFUSED[PACK_REF_NOT_PATH_SOURCED]:{alias}')
-              sub = PurePosixPath(path)
-              if sub.is_absolute() or '..' in sub.parts or sub.parts[:2] != ('vendor', 'ggen-marketplace'):
-                  raise SystemExit(f'REFUSED[INVALID_MARKETPLACE_SUBMODULE_PATH]:{alias}:{path}')
-              admitted.append({'alias': alias, 'path': path})
+                  raise SystemExit(f'REFUSED[PACK_REF_NOT_GIT]:{alias}')
+              git = str(ref.get('git', '')).removesuffix('.git')
+              version = str(ref.get('version', '')).lower()
+              subdir = str(ref.get('subdir', ''))
+              if git != 'https://github.com/seanchatmangpt/ggen-marketplace':
+                  raise SystemExit(f'REFUSED[NON_MARKETPLACE_PACK]:{alias}:{git}')
+              if version != expected:
+                  raise SystemExit(f'REFUSED[MARKETPLACE_SHA_DRIFT]:{alias}:{version}:{expected}')
+              sub = PurePosixPath(subdir)
+              if sub.is_absolute() or '..' in sub.parts or len(sub.parts) != 2 or sub.parts[0] != 'packs':
+                  raise SystemExit(f'REFUSED[INVALID_MARKETPLACE_PACK_SUBDIR]:{alias}:{subdir}')
+              admitted.append({'alias': alias, 'git': git, 'version': version, 'subdir': subdir})
           Path(os.environ['GGEN_PACK_RECEIPT']).write_text(json.dumps(admitted, indent=2, sort_keys=True) + chr(10))
-          print(f'ALIVE: admitted {len(admitted)} submodule-sourced marketplace pack(s) at {os.environ["MARKETPLACE_SHA"]}')
+          print(f'ALIVE: admitted {len(admitted)} marketplace pack(s) at {expected}')
           PY
 
       - name: Restore untrusted native GGen pack cache
@@ -134,13 +146,36 @@ jobs:
           key: ggen-git-packs-${{ runner.os }}-${{ inputs.marketplace_sha }}
           path: ${{ inputs.working_directory }}/.ggen-v2/git-packs
         
-      - name: Manufacture with ggen sync run (ggen preinstalled in the composed container)
+      - name: Install checksum pinned GGen release
+        id: install
+        env:
+          GGEN_ASSET_SHA256: ${{ inputs.ggen_asset_sha256 }}
+          GGEN_RELEASE: ${{ inputs.ggen_release }}
+        run: |
+          set -euo pipefail
+          asset='ggen-x86_64-unknown-linux-gnu.tar.gz'
+          archive="$RUNNER_TEMP/$asset"
+          extract="$RUNNER_TEMP/ggen-release"
+          bin_dir="$RUNNER_TEMP/ggen-bin"
+          url="https://github.com/seanchatmangpt/ggen/releases/download/${GGEN_RELEASE}/${asset}"
+          curl --fail --location --retry 3 --retry-all-errors --proto '=https' --tlsv1.2 --output "$archive" "$url"
+          echo "$GGEN_ASSET_SHA256  $archive" | sha256sum --check --strict
+          rm -rf "$extract" "$bin_dir"
+          mkdir -p "$extract" "$bin_dir"
+          tar -xzf "$archive" -C "$extract"
+          mapfile -t candidates < <(find "$extract" -type f -name ggen -print)
+          [[ "${#candidates[@]}" -eq 1 ]] || { echo "REFUSED[GGEN_ASSET_BINARY_COUNT]:${#candidates[@]}" >&2; exit 2; }
+          install -m 0755 "${candidates[0]}" "$bin_dir/ggen"
+          binary_sha256="$(sha256sum "$bin_dir/ggen" | awk '{print $1}')"
+          echo "$bin_dir" >> "$GITHUB_PATH"
+          echo "binary_sha256=$binary_sha256" >> "$GITHUB_OUTPUT
+
+      - name: Manufacture with ggen sync run
         id: sync
         env:
           GGEN_DRY_RUN: ${{ inputs.dry_run }}
           GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory }}
         continue-on-error: true
-        shell: bash
         run: |
           set -uo pipefail
           mkdir -p "$RUNNER_TEMP/ggen-ecosystem-evidence"
@@ -153,17 +188,18 @@ jobs:
           exit_code=$?
           set -e
           echo "exit_code=$exit_code" >> "$GITHUB_OUTPUT"
-          echo "$exit_code" > "$RUNNER_TEMP/ggen-ecosystem-evidence/sync-exit-code.txt"
+          echo "$exit_code" > "$RUNNER_TEMP/ggen-ecosystem-evidence/sync-exit-code.txt
 
       - name: Bind generated consequence into replay receipt
         if: always()
         env:
+          GGEN_BINARY_SHA256: ${{ steps.install.outputs.binary_sha256 }}
           SYNC_EXIT_CODE: ${{ steps.sync.outputs.exit_code }}
           GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory }}
           MARKETPLACE_SHA: ${{ inputs.marketplace_sha }}
-          GGEN_CONTAINER_TAG: ${{ inputs.ggen_container_tag }}
+          GGEN_ASSET_SHA256: ${{ inputs.ggen_asset_sha256 }}
+          GGEN_RELEASE: ${{ inputs.ggen_release }}
           CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha || github.sha }}
-        shell: bash
         run: |
           set -euo pipefail
           tmp="$RUNNER_TEMP/ggen-ecosystem-evidence"
@@ -186,13 +222,14 @@ jobs:
               return h.hexdigest()
           patch = root / 'ggen-sync.patch'
           receipt = {
-            'schema': 'https://ggen.dev/receipts/ecosystem-sync/v2',
+            'schema': 'https://ggen.dev/receipts/ecosystem-sync/v1',
             'repository': os.environ['GITHUB_REPOSITORY'],
             'source_sha': os.environ['CANDIDATE_SHA'],
             'run_id': os.environ['GITHUB_RUN_ID'],
             'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
-            'ggen_container_image': 'ghcr.io/seanchatmangpt/ggen-ecosystem',
-            'ggen_container_tag': os.environ['GGEN_CONTAINER_TAG'],
+            'ggen_release': os.environ['GGEN_RELEASE'],
+            'ggen_asset_sha256': os.environ['GGEN_ASSET_SHA256'],
+            'ggen_binary_sha256': os.environ.get('GGEN_BINARY_SHA256'),
             'marketplace_sha': os.environ['MARKETPLACE_SHA'],
             'working_directory': os.environ['GGEN_WORKING_DIRECTORY'],
             'packs': json.loads((root / 'packs.json').read_text()),
@@ -202,7 +239,7 @@ jobs:
           }
           (root / 'ecosystem-sync-receipt.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + chr(10))
           PY
-          sha256sum "$tmp/ggen-sync.patch" "$tmp/ecosystem-sync-receipt.json" "$tmp/packs.json" > "$tmp/SHA256SUMS"
+          sha256sum "$tmp/ggen-sync.patch" "$tmp/ecosystem-sync-receipt.json" "$tmp/packs.json" > "$tmp/SHA256SUMS
 
       - name: Upload deterministic replay evidence
         if: always()
@@ -217,7 +254,6 @@ jobs:
         if: always()
         env:
           SYNC_EXIT_CODE: ${{ steps.sync.outputs.exit_code }}
-        shell: bash
         run: |
           if [[ "${SYNC_EXIT_CODE:-not-run}" != 0 ]]; then
             echo "BUILD_BROKEN[GGEN_SYNC_RUN_FAILED]:${SYNC_EXIT_CODE:-not-run}" >&2
