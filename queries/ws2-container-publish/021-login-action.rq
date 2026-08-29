@@ -1,0 +1,5 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK {
+  ex:containerLogin gha:usesAction "docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3" .
+}

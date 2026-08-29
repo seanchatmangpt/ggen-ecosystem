@@ -1,0 +1,5 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK {
+  ex:containerLogin gha:usesAction ?a . FILTER(CONTAINS(STR(?a), "@74a5d142397b4f367a81961eba4e8cd7edddf772"))
+}
