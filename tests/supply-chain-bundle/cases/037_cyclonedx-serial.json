@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-037",
+  "work_key": "WS4-SCB-037",
+  "title": "cyclonedx serial",
+  "hypothesis": "The CycloneDX serial number must be a UUID URN.",
+  "acceptance_edge": "REFUSED[CDX_SERIAL]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/037_cyclonedx-serial.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/037_cyclonedx-serial.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-037:cyclonedx-serial",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "cyclonedx.serialNumber",
+    "value": "1234"
+  },
+  "expected": "REFUSED[CDX_SERIAL]"
+}
