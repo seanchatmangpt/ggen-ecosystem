@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P028",
+  "semantic_fingerprint": "a5ded29f",
+  "hypothesis": "path-traversal-output must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "path-traversal-output",
+  "invalid": {
+    "op": "confined",
+    "actual": "generated/../secret",
+    "expected": "generated/"
+  },
+  "control": {
+    "op": "confined",
+    "actual": "generated/ok.txt",
+    "expected": "generated/"
+  },
+  "expected_standing": "REFUSED[OUTPUT_PATH_ESCAPE]",
+  "rollback": "revert P028",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}
