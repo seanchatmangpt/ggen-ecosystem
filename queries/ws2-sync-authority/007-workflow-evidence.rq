@@ -1,0 +1,3 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK { ex:workflow gha:evidenceObligation "bind exact candidate SHA, composed container digest, marketplace submodule SHA, pack identities, generated patch digest, intrinsic GGen receipt, and GitHub run identity" . }

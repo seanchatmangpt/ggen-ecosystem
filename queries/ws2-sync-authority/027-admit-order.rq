@@ -1,0 +1,3 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK { ex:admit gha:stepOrder 2 . }
