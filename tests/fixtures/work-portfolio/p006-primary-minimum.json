@@ -1,0 +1,12 @@
+{
+  "id": "P006",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P006",
+  "edge": "primary-minimum",
+  "hypothesis": "Portfolio admission independently falsifies primary-minimum.",
+  "semantic_fingerprint": "05d236434026ff43",
+  "invalid": {
+    "primary_count": 49
+  },
+  "expected": "REFUSED[PRIMARY_UNDERFILLED]",
+  "control": {}
+}
