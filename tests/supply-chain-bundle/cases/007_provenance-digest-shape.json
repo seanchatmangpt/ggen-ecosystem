@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-007",
+  "work_key": "WS4-SCB-007",
+  "title": "provenance digest shape",
+  "hypothesis": "The subject digest must be 64 lowercase hexadecimal characters.",
+  "acceptance_edge": "REFUSED[PROV_SUBJECT_DIGEST_SHAPE]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/007_provenance-digest-shape.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/007_provenance-digest-shape.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-007:provenance-digest-shape",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "provenance.subject.0.digest.sha256",
+    "value": "not-a-digest"
+  },
+  "expected": "REFUSED[PROV_SUBJECT_DIGEST_SHAPE]"
+}
