@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-017",
+  "work_key": "WS4-SCB-017",
+  "title": "provenance builder id",
+  "hypothesis": "The builder identity must be the admitted GitHub-hosted runner.",
+  "acceptance_edge": "REFUSED[PROV_BUILDER_ID]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/017_provenance-builder-id.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/017_provenance-builder-id.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-017:provenance-builder-id",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "provenance.predicate.runDetails.builder.id",
+    "value": "https://example.invalid/runner"
+  },
+  "expected": "REFUSED[PROV_BUILDER_ID]"
+}
