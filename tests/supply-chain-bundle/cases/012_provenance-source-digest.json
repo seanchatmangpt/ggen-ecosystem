@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-012",
+  "work_key": "WS4-SCB-012",
+  "title": "provenance source digest",
+  "hypothesis": "The source material must bind the exact executing head.",
+  "acceptance_edge": "REFUSED[PROV_SOURCE_DIGEST]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/012_provenance-source-digest.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/012_provenance-source-digest.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-012:provenance-source-digest",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit",
+    "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "expected": "REFUSED[PROV_SOURCE_DIGEST]"
+}
