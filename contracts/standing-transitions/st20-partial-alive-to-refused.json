@@ -1,0 +1,1 @@
+{"id":"ST20","kind":"transition","from":"PARTIAL_ALIVE","to":"REFUSED","rule":"Require a typed policy, admission, or authority refusal on the next crown edge; prior partial evidence remains preserved.","exact_subject_required":true,"authority_effect":"NONE"}

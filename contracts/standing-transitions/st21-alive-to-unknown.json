@@ -1,0 +1,1 @@
+{"id":"ST21","kind":"transition","from":"ALIVE","to":"UNKNOWN","rule":"Require subject identity loss or expiry/invalidation of the evidence basis; historical ALIVE receipts remain preserved.","exact_subject_required":true,"authority_effect":"NONE"}

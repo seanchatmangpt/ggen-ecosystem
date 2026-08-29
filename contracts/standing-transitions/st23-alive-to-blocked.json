@@ -1,0 +1,1 @@
+{"id":"ST23","kind":"transition","from":"ALIVE","to":"BLOCKED","rule":"Require a newly observed external dependency that prevents current lawful execution; historical ALIVE evidence remains historical only.","exact_subject_required":true,"authority_effect":"NONE"}

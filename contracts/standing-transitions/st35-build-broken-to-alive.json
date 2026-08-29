@@ -1,0 +1,1 @@
+{"id":"ST35","kind":"transition","from":"BUILD_BROKEN","to":"ALIVE","rule":"Require a state-changing repair plus fresh exact-subject execution closing the failure and all crown edges with verifier receipt.","exact_subject_required":true,"authority_effect":"NONE"}

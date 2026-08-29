@@ -1,0 +1,1 @@
+{"id":"ST50","kind":"transition","from":"REFUSED","to":"UNSUPPORTED","rule":"Require removal or irrelevance of the refusal plus capability inspection proving the requested operation is unsupported; policy and capability remain separate axes.","exact_subject_required":true,"authority_effect":"NONE"}

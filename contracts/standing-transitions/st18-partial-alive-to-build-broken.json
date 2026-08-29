@@ -1,0 +1,1 @@
+{"id":"ST18","kind":"transition","from":"PARTIAL_ALIVE","to":"BUILD_BROKEN","rule":"Require observed execution of the previously unclosed build or test boundary and a concrete failure there.","exact_subject_required":true,"authority_effect":"NONE"}

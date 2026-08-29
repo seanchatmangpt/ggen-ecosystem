@@ -1,0 +1,1 @@
+{"id":"ST47","kind":"transition","from":"REFUSED","to":"ALIVE","rule":"Require removal of the refusal followed by fresh exact-subject execution and verifier receipt; authorization alone cannot crown ALIVE.","exact_subject_required":true,"authority_effect":"NONE"}

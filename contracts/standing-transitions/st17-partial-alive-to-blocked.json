@@ -1,0 +1,1 @@
+{"id":"ST17","kind":"transition","from":"PARTIAL_ALIVE","to":"BLOCKED","rule":"Require a newly observed external, tooling, transport, or authority dependency preventing the next lawful step.","exact_subject_required":true,"authority_effect":"NONE"}

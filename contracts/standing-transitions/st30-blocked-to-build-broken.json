@@ -1,0 +1,1 @@
+{"id":"ST30","kind":"transition","from":"BLOCKED","to":"BUILD_BROKEN","rule":"Require blocker clearance followed by attempted execution that reaches a build or test boundary and fails there.","exact_subject_required":true,"authority_effect":"NONE"}

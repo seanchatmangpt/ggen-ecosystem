@@ -1,0 +1,1 @@
+{"id":"ST48","kind":"transition","from":"REFUSED","to":"BLOCKED","rule":"Require removal of the refusal followed by observation of an external/tooling/transport dependency preventing the next lawful step.","exact_subject_required":true,"authority_effect":"NONE"}

@@ -1,0 +1,1 @@
+{"id":"ST32","kind":"transition","from":"BLOCKED","to":"REFUSED","rule":"Require discovery that the next attempted edge is prohibited by policy, admission, or authority; transport blockage alone is not refusal.","exact_subject_required":true,"authority_effect":"NONE"}

@@ -1,0 +1,1 @@
+{"id":"ST24","kind":"transition","from":"ALIVE","to":"BUILD_BROKEN","rule":"Require fresh execution against the exact subject reaching a build or test boundary and failing there; stale ALIVE evidence cannot override it.","exact_subject_required":true,"authority_effect":"NONE"}

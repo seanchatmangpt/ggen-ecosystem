@@ -1,0 +1,1 @@
+{"id":"ST29","kind":"transition","from":"BLOCKED","to":"ALIVE","rule":"Require blocker clearance followed by fresh exact-subject execution and verifier receipt; blocker disappearance alone cannot crown ALIVE.","exact_subject_required":true,"authority_effect":"NONE"}

@@ -1,0 +1,1 @@
+{"id":"ST38","kind":"transition","from":"BUILD_BROKEN","to":"REFUSED","rule":"Require discovery that further execution is prohibited by policy, admission, or authority; a failing build does not itself imply refusal.","exact_subject_required":true,"authority_effect":"NONE"}

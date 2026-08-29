@@ -1,0 +1,1 @@
+{"id":"ST39","kind":"transition","from":"UNSUPPORTED","to":"UNKNOWN","rule":"Require a capability-surface change or invalidation of prior unsupported evidence without enough new evidence to classify support.","exact_subject_required":true,"authority_effect":"NONE"}

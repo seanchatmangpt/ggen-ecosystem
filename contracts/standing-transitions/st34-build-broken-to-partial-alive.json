@@ -1,0 +1,1 @@
+{"id":"ST34","kind":"transition","from":"BUILD_BROKEN","to":"PARTIAL_ALIVE","rule":"Require a state-changing repair and fresh rerun that closes the failed boundary while leaving one or more crown edges explicitly unverified.","exact_subject_required":true,"authority_effect":"NONE"}
