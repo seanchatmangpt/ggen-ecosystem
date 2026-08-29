@@ -1,21 +1,65 @@
-## What this changes
+## Intent
 
-<!-- One or two sentences. If this regenerates a workflow, name which ontology fact changed. -->
+<!-- One sentence: what invariant or customer journey changes? -->
+
+## Exact subjects
+
+- Base `main`: `________________` (40-char SHA)
+- Proposed head: `________________` (40-char SHA)
+- GGen / Marketplace / capsule identities changed? `no / yes — list exact identities`
+
+## Authority classification
+
+- [ ] Semantic source / admission input
+- [ ] Hand-authored verifier, test, docs, or DX surface
+- [ ] Generated projection (must be produced by its declared manufacturer; never hand-edited)
+- [ ] Release / package / external DO path
+
+If generated, name the semantic source and real manufacturing command:
+
+```text
+source:
+command:
+receipt:
+```
 
 ## Verification
 
-<!-- Real command + real output, not a claim. Standing vocabulary: ALIVE / PARTIAL_ALIVE / BLOCKED / UNKNOWN -- see docs/STANDING.md. -->
+<!-- Real commands + real output. Inspection is not execution. -->
 
-- [ ] `just doctor` (or `bash scripts/doctor.sh`) run, output pasted below
-- [ ] If this touches `ontology.ttl` or a marketplace pack template: regenerated via real `ggen sync run`, generated `.github/workflows/*.yml` diff reviewed (never hand-edited)
-- [ ] If this touches the container path: `just chicago` (real, no-mocks smoke test) passes
+- [ ] `just github-dx` or the relevant GitHub DX court passes
+- [ ] `just doctor` / `just explain` run when the change affects ecosystem standing
+- [ ] Relevant narrow tests pass before broader tests
+- [ ] Generated workflow changes, if any, were regenerated from semantic source and reviewed as projections
+- [ ] No verifier or CI workflow conferred standing beyond its authority ceiling
 
+```text
+<paste concise real command output or link exact-head GitHub Actions evidence>
 ```
-<paste real command output here>
-```
 
-## Checklist
+## Standing
 
-- [ ] No generated file (`.github/workflows/*.yml`, `generated/`) hand-edited directly
-- [ ] Commit message written to a file and committed with `-F` if multi-line
-- [ ] Base branch is `main` at an exact resolved SHA, not a moving target
+Before: `________________`
+
+After: `________________`
+
+Evidence scope / remaining gaps:
+
+<!-- Use UNKNOWN / PARTIAL_ALIVE / ALIVE / BLOCKED / BUILD_BROKEN / UNSUPPORTED / REFUSED with typed reasons. -->
+
+## Risk and rollback
+
+- Irreversible effects: `none / describe`
+- Security or permission change: `none / describe exact permission delta`
+- Rollback: `revert this PR / describe other bounded rollback`
+
+## Review checklist
+
+- [ ] Base SHA was resolved before mutation; the PR does not silently assume a moving base.
+- [ ] All third-party GitHub Actions added or changed are pinned to an exact commit SHA.
+- [ ] Workflow permissions are explicit and least-privilege.
+- [ ] `pull_request_target` is not combined with checkout/execution of untrusted PR code.
+- [ ] No secret, token, private repository identity, or credential material is committed or logged.
+- [ ] Historical receipts are not promoted into current-head proof.
+- [ ] Generated files are not treated as semantic editing surfaces.
+- [ ] The PR has an independent falsifier for its main claim.
