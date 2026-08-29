@@ -1,0 +1,8 @@
+{
+  "expected": "selected profile",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "release-selected-profile",
+  "kind": "contains",
+  "remediation": "Record selected profile.",
+  "source": "docs/RELEASE.md"
+}
