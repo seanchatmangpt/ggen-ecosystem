@@ -1,0 +1,1 @@
+{"id":"ST10","kind":"transition","from":"UNKNOWN","to":"ALIVE","rule":"Require exact-subject observed execution plus verifier receipt; inspection-only promotion is forbidden.","exact_subject_required":true,"authority_effect":"NONE"}
