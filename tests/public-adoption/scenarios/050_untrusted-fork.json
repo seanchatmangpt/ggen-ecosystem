@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-050",
+  "title": "Untrusted fork authority fence",
+  "hypothesis": "A pull request from an untrusted fork cannot receive privileged DO authority.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:untrusted-fork",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "evaluate fork event permissions before running construction",
+  "oracle": [
+    "secrets are unavailable",
+    "only read-only validation is admitted"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "UNTRUSTED_FORK_AUTHORITY",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through UNTRUSTED_FORK_AUTHORITY",
+  "semantic_fingerprint": "SJ-050:untrusted-fork"
+}
