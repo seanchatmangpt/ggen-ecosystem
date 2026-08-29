@@ -1,0 +1,21 @@
+{
+  "name": "alive-recognized-plus-unknown",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "1-submodules",
+      "standing": "ALIVE"
+    },
+    {
+      "gate": "x",
+      "standing": "UNSUPPORTED"
+    }
+  ],
+  "expect": {
+    "status": "PARTIAL_ALIVE",
+    "step_count": 0
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P031",
+  "semantic_fingerprint": "eb5c308a"
+}
