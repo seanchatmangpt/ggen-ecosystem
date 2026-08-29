@@ -1,0 +1,12 @@
+{
+  "id": "P015",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P015",
+  "edge": "reserve-routes-defined",
+  "hypothesis": "Portfolio admission independently falsifies reserve-routes-defined.",
+  "semantic_fingerprint": "81b84a512f1cd359",
+  "invalid": {
+    "reserve_routes_defined": false
+  },
+  "expected": "REFUSED[RESERVE_ROUTE_MISSING]",
+  "control": {}
+}
