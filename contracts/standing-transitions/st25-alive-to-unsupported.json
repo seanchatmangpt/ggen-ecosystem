@@ -1,0 +1,1 @@
+{"id":"ST25","kind":"transition","from":"ALIVE","to":"UNSUPPORTED","rule":"Require a changed capability boundary proving the requested current operation is unsupported; past ALIVE applies only to its original subject boundary.","exact_subject_required":true,"authority_effect":"NONE"}
