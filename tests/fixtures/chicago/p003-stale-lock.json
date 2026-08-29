@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P003",
+  "semantic_fingerprint": "d36cfa05",
+  "hypothesis": "stale-lock must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "stale-lock",
+  "invalid": {
+    "op": "eq",
+    "actual": "old",
+    "expected": "current"
+  },
+  "control": {
+    "op": "eq",
+    "actual": "current",
+    "expected": "current"
+  },
+  "expected_standing": "REFUSED[STALE_LOCK]",
+  "rollback": "revert P003",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}
