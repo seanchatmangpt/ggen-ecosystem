@@ -1,0 +1,33 @@
+{
+  "name": "full-closure-cost",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "1-submodules",
+      "standing": "BLOCKED"
+    },
+    {
+      "gate": "9-workflow-drift",
+      "standing": "BLOCKED"
+    },
+    {
+      "gate": "11-image-presence",
+      "standing": "BLOCKED"
+    },
+    {
+      "gate": "12-fresh-consumer",
+      "standing": "BLOCKED"
+    },
+    {
+      "gate": "13-image-publication",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "step_count": 5,
+    "total_cost": 20
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P030",
+  "semantic_fingerprint": "92a8aee0"
+}
