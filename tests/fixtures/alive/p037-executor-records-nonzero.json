@@ -1,0 +1,27 @@
+{
+  "name": "executor-records-nonzero",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "x"
+      ],
+      "cost": 1,
+      "description": "x"
+    }
+  ],
+  "exits": [
+    7
+  ],
+  "expect": {
+    "standing": "BUILD_BROKEN",
+    "calls": 1,
+    "receipts": 1,
+    "receipt": {
+      "exit": 7
+    }
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P037",
+  "semantic_fingerprint": "b11aa2f6"
+}
