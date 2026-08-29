@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:ConstraintDiscovery a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Constraint Discovery"; skos:definition "A learned constraint discovered through execution, validation, or transport evidence." .

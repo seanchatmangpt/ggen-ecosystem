@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:LearningReceipt a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Learning Receipt"; skos:definition "A receipt recording model change produced by a material positive or negative observation." .

@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:EvidenceScope a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "Evidence Scope"; skos:definition "An explicit boundary describing what a piece of evidence proves and what it does not prove." .

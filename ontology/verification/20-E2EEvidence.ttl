@@ -1,0 +1,1 @@
+@prefix eco: <https://ggen.dev/ecosystem#> . @prefix skos: <http://www.w3.org/2004/02/skos/core#> . eco:E2EEvidence a skos:Concept; skos:inScheme eco:VerificationEvidenceScheme; skos:prefLabel "E2E Evidence"; skos:definition "Evidence produced by an end-to-end verifier over the admitted user-visible path." .
