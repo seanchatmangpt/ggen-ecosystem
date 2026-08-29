@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-029",
+  "title": "Read-only workflow permissions",
+  "hypothesis": "Construction succeeds without repository write permission.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:read-only-permissions",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "run construct with contents:read only",
+  "oracle": [
+    "generation completes in workspace",
+    "no GitHub mutation occurs"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-029:read-only-permissions"
+}
