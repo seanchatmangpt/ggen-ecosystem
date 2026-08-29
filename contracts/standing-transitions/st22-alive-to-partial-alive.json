@@ -1,0 +1,1 @@
+{"id":"ST22","kind":"transition","from":"ALIVE","to":"PARTIAL_ALIVE","rule":"Require evidence that a previously crowned boundary no longer satisfies its exact-subject proof while some positive evidence remains valid.","exact_subject_required":true,"authority_effect":"NONE"}
