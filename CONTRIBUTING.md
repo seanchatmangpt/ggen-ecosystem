@@ -1,48 +1,64 @@
 # Contributing to ggen-ecosystem
 
-This repository is a semantic control-plane root, not conventional
-application code -- there is no build/lint/test in the usual sense. Read
-`CLAUDE.md` and `AGENTS.md` first; they are the binding operating doctrine
-for this repo, not optional context.
+This repository is a governed semantic software-manufacturing composition root rather than a conventional hand-coded application. Read `AGENTS.md`, `CLAUDE.md`, `docs/STANDING.md`, and `docs/CURRENT-RELEASE-STANDING.md` before changing authority-bearing, generated, or release surfaces.
+
+## Choose the right entry point
+
+Use `SUPPORT.md` and the GitHub issue chooser rather than a blank issue:
+
+- reproducible defect → Bug Report;
+- desired capability → Feature Request or Capability Gap;
+- repeated contributor/operator friction → Developer Experience / QoL;
+- missing/stale/contradictory docs → Documentation Gap;
+- security vulnerability → private GitHub Security Advisory, never a public issue.
+
+GitHub Discussions are not currently enabled for this repository, so contributor guidance must not route users there.
 
 ## Before you start
 
-1. **Clone with submodules.** `vendor/ggen` and `vendor/ggen-marketplace` are
-   real git submodules: `git clone --recurse-submodules <url>`, or
-   `git submodule update --init --recursive` (`make submodules`) after a
-   plain clone.
-2. **Never hand-edit generated files.** `.github/workflows/*.yml` are
-   generated from `ontology.ttl` via `ggen sync run`. If a generated
-   workflow is wrong, fix the ontology facts (or the marketplace pack
-   template that renders it) and regenerate -- never hand-patch the `.yml`.
-   The same rule applies to anything under `generated/`.
-3. **Use the operator surface**, not ad hoc commands: `just --list` (or
-   `make verify` if you don't have `just`) for the canonical recipes --
-   `doctor`, `chicago`, `dod`, `bench`, `stress`, `replay`, `falsify`.
+1. **Resolve the exact base.** Record the current `main` SHA before mutation. A branch name is a moving reference; evidence is bound to commits.
+2. **Clone with submodules when the task needs the composed ecosystem.** `vendor/ggen`, `vendor/ggen-marketplace`, and `vendor/autofde-lab` are real gitlinks. Use `git clone --recurse-submodules ...` or `git submodule update --init --recursive`.
+3. **Never hand-edit GGen-generated projections.** `.github/workflows/ggen-ecosystem-sync.yml` and `.github/workflows/ggen-ecosystem-container.yml` are manufactured consequences. Repair `ontology.ttl` or the admitted Marketplace producer/template and regenerate with the real GGen path.
+4. **Use the operator surface.** `just --list` exposes the repository’s supported commands, including `doctor`, `github-dx`, `certify`, `chicago`, `dod`, `replay`, `falsify`, `bench`, and `stress`.
+5. **Keep GitHub workflows least-privilege.** Every workflow must declare explicit permissions. Every external Action must be pinned to an exact 40-character commit SHA.
+6. **Fence privileged PR events.** A `pull_request_target` workflow must never checkout or execute untrusted pull-request code.
 
-## Workflow
+## Development workflow
 
-1. Branch from `main` at an exact, resolved SHA -- never branch from a
-   moving target.
-2. Make your change. If it touches `ontology.ttl` or a marketplace pack
-   template, regenerate with a real `ggen sync run` and commit the
-   regenerated output alongside the source change.
-3. Verify for real before opening a PR: `just doctor` (should report no
-   `BLOCKED`/`BUILD_BROKEN`/`UNKNOWN`), and `just chicago` if your change
-   touches the container/manufacturing path.
-4. Use the repo's standing vocabulary (`docs/STANDING.md`) in your PR
-   description if you're making a claim about what now works --
-   `ALIVE`/`PARTIAL_ALIVE`/`BLOCKED`/`UNKNOWN`, not "done"/"works".
-   Cite the command that verifies the claim.
+1. Create a purpose branch from the recorded exact `main` SHA.
+2. Inspect the relevant semantic/control sources and run the cheapest read-only diagnostic before editing (`just doctor`, `just next`, `just explain`, or `just github-dx`).
+3. Make the lawful source change. If it changes a generated consequence, execute the declared manufacturer and preserve the receipt/diff.
+4. Run narrow falsifiers first, then the broader relevant court.
+5. Before opening a PR, run `just github-dx`. Run `just doctor` / certification courts when standing or producer identity is affected, and `just chicago` when the container/manufacturing path is affected.
+6. Open a PR using the repository template. Record exact base/head subjects, authority classification, real verification, standing, risk, and rollback.
+7. Treat GitHub Actions as supplemental evidence. A green workflow does not promote a release or artifact beyond that workflow’s declared authority.
 
-## Commit messages
+## Standing claims
 
-Write the message to a file and use `git commit -F <file>` for anything
-multi-line -- avoids shell metacharacter corruption from backticks,
-parentheses, etc. in `-m '...'` strings.
+Use only the repository vocabulary: `UNKNOWN`, `PARTIAL_ALIVE`, `ALIVE`, `BLOCKED`, `BUILD_BROKEN`, `UNSUPPORTED`, and typed `REFUSED`.
 
-## Questions
+Inspection is not execution. Historical receipts are not current-head proof. A missing capability is `UNSUPPORTED`, not a reason to improvise a success claim.
 
-Open a [Discussion](https://github.com/seanchatmangpt/ggen-ecosystem/discussions)
-for design questions; use Issues for concrete bugs or well-scoped feature
-requests.
+## Commit and PR semantics
+
+PR titles are mechanically checked and should use:
+
+```text
+type(optional-scope): concise summary
+```
+
+Accepted types include `feat`, `fix`, `docs`, `test`, `ci`, `chore`, `refactor`, `perf`, `build`, `revert`, `security`, and `dx`.
+
+For multi-line local commit messages, prefer `git commit -F <message-file>` to avoid shell quoting corruption.
+
+## GitHub-native DX
+
+`docs/GITHUB-DX.md` is the capability map for issue forms, CODEOWNERS, Dependabot, labeling, Dependency Review, CodeQL, repository hygiene, supply-chain attestations, release notes, and Copilot instructions/agents/prompts/setup.
+
+Run:
+
+```bash
+just github-dx
+```
+
+before proposing GitHub workflow or collaboration changes. The court is read-only and fails closed on mutable Action refs, missing workflow permissions, unsafe `pull_request_target` patterns, dead Discussions routing, and other repository-native drift.
