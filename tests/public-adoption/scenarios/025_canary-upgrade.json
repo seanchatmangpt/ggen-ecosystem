@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-025",
+  "title": "Canary upgrade",
+  "hypothesis": "A candidate pin can be exercised on a bounded repository subset.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:canary-upgrade",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "run candidate construction only on canary fixtures",
+  "oracle": [
+    "non-canary subjects unchanged",
+    "canary receipt binds candidate"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-025:canary-upgrade"
+}
