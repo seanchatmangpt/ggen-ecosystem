@@ -1,16 +1,6 @@
-.PHONY: alive explain next submodules image sync doctor verify chicago dod receipt-verify replay
+.PHONY: submodules image sync doctor verify chicago dod receipt-verify replay
 
-# The 1000x Unified Developer Interface: AutoFDE-powered self-closing loop.
-alive:
-	python3 scripts/ecosystem_alive.py --apply-safe
-
-explain:
-	python3 scripts/ecosystem_alive.py --explain
-
-next:
-	python3 scripts/ecosystem_alive.py --next
-
-# Initialize/update vendored submodules (vendor/ggen, vendor/ggen-marketplace, vendor/autofde-lab).
+# Initialize/update vendored submodules (vendor/ggen, vendor/ggen-marketplace).
 submodules:
 	git submodule update --init --recursive
 
@@ -59,13 +49,12 @@ dod:
 		&& awk '/^## Roll-up/{p=1} p && /^## / && !/^## Roll-up/{p=0} p' docs/DEFINITION-OF-DONE.md \
 		|| cat docs/DEFINITION-OF-DONE.md
 
-# Verify a manufacturing receipt. Usage: make receipt-verify RECEIPT=path/to/receipt.json
+# Verify a manufacturing receipt.
 receipt-verify:
-	@test -n "$(RECEIPT)" || { echo "usage: make receipt-verify RECEIPT=<path>" >&2; exit 2; }
 	@if [ -x scripts/verify-receipt.sh ]; then \
-		scripts/verify-receipt.sh "$(RECEIPT)"; \
+		scripts/verify-receipt.sh $${RECEIPT:-receipts/release-v26.8.28-container.json}; \
 	elif [ -f scripts/verify-receipt.sh ]; then \
-		sh scripts/verify-receipt.sh "$(RECEIPT)"; \
+		sh scripts/verify-receipt.sh; \
 	else \
 		echo "receipt-verify: TODO -- scripts/verify-receipt.sh not found yet"; \
 	fi
@@ -73,7 +62,7 @@ receipt-verify:
 # Dry-run replay check.
 replay:
 	@if [ -x tests/replay_check.sh ]; then \
-		tests/replay_check.sh --dry-run; \
+		tests/replay_check.sh --dry-run $${RECEIPT:-receipts/release-v26.8.28-container.json}; \
 	elif [ -f tests/replay_check.sh ]; then \
 		sh tests/replay_check.sh --dry-run; \
 	else \
