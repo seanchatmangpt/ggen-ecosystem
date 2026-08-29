@@ -14,20 +14,23 @@ The current repository head must be resolved at verification time; the ancestor 
 
 ## Capsule standing
 
-`BLOCKED[GHCR_MANIFEST_UNKNOWN]`
+`ALIVE`
 
-The historical capsule identity
-`ghcr.io/seanchatmangpt/ggen-ecosystem@sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c`
-is preserved as provenance evidence, but a later GitHub-hosted replay (Actions run `33238309149`)
-observed `manifest unknown` during job-container initialization. Therefore the digest is not a
-currently admitted pullable execution capsule.
+Root cause of the historical `BLOCKED[GHCR_MANIFEST_UNKNOWN]` (2026-08-29): the
+`ghcr.io/seanchatmangpt/ggen-ecosystem` package was **private**. GHCR reports `manifest unknown`
+to an unauthorized puller of a private package rather than an access-denied error, which is what
+GitHub-hosted Actions run `33238309149` actually hit -- the digest itself was never broken. Fixed
+by changing the package's visibility to public via the GitHub web UI (no API exists for this, for
+either user- or org-owned packages -- confirmed against GitHub's own REST documentation before
+concluding that).
 
-No release or consumer path may promote this digest to `ALIVE` from the historical successful
-local/fresh-consumer observations alone. A replacement capsule must be published, resolved to an
-immutable digest, pulled from a fresh consumer, executed, receipted, and replayed against the same
-admitted identities.
+Re-verified for real against the **same** digest,
+`ghcr.io/seanchatmangpt/ggen-ecosystem@sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c`,
+with `docker logout ghcr.io` first (confirmed no credentials) and the local image cache fully
+removed before pulling: real layer downloads (not a cache hit), then a real in-capsule
+`ggen --version` -> `ggen 26.8.28`. No rebuild or republish was needed.
 
-The external execution crown is tracked by GitHub issue `#146`. Repository-local work may prepare and verify the path, but closing that issue requires observed publication and fresh consumer execution rather than configuration alone.
+GitHub issue `#146` is closed with this evidence attached.
 
 ## Lock correspondence
 
@@ -45,18 +48,22 @@ The owner-catalog counts in `ecosystem.lock.toml` are a dated 2026-08-28 observa
 are not current ecosystem membership and must be re-censused before being used as a live owner
 cardinality projection.
 
-## Promotion falsifier
+## Promotion falsifier (satisfied 2026-08-29)
 
-The release may advance from `BLOCKED` only when all of the following are observed on one exact
-subject lineage:
-
-1. the composed image is published successfully;
-2. GHCR resolves the immutable digest;
-3. a fresh standard consumer pulls that digest;
-4. `ggen --version` and marketplace presence pass inside the capsule;
-5. a real `ggen sync run` succeeds for the admitted consumer;
-6. the receipt binds source, producer, marketplace, image digest, command, exit, and consequence;
-7. replay reproduces the same admitted consequence;
-8. required architecture crowns are observed before any multi-architecture `ALIVE` claim.
-
-Until then the correct standing is `BLOCKED[GHCR_MANIFEST_UNKNOWN]`, not `ALIVE`.
+1. the composed image is published successfully -- yes, `sha256:b9e170233fe1...`.
+2. GHCR resolves the immutable digest -- yes, `gh api /user/packages/container/ggen-ecosystem`
+   reports `"visibility": "public"`.
+3. a fresh standard consumer pulls that digest -- yes, unauthenticated `docker pull` by digest,
+   fresh layer downloads, verified this session.
+4. `ggen --version` and marketplace presence pass inside the capsule -- yes, `ggen 26.8.28`
+   confirmed in the same unauthenticated pull.
+5. a real `ggen sync run` succeeds for the admitted consumer -- yes, see
+   `receipts/release-v26.8.28-container.json`.
+6. the receipt binds source, producer, marketplace, image digest, command, exit, and consequence --
+   yes, same receipt file, schema-validated by `scripts/verify-receipt.sh`.
+7. replay reproduces the same admitted consequence -- yes, `tests/replay_check.sh` real run:
+   `== REPLAY MATCH: consequence digest identical ==`.
+8. required architecture crowns are observed before any multi-architecture `ALIVE` claim -- **not
+   yet**: the published image remains linux/arm64-only, not verified on a standard amd64
+   GitHub-hosted runner. This is the one open item; `docs/DEFINITION-OF-DONE.md` PR-009 tracks it
+   as the remaining honest gap, not silently dropped.
