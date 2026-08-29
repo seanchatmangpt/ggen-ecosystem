@@ -1,0 +1,12 @@
+== stress test: 256 concurrent `ggen sync run --dry-run` processes ==
+{
+  "stress_test": "concurrent_ggen_sync_run_dry_run",
+  "parallelism": 256,
+  "crashed_runs": [],
+  "all_exit_zero": true,
+  "unique_graph_hashes_observed": 1,
+  "graph_hash_consistent": true,
+  "graph_hash_hex": "e967a087760c0b65073878759c858aec7a63e7e8731cffb5d3c29b2fedc242f7",
+  "ggen_lock_untouched_by_dry_run": true,
+  "PASS": true
+}
