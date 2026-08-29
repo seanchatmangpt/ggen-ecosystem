@@ -1,0 +1,25 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P039",
+  "semantic_fingerprint": "25232b8f",
+  "hypothesis": "latest-fallback must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "latest-fallback",
+  "invalid": {
+    "op": "not_contains",
+    "actual": [
+      "v26.8.28",
+      "latest"
+    ],
+    "expected": "latest"
+  },
+  "control": {
+    "op": "not_contains",
+    "actual": [
+      "v26.8.28"
+    ],
+    "expected": "latest"
+  },
+  "expected_standing": "REFUSED[LATEST_FALLBACK]",
+  "rollback": "revert P039",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}
