@@ -1,0 +1,20 @@
+{
+  "name": "duplicate-last-alive-wins",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "9-workflow-drift",
+      "standing": "BLOCKED"
+    },
+    {
+      "gate": "9-workflow-drift",
+      "standing": "ALIVE"
+    }
+  ],
+  "expect": {
+    "step_count": 0
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P024",
+  "semantic_fingerprint": "f04614c0"
+}
