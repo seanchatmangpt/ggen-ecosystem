@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-044",
+  "title": "Registry authentication recovery",
+  "hypothesis": "A registry denial is distinguished from image absence.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:registry-auth-failure",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "inject a 401 response while pulling the immutable digest",
+  "oracle": [
+    "reason is authentication-specific",
+    "credentials are never logged"
+  ],
+  "expected_standing": "BLOCKED",
+  "reason_code": "REGISTRY_AUTH_REQUIRED",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through REGISTRY_AUTH_REQUIRED",
+  "semantic_fingerprint": "SJ-044:registry-auth-failure"
+}
