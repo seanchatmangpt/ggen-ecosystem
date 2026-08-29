@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-015",
+  "title": "Pack compatibility",
+  "hypothesis": "Pack and GGen constraints are checked before construction.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:pack-version-compatibility",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "evaluate pinned pack requirements against pinned GGen",
+  "oracle": [
+    "compatibility result is explicit",
+    "incompatible pair cannot construct"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-015:pack-version-compatibility"
+}
