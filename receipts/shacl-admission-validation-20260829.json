@@ -1,0 +1,10 @@
+{
+  "validation": "pyshacl_admission_shapes_conformance",
+  "command": "pyshacl -s admission/shapes.ttl -d ontology.ttl -i rdfs -f human",
+  "wall_clock_s": 0.374,
+  "ontology_ttl_lines": 499,
+  "ontology_ttl_triples": 223,
+  "conforms": true,
+  "note": "The 150 real Chicago consumer scenarios (tools/chicago_scenarios/*.py) each carry their own embedded, self-contained ontology/SPARQL for the chicago_consumer_matrix.py harness -- they are NOT merged into this repo's root ontology.ttl, which stays a small, stable 223-triple graph. This validation confirms the real, current root ontology still conforms to admission/shapes.ttl after all recent concurrent merges, not that the scenario corpus itself was SHACL-validated (it has its own real double-generation-identity check instead, see chicago-consumer-matrix-full-150-20260829.json).",
+  "PASS": true
+}
