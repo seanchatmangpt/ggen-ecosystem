@@ -1,0 +1,22 @@
+{
+  "errc_pass": "Fortune-5 table stakes, orthogonal to prior session work",
+  "timestamp_utc": "2026-08-29T19:30:00Z",
+  "evidence_anchor": "tests/fixtures/chicago/p046-sbom-missing.json (pre-existing tracked gap in this repo's own falsifier suite)",
+  "eliminate": "none found this pass",
+  "reduce": "none this pass (deferred: branch protection remains intentionally unapplied, see docs/BRANCH-PROTECTION.md)",
+  "raise": "none this pass",
+  "create": {
+    "sbom_provenance": {"pr": 187, "merged": true, "detail": "docker/build-push-action native sbom:true / provenance:true on both amd64/arm64 build jobs"},
+    "cosign_signing": {"pr": 186, "merged": true, "detail": "keyless OIDC signing via sigstore/cosign-installer, id-token: write, no long-lived key"},
+    "trivy_scan": {"pr": 185, "merged": true, "detail": "aquasecurity/trivy-action + github/codeql-action/upload-sarif, security-events: write, SARIF to code scanning"},
+    "changelog": {"pr": 183, "merged": true},
+    "governance": {"pr": 182, "merged": true},
+    "third_party_notices": {"pr": 184, "merged": true}
+  },
+  "merge_note": "PRs 185/186 both independently touched ex:containerMerge's jobPermissions and appended steps at the same location -- real conflict on rebase, hand-resolved (not auto-merged blindly): merged both permission sets, merged both evidenceEmitted/failureClassification texts, renumbered stepOrder collisions (cosign install/sign=3/4, trivy scan/upload=5/6). Verified nothing dropped: real diff review confirmed all 6 merge-manifest steps present post-resolution.",
+  "post_merge_verification": {
+    "doctor": "no BLOCKED/BUILD_BROKEN/UNKNOWN verdicts",
+    "workflow_yaml": "valid, 3 jobs (build-amd64/build-arm64/merge-manifest), merge-manifest has 4 permissions + 6 steps in correct order",
+    "dockerfile_check": "docker buildx build --check -- Check complete, no warnings found"
+  }
+}
