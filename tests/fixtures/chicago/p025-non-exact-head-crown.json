@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P025",
+  "semantic_fingerprint": "3b30e176",
+  "hypothesis": "non-exact-head-crown must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "non-exact-head-crown",
+  "invalid": {
+    "op": "eq",
+    "actual": "head-old",
+    "expected": "head-current"
+  },
+  "control": {
+    "op": "eq",
+    "actual": "head-current",
+    "expected": "head-current"
+  },
+  "expected_standing": "REFUSED[NON_EXACT_HEAD_CROWN]",
+  "rollback": "revert P025",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}
