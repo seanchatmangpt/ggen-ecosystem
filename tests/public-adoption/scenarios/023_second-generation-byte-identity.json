@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-023",
+  "title": "Second-generation byte identity",
+  "hypothesis": "A second clean generation is byte-identical to the first.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:second-generation-byte-identity",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "hash all declared generated outputs from two clean roots",
+  "oracle": [
+    "path sets match",
+    "per-file hashes match"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-023:second-generation-byte-identity"
+}
