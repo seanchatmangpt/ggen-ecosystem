@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-024",
+  "work_key": "WS4-SCB-024",
+  "title": "spdx document id",
+  "hypothesis": "The document identifier must be SPDXRef-DOCUMENT.",
+  "acceptance_edge": "REFUSED[SPDX_DOCUMENT_ID]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/024_spdx-document-id.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/024_spdx-document-id.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-024:spdx-document-id",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "spdx.SPDXID",
+    "value": "SPDXRef-WRONG"
+  },
+  "expected": "REFUSED[SPDX_DOCUMENT_ID]"
+}
