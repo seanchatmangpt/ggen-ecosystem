@@ -1,0 +1,13 @@
+{
+  "sweep": "combined falsifier suite",
+  "timestamp_utc": "2026-08-29T18:45:00Z",
+  "suites": {
+    "tests/release_frontier": "45/50 (5 correctly-deferred multi-arch crown falsifiers)",
+    "tests/doctor_contracts": "50/50",
+    "tests/replay_contracts": "50/50",
+    "tests/container-runtime": "50/50",
+    "chicago_falsifiers": "50/50 negative/control pairs"
+  },
+  "total": "195/200 combined shell suites + 50/50 Chicago pairs",
+  "context": "post 20-agent DoD swarm (6 real PRs merged: #175 TRANSPORT.md, #176 certify test harness, #177 python lint, #178 REPLAY.md, #179 4th autonomics action, #180 dod_engine reconciliation)"
+}
