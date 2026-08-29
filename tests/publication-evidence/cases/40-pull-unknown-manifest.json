@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-041",
+  "title": "Unknown manifest remains blocked",
+  "hypothesis": "Unknown manifest remains blocked",
+  "acceptance_edge": "publication.pull-unknown-manifest",
+  "evidence": [
+    "pull failed: manifest unknown"
+  ],
+  "expected": {
+    "standing": "BLOCKED",
+    "reason": "MANIFEST_UNKNOWN"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from BLOCKED[MANIFEST_UNKNOWN]",
+  "semantic_fingerprint": "fp:publication:pull-unknown-manifest:BLOCKED:MANIFEST_UNKNOWN"
+}
