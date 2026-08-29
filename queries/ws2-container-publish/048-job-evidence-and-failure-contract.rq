@@ -1,0 +1,5 @@
+PREFIX gha: <http://seanchatmangpt.github.io/packs/github-actions#>
+PREFIX ex: <https://ggen.io/ecosystem/github-sync#>
+ASK {
+  ex:containerBuild gha:evidenceEmitted ?e ; gha:failureClassification ?f . FILTER(CONTAINS(STR(?e), "digest") && CONTAINS(STR(?f), "BUILD_BROKEN"))
+}
