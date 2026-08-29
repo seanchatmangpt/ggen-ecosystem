@@ -29,7 +29,12 @@ class AliveCases(unittest.TestCase):
                     def runner(argv,**kwargs):
                         calls.append({"argv":argv,"kwargs":kwargs})
                         code=exits.pop(0)
-                        return subprocess.CompletedProcess(argv,code,case.get("stdout",""),case.get("stderr",""))
+                        expected_receipt=case.get("expect",{}).get("receipt",{})
+                        return subprocess.CompletedProcess(
+                            argv, code,
+                            case.get("stdout", expected_receipt.get("stdout", "")),
+                            case.get("stderr", expected_receipt.get("stderr", "")),
+                        )
                     steps=[MOD._step(s["argv"],s["cost"],s["description"],authority=s.get("authority")) for s in case["steps"]]
                     result=MOD.execute_safe_steps({"steps":steps},runner)
                     self.assertEqual(result["standing"],case["expect"]["standing"])
