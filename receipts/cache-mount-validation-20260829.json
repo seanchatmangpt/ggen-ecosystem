@@ -1,0 +1,18 @@
+{
+  "validation": "local Dockerfile cache-mount + merged-RUN correctness",
+  "timestamp_utc": "2026-08-29T19:33:00Z",
+  "first_build": {
+    "description": "cold local BuildKit cache (never seen these mount targets before), same as a real CI runner's first-ever build",
+    "cargo_build_step_duration": "1698.4s (28m22s)",
+    "result": "success, real ggen binary produced, 192 marketplace packs bundled"
+  },
+  "second_build": {
+    "description": "identical Dockerfile/source, no changes",
+    "result": "every layer CACHED including the cargo build step -- confirms merging the binary cp into the cache-mounted RUN did not break persistence to the image layer"
+  },
+  "runtime_verification": {
+    "ggen_version": "ggen 26.8.28",
+    "pack_count": 192
+  },
+  "real_finding": "local BuildKit layer cache already worked before this session's changes (Docker's default behavior); the NEW value from this session's cache-from/cache-to:type=gha wiring is specifically making that same cache persist ACROSS separate GitHub-hosted-runner VMs, which a local test cannot demonstrate -- only a real CI run with a warm GHA cache can. That remains blocked on the pending GHCR repo-link step."
+}
