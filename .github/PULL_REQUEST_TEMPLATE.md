@@ -1,21 +1,44 @@
+## Subject
+
+- Repository: `seanchatmangpt/ggen-ecosystem`
+- Base ref: `main`
+- Exact base SHA: `<sha>`
+- Exact head SHA: `<sha>`
+
 ## What this changes
 
-<!-- One or two sentences. If this regenerates a workflow, name which ontology fact changed. -->
+<!-- One or two sentences. If this regenerates the sync workflow, name the authoritative ontology/config/pack input that changed. -->
 
-## Verification
+## Standing and evidence
 
-<!-- Real command + real output, not a claim. Standing vocabulary: ALIVE / PARTIAL_ALIVE / BLOCKED / UNKNOWN -- see docs/STANDING.md. -->
+<!-- Use only the standing vocabulary from AGENTS.md. Paste commands plus exits/output; GitHub status metadata alone is not execution proof. -->
 
-- [ ] `just doctor` (or `bash scripts/doctor.sh`) run, output pasted below
-- [ ] If this touches `ontology.ttl` or a marketplace pack template: regenerated via real `ggen sync run`, generated `.github/workflows/*.yml` diff reviewed (never hand-edited)
-- [ ] If this touches the container path: `just chicago` (real, no-mocks smoke test) passes
+Standing: `UNKNOWN`
 
+- [ ] Narrowest relevant verifier executed
+- [ ] `just doctor` (or `bash scripts/doctor.sh`) executed when the environment supports it
+- [ ] If certification changed: `just certify-test` executed
+- [ ] If the container/customer journey changed: `just chicago` executed or the unavailable boundary is typed below
+- [ ] Exact PR head re-read after the last push
+
+```text
+command: <exact command>
+exit: <exit code>
+output: <bounded evidence>
 ```
-<paste real command output here>
-```
 
-## Checklist
+## Generated projections
 
-- [ ] No generated file (`.github/workflows/*.yml`, `generated/`) hand-edited directly
-- [ ] Commit message written to a file and committed with `-F` if multi-line
-- [ ] Base branch is `main` at an exact resolved SHA, not a moving target
+- [ ] `.github/workflows/ggen-ecosystem-sync.yml`, `generated/`, `consumer/`, and `.ggen-v2/` were not hand-edited
+- [ ] If a generated projection changed, its authoritative semantic input changed in the same lineage and real `ggen sync run` evidence is attached
+
+## Authority / actuation
+
+- [ ] SELECT, CONSTRUCT, and DO remain separated
+- [ ] No new ambient write authority or secret exposure was introduced
+- [ ] Any actuation path retains a receipt/replay boundary
+
+## Review receipt
+
+- Falsifier: `<what would prove this change wrong>`
+- Remaining blocker or exclusion: `<none or typed boundary>`
