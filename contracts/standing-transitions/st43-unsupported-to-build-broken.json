@@ -1,0 +1,1 @@
+{"id":"ST43","kind":"transition","from":"UNSUPPORTED","to":"BUILD_BROKEN","rule":"Require discovery of a supported execution path and an actual attempt that reaches a build or test boundary and fails there.","exact_subject_required":true,"authority_effect":"NONE"}
