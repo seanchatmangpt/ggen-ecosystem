@@ -1,15 +1,5 @@
 name: GGen Ecosystem Sync
 on:
-  pull_request:
-    paths:
-      - 'ggen.toml'
-      - 'ontology.ttl'
-      - 'ontology/**'
-      - 'templates/**'
-      - '.github/workflows/ggen-ecosystem-sync.yml'
-      - 'ecosystem.lock.toml'
-      - 'vendor/ggen'
-      - 'vendor/ggen-marketplace'
   workflow_call:
     inputs:
       ggen_container_tag:
@@ -21,12 +11,7 @@ on:
         description: Exact ggen marketplace commit required by every pack (must match vendor/ggen-marketplace submodule pin)
         required: false
         type: string
-        default: 89adf4c8476f7edc8067fdbb1c256cfbfa22df6a
-      ggen_container_image:
-        description: Immutable OCI image reference for the composed ecosystem capsule
-        required: false
-        type: string
-        default: ghcr.io/seanchatmangpt/ggen-ecosystem@sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c
+        default: c779aec20d9c93727c7ad4464f1dd52ac8e066e4
       working_directory:
         description: Repository relative directory containing ggen.toml
         required: false
@@ -53,12 +38,7 @@ on:
         description: Exact ggen marketplace commit required by every pack (must match vendor/ggen-marketplace submodule pin)
         required: true
         type: string
-        default: 89adf4c8476f7edc8067fdbb1c256cfbfa22df6a
-      ggen_container_image:
-        description: Immutable OCI image reference for the composed ecosystem capsule
-        required: true
-        type: string
-        default: ghcr.io/seanchatmangpt/ggen-ecosystem@sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c
+        default: c779aec20d9c93727c7ad4464f1dd52ac8e066e4
       working_directory:
         description: Repository relative directory containing ggen.toml
         required: true
@@ -77,7 +57,7 @@ on:
 
 
 concurrency:
-  group: ggen-ecosystem-sync-${{ github.repository }}-${{ github.ref }}-${{ inputs.working_directory || '.' }}
+  group: ggen-ecosystem-sync-${{ github.repository }}-${{ github.ref }}-${{ inputs.working_directory }}
   cancel-in-progress: false
 
 
@@ -93,11 +73,11 @@ jobs:
 
     name: Deterministic ecosystem manufacture
     container:
-      image: ${{ inputs.ggen_container_image || 'ghcr.io/seanchatmangpt/ggen-ecosystem@sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c' }}
+      image: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.ggen_container_tag }}
 
     steps:
       - name: Checkout exact candidate
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           submodules: recursive
           persist-credentials: false
@@ -106,16 +86,15 @@ jobs:
         
       - name: Admit immutable producer and pack identities
         env:
-          GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory || '.' }}
-          MARKETPLACE_SHA: ${{ inputs.marketplace_sha || '89adf4c8476f7edc8067fdbb1c256cfbfa22df6a' }}
-          GGEN_CONTAINER_TAG: ${{ inputs.ggen_container_tag || 'v26.8.28' }}
+          GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory }}
+          MARKETPLACE_SHA: ${{ inputs.marketplace_sha }}
+          GGEN_CONTAINER_TAG: ${{ inputs.ggen_container_tag }}
           CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha || github.sha }}
         shell: bash
         run: |
           set -euo pipefail
           [[ "$(git rev-parse HEAD)" = "$CANDIDATE_SHA" ]] || { echo 'REFUSED[EXACT_HEAD_MISMATCH]' >&2; exit 2; }
           [[ "$MARKETPLACE_SHA" =~ ^[0-9a-f]{40}$ ]] || { echo 'REFUSED[INVALID_MARKETPLACE_SHA]' >&2; exit 2; }
-          [[ "${{ inputs.ggen_container_image || 'ghcr.io/seanchatmangpt/ggen-ecosystem@sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c' }}" =~ @sha256:[0-9a-f]{64}$ ]] || { echo 'REFUSED[IMMUTABLE_CONTAINER_DIGEST_REQUIRED]' >&2; exit 2; }
           submodule_sha="$(git -C vendor/ggen-marketplace rev-parse HEAD)"
           [[ "$submodule_sha" = "$MARKETPLACE_SHA" ]] || { echo "REFUSED[MARKETPLACE_SUBMODULE_DRIFT]:${submodule_sha}:${MARKETPLACE_SHA}" >&2; exit 2; }
           mkdir -p "$RUNNER_TEMP/ggen-ecosystem-evidence"
@@ -150,16 +129,16 @@ jobs:
           PY
 
       - name: Restore untrusted native GGen pack cache
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
-          key: ggen-git-packs-${{ runner.os }}-${{ inputs.marketplace_sha || '89adf4c8476f7edc8067fdbb1c256cfbfa22df6a' }}
-          path: ${{ inputs.working_directory || '.' }}/.ggen-v2/git-packs
+          key: ggen-git-packs-${{ runner.os }}-${{ inputs.marketplace_sha }}
+          path: ${{ inputs.working_directory }}/.ggen-v2/git-packs
         
       - name: Manufacture with ggen sync run (ggen preinstalled in the composed container)
         id: sync
         env:
-          GGEN_DRY_RUN: ${{ inputs.dry_run || false }}
-          GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory || '.' }}
+          GGEN_DRY_RUN: ${{ inputs.dry_run }}
+          GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory }}
         continue-on-error: true
         shell: bash
         run: |
@@ -180,9 +159,9 @@ jobs:
         if: always()
         env:
           SYNC_EXIT_CODE: ${{ steps.sync.outputs.exit_code }}
-          GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory || '.' }}
-          MARKETPLACE_SHA: ${{ inputs.marketplace_sha || '89adf4c8476f7edc8067fdbb1c256cfbfa22df6a' }}
-          GGEN_CONTAINER_TAG: ${{ inputs.ggen_container_tag || 'v26.8.28' }}
+          GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory }}
+          MARKETPLACE_SHA: ${{ inputs.marketplace_sha }}
+          GGEN_CONTAINER_TAG: ${{ inputs.ggen_container_tag }}
           CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha || github.sha }}
         shell: bash
         run: |
@@ -227,7 +206,7 @@ jobs:
 
       - name: Upload deterministic replay evidence
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           retention-days: ${{ inputs.artifact_retention_days }}
           if-no-files-found: error
@@ -244,3 +223,4 @@ jobs:
             echo "BUILD_BROKEN[GGEN_SYNC_RUN_FAILED]:${SYNC_EXIT_CODE:-not-run}" >&2
             exit 1
           fi
+
