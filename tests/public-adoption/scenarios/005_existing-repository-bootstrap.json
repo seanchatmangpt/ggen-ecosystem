@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-005",
+  "title": "Existing repository bootstrap",
+  "hypothesis": "Bootstrap preserves unrelated files in an existing repository.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:existing-repository-bootstrap",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "run synchronization against a fixture with sentinel files",
+  "oracle": [
+    "sentinel byte digest unchanged",
+    "only declared projections differ"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-005:existing-repository-bootstrap"
+}
