@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Design question / discussion
-    url: https://github.com/seanchatmangpt/ggen-ecosystem/discussions
-    about: For open-ended design questions rather than a concrete bug or feature.
+  - name: Support and routing guide
+    url: https://github.com/seanchatmangpt/ggen-ecosystem/blob/main/SUPPORT.md
+    about: Choose the right issue type and gather exact-head evidence before filing.
   - name: Security vulnerability
     url: https://github.com/seanchatmangpt/ggen-ecosystem/security/advisories/new
     about: Report privately -- see SECURITY.md. Do not open a public issue for vulnerabilities.

@@ -1,0 +1,14 @@
+# Default ownership for the composition root.
+* @seanchatmangpt
+
+# GitHub control surfaces and release/security policy.
+/.github/ @seanchatmangpt
+/SECURITY.md @seanchatmangpt
+/AGENTS.md @seanchatmangpt
+
+# Semantic sources and certification policy require composition-root review.
+/ontology.ttl @seanchatmangpt
+/ggen.toml @seanchatmangpt
+/ggen.lock @seanchatmangpt
+/ecosystem.lock.toml @seanchatmangpt
+/certification/ @seanchatmangpt
