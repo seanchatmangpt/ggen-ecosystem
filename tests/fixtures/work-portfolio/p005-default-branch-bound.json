@@ -1,0 +1,12 @@
+{
+  "id": "P005",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P005",
+  "edge": "default-branch-bound",
+  "hypothesis": "Portfolio admission independently falsifies default-branch-bound.",
+  "semantic_fingerprint": "28dfa88ae4f6ae2a",
+  "invalid": {
+    "default_branch": ""
+  },
+  "expected": "REFUSED[DEFAULT_BRANCH_MISSING]",
+  "control": {}
+}
