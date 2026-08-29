@@ -1,0 +1,94 @@
+name: MFact Certification Court
+
+# Independent verifier workflow. Unlike ggen-ecosystem-sync.yml and
+# ggen-ecosystem-container.yml, this file is not a manufactured projection and
+# has no CONSTRUCT/DO authority. It only checks already-present evidence.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "certification/**"
+      - "scripts/certify_ecosystem.py"
+      - "tests/test_mfact_certification.py"
+      - "ecosystem.lock.toml"
+      - "ggen.toml"
+      - "ontology.ttl"
+      - "Dockerfile"
+      - "receipts/release-v26.8.28-container.json"
+      - ".github/workflows/ggen-ecosystem-sync.yml"
+      - ".github/workflows/ggen-ecosystem-container.yml"
+      - ".github/workflows/mfact-certification.yml"
+  push:
+    branches: [main]
+    paths:
+      - "certification/**"
+      - "scripts/certify_ecosystem.py"
+      - "tests/test_mfact_certification.py"
+      - "ecosystem.lock.toml"
+      - "ggen.toml"
+      - "ontology.ttl"
+      - "Dockerfile"
+      - "receipts/release-v26.8.28-container.json"
+      - ".github/workflows/ggen-ecosystem-sync.yml"
+      - ".github/workflows/ggen-ecosystem-container.yml"
+      - ".github/workflows/mfact-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mfact-certification-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  certify:
+    name: Artifact ledger → evidence → scoped standing
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact subject with ancestry
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Assert exact subject identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          [[ "$actual" = "$expected" ]] || {
+            echo "REFUSED[EXACT_HEAD_MISMATCH]:actual=$actual:expected=$expected" >&2
+            exit 2
+          }
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Run certification falsifiers
+        run: python3 -m unittest tests.test_mfact_certification -v
+
+      - name: Certify bounded ecosystem standing
+        run: |
+          set -euo pipefail
+          python3 scripts/certify_ecosystem.py \
+            --root . \
+            --receipt "$RUNNER_TEMP/mfact-certification.json"
+          python3 -m json.tool "$RUNNER_TEMP/mfact-certification.json" >/dev/null
+
+      - name: Preserve certification receipt
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: mfact-certification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/mfact-certification.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Refuse verifier mutation
+        run: git diff --exit-code
