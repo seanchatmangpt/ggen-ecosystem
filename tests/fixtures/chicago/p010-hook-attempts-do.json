@@ -1,0 +1,25 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P010",
+  "semantic_fingerprint": "90971890",
+  "hypothesis": "hook-attempts-do must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "hook-attempts-do",
+  "invalid": {
+    "op": "not_contains",
+    "actual": [
+      "INTENT",
+      "DO"
+    ],
+    "expected": "DO"
+  },
+  "control": {
+    "op": "not_contains",
+    "actual": [
+      "INTENT"
+    ],
+    "expected": "DO"
+  },
+  "expected_standing": "REFUSED[HOOK_DO_AUTHORITY]",
+  "rollback": "revert P010",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}
