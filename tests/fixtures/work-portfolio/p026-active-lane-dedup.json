@@ -1,0 +1,12 @@
+{
+  "id": "P026",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P026",
+  "edge": "active-lane-dedup",
+  "hypothesis": "Portfolio admission independently falsifies active-lane-dedup.",
+  "semantic_fingerprint": "6ee60b00ef7d17ac",
+  "invalid": {
+    "active_collision_count": 1
+  },
+  "expected": "REFUSED[ACTIVE_LANE_COLLISION]",
+  "control": {}
+}
