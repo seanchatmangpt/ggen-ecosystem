@@ -1,0 +1,1 @@
+{"expected":300,"id":"count-public","op":"eq","path":"counts.public_repositories"}
