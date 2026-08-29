@@ -1,0 +1,12 @@
+{
+  "id": "P029",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-work-portfolio-court-v1|P029",
+  "edge": "authority-non-escalation",
+  "hypothesis": "Portfolio admission independently falsifies authority-non-escalation.",
+  "semantic_fingerprint": "1ce15266a39864ac",
+  "invalid": {
+    "authority_escalation_count": 1
+  },
+  "expected": "REFUSED[AUTHORITY_ESCALATION]",
+  "control": {}
+}
