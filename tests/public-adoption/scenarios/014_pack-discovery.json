@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-014",
+  "title": "Marketplace pack discovery",
+  "hypothesis": "The pinned marketplace exposes the declared GitHub Actions pack.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:pack-discovery",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "query the vendored pack catalog",
+  "oracle": [
+    "pack path exists",
+    "pack metadata parses"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-014:pack-discovery"
+}
