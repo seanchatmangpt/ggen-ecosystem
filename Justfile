@@ -51,3 +51,12 @@ plan:
 # Expose the current gate / capability / dependency graph
 graph:
     @cat ontology/gates.ttl 2>/dev/null || python3 scripts/ecosystem_alive.py --explain
+
+# Real wall-clock timing benchmark of `ggen sync run --dry-run` (20 runs, min/max/mean/p50/p95)
+bench:
+    @bash scripts/benchmark.sh --runs 20
+
+# Real concurrency stress test: N parallel `ggen sync run` processes, asserts identical
+# graph_hash_hex across all of them and that ggen.lock stays untouched under --dry-run
+stress:
+    @bash scripts/stress_test.sh --parallel 16
