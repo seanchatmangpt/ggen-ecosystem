@@ -295,11 +295,24 @@ ex:containerLogin
     gha:withParam "username: ${{ github.actor }}" ;
     gha:withParam "password: ${{ secrets.GITHUB_TOKEN }}" .
 
-ex:containerBuildPush
+ex:containerQemu
     a gha:Step ;
     gha:inJob ex:containerBuild ; gha:stepOrder 3 ;
+    gha:stepName "Set up QEMU" ;
+    gha:usesAction "docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3" .
+
+ex:containerBuildx
+    a gha:Step ;
+    gha:inJob ex:containerBuild ; gha:stepOrder 4 ;
+    gha:stepName "Set up Docker Buildx" ;
+    gha:usesAction "docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3" .
+
+ex:containerBuildPush
+    a gha:Step ;
+    gha:inJob ex:containerBuild ; gha:stepOrder 5 ;
     gha:stepName "Build and push composed image" ;
     gha:usesAction "docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6" ;
     gha:withParam "context: ." ;
     gha:withParam "push: true" ;
+    gha:withParam "platforms: linux/amd64,linux/arm64" ;
     gha:withParam "tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }},ghcr.io/seanchatmangpt/ggen-ecosystem:latest" .
