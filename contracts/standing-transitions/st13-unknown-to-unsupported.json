@@ -1,0 +1,1 @@
+{"id":"ST13","kind":"transition","from":"UNKNOWN","to":"UNSUPPORTED","rule":"Require capability inspection proving the requested operation is not supported.","exact_subject_required":true,"authority_effect":"NONE"}
