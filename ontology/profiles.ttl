@@ -35,7 +35,7 @@ eco:process-intelligence a eco:Profile, prov:Plan ;
 
 eco:autofde a eco:Profile, prov:Plan ;
     dcterms:title "autofde" ;
-    eco:includesCapability eco:AutoFDE, eco:GraphAdmission, eco:ReceiptReplay ;
+    eco:includesCapability eco:AutoFDE, eco:GraphAdmission, eco:ReceiptReplay, eco:CompositeFailureDiagnosis, eco:POWLStructuralReplay ;
     eco:includesCandidateRepository eco:repo-candidate-autofde, eco:repo-candidate-autofde-lab, eco:repo-candidate-gymact, eco:repo-candidate-fdegym, eco:repo-candidate-SREGym, eco:repo-candidate-chatgptgym, eco:repo-candidate-claudecodegym, eco:repo-candidate-lifegym, eco:repo-candidate-rrgym ;
     eco:selectionPolicy "capability-closure-with-candidate-preservation" ;
     eco:profileStanding "CANDIDATE" .

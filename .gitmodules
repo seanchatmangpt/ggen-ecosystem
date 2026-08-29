@@ -4,3 +4,7 @@
 [submodule "vendor/ggen-marketplace"]
 	path = vendor/ggen-marketplace
 	url = https://github.com/seanchatmangpt/ggen-marketplace.git
+[submodule "vendor/autofde-lab"]
+	path = vendor/autofde-lab
+	url = https://github.com/seanchatmangpt/autofde-lab.git
+

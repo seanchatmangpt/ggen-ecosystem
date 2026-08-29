@@ -150,6 +150,81 @@ else
 fi
 
 # =============================================================================
+# Assertion 4: Python imports for autofde_lab and autofde_lab_planner
+# =============================================================================
+echo
+echo "== Assertion 4: python imports for autofde_lab and autofde_lab_planner =="
+IMPORTS_OUTPUT="$(docker run --rm "$IMAGE" python3 -c '
+import autofde_lab
+import autofde_lab_planner
+from autofde_lab_planner.engine import CompositePlannerEngine
+print("AUTOFDE_PLANNER_OK")
+' 2>&1)"
+IMPORTS_STATUS=$?
+echo "--- real observed output ---"
+echo "$IMPORTS_OUTPUT"
+echo "--- exit code: $IMPORTS_STATUS ---"
+
+if [ "$IMPORTS_STATUS" -ne 0 ]; then
+    fail "assertion 4: python imports exited non-zero ($IMPORTS_STATUS)"
+elif ! echo "$IMPORTS_OUTPUT" | grep -q "AUTOFDE_PLANNER_OK"; then
+    fail "assertion 4: python imports missing AUTOFDE_PLANNER_OK"
+else
+    pass "assertion 4: autofde_lab and autofde_lab_planner import cleanly in container"
+fi
+
+# =============================================================================
+# Assertion 5: Category-B Composite Detector diagnosis execution
+# =============================================================================
+echo
+echo "== Assertion 5: CompositePlannerEngine diagnosis on real fault fixture =="
+DIAGNOSIS_OUTPUT="$(docker run --rm "$IMAGE" python3 -c '
+from autofde_lab_planner.engine import CompositePlannerEngine
+engine = CompositePlannerEngine(namespace="default", app_name="order-service")
+manifest = [{"metadata": {"name": "order-service"}, "spec": {"template": {"spec": {"containers": [{"name": "app", "ports": [{"hostPort": 8080}]}]}}}}]
+res = engine.run_diagnosis(deployments_json=manifest)
+has_conflicts = len(res.host_port_conflicts) > 0
+print(f"DIAGNOSIS_OK host_port_conflicts={len(res.host_port_conflicts)}")
+' 2>&1)"
+DIAGNOSIS_STATUS=$?
+echo "--- real observed output ---"
+echo "$DIAGNOSIS_OUTPUT"
+echo "--- exit code: $DIAGNOSIS_STATUS ---"
+
+if [ "$DIAGNOSIS_STATUS" -ne 0 ]; then
+    fail "assertion 5: CompositePlannerEngine diagnosis exited non-zero ($DIAGNOSIS_STATUS)"
+elif ! echo "$DIAGNOSIS_OUTPUT" | grep -q "DIAGNOSIS_OK"; then
+    fail "assertion 5: CompositePlannerEngine diagnosis output unexpected: $DIAGNOSIS_OUTPUT"
+else
+    pass "assertion 5: CompositePlannerEngine executed real diagnosis inside container ($DIAGNOSIS_OUTPUT)"
+fi
+
+# =============================================================================
+# Assertion 6: POWL structural replay tree algebra
+# =============================================================================
+echo
+echo "== Assertion 6: POWL structural replay tree =="
+POWL_OUTPUT="$(docker run --rm "$IMAGE" python3 -c '
+from autofde_lab.powl.algebra import Atom, PartialOrder, OrderEdge, NodeId
+a1 = Atom("validate")
+a2 = Atom("manufacture")
+po = PartialOrder(children=(a1, a2), order=frozenset({OrderEdge(NodeId(0), NodeId(1))}))
+print(f"POWL_TREE_OK children={len(po.children)} order_edges={len(po.order)}")
+' 2>&1)"
+POWL_STATUS=$?
+echo "--- real observed output ---"
+echo "$POWL_OUTPUT"
+echo "--- exit code: $POWL_STATUS ---"
+
+if [ "$POWL_STATUS" -ne 0 ]; then
+    fail "assertion 6: POWL algebra exited non-zero ($POWL_STATUS)"
+elif ! echo "$POWL_OUTPUT" | grep -q "POWL_TREE_OK"; then
+    fail "assertion 6: POWL algebra output unexpected: $POWL_OUTPUT"
+else
+    pass "assertion 6: POWL structural node algebra executed cleanly inside container ($POWL_OUTPUT)"
+fi
+
+# =============================================================================
 # Summary
 # =============================================================================
 echo

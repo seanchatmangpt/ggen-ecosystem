@@ -50,13 +50,15 @@ FROM debian:bookworm-slim
 # and receipt-binding inline scripts) -- not speculative, confirmed against ontology.ttl's real
 # ex:admit/ex:evidence step gha:runCommand facts.
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates git python3 \
+    && apt-get install -y --no-install-recommends ca-certificates git python3 python3-wrapt python3-rdflib python3-numpy python3-dill \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /out/bin/ggen /usr/local/bin/ggen
 COPY vendor/ggen-marketplace/packs/ /opt/ggen-marketplace/packs/
+COPY vendor/autofde-lab/src/ /opt/autofde-lab/src/
 
 ENV GGEN_MARKETPLACE_ROOT=/opt/ggen-marketplace
+ENV PYTHONPATH="/opt/autofde-lab/src:${PYTHONPATH:-}"
 ENV PATH="/usr/local/bin:${PATH}"
 
 RUN ggen --version || true

@@ -28,6 +28,8 @@ ggen_path = "vendor/ggen"
 ggen_commit = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
 ggen_marketplace_path = "vendor/ggen-marketplace"
 ggen_marketplace_commit = "c779aec20d9c93727c7ad4464f1dd52ac8e066e4"
+autofde_lab_path = "vendor/autofde-lab"
+autofde_lab_commit = "b4b22be2bbe57ebf2c6c347ba1fddd450559e8bc"
 
 [container]
 # Composed image: real `ggen` binary built from vendor/ggen (cargo build --release) + real

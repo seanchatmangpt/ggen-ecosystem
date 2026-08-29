@@ -27,3 +27,6 @@ eco:EffectiveAperture a eco:Capability, skos:Concept ; skos:inScheme eco:Capabil
 eco:Operationalization a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "operationalization" .
 eco:ObservationalFrontier a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "observational frontier" .
 eco:StoredExecutableWork a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "stored executable work" .
+eco:CompositeFailureDiagnosis a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "composite failure diagnosis and remediation planning" .
+eco:POWLStructuralReplay a eco:Capability, skos:Concept ; skos:inScheme eco:CapabilityScheme ; skos:prefLabel "POWL structural process replay" .
+

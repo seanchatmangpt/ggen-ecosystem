@@ -106,6 +106,28 @@ else
 fi
 echo
 
+# --- (2b) autofde-lab commit identity: [submodules].autofde_lab_commit == real vendor/autofde-lab HEAD
+name="2b-autofde-lab-commit-identity"
+if [ ! -f "$LOCK" ]; then
+  verdict "$name" UNKNOWN "$LOCK not found"
+elif [ ! -d vendor/autofde-lab ]; then
+  verdict "$name" BLOCKED "vendor/autofde-lab submodule directory missing"
+else
+  sub_commit="$(toml_scalar "$LOCK" submodules autofde_lab_commit)"
+  real_commit="$(git -C vendor/autofde-lab rev-parse HEAD 2>&1)"
+  rev_rc=$?
+  if [ -z "$sub_commit" ]; then
+    verdict "$name" UNKNOWN "missing [submodules].autofde_lab_commit in $LOCK"
+  elif [ "$rev_rc" -ne 0 ]; then
+    verdict "$name" BUILD_BROKEN "git rev-parse HEAD failed in vendor/autofde-lab: $real_commit"
+  elif [ "$sub_commit" = "$real_commit" ]; then
+    verdict "$name" ALIVE "[submodules].autofde_lab_commit == vendor/autofde-lab HEAD ($real_commit)"
+  else
+    verdict "$name" BLOCKED "mismatch: [submodules].autofde_lab_commit=$sub_commit vendor/autofde-lab HEAD=$real_commit"
+  fi
+fi
+echo
+
 # --- (3) ggen.toml pack path resolves to a real existing directory under vendor/ggen-marketplace
 name="3-pack-path-exists"
 if [ ! -f "$MANIFEST" ]; then
