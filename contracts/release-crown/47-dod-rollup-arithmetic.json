@@ -1,0 +1,8 @@
+{
+  "expected": "14 + 5 + 1 + 1 = 21",
+  "failure_standing": "REFUSED:DOD_ROLLUP_DRIFT",
+  "id": "dod-rollup-arithmetic",
+  "kind": "contains",
+  "remediation": "Recompute roll-up from matrix rows.",
+  "source": "docs/DEFINITION-OF-DONE.md"
+}
