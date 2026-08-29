@@ -29,6 +29,7 @@ dependency closure) -- run via that interpreter, not system python3.
 """
 from __future__ import annotations
 
+import json
 import subprocess
 import uuid
 from pathlib import Path
@@ -43,10 +44,11 @@ class SafeAction:
     wired for real gymact admission + execution + receipt."""
 
     def __init__(self, semantic_id: str, capability_ref: str, argv: list[str],
-                 effect_predicate: str, observer_ref: str, observation_ref: str):
+                 effect_predicate: str, observer_ref: str, observation_ref: str, gate: str):
         self.semantic_id = semantic_id
         self.capability_ref = capability_ref
         self.argv = argv
+        self.gate = gate
         self.effect_predicate = effect_predicate
         self.observer_ref = observer_ref
         self.observation_ref = observation_ref
@@ -73,9 +75,14 @@ class SafeAction:
         )
 
 
-# Matches ecosystem_alive.py's plan_closure_autofde SAFE_REVERSIBLE entries
-# (git submodule update, ggen sync run) -- the AUTHORITY-gated docker push
-# is deliberately excluded, matching that script's own SAFE/AUTHORITY split.
+# Matches ecosystem_alive.py's plan_closure_autofde SAFE_REVERSIBLE entries.
+# The AUTHORITY-gated docker push is deliberately excluded, matching that
+# script's own SAFE/AUTHORITY split. Each entry names the real doctor.sh
+# gate that, per plan_closure_autofde's own conditional logic, must be
+# non-ALIVE before the action is actually admitted+executed -- so running
+# this script when everything is already ALIVE does real, cheap admission
+# checks and skips real execution, rather than blindly re-running a slow
+# `docker build` every invocation regardless of need.
 SAFE_ACTIONS = [
     SafeAction(
         semantic_id="ggen-ecosystem.git.submodule_update_init_recursive",
@@ -84,6 +91,7 @@ SAFE_ACTIONS = [
         effect_predicate="submodules_initialized_and_current",
         observer_ref="git.submodule.status",
         observation_ref="doctor.sh:1-submodules",
+        gate="1-submodules",
     ),
     SafeAction(
         semantic_id="ggen-ecosystem.ggen.sync_run_regenerate",
@@ -92,8 +100,25 @@ SAFE_ACTIONS = [
         effect_predicate="workflow_projections_regenerated",
         observer_ref="ggen.sync.dry_run_decisions",
         observation_ref="doctor.sh:9-workflow-drift",
+        gate="9-workflow-drift",
+    ),
+    SafeAction(
+        semantic_id="ggen-ecosystem.docker.build_local_substrate",
+        capability_ref="docker.build",
+        argv=["docker", "build", "-t", "ggen-ecosystem:test", "."],
+        effect_predicate="local_container_substrate_built",
+        observer_ref="docker.image.inspect",
+        observation_ref="doctor.sh:4-docker-image",
+        gate="4-docker-image",
     ),
 ]
+
+
+def gate_standing(doctor_json: dict, gate: str) -> str | None:
+    for row in doctor_json.get("gates", []):
+        if isinstance(row, dict) and row.get("gate") == gate:
+            return row.get("standing")
+    return None
 
 
 def admit_and_execute(safe_action: SafeAction, ledger: "gymact.SQLiteReceiptLedger") -> int:
@@ -165,9 +190,33 @@ def admit_and_execute(safe_action: SafeAction, ledger: "gymact.SQLiteReceiptLedg
 
 
 def main() -> int:
+    doctor_proc = subprocess.run(
+        ["bash", str(REPO_ROOT / "scripts" / "doctor.sh"), "--json"],
+        cwd=REPO_ROOT, capture_output=True, text=True,
+    )
+    doctor_json: dict = {}
+    for line in doctor_proc.stdout.splitlines():
+        line = line.strip()
+        if line.startswith("{") and line.endswith("}"):
+            try:
+                doctor_json = json.loads(line)
+            except json.JSONDecodeError:
+                pass
+
     ledger_path = REPO_ROOT / "receipts" / "gymact-autonomics-ledger.sqlite3"
     ledger = gymact.SQLiteReceiptLedger(str(ledger_path))
-    exit_codes = [admit_and_execute(a, ledger) for a in SAFE_ACTIONS]
+    exit_codes = []
+    for a in SAFE_ACTIONS:
+        standing = gate_standing(doctor_json, a.gate)
+        if standing == "ALIVE":
+            print(f"[gymact] {a.capability_ref}: gate {a.gate} already ALIVE -- skipping "
+                  f"(no admission/execution needed)")
+            continue
+        print(f"[gymact] {a.capability_ref}: gate {a.gate} standing={standing!r} -- admitting")
+        exit_codes.append(admit_and_execute(a, ledger))
+    if not exit_codes:
+        print("[gymact] all gated actions already ALIVE -- nothing to do")
+        return 0
     print(f"[gymact] {sum(1 for c in exit_codes if c == 0)}/{len(exit_codes)} actions succeeded")
     return 0 if all(c == 0 for c in exit_codes) else 1
 

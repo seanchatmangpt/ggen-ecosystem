@@ -3,12 +3,11 @@
 [![GGen Ecosystem Sync](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-sync.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-sync.yml)
 [![Container Build & Publish](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-container.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-container.yml)
 [![MFact Certification](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/mfact-certification.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/mfact-certification.yml)
-[![Release standing: BLOCKED](https://img.shields.io/badge/release-BLOCKED%5BGHCR__MANIFEST__UNKNOWN%5D-red)](docs/CURRENT-RELEASE-STANDING.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Canonical governed composition root for the ggen ecosystem.
 
-> **Current release standing:** `BLOCKED[GHCR_MANIFEST_UNKNOWN]`. The historical v26.8.28 capsule digest is preserved as evidence but is not currently admitted as pullable after hosted replay observed `manifest unknown`. See [Current release standing](docs/CURRENT-RELEASE-STANDING.md) and tracking issue #146 before relying on older Definition-of-Done ALIVE observations.
+> **Current release standing:** `ALIVE`. Issue #146 (`BLOCKED[GHCR_MANIFEST_UNKNOWN]`) is closed: the composed capsule digest (`sha256:b9e170233fe1...`) was never broken -- the GHCR package was private, which GHCR reports as `manifest unknown` to unauthorized pulls rather than an access-denied error. Fixed by changing the package to public (2026-08-29); re-verified with a genuinely unauthenticated `docker logout` + full local cache removal + fresh pull + in-capsule `ggen --version`, all real, all passing. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
 
 This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
 

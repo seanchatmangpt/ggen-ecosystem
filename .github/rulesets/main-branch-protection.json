@@ -1,0 +1,28 @@
+{
+  "_comment": "Proposed, NOT applied. See docs/BRANCH-PROTECTION.md for why and how to apply this. Apply with: gh api --method POST repos/seanchatmangpt/ggen-ecosystem/rulesets --input .github/rulesets/main-branch-protection.json (after stripping this _comment key, which GitHub's API will reject).",
+  "name": "main-branch-protection",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["refs/heads/main"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    { "type": "deletion" },
+    { "type": "non_fast_forward" },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "required_status_checks": [
+          { "context": "Deterministic ecosystem manufacture" }
+        ]
+      }
+    }
+  ],
+  "bypass_actors": [
+    { "actor_type": "RepositoryRole", "actor_id": 5, "bypass_mode": "always" }
+  ]
+}
