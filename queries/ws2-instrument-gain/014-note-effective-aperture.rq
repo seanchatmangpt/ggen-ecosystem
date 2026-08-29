@@ -1,0 +1,3 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+ASK { eco:EffectiveAperture skos:note "Independent semantic contexts that can contribute to one coordinated observation." . }
