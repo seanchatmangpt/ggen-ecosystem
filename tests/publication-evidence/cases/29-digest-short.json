@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-030",
+  "title": "Short digest is refused",
+  "hypothesis": "Short digest is refused",
+  "acceptance_edge": "publication.digest-short",
+  "evidence": [
+    "observed sha256:1234"
+  ],
+  "expected": {
+    "standing": "REFUSED",
+    "reason": "DIGEST_FORMAT"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from REFUSED[DIGEST_FORMAT]",
+  "semantic_fingerprint": "fp:publication:digest-short:REFUSED:DIGEST_FORMAT"
+}
