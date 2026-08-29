@@ -1,0 +1,57 @@
+name: Documentation gap
+description: Report missing, stale, contradictory, or hard-to-follow documentation.
+title: "docs: "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Documentation is part of the executable customer journey. Name the audience and the exact point where the current path stops being reliable.
+  - type: input
+    id: location
+    attributes:
+      label: Affected documentation
+      description: File, section, command help, workflow summary, or URL.
+      placeholder: docs/CURRENT-RELEASE-STANDING.md
+    validations:
+      required: true
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Audience
+      options:
+        - First-time consumer
+        - Contributor
+        - Operator / release engineer
+        - Agent / automation
+        - Security reviewer
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: What is wrong or missing?
+      description: Quote the smallest relevant fragment and explain the observed mismatch.
+    validations:
+      required: true
+  - type: textarea
+    id: desired
+    attributes:
+      label: Desired consequence
+      description: What should a reader be able to decide or execute after the documentation is fixed?
+    validations:
+      required: true
+  - type: input
+    id: subject
+    attributes:
+      label: Exact repository subject (if relevant)
+      placeholder: owner/repo@40-char-sha
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Evidence
+      options:
+        - label: I checked the current release-standing page before filing an availability claim.
+        - label: I distinguished historical evidence from current-head evidence.
