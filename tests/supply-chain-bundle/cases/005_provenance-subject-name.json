@@ -1,0 +1,22 @@
+{
+  "case_id": "SCB-005",
+  "work_key": "WS4-SCB-005",
+  "title": "provenance subject name",
+  "hypothesis": "The provenance subject name must equal the locked OCI subject.",
+  "acceptance_edge": "REFUSED[PROV_SUBJECT_NAME]",
+  "files_surfaces": [
+    "tests/supply-chain-bundle/cases/005_provenance-subject-name.json"
+  ],
+  "dependency": [
+    "WS4-SCB-001"
+  ],
+  "verifier_falsifier": "python3 tools/verify_supply_chain_bundle.py tests/supply-chain-bundle/cases/005_provenance-subject-name.json",
+  "rollback": "revert this isolated case commit",
+  "semantic_fingerprint": "SCB-005:provenance-subject-name",
+  "next_lawful_route": "retain as an exact-identity release-evidence guard and execute in the aggregate court",
+  "mutation": {
+    "path": "provenance.subject.0.name",
+    "value": "ghcr.io/example/wrong@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "expected": "REFUSED[PROV_SUBJECT_NAME]"
+}
