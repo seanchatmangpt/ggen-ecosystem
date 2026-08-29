@@ -10,7 +10,7 @@
     "id": {"type": "string", "pattern": "^PUB-[0-9]{3}$"},
     "title": {"type": "string", "minLength": 1},
     "hypothesis": {"type": "string", "minLength": 1},
-    "acceptance_edge": {"type": "string", "pattern": "^publication\\\\."},
+    "acceptance_edge": {"type": "string", "pattern": "^publication\\."},
     "evidence": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
     "expected": {
       "type": "object",
