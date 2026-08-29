@@ -20,14 +20,6 @@ doctor:
 doctor-json:
     @bash scripts/doctor.sh --json
 
-# GitHub-native collaboration/security/Actions/Copilot/DX contract court.
-github-dx:
-    @python3 scripts/github_dx_check.py --root .
-
-# Machine-readable GitHub-native DX standing.
-github-dx-json:
-    @python3 scripts/github_dx_check.py --root . --json
-
 # Explain why current standing exists across all gates
 explain:
     @python3 scripts/ecosystem_alive.py --explain
@@ -46,7 +38,11 @@ verify:
 
 # Classify bounded GHCR/OCI observations without publishing or granting DO.
 publication-evidence:
-    @python3 tools/classify_container_publication.py
+    @python3 tools/classify_container_publication.py --require-count 52
+
+# Full publication-evidence self-test + exact 52-case conformance court.
+publication-evidence-test:
+    @python3 tools/classify_container_publication.py --self-test --require-count 52
 
 # mfact-style certification court: bind producer pins, artifact authority,
 # release evidence, Git lineage, and scoped standing without manufacturing ALIVE.

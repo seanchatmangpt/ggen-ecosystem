@@ -1,0 +1,45 @@
+name: Publication Evidence Court
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publication-evidence-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publication-evidence:
+    name: 52-case publication evidence court
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact subject
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Compile classifier
+        run: python3 -m py_compile tools/classify_container_publication.py
+      - name: Falsify schema escape boundary
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          schema = json.loads(Path("schemas/publication-evidence-case.schema.json").read_text())
+          pattern = schema["properties"]["acceptance_edge"]["pattern"]
+          compiled = re.compile(pattern)
+          assert compiled.match("publication.multiarch-crown"), pattern
+          assert not compiled.match(r"publication\\wrong"), pattern
+          print(f"ALIVE: acceptance_edge pattern={pattern!r}")
+          PY
+      - name: Execute classifier self-test and exact fixture court
+        run: python3 tools/classify_container_publication.py --self-test --require-count 52
