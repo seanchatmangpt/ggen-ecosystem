@@ -1,0 +1,8 @@
+{
+  "expected": "exact subject SHA is bound into the resulting receipt/evidence chain",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "standing-exact-subject-bound",
+  "kind": "contains",
+  "remediation": "Bind exact subject SHA.",
+  "source": "docs/STANDING.md"
+}
