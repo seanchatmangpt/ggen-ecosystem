@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P045",
+  "semantic_fingerprint": "c2f6dff3",
+  "hypothesis": "unsupported-capability-as-alive must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "unsupported-capability-as-alive",
+  "invalid": {
+    "op": "eq",
+    "actual": "ALIVE",
+    "expected": "UNSUPPORTED"
+  },
+  "control": {
+    "op": "eq",
+    "actual": "UNSUPPORTED",
+    "expected": "UNSUPPORTED"
+  },
+  "expected_standing": "REFUSED[UNSUPPORTED_COLLAPSE]",
+  "rollback": "revert P045",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}
