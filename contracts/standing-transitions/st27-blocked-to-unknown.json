@@ -1,0 +1,1 @@
+{"id":"ST27","kind":"transition","from":"BLOCKED","to":"UNKNOWN","rule":"Require invalidation of the blocker evidence without new positive execution evidence; do not infer recovery.","exact_subject_required":true,"authority_effect":"NONE"}
