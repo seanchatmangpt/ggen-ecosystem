@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:arm64-replay a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require arm64 fresh-consumer replay" ; ex:sequence 42 ; ex:replay "linux/arm64" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
