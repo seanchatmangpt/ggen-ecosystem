@@ -145,7 +145,31 @@ def main() -> int:
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--next", action="store_true")
     parser.add_argument("--apply-safe", action="store_true")
+    parser.add_argument("--capsule-ref", help="Preflight an OCI capsule reference before DO")
+    parser.add_argument("--capsule-available", action="store_true",
+                        help="Assert the supplied immutable capsule was observed as resolvable")
+    parser.add_argument("--changed-path", action="append", default=[],
+                        help="Check a proposed changed path against generated-projection authority")
+    parser.add_argument("--select-consumer-route", action="store_true",
+                        help="Select container or host stranger-journey execution route")
+    parser.add_argument("--container-available", action="store_true")
+    parser.add_argument("--host-available", action="store_true")
     args = parser.parse_args()
+
+    if args.capsule_ref:
+        result = admit_capsule_identity(args.capsule_ref, available=args.capsule_available)
+        print(json.dumps(result, indent=2))
+        return 0 if result["standing"] == ALIVE else 4
+    if args.changed_path:
+        result = admit_projection_change(args.changed_path)
+        print(json.dumps(result, indent=2))
+        return 0 if result["standing"] == ALIVE else 4
+    if args.select_consumer_route:
+        result = select_consumer_execution(container_available=args.container_available,
+                                           host_available=args.host_available)
+        print(json.dumps(result, indent=2))
+        return 0 if result["standing"] == ALIVE else 3
+
     sensor = run_doctor_sensor()
     plan = plan_closure_autofde(sensor.get("gates", []))
     if args.apply_safe:
