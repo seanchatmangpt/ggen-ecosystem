@@ -1,0 +1,9 @@
+{
+  "clause": "`ALIVE` is never inherited from a previous release unless source, validator, toolchain, configuration, and environment identities satisfy the explicit reuse contract.",
+  "failure_standing": "PARTIAL_ALIVE",
+  "id": "reuse-source-identity",
+  "kind": "clause_token",
+  "remediation": "Prove source identity for ALIVE reuse.",
+  "source": "docs/RELEASE.md",
+  "token": "source"
+}
