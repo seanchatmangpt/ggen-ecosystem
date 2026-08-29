@@ -1,0 +1,2 @@
+PREFIX eco:<https://ggen.dev/ecosystem#>
+ASK { <https://ggen.dev/ecosystem/interoperability/ash-aggregate-boundary> a eco:InteroperabilityContract ; eco:standing "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" . }
