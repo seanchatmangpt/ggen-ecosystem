@@ -1,58 +1,61 @@
 #!/usr/bin/env python3
-"""
-scripts/chicago_falsifiers.py — 25-Case Adversarial Negative-Path Falsifier Suite.
-
-Tests that deliberately invalid states trigger typed rejection (REFUSED / BLOCKED)
-rather than false ALIVE passes.
-"""
-
-import sys
-
-FALSIFIERS = [
-    ("F01", "wrong source SHA", lambda: True),
-    ("F02", "wrong submodule SHA", lambda: True),
-    ("F03", "stale lock", lambda: True),
-    ("F04", "pack hash drift", lambda: True),
-    ("F05", "workflow projection drift", lambda: True),
-    ("F06", "changed planner after receipt", lambda: True),
-    ("F07", "planner proposes illegal transition", lambda: True),
-    ("F08", "planner chooses dominated path", lambda: True),
-    ("F09", "planner attempts DO", lambda: True),
-    ("F10", "hook attempts actuation", lambda: True),
-    ("F11", "CI given write authority", lambda: True),
-    ("F12", "unchanged failed transition rerun", lambda: True),
-    ("F13", "receipt subject mismatch", lambda: True),
-    ("F14", "replay environment mismatch", lambda: True),
-    ("F15", "generated artifact manually edited", lambda: True),
-    ("F16", "private identity projected publicly", lambda: True),
-    ("F17", "POWL dependency cycle", lambda: True),
-    ("F18", "fake success receipt", lambda: True),
-    ("F19", "inspection represented as execution", lambda: True),
-    ("F20", "workflow existence represented as run success", lambda: True),
-    ("F21", "unavailable capability represented as refusal", lambda: True),
-    ("F22", "BLOCKED collapsed into REFUSED", lambda: True),
-    ("F23", "one failed route treated as graph failure", lambda: True),
-    ("F24", "stale verifier evidence reused", lambda: True),
-    ("F25", "non-exact-head evidence used for crown", lambda: True),
-]
-
+"""Executable Chicago falsifier court with paired positive controls."""
+from __future__ import annotations
+import json,re,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parent.parent
+FIXTURES=ROOT/"tests"/"fixtures"/"chicago"
+SHA40=re.compile(r"^[0-9a-f]{40}$"); DIGEST=re.compile(r"^sha256:[0-9a-f]{64}$"); IMMUTABLE=re.compile(r"^.+@sha256:[0-9a-f]{64}$")
+def admissible(op,actual,expected):
+    if op=="eq": return actual==expected
+    if op=="neq": return actual!=expected
+    if op=="sha40": return isinstance(actual,str) and SHA40.fullmatch(actual) is not None
+    if op=="digest": return isinstance(actual,str) and DIGEST.fullmatch(actual) is not None
+    if op=="immutable": return isinstance(actual,str) and IMMUTABLE.fullmatch(actual) is not None
+    if op=="subset": return set(actual)<=set(expected)
+    if op=="disjoint": return set(actual).isdisjoint(set(expected))
+    if op=="contains": return expected in actual
+    if op=="not_contains": return expected not in actual
+    if op=="nonempty": return bool(actual)
+    if op=="zero": return actual==0
+    if op=="true": return actual is True
+    if op=="false": return actual is False
+    if op=="age_lte": return isinstance(actual,(int,float)) and actual<=expected
+    if op=="acyclic":
+        graph=actual; visiting=set(); visited=set()
+        def visit(node):
+            if node in visiting: return False
+            if node in visited: return True
+            visiting.add(node)
+            if not all(visit(n) for n in graph.get(node,[])): return False
+            visiting.remove(node); visited.add(node); return True
+        return all(visit(n) for n in graph)
+    if op=="confined":
+        p=Path(actual); return not p.is_absolute() and ".." not in p.parts and str(p).startswith(expected)
+    if op=="unique": return len(actual)==len(set(actual))
+    if op=="same_bytes": return actual[0]==actual[1]
+    if op=="ordered": return actual==sorted(actual)
+    if op=="enum": return actual in expected
+    raise ValueError(f"unknown operation: {op}")
+def evaluate(observation,refusal):
+    try: ok=admissible(observation["op"],observation.get("actual"),observation.get("expected"))
+    except (KeyError,TypeError,ValueError): return "REFUSED[MALFORMED_FALSIFIER]"
+    return "ALIVE" if ok else refusal
+def run(fixtures=FIXTURES):
+    paths=sorted(fixtures.glob("*.json")); keys=set(); fps=set(); results=[]
+    for path in paths:
+        item=json.loads(path.read_text()); key=item["work_key"]; fp=item["semantic_fingerprint"]
+        if key in keys or fp in fps:
+            results.append({"case":path.name,"standing":"REFUSED[DUPLICATE_CASE_IDENTITY]"}); continue
+        keys.add(key); fps.add(fp)
+        rejected=evaluate(item["invalid"],item["expected_standing"]); control=evaluate(item["control"],item["expected_standing"])
+        passed=rejected==item["expected_standing"] and control=="ALIVE"
+        results.append({"case":path.name,"standing":"ALIVE" if passed else "BUILD_BROKEN","invalid":rejected,"control":control})
+    return {"standing":"ALIVE" if len(paths)>=50 and all(r["standing"]=="ALIVE" for r in results) else "BUILD_BROKEN","count":len(paths),"results":results}
 def main():
-    print("================================================================================")
-    print("CHICAG0 FALSIFIER SUITE — 25 Adversarial Negative-Path Courts")
-    print("================================================================================")
-    passed = 0
-    for fid, name, fn in FALSIFIERS:
-        res = fn()
-        if res:
-            passed += 1
-            print(f"[{fid}] REJECTED_AS_INADMISSIBLE: {name:<45} (PASS)")
-        else:
-            print(f"[{fid}] FAILED_TO_REJECT: {name:<45} (FAIL)")
-    print("--------------------------------------------------------------------------------")
-    print(f"FALSIFIER RESULT: {passed}/{len(FALSIFIERS)} Negative-Path Invariants Proved")
-    print("================================================================================")
-    if passed != len(FALSIFIERS):
-        sys.exit(1)
+    result=run()
+    for row in result["results"]: print(f"[{row['standing']}] {row['case']}: invalid={row.get('invalid')} control={row.get('control')}")
+    print(f"CHICAGO: {result['standing']} ({result['count']} executable negative/control pairs)")
+    return 0 if result["standing"]=="ALIVE" else 1
+if __name__=="__main__": raise SystemExit(main())
 
-if __name__ == "__main__":
-    main()
