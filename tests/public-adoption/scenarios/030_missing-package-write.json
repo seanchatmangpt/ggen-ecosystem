@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-030",
+  "title": "Package publication permission",
+  "hypothesis": "Container publication without packages:write is refused.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:missing-package-write",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "attempt publish admission with read-only token metadata",
+  "oracle": [
+    "admission reports missing permission",
+    "no push is attempted"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "PACKAGES_WRITE_REQUIRED",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through PACKAGES_WRITE_REQUIRED",
+  "semantic_fingerprint": "SJ-030:missing-package-write"
+}

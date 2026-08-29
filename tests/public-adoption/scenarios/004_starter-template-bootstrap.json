@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-004",
+  "title": "Starter repository bootstrap",
+  "hypothesis": "A new repository can consume the pinned ecosystem without source mutation authority.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:starter-template-bootstrap",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "invoke the reusable consumer action in a starter fixture",
+  "oracle": [
+    "construct runs at pinned digest",
+    "contents permission remains read"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-004:starter-template-bootstrap"
+}

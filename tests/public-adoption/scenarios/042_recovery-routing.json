@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-042",
+  "title": "Failure recovery route",
+  "hypothesis": "Every typed failure supplies a next lawful route.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:recovery-routing",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "evaluate all scenario contracts with non-ALIVE standing",
+  "oracle": [
+    "reason code is nonempty",
+    "next route is actionable"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-042:recovery-routing"
+}

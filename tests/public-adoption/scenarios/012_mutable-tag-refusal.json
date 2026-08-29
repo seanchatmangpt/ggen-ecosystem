@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-012",
+  "title": "Mutable image identity refusal",
+  "hypothesis": "A tag-only capsule reference cannot earn exact-subject standing.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:mutable-tag-refusal",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "attempt qualification with only a mutable tag",
+  "oracle": [
+    "admission refuses mutable identity",
+    "no construction is actuated"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "MUTABLE_IMAGE_IDENTITY",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through MUTABLE_IMAGE_IDENTITY",
+  "semantic_fingerprint": "SJ-012:mutable-tag-refusal"
+}

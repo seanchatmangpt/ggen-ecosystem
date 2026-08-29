@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-018",
+  "title": "Diff-only inspection",
+  "hypothesis": "A stranger can inspect intended generated changes without actuation.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:diff-only-mode",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "run the diff-only construction route",
+  "oracle": [
+    "machine-readable diff is emitted",
+    "repository remains unchanged"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-018:diff-only-mode"
+}

@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-045",
+  "title": "Digest mismatch refusal",
+  "hypothesis": "Pulled bytes that do not match the admitted digest are refused.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:digest-mismatch",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "present manifest metadata with a different digest",
+  "oracle": [
+    "construction is not started",
+    "mismatch is preserved in evidence"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "CONTAINER_DIGEST_MISMATCH",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through CONTAINER_DIGEST_MISMATCH",
+  "semantic_fingerprint": "SJ-045:digest-mismatch"
+}

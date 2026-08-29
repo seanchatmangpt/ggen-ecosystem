@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-046",
+  "title": "Workflow escalation refusal",
+  "hypothesis": "A generated workflow requesting write authority is rejected.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:workflow-permission-escalation",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "inspect a fixture changing contents read to write",
+  "oracle": [
+    "authority diff is detected",
+    "projection receives no DO authority"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "WORKFLOW_AUTHORITY_ESCALATION",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through WORKFLOW_AUTHORITY_ESCALATION",
+  "semantic_fingerprint": "SJ-046:workflow-permission-escalation"
+}

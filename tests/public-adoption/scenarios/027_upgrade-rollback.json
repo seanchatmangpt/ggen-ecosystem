@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-027",
+  "title": "Upgrade rollback",
+  "hypothesis": "A failed candidate returns to the prior immutable pin.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:upgrade-rollback",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "inject candidate verifier failure then select prior pin",
+  "oracle": [
+    "prior digest is restored",
+    "rollback receipt records cause"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-027:upgrade-rollback"
+}

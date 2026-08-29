@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-033",
+  "title": "Cache mismatch refusal",
+  "hypothesis": "A cache with one mismatched identity dimension is not reused.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:cache-identity-mismatch",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "alter cached toolchain identity",
+  "oracle": [
+    "cache is rejected",
+    "fresh construction is selected"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "CACHE_IDENTITY_MISMATCH",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through CACHE_IDENTITY_MISMATCH",
+  "semantic_fingerprint": "SJ-033:cache-identity-mismatch"
+}

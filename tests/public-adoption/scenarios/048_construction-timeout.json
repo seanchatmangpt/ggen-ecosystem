@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-048",
+  "title": "Construction timeout",
+  "hypothesis": "A timed-out generation preserves evidence without claiming completion.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:construction-timeout",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "terminate construction at the declared budget",
+  "oracle": [
+    "standing is BLOCKED",
+    "timeout and last completed phase are recorded"
+  ],
+  "expected_standing": "BLOCKED",
+  "reason_code": "CONSTRUCTION_TIMEOUT",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through CONSTRUCTION_TIMEOUT",
+  "semantic_fingerprint": "SJ-048:construction-timeout"
+}

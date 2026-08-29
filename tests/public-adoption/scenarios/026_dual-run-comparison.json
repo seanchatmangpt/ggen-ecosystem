@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-026",
+  "title": "Dual-run comparison",
+  "hypothesis": "Current and candidate producers can run without collapsing either option.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:dual-run-comparison",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "construct both versions in isolated output roots",
+  "oracle": [
+    "both results retained",
+    "semantic diff is reported"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-026:dual-run-comparison"
+}

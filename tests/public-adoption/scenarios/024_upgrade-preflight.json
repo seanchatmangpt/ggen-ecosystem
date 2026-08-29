@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-024",
+  "title": "Upgrade preflight",
+  "hypothesis": "A candidate producer upgrade is evaluated before replacing the active pin.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:upgrade-preflight",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "qualify old and candidate pins against the same fixtures",
+  "oracle": [
+    "both evidence sets retained",
+    "selection waits for comparison"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-024:upgrade-preflight"
+}

@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-016",
+  "title": "Ontology change preview",
+  "hypothesis": "An ontology edit can be previewed without writing projections.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:ontology-change-dry-run",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "run ggen sync run --dry-run on a changed ontology fixture",
+  "oracle": [
+    "exit is classified",
+    "working tree bytes remain unchanged"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-016:ontology-change-dry-run"
+}

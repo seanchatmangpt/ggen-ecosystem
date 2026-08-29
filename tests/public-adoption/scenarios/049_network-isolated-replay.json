@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-049",
+  "title": "Network-isolated replay",
+  "hypothesis": "Replay does not depend on mutable network state after materialization.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:network-isolated-replay",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "run replay with network disabled",
+  "oracle": [
+    "execution exits 0",
+    "digest equals connected baseline"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-049:network-isolated-replay"
+}

@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-047",
+  "title": "Disk pressure recovery",
+  "hypothesis": "Construction failure from exhausted disk is classified and resumable.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:disk-pressure",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "inject ENOSPC during isolated output write",
+  "oracle": [
+    "partial output is quarantined",
+    "next route requests capacity recovery"
+  ],
+  "expected_standing": "BLOCKED",
+  "reason_code": "DISK_CAPACITY_EXHAUSTED",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through DISK_CAPACITY_EXHAUSTED",
+  "semantic_fingerprint": "SJ-047:disk-pressure"
+}

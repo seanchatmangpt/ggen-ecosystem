@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-010",
+  "title": "Linux arm64 image",
+  "hypothesis": "The published capsule supports linux/arm64.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:linux-arm64-platform",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "inspect manifest and execute smoke on arm64",
+  "oracle": [
+    "manifest lists linux/arm64",
+    "binary starts successfully"
+  ],
+  "expected_standing": "ALIVE",
+  "reason_code": "NONE",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "record receipt and continue to the next scenario",
+  "semantic_fingerprint": "SJ-010:linux-arm64-platform"
+}

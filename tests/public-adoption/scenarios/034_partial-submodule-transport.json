@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-034",
+  "title": "Partial submodule transport",
+  "hypothesis": "A failed submodule edge is classified without treating the whole graph as absent.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:partial-submodule-transport",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "fail marketplace fetch after GGen fetch succeeds",
+  "oracle": [
+    "successful edge remains observed",
+    "missing edge is typed blocked"
+  ],
+  "expected_standing": "BLOCKED",
+  "reason_code": "PARTIAL_SUBMODULE_TRANSPORT",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through PARTIAL_SUBMODULE_TRANSPORT",
+  "semantic_fingerprint": "SJ-034:partial-submodule-transport"
+}

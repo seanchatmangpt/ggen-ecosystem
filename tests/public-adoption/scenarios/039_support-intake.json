@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-039",
+  "title": "Support request intake",
+  "hypothesis": "A newcomer can route usage questions with required diagnostic context.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:support-intake",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "submit support scenario metadata",
+  "oracle": [
+    "required version and receipt fields are requested",
+    "route distinguishes bug from question"
+  ],
+  "expected_standing": "PARTIAL_ALIVE",
+  "reason_code": "SUPPORT_POLICY_SURFACE_MISSING",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through SUPPORT_POLICY_SURFACE_MISSING",
+  "semantic_fingerprint": "SJ-039:support-intake"
+}

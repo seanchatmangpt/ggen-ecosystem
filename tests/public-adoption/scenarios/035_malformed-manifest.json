@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-035",
+  "title": "Malformed manifest refusal",
+  "hypothesis": "Malformed ggen.toml is refused before construction.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:malformed-manifest",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "parse a fixture with invalid TOML syntax",
+  "oracle": [
+    "parse failure names location",
+    "no output path is written"
+  ],
+  "expected_standing": "REFUSED",
+  "reason_code": "MALFORMED_MANIFEST",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through MALFORMED_MANIFEST",
+  "semantic_fingerprint": "SJ-035:malformed-manifest"
+}
