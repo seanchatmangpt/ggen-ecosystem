@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:AssetDigestValidation a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "producer asset digest validation";skos:definition "The downloaded producer asset must match the admitted cryptographic digest before execution.";eco:falsifier "Executing an asset whose digest is not verified falsifies this invariant.".

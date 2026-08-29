@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:CandidateNoAuthority a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "candidate has no ambient authority";skos:definition "Catalog candidacy is observational and grants no dependency, profile, capability, or DO authority.";eco:falsifier "A candidate acquiring authority by adjacency falsifies this invariant.".

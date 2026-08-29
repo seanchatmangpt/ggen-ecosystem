@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ExplicitExclusions a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "explicit exclusions";skos:definition "The admitted design space records excluded options and their boundary rather than silently dropping them.";eco:falsifier "An option silently removed from consideration without an exclusion record falsifies this invariant.".

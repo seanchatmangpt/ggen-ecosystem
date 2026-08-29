@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ReplacementEquivalenceProof a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "replacement equivalence proof";skos:definition "A removed semantic relation may be replaced only under an explicit equivalence boundary.";eco:falsifier "Claiming replacement without a declared equivalence boundary falsifies this invariant.".

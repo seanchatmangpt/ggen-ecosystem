@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ReceiptSubjectIdentity a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "receipt binds subject identity";skos:definition "A receipt identifies the exact admitted subject whose consequence it certifies.";eco:falsifier "A receipt lacking exact subject identity falsifies this invariant.".

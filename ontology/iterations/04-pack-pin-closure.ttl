@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:PackPinClosure a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "pack-pin closure";skos:definition "Every selected marketplace pack is bound to an exact immutable identity before manufacture.";eco:falsifier "A floating pack ref in an admitted manufacture falsifies closure.".

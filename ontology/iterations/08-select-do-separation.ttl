@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:SelectDoSeparation a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "SELECT does not imply DO";skos:definition "Selection may choose an intent or option but cannot actuate it.";eco:falsifier "A SELECT output directly causing irreversible mutation falsifies this invariant.".

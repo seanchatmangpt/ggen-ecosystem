@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:WorkingDirectoryRefusal a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "working-directory containment";skos:definition "A requested working directory must remain within the checked-out workspace.";eco:falsifier "A path escaping the workspace without typed refusal falsifies this invariant.".

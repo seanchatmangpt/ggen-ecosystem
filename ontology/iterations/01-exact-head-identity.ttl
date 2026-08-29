@@ -1,0 +1,7 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+eco:ExactHeadIdentityInvariant a eco:GovernanceInvariant, skos:Concept ;
+  skos:prefLabel "exact-head identity invariant" ;
+  skos:definition "Every admitted mutation binds the repository, ref, and exact base SHA before construction." ;
+  eco:falsifier "A mutation whose base SHA was not resolved before construction falsifies this invariant." .

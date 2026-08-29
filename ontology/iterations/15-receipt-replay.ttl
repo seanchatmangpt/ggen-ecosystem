@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:ReceiptReplayBinding a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "receipt binds replay";skos:definition "A receipt carries enough immutable identity to replay the same admitted subject boundary.";eco:falsifier "A receipt that cannot target the same subject for replay falsifies this invariant.".

@@ -1,0 +1,2 @@
+@prefix eco:<https://ggen.dev/ecosystem#>. @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+eco:IntrinsicGgenReceipt a eco:GovernanceInvariant,skos:Concept;skos:prefLabel "intrinsic ggen receipt preservation";skos:definition "When ggen emits an intrinsic receipt, the outer execution receipt preserves it as evidence rather than replacing it.";eco:falsifier "Discarding an available intrinsic ggen receipt falsifies this invariant.".
