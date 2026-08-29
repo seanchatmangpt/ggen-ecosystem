@@ -1,0 +1,9 @@
+{
+  "expected": "UNKNOWN",
+  "failure_standing": "REFUSED:STANDING_DRIFT",
+  "id": "dod-pr-010-standing",
+  "kind": "standing_row",
+  "remediation": "Reconcile PR-010 evidence and standing before release-crown admission.",
+  "requirement": "PR-010",
+  "source": "docs/DEFINITION-OF-DONE.md"
+}
