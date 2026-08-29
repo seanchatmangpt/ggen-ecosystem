@@ -1,0 +1,26 @@
+changelog:
+  exclude:
+    authors:
+      - dependabot[bot]
+  categories:
+    - title: "🚀 Capabilities and enhancements"
+      labels:
+        - enhancement
+    - title: "🐛 Fixes"
+      labels:
+        - bug
+    - title: "📚 Documentation"
+      labels:
+        - documentation
+    - title: "🔒 Security and supply chain"
+      labels:
+        - security
+    - title: "🧰 Developer experience"
+      labels:
+        - dx
+    - title: "📦 Dependency movement"
+      labels:
+        - dependencies
+    - title: "Other changes"
+      labels:
+        - "*"
