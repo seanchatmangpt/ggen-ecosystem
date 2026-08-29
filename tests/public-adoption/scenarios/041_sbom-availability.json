@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-041",
+  "title": "SBOM availability",
+  "hypothesis": "The released capsule exposes a machine-readable software bill of materials.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:sbom-availability",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "retrieve and validate the release SBOM",
+  "oracle": [
+    "SBOM parses",
+    "component identities include GGen and marketplace"
+  ],
+  "expected_standing": "UNKNOWN",
+  "reason_code": "SBOM_NOT_OBSERVED",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through SBOM_NOT_OBSERVED",
+  "semantic_fingerprint": "SJ-041:sbom-availability"
+}
