@@ -1,0 +1,16 @@
+{
+  "name": "publication-exact-tag",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "13-image-publication",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "action_contains": "ghcr.io/seanchatmangpt/ggen-ecosystem:v26.8.28"
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P026",
+  "semantic_fingerprint": "c939258f"
+}

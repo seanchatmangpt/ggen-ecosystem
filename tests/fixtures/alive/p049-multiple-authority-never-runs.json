@@ -1,0 +1,32 @@
+{
+  "name": "multiple-authority-never-runs",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "push1"
+      ],
+      "cost": 1,
+      "description": "p1",
+      "authority": "packages:write"
+    },
+    {
+      "argv": [
+        "push2"
+      ],
+      "cost": 1,
+      "description": "p2",
+      "authority": "contents:write"
+    }
+  ],
+  "exits": [],
+  "expect": {
+    "standing": "PARTIAL_ALIVE",
+    "calls": 0,
+    "receipts": 0,
+    "receipt": {}
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P049",
+  "semantic_fingerprint": "01133d05"
+}

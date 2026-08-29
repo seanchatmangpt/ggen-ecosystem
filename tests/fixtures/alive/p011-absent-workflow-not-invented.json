@@ -1,0 +1,17 @@
+{
+  "name": "absent-workflow-not-invented",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "other",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "step_count": 0,
+    "action_absent": "ggen sync"
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P011",
+  "semantic_fingerprint": "a3343759"
+}

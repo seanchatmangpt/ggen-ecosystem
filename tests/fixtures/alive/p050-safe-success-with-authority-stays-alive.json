@@ -1,0 +1,33 @@
+{
+  "name": "safe-success-with-authority-stays-alive",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "verify"
+      ],
+      "cost": 1,
+      "description": "verify"
+    },
+    {
+      "argv": [
+        "push"
+      ],
+      "cost": 1,
+      "description": "push",
+      "authority": "packages:write"
+    }
+  ],
+  "exits": [
+    0
+  ],
+  "expect": {
+    "standing": "ALIVE",
+    "calls": 1,
+    "receipts": 1,
+    "receipt": {}
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P050",
+  "semantic_fingerprint": "16ba7eda"
+}

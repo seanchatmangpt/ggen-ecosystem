@@ -1,0 +1,33 @@
+{
+  "name": "safe-before-authority-only-safe-called",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "safe"
+      ],
+      "cost": 1,
+      "description": "safe"
+    },
+    {
+      "argv": [
+        "push"
+      ],
+      "cost": 10,
+      "description": "push",
+      "authority": "packages:write"
+    }
+  ],
+  "exits": [
+    0
+  ],
+  "expect": {
+    "standing": "ALIVE",
+    "calls": 1,
+    "receipts": 1,
+    "receipt": {}
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P034",
+  "semantic_fingerprint": "bb92235b"
+}

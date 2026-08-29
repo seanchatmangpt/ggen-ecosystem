@@ -1,0 +1,33 @@
+{
+  "name": "two-safe-success-alive",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "a"
+      ],
+      "cost": 1,
+      "description": "a"
+    },
+    {
+      "argv": [
+        "b"
+      ],
+      "cost": 1,
+      "description": "b"
+    }
+  ],
+  "exits": [
+    0,
+    0
+  ],
+  "expect": {
+    "standing": "ALIVE",
+    "calls": 2,
+    "receipts": 2,
+    "receipt": {}
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P042",
+  "semantic_fingerprint": "8c19d90a"
+}

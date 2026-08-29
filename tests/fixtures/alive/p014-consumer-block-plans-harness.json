@@ -1,0 +1,17 @@
+{
+  "name": "consumer-block-plans-harness",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "12-fresh-consumer",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "step_count": 1,
+    "action_contains": "run-fresh-consumer.sh"
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P014",
+  "semantic_fingerprint": "b9750b6d"
+}

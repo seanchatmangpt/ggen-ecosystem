@@ -1,0 +1,27 @@
+{
+  "name": "executor-captures-stdout",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "x"
+      ],
+      "cost": 1,
+      "description": "x"
+    }
+  ],
+  "exits": [
+    0
+  ],
+  "expect": {
+    "standing": "ALIVE",
+    "calls": 1,
+    "receipts": 1,
+    "receipt": {
+      "stdout": "hello"
+    }
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P035",
+  "semantic_fingerprint": "456b8597"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "blocked-gate-prevents-crown",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "x",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "status": "PARTIAL_ALIVE",
+    "step_count": 0
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P005",
+  "semantic_fingerprint": "4cfd768b"
+}

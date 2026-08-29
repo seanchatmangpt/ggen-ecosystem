@@ -1,0 +1,17 @@
+{
+  "name": "submodule-block-plans-init",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "1-submodules",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "step_count": 1,
+    "action_contains": "git submodule update"
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P007",
+  "semantic_fingerprint": "c7661935"
+}

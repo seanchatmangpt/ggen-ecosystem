@@ -1,0 +1,16 @@
+{
+  "name": "image-local-test-tag",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "11-image-presence",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "action_contains": "ggen-ecosystem:test"
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P027",
+  "semantic_fingerprint": "1e517e94"
+}

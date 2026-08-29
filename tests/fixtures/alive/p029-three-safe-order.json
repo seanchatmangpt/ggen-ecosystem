@@ -1,0 +1,26 @@
+{
+  "name": "three-safe-order",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "1-submodules",
+      "standing": "BLOCKED"
+    },
+    {
+      "gate": "9-workflow-drift",
+      "standing": "BLOCKED"
+    },
+    {
+      "gate": "11-image-presence",
+      "standing": "BLOCKED"
+    }
+  ],
+  "expect": {
+    "step_count": 3,
+    "first_action": "ggen sync run",
+    "total_cost": 8
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P029",
+  "semantic_fingerprint": "431cd366"
+}

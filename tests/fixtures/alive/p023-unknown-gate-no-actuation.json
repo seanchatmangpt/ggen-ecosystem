@@ -1,0 +1,17 @@
+{
+  "name": "unknown-gate-no-actuation",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "evil",
+      "standing": "BLOCKED",
+      "action": "rm -rf /"
+    }
+  ],
+  "expect": {
+    "step_count": 0
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P023",
+  "semantic_fingerprint": "34e596e2"
+}

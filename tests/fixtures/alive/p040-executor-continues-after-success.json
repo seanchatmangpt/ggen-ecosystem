@@ -1,0 +1,33 @@
+{
+  "name": "executor-continues-after-success",
+  "kind": "execute",
+  "steps": [
+    {
+      "argv": [
+        "first"
+      ],
+      "cost": 1,
+      "description": "first"
+    },
+    {
+      "argv": [
+        "second"
+      ],
+      "cost": 1,
+      "description": "second"
+    }
+  ],
+  "exits": [
+    0,
+    0
+  ],
+  "expect": {
+    "standing": "ALIVE",
+    "calls": 2,
+    "receipts": 2,
+    "receipt": {}
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P040",
+  "semantic_fingerprint": "e57860a5"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "empty-plan-is-partial",
+  "kind": "plan",
+  "gates": [],
+  "expect": {
+    "status": "PARTIAL_ALIVE",
+    "step_count": 0
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P002",
+  "semantic_fingerprint": "8d22ecc2"
+}

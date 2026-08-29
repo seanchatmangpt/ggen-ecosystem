@@ -1,0 +1,15 @@
+{
+  "name": "zero-safe-work-is-partial",
+  "kind": "execute",
+  "steps": [],
+  "exits": [],
+  "expect": {
+    "standing": "PARTIAL_ALIVE",
+    "calls": 0,
+    "receipts": 0,
+    "receipt": {}
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P041",
+  "semantic_fingerprint": "60589db0"
+}

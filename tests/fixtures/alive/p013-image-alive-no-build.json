@@ -1,0 +1,17 @@
+{
+  "name": "image-alive-no-build",
+  "kind": "plan",
+  "gates": [
+    {
+      "gate": "11-image-presence",
+      "standing": "ALIVE"
+    }
+  ],
+  "expect": {
+    "step_count": 0,
+    "action_absent": "docker build"
+  },
+  "schema": "ggen-ecosystem/alive-case/v1",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:ws1-alive-engine-v1|P013",
+  "semantic_fingerprint": "b1780ab4"
+}
