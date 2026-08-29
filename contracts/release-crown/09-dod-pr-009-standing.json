@@ -1,0 +1,9 @@
+{
+  "expected": "BLOCKED",
+  "failure_standing": "REFUSED:STANDING_DRIFT",
+  "id": "dod-pr-009-standing",
+  "kind": "standing_row",
+  "remediation": "Reconcile PR-009 evidence and standing before release-crown admission.",
+  "requirement": "PR-009",
+  "source": "docs/DEFINITION-OF-DONE.md"
+}
