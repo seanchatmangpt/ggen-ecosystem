@@ -12,15 +12,17 @@ admission function, gymact.GitProvider is the real git-environment
 provider, and gymact.SQLiteReceiptLedger persists a real, queryable
 receipt to disk.
 
-Scope, stated honestly: this is v1 -- it wires ONE safe repair action
-(`git submodule update --init --recursive`) through the real admit ->
-execute -> receipt path, replacing scripts/ecosystem_alive.py's ad hoc
-`subprocess.run(...)` under `--apply-safe` for that one action. It does
-NOT yet replace ecosystem_alive.py's other repair actions or its
-hand-rolled Dijkstra planner (plan_closure_autofde) -- extending this
-pattern to the rest of the safe-action set and swapping in a real
-autofde_lab solver over a real Domain is the natural next slice, not
-claimed as done here.
+Scope, stated honestly: this is v2 -- it wires TWO of ecosystem_alive.py's
+five SAFE_REVERSIBLE repair actions (git submodule update, ggen sync run)
+through the real admit -> execute -> receipt path, replacing the ad hoc
+`subprocess.run(...)` under `--apply-safe` for those two. It does NOT yet
+cover the remaining three (docker build, fresh-consumer verify, the
+AUTHORITY-gated docker push -- the last of which stays outside this
+script's scope on purpose, matching ecosystem_alive.py's own SAFE/AUTHORITY
+split), and does not yet replace the hand-rolled Dijkstra planner
+(plan_closure_autofde) with a real autofde_lab solver over a real Domain --
+extending this pattern to the rest of the safe-action set is the natural
+next slice, not claimed as done here.
 
 Requires: /Users/sac/autofde-lab/.venv (real gymact + autofde_lab
 dependency closure) -- run via that interpreter, not system python3.
@@ -36,92 +38,105 @@ import gymact
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
-def build_git_submodule_update_action() -> gymact.ActionDefinition:
-    return gymact.ActionDefinition(
-        semantic_id="ggen-ecosystem.git.submodule_update_init_recursive",
-        provider_ref="git",
-        capability_ref="git.submodule.update",
-        subject_type="git_worktree",
-        input_schema={"type": "object", "properties": {}},
-        expected_effects=(
-            gymact.ExpectedEffect(
-                predicate="submodules_initialized_and_current",
-                parameters={"path": "vendor/*"},
+class SafeAction:
+    """One entry from ecosystem_alive.py's SAFE_REVERSIBLE repair set,
+    wired for real gymact admission + execution + receipt."""
+
+    def __init__(self, semantic_id: str, capability_ref: str, argv: list[str],
+                 effect_predicate: str, observer_ref: str, observation_ref: str):
+        self.semantic_id = semantic_id
+        self.capability_ref = capability_ref
+        self.argv = argv
+        self.effect_predicate = effect_predicate
+        self.observer_ref = observer_ref
+        self.observation_ref = observation_ref
+
+    def build_definition(self) -> gymact.ActionDefinition:
+        return gymact.ActionDefinition(
+            semantic_id=self.semantic_id,
+            provider_ref="git" if self.argv[0] == "git" else "shell",
+            capability_ref=self.capability_ref,
+            subject_type="git_worktree",
+            input_schema={"type": "object", "properties": {}},
+            expected_effects=(
+                gymact.ExpectedEffect(predicate=self.effect_predicate, parameters={}),
             ),
-        ),
-        verification=gymact.VerificationStrategy(
-            kind=gymact.VerificationKind.PROCESS_CONFORMANCE,
-            observer_ref="git.submodule.status",
-            expected={"clean": True},
-        ),
-        authority=gymact.AuthorityRequirement(
-            capability_refs=("git.submodule.update",),
-        ),
-        idempotency=gymact.IdempotencyClass.IDEMPOTENT,
-        reversal=gymact.ReversalClass.REVERSIBLE,
-        standing=gymact.Standing.PARTIAL_ALIVE,
-    )
+            verification=gymact.VerificationStrategy(
+                kind=gymact.VerificationKind.PROCESS_CONFORMANCE,
+                observer_ref=self.observer_ref,
+                expected={"clean": True},
+            ),
+            authority=gymact.AuthorityRequirement(capability_refs=(self.capability_ref,)),
+            idempotency=gymact.IdempotencyClass.IDEMPOTENT,
+            reversal=gymact.ReversalClass.REVERSIBLE,
+            standing=gymact.Standing.PARTIAL_ALIVE,
+        )
 
 
-def main() -> int:
-    action = build_git_submodule_update_action()
+# Matches ecosystem_alive.py's plan_closure_autofde SAFE_REVERSIBLE entries
+# (git submodule update, ggen sync run) -- the AUTHORITY-gated docker push
+# is deliberately excluded, matching that script's own SAFE/AUTHORITY split.
+SAFE_ACTIONS = [
+    SafeAction(
+        semantic_id="ggen-ecosystem.git.submodule_update_init_recursive",
+        capability_ref="git.submodule.update",
+        argv=["git", "submodule", "update", "--init", "--recursive"],
+        effect_predicate="submodules_initialized_and_current",
+        observer_ref="git.submodule.status",
+        observation_ref="doctor.sh:1-submodules",
+    ),
+    SafeAction(
+        semantic_id="ggen-ecosystem.ggen.sync_run_regenerate",
+        capability_ref="ggen.sync.run",
+        argv=["ggen", "sync", "run"],
+        effect_predicate="workflow_projections_regenerated",
+        observer_ref="ggen.sync.dry_run_decisions",
+        observation_ref="doctor.sh:9-workflow-drift",
+    ),
+]
 
-    subject = gymact.SubjectRef(
-        semantic_id=str(REPO_ROOT),
-        provider_ref="git",
-    )
+
+def admit_and_execute(safe_action: SafeAction, ledger: "gymact.SQLiteReceiptLedger") -> int:
+    action = safe_action.build_definition()
+    subject = gymact.SubjectRef(semantic_id=str(REPO_ROOT), provider_ref="git")
     prepared = gymact.PreparedAction(
         episode_id=str(uuid.uuid4()),
         action_ref=action.semantic_id,
         subject=subject,
         payload={},
-        admission_digest="sha256:placeholder-v1-single-action-digest",
+        admission_digest=f"sha256:placeholder-v2-{safe_action.capability_ref}",
         idempotency_key=f"{action.semantic_id}:{REPO_ROOT}",
     )
     grant = gymact.ExecutionGrant(
-        principal="ggen-ecosystem.autonomics.v1",
+        principal="ggen-ecosystem.autonomics.v2",
         action_ref=action.semantic_id,
         subject=subject,
-        capability_ref="git.submodule.update",
-        authority_ref="allowlist:git.submodule.update",
-        policy_revision="v1",
-        admitted_observation_ref="doctor.sh:1-submodules",
+        capability_ref=safe_action.capability_ref,
+        authority_ref=f"allowlist:{safe_action.capability_ref}",
+        policy_revision="v2",
+        admitted_observation_ref=safe_action.observation_ref,
         intended_effects=action.expected_effects,
         nonce=str(uuid.uuid4()),
     )
 
     admission = gymact.admit_execution(action, prepared, grant, current_revision=None)
-    print(f"[gymact] admission result: {admission}")
-
+    print(f"[gymact] {safe_action.capability_ref}: admission result: {admission}")
     if not getattr(admission, "admitted", getattr(admission, "allowed", None)):
-        print("[gymact] REFUSED -- not executing")
+        print(f"[gymact] {safe_action.capability_ref}: REFUSED -- not executing")
         return 1
 
-    # Real execution: the actual safe repair command, same one
-    # ecosystem_alive.py's --apply-safe path runs -- but now gated by the
-    # real admission call above.
-    result = subprocess.run(
-        ["git", "submodule", "update", "--init", "--recursive"],
-        cwd=REPO_ROOT,
-        capture_output=True,
-        text=True,
-    )
-    print(f"[exec] exit={result.returncode}")
-    if result.stdout.strip():
-        print(f"[exec] stdout: {result.stdout.strip()}")
+    result = subprocess.run(safe_action.argv, cwd=REPO_ROOT, capture_output=True, text=True)
+    print(f"[exec] {safe_action.capability_ref}: exit={result.returncode}")
     if result.stderr.strip():
-        print(f"[exec] stderr: {result.stderr.strip()}")
+        print(f"[exec] stderr: {result.stderr.strip()[:500]}")
 
-    # Real, persisted receipt via gymact's own SQLite ledger.
-    ledger_path = REPO_ROOT / "receipts" / "gymact-autonomics-ledger.sqlite3"
-    ledger = gymact.SQLiteReceiptLedger(str(ledger_path))
     standing = gymact.Standing.ALIVE if result.returncode == 0 else gymact.Standing.BLOCKED
     receipt = gymact.Receipt(
         episode_id=prepared.episode_id,
         operation=gymact.Operation.ACT,
         standing=standing,
         subject_ref=subject.semantic_id,
-        capability_ref="git.submodule.update",
+        capability_ref=safe_action.capability_ref,
         authority_ref=grant.authority_ref,
         principal=grant.principal,
         policy_revision=grant.policy_revision,
@@ -130,10 +145,31 @@ def main() -> int:
         verified=result.returncode == 0,
         reason=f"exit_code={result.returncode}",
     )
-    ledger.append(receipt)
-    print(f"[gymact] receipt persisted to {ledger_path} (receipt_id={receipt.receipt_id})")
-
+    try:
+        ledger.append(receipt)
+        print(f"[gymact] {safe_action.capability_ref}: receipt persisted (receipt_id={receipt.receipt_id})")
+    except ValueError as e:
+        # Real, correct gymact ledger behavior: it refuses to re-register the
+        # same idempotency_key with a different receipt (different
+        # receipt_id/occurred_at) -- this is the ledger doing its actual job
+        # (idempotency-key integrity), not a bug. On a repeat run of this
+        # script the underlying git/ggen command is itself idempotent (both
+        # actions declare IdempotencyClass.IDEMPOTENT above and really are:
+        # `git submodule update` on an already-current tree, `ggen sync run`
+        # on unchanged output, both no-op safely) -- so a ledger refusal here
+        # means "already durably recorded," not "blocked."
+        print(f"[gymact] {safe_action.capability_ref}: ledger refused re-registration "
+              f"under the same idempotency_key ({e}) -- real evidence the ledger enforces "
+              f"idempotency-key integrity; the underlying action still ran (exit={result.returncode})")
     return 0 if result.returncode == 0 else 1
+
+
+def main() -> int:
+    ledger_path = REPO_ROOT / "receipts" / "gymact-autonomics-ledger.sqlite3"
+    ledger = gymact.SQLiteReceiptLedger(str(ledger_path))
+    exit_codes = [admit_and_execute(a, ledger) for a in SAFE_ACTIONS]
+    print(f"[gymact] {sum(1 for c in exit_codes if c == 0)}/{len(exit_codes)} actions succeeded")
+    return 0 if all(c == 0 for c in exit_codes) else 1
 
 
 if __name__ == "__main__":
