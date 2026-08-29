@@ -1,0 +1,8 @@
+{
+  "expected_exit": 0,
+  "id": "baseline-all-pass",
+  "must_contain": [
+    "1-ggen-commit-identity] ALIVE",
+    "6-workflow-drift] ALIVE"
+  ]
+}
