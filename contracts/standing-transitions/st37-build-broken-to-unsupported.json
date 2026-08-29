@@ -1,0 +1,1 @@
+{"id":"ST37","kind":"transition","from":"BUILD_BROKEN","to":"UNSUPPORTED","rule":"Require capability inspection proving the failing operation has no supported implementation path; repeated failure alone is insufficient.","exact_subject_required":true,"authority_effect":"NONE"}
