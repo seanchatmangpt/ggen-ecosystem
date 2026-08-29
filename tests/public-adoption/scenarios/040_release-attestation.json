@@ -1,0 +1,22 @@
+{
+  "work_key": "WS4-SJ-040",
+  "title": "Release attestation",
+  "hypothesis": "A release artifact carries verifiable provenance bound to its digest.",
+  "subject": "seanchatmangpt/ggen-ecosystem@16e82dfd3701231d5ebc994104043e77654d62c4",
+  "setup": [
+    "fixture:release-attestation",
+    "resolve exact producer and capsule identities"
+  ],
+  "action": "verify attestation subject against the locked image digest",
+  "oracle": [
+    "attestation signature verifies",
+    "subject digest equals lock"
+  ],
+  "expected_standing": "UNKNOWN",
+  "reason_code": "ATTESTATION_NOT_OBSERVED",
+  "authority": "SELECT_CONSTRUCT_ONLY",
+  "receipt_required": true,
+  "rollback": "discard isolated fixture and preserve the admitted base",
+  "next_route": "route through ATTESTATION_NOT_OBSERVED",
+  "semantic_fingerprint": "SJ-040:release-attestation"
+}
