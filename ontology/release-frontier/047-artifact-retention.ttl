@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:artifact-retention a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Retain multi-arch evidence artifacts for replay" ; ex:sequence 47 ; ex:evidence "artifact-retention" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
