@@ -1,0 +1,1 @@
+{"id":"ST33","kind":"transition","from":"BUILD_BROKEN","to":"UNKNOWN","rule":"Require invalidation of the exact failure evidence without successful rerun evidence; do not infer repair from disappearance of logs.","exact_subject_required":true,"authority_effect":"NONE"}
