@@ -1,0 +1,1 @@
+{"schema":"ggen-ecosystem/doctor-contract/v1","plan_id":"P11","acceptance_edge":"composition.gitmodules.present","semantic_purpose":".gitmodules must exist","surface":".gitmodules","expected":"present","verifier":"file_exists","falsifier":"fail_if_missing","semantic_fingerprint":"a9e696942b08d7adcf3068d901239841a3c6130034800caf46c3a79d16788747"}
