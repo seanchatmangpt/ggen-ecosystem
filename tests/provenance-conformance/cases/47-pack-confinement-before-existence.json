@@ -1,0 +1,1 @@
+{"expected_exit":1,"id":"pack-confinement-before-existence","must_contain":["does not live under vendor/ggen-marketplace"],"replace_files":{"ggen.toml":"[packs]\nx={ path = \"/tmp/nope\" }\n"}}

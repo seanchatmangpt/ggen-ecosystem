@@ -1,0 +1,1 @@
+{"decisions":{".github/workflows/ggen-ecosystem-container.yml":"unchanged: content identical",".github/workflows/ggen-ecosystem-sync.yml":"unchanged: content identical"},"expected_exit":1,"id":"written-beats-unchanged-decision","must_contain":["DRIFT: .github/workflows/ggen-ecosystem-sync.yml"],"written":[".github/workflows/ggen-ecosystem-sync.yml"]}

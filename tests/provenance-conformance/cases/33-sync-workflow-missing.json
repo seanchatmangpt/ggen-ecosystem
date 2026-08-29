@@ -1,0 +1,1 @@
+{"expected_exit":1,"id":"sync-workflow-missing","must_contain":["expected generated file missing"],"remove":[".github/workflows/ggen-ecosystem-sync.yml"]}
