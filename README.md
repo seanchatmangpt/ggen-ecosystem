@@ -2,11 +2,13 @@
 
 [![GGen Ecosystem Sync](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-sync.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-sync.yml)
 [![Container Build & Publish](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-container.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/ggen-ecosystem-container.yml)
-[![Container](https://img.shields.io/badge/ghcr.io-ggen--ecosystem-blue)](https://github.com/seanchatmangpt/ggen-ecosystem/pkgs/container/ggen-ecosystem)
-[![Definition of Done](https://img.shields.io/badge/DoD-18%20ALIVE%20%2F%203%20PARTIAL__ALIVE-brightgreen)](docs/DEFINITION-OF-DONE.md)
+[![MFact Certification](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/mfact-certification.yml/badge.svg)](https://github.com/seanchatmangpt/ggen-ecosystem/actions/workflows/mfact-certification.yml)
+[![Release standing: BLOCKED](https://img.shields.io/badge/release-BLOCKED%5BGHCR__MANIFEST__UNKNOWN%5D-red)](docs/CURRENT-RELEASE-STANDING.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Canonical governed composition root for the ggen ecosystem.
+
+> **Current release standing:** `BLOCKED[GHCR_MANIFEST_UNKNOWN]`. The historical v26.8.28 capsule digest is preserved as evidence but is not currently admitted as pullable after hosted replay observed `manifest unknown`. See [Current release standing](docs/CURRENT-RELEASE-STANDING.md) and tracking issue #146 before relying on older Definition-of-Done ALIVE observations.
 
 This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
 
@@ -56,16 +58,17 @@ A `Justfile` provides the fuller canonical operator surface (`just --list` for a
 
 ### Exact producer pins
 
-- GGen release: `v26.8.28` (real published GitHub release, verified via `gh release list`/`gh release view`)
-- GGen source commit: `c61ee99359c9dbc7b3cb71687976932a3e737ed4` (resolved via `git ls-remote --tags`; matches the `vendor/ggen` submodule pin)
-- GGen aarch64-apple-darwin release asset SHA-256 (verified via `gh release download` + `shasum -a 256`, historical — no longer the consumption path): `82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42`
-- Marketplace commit: `c779aec20d9c93727c7ad4464f1dd52ac8e066e4` (matches the `vendor/ggen-marketplace` submodule pin)
+- GGen release: `v26.8.28` (real published GitHub release, verified via prior release evidence)
+- GGen source commit: `c61ee99359c9dbc7b3cb71687976932a3e737ed4` (matches the `vendor/ggen` gitlink)
+- GGen aarch64-apple-darwin release asset SHA-256 (historical; no longer the consumption path): `82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42`
+- Marketplace commit: `89adf4c8476f7edc8067fdbb1c256cfbfa22df6a` (matches `ecosystem.lock.toml` and the `vendor/ggen-marketplace` gitlink)
+- AutoFDE Lab commit: `a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09` (matches `ecosystem.lock.toml` and the `vendor/autofde-lab` gitlink)
 - Marketplace pack: `packs/github-actions-pack` (sourced via local submodule `path =`, not `git =`/`version =`)
-- Composed container: `ghcr.io/seanchatmangpt/ggen-ecosystem` — tag/digest `UNKNOWN-TODO` until a real `docker build`+push runs (see `.github/workflows/ggen-ecosystem-container.yml`)
+- Historical composed-container digest: `sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` — **not currently admitted as pullable**; republish and re-crown are tracked in issue #146.
 
 ## Maximum ecosystem graph
 
-The manufacturing rail above is the proven operational path. The semantic control plane around it is intentionally larger:
+The manufacturing rail above is the proven operational path when its exact capsule identity is admitted. The semantic control plane around it is intentionally larger:
 
 ```text
 complete public GitHub owner catalog
@@ -87,7 +90,7 @@ Five semantic profiles are defined: `cloud-session`, `platform-engineering`, `pr
 
 ## GitHub-native cloud bootstrap
 
-`.github/workflows/ggen-ecosystem-sync.yml` is both a reusable `workflow_call` target and a manual `workflow_dispatch` rail. It checks out the exact candidate (with submodules), admits exact producer/pack identities, runs its `construct` job **inside** the pinned `ghcr.io/seanchatmangpt/ggen-ecosystem` container, executes `ggen sync run`, and captures deterministic replay evidence while keeping repository mutation authority outside the workflow (`contents: read` only). `.github/workflows/ggen-ecosystem-container.yml` builds and publishes that container from `vendor/ggen` + `vendor/ggen-marketplace` on tag push or manual dispatch.
+`.github/workflows/ggen-ecosystem-sync.yml` is both a reusable `workflow_call` target and a manual `workflow_dispatch` rail. It checks out the exact candidate (with submodules), admits exact producer/pack identities, runs its `construct` job **inside** the pinned `ghcr.io/seanchatmangpt/ggen-ecosystem` container, executes `ggen sync run`, and captures deterministic replay evidence while keeping repository mutation authority outside the workflow (`contents: read` only). `.github/workflows/ggen-ecosystem-container.yml` builds and publishes that container from `vendor/ggen` + `vendor/ggen-marketplace` on tag push or manual dispatch. The workflow definition is present, but the current capsule must be republished before this path can regain `ALIVE` standing.
 
 ## Provenance
 
@@ -103,7 +106,7 @@ The initial workflow bytes were manufactured by the real GGen release through Gi
 - `ggen sync run` exit: `0`
 - independent YAML parse: `PASS`
 
-The machine-readable bootstrap receipt is in `receipts/bootstrap-ggen-ecosystem-sync.json`.
+The machine-readable bootstrap receipt is in `receipts/bootstrap-ggen-ecosystem-sync.json`. It is historical evidence; it does not certify the current repository head or current GHCR availability.
 
 ## Authority boundary
 
