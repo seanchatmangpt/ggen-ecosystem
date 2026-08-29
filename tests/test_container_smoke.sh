@@ -110,7 +110,11 @@ else
     # content into a container -- a /var/folders scratch dir bind-mounts as an
     # EMPTY directory with no error, which silently produced a false
     # [FM-CONFIG-001] "ggen.toml not found" here on the first real run.
-    SCRATCH_DIR="$REPO_ROOT/tests/.scratch-container-smoke"
+    if [[ "$REPO_ROOT" == "$HOME"* ]]; then
+        SCRATCH_DIR="$REPO_ROOT/tests/.scratch-container-smoke"
+    else
+        SCRATCH_DIR="${HOME}/.cache/ggen-scratch-container-smoke"
+    fi
     rm -rf "$SCRATCH_DIR"
     mkdir -p "$SCRATCH_DIR"
     cp -R "$FIXTURE_DIR/." "$SCRATCH_DIR/"

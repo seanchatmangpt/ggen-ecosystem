@@ -34,16 +34,25 @@ if [[ ! -f "$FIXTURE_DIR/ggen.toml" ]]; then
   exit 1
 fi
 
+if [[ "$FIXTURE_DIR" == "$HOME"* ]]; then
+  TARGET_DIR="$FIXTURE_DIR"
+else
+  TARGET_DIR="${HOME}/.cache/ggen-fresh-consumer-scratch"
+  rm -rf "$TARGET_DIR"
+  mkdir -p "$TARGET_DIR"
+  cp -R "$FIXTURE_DIR/." "$TARGET_DIR/"
+fi
+
 echo "== running fresh-consumer fixture against $IMAGE_REF =="
 docker run --rm \
-  -v "$FIXTURE_DIR:/workspace" \
+  -v "$TARGET_DIR:/workspace" \
   -w /workspace \
   "$IMAGE_REF" \
   ggen sync run
 
 echo "== generated output =="
-cat "$FIXTURE_DIR/out/hello.rs"
+cat "$TARGET_DIR/out/hello.rs"
 
-grep -q "shape=https://example.org/fresh-consumer#ThingShape" "$FIXTURE_DIR/out/hello.rs" \
+grep -q "shape=https://example.org/fresh-consumer#ThingShape" "$TARGET_DIR/out/hello.rs" \
   && echo "FRESH-CONSUMER CROWN TEST PASSED" \
   || { echo "FRESH-CONSUMER CROWN TEST FAILED: expected content missing from out/hello.rs" >&2; exit 1; }
