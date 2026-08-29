@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:qemu-emulation a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require QEMU emulation when native arm64 execution is unavailable" ; ex:sequence 6 ; ex:emulation "qemu-user-static" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
