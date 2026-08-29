@@ -1,0 +1,18 @@
+{
+  "schema": "ggen-ecosystem/publication-evidence-case/v1",
+  "id": "PUB-015",
+  "title": "Dockerfile parse failure is build-broken",
+  "hypothesis": "Dockerfile parse failure is build-broken",
+  "acceptance_edge": "publication.dockerfile-syntax",
+  "evidence": [
+    "dockerfile parse error line 22"
+  ],
+  "expected": {
+    "standing": "BUILD_BROKEN",
+    "reason": "DOCKERFILE"
+  },
+  "observed_source": "synthetic negative/control fixture",
+  "authority_ceiling": "VERIFY",
+  "falsifier": "classifier output differs from BUILD_BROKEN[DOCKERFILE]",
+  "semantic_fingerprint": "fp:publication:dockerfile-syntax:BUILD_BROKEN:DOCKERFILE"
+}
