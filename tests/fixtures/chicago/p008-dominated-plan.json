@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P008",
+  "semantic_fingerprint": "81d8fd2c",
+  "hypothesis": "dominated-plan must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "dominated-plan",
+  "invalid": {
+    "op": "zero",
+    "actual": 1,
+    "expected": null
+  },
+  "control": {
+    "op": "zero",
+    "actual": 0,
+    "expected": null
+  },
+  "expected_standing": "REFUSED[DOMINATED_PLAN]",
+  "rollback": "revert P008",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

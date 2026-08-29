@@ -1,0 +1,26 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P016",
+  "semantic_fingerprint": "8636225e",
+  "hypothesis": "private-identity-projection must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "private-identity-projection",
+  "invalid": {
+    "op": "disjoint",
+    "actual": [
+      "private/repo"
+    ],
+    "expected": [
+      "private/repo"
+    ]
+  },
+  "control": {
+    "op": "disjoint",
+    "actual": [],
+    "expected": [
+      "private/repo"
+    ]
+  },
+  "expected_standing": "REFUSED[PRIVATE_IDENTITY_PROJECTION]",
+  "rollback": "revert P016",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

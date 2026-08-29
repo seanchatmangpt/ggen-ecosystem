@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P005",
+  "semantic_fingerprint": "85350383",
+  "hypothesis": "workflow-projection-drift must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "workflow-projection-drift",
+  "invalid": {
+    "op": "false",
+    "actual": true,
+    "expected": null
+  },
+  "control": {
+    "op": "false",
+    "actual": false,
+    "expected": null
+  },
+  "expected_standing": "REFUSED[WORKFLOW_DRIFT]",
+  "rollback": "revert P005",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

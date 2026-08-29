@@ -1,0 +1,24 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P021",
+  "semantic_fingerprint": "a2ba1682",
+  "hypothesis": "unavailable-as-refused must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "unavailable-as-refused",
+  "invalid": {
+    "op": "enum",
+    "actual": "REFUSED",
+    "expected": [
+      "UNSUPPORTED"
+    ]
+  },
+  "control": {
+    "op": "enum",
+    "actual": "UNSUPPORTED",
+    "expected": [
+      "UNSUPPORTED"
+    ]
+  },
+  "expected_standing": "REFUSED[STANDING_COLLAPSE]",
+  "rollback": "revert P021",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

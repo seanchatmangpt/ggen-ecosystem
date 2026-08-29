@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P001",
+  "semantic_fingerprint": "c662767a",
+  "hypothesis": "wrong-source-sha must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "wrong-source-sha",
+  "invalid": {
+    "op": "sha40",
+    "actual": "not-a-sha",
+    "expected": null
+  },
+  "control": {
+    "op": "sha40",
+    "actual": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "expected": null
+  },
+  "expected_standing": "REFUSED[SOURCE_SHA_INVALID]",
+  "rollback": "revert P001",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

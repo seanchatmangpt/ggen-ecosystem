@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P046",
+  "semantic_fingerprint": "6d2dd28b",
+  "hypothesis": "sbom-missing must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "sbom-missing",
+  "invalid": {
+    "op": "nonempty",
+    "actual": "",
+    "expected": null
+  },
+  "control": {
+    "op": "nonempty",
+    "actual": "sbom.spdx.json",
+    "expected": null
+  },
+  "expected_standing": "REFUSED[SBOM_MISSING]",
+  "rollback": "revert P046",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

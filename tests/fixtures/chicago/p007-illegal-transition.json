@@ -1,0 +1,24 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P007",
+  "semantic_fingerprint": "d5d06474",
+  "hypothesis": "illegal-transition must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "illegal-transition",
+  "invalid": {
+    "op": "enum",
+    "actual": "ALIVE->CANDIDATE",
+    "expected": [
+      "UNKNOWN->PARTIAL_ALIVE"
+    ]
+  },
+  "control": {
+    "op": "enum",
+    "actual": "UNKNOWN->PARTIAL_ALIVE",
+    "expected": [
+      "UNKNOWN->PARTIAL_ALIVE"
+    ]
+  },
+  "expected_standing": "REFUSED[ILLEGAL_TRANSITION]",
+  "rollback": "revert P007",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

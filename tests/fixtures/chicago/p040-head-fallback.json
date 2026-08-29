@@ -1,0 +1,25 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P040",
+  "semantic_fingerprint": "4f21eeb4",
+  "hypothesis": "head-fallback must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "head-fallback",
+  "invalid": {
+    "op": "not_contains",
+    "actual": [
+      "exact-sha",
+      "HEAD"
+    ],
+    "expected": "HEAD"
+  },
+  "control": {
+    "op": "not_contains",
+    "actual": [
+      "exact-sha"
+    ],
+    "expected": "HEAD"
+  },
+  "expected_standing": "REFUSED[HEAD_FALLBACK]",
+  "rollback": "revert P040",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

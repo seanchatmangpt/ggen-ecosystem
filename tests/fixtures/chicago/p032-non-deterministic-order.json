@@ -1,0 +1,26 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P032",
+  "semantic_fingerprint": "91f57d2b",
+  "hypothesis": "non-deterministic-order must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "non-deterministic-order",
+  "invalid": {
+    "op": "ordered",
+    "actual": [
+      "b",
+      "a"
+    ],
+    "expected": null
+  },
+  "control": {
+    "op": "ordered",
+    "actual": [
+      "a",
+      "b"
+    ],
+    "expected": null
+  },
+  "expected_standing": "REFUSED[NON_DETERMINISTIC_ORDER]",
+  "rollback": "revert P032",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

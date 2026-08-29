@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P023",
+  "semantic_fingerprint": "800505ae",
+  "hypothesis": "edge-as-graph-failure must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "edge-as-graph-failure",
+  "invalid": {
+    "op": "false",
+    "actual": true,
+    "expected": null
+  },
+  "control": {
+    "op": "false",
+    "actual": false,
+    "expected": null
+  },
+  "expected_standing": "REFUSED[LOCAL_EDGE_COLLAPSE]",
+  "rollback": "revert P023",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

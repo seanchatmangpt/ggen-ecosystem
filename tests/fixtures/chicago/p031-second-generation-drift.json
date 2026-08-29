@@ -1,0 +1,26 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P031",
+  "semantic_fingerprint": "abf48518",
+  "hypothesis": "second-generation-drift must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "second-generation-drift",
+  "invalid": {
+    "op": "same_bytes",
+    "actual": [
+      "abc",
+      "abd"
+    ],
+    "expected": null
+  },
+  "control": {
+    "op": "same_bytes",
+    "actual": [
+      "abc",
+      "abc"
+    ],
+    "expected": null
+  },
+  "expected_standing": "REFUSED[SECOND_GENERATION_DRIFT]",
+  "rollback": "revert P031",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

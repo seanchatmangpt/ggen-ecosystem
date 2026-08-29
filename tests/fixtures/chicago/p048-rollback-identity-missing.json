@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P048",
+  "semantic_fingerprint": "c78940fb",
+  "hypothesis": "rollback-identity-missing must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "rollback-identity-missing",
+  "invalid": {
+    "op": "nonempty",
+    "actual": "",
+    "expected": null
+  },
+  "control": {
+    "op": "nonempty",
+    "actual": "sha40",
+    "expected": null
+  },
+  "expected_standing": "REFUSED[ROLLBACK_IDENTITY_MISSING]",
+  "rollback": "revert P048",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

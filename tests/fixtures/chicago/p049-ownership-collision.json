@@ -1,0 +1,28 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P049",
+  "semantic_fingerprint": "66276590",
+  "hypothesis": "ownership-collision must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "ownership-collision",
+  "invalid": {
+    "op": "disjoint",
+    "actual": [
+      "generated/a"
+    ],
+    "expected": [
+      "generated/a"
+    ]
+  },
+  "control": {
+    "op": "disjoint",
+    "actual": [
+      "generated/b"
+    ],
+    "expected": [
+      "generated/a"
+    ]
+  },
+  "expected_standing": "REFUSED[OWNERSHIP_COLLISION]",
+  "rollback": "revert P049",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

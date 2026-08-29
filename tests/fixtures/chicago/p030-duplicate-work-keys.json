@@ -1,0 +1,26 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P030",
+  "semantic_fingerprint": "97c5284c",
+  "hypothesis": "duplicate-work-keys must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "duplicate-work-keys",
+  "invalid": {
+    "op": "unique",
+    "actual": [
+      "a",
+      "a"
+    ],
+    "expected": null
+  },
+  "control": {
+    "op": "unique",
+    "actual": [
+      "a",
+      "b"
+    ],
+    "expected": null
+  },
+  "expected_standing": "REFUSED[DUPLICATE_WORK_KEY]",
+  "rollback": "revert P030",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

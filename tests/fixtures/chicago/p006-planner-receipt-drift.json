@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P006",
+  "semantic_fingerprint": "3d486692",
+  "hypothesis": "planner-receipt-drift must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "planner-receipt-drift",
+  "invalid": {
+    "op": "eq",
+    "actual": "plan-v2",
+    "expected": "plan-v1"
+  },
+  "control": {
+    "op": "eq",
+    "actual": "plan-v1",
+    "expected": "plan-v1"
+  },
+  "expected_standing": "REFUSED[PLANNER_IDENTITY_DRIFT]",
+  "rollback": "revert P006",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

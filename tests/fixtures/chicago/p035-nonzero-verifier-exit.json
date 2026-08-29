@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P035",
+  "semantic_fingerprint": "156b5afa",
+  "hypothesis": "nonzero-verifier-exit must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "nonzero-verifier-exit",
+  "invalid": {
+    "op": "zero",
+    "actual": 1,
+    "expected": null
+  },
+  "control": {
+    "op": "zero",
+    "actual": 0,
+    "expected": null
+  },
+  "expected_standing": "BUILD_BROKEN[VERIFIER]",
+  "rollback": "revert P035",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

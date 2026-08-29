@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P018",
+  "semantic_fingerprint": "7f309594",
+  "hypothesis": "fake-success-receipt must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "fake-success-receipt",
+  "invalid": {
+    "op": "true",
+    "actual": false,
+    "expected": null
+  },
+  "control": {
+    "op": "true",
+    "actual": true,
+    "expected": null
+  },
+  "expected_standing": "REFUSED[UNVERIFIED_SUCCESS_RECEIPT]",
+  "rollback": "revert P018",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

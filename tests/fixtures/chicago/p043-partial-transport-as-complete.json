@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P043",
+  "semantic_fingerprint": "42157302",
+  "hypothesis": "partial-transport-as-complete must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "partial-transport-as-complete",
+  "invalid": {
+    "op": "eq",
+    "actual": "PARTIAL",
+    "expected": "COMPLETE"
+  },
+  "control": {
+    "op": "eq",
+    "actual": "COMPLETE",
+    "expected": "COMPLETE"
+  },
+  "expected_standing": "REFUSED[PARTIAL_TRANSPORT]",
+  "rollback": "revert P043",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

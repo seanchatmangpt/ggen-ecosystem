@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P015",
+  "semantic_fingerprint": "c30cadf4",
+  "hypothesis": "generated-manual-edit must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "generated-manual-edit",
+  "invalid": {
+    "op": "false",
+    "actual": true,
+    "expected": null
+  },
+  "control": {
+    "op": "false",
+    "actual": false,
+    "expected": null
+  },
+  "expected_standing": "REFUSED[GENERATED_DIRECT_EDIT]",
+  "rollback": "revert P015",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

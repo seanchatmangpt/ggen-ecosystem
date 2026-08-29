@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P019",
+  "semantic_fingerprint": "f988c3c7",
+  "hypothesis": "inspection-as-execution must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "inspection-as-execution",
+  "invalid": {
+    "op": "neq",
+    "actual": "inspection",
+    "expected": "inspection"
+  },
+  "control": {
+    "op": "neq",
+    "actual": "execution",
+    "expected": "inspection"
+  },
+  "expected_standing": "REFUSED[INSPECTION_NOT_EXECUTION]",
+  "rollback": "revert P019",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

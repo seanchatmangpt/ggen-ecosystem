@@ -1,0 +1,32 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P017",
+  "semantic_fingerprint": "4cfba904",
+  "hypothesis": "powl-cycle must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "powl-cycle",
+  "invalid": {
+    "op": "acyclic",
+    "actual": {
+      "a": [
+        "b"
+      ],
+      "b": [
+        "a"
+      ]
+    },
+    "expected": null
+  },
+  "control": {
+    "op": "acyclic",
+    "actual": {
+      "a": [
+        "b"
+      ],
+      "b": []
+    },
+    "expected": null
+  },
+  "expected_standing": "REFUSED[POWL_CYCLE]",
+  "rollback": "revert P017",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P026",
+  "semantic_fingerprint": "463d1ac6",
+  "hypothesis": "mutable-capsule-tag must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "mutable-capsule-tag",
+  "invalid": {
+    "op": "immutable",
+    "actual": "ghcr.io/acme/app:latest",
+    "expected": null
+  },
+  "control": {
+    "op": "immutable",
+    "actual": "ghcr.io/acme/app@sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "expected": null
+  },
+  "expected_standing": "REFUSED[MUTABLE_CAPSULE]",
+  "rollback": "revert P026",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}

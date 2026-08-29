@@ -1,0 +1,28 @@
+{
+  "schema": "ggen-ecosystem/chicago-falsifier/v2",
+  "work_key": "seanchatmangpt/ggen-ecosystem|project2:2|edge:chicago-v2|P011",
+  "semantic_fingerprint": "b76bbedd",
+  "hypothesis": "ci-write-authority must be rejected without rejecting its adjacent valid control",
+  "acceptance_edge": "ci-write-authority",
+  "invalid": {
+    "op": "subset",
+    "actual": [
+      "contents:write"
+    ],
+    "expected": [
+      "contents:read"
+    ]
+  },
+  "control": {
+    "op": "subset",
+    "actual": [
+      "contents:read"
+    ],
+    "expected": [
+      "contents:read"
+    ]
+  },
+  "expected_standing": "REFUSED[CI_AUTHORITY_ESCALATION]",
+  "rollback": "revert P011",
+  "next_lawful_route": "run exact 50-pair Chicago court"
+}
