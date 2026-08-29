@@ -1,0 +1,31 @@
+name: Publication Evidence Court
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publication-evidence-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  court:
+    name: Classify publication evidence
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Compile classifier
+        run: python3 -m py_compile tools/classify_container_publication.py
+      - name: Execute classifier self-test
+        run: python3 tools/classify_container_publication.py --self-test
+      - name: Execute publication evidence corpus
+        run: python3 tools/classify_container_publication.py
