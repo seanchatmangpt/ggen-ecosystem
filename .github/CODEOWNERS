@@ -1,0 +1,5 @@
+# CODEOWNERS -- default reviewer for the whole tree.
+# Generated files (workflows, generated/) are still owned here since a
+# review of a regenerated workflow means reviewing the ontology change
+# that produced it, not the .yml text itself.
+* @seanchatmangpt
