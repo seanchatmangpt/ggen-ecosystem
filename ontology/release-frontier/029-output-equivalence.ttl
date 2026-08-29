@@ -1,0 +1,4 @@
+@prefix ex: <https://ggen.io/ecosystem/release-contract#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+ex:output-equivalence a prov:Entity ; dcterms:type "MultiArchReleaseContract" ; dcterms:title "Require architecture-independent generated output equivalence" ; ex:sequence 29 ; ex:equivalence "generated-output-digest" ; ex:authorityCeiling "CONSTRUCT" ; ex:standing "CANDIDATE" .
