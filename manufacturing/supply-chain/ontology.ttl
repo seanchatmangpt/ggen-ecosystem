@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 53 .
+  scb:caseCount 54 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -534,3 +534,13 @@ ex:case054 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-054:REFUSED[PROV_SUBJECT_OCI_GRAMMAR]" ;
   scb:mutationJson """{"path":"provenance.subject.0.name","value":"ghcr.io/seanchatmangpt/ggen-ecosystem:latest"}""" ;
   scb:assertionJson """{"op":"regex","path":"provenance.subject.0.name","value":"^ghcr[.]io/seanchatmangpt/ggen-ecosystem@sha256:[0-9a-f]{64}$"}""" .
+
+ex:case055 a scb:CourtCase ;
+  scb:caseId "SCB-055" ;
+  scb:ordinal 55 ;
+  scb:title "source uses authenticated Git transport grammar" ;
+  scb:expectedStanding "REFUSED[PROV_SOURCE_TRANSPORT]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-055:REFUSED[PROV_SOURCE_TRANSPORT]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"http://github.com/seanchatmangpt/ggen-ecosystem"}""" ;
+  scb:assertionJson """{"op":"starts_with","path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"git+https://"}""" .

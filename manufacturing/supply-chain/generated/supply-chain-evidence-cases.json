@@ -530,6 +530,16 @@
       "semantic_fingerprint": "SCB-054:REFUSED[PROV_SUBJECT_OCI_GRAMMAR]",
       "mutation": {"path":"provenance.subject.0.name","value":"ghcr.io/seanchatmangpt/ggen-ecosystem:latest"},
       "assertion": {"op":"regex","path":"provenance.subject.0.name","value":"^ghcr[.]io/seanchatmangpt/ggen-ecosystem@sha256:[0-9a-f]{64}$"}
+    },
+    {
+      "case_id": "SCB-055",
+      "ordinal": 55,
+      "title": "source uses authenticated Git transport grammar",
+      "expected": "REFUSED[PROV_SOURCE_TRANSPORT]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-055:REFUSED[PROV_SOURCE_TRANSPORT]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"http://github.com/seanchatmangpt/ggen-ecosystem"},
+      "assertion": {"op":"starts_with","path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"git+https://"}
     }
   ]
 }
