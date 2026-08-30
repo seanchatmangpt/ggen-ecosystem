@@ -820,6 +820,16 @@
       "semantic_fingerprint": "SCB-083:REFUSED[SPDX_CHECKSUM_GRAMMAR]",
       "mutation": {"path":"spdx.packages.0.checksums.0.checksumValue","value":"short"},
       "assertion": {"op":"regex","path":"spdx.packages.0.checksums.0.checksumValue","value":"^[0-9a-f]{64}$"}
+    },
+    {
+      "case_id": "SCB-084",
+      "ordinal": 84,
+      "title": "SPDX GGen package name",
+      "expected": "REFUSED[SPDX_GGEN_NAME]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-084:REFUSED[SPDX_GGEN_NAME]",
+      "mutation": {"path":"spdx.packages.1.name","value":"wrong"},
+      "assertion": {"op":"eq","path":"spdx.packages.1.name","value":"ggen"}
     }
   ]
 }
