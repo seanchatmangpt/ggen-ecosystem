@@ -750,6 +750,16 @@
       "semantic_fingerprint": "SCB-076:REFUSED[SPDX_ROOT_ID]",
       "mutation": {"path":"spdx.packages.0.SPDXID","value":"SPDXRef-Wrong"},
       "assertion": {"op":"eq","path":"spdx.packages.0.SPDXID","value":"SPDXRef-Package-ggen-ecosystem"}
+    },
+    {
+      "case_id": "SCB-077",
+      "ordinal": 77,
+      "title": "SPDX root download location",
+      "expected": "REFUSED[SPDX_DOWNLOAD_LOCATION]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-077:REFUSED[SPDX_DOWNLOAD_LOCATION]",
+      "mutation": {"path":"spdx.packages.0.downloadLocation","value":"https://example.invalid/archive"},
+      "assertion": {"op":"eq","path":"spdx.packages.0.downloadLocation","value":"NOASSERTION"}
     }
   ]
 }
