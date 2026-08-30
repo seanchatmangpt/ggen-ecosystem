@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 52 .
+  scb:caseCount 53 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -524,3 +524,13 @@ ex:case053 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-053:secret-leak-refusal" ;
   scb:mutationJson """{"path":"provenance.predicate.secret","value":"leaked"}""" ;
   scb:assertionJson """{"key_regex":"token|password|secret|private[_-]?key","op":"no_secret_values"}""" .
+
+ex:case054 a scb:CourtCase ;
+  scb:caseId "SCB-054" ;
+  scb:ordinal 54 ;
+  scb:title "subject immutable OCI grammar" ;
+  scb:expectedStanding "REFUSED[PROV_SUBJECT_OCI_GRAMMAR]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-054:REFUSED[PROV_SUBJECT_OCI_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.subject.0.name","value":"ghcr.io/seanchatmangpt/ggen-ecosystem:latest"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.subject.0.name","value":"^ghcr[.]io/seanchatmangpt/ggen-ecosystem@sha256:[0-9a-f]{64}$"}""" .

@@ -520,6 +520,16 @@
       "semantic_fingerprint": "SCB-053:secret-leak-refusal",
       "mutation": {"path":"provenance.predicate.secret","value":"leaked"},
       "assertion": {"key_regex":"token|password|secret|private[_-]?key","op":"no_secret_values"}
+    },
+    {
+      "case_id": "SCB-054",
+      "ordinal": 54,
+      "title": "subject immutable OCI grammar",
+      "expected": "REFUSED[PROV_SUBJECT_OCI_GRAMMAR]",
+      "law_family": "identity",
+      "semantic_fingerprint": "SCB-054:REFUSED[PROV_SUBJECT_OCI_GRAMMAR]",
+      "mutation": {"path":"provenance.subject.0.name","value":"ghcr.io/seanchatmangpt/ggen-ecosystem:latest"},
+      "assertion": {"op":"regex","path":"provenance.subject.0.name","value":"^ghcr[.]io/seanchatmangpt/ggen-ecosystem@sha256:[0-9a-f]{64}$"}
     }
   ]
 }
