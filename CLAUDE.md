@@ -4,112 +4,174 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repository is
 
-`ggen-ecosystem` (`/Users/sac/ggen-ecosystem`, this repo) is a **semantic control-plane root** among a set of independent sibling repositories on this machine — it is a standalone repo with its own GitHub origin (`github.com/seanchatmangpt/ggen-ecosystem`), sitting as a peer directory under `/Users/sac/` alongside the real ggen source and the real pack marketplace, not a parent or submodule relationship to either. It owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing as RDF/TTL ontology + SHACL admission + a ggen manifest — without absorbing the source of the repos it describes.
+`ggen-ecosystem` is the canonical governed **composition root** for the ggen ecosystem. It does not
+own the source identity of `ggen`, `ggen-marketplace`, or `autofde-lab` — those are vendored as real
+git submodules (`vendor/ggen`, `vendor/ggen-marketplace`, `vendor/autofde-lab`), not URL+SHA references.
+This repo owns: ecosystem identity, composition, admission, closure, qualification, transport, and
+release standing.
 
-There is no application code here in the conventional sense (no build/lint/test commands to run) — the repository's "code" is RDF ontology, SHACL shapes, SPARQL queries, TOML manifests/locks, and a generated GitHub Actions workflow. For the actual `ggen sync` run invocation contract (cwd-only `ggen.toml`, no `--manifest` flag, `ORDER BY` required under `strict_mode`), see the `run-ggen` skill (`~/.claude/skills/run-ggen/SKILL.md`) rather than re-deriving it here.
+Read `AGENTS.md` first — it is the operating doctrine (authority boundaries, standing vocabulary,
+DfCM phases) and takes precedence over generic engineering instinct in this repo.
 
-### Sibling repos on this machine (real, observed — not aspirational)
+## Setup
 
-- **`/Users/sac/ggen`** — the actual GGen CLI source repo. Cargo package `ggen`, 15-member workspace under `crates/` (ggen-config, ggen-cli-lib, ggen-engine, etc.). `origin` remote = `https://github.com/seanchatmangpt/ggen.git`; a second `upstream` remote points to `github.com/rust-starter/rust-starter.git` (this repo was forked/scaffolded from rust-starter). It is also vendored into this repo as the `vendor/ggen` git submodule (`.gitmodules`), which `Dockerfile` builds from directly (`COPY vendor/ggen/ /src/`, `cargo build --release --locked -p ggen-cli --bin ggen`) to produce the composed `ggen-ecosystem` container image. Treat any version/branch claim about `~/ggen` as `UNKNOWN` until re-checked live — do not assume it matches this note.
-- **`/Users/sac/ggen-marketplace`** — the actual pack marketplace, `packs/` dir with 250+ entries (e.g. `affidavit-pack`, `dfcm-pack`, the `clap-noun-verb-*` family). `origin` = its own GitHub remote. It is also vendored into this repo as the `vendor/ggen-marketplace` git submodule (`.gitmodules`); `Dockerfile` copies its `packs/` tree straight into the composed image (`COPY vendor/ggen-marketplace/packs/ /opt/ggen-marketplace/packs/`), and `packs/github-actions-pack` ships a reusable composite action, `examples/consume-github-actions-pack/.github/actions/use-ggen-ecosystem/action.yml`, that consumer repos call to run `docker run ... ggen sync run` against the published `ghcr.io/seanchatmangpt/ggen-ecosystem` image instead of invoking a local `ggen` binary. See `ecosystem.lock.toml` for the exact pinned producer identities (marketplace SHA, container tag).
-- **Other consumer repos with their own `ggen.toml`** (not exhaustive — sampled, not enumerated): `~/gymact`, `~/praxis`, `~/clap-noun-verb`, `~/chatman-ecosystem`, `~/xaas`. Each pulls packs from `~/ggen-marketplace` (by relative or absolute local path) or vendors an ontology copy; this repo has no dependency edge on them, they are catalog/profile observations only.
-- **Adjacent non-canonical repos** (present on disk, distinct standing): `~/ggen-legacy` and `~/ggen-create` are active (real git history, recent commits); `~/ggen-broker` and `~/ggen-core-v2` are non-git snapshots with no commit history since late June — `ABANDONED`/superseded by concepts now implemented in `~/ggen-legacy`, not part of the live ecosystem.
-
-Ad hoc validation commands (not wired into any CI job, run manually when needed):
+A plain `git clone` does **not** populate the submodules:
 
 ```bash
-# Validate ontology.ttl against admission/shapes.ttl
-pyshacl -s admission/shapes.ttl -d ontology.ttl -i rdfs -f human
-
-# Run a SPARQL query from queries/*.rq against the graph (no arq/riot on this
-# machine; use rdflib if installed, or run it through a ggen manifest instead)
-python3 -c "import rdflib; g=rdflib.Graph(); g.parse('ontology.ttl', format='turtle'); [print(r) for r in g.query(open('queries/falsifiers.rq').read())]"
+git clone --recurse-submodules <url>       # fresh clone
+# or, on an existing plain clone:
+make submodules                             # git submodule update --init --recursive
 ```
 
-## Manufacturing pipeline (the core mental model)
+## Common commands
+
+Two operator surfaces exist: `Makefile` (minimal contributor wrapper) and `Justfile` (full canonical
+surface — run `just --list` for everything). Prefer `just` recipes for anything beyond basic setup.
+
+```bash
+make verify        # submodules -> image -> sync -> doctor, in order
+just doctor        # pure observation of system state (never repairs) — scripts/doctor.sh
+just doctor-json   # same, machine-readable
+just alive         # bounded closure toward ALIVE, only safe reversible repairs
+just explain       # why current standing exists across all gates
+just next          # highest-information lawful next transition
+just dod           # live exact-head Definition of Done (scripts/dod_engine.py)
+make dod           # print DoD roll-up section only
+just chicago       # canonical no-mocks qualification court (12 courts, 59+ assertions) — builds a real Docker image
+just certify       # mfact-style certification court (producer pins, artifact authority, receipts, lineage) — ceiling VERIFY, cannot manufacture ALIVE
+just certify-test  # adversarial promotion/refusal unit court for certification rules
+just falsify       # 25-case adversarial negative-path falsifier suite
+just replay        # deterministic replay of prior receipt evidence
+just bench         # real wall-clock timing of `ggen sync run --dry-run` (20 runs, min/max/mean/p50/p95)
+just stress        # N-way parallel `ggen sync run`, asserts identical graph_hash_hex (default 16-way)
+just publication-evidence-test  # 52-case GHCR/OCI publication classification conformance
+```
+
+`just chicago` builds a real Docker image (several minutes) — do not run casually mid-swarm; only
+the designated build owner should run it during concurrent work (see the warning in `Makefile`'s
+`chicago` target).
+
+### Running a single test
+
+Most tests are Chicago-style (no-mocks) Python `unittest` modules or standalone bash scripts under
+`tests/`:
+
+```bash
+python3 -m unittest tests.test_mfact_certification -v
+python3 -m unittest tests.test_ecosystem_alive_cases -v
+bash tests/test_container_smoke.sh          # requires a running docker daemon; exits 2 (BLOCKED) if unavailable, never fakes a pass
+bash tests/determinism_check.sh
+```
+
+## Architecture: SELECT / CONSTRUCT / DO / EVIDENCE
+
+The whole repo is organized around one authority boundary (see README's "Authority boundary"
+diagram and `AGENTS.md`'s "Execution" section):
 
 ```
-vendor/ggen (submodule)         vendor/ggen-marketplace (submodule)
-        v                                v
-              Dockerfile
-        (builds ggen binary + copies packs/ tree)
-                    v
-ghcr.io/seanchatmangpt/ggen-ecosystem:<tag>   (published by ggen-ecosystem-container.yml)
-                    v
-ggen.toml + ontology.ttl  --------->  ggen sync run  (runs inside that pinned container)
+SELECT / semantic inputs  -> ontology and profile/admission graphs   (ontology.ttl, ontology/, profiles/)
+CONSTRUCT                  -> ggen sync run / deterministic projections (generated/, .github/workflows/*.yml)
+EVIDENCE                   -> locks + receipts + replay artifacts     (ggen.lock, ecosystem.lock.toml, receipts/)
+DO                         -> external authorized Git/GitHub merge path (never automatic)
+```
+
+No graph, planner, hook, generated projection, or workflow ever receives ambient `DO` authority.
+`SELECT`, `CONSTRUCT`, and `DO` are distinct steps; only a receipted broker may perform `DO`; CI is
+evidence transport, not authority.
+
+### The manufacturing pipeline
+
+```
+vendor/ggen (submodule)        vendor/ggen-marketplace (submodule)
+        |                              |
+        v                              v
+      Dockerfile  ------------------->  ghcr.io/seanchatmangpt/ggen-ecosystem:<tag>
+                                              |
+ggen.toml + ontology.ttl                     |
+        |                                    v
+        +----------------------->  ggen sync run  (runs INSIDE that container)
+                                              |
                                               v
-.github/workflows/ggen-ecosystem-sync.yml   (GENERATED — never hand-edit)
+                        .github/workflows/ggen-ecosystem-sync.yml
+                        .github/workflows/ggen-ecosystem-container.yml
 ```
 
-- `ggen.toml` — the manifest: project name, ontology source (`ontology.ttl`), pinned marketplace pack, template dir.
-- `ggen.lock` — generated by `ggen sync`; pins the pack's exact commit + BLAKE3 content hash. Do not hand-edit.
-- `ecosystem.lock.toml` — the ecosystem-level lock: exact GGen release/commit/asset SHA-256, marketplace SHA, manufacturing file paths, and GitHub catalog census counts. This is the single place exact producer identities are recorded.
-- `vendor/ggen`, `vendor/ggen-marketplace` — real git submodules (see `.gitmodules`) vendoring the actual GGen source and pack marketplace into this repo, so the container build has a real tree to compile/copy from rather than fetching a released binary.
-- `Dockerfile` — builds the composed `ggen-ecosystem` image: a builder stage compiles a real `ggen` binary from `vendor/ggen` (pinned to `vendor/ggen/rust-toolchain.toml`'s nightly), and the final stage copies that binary plus `vendor/ggen-marketplace/packs/` into a `debian:bookworm-slim` runtime image. Requires the repo checked out with submodules (`git submodule update --init --recursive` or `actions/checkout` with `submodules: recursive`).
-- `.github/workflows/ggen-ecosystem-container.yml` — builds and publishes that composed image to `ghcr.io/seanchatmangpt/ggen-ecosystem` on `workflow_dispatch` or a `v*.*.*` tag push.
-- `.github/workflows/ggen-ecosystem-sync.yml` — generated by GGen through `ggen sync run`. It now runs its steps `container:`-scoped inside the pinned `ghcr.io/seanchatmangpt/ggen-ecosystem:<ggen_container_tag>` image (default `v26.8.28`) rather than installing a `ggen` binary directly on the runner. If its behavior is wrong, fix the ontology/manifest/pack that produced it and regenerate — never hand-edit the workflow file itself.
-- `ggen-marketplace`'s `packs/github-actions-pack/examples/consume-github-actions-pack/.github/actions/use-ggen-ecosystem/action.yml` — a reusable composite action other consumer repos call to run `docker run ghcr.io/seanchatmangpt/ggen-ecosystem:<tag> ggen sync run` against their own `ggen.toml`, without installing `ggen` locally.
-- `generated/` — reserved for other manufactured projections (repository matrices, capability matrices, profile closures, dependency graphs, verifier reports). Same rule: repair the source, not the projection.
-- To run the manufacturing rail: use the real `ggen` CLI (`run-ggen` skill) against `ggen.toml` directly, run it inside the composed container (`docker run ghcr.io/seanchatmangpt/ggen-ecosystem:<tag> ggen sync run`), or trigger `.github/workflows/ggen-ecosystem-sync.yml` via `workflow_dispatch`/`workflow_call`.
+`ggen` is consumed by building a real binary from the vendored `vendor/ggen` submodule into a
+composed container (bundled with the real `vendor/ggen-marketplace/packs/`), published to GHCR —
+**not** by downloading a release binary tarball. `.github/workflows/ggen-ecosystem-sync.yml` runs
+`ggen sync run` inside that pinned container; `.github/workflows/ggen-ecosystem-container.yml`
+builds and publishes the container itself. Both generated workflows are a **generated consequence**
+of `ontology.ttl` — never hand-edit either; edit the semantic input (`ontology.ttl`) and regenerate
+via `ggen sync run`.
 
-## Ontology and semantic layout
+`ggen.toml` declares the marketplace pack as a local submodule path
+(`vendor/ggen-marketplace/packs/github-actions-pack`), not a `git =`/`version =` fetch. Exact pinned
+producer identities (ggen release, source commit, marketplace commit, autofde-lab commit) live in
+`ecosystem.lock.toml` and are cross-checked against the vendored gitlinks — do not hand-adjust one
+without the other.
 
-- `ontology.ttl` — root ontology entry point.
-- `ontology/` — split ontology modules: `authority.ttl`, `capabilities.ttl`, `dfcm-design-space.ttl`, `github-catalog.ttl`, `instrument-gain.ttl`, `packs.ttl`, `profiles.ttl`, `repositories.ttl`, `repository-census.ttl` (+ sharded `repository-census-0{1..4}.ttl`), `standing.ttl`.
-- `admission/` — SHACL shapes (`shapes.ttl`) and admission law: `policies.ttl`, `exclusions.ttl`, `privacy.ttl`. This is the gate that constrains what enters the graph — `UNKNOWN` is never admitted merely because it's plausible.
-- `profiles/` — five semantic profiles, each a dependency-closed candidate set: `cloud-session.ttl`, `platform-engineering.ttl`, `process-intelligence.ttl`, `autofde.ttl`, `everything.ttl` (deliberately kept as `CANDIDATE`, never pre-authorized).
-- `queries/` — SPARQL over the graph: `candidate-repositories.rq`, `falsifiers.rq`, `github-catalog-scope.rq`, `premature-admission.rq`, `profile-closure.rq`, `profile-reference-closure.rq`, `publication-fence.rq`, `repository-matrix.rq`. `falsifiers.rq` is the canonical way to check whether a crown claim (e.g. `ALIVE`) can be falsified before trusting it.
-- `planning/` — PPDDL domain/problem/plan artifacts and their solution receipts (DfCM reversible planning over the design space, e.g. `instrument-gain-*`).
-- `receipts/` — committed ecosystem-level evidence (bootstrap manufacturing receipt, GitHub census receipt). A file named `receipt` is evidence only if its matching verifier accepts it — see `docs/STANDING.md`.
-- `templates/` — ggen templates directory referenced by `ggen.toml`.
+### DfCM (Design for Capability Manufacturing) phases
 
-## Authority boundary (do not blur these)
+`AGENTS.md` frames all work as: **Preserve -> Fence -> Calculus -> Exclusions -> Falsifier ->
+Extension -> Operationalization**. Maximize lawful reversible option capital before any irreversible
+selection; a failed edge is topology, not graph failure; bound possibilities by ontology,
+capability, authority, cost, evidence, and explicit exclusions. `docs/DFCM.md` and the eight
+exhaustive reversible construction candidates (transport / knowledge closure / execution mode) are
+the canonical reference — see `README.md`'s "Maximum ecosystem graph" section for the full pipeline
+from GitHub owner catalog through admission, profile closure, manufacture, and scoped standing.
 
-```
-SELECT / semantic inputs -> ontology and profile/admission graphs
-CONSTRUCT                -> ggen sync run / deterministic projections
-EVIDENCE                 -> locks + receipts + replay artifacts
-DO                       -> external authorized Git/GitHub merge path
-```
+### Standing vocabulary — use exactly these terms
 
-No graph, planner, hook, generated projection, or workflow receives ambient `DO` (irreversible-mutation) authority. Only a receipted broker may perform `DO`. The generated CI workflow runs with `permissions: contents: read` only — mutation authority stays outside it. Hooks emit intents only, never actuate.
+`UNKNOWN`, `PARTIAL_ALIVE`, `ALIVE`, `BLOCKED`, `BUILD_BROKEN`, `UNSUPPORTED`, and typed `REFUSED`.
+Inspection is not execution; workflow definition is not workflow success; a connector object is not
+a mounted tree; a named receipt is not a verified receipt. `scripts/ecosystem_alive.py --explain`
+and `docs/CURRENT-RELEASE-STANDING.md` / `docs/STANDING.md` are the sources of truth for current
+standing — do not restate a status elsewhere without re-deriving it (drift between restated status
+strings has been a real, previously-caught failure mode in this repo).
 
-Note: `EVIDENCE` is this file's convenience label for the locks/receipts/replay-artifact category — it is not named as a peer authority tier in `AGENTS.md` (`SELECT, CONSTRUCT, and DO are distinct`) or `docs/ARCHITECTURE.md` (evidence is handled under a separate "Receipt/replay" section, not the "Authority" section). Treat `SELECT`/`CONSTRUCT`/`DO` as the three authority tiers; `EVIDENCE` is an artifact category, not a fourth authority.
+### Certification vs. manufacturing standing
 
-## Standing vocabulary — use only these terms
+`certification/mfact.toml` and `certification/artifacts.toml` define an independent mfact-derived
+certification court (`scripts/certify_ecosystem.py`, `just certify`). Its authority ceiling is
+`VERIFY`: it can bind producer identities, artifact ownership, receipts, replay evidence, Git
+lineage, and scoped standing — but it cannot manufacture an `ALIVE` claim or perform `DO`. GGen-
+manufactured workflows are projections with zero standing authority regardless of certification
+result. `.github/workflows/mfact-certification.yml` is an independent read-only verifier, not a
+manufactured workflow projection.
 
-`UNKNOWN`, `PARTIAL_ALIVE`, `ALIVE`, `BLOCKED`, `BUILD_BROKEN`, `UNSUPPORTED`, and typed `REFUSED:<type>`. Never invent alternative status words. Key distinctions (see `docs/STANDING.md`):
+### Key directories
 
-- Inspection is not execution.
-- A green/generated workflow is not proof it ran on the exact commit being discussed — evidence is scoped to the exact commit and exact jobs that ran.
-- A named receipt is not a verified receipt.
-- `ALIVE` may only be crowned after: exact lock identities are materialized → `ggen sync run` executes → generated verifiers execute → `ggen receipt verify` succeeds → a second sync proves deterministic replay/idempotence → the exact subject SHA is bound into the receipt chain. (Exact `ggen receipt verify` CLI flags are not yet documented anywhere in this repo — check `ggen receipt verify --help` against the installed binary before relying on a remembered invocation.)
+- `ontology.ttl`, `ontology/` — semantic inputs (SELECT layer); `ontology/github-catalog.ttl` encodes
+  the maximal public-repo-catalog predicate (`owner=seanchatmangpt AND visibility=public`) — catalog
+  membership is observation only, never admission
+- `profiles/` — the five semantic profiles: `cloud-session`, `platform-engineering`,
+  `process-intelligence`, `autofde`, `everything`
+- `admission/`, `certification/`, `contracts/` — admission graphs, mfact certification definitions,
+  and formal contracts
+- `templates/` — ggen sync templates
+- `generated/` — manufactured projections; treat as read-only, repair the source instead
+- `receipts/` — machine-readable evidence (bootstrap, benchmark, stress-test); historical receipts
+  are admissible evidence for their own recorded head only, never for a newer exact head
+- `scripts/` — the operational Python/bash tooling behind every `just`/`make` target
+  (`ecosystem_alive.py`, `doctor.sh`, `certify_ecosystem.py`, `dod_engine.py`,
+  `chicago_falsifiers.py`, `benchmark.sh`, `stress_test.sh`)
+- `tests/` — Chicago-style (no-mocks) test suites; `tests/fixtures/` holds real fixture data (e.g.
+  `tests/fixtures/minimal-ggen-project` used by the container smoke test, `tests/fixtures/alive/*.json`
+  case files consumed by `test_ecosystem_alive_cases.py`)
+- `docs/` — canonical reference docs; `docs/DEFINITION-OF-DONE.md` is the gate matrix (G01-G09 style),
+  `docs/ARCHITECTURE.md`, `docs/RECEIPT-SCHEMA.md`, `docs/PROFILES.md`, `docs/GITHUB-CATALOG.md`,
+  `docs/MFACT-CERTIFICATION.md` are the deep references for each subsystem above
 
-## DfCM operating model (why files aren't deleted casually)
+## Testing discipline
 
-The optimization target is **maximum lawful reversible option capital**, not minimalism. Concretely (`docs/DFCM.md`, `AGENTS.md`):
+Tests in this repo are Chicago-style (real collaborators, state-based assertions) by explicit repo
+convention (`just chicago`, "0 mocks" in the Justfile comment) — this matches the user's global
+testing rule. `tests/test_container_smoke.sh` reports `BLOCKED` (exit 2) rather than a fake pass
+when Docker is unavailable; preserve that fail-closed pattern in any new test rather than skipping
+silently.
 
-- **Preserve**: keep multiple lawful transports/pack closures/execution modes/profiles available until evidence forces selection.
-- **Fence**: never remove a repository, pack, profile, compatibility edge, or transport just because a newer path exists — establish semantic equivalence first, or record the intentional loss.
-- A failed edge in the design space is topology, not graph failure — it stays recorded as a candidate rather than being deleted.
-- New repositories/packs enter as reversible graph facts or `CANDIDATE`s first; they don't require centralizing their source into this repo.
+## Repository workflow
 
-## GitHub catalog scope
-
-The maximal repository scope is **every public repository owned by `seanchatmangpt`** (`owner=seanchatmangpt AND visibility=public`, see `ontology/github-catalog.ttl`). The `repository-census-*.ttl` shards are a materialized high-signal subset for profile reasoning — not the boundary of the `everything` profile. Catalog membership is observation only: it grants no dependency edge, compatibility claim, execution status, or mutation authority by itself. Private repository identities must never be projected into this public repository.
-
-## Repository workflow conventions
-
-- Resolve `main` to an exact SHA before branching; never silently move the base.
-- Use a purpose branch per change; verify the exact head before merging.
-- Merge only an inspected, authorized head.
-- Preserve typed failures (`BLOCKED`, `BUILD_BROKEN`, `REFUSED:<type>`, etc.) rather than smoothing them over into a false `ALIVE`.
-- Prefer existing `ggen-marketplace` packs over creating a new pack here; reusable executable knowledge belongs in `ggen-marketplace`, project-specific observation/admission data belongs here.
-
-## Key docs (read before deep changes)
-
-- `docs/ARCHITECTURE.md` — root contract, objects/morphisms, admission/closure/authority/actuation/receipt/standing pipeline.
-- `docs/DFCM.md` — the DfCM design-space model summarized above.
-- `docs/STANDING.md` — full standing vocabulary and evidence-dimension rules.
-- `docs/ADMISSION.md`, `docs/PROFILES.md`, `docs/GITHUB-CATALOG.md`, `docs/REPOSITORY-CENSUS.md`, `docs/TRANSPORT.md`, `docs/REPLAY.md`, `docs/RELEASE.md`, `docs/EXTENSION.md` — subsystem-specific detail.
-- `AGENTS.md` — condensed operating doctrine (authority, manufacture, DfCM, execution, standing vocabulary, GitHub catalog, repo workflow, generated directories) — treat as binding alongside this file.
+Per `AGENTS.md`: resolve `main` to an exact SHA, use a purpose branch, never silently move the base,
+verify the exact head, and merge only the inspected head when authorized. Preserve typed failures
+rather than smoothing them over.
