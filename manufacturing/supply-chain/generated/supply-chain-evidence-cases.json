@@ -910,6 +910,16 @@
       "semantic_fingerprint": "SCB-092:REFUSED[SPDX_AUTOFDE_RELATION]",
       "mutation": {"path":"spdx.relationships.3.relationshipType","value":"DEPENDS_ON"},
       "assertion": {"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-autofde","relationshipType":"CONTAINS","spdxElementId":"SPDXRef-Package-ggen-ecosystem"}}
+    },
+    {
+      "case_id": "SCB-093",
+      "ordinal": 93,
+      "title": "CycloneDX root hash algorithm",
+      "expected": "REFUSED[CDX_ROOT_HASH_ALGORITHM]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-093:REFUSED[CDX_ROOT_HASH_ALGORITHM]",
+      "mutation": {"path":"cyclonedx.metadata.component.hashes.0.alg","value":"SHA-1"},
+      "assertion": {"op":"eq","path":"cyclonedx.metadata.component.hashes.0.alg","value":"SHA-256"}
     }
   ]
 }
