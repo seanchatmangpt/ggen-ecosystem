@@ -640,6 +640,16 @@
       "semantic_fingerprint": "SCB-065:REFUSED[PROV_GGEN_SHA_GRAMMAR]",
       "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.0.digest.gitCommit","value":"v26.8.28"},
       "assertion": {"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.0.digest.gitCommit","value":"^[0-9a-f]{40}$"}
+    },
+    {
+      "case_id": "SCB-066",
+      "ordinal": 66,
+      "title": "Marketplace material SHA grammar",
+      "expected": "REFUSED[PROV_MARKETPLACE_SHA_GRAMMAR]",
+      "law_family": "identity",
+      "semantic_fingerprint": "SCB-066:REFUSED[PROV_MARKETPLACE_SHA_GRAMMAR]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit","value":"main"},
+      "assertion": {"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit","value":"^[0-9a-f]{40}$"}
     }
   ]
 }

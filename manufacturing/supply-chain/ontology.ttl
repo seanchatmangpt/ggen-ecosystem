@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 64 .
+  scb:caseCount 65 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -644,3 +644,13 @@ ex:case065 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-065:REFUSED[PROV_GGEN_SHA_GRAMMAR]" ;
   scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.0.digest.gitCommit","value":"v26.8.28"}""" ;
   scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.0.digest.gitCommit","value":"^[0-9a-f]{40}$"}""" .
+
+ex:case066 a scb:CourtCase ;
+  scb:caseId "SCB-066" ;
+  scb:ordinal 66 ;
+  scb:title "Marketplace material SHA grammar" ;
+  scb:expectedStanding "REFUSED[PROV_MARKETPLACE_SHA_GRAMMAR]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-066:REFUSED[PROV_MARKETPLACE_SHA_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit","value":"main"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit","value":"^[0-9a-f]{40}$"}""" .
