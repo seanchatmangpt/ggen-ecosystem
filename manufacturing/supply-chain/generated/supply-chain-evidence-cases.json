@@ -1000,6 +1000,16 @@
       "semantic_fingerprint": "SCB-101:REFUSED[CDX_DEPENDENCY_CARDINALITY]",
       "mutation": {"path":"cyclonedx.dependencies.0.dependsOn","value":[]},
       "assertion": {"op":"len_eq","path":"cyclonedx.dependencies.0.dependsOn","value":3}
+    },
+    {
+      "case_id": "SCB-102",
+      "ordinal": 102,
+      "title": "CycloneDX GGen component name",
+      "expected": "REFUSED[CDX_GGEN_NAME]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-102:REFUSED[CDX_GGEN_NAME]",
+      "mutation": {"path":"cyclonedx.components.0.name","value":"wrong"},
+      "assertion": {"op":"eq","path":"cyclonedx.components.0.name","value":"ggen"}
     }
   ]
 }
