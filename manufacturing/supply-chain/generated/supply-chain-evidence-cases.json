@@ -550,6 +550,16 @@
       "semantic_fingerprint": "SCB-056:REFUSED[PROV_SOURCE_REPOSITORY]",
       "mutation": {"path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"git+https://github.com/seanchatmangpt/fork"},
       "assertion": {"op":"ends_with","path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"/ggen-ecosystem"}
+    },
+    {
+      "case_id": "SCB-057",
+      "ordinal": 57,
+      "title": "source commit lowercase SHA grammar",
+      "expected": "REFUSED[PROV_SOURCE_SHA_GRAMMAR]",
+      "law_family": "identity",
+      "semantic_fingerprint": "SCB-057:REFUSED[PROV_SOURCE_SHA_GRAMMAR]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"MAIN"},
+      "assertion": {"op":"regex","path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"^[0-9a-f]{40}$"}
     }
   ]
 }

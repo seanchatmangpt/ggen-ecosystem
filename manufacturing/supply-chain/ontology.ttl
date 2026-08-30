@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 55 .
+  scb:caseCount 56 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -554,3 +554,13 @@ ex:case056 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-056:REFUSED[PROV_SOURCE_REPOSITORY]" ;
   scb:mutationJson """{"path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"git+https://github.com/seanchatmangpt/fork"}""" ;
   scb:assertionJson """{"op":"ends_with","path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"/ggen-ecosystem"}""" .
+
+ex:case057 a scb:CourtCase ;
+  scb:caseId "SCB-057" ;
+  scb:ordinal 57 ;
+  scb:title "source commit lowercase SHA grammar" ;
+  scb:expectedStanding "REFUSED[PROV_SOURCE_SHA_GRAMMAR]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-057:REFUSED[PROV_SOURCE_SHA_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"MAIN"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"^[0-9a-f]{40}$"}""" .
