@@ -930,6 +930,16 @@
       "semantic_fingerprint": "SCB-094:REFUSED[CDX_GGEN_TYPE]",
       "mutation": {"path":"cyclonedx.components.0.type","value":"library"},
       "assertion": {"op":"eq","path":"cyclonedx.components.0.type","value":"application"}
+    },
+    {
+      "case_id": "SCB-095",
+      "ordinal": 95,
+      "title": "CycloneDX GGen component ref",
+      "expected": "REFUSED[CDX_GGEN_REF]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-095:REFUSED[CDX_GGEN_REF]",
+      "mutation": {"path":"cyclonedx.components.0.bom-ref","value":"ggen@main"},
+      "assertion": {"op":"eq","path":"cyclonedx.components.0.bom-ref","value":"ggen@$ggen"}
     }
   ]
 }
