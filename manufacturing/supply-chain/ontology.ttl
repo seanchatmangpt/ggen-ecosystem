@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 59 .
+  scb:caseCount 60 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -594,3 +594,13 @@ ex:case060 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-060:REFUSED[PROV_WORKFLOW_SHA_GRAMMAR]" ;
   scb:mutationJson """{"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/ggen-ecosystem-container.yml@main"}""" ;
   scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"^[.]github/workflows/ggen-ecosystem-container[.]yml@[0-9a-f]{40}$"}""" .
+
+ex:case061 a scb:CourtCase ;
+  scb:caseId "SCB-061" ;
+  scb:ordinal 61 ;
+  scb:title "resolved dependency cardinality" ;
+  scb:expectedStanding "REFUSED[PROV_MATERIAL_CARDINALITY]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-061:REFUSED[PROV_MATERIAL_CARDINALITY]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies","value":[]}""" ;
+  scb:assertionJson """{"op":"len_eq","path":"provenance.predicate.buildDefinition.resolvedDependencies","value":3}""" .

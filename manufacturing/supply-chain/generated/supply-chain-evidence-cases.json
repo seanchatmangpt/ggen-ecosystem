@@ -590,6 +590,16 @@
       "semantic_fingerprint": "SCB-060:REFUSED[PROV_WORKFLOW_SHA_GRAMMAR]",
       "mutation": {"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/ggen-ecosystem-container.yml@main"},
       "assertion": {"op":"regex","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"^[.]github/workflows/ggen-ecosystem-container[.]yml@[0-9a-f]{40}$"}
+    },
+    {
+      "case_id": "SCB-061",
+      "ordinal": 61,
+      "title": "resolved dependency cardinality",
+      "expected": "REFUSED[PROV_MATERIAL_CARDINALITY]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-061:REFUSED[PROV_MATERIAL_CARDINALITY]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies","value":[]},
+      "assertion": {"op":"len_eq","path":"provenance.predicate.buildDefinition.resolvedDependencies","value":3}
     }
   ]
 }
