@@ -920,6 +920,16 @@
       "semantic_fingerprint": "SCB-093:REFUSED[CDX_ROOT_HASH_ALGORITHM]",
       "mutation": {"path":"cyclonedx.metadata.component.hashes.0.alg","value":"SHA-1"},
       "assertion": {"op":"eq","path":"cyclonedx.metadata.component.hashes.0.alg","value":"SHA-256"}
+    },
+    {
+      "case_id": "SCB-094",
+      "ordinal": 94,
+      "title": "CycloneDX GGen component type",
+      "expected": "REFUSED[CDX_GGEN_TYPE]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-094:REFUSED[CDX_GGEN_TYPE]",
+      "mutation": {"path":"cyclonedx.components.0.type","value":"library"},
+      "assertion": {"op":"eq","path":"cyclonedx.components.0.type","value":"application"}
     }
   ]
 }
