@@ -650,6 +650,16 @@
       "semantic_fingerprint": "SCB-066:REFUSED[PROV_MARKETPLACE_SHA_GRAMMAR]",
       "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit","value":"main"},
       "assertion": {"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit","value":"^[0-9a-f]{40}$"}
+    },
+    {
+      "case_id": "SCB-067",
+      "ordinal": 67,
+      "title": "AutoFDE material SHA grammar",
+      "expected": "REFUSED[PROV_AUTOFDE_SHA_GRAMMAR]",
+      "law_family": "identity",
+      "semantic_fingerprint": "SCB-067:REFUSED[PROV_AUTOFDE_SHA_GRAMMAR]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.2.digest.gitCommit","value":"latest"},
+      "assertion": {"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.2.digest.gitCommit","value":"^[0-9a-f]{40}$"}
     }
   ]
 }
