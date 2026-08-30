@@ -670,6 +670,16 @@
       "semantic_fingerprint": "SCB-068:REFUSED[PROV_INVOCATION_GRAMMAR]",
       "mutation": {"path":"provenance.predicate.runDetails.metadata.invocationId","value":"https://github.com/seanchatmangpt/ggen-ecosystem/actions/runs/latest"},
       "assertion": {"op":"regex","path":"provenance.predicate.runDetails.metadata.invocationId","value":"^https://github[.]com/seanchatmangpt/ggen-ecosystem/actions/runs/[0-9]+$"}
+    },
+    {
+      "case_id": "SCB-069",
+      "ordinal": 69,
+      "title": "started timestamp UTC form",
+      "expected": "REFUSED[PROV_STARTED_UTC]",
+      "law_family": "provenance",
+      "semantic_fingerprint": "SCB-069:REFUSED[PROV_STARTED_UTC]",
+      "mutation": {"path":"provenance.predicate.runDetails.metadata.startedOn","value":"2026-08-29T09:04:33+01:00"},
+      "assertion": {"op":"ends_with","path":"provenance.predicate.runDetails.metadata.startedOn","value":"Z"}
     }
   ]
 }
