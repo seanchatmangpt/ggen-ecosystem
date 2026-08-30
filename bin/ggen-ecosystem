@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+usage() {
+  cat <<'EOF'
+Usage:
+  ggen-ecosystem manufacture [PROJECT_DIR]
+  ggen-ecosystem composition
+  ggen-ecosystem igniter-test
+
+Consumers call this wrapper. Direct ggen/ggen-marketplace/ggen_igniter pins are internal to ggen-ecosystem.
+EOF
+}
+
+cmd="${1:-}"
+case "$cmd" in
+  manufacture)
+    project="${2:-$PWD}"
+    project="$(cd "$project" && pwd)"
+    test -f "$project/ggen.toml"
+    test -f "$project/ontology.ttl"
+    manifest="$ROOT/vendor/ggen/crates/ggen-cli/Cargo.toml"
+    test -f "$manifest"
+    (
+      cd "$project"
+      cargo run --quiet --release --locked --manifest-path "$manifest" --bin ggen -- sync run
+    )
+    ;;
+  composition)
+    git -C "$ROOT" submodule status --recursive
+    printf 'ecosystem=%s\n' "$(git -C "$ROOT" rev-parse HEAD)"
+    printf 'ggen=%s\n' "$(git -C "$ROOT/vendor/ggen" rev-parse HEAD)"
+    printf 'ggen-marketplace=%s\n' "$(git -C "$ROOT/vendor/ggen-marketplace" rev-parse HEAD)"
+    printf 'ggen_igniter=%s\n' "$(git -C "$ROOT/vendor/ggen_igniter" rev-parse HEAD)"
+    printf 'autofde-lab=%s\n' "$(git -C "$ROOT/vendor/autofde-lab" rev-parse HEAD)"
+    ;;
+  igniter-test)
+    (
+      cd "$ROOT/vendor/ggen_igniter"
+      mix deps.get
+      mix test
+    )
+    ;;
+  -h|--help|help|'') usage ;;
+  *) echo "unknown command: $cmd" >&2; usage >&2; exit 2 ;;
+esac
