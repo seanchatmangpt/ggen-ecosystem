@@ -1,0 +1,116 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+# Shard 5 of the local-project-audit repository census extension (2026-08-29).
+# Source: real `gh api user/repos` enumeration (owner=seanchatmangpt), filtered to
+# visibility=public, fork=false, archived=false -- the "my projects" audit population
+# distinct from the 2026-08-28 GitHub-census shards 01-04 (which predate this filter).
+# Each entry below is an observation only (see docs/REPOSITORY-CENSUS.md); it grants no
+# dependency, capability, profile, or actuation authority by itself.
+
+eco:repo-candidate--nitrouse a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/-nitrouse" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/-nitrouse" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-agile-protocol-specification a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/agile-protocol-specification" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/agile-protocol-specification" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-ai-self-sustaining-system a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/ai-self-sustaining-system" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/ai-self-sustaining-system" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-aismt a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/aismt" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/aismt" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-anti-llm-cheat-lsp a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/anti-llm-cheat-lsp" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/anti-llm-cheat-lsp" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-arazzo-ai a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/arazzo-ai" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/arazzo-ai" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-ash-book-prereqs a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/ash-book-prereqs" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/ash-book-prereqs" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-ash_n8n a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/ash_n8n" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/ash_n8n" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-autotel a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/autotel" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/autotel" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-bcinr a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/bcinr" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/bcinr" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-become-ai-first a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/become-ai-first" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/become-ai-first" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-bkgn a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/bkgn" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/bkgn" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-bullet_train a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/bullet_train" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/bullet_train" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-chat-with-pdf a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/chat-with-pdf" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/chat-with-pdf" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-chatmangpt-extension a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/chatmangpt-extension" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/chatmangpt-extension" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+

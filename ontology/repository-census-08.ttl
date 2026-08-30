@@ -1,0 +1,109 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+# Shard 8 of the local-project-audit repository census extension (2026-08-29).
+# Source: real `gh api user/repos` enumeration (owner=seanchatmangpt), filtered to
+# visibility=public, fork=false, archived=false -- the "my projects" audit population
+# distinct from the 2026-08-28 GitHub-census shards 01-04 (which predate this filter).
+# Each entry below is an observation only (see docs/REPOSITORY-CENSUS.md); it grants no
+# dependency, capability, profile, or actuation authority by itself.
+
+eco:repo-candidate-homebrew-tap a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/homebrew-tap" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/homebrew-tap" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-intvw a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/intvw" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/intvw" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-java-maven-template a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/java-maven-template" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/java-maven-template" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-jotp a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/jotp" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/jotp" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-kgcl a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/kgcl" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/kgcl" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-kgn a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/kgn" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/kgn" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-lchop a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/lchop" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/lchop" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-lsp-max a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/lsp-max" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/lsp-max" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-mac-artifact-cleaner a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/mac-artifact-cleaner" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/mac-artifact-cleaner" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-miniml a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/miniml" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/miniml" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-myapp a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/myapp" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/myapp" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-naut a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/naut" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/naut" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-nextjs-dashboard a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/nextjs-dashboard" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/nextjs-dashboard" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+
+eco:repo-candidate-nuxt-ai-chatbot a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/nuxt-ai-chatbot" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/nuxt-ai-chatbot" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:publicProjection true .
+

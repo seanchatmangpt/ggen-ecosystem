@@ -35,6 +35,48 @@ The canonical public catalog therefore has a currently observed cardinality of *
 
 The complete owned estate of 378 is **not** asserted as 378 admitted ecosystem dependencies. It is the complete observation domain from which relation-scoped candidates and admissions can be derived.
 
+## Local-project audit extension — 2026-08-29
+
+"Audit all of my projects for consideration" was executed as a second, narrower census pass on
+top of the 2026-08-28 owner-estate closure above: the same `gh api user/repos` owner enumeration,
+re-run fresh (`379` owned / `301` public / `78` private -- `+1`/`+1`/`+0` vs. the prior day),
+filtered to the **real-work audit population** `visibility=public AND fork=false AND
+archived=false` (`134` repositories) rather than the raw public-catalog cardinality. Forks and
+archived repositories are excluded from this population because they are not "my projects" in the
+authored-work sense this request asked about, even though they remain in the broader public
+catalog scope.
+
+Diffing that 134-repository population against the `dcterms:identifier` values already present in
+`ontology/repositories.ttl` (3 constitutional repositories) and `ontology/repository-census-01.ttl`
+through `-04.ttl` (66 previously materialized candidates) produced a gap of **87** repositories with
+no census representation. Each was materialized as an `eco:RepositoryCandidate` individual, using
+the identical predicate shape as the existing shards (`dcterms:identifier`, `eco:sourceUrl`,
+`eco:censusStanding "CANDIDATE"`, `eco:membershipBasis`, `eco:publicProjection true`), across six
+new shards: `ontology/repository-census-05.ttl` through `-10.ttl`.
+
+This is deliberately **mechanical, not judgment-based** materialization, matching the existing
+shards' own convention: candidacy here means "observed, real, owned, public, non-fork, non-archived
+repository" only -- it is not a relevance or profile-fit judgment, which the Promotion pipeline
+below still gates separately.
+
+The full merged graph (10 census shards + `ontology/repositories.ttl`, 1123 quads across 11 files)
+was validated for real with the ecosystem's own build-facing RDF/SHACL validator:
+
+```text
+ggen graph validate \
+  --files ontology/repositories.ttl,ontology/repository-census-01.ttl,...,ontology/repository-census-10.ttl \
+  --shapes admission/shapes.ttl
+# -> files_checked: 11, shapes_checked: 1, shapes_conform: true on every file, 0 duplicate identifiers
+```
+
+22 previously materialized candidates from the 2026-08-28 shards fall outside the current
+`fork=false AND archived=false` population (e.g. `ash`, `ash_events`, `ash_postgres`, `pm4py`,
+`POWL`, `weaver`, `xaas` -- see `receipts/github-ecosystem-census-2026-08-29.json` for the full
+list). Per the fix-forward discipline, these are left admitted as-is rather than removed; their
+fork/archived/visibility status has not yet been independently re-verified per-repository.
+
+The exact machine receipt for this pass is `receipts/github-ecosystem-census-2026-08-29.json`.
+
 ## Privacy fence
 
 `ggen-ecosystem` is public. The 78 private observations are represented only as the protected private partition cardinality. Public ecosystem artifacts must not materialize private repository names, repository IDs, URLs, refs, SHAs, descriptions, or sizes merely because connected tooling can observe them.
