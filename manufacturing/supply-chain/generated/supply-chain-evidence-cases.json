@@ -610,6 +610,16 @@
       "semantic_fingerprint": "SCB-062:REFUSED[PROV_GGEN_URI]",
       "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.0.uri","value":"git+https://github.com/example/ggen"},
       "assertion": {"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.0.uri","value":"git+https://github.com/seanchatmangpt/ggen"}
+    },
+    {
+      "case_id": "SCB-063",
+      "ordinal": 63,
+      "title": "Marketplace material URI",
+      "expected": "REFUSED[PROV_MARKETPLACE_URI]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-063:REFUSED[PROV_MARKETPLACE_URI]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.1.uri","value":"git+https://github.com/example/marketplace"},
+      "assertion": {"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.1.uri","value":"git+https://github.com/seanchatmangpt/ggen-marketplace"}
     }
   ]
 }

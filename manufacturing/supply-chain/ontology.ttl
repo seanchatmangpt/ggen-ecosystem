@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 61 .
+  scb:caseCount 62 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -614,3 +614,13 @@ ex:case062 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-062:REFUSED[PROV_GGEN_URI]" ;
   scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.0.uri","value":"git+https://github.com/example/ggen"}""" ;
   scb:assertionJson """{"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.0.uri","value":"git+https://github.com/seanchatmangpt/ggen"}""" .
+
+ex:case063 a scb:CourtCase ;
+  scb:caseId "SCB-063" ;
+  scb:ordinal 63 ;
+  scb:title "Marketplace material URI" ;
+  scb:expectedStanding "REFUSED[PROV_MARKETPLACE_URI]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-063:REFUSED[PROV_MARKETPLACE_URI]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.1.uri","value":"git+https://github.com/example/marketplace"}""" ;
+  scb:assertionJson """{"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.1.uri","value":"git+https://github.com/seanchatmangpt/ggen-marketplace"}""" .
