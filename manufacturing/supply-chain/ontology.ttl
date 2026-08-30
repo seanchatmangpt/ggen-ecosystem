@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 89 .
+  scb:caseCount 90 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -894,3 +894,13 @@ ex:case090 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-090:REFUSED[SPDX_GGEN_RELATION]" ;
   scb:mutationJson """{"path":"spdx.relationships.1.relationshipType","value":"DEPENDS_ON"}""" ;
   scb:assertionJson """{"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-ggen","relationshipType":"CONTAINS","spdxElementId":"SPDXRef-Package-ggen-ecosystem"}}""" .
+
+ex:case091 a scb:CourtCase ;
+  scb:caseId "SCB-091" ;
+  scb:ordinal 91 ;
+  scb:title "SPDX Marketplace containment relation" ;
+  scb:expectedStanding "REFUSED[SPDX_MARKETPLACE_RELATION]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-091:REFUSED[SPDX_MARKETPLACE_RELATION]" ;
+  scb:mutationJson """{"path":"spdx.relationships.2.relationshipType","value":"DEPENDS_ON"}""" ;
+  scb:assertionJson """{"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-marketplace","relationshipType":"CONTAINS","spdxElementId":"SPDXRef-Package-ggen-ecosystem"}}""" .

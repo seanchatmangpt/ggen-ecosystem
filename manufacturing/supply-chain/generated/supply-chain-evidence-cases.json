@@ -890,6 +890,16 @@
       "semantic_fingerprint": "SCB-090:REFUSED[SPDX_GGEN_RELATION]",
       "mutation": {"path":"spdx.relationships.1.relationshipType","value":"DEPENDS_ON"},
       "assertion": {"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-ggen","relationshipType":"CONTAINS","spdxElementId":"SPDXRef-Package-ggen-ecosystem"}}
+    },
+    {
+      "case_id": "SCB-091",
+      "ordinal": 91,
+      "title": "SPDX Marketplace containment relation",
+      "expected": "REFUSED[SPDX_MARKETPLACE_RELATION]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-091:REFUSED[SPDX_MARKETPLACE_RELATION]",
+      "mutation": {"path":"spdx.relationships.2.relationshipType","value":"DEPENDS_ON"},
+      "assertion": {"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-marketplace","relationshipType":"CONTAINS","spdxElementId":"SPDXRef-Package-ggen-ecosystem"}}
     }
   ]
 }
