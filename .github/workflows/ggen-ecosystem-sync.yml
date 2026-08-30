@@ -93,6 +93,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Container-job reality on HOSTED runners (not reproduced by local `act`,
+          # which maps UIDs differently): the workspace is checked out owned by the
+          # host runner user while this step runs as the container's user, so every
+          # bare `git` call dies with "fatal: detected dubious ownership" -- making
+          # `$(git rev-parse HEAD)` expand to empty and the head-mismatch refusal
+          # below fire spuriously on EVERY hosted run. Found by the first real
+          # external caller (seanchatmangpt/beam4pm PR #22). Declaring the workspace
+          # and its submodule safe is scoped to this job's ephemeral container HOME.
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE/vendor/ggen-marketplace"
           [[ "$(git rev-parse HEAD)" = "$CANDIDATE_SHA" ]] || { echo 'REFUSED[EXACT_HEAD_MISMATCH]' >&2; exit 2; }
           [[ "$MARKETPLACE_SHA" =~ ^[0-9a-f]{40}$ ]] || { echo 'REFUSED[INVALID_MARKETPLACE_SHA]' >&2; exit 2; }
           submodule_sha="$(git -C vendor/ggen-marketplace rev-parse HEAD)"
