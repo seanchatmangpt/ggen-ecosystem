@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 68 .
+  scb:caseCount 69 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -684,3 +684,13 @@ ex:case069 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-069:REFUSED[PROV_STARTED_UTC]" ;
   scb:mutationJson """{"path":"provenance.predicate.runDetails.metadata.startedOn","value":"2026-08-29T09:04:33+01:00"}""" ;
   scb:assertionJson """{"op":"ends_with","path":"provenance.predicate.runDetails.metadata.startedOn","value":"Z"}""" .
+
+ex:case070 a scb:CourtCase ;
+  scb:caseId "SCB-070" ;
+  scb:ordinal 70 ;
+  scb:title "finished timestamp UTC form" ;
+  scb:expectedStanding "REFUSED[PROV_FINISHED_UTC]" ;
+  scb:lawFamily "provenance" ;
+  scb:semanticFingerprint "SCB-070:REFUSED[PROV_FINISHED_UTC]" ;
+  scb:mutationJson """{"path":"provenance.predicate.runDetails.metadata.finishedOn","value":"2026-08-29T10:04:33+01:00"}""" ;
+  scb:assertionJson """{"op":"ends_with","path":"provenance.predicate.runDetails.metadata.finishedOn","value":"Z"}""" .

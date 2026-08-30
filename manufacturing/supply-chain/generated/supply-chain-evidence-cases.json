@@ -680,6 +680,16 @@
       "semantic_fingerprint": "SCB-069:REFUSED[PROV_STARTED_UTC]",
       "mutation": {"path":"provenance.predicate.runDetails.metadata.startedOn","value":"2026-08-29T09:04:33+01:00"},
       "assertion": {"op":"ends_with","path":"provenance.predicate.runDetails.metadata.startedOn","value":"Z"}
+    },
+    {
+      "case_id": "SCB-070",
+      "ordinal": 70,
+      "title": "finished timestamp UTC form",
+      "expected": "REFUSED[PROV_FINISHED_UTC]",
+      "law_family": "provenance",
+      "semantic_fingerprint": "SCB-070:REFUSED[PROV_FINISHED_UTC]",
+      "mutation": {"path":"provenance.predicate.runDetails.metadata.finishedOn","value":"2026-08-29T10:04:33+01:00"},
+      "assertion": {"op":"ends_with","path":"provenance.predicate.runDetails.metadata.finishedOn","value":"Z"}
     }
   ]
 }
