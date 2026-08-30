@@ -760,6 +760,16 @@
       "semantic_fingerprint": "SCB-077:REFUSED[SPDX_DOWNLOAD_LOCATION]",
       "mutation": {"path":"spdx.packages.0.downloadLocation","value":"https://example.invalid/archive"},
       "assertion": {"op":"eq","path":"spdx.packages.0.downloadLocation","value":"NOASSERTION"}
+    },
+    {
+      "case_id": "SCB-078",
+      "ordinal": 78,
+      "title": "SPDX files analyzed standing",
+      "expected": "REFUSED[SPDX_FILES_ANALYZED]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-078:REFUSED[SPDX_FILES_ANALYZED]",
+      "mutation": {"path":"spdx.packages.0.filesAnalyzed","value":true},
+      "assertion": {"op":"eq","path":"spdx.packages.0.filesAnalyzed","value":false}
     }
   ]
 }

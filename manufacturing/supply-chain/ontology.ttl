@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 76 .
+  scb:caseCount 77 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -764,3 +764,13 @@ ex:case077 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-077:REFUSED[SPDX_DOWNLOAD_LOCATION]" ;
   scb:mutationJson """{"path":"spdx.packages.0.downloadLocation","value":"https://example.invalid/archive"}""" ;
   scb:assertionJson """{"op":"eq","path":"spdx.packages.0.downloadLocation","value":"NOASSERTION"}""" .
+
+ex:case078 a scb:CourtCase ;
+  scb:caseId "SCB-078" ;
+  scb:ordinal 78 ;
+  scb:title "SPDX files analyzed standing" ;
+  scb:expectedStanding "REFUSED[SPDX_FILES_ANALYZED]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-078:REFUSED[SPDX_FILES_ANALYZED]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.filesAnalyzed","value":true}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.0.filesAnalyzed","value":false}""" .
