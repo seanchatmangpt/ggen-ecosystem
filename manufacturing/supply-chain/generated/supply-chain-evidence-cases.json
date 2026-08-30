@@ -720,6 +720,16 @@
       "semantic_fingerprint": "SCB-073:REFUSED[SPDX_NAMESPACE_HEAD]",
       "mutation": {"path":"spdx.documentNamespace","value":"https://github.com/seanchatmangpt/ggen-ecosystem/sbom/main"},
       "assertion": {"op":"ends_with","path":"spdx.documentNamespace","value":"/$head"}
+    },
+    {
+      "case_id": "SCB-074",
+      "ordinal": 74,
+      "title": "SPDX creator tool identity",
+      "expected": "REFUSED[SPDX_CREATOR_TOOL]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-074:REFUSED[SPDX_CREATOR_TOOL]",
+      "mutation": {"path":"spdx.creationInfo.creators","value":[]},
+      "assertion": {"op":"contains_map","path":"spdx.creationInfo.creators","value":"Tool: ggen-ecosystem-supply-chain-court"}
     }
   ]
 }
