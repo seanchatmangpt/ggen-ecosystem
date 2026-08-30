@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 99 .
+  scb:caseCount 100 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -994,3 +994,13 @@ ex:case100 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-100:REFUSED[CDX_DEPENDENCY_ROOT]" ;
   scb:mutationJson """{"path":"cyclonedx.dependencies.0.ref","value":"wrong"}""" ;
   scb:assertionJson """{"op":"eq","path":"cyclonedx.dependencies.0.ref","value":"$subject"}""" .
+
+ex:case101 a scb:CourtCase ;
+  scb:caseId "SCB-101" ;
+  scb:ordinal 101 ;
+  scb:title "CycloneDX dependency cardinality" ;
+  scb:expectedStanding "REFUSED[CDX_DEPENDENCY_CARDINALITY]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-101:REFUSED[CDX_DEPENDENCY_CARDINALITY]" ;
+  scb:mutationJson """{"path":"cyclonedx.dependencies.0.dependsOn","value":[]}""" ;
+  scb:assertionJson """{"op":"len_eq","path":"cyclonedx.dependencies.0.dependsOn","value":3}""" .
