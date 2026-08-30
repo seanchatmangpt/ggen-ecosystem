@@ -26,7 +26,10 @@ jobs:
           tar --no-same-owner -xzf "$RUNNER_TEMP/ggen.tar.gz" -C "$RUNNER_TEMP"
           "$RUNNER_TEMP/ggen" --version | grep -Fx 'ggen 26.8.28'
       - name: Execute all real Chicago consumers twice
-        run: python3 tools/chicago_consumer_matrix.py --ggen "$RUNNER_TEMP/ggen" --all --json | tee "$RUNNER_TEMP/chicago-consumer-receipt.json"
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 tools/chicago_consumer_matrix.py --ggen "$RUNNER_TEMP/ggen" --all --json | tee "$RUNNER_TEMP/chicago-consumer-receipt.json"
       - name: Upload execution receipt
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
