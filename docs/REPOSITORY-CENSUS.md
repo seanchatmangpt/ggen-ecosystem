@@ -100,6 +100,17 @@ values -- the reverification added facts without disturbing any existing admissi
 
 The exact machine receipt for both passes is `receipts/github-ecosystem-census-2026-08-29.json`.
 
+### Post-audit delta — shard 11, 2026-08-29 (local) / 2026-08-30T01:04Z (GitHub)
+
+`ontology/repository-census-11.ttl` records one repository created after the shard-05..10
+enumeration ran and therefore absent from it: `seanchatmangpt/beam4pm` (verified individually via
+`gh api repos/seanchatmangpt/beam4pm`: public, non-fork, non-archived, created
+2026-08-30T01:04Z). It is the first ggen-only manufactured product proof — its application source
+is projected by `ggen sync run` from its own `ontology.ttl` through the
+`beam4pm-process-model-pack` vendored from `ggen-marketplace`. Census standing is `CANDIDATE`
+like every other observation; manufacturing standing lives in that repository's own receipts, not
+here. Shard 11 validated against `admission/shapes.ttl` (`shapes_conform=true`, 8 quads).
+
 ## Privacy fence
 
 `ggen-ecosystem` is public. The 78 private observations are represented only as the protected private partition cardinality. Public ecosystem artifacts must not materialize private repository names, repository IDs, URLs, refs, SHAs, descriptions, or sizes merely because connected tooling can observe them.
