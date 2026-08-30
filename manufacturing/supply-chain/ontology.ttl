@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 78 .
+  scb:caseCount 79 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -784,3 +784,13 @@ ex:case079 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-079:REFUSED[SPDX_LICENSE_CONCLUDED]" ;
   scb:mutationJson """{"path":"spdx.packages.0.licenseConcluded","value":"MIT"}""" ;
   scb:assertionJson """{"op":"eq","path":"spdx.packages.0.licenseConcluded","value":"NOASSERTION"}""" .
+
+ex:case080 a scb:CourtCase ;
+  scb:caseId "SCB-080" ;
+  scb:ordinal 80 ;
+  scb:title "SPDX declared license standing" ;
+  scb:expectedStanding "REFUSED[SPDX_LICENSE_DECLARED]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-080:REFUSED[SPDX_LICENSE_DECLARED]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.licenseDeclared","value":"MIT"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.0.licenseDeclared","value":"NOASSERTION"}""" .

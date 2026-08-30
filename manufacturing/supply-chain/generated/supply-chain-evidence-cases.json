@@ -780,6 +780,16 @@
       "semantic_fingerprint": "SCB-079:REFUSED[SPDX_LICENSE_CONCLUDED]",
       "mutation": {"path":"spdx.packages.0.licenseConcluded","value":"MIT"},
       "assertion": {"op":"eq","path":"spdx.packages.0.licenseConcluded","value":"NOASSERTION"}
+    },
+    {
+      "case_id": "SCB-080",
+      "ordinal": 80,
+      "title": "SPDX declared license standing",
+      "expected": "REFUSED[SPDX_LICENSE_DECLARED]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-080:REFUSED[SPDX_LICENSE_DECLARED]",
+      "mutation": {"path":"spdx.packages.0.licenseDeclared","value":"MIT"},
+      "assertion": {"op":"eq","path":"spdx.packages.0.licenseDeclared","value":"NOASSERTION"}
     }
   ]
 }
