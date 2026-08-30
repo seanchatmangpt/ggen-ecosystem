@@ -860,6 +860,16 @@
       "semantic_fingerprint": "SCB-087:REFUSED[SPDX_MARKETPLACE_VERSION]",
       "mutation": {"path":"spdx.packages.2.versionInfo","value":"main"},
       "assertion": {"op":"eq","path":"spdx.packages.2.versionInfo","value":"$market"}
+    },
+    {
+      "case_id": "SCB-088",
+      "ordinal": 88,
+      "title": "SPDX AutoFDE package name",
+      "expected": "REFUSED[SPDX_AUTOFDE_NAME]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-088:REFUSED[SPDX_AUTOFDE_NAME]",
+      "mutation": {"path":"spdx.packages.3.name","value":"wrong"},
+      "assertion": {"op":"eq","path":"spdx.packages.3.name","value":"autofde-lab"}
     }
   ]
 }
