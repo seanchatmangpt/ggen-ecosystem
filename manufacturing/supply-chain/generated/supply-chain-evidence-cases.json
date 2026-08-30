@@ -540,6 +540,16 @@
       "semantic_fingerprint": "SCB-055:REFUSED[PROV_SOURCE_TRANSPORT]",
       "mutation": {"path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"http://github.com/seanchatmangpt/ggen-ecosystem"},
       "assertion": {"op":"starts_with","path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"git+https://"}
+    },
+    {
+      "case_id": "SCB-056",
+      "ordinal": 56,
+      "title": "source repository suffix identity",
+      "expected": "REFUSED[PROV_SOURCE_REPOSITORY]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-056:REFUSED[PROV_SOURCE_REPOSITORY]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"git+https://github.com/seanchatmangpt/fork"},
+      "assertion": {"op":"ends_with","path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"/ggen-ecosystem"}
     }
   ]
 }
