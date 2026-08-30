@@ -1,6 +1,6 @@
 version = 3
 base_main_sha = "24df72465dff17e3711ffde6691a647d97fff595"
-updated_at = "2026-08-30T04:40:00Z"
+updated_at = "2026-08-30T05:10:00Z"
 
 [ggen]
 release = "v26.8.28"
@@ -8,6 +8,12 @@ commit_sha = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
 linux_x86_64_asset_sha256 = "UNKNOWN-TODO"
 observed_executable_sha256 = "UNKNOWN-TODO"
 aarch64_apple_darwin_asset_sha256 = "82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42"
+
+[consumer_manufacture]
+release = "v26.8.27"
+linux_x86_64_asset = "ggen-x86_64-unknown-linux-gnu.tar.gz"
+linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035"
+source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
 sha = "91016e6d3110a88ffbfe7f18a6fccd6c936a7f00"
@@ -54,7 +60,7 @@ workflow = ".github/workflows/ggen-ecosystem-sync.yml"
 container_workflow = ".github/workflows/ggen-ecosystem-container.yml"
 dockerfile = "Dockerfile"
 bootstrap_receipt = "receipts/bootstrap-ggen-ecosystem-sync.json"
-consumer_action = "vendor/ggen-marketplace/packs/github-actions-pack/examples/consume-github-actions-pack/.github/actions/use-ggen-ecosystem"
+consumer_cli = "bin/ggen-ecosystem"
 
 [catalog]
 owner = "seanchatmangpt"
