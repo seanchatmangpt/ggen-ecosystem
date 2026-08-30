@@ -730,6 +730,16 @@
       "semantic_fingerprint": "SCB-074:REFUSED[SPDX_CREATOR_TOOL]",
       "mutation": {"path":"spdx.creationInfo.creators","value":[]},
       "assertion": {"op":"contains_map","path":"spdx.creationInfo.creators","value":"Tool: ggen-ecosystem-supply-chain-court"}
+    },
+    {
+      "case_id": "SCB-075",
+      "ordinal": 75,
+      "title": "SPDX root package name",
+      "expected": "REFUSED[SPDX_ROOT_NAME]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-075:REFUSED[SPDX_ROOT_NAME]",
+      "mutation": {"path":"spdx.packages.0.name","value":"wrong"},
+      "assertion": {"op":"eq","path":"spdx.packages.0.name","value":"ggen-ecosystem"}
     }
   ]
 }
