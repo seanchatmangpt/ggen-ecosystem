@@ -600,6 +600,16 @@
       "semantic_fingerprint": "SCB-061:REFUSED[PROV_MATERIAL_CARDINALITY]",
       "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies","value":[]},
       "assertion": {"op":"len_eq","path":"provenance.predicate.buildDefinition.resolvedDependencies","value":3}
+    },
+    {
+      "case_id": "SCB-062",
+      "ordinal": 62,
+      "title": "GGen material URI",
+      "expected": "REFUSED[PROV_GGEN_URI]",
+      "law_family": "slsa",
+      "semantic_fingerprint": "SCB-062:REFUSED[PROV_GGEN_URI]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.0.uri","value":"git+https://github.com/example/ggen"},
+      "assertion": {"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.0.uri","value":"git+https://github.com/seanchatmangpt/ggen"}
     }
   ]
 }

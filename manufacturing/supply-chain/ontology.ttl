@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 60 .
+  scb:caseCount 61 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -604,3 +604,13 @@ ex:case061 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-061:REFUSED[PROV_MATERIAL_CARDINALITY]" ;
   scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies","value":[]}""" ;
   scb:assertionJson """{"op":"len_eq","path":"provenance.predicate.buildDefinition.resolvedDependencies","value":3}""" .
+
+ex:case062 a scb:CourtCase ;
+  scb:caseId "SCB-062" ;
+  scb:ordinal 62 ;
+  scb:title "GGen material URI" ;
+  scb:expectedStanding "REFUSED[PROV_GGEN_URI]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-062:REFUSED[PROV_GGEN_URI]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.0.uri","value":"git+https://github.com/example/ggen"}""" ;
+  scb:assertionJson """{"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.0.uri","value":"git+https://github.com/seanchatmangpt/ggen"}""" .
