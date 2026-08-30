@@ -980,6 +980,16 @@
       "semantic_fingerprint": "SCB-099:REFUSED[CDX_AUTOFDE_REF]",
       "mutation": {"path":"cyclonedx.components.2.bom-ref","value":"autofde-lab@main"},
       "assertion": {"op":"eq","path":"cyclonedx.components.2.bom-ref","value":"autofde-lab@$autofde"}
+    },
+    {
+      "case_id": "SCB-100",
+      "ordinal": 100,
+      "title": "CycloneDX dependency root ref",
+      "expected": "REFUSED[CDX_DEPENDENCY_ROOT]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-100:REFUSED[CDX_DEPENDENCY_ROOT]",
+      "mutation": {"path":"cyclonedx.dependencies.0.ref","value":"wrong"},
+      "assertion": {"op":"eq","path":"cyclonedx.dependencies.0.ref","value":"$subject"}
     }
   ]
 }
