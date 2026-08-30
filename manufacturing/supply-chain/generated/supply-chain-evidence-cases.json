@@ -690,6 +690,16 @@
       "semantic_fingerprint": "SCB-070:REFUSED[PROV_FINISHED_UTC]",
       "mutation": {"path":"provenance.predicate.runDetails.metadata.finishedOn","value":"2026-08-29T10:04:33+01:00"},
       "assertion": {"op":"ends_with","path":"provenance.predicate.runDetails.metadata.finishedOn","value":"Z"}
+    },
+    {
+      "case_id": "SCB-071",
+      "ordinal": 71,
+      "title": "GitHub-hosted builder namespace",
+      "expected": "REFUSED[PROV_BUILDER_NAMESPACE]",
+      "law_family": "workflow",
+      "semantic_fingerprint": "SCB-071:REFUSED[PROV_BUILDER_NAMESPACE]",
+      "mutation": {"path":"provenance.predicate.runDetails.builder.id","value":"https://example.invalid/runner"},
+      "assertion": {"op":"starts_with","path":"provenance.predicate.runDetails.builder.id","value":"https://github.com/actions/runner/"}
     }
   ]
 }

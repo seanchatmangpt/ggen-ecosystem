@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 69 .
+  scb:caseCount 70 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -694,3 +694,13 @@ ex:case070 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-070:REFUSED[PROV_FINISHED_UTC]" ;
   scb:mutationJson """{"path":"provenance.predicate.runDetails.metadata.finishedOn","value":"2026-08-29T10:04:33+01:00"}""" ;
   scb:assertionJson """{"op":"ends_with","path":"provenance.predicate.runDetails.metadata.finishedOn","value":"Z"}""" .
+
+ex:case071 a scb:CourtCase ;
+  scb:caseId "SCB-071" ;
+  scb:ordinal 71 ;
+  scb:title "GitHub-hosted builder namespace" ;
+  scb:expectedStanding "REFUSED[PROV_BUILDER_NAMESPACE]" ;
+  scb:lawFamily "workflow" ;
+  scb:semanticFingerprint "SCB-071:REFUSED[PROV_BUILDER_NAMESPACE]" ;
+  scb:mutationJson """{"path":"provenance.predicate.runDetails.builder.id","value":"https://example.invalid/runner"}""" ;
+  scb:assertionJson """{"op":"starts_with","path":"provenance.predicate.runDetails.builder.id","value":"https://github.com/actions/runner/"}""" .
