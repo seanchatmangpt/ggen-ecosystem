@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 70 .
+  scb:caseCount 71 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -704,3 +704,13 @@ ex:case071 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-071:REFUSED[PROV_BUILDER_NAMESPACE]" ;
   scb:mutationJson """{"path":"provenance.predicate.runDetails.builder.id","value":"https://example.invalid/runner"}""" ;
   scb:assertionJson """{"op":"starts_with","path":"provenance.predicate.runDetails.builder.id","value":"https://github.com/actions/runner/"}""" .
+
+ex:case072 a scb:CourtCase ;
+  scb:caseId "SCB-072" ;
+  scb:ordinal 72 ;
+  scb:title "SPDX document name" ;
+  scb:expectedStanding "REFUSED[SPDX_DOCUMENT_NAME]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-072:REFUSED[SPDX_DOCUMENT_NAME]" ;
+  scb:mutationJson """{"path":"spdx.name","value":"wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.name","value":"ggen-ecosystem-v26.8.28"}""" .

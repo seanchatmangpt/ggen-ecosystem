@@ -700,6 +700,16 @@
       "semantic_fingerprint": "SCB-071:REFUSED[PROV_BUILDER_NAMESPACE]",
       "mutation": {"path":"provenance.predicate.runDetails.builder.id","value":"https://example.invalid/runner"},
       "assertion": {"op":"starts_with","path":"provenance.predicate.runDetails.builder.id","value":"https://github.com/actions/runner/"}
+    },
+    {
+      "case_id": "SCB-072",
+      "ordinal": 72,
+      "title": "SPDX document name",
+      "expected": "REFUSED[SPDX_DOCUMENT_NAME]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-072:REFUSED[SPDX_DOCUMENT_NAME]",
+      "mutation": {"path":"spdx.name","value":"wrong"},
+      "assertion": {"op":"eq","path":"spdx.name","value":"ggen-ecosystem-v26.8.28"}
     }
   ]
 }
