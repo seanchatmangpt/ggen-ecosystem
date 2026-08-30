@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 71 .
+  scb:caseCount 72 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -714,3 +714,13 @@ ex:case072 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-072:REFUSED[SPDX_DOCUMENT_NAME]" ;
   scb:mutationJson """{"path":"spdx.name","value":"wrong"}""" ;
   scb:assertionJson """{"op":"eq","path":"spdx.name","value":"ggen-ecosystem-v26.8.28"}""" .
+
+ex:case073 a scb:CourtCase ;
+  scb:caseId "SCB-073" ;
+  scb:ordinal 73 ;
+  scb:title "SPDX namespace binds exact head" ;
+  scb:expectedStanding "REFUSED[SPDX_NAMESPACE_HEAD]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-073:REFUSED[SPDX_NAMESPACE_HEAD]" ;
+  scb:mutationJson """{"path":"spdx.documentNamespace","value":"https://github.com/seanchatmangpt/ggen-ecosystem/sbom/main"}""" ;
+  scb:assertionJson """{"op":"ends_with","path":"spdx.documentNamespace","value":"/$head"}""" .

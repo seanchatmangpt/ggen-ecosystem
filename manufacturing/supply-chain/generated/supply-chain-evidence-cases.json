@@ -710,6 +710,16 @@
       "semantic_fingerprint": "SCB-072:REFUSED[SPDX_DOCUMENT_NAME]",
       "mutation": {"path":"spdx.name","value":"wrong"},
       "assertion": {"op":"eq","path":"spdx.name","value":"ggen-ecosystem-v26.8.28"}
+    },
+    {
+      "case_id": "SCB-073",
+      "ordinal": 73,
+      "title": "SPDX namespace binds exact head",
+      "expected": "REFUSED[SPDX_NAMESPACE_HEAD]",
+      "law_family": "identity",
+      "semantic_fingerprint": "SCB-073:REFUSED[SPDX_NAMESPACE_HEAD]",
+      "mutation": {"path":"spdx.documentNamespace","value":"https://github.com/seanchatmangpt/ggen-ecosystem/sbom/main"},
+      "assertion": {"op":"ends_with","path":"spdx.documentNamespace","value":"/$head"}
     }
   ]
 }
