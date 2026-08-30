@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 87 .
+  scb:caseCount 88 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -874,3 +874,13 @@ ex:case088 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-088:REFUSED[SPDX_AUTOFDE_NAME]" ;
   scb:mutationJson """{"path":"spdx.packages.3.name","value":"wrong"}""" ;
   scb:assertionJson """{"op":"eq","path":"spdx.packages.3.name","value":"autofde-lab"}""" .
+
+ex:case089 a scb:CourtCase ;
+  scb:caseId "SCB-089" ;
+  scb:ordinal 89 ;
+  scb:title "SPDX AutoFDE package version" ;
+  scb:expectedStanding "REFUSED[SPDX_AUTOFDE_VERSION]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-089:REFUSED[SPDX_AUTOFDE_VERSION]" ;
+  scb:mutationJson """{"path":"spdx.packages.3.versionInfo","value":"main"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.3.versionInfo","value":"$autofde"}""" .
