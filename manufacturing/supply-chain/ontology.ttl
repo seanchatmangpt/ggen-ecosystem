@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 58 .
+  scb:caseCount 59 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -584,3 +584,13 @@ ex:case059 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-059:REFUSED[PROV_WORKFLOW_IDENTITY]" ;
   scb:mutationJson """{"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/other.yml@$head"}""" ;
   scb:assertionJson """{"op":"contains","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"ggen-ecosystem-container.yml@"}""" .
+
+ex:case060 a scb:CourtCase ;
+  scb:caseId "SCB-060" ;
+  scb:ordinal 60 ;
+  scb:title "workflow exact commit grammar" ;
+  scb:expectedStanding "REFUSED[PROV_WORKFLOW_SHA_GRAMMAR]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-060:REFUSED[PROV_WORKFLOW_SHA_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/ggen-ecosystem-container.yml@main"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"^[.]github/workflows/ggen-ecosystem-container[.]yml@[0-9a-f]{40}$"}""" .

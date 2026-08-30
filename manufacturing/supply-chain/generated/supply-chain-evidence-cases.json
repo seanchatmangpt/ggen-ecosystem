@@ -580,6 +580,16 @@
       "semantic_fingerprint": "SCB-059:REFUSED[PROV_WORKFLOW_IDENTITY]",
       "mutation": {"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/other.yml@$head"},
       "assertion": {"op":"contains","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"ggen-ecosystem-container.yml@"}
+    },
+    {
+      "case_id": "SCB-060",
+      "ordinal": 60,
+      "title": "workflow exact commit grammar",
+      "expected": "REFUSED[PROV_WORKFLOW_SHA_GRAMMAR]",
+      "law_family": "identity",
+      "semantic_fingerprint": "SCB-060:REFUSED[PROV_WORKFLOW_SHA_GRAMMAR]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/ggen-ecosystem-container.yml@main"},
+      "assertion": {"op":"regex","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"^[.]github/workflows/ggen-ecosystem-container[.]yml@[0-9a-f]{40}$"}
     }
   ]
 }
