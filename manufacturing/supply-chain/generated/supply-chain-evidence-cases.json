@@ -800,6 +800,16 @@
       "semantic_fingerprint": "SCB-081:REFUSED[SPDX_SUPPLIER]",
       "mutation": {"path":"spdx.packages.0.supplier","value":"Organization: example"},
       "assertion": {"op":"eq","path":"spdx.packages.0.supplier","value":"Organization: seanchatmangpt"}
+    },
+    {
+      "case_id": "SCB-082",
+      "ordinal": 82,
+      "title": "SPDX checksum algorithm",
+      "expected": "REFUSED[SPDX_CHECKSUM_ALGORITHM]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-082:REFUSED[SPDX_CHECKSUM_ALGORITHM]",
+      "mutation": {"path":"spdx.packages.0.checksums.0.algorithm","value":"SHA1"},
+      "assertion": {"op":"eq","path":"spdx.packages.0.checksums.0.algorithm","value":"SHA256"}
     }
   ]
 }
