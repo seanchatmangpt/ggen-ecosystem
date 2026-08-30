@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 56 .
+  scb:caseCount 57 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -564,3 +564,13 @@ ex:case057 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-057:REFUSED[PROV_SOURCE_SHA_GRAMMAR]" ;
   scb:mutationJson """{"path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"MAIN"}""" ;
   scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"^[0-9a-f]{40}$"}""" .
+
+ex:case058 a scb:CourtCase ;
+  scb:caseId "SCB-058" ;
+  scb:ordinal 58 ;
+  scb:title "workflow resides under GitHub workflows" ;
+  scb:expectedStanding "REFUSED[PROV_WORKFLOW_PATH]" ;
+  scb:lawFamily "workflow" ;
+  scb:semanticFingerprint "SCB-058:REFUSED[PROV_WORKFLOW_PATH]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"scripts/build.sh@$head"}""" ;
+  scb:assertionJson """{"op":"starts_with","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/"}""" .

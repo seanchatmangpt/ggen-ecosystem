@@ -560,6 +560,16 @@
       "semantic_fingerprint": "SCB-057:REFUSED[PROV_SOURCE_SHA_GRAMMAR]",
       "mutation": {"path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"MAIN"},
       "assertion": {"op":"regex","path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"^[0-9a-f]{40}$"}
+    },
+    {
+      "case_id": "SCB-058",
+      "ordinal": 58,
+      "title": "workflow resides under GitHub workflows",
+      "expected": "REFUSED[PROV_WORKFLOW_PATH]",
+      "law_family": "workflow",
+      "semantic_fingerprint": "SCB-058:REFUSED[PROV_WORKFLOW_PATH]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"scripts/build.sh@$head"},
+      "assertion": {"op":"starts_with","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/"}
     }
   ]
 }
