@@ -43,7 +43,37 @@
     "seanchatmangpt/release-demos", "seanchatmangpt/semantica", "seanchatmangpt/SREGym",
     "seanchatmangpt/tcps", "seanchatmangpt/weaver", "seanchatmangpt/xaas"
   ],
-  "previously_materialized_candidates_outside_audit_population_note": "left admitted as-is (fix-forward: prior evidence is not removed); most likely explanation is fork/archived status or visibility change since the 2026-08-28 census, not yet independently re-verified per-repository",
+  "previously_materialized_candidates_outside_audit_population_note": "left admitted as-is (fix-forward: prior evidence is not removed); reverified per-repository below",
+  "reverification_2026_08_29": {
+    "method": "gh api repos/seanchatmangpt/<name> per repository (individual GET, not the list enumeration), reading private/fork/archived/parent.full_name directly",
+    "result": "all 22 confirmed real, public, non-archived forks of other owners' repositories (0 renamed/deleted/transferred/newly-private -- every lookup succeeded)",
+    "graph_update": "each of the 22 eco:RepositoryCandidate individuals kept eco:censusStanding \"CANDIDATE\" (required by admission/shapes.ttl RepositoryCandidateShape, and status is unchanged -- still an observed public repository) but gained eco:forkOf \"<upstream full_name>\" and eco:censusReverifiedDate \"2026-08-29\"^^xsd:date, plus an updated eco:membershipBasis noting the verified fork status and its exclusion from the authored-work audit population",
+    "post_update_validation": "ggen graph validate --shapes admission/shapes.ttl over all 11 files: files_checked=11, shapes_conform=true on every file; RepositoryCandidate count unchanged at 153; 0 duplicate dcterms:identifier values",
+    "fork_map": {
+      "seanchatmangpt/A2A": "a2aproject/A2A",
+      "seanchatmangpt/aries": "plaans/aries",
+      "seanchatmangpt/ash": "ash-project/ash",
+      "seanchatmangpt/ash_events": "ash-project/ash_events",
+      "seanchatmangpt/ash_postgres": "ash-project/ash_postgres",
+      "seanchatmangpt/diagram-design": "cathrynlavery/diagram-design",
+      "seanchatmangpt/dogwood": "dogwood-policy/dogwood",
+      "seanchatmangpt/ex4pm-plan": "airbus/scikit-decide",
+      "seanchatmangpt/gno": "rdf-elixir/gno",
+      "seanchatmangpt/open-ontologies": "fabio-rovai/open-ontologies",
+      "seanchatmangpt/oxigraph": "oxigraph/oxigraph",
+      "seanchatmangpt/planning-as-a-service": "AI-Planning/planning-as-a-service",
+      "seanchatmangpt/pm4py": "process-intelligence-solutions/pm4py",
+      "seanchatmangpt/PMAx-evaluation": "fit-process-mining/PMAx-evaluation",
+      "seanchatmangpt/POWL": "fit-process-mining/POWL",
+      "seanchatmangpt/reactor": "ash-project/reactor",
+      "seanchatmangpt/release-demos": "streamlit/release-demos",
+      "seanchatmangpt/semantica": "semantica-agi/semantica",
+      "seanchatmangpt/SREGym": "SREGym/SREGym",
+      "seanchatmangpt/tcps": "github/spec-kit",
+      "seanchatmangpt/weaver": "open-telemetry/weaver",
+      "seanchatmangpt/xaas": "gilacost/engineering_elixir_applications"
+    }
+  },
   "privacy_fence": {
     "private_identity_projection": false,
     "private_partition_representation": "cardinality-only",

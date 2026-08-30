@@ -1,6 +1,7 @@
 @prefix eco: <https://ggen.dev/ecosystem#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 eco:repo-candidate-ggen-create a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/ggen-create" ;
@@ -62,7 +63,9 @@ eco:repo-candidate-tcps a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/tcps" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/tcps" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of github/spec-kit; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "github/spec-kit" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-affidavit a eco:RepositoryCandidate, prov:Entity ;
@@ -97,7 +100,9 @@ eco:repo-candidate-weaver a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/weaver" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/weaver" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of open-telemetry/weaver; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "open-telemetry/weaver" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-weavergen a eco:RepositoryCandidate, prov:Entity ;
@@ -111,12 +116,16 @@ eco:repo-candidate-dogwood a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/dogwood" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/dogwood" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of dogwood-policy/dogwood; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "dogwood-policy/dogwood" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-semantica a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/semantica" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/semantica" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of semantica-agi/semantica; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "semantica-agi/semantica" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .

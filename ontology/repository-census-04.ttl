@@ -1,6 +1,7 @@
 @prefix eco: <https://ggen.dev/ecosystem#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 eco:repo-candidate-ash_supabase a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/ash_supabase" ;
@@ -13,21 +14,27 @@ eco:repo-candidate-ash_postgres a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/ash_postgres" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/ash_postgres" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of ash-project/ash_postgres; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "ash-project/ash_postgres" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-ash_events a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/ash_events" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/ash_events" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of ash-project/ash_events; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "ash-project/ash_events" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-reactor a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/reactor" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/reactor" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of ash-project/reactor; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "ash-project/reactor" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-erlmcp a eco:RepositoryCandidate, prov:Entity ;
@@ -41,7 +48,9 @@ eco:repo-candidate-A2A a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/A2A" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/A2A" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of a2aproject/A2A; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "a2aproject/A2A" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-a2a-rs a eco:RepositoryCandidate, prov:Entity ;
@@ -83,14 +92,18 @@ eco:repo-candidate-release-demos a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/release-demos" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/release-demos" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of streamlit/release-demos; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "streamlit/release-demos" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-gno a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/gno" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/gno" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of rdf-elixir/gno; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "rdf-elixir/gno" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-qlever_poc a eco:RepositoryCandidate, prov:Entity ;
@@ -104,5 +117,7 @@ eco:repo-candidate-PMAx-evaluation a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/PMAx-evaluation" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/PMAx-evaluation" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of fit-process-mining/PMAx-evaluation; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "fit-process-mining/PMAx-evaluation" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .

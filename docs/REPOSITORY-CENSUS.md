@@ -71,11 +71,34 @@ ggen graph validate \
 
 22 previously materialized candidates from the 2026-08-28 shards fall outside the current
 `fork=false AND archived=false` population (e.g. `ash`, `ash_events`, `ash_postgres`, `pm4py`,
-`POWL`, `weaver`, `xaas` -- see `receipts/github-ecosystem-census-2026-08-29.json` for the full
-list). Per the fix-forward discipline, these are left admitted as-is rather than removed; their
-fork/archived/visibility status has not yet been independently re-verified per-repository.
+`POWL`, `weaver`, `xaas`). Per the fix-forward discipline, these are left admitted as-is rather
+than removed.
 
-The exact machine receipt for this pass is `receipts/github-ecosystem-census-2026-08-29.json`.
+### Reverification of the 22 flagged candidates — same day, 2026-08-29
+
+Each of the 22 was individually re-queried (`gh api repos/seanchatmangpt/<name>`, a per-repository
+GET rather than the paged list enumeration) to close the "not yet independently re-verified"
+caveat above. Result: **all 22 are confirmed real, public, non-archived forks** of other owners'
+repositories -- `seanchatmangpt/ash` forks `ash-project/ash`, `seanchatmangpt/oxigraph` forks
+`oxigraph/oxigraph`, `seanchatmangpt/weaver` forks `open-telemetry/weaver`, `seanchatmangpt/tcps`
+forks `github/spec-kit`, and so on for the full 22 (see the `fork_map` in
+`receipts/github-ecosystem-census-2026-08-29.json`). None were renamed, deleted, transferred, or
+turned private -- every lookup succeeded and the fork explanation accounts for all 22.
+
+Each of the 22 `eco:RepositoryCandidate` individuals was updated in place: `eco:censusStanding`
+stays `"CANDIDATE"` (required by `admission/shapes.ttl`'s `RepositoryCandidateShape`, and the
+repository genuinely is still an observed public repository), but each now also carries a new
+`eco:forkOf "<upstream full_name>"` fact, a new `eco:censusReverifiedDate "2026-08-29"^^xsd:date`,
+and an `eco:membershipBasis` updated to record the verified fork status and its exclusion from the
+authored-work audit population. The `eco:forkOf` and `eco:censusReverifiedDate` predicates are
+declared in `ontology/repository-census.ttl` alongside the pre-existing census vocabulary.
+
+Post-update, the full merged graph (still 11 files) was re-validated with
+`ggen graph validate --shapes admission/shapes.ttl`: `files_checked=11`, `shapes_conform=true` on
+every file, `RepositoryCandidate` count unchanged at 153, zero duplicate `dcterms:identifier`
+values -- the reverification added facts without disturbing any existing admission state.
+
+The exact machine receipt for both passes is `receipts/github-ecosystem-census-2026-08-29.json`.
 
 ## Privacy fence
 

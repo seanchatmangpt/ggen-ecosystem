@@ -7,3 +7,8 @@ eco:RepositoryCandidate a <http://www.w3.org/2000/01/rdf-schema#Class> .
 eco:censusStanding a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 eco:membershipBasis a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 eco:publicProjection a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+
+# Added 2026-08-29 by the fork-status reverification pass over the 22 candidates that fell
+# outside the fork=false/archived=false audit population (see docs/REPOSITORY-CENSUS.md).
+eco:forkOf a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:censusReverifiedDate a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
