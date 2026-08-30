@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 52 .
+  scb:caseCount 102 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -524,3 +524,503 @@ ex:case053 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-053:secret-leak-refusal" ;
   scb:mutationJson """{"path":"provenance.predicate.secret","value":"leaked"}""" ;
   scb:assertionJson """{"key_regex":"token|password|secret|private[_-]?key","op":"no_secret_values"}""" .
+
+ex:case054 a scb:CourtCase ;
+  scb:caseId "SCB-054" ;
+  scb:ordinal 54 ;
+  scb:title "subject immutable OCI grammar" ;
+  scb:expectedStanding "REFUSED[PROV_SUBJECT_OCI_GRAMMAR]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-054:REFUSED[PROV_SUBJECT_OCI_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.subject.0.name","value":"ghcr.io/seanchatmangpt/ggen-ecosystem:latest"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.subject.0.name","value":"^ghcr[.]io/seanchatmangpt/ggen-ecosystem@sha256:[0-9a-f]{64}$"}""" .
+
+ex:case055 a scb:CourtCase ;
+  scb:caseId "SCB-055" ;
+  scb:ordinal 55 ;
+  scb:title "source uses authenticated Git transport grammar" ;
+  scb:expectedStanding "REFUSED[PROV_SOURCE_TRANSPORT]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-055:REFUSED[PROV_SOURCE_TRANSPORT]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"http://github.com/seanchatmangpt/ggen-ecosystem"}""" ;
+  scb:assertionJson """{"op":"starts_with","path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"git+https://"}""" .
+
+ex:case056 a scb:CourtCase ;
+  scb:caseId "SCB-056" ;
+  scb:ordinal 56 ;
+  scb:title "source repository suffix identity" ;
+  scb:expectedStanding "REFUSED[PROV_SOURCE_REPOSITORY]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-056:REFUSED[PROV_SOURCE_REPOSITORY]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"git+https://github.com/seanchatmangpt/fork"}""" ;
+  scb:assertionJson """{"op":"ends_with","path":"provenance.predicate.buildDefinition.externalParameters.source.uri","value":"/ggen-ecosystem"}""" .
+
+ex:case057 a scb:CourtCase ;
+  scb:caseId "SCB-057" ;
+  scb:ordinal 57 ;
+  scb:title "source commit lowercase SHA grammar" ;
+  scb:expectedStanding "REFUSED[PROV_SOURCE_SHA_GRAMMAR]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-057:REFUSED[PROV_SOURCE_SHA_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"MAIN"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.externalParameters.source.digest.gitCommit","value":"^[0-9a-f]{40}$"}""" .
+
+ex:case058 a scb:CourtCase ;
+  scb:caseId "SCB-058" ;
+  scb:ordinal 58 ;
+  scb:title "workflow resides under GitHub workflows" ;
+  scb:expectedStanding "REFUSED[PROV_WORKFLOW_PATH]" ;
+  scb:lawFamily "workflow" ;
+  scb:semanticFingerprint "SCB-058:REFUSED[PROV_WORKFLOW_PATH]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"scripts/build.sh@$head"}""" ;
+  scb:assertionJson """{"op":"starts_with","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/"}""" .
+
+ex:case059 a scb:CourtCase ;
+  scb:caseId "SCB-059" ;
+  scb:ordinal 59 ;
+  scb:title "container workflow identity" ;
+  scb:expectedStanding "REFUSED[PROV_WORKFLOW_IDENTITY]" ;
+  scb:lawFamily "workflow" ;
+  scb:semanticFingerprint "SCB-059:REFUSED[PROV_WORKFLOW_IDENTITY]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/other.yml@$head"}""" ;
+  scb:assertionJson """{"op":"contains","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"ggen-ecosystem-container.yml@"}""" .
+
+ex:case060 a scb:CourtCase ;
+  scb:caseId "SCB-060" ;
+  scb:ordinal 60 ;
+  scb:title "workflow exact commit grammar" ;
+  scb:expectedStanding "REFUSED[PROV_WORKFLOW_SHA_GRAMMAR]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-060:REFUSED[PROV_WORKFLOW_SHA_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":".github/workflows/ggen-ecosystem-container.yml@main"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.internalParameters.workflow","value":"^[.]github/workflows/ggen-ecosystem-container[.]yml@[0-9a-f]{40}$"}""" .
+
+ex:case061 a scb:CourtCase ;
+  scb:caseId "SCB-061" ;
+  scb:ordinal 61 ;
+  scb:title "resolved dependency cardinality" ;
+  scb:expectedStanding "REFUSED[PROV_MATERIAL_CARDINALITY]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-061:REFUSED[PROV_MATERIAL_CARDINALITY]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies","value":[]}""" ;
+  scb:assertionJson """{"op":"len_eq","path":"provenance.predicate.buildDefinition.resolvedDependencies","value":3}""" .
+
+ex:case062 a scb:CourtCase ;
+  scb:caseId "SCB-062" ;
+  scb:ordinal 62 ;
+  scb:title "GGen material URI" ;
+  scb:expectedStanding "REFUSED[PROV_GGEN_URI]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-062:REFUSED[PROV_GGEN_URI]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.0.uri","value":"git+https://github.com/example/ggen"}""" ;
+  scb:assertionJson """{"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.0.uri","value":"git+https://github.com/seanchatmangpt/ggen"}""" .
+
+ex:case063 a scb:CourtCase ;
+  scb:caseId "SCB-063" ;
+  scb:ordinal 63 ;
+  scb:title "Marketplace material URI" ;
+  scb:expectedStanding "REFUSED[PROV_MARKETPLACE_URI]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-063:REFUSED[PROV_MARKETPLACE_URI]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.1.uri","value":"git+https://github.com/example/marketplace"}""" ;
+  scb:assertionJson """{"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.1.uri","value":"git+https://github.com/seanchatmangpt/ggen-marketplace"}""" .
+
+ex:case064 a scb:CourtCase ;
+  scb:caseId "SCB-064" ;
+  scb:ordinal 64 ;
+  scb:title "AutoFDE material URI" ;
+  scb:expectedStanding "REFUSED[PROV_AUTOFDE_URI]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-064:REFUSED[PROV_AUTOFDE_URI]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.2.uri","value":"git+https://github.com/example/autofde"}""" ;
+  scb:assertionJson """{"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.2.uri","value":"git+https://github.com/seanchatmangpt/autofde-lab"}""" .
+
+ex:case065 a scb:CourtCase ;
+  scb:caseId "SCB-065" ;
+  scb:ordinal 65 ;
+  scb:title "GGen material SHA grammar" ;
+  scb:expectedStanding "REFUSED[PROV_GGEN_SHA_GRAMMAR]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-065:REFUSED[PROV_GGEN_SHA_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.0.digest.gitCommit","value":"v26.8.28"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.0.digest.gitCommit","value":"^[0-9a-f]{40}$"}""" .
+
+ex:case066 a scb:CourtCase ;
+  scb:caseId "SCB-066" ;
+  scb:ordinal 66 ;
+  scb:title "Marketplace material SHA grammar" ;
+  scb:expectedStanding "REFUSED[PROV_MARKETPLACE_SHA_GRAMMAR]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-066:REFUSED[PROV_MARKETPLACE_SHA_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit","value":"main"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.1.digest.gitCommit","value":"^[0-9a-f]{40}$"}""" .
+
+ex:case067 a scb:CourtCase ;
+  scb:caseId "SCB-067" ;
+  scb:ordinal 67 ;
+  scb:title "AutoFDE material SHA grammar" ;
+  scb:expectedStanding "REFUSED[PROV_AUTOFDE_SHA_GRAMMAR]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-067:REFUSED[PROV_AUTOFDE_SHA_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.2.digest.gitCommit","value":"latest"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.2.digest.gitCommit","value":"^[0-9a-f]{40}$"}""" .
+
+ex:case068 a scb:CourtCase ;
+  scb:caseId "SCB-068" ;
+  scb:ordinal 68 ;
+  scb:title "invocation URL exact grammar" ;
+  scb:expectedStanding "REFUSED[PROV_INVOCATION_GRAMMAR]" ;
+  scb:lawFamily "workflow" ;
+  scb:semanticFingerprint "SCB-068:REFUSED[PROV_INVOCATION_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.predicate.runDetails.metadata.invocationId","value":"https://github.com/seanchatmangpt/ggen-ecosystem/actions/runs/latest"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.predicate.runDetails.metadata.invocationId","value":"^https://github[.]com/seanchatmangpt/ggen-ecosystem/actions/runs/[0-9]+$"}""" .
+
+ex:case069 a scb:CourtCase ;
+  scb:caseId "SCB-069" ;
+  scb:ordinal 69 ;
+  scb:title "started timestamp UTC form" ;
+  scb:expectedStanding "REFUSED[PROV_STARTED_UTC]" ;
+  scb:lawFamily "provenance" ;
+  scb:semanticFingerprint "SCB-069:REFUSED[PROV_STARTED_UTC]" ;
+  scb:mutationJson """{"path":"provenance.predicate.runDetails.metadata.startedOn","value":"2026-08-29T09:04:33+01:00"}""" ;
+  scb:assertionJson """{"op":"ends_with","path":"provenance.predicate.runDetails.metadata.startedOn","value":"Z"}""" .
+
+ex:case070 a scb:CourtCase ;
+  scb:caseId "SCB-070" ;
+  scb:ordinal 70 ;
+  scb:title "finished timestamp UTC form" ;
+  scb:expectedStanding "REFUSED[PROV_FINISHED_UTC]" ;
+  scb:lawFamily "provenance" ;
+  scb:semanticFingerprint "SCB-070:REFUSED[PROV_FINISHED_UTC]" ;
+  scb:mutationJson """{"path":"provenance.predicate.runDetails.metadata.finishedOn","value":"2026-08-29T10:04:33+01:00"}""" ;
+  scb:assertionJson """{"op":"ends_with","path":"provenance.predicate.runDetails.metadata.finishedOn","value":"Z"}""" .
+
+ex:case071 a scb:CourtCase ;
+  scb:caseId "SCB-071" ;
+  scb:ordinal 71 ;
+  scb:title "GitHub-hosted builder namespace" ;
+  scb:expectedStanding "REFUSED[PROV_BUILDER_NAMESPACE]" ;
+  scb:lawFamily "workflow" ;
+  scb:semanticFingerprint "SCB-071:REFUSED[PROV_BUILDER_NAMESPACE]" ;
+  scb:mutationJson """{"path":"provenance.predicate.runDetails.builder.id","value":"https://example.invalid/runner"}""" ;
+  scb:assertionJson """{"op":"starts_with","path":"provenance.predicate.runDetails.builder.id","value":"https://github.com/actions/runner/"}""" .
+
+ex:case072 a scb:CourtCase ;
+  scb:caseId "SCB-072" ;
+  scb:ordinal 72 ;
+  scb:title "SPDX document name" ;
+  scb:expectedStanding "REFUSED[SPDX_DOCUMENT_NAME]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-072:REFUSED[SPDX_DOCUMENT_NAME]" ;
+  scb:mutationJson """{"path":"spdx.name","value":"wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.name","value":"ggen-ecosystem-v26.8.28"}""" .
+
+ex:case073 a scb:CourtCase ;
+  scb:caseId "SCB-073" ;
+  scb:ordinal 73 ;
+  scb:title "SPDX namespace binds exact head" ;
+  scb:expectedStanding "REFUSED[SPDX_NAMESPACE_HEAD]" ;
+  scb:lawFamily "identity" ;
+  scb:semanticFingerprint "SCB-073:REFUSED[SPDX_NAMESPACE_HEAD]" ;
+  scb:mutationJson """{"path":"spdx.documentNamespace","value":"https://github.com/seanchatmangpt/ggen-ecosystem/sbom/main"}""" ;
+  scb:assertionJson """{"op":"ends_with","path":"spdx.documentNamespace","value":"/$head"}""" .
+
+ex:case074 a scb:CourtCase ;
+  scb:caseId "SCB-074" ;
+  scb:ordinal 74 ;
+  scb:title "SPDX creator tool identity" ;
+  scb:expectedStanding "REFUSED[SPDX_CREATOR_TOOL]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-074:REFUSED[SPDX_CREATOR_TOOL]" ;
+  scb:mutationJson """{"path":"spdx.creationInfo.creators","value":[]}""" ;
+  scb:assertionJson """{"op":"contains_map","path":"spdx.creationInfo.creators","value":"Tool: ggen-ecosystem-supply-chain-court"}""" .
+
+ex:case075 a scb:CourtCase ;
+  scb:caseId "SCB-075" ;
+  scb:ordinal 75 ;
+  scb:title "SPDX root package name" ;
+  scb:expectedStanding "REFUSED[SPDX_ROOT_NAME]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-075:REFUSED[SPDX_ROOT_NAME]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.name","value":"wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.0.name","value":"ggen-ecosystem"}""" .
+
+ex:case076 a scb:CourtCase ;
+  scb:caseId "SCB-076" ;
+  scb:ordinal 76 ;
+  scb:title "SPDX root package identifier" ;
+  scb:expectedStanding "REFUSED[SPDX_ROOT_ID]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-076:REFUSED[SPDX_ROOT_ID]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.SPDXID","value":"SPDXRef-Wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.0.SPDXID","value":"SPDXRef-Package-ggen-ecosystem"}""" .
+
+ex:case077 a scb:CourtCase ;
+  scb:caseId "SCB-077" ;
+  scb:ordinal 77 ;
+  scb:title "SPDX root download location" ;
+  scb:expectedStanding "REFUSED[SPDX_DOWNLOAD_LOCATION]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-077:REFUSED[SPDX_DOWNLOAD_LOCATION]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.downloadLocation","value":"https://example.invalid/archive"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.0.downloadLocation","value":"NOASSERTION"}""" .
+
+ex:case078 a scb:CourtCase ;
+  scb:caseId "SCB-078" ;
+  scb:ordinal 78 ;
+  scb:title "SPDX files analyzed standing" ;
+  scb:expectedStanding "REFUSED[SPDX_FILES_ANALYZED]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-078:REFUSED[SPDX_FILES_ANALYZED]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.filesAnalyzed","value":true}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.0.filesAnalyzed","value":false}""" .
+
+ex:case079 a scb:CourtCase ;
+  scb:caseId "SCB-079" ;
+  scb:ordinal 79 ;
+  scb:title "SPDX concluded license standing" ;
+  scb:expectedStanding "REFUSED[SPDX_LICENSE_CONCLUDED]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-079:REFUSED[SPDX_LICENSE_CONCLUDED]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.licenseConcluded","value":"MIT"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.0.licenseConcluded","value":"NOASSERTION"}""" .
+
+ex:case080 a scb:CourtCase ;
+  scb:caseId "SCB-080" ;
+  scb:ordinal 80 ;
+  scb:title "SPDX declared license standing" ;
+  scb:expectedStanding "REFUSED[SPDX_LICENSE_DECLARED]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-080:REFUSED[SPDX_LICENSE_DECLARED]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.licenseDeclared","value":"MIT"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.0.licenseDeclared","value":"NOASSERTION"}""" .
+
+ex:case081 a scb:CourtCase ;
+  scb:caseId "SCB-081" ;
+  scb:ordinal 81 ;
+  scb:title "SPDX supplier identity" ;
+  scb:expectedStanding "REFUSED[SPDX_SUPPLIER]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-081:REFUSED[SPDX_SUPPLIER]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.supplier","value":"Organization: example"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.0.supplier","value":"Organization: seanchatmangpt"}""" .
+
+ex:case082 a scb:CourtCase ;
+  scb:caseId "SCB-082" ;
+  scb:ordinal 82 ;
+  scb:title "SPDX checksum algorithm" ;
+  scb:expectedStanding "REFUSED[SPDX_CHECKSUM_ALGORITHM]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-082:REFUSED[SPDX_CHECKSUM_ALGORITHM]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.checksums.0.algorithm","value":"SHA1"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.0.checksums.0.algorithm","value":"SHA256"}""" .
+
+ex:case083 a scb:CourtCase ;
+  scb:caseId "SCB-083" ;
+  scb:ordinal 83 ;
+  scb:title "SPDX checksum grammar" ;
+  scb:expectedStanding "REFUSED[SPDX_CHECKSUM_GRAMMAR]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-083:REFUSED[SPDX_CHECKSUM_GRAMMAR]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.checksums.0.checksumValue","value":"short"}""" ;
+  scb:assertionJson """{"op":"regex","path":"spdx.packages.0.checksums.0.checksumValue","value":"^[0-9a-f]{64}$"}""" .
+
+ex:case084 a scb:CourtCase ;
+  scb:caseId "SCB-084" ;
+  scb:ordinal 84 ;
+  scb:title "SPDX GGen package name" ;
+  scb:expectedStanding "REFUSED[SPDX_GGEN_NAME]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-084:REFUSED[SPDX_GGEN_NAME]" ;
+  scb:mutationJson """{"path":"spdx.packages.1.name","value":"wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.1.name","value":"ggen"}""" .
+
+ex:case085 a scb:CourtCase ;
+  scb:caseId "SCB-085" ;
+  scb:ordinal 85 ;
+  scb:title "SPDX GGen package version" ;
+  scb:expectedStanding "REFUSED[SPDX_GGEN_VERSION]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-085:REFUSED[SPDX_GGEN_VERSION]" ;
+  scb:mutationJson """{"path":"spdx.packages.1.versionInfo","value":"main"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.1.versionInfo","value":"$ggen"}""" .
+
+ex:case086 a scb:CourtCase ;
+  scb:caseId "SCB-086" ;
+  scb:ordinal 86 ;
+  scb:title "SPDX Marketplace package name" ;
+  scb:expectedStanding "REFUSED[SPDX_MARKETPLACE_NAME]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-086:REFUSED[SPDX_MARKETPLACE_NAME]" ;
+  scb:mutationJson """{"path":"spdx.packages.2.name","value":"wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.2.name","value":"ggen-marketplace"}""" .
+
+ex:case087 a scb:CourtCase ;
+  scb:caseId "SCB-087" ;
+  scb:ordinal 87 ;
+  scb:title "SPDX Marketplace package version" ;
+  scb:expectedStanding "REFUSED[SPDX_MARKETPLACE_VERSION]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-087:REFUSED[SPDX_MARKETPLACE_VERSION]" ;
+  scb:mutationJson """{"path":"spdx.packages.2.versionInfo","value":"main"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.2.versionInfo","value":"$market"}""" .
+
+ex:case088 a scb:CourtCase ;
+  scb:caseId "SCB-088" ;
+  scb:ordinal 88 ;
+  scb:title "SPDX AutoFDE package name" ;
+  scb:expectedStanding "REFUSED[SPDX_AUTOFDE_NAME]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-088:REFUSED[SPDX_AUTOFDE_NAME]" ;
+  scb:mutationJson """{"path":"spdx.packages.3.name","value":"wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.3.name","value":"autofde-lab"}""" .
+
+ex:case089 a scb:CourtCase ;
+  scb:caseId "SCB-089" ;
+  scb:ordinal 89 ;
+  scb:title "SPDX AutoFDE package version" ;
+  scb:expectedStanding "REFUSED[SPDX_AUTOFDE_VERSION]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-089:REFUSED[SPDX_AUTOFDE_VERSION]" ;
+  scb:mutationJson """{"path":"spdx.packages.3.versionInfo","value":"main"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.3.versionInfo","value":"$autofde"}""" .
+
+ex:case090 a scb:CourtCase ;
+  scb:caseId "SCB-090" ;
+  scb:ordinal 90 ;
+  scb:title "SPDX GGen containment relation" ;
+  scb:expectedStanding "REFUSED[SPDX_GGEN_RELATION]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-090:REFUSED[SPDX_GGEN_RELATION]" ;
+  scb:mutationJson """{"path":"spdx.relationships.1.relationshipType","value":"DEPENDS_ON"}""" ;
+  scb:assertionJson """{"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-ggen","relationshipType":"CONTAINS","spdxElementId":"SPDXRef-Package-ggen-ecosystem"}}""" .
+
+ex:case091 a scb:CourtCase ;
+  scb:caseId "SCB-091" ;
+  scb:ordinal 91 ;
+  scb:title "SPDX Marketplace containment relation" ;
+  scb:expectedStanding "REFUSED[SPDX_MARKETPLACE_RELATION]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-091:REFUSED[SPDX_MARKETPLACE_RELATION]" ;
+  scb:mutationJson """{"path":"spdx.relationships.2.relationshipType","value":"DEPENDS_ON"}""" ;
+  scb:assertionJson """{"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-marketplace","relationshipType":"CONTAINS","spdxElementId":"SPDXRef-Package-ggen-ecosystem"}}""" .
+
+ex:case092 a scb:CourtCase ;
+  scb:caseId "SCB-092" ;
+  scb:ordinal 92 ;
+  scb:title "SPDX AutoFDE containment relation" ;
+  scb:expectedStanding "REFUSED[SPDX_AUTOFDE_RELATION]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-092:REFUSED[SPDX_AUTOFDE_RELATION]" ;
+  scb:mutationJson """{"path":"spdx.relationships.3.relationshipType","value":"DEPENDS_ON"}""" ;
+  scb:assertionJson """{"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-autofde","relationshipType":"CONTAINS","spdxElementId":"SPDXRef-Package-ggen-ecosystem"}}""" .
+
+ex:case093 a scb:CourtCase ;
+  scb:caseId "SCB-093" ;
+  scb:ordinal 93 ;
+  scb:title "CycloneDX root hash algorithm" ;
+  scb:expectedStanding "REFUSED[CDX_ROOT_HASH_ALGORITHM]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-093:REFUSED[CDX_ROOT_HASH_ALGORITHM]" ;
+  scb:mutationJson """{"path":"cyclonedx.metadata.component.hashes.0.alg","value":"SHA-1"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.metadata.component.hashes.0.alg","value":"SHA-256"}""" .
+
+ex:case094 a scb:CourtCase ;
+  scb:caseId "SCB-094" ;
+  scb:ordinal 94 ;
+  scb:title "CycloneDX GGen component type" ;
+  scb:expectedStanding "REFUSED[CDX_GGEN_TYPE]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-094:REFUSED[CDX_GGEN_TYPE]" ;
+  scb:mutationJson """{"path":"cyclonedx.components.0.type","value":"library"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.components.0.type","value":"application"}""" .
+
+ex:case095 a scb:CourtCase ;
+  scb:caseId "SCB-095" ;
+  scb:ordinal 95 ;
+  scb:title "CycloneDX GGen component ref" ;
+  scb:expectedStanding "REFUSED[CDX_GGEN_REF]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-095:REFUSED[CDX_GGEN_REF]" ;
+  scb:mutationJson """{"path":"cyclonedx.components.0.bom-ref","value":"ggen@main"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.components.0.bom-ref","value":"ggen@$ggen"}""" .
+
+ex:case096 a scb:CourtCase ;
+  scb:caseId "SCB-096" ;
+  scb:ordinal 96 ;
+  scb:title "CycloneDX Marketplace component type" ;
+  scb:expectedStanding "REFUSED[CDX_MARKETPLACE_TYPE]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-096:REFUSED[CDX_MARKETPLACE_TYPE]" ;
+  scb:mutationJson """{"path":"cyclonedx.components.1.type","value":"library"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.components.1.type","value":"data"}""" .
+
+ex:case097 a scb:CourtCase ;
+  scb:caseId "SCB-097" ;
+  scb:ordinal 97 ;
+  scb:title "CycloneDX Marketplace component ref" ;
+  scb:expectedStanding "REFUSED[CDX_MARKETPLACE_REF]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-097:REFUSED[CDX_MARKETPLACE_REF]" ;
+  scb:mutationJson """{"path":"cyclonedx.components.1.bom-ref","value":"ggen-marketplace@main"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.components.1.bom-ref","value":"ggen-marketplace@$market"}""" .
+
+ex:case098 a scb:CourtCase ;
+  scb:caseId "SCB-098" ;
+  scb:ordinal 98 ;
+  scb:title "CycloneDX AutoFDE component type" ;
+  scb:expectedStanding "REFUSED[CDX_AUTOFDE_TYPE]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-098:REFUSED[CDX_AUTOFDE_TYPE]" ;
+  scb:mutationJson """{"path":"cyclonedx.components.2.type","value":"library"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.components.2.type","value":"application"}""" .
+
+ex:case099 a scb:CourtCase ;
+  scb:caseId "SCB-099" ;
+  scb:ordinal 99 ;
+  scb:title "CycloneDX AutoFDE component ref" ;
+  scb:expectedStanding "REFUSED[CDX_AUTOFDE_REF]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-099:REFUSED[CDX_AUTOFDE_REF]" ;
+  scb:mutationJson """{"path":"cyclonedx.components.2.bom-ref","value":"autofde-lab@main"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.components.2.bom-ref","value":"autofde-lab@$autofde"}""" .
+
+ex:case100 a scb:CourtCase ;
+  scb:caseId "SCB-100" ;
+  scb:ordinal 100 ;
+  scb:title "CycloneDX dependency root ref" ;
+  scb:expectedStanding "REFUSED[CDX_DEPENDENCY_ROOT]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-100:REFUSED[CDX_DEPENDENCY_ROOT]" ;
+  scb:mutationJson """{"path":"cyclonedx.dependencies.0.ref","value":"wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.dependencies.0.ref","value":"$subject"}""" .
+
+ex:case101 a scb:CourtCase ;
+  scb:caseId "SCB-101" ;
+  scb:ordinal 101 ;
+  scb:title "CycloneDX dependency cardinality" ;
+  scb:expectedStanding "REFUSED[CDX_DEPENDENCY_CARDINALITY]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-101:REFUSED[CDX_DEPENDENCY_CARDINALITY]" ;
+  scb:mutationJson """{"path":"cyclonedx.dependencies.0.dependsOn","value":[]}""" ;
+  scb:assertionJson """{"op":"len_eq","path":"cyclonedx.dependencies.0.dependsOn","value":3}""" .
+
+ex:case102 a scb:CourtCase ;
+  scb:caseId "SCB-102" ;
+  scb:ordinal 102 ;
+  scb:title "CycloneDX GGen component name" ;
+  scb:expectedStanding "REFUSED[CDX_GGEN_NAME]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-102:REFUSED[CDX_GGEN_NAME]" ;
+  scb:mutationJson """{"path":"cyclonedx.components.0.name","value":"wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.components.0.name","value":"ggen"}""" .
+
+ex:case103 a scb:CourtCase ;
+  scb:caseId "SCB-103" ;
+  scb:ordinal 103 ;
+  scb:title "CycloneDX Marketplace component name" ;
+  scb:expectedStanding "REFUSED[CDX_MARKETPLACE_NAME]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-103:REFUSED[CDX_MARKETPLACE_NAME]" ;
+  scb:mutationJson """{"path":"cyclonedx.components.1.name","value":"wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.components.1.name","value":"ggen-marketplace"}""" .
