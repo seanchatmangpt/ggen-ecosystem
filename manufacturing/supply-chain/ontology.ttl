@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 88 .
+  scb:caseCount 89 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -884,3 +884,13 @@ ex:case089 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-089:REFUSED[SPDX_AUTOFDE_VERSION]" ;
   scb:mutationJson """{"path":"spdx.packages.3.versionInfo","value":"main"}""" ;
   scb:assertionJson """{"op":"eq","path":"spdx.packages.3.versionInfo","value":"$autofde"}""" .
+
+ex:case090 a scb:CourtCase ;
+  scb:caseId "SCB-090" ;
+  scb:ordinal 90 ;
+  scb:title "SPDX GGen containment relation" ;
+  scb:expectedStanding "REFUSED[SPDX_GGEN_RELATION]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-090:REFUSED[SPDX_GGEN_RELATION]" ;
+  scb:mutationJson """{"path":"spdx.relationships.1.relationshipType","value":"DEPENDS_ON"}""" ;
+  scb:assertionJson """{"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-ggen","relationshipType":"CONTAINS","spdxElementId":"SPDXRef-Package-ggen-ecosystem"}}""" .

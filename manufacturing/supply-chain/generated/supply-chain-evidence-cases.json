@@ -880,6 +880,16 @@
       "semantic_fingerprint": "SCB-089:REFUSED[SPDX_AUTOFDE_VERSION]",
       "mutation": {"path":"spdx.packages.3.versionInfo","value":"main"},
       "assertion": {"op":"eq","path":"spdx.packages.3.versionInfo","value":"$autofde"}
+    },
+    {
+      "case_id": "SCB-090",
+      "ordinal": 90,
+      "title": "SPDX GGen containment relation",
+      "expected": "REFUSED[SPDX_GGEN_RELATION]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-090:REFUSED[SPDX_GGEN_RELATION]",
+      "mutation": {"path":"spdx.relationships.1.relationshipType","value":"DEPENDS_ON"},
+      "assertion": {"op":"contains_map","path":"spdx.relationships","value":{"relatedSpdxElement":"SPDXRef-Package-ggen","relationshipType":"CONTAINS","spdxElementId":"SPDXRef-Package-ggen-ecosystem"}}
     }
   ]
 }
