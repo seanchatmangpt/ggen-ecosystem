@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 66 .
+  scb:caseCount 67 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -664,3 +664,13 @@ ex:case067 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-067:REFUSED[PROV_AUTOFDE_SHA_GRAMMAR]" ;
   scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.2.digest.gitCommit","value":"latest"}""" ;
   scb:assertionJson """{"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.2.digest.gitCommit","value":"^[0-9a-f]{40}$"}""" .
+
+ex:case068 a scb:CourtCase ;
+  scb:caseId "SCB-068" ;
+  scb:ordinal 68 ;
+  scb:title "invocation URL exact grammar" ;
+  scb:expectedStanding "REFUSED[PROV_INVOCATION_GRAMMAR]" ;
+  scb:lawFamily "workflow" ;
+  scb:semanticFingerprint "SCB-068:REFUSED[PROV_INVOCATION_GRAMMAR]" ;
+  scb:mutationJson """{"path":"provenance.predicate.runDetails.metadata.invocationId","value":"https://github.com/seanchatmangpt/ggen-ecosystem/actions/runs/latest"}""" ;
+  scb:assertionJson """{"op":"regex","path":"provenance.predicate.runDetails.metadata.invocationId","value":"^https://github[.]com/seanchatmangpt/ggen-ecosystem/actions/runs/[0-9]+$"}""" .

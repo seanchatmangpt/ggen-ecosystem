@@ -660,6 +660,16 @@
       "semantic_fingerprint": "SCB-067:REFUSED[PROV_AUTOFDE_SHA_GRAMMAR]",
       "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.2.digest.gitCommit","value":"latest"},
       "assertion": {"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.2.digest.gitCommit","value":"^[0-9a-f]{40}$"}
+    },
+    {
+      "case_id": "SCB-068",
+      "ordinal": 68,
+      "title": "invocation URL exact grammar",
+      "expected": "REFUSED[PROV_INVOCATION_GRAMMAR]",
+      "law_family": "workflow",
+      "semantic_fingerprint": "SCB-068:REFUSED[PROV_INVOCATION_GRAMMAR]",
+      "mutation": {"path":"provenance.predicate.runDetails.metadata.invocationId","value":"https://github.com/seanchatmangpt/ggen-ecosystem/actions/runs/latest"},
+      "assertion": {"op":"regex","path":"provenance.predicate.runDetails.metadata.invocationId","value":"^https://github[.]com/seanchatmangpt/ggen-ecosystem/actions/runs/[0-9]+$"}
     }
   ]
 }
