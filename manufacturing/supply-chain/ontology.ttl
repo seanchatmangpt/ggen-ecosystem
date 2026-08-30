@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 84 .
+  scb:caseCount 85 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -844,3 +844,13 @@ ex:case085 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-085:REFUSED[SPDX_GGEN_VERSION]" ;
   scb:mutationJson """{"path":"spdx.packages.1.versionInfo","value":"main"}""" ;
   scb:assertionJson """{"op":"eq","path":"spdx.packages.1.versionInfo","value":"$ggen"}""" .
+
+ex:case086 a scb:CourtCase ;
+  scb:caseId "SCB-086" ;
+  scb:ordinal 86 ;
+  scb:title "SPDX Marketplace package name" ;
+  scb:expectedStanding "REFUSED[SPDX_MARKETPLACE_NAME]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-086:REFUSED[SPDX_MARKETPLACE_NAME]" ;
+  scb:mutationJson """{"path":"spdx.packages.2.name","value":"wrong"}""" ;
+  scb:assertionJson """{"op":"eq","path":"spdx.packages.2.name","value":"ggen-marketplace"}""" .

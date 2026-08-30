@@ -840,6 +840,16 @@
       "semantic_fingerprint": "SCB-085:REFUSED[SPDX_GGEN_VERSION]",
       "mutation": {"path":"spdx.packages.1.versionInfo","value":"main"},
       "assertion": {"op":"eq","path":"spdx.packages.1.versionInfo","value":"$ggen"}
+    },
+    {
+      "case_id": "SCB-086",
+      "ordinal": 86,
+      "title": "SPDX Marketplace package name",
+      "expected": "REFUSED[SPDX_MARKETPLACE_NAME]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-086:REFUSED[SPDX_MARKETPLACE_NAME]",
+      "mutation": {"path":"spdx.packages.2.name","value":"wrong"},
+      "assertion": {"op":"eq","path":"spdx.packages.2.name","value":"ggen-marketplace"}
     }
   ]
 }
