@@ -940,6 +940,16 @@
       "semantic_fingerprint": "SCB-095:REFUSED[CDX_GGEN_REF]",
       "mutation": {"path":"cyclonedx.components.0.bom-ref","value":"ggen@main"},
       "assertion": {"op":"eq","path":"cyclonedx.components.0.bom-ref","value":"ggen@$ggen"}
+    },
+    {
+      "case_id": "SCB-096",
+      "ordinal": 96,
+      "title": "CycloneDX Marketplace component type",
+      "expected": "REFUSED[CDX_MARKETPLACE_TYPE]",
+      "law_family": "cyclonedx",
+      "semantic_fingerprint": "SCB-096:REFUSED[CDX_MARKETPLACE_TYPE]",
+      "mutation": {"path":"cyclonedx.components.1.type","value":"library"},
+      "assertion": {"op":"eq","path":"cyclonedx.components.1.type","value":"data"}
     }
   ]
 }

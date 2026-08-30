@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 94 .
+  scb:caseCount 95 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -944,3 +944,13 @@ ex:case095 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-095:REFUSED[CDX_GGEN_REF]" ;
   scb:mutationJson """{"path":"cyclonedx.components.0.bom-ref","value":"ggen@main"}""" ;
   scb:assertionJson """{"op":"eq","path":"cyclonedx.components.0.bom-ref","value":"ggen@$ggen"}""" .
+
+ex:case096 a scb:CourtCase ;
+  scb:caseId "SCB-096" ;
+  scb:ordinal 96 ;
+  scb:title "CycloneDX Marketplace component type" ;
+  scb:expectedStanding "REFUSED[CDX_MARKETPLACE_TYPE]" ;
+  scb:lawFamily "cyclonedx" ;
+  scb:semanticFingerprint "SCB-096:REFUSED[CDX_MARKETPLACE_TYPE]" ;
+  scb:mutationJson """{"path":"cyclonedx.components.1.type","value":"library"}""" ;
+  scb:assertionJson """{"op":"eq","path":"cyclonedx.components.1.type","value":"data"}""" .
