@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 62 .
+  scb:caseCount 63 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -624,3 +624,13 @@ ex:case063 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-063:REFUSED[PROV_MARKETPLACE_URI]" ;
   scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.1.uri","value":"git+https://github.com/example/marketplace"}""" ;
   scb:assertionJson """{"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.1.uri","value":"git+https://github.com/seanchatmangpt/ggen-marketplace"}""" .
+
+ex:case064 a scb:CourtCase ;
+  scb:caseId "SCB-064" ;
+  scb:ordinal 64 ;
+  scb:title "AutoFDE material URI" ;
+  scb:expectedStanding "REFUSED[PROV_AUTOFDE_URI]" ;
+  scb:lawFamily "slsa" ;
+  scb:semanticFingerprint "SCB-064:REFUSED[PROV_AUTOFDE_URI]" ;
+  scb:mutationJson """{"path":"provenance.predicate.buildDefinition.resolvedDependencies.2.uri","value":"git+https://github.com/example/autofde"}""" ;
+  scb:assertionJson """{"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.2.uri","value":"git+https://github.com/seanchatmangpt/autofde-lab"}""" .
