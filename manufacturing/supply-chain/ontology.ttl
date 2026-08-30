@@ -3,7 +3,7 @@
 
 ex:court a scb:Court ;
   scb:outputPath "generated/supply-chain-evidence-cases.json" ;
-  scb:caseCount 81 .
+  scb:caseCount 82 .
 
 ex:case002 a scb:CourtCase ;
   scb:caseId "SCB-002" ;
@@ -814,3 +814,13 @@ ex:case082 a scb:CourtCase ;
   scb:semanticFingerprint "SCB-082:REFUSED[SPDX_CHECKSUM_ALGORITHM]" ;
   scb:mutationJson """{"path":"spdx.packages.0.checksums.0.algorithm","value":"SHA1"}""" ;
   scb:assertionJson """{"op":"eq","path":"spdx.packages.0.checksums.0.algorithm","value":"SHA256"}""" .
+
+ex:case083 a scb:CourtCase ;
+  scb:caseId "SCB-083" ;
+  scb:ordinal 83 ;
+  scb:title "SPDX checksum grammar" ;
+  scb:expectedStanding "REFUSED[SPDX_CHECKSUM_GRAMMAR]" ;
+  scb:lawFamily "spdx" ;
+  scb:semanticFingerprint "SCB-083:REFUSED[SPDX_CHECKSUM_GRAMMAR]" ;
+  scb:mutationJson """{"path":"spdx.packages.0.checksums.0.checksumValue","value":"short"}""" ;
+  scb:assertionJson """{"op":"regex","path":"spdx.packages.0.checksums.0.checksumValue","value":"^[0-9a-f]{64}$"}""" .

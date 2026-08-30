@@ -810,6 +810,16 @@
       "semantic_fingerprint": "SCB-082:REFUSED[SPDX_CHECKSUM_ALGORITHM]",
       "mutation": {"path":"spdx.packages.0.checksums.0.algorithm","value":"SHA1"},
       "assertion": {"op":"eq","path":"spdx.packages.0.checksums.0.algorithm","value":"SHA256"}
+    },
+    {
+      "case_id": "SCB-083",
+      "ordinal": 83,
+      "title": "SPDX checksum grammar",
+      "expected": "REFUSED[SPDX_CHECKSUM_GRAMMAR]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-083:REFUSED[SPDX_CHECKSUM_GRAMMAR]",
+      "mutation": {"path":"spdx.packages.0.checksums.0.checksumValue","value":"short"},
+      "assertion": {"op":"regex","path":"spdx.packages.0.checksums.0.checksumValue","value":"^[0-9a-f]{64}$"}
     }
   ]
 }
