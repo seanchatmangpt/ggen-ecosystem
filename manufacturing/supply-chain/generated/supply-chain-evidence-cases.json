@@ -790,6 +790,16 @@
       "semantic_fingerprint": "SCB-080:REFUSED[SPDX_LICENSE_DECLARED]",
       "mutation": {"path":"spdx.packages.0.licenseDeclared","value":"MIT"},
       "assertion": {"op":"eq","path":"spdx.packages.0.licenseDeclared","value":"NOASSERTION"}
+    },
+    {
+      "case_id": "SCB-081",
+      "ordinal": 81,
+      "title": "SPDX supplier identity",
+      "expected": "REFUSED[SPDX_SUPPLIER]",
+      "law_family": "spdx",
+      "semantic_fingerprint": "SCB-081:REFUSED[SPDX_SUPPLIER]",
+      "mutation": {"path":"spdx.packages.0.supplier","value":"Organization: example"},
+      "assertion": {"op":"eq","path":"spdx.packages.0.supplier","value":"Organization: seanchatmangpt"}
     }
   ]
 }
