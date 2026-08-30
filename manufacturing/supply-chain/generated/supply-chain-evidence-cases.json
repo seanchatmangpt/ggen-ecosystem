@@ -630,6 +630,16 @@
       "semantic_fingerprint": "SCB-064:REFUSED[PROV_AUTOFDE_URI]",
       "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.2.uri","value":"git+https://github.com/example/autofde"},
       "assertion": {"op":"eq","path":"provenance.predicate.buildDefinition.resolvedDependencies.2.uri","value":"git+https://github.com/seanchatmangpt/autofde-lab"}
+    },
+    {
+      "case_id": "SCB-065",
+      "ordinal": 65,
+      "title": "GGen material SHA grammar",
+      "expected": "REFUSED[PROV_GGEN_SHA_GRAMMAR]",
+      "law_family": "identity",
+      "semantic_fingerprint": "SCB-065:REFUSED[PROV_GGEN_SHA_GRAMMAR]",
+      "mutation": {"path":"provenance.predicate.buildDefinition.resolvedDependencies.0.digest.gitCommit","value":"v26.8.28"},
+      "assertion": {"op":"regex","path":"provenance.predicate.buildDefinition.resolvedDependencies.0.digest.gitCommit","value":"^[0-9a-f]{40}$"}
     }
   ]
 }

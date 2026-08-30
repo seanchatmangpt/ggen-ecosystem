@@ -236,7 +236,7 @@ def load_court() -> list[dict[str, Any]]:
     doc = json.loads(COURT.read_text(encoding="utf-8"))
     if doc.get("schema") != "ggen.supply-chain-evidence.court/v1": raise ValueError("REFUSED[COURT_SCHEMA]")
     cases = doc.get("cases")
-    if not isinstance(cases, list) or len(cases) != 63: raise ValueError("REFUSED[COURT_CARDINALITY]")
+    if not isinstance(cases, list) or len(cases) != 64: raise ValueError("REFUSED[COURT_CARDINALITY]")
     ordinals = [c.get("ordinal") for c in cases]
     if ordinals != sorted(ordinals) or len(set(ordinals)) != len(ordinals): raise ValueError("REFUSED[COURT_ORDER]")
     return cases
