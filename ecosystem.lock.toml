@@ -1,39 +1,50 @@
-version = 2
-base_main_sha = "f42aa25c4974a0d5a701ed0e08f3bce46d69d115"
-updated_at = "2026-08-29T08:00:00Z"
+version = 3
+base_main_sha = "24df72465dff17e3711ffde6691a647d97fff595"
+updated_at = "2026-08-30T05:10:00Z"
 
 [ggen]
-# 2026-08-28: v26.8.27 pin (commit_sha/linux_x86_64_asset_sha256/observed_executable_sha256
-# below) had no matching real-evidence citation in this session and was superseded by a real
-# published release (gh release list/gh release view/gh release download + shasum -a 256).
-# Binary-release consumption is itself now superseded: [container] below is the intended
-# consumption path (build-from-submodule-source container, not a downloaded release binary).
-# The source identity remains exact; capsule availability is tracked separately in [container].
 release = "v26.8.28"
 commit_sha = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
 linux_x86_64_asset_sha256 = "UNKNOWN-TODO"
 observed_executable_sha256 = "UNKNOWN-TODO"
 aarch64_apple_darwin_asset_sha256 = "82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42"
 
+[consumer_manufacture]
+release = "v26.8.27"
+linux_x86_64_asset = "ggen-x86_64-unknown-linux-gnu.tar.gz"
+linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc0d0453444a035"
+source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
+
 [ggen_marketplace]
-sha = "89adf4c8476f7edc8067fdbb1c256cfbfa22df6a"
+sha = "91016e6d3110a88ffbfe7f18a6fccd6c936a7f00"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
+role = "reusable executable-knowledge packs and templates"
+
+[ggen_igniter]
+sha = "ea7a15e4c7c662e41fade02806f4121b5bc41b1e"
+repository = "https://github.com/seanchatmangpt/ggen_igniter"
+version = "26.8.30"
+role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [submodules]
-# Real git submodules added 2026-08-28 (`git submodule add`), replacing the URL+pinned-SHA-in-TOML
-# only approach for these sibling repos. Verify each value against the exact gitlink in the tree.
 ggen_path = "vendor/ggen"
 ggen_commit = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "89adf4c8476f7edc8067fdbb1c256cfbfa22df6a"
+ggen_marketplace_commit = "91016e6d3110a88ffbfe7f18a6fccd6c936a7f00"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09"
+ggen_igniter_path = "vendor/ggen_igniter"
+ggen_igniter_commit = "ea7a15e4c7c662e41fade02806f4121b5bc41b1e"
+
+[composition]
+consumer_boundary = "ggen-ecosystem"
+compiler = "vendor/ggen"
+pack_catalog = "vendor/ggen-marketplace"
+beam_control_plane = "vendor/ggen_igniter"
+diagnosis_and_search = "vendor/autofde-lab"
+rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plane pins are internal ecosystem concerns"
 
 [container]
-# Intended composed image identity. A later hosted-run replay (Actions run 33238309149) observed
-# this exact digest returning `manifest unknown` during job-container initialization. Preserve the
-# digest as failure/provenance evidence, but do not treat it as a currently pullable capsule.
-# Publication must be repeated and a fresh pull + consumer execution observed before promotion.
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
 tag = "v26.8.28"
 digest = "sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c"
@@ -49,15 +60,13 @@ workflow = ".github/workflows/ggen-ecosystem-sync.yml"
 container_workflow = ".github/workflows/ggen-ecosystem-container.yml"
 dockerfile = "Dockerfile"
 bootstrap_receipt = "receipts/bootstrap-ggen-ecosystem-sync.json"
-consumer_action = "vendor/ggen-marketplace/packs/github-actions-pack/examples/consume-github-actions-pack/.github/actions/use-ggen-ecosystem"
+consumer_cli = "bin/ggen-ecosystem"
 
 [catalog]
 owner = "seanchatmangpt"
 visibility = "public"
 mode = "complete-owner-catalog"
 private_identity_projection = false
-# These counts are a dated observation receipt, not live ecosystem membership or current owner
-# cardinality. Re-census before using them as a current projection.
 standing = "PARTIAL_ALIVE"
 observation_scope = "owner-census-2026-08-28"
 observed_public_repositories = 300
