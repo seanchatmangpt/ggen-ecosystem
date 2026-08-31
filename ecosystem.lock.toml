@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "24df72465dff17e3711ffde6691a647d97fff595"
-updated_at = "2026-08-30T05:10:00Z"
+base_main_sha = "cef697e03922c107722bb6ef5ab3e5085e8ccd1e"
+updated_at = "2026-08-31T01:48:00Z"
 
 [ggen]
 release = "v26.8.28"
@@ -26,6 +26,12 @@ repository = "https://github.com/seanchatmangpt/ggen_igniter"
 version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
+[beam4pm]
+sha = "3d796fddc1e998a166dc76949ec1d1ab01a4a5ee"
+repository = "https://github.com/seanchatmangpt/beam4pm"
+role = "BEAM-first process mining and process intelligence runtime"
+container_root = "/opt/beam4pm"
+
 [submodules]
 ggen_path = "vendor/ggen"
 ggen_commit = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
@@ -35,14 +41,17 @@ autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "ea7a15e4c7c662e41fade02806f4121b5bc41b1e"
+beam4pm_path = "vendor/beam4pm"
+beam4pm_commit = "3d796fddc1e998a166dc76949ec1d1ab01a4a5ee"
 
 [composition]
 consumer_boundary = "ggen-ecosystem"
 compiler = "vendor/ggen"
 pack_catalog = "vendor/ggen-marketplace"
 beam_control_plane = "vendor/ggen_igniter"
+process_intelligence = "vendor/beam4pm"
 diagnosis_and_search = "vendor/autofde-lab"
-rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plane pins are internal ecosystem concerns"
+rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plane/process-intelligence pins are internal ecosystem concerns"
 
 [container]
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
@@ -52,6 +61,7 @@ standing = "BLOCKED"
 failure = "manifest-unknown"
 observed_failure_run = 33238309149
 requires_republish = true
+beam4pm_root = "/opt/beam4pm"
 
 [manufacturing]
 manifest = "ggen.toml"

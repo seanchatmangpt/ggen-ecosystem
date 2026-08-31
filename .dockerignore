@@ -3,6 +3,10 @@ vendor/ggen/.git
 vendor/ggen/target
 vendor/ggen-marketplace/.git
 vendor/ggen-marketplace/.ggen-v2
+vendor/beam4pm/.git
+vendor/beam4pm/target
+vendor/beam4pm/_build
+vendor/beam4pm/deps
 docs
 receipts
 planning
