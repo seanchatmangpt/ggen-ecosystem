@@ -1,0 +1,55 @@
+name: beam4pm Submodule Container Qualification
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .gitmodules
+      - .dockerignore
+      - Dockerfile
+      - ecosystem.lock.toml
+      - vendor/beam4pm
+      - .github/workflows/beam4pm-submodule-container.yml
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout exact PR head with recursive submodules
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+          submodules: recursive
+
+      - name: Prove exact subject and beam4pm gitlink identity
+        shell: bash
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          beam_sha="$(git -C vendor/beam4pm rev-parse HEAD)"
+          lock_sha="$(python3 -c 'import tomllib; print(tomllib.load(open("ecosystem.lock.toml", "rb"))["submodules"]["beam4pm_commit"])')"
+          test "$beam_sha" = "$lock_sha"
+          echo "ECOSYSTEM_EXACT_HEAD_ALIVE=$EXPECTED_HEAD"
+          echo "BEAM4PM_SUBMODULE_ALIVE=$beam_sha"
+
+      - name: Build composed image from exact checked-out subject
+        shell: bash
+        run: docker build --progress=plain -t ggen-ecosystem:beam4pm-pr .
+
+      - name: Prove beam4pm is present in the built container
+        shell: bash
+        run: |
+          set -euo pipefail
+          host_mix_sha="$(sha256sum vendor/beam4pm/mix.exs | awk '{print $1}')"
+          image_mix_sha="$(docker run --rm --entrypoint sha256sum ggen-ecosystem:beam4pm-pr /opt/beam4pm/mix.exs | awk '{print $1}')"
+          test "$host_mix_sha" = "$image_mix_sha"
+          docker run --rm --entrypoint bash ggen-ecosystem:beam4pm-pr -lc \
+            'test "$BEAM4PM_ROOT" = /opt/beam4pm && test -f /opt/beam4pm/mix.exs && test -f /opt/beam4pm/rebar.config && test -d /opt/beam4pm/native'
+          echo "BEAM4PM_CONTAINER_ALIVE=/opt/beam4pm mix.exs_sha256=$image_mix_sha"

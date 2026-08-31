@@ -10,3 +10,6 @@
 [submodule "vendor/ggen_igniter"]
 	path = vendor/ggen_igniter
 	url = https://github.com/seanchatmangpt/ggen_igniter.git
+[submodule "vendor/beam4pm"]
+	path = vendor/beam4pm
+	url = https://github.com/seanchatmangpt/beam4pm.git

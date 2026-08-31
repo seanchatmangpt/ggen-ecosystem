@@ -1,7 +1,7 @@
 # Composed ggen-ecosystem image: a real `ggen` binary built from the vendor/ggen submodule,
-# plus the real vendor/ggen-marketplace/packs/ tree, in one image consumers reference by tag or
-# digest via GitHub Actions -- replacing curl-a-release-binary consumption. Build requires the
-# repo checked out with submodules (`git submodule update --init --recursive` or
+# plus the real vendor/ggen-marketplace/packs/ tree, AutoFDE sources, and the pinned beam4pm
+# submodule in one image consumers reference by tag or digest via GitHub Actions. Build requires
+# the repo checked out with submodules (`git submodule update --init --recursive` or
 # `actions/checkout` with `submodules: recursive`).
 
 # --- builder ------------------------------------------------------------
@@ -103,10 +103,17 @@ RUN apt-get update \
 COPY --from=builder /out/bin/ggen /usr/local/bin/ggen
 COPY vendor/ggen-marketplace/packs/ /opt/ggen-marketplace/packs/
 COPY vendor/autofde-lab/src/ /opt/autofde-lab/src/
+COPY vendor/beam4pm/ /opt/beam4pm/
 
 ENV GGEN_MARKETPLACE_ROOT=/opt/ggen-marketplace
+ENV BEAM4PM_ROOT=/opt/beam4pm
 ENV PYTHONPATH="/opt/autofde-lab/src"
 ENV PATH="/usr/local/bin:${PATH}"
+
+# Fail the image build if the pinned beam4pm submodule was not initialized into the build context.
+RUN test -f "$BEAM4PM_ROOT/mix.exs" \
+    && test -f "$BEAM4PM_ROOT/rebar.config" \
+    && test -d "$BEAM4PM_ROOT/native"
 
 RUN ggen --version || true
 
