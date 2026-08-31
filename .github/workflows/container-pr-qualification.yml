@@ -1,7 +1,15 @@
-name: GGen Ecosystem Container PR Qualification
+name: GGen Ecosystem Container Qualification
 
 on:
   pull_request:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - .gitmodules
+      - ecosystem.lock.toml
+      - "vendor/**"
+      - ".github/workflows/container-pr-qualification.yml"
+  push:
     branches: [main]
     paths:
       - Dockerfile
@@ -13,8 +21,11 @@ on:
 permissions:
   contents: read
 
+env:
+  SUBJECT_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -35,22 +46,22 @@ jobs:
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 120
     steps:
-      - name: Checkout exact PR head with recursive submodules
+      - name: Checkout exact subject with recursive submodules
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ env.SUBJECT_SHA }}
           persist-credentials: false
           submodules: recursive
 
       - name: Prove exact subject identity
         shell: bash
         env:
-          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+          EXPECTED_HEAD: ${{ env.SUBJECT_SHA }}
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
           git submodule status --recursive
-          echo "EXACT_HEAD_ALIVE=$EXPECTED_HEAD"
+          echo "EXACT_SUBJECT_ALIVE=$EXPECTED_HEAD"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
