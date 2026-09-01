@@ -50,6 +50,16 @@ run_sync() {
     -v "$consumer:/workspace" \
     -w /workspace \
     "$IMAGE" ggen sync run
+  # The container runs as root by default, so files it writes (including
+  # .ggen/keys/{signing,verifying}.key) can land root-owned and mode-restricted
+  # on the bind mount. The host-side digest/cleanup steps run as the CI
+  # runner's own (non-root) user and need real read/cleanup access to those
+  # same files, so make the whole workspace world-readable/removable from
+  # inside the same image right after the real write path runs.
+  docker run --rm \
+    -v "$consumer:/workspace" \
+    -w /workspace \
+    "$IMAGE" chmod -R a+rwX /workspace
 }
 
 command -v git >/dev/null 2>&1 || blocked "git is unavailable"
