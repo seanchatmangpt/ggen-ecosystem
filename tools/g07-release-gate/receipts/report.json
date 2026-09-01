@@ -1,0 +1,5 @@
+{
+  "run_at": "2026-09-01T18:01:46.067548+00:00",
+  "refused": true,
+  "reason": "release-manifest.toml not found at /private/tmp/does-not-exist.toml"
+}
