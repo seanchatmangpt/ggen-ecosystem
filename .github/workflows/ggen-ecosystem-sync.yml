@@ -234,3 +234,20 @@ jobs:
             exit 1
           fi
 
+      - name: Summarize sync receipt to job summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "### GGen sync receipt"
+            echo
+            if [[ -f ggen.lock ]]; then
+              echo '```'
+              cat ggen.lock
+              echo '```'
+            else
+              echo "no ggen.lock found"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          
+

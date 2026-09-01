@@ -252,6 +252,24 @@ ex:enforce
   exit 1
 fi""" .
 
+ex:summarizeReceipt
+    a gha:Step ;
+    gha:inJob ex:construct ; gha:stepOrder 8 ;
+    gha:stepName "Summarize sync receipt to job summary" ;
+    gha:condition "always()" ;
+    gha:runCommand """{
+  echo "### GGen sync receipt"
+  echo
+  if [[ -f ggen.lock ]]; then
+    echo '```'
+    cat ggen.lock
+    echo '```'
+  else
+    echo "no ggen.lock found"
+  fi
+} >> "$GITHUB_STEP_SUMMARY"
+""" .
+
 # --- Composed container build + publish -----------------------------------------------------
 # Builds ghcr.io/seanchatmangpt/ggen-ecosystem from ./Dockerfile (real `ggen` binary built from
 # the vendor/ggen submodule + real vendor/ggen-marketplace/packs/ copied in). Pattern follows the
