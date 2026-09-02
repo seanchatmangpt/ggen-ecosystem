@@ -16,10 +16,16 @@ on:
       - "scripts/test-operator-redundancy.sh"
       - "docs/operator-redundancy.md"
       - ".github/workflows/operator-redundancy-court.yml"
+  schedule:
+    - cron: "23 * * * *"
   workflow_dispatch:
   schedule:
     - cron: '7/15 * * * *'
       timezone: "America/Los_Angeles"
+
+concurrency:
+  group: operator-redundancy-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -31,6 +37,7 @@ concurrency:
 jobs:
   exact-head-operator-redundancy:
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - name: Checkout exact subject
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
