@@ -1,0 +1,68 @@
+---
+to: "redundancy/receipt.toml"
+force: true
+shape:
+  - vendor/ggen-ecosystem/packs/operator-redundancy-pack/shapes/operator-redundancy.shacl.ttl
+sparql:
+  operational: |
+    PREFIX dct: <http://purl.org/dc/terms/>
+    PREFIX orx: <urn:ggen:operator-redundancy#>
+    SELECT ?id ?title
+    WHERE {
+      ?workflow a orx:OperationalWorkflow ;
+                dct:identifier ?id ;
+                dct:title ?title ;
+                orx:runtimeRequiresHuman false ;
+                orx:missingCapabilityPolicy orx:ManufactureChildAndResume .
+    }
+    ORDER BY ?id
+  capabilities: |
+    PREFIX dct: <http://purl.org/dc/terms/>
+    PREFIX orx: <urn:ggen:operator-redundancy#>
+    SELECT ?id ?childId ?resumeId
+    WHERE {
+      ?request a orx:CapabilityRequest ;
+               dct:identifier ?id ;
+               orx:handledByChildWorkflow ?child .
+      ?child a orx:ChildManufactureWorkflow ;
+             dct:identifier ?childId ;
+             orx:resumesWorkflow ?resume .
+      ?resume dct:identifier ?resumeId .
+    }
+    ORDER BY ?id
+  constitutional: |
+    PREFIX dct: <http://purl.org/dc/terms/>
+    PREFIX orx: <urn:ggen:operator-redundancy#>
+    SELECT ?id ?principalId
+    WHERE {
+      ?decision a orx:ConstitutionalDecision ;
+                dct:identifier ?id ;
+                orx:requiresPrincipal ?principal .
+      ?principal a orx:HumanPrincipal ; dct:identifier ?principalId .
+    }
+    ORDER BY ?id
+---
+# Manufactured by ggen-ecosystem. Operational human dependency is a failed admission, not a runtime convention.
+status = "ALIVE"
+policy = "named-human-free-runtime"
+missing_capability_policy = "manufacture-verify-receipt-resume"
+
+{% for row in operational -%}
+[[operational_workflow]]
+id = "{{ row.id }}"
+title = "{{ row.title }}"
+runtime_requires_human = false
+{% endfor %}
+
+{% for row in capabilities -%}
+[[capability_request]]
+id = "{{ row.id }}"
+child_workflow = "{{ row.childId }}"
+resume_workflow = "{{ row.resumeId }}"
+{% endfor %}
+
+{% for row in constitutional -%}
+[[constitutional_boundary]]
+id = "{{ row.id }}"
+principal = "{{ row.principalId }}"
+{% endfor %}

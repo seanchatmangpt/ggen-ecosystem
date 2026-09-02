@@ -1,0 +1,11 @@
+[project]
+name = "operator-redundancy-fixture"
+
+[ontology]
+source = "ontology.ttl"
+
+[packs]
+operator-redundancy = { path = "vendor/ggen-ecosystem/packs/operator-redundancy-pack" }
+
+[templates]
+dir = "templates"

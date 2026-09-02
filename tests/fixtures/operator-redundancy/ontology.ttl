@@ -1,0 +1,49 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ex: <urn:example:operator-redundancy#> .
+@prefix orx: <urn:ggen:operator-redundancy#> .
+
+ex:GitHubObservation a orx:ObservationSource .
+ex:PortfolioPolicy a orx:DecisionPolicy .
+ex:BoundedWriteAuthority a orx:AuthorityEnvelope .
+ex:GitHubActuator a orx:Actuator .
+ex:IndependentCourt a orx:Verifier .
+ex:ReceiptLedger a orx:ReceiptSink .
+ex:AutonomicRecovery a orx:RecoveryPath ;
+    orx:strategy "manufacture-capability" .
+
+ex:OperatePortfolio a orx:OperationalWorkflow ;
+    dct:identifier "operate-portfolio" ;
+    dct:title "Observe, select, actuate, verify, and replan the work portfolio" ;
+    orx:hasObservationSource ex:GitHubObservation ;
+    orx:hasDecisionPolicy ex:PortfolioPolicy ;
+    orx:hasAuthorityEnvelope ex:BoundedWriteAuthority ;
+    orx:hasActuator ex:GitHubActuator ;
+    orx:hasVerifier ex:IndependentCourt ;
+    orx:emitsReceipt ex:ReceiptLedger ;
+    orx:hasRecoveryPath ex:AutonomicRecovery ;
+    orx:runtimeRequiresHuman false ;
+    orx:missingCapabilityPolicy orx:ManufactureChildAndResume ;
+    orx:blockedByCapability ex:NeedMissingAdapter .
+
+ex:NeedMissingAdapter a orx:CapabilityRequest ;
+    dct:identifier "need-missing-adapter" ;
+    dct:title "Manufacture a missing adapter instead of asking an operator" ;
+    orx:forWorkflow ex:OperatePortfolio ;
+    orx:handledByChildWorkflow ex:ManufactureMissingAdapter .
+
+ex:ManufactureMissingAdapter a orx:ChildManufactureWorkflow ;
+    dct:identifier "manufacture-missing-adapter" ;
+    dct:title "Manufacture, verify, and promote missing adapter" ;
+    orx:runtimeRequiresHuman false ;
+    orx:hasAuthorityEnvelope ex:BoundedWriteAuthority ;
+    orx:hasVerifier ex:IndependentCourt ;
+    orx:emitsReceipt ex:ReceiptLedger ;
+    orx:resumesWorkflow ex:OperatePortfolio .
+
+ex:ConstitutionalPrincipal a orx:HumanPrincipal ;
+    dct:identifier "constitutional-principal" .
+
+ex:ChangeAuthorityConstitution a orx:ConstitutionalDecision ;
+    dct:identifier "change-authority-constitution" ;
+    dct:title "Change goals, values, or authority envelope" ;
+    orx:requiresPrincipal ex:ConstitutionalPrincipal .
