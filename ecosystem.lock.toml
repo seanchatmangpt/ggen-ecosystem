@@ -16,7 +16,7 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "630025807ebf3db2335909cdd6c0f22e85c19f6c"
+sha = "c34da48bdb04d16ddc2866687b1fc7eae8d9c303"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 source_branch = "feat/github-local-dfcm-runtime"
@@ -61,7 +61,7 @@ container_root = "/opt/beam4pm"
 ggen_path = "vendor/ggen"
 ggen_commit = "36caa86eba04de0eae1769e71142df86fd370854"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "630025807ebf3db2335909cdd6c0f22e85c19f6c"
+ggen_marketplace_commit = "c34da48bdb04d16ddc2866687b1fc7eae8d9c303"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "e5c4aef788600bf3e44abe396fcb1e0668fbcc43"
 ggen_igniter_path = "vendor/ggen_igniter"
