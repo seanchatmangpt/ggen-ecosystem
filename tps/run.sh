@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-EXPECTED_MARKETPLACE_SHA="60fa5140de614da9346f1d231e94f2c00ca9e5f8"
+EXPECTED_MARKETPLACE_SHA="6fb1080da9d28f57aa476c9b94eddeee167dde18"
 CANDIDATE_SHA="${GITHUB_HEAD_SHA:-${GITHUB_SHA:-$(git rev-parse HEAD)}}"
 if [[ -n "${GITHUB_EVENT_PATH:-}" && -f "${GITHUB_EVENT_PATH}" ]]; then
   pr_head="$(python3 -c 'import json,os; d=json.load(open(os.environ["GITHUB_EVENT_PATH"])); print(d.get("pull_request",{}).get("head",{}).get("sha", ""))')"
@@ -37,6 +37,7 @@ receipt = {
     "repository": os.environ.get("GITHUB_REPOSITORY"),
     "source_sha": os.environ["CANDIDATE_SHA"],
     "marketplace_sha": os.environ["EXPECTED_MARKETPLACE_SHA"],
+    "pragprog_pack_version": "0.2.1",
     "ggen_release": "v26.8.27",
     "active_tip_count": int(os.environ["ACTIVE"]),
     "court_exit_code": int(os.environ["TPS_EXIT_CODE"]),
@@ -51,6 +52,7 @@ sha256sum "$root"/* > "$root/SHA256SUMS"
   echo "### PragProg TPS"
   echo
   echo "- active courts: 100/100"
+  echo "- pack: \`0.2.1\`"
   echo "- marketplace: \`$EXPECTED_MARKETPLACE_SHA\`"
   echo "- ggen: \`v26.8.27\`"
   echo "- court exit: \`$code\`"
