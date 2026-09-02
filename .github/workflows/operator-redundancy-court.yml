@@ -19,20 +19,13 @@ on:
   schedule:
     - cron: "23 * * * *"
   workflow_dispatch:
-  schedule:
-    - cron: '7/15 * * * *'
-      timezone: "America/Los_Angeles"
-
-concurrency:
-  group: operator-redundancy-${{ github.repository }}-${{ github.ref }}
-  cancel-in-progress: false
 
 permissions:
   contents: read
 
 concurrency:
   group: operator-redundancy-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   exact-head-operator-redundancy:
