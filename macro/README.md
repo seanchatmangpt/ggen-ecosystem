@@ -58,7 +58,8 @@ Missing authority is not silently substituted.
 
 `.github/workflows/github-macro-governor.yml` runs:
 
-- every 15 minutes at `:13/:28/:43/:58` Pacific;
+- on **every `main` transition**, so the governor observes the new exact crown directly;
+- every 15 minutes at `:13/:28/:43/:58` Pacific as reconciliation;
 - after key local control workflows complete;
 - on capability issue events;
 - on explicit `repository_dispatch` macro signals;
