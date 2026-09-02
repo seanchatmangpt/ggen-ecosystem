@@ -1,0 +1,142 @@
+name: GitHub Macro Autonomic Governor
+
+on:
+  schedule:
+    - cron: '13/15 * * * *'
+      timezone: "America/Los_Angeles"
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Permit bounded macro actuation"
+        required: true
+        type: boolean
+        default: true
+      repository:
+        description: "Optional exact owner/repo scope"
+        required: false
+        type: string
+        default: ""
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/github-macro-governor.yml"
+      - ".github/agents/capability-manufacturer.agent.md"
+      - ".github/ISSUE_TEMPLATE/capability.yml"
+      - "macro/**"
+      - "scripts/github_macro_governor.py"
+      - "tests/test_github_macro_governor.py"
+  issues:
+    types: [opened, reopened, edited, labeled]
+  workflow_run:
+    workflows:
+      - "Autonomic Crown"
+      - "Container Freshness"
+      - "GGen Ecosystem Container Build & Publish"
+      - "Operator Redundancy Court"
+      - "PragProg TPS Automatic Andon"
+    types: [completed]
+  repository_dispatch:
+    types: [macro-reconcile, capability-demand, downstream-receipt, abnormality]
+
+permissions:
+  contents: read
+  actions: write
+  issues: write
+  pull-requests: read
+
+concurrency:
+  group: github-macro-governor-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'main' }}
+  cancel-in-progress: true
+
+jobs:
+  govern:
+    name: Reverse-chronological DfCM governor
+    if: ${{ github.event_name != 'issues' || startsWith(github.event.issue.title, '[capability]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact controller subject
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Assert exact controller subject
+        shell: bash
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          actual="$(git rev-parse HEAD)"
+          [[ "$actual" = "$EXPECTED_SHA" ]] || {
+            echo "REFUSED[EXACT_HEAD_MISMATCH]:$actual:$EXPECTED_SHA" >&2
+            exit 2
+          }
+
+      - name: Qualify macro governor deterministic logic
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/github_macro_governor.py
+          python3 -m unittest discover -s tests -p 'test_github_macro_governor.py' -v
+
+      - name: Execute newest-to-oldest macro frontier
+        id: govern
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REQUESTED_APPLY: ${{ inputs.apply }}
+          REQUESTED_REPOSITORY: ${{ inputs.repository }}
+          GITHUB_TOKEN: ${{ github.token }}
+          MACRO_GITHUB_TOKEN: ${{ secrets.MACRO_GITHUB_TOKEN }}
+          COPILOT_AGENT_TOKEN: ${{ secrets.COPILOT_AGENT_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/github-macro-governor"
+
+          apply=false
+          if [[ "$EVENT_NAME" != "pull_request" ]]; then
+            if [[ "$EVENT_NAME" != "workflow_dispatch" || "${REQUESTED_APPLY:-true}" = "true" ]]; then
+              apply=true
+            fi
+          fi
+
+          args=(
+            --policy macro/governor.toml
+            --receipt "$RUNNER_TEMP/github-macro-governor/receipt.json"
+          )
+          if [[ "$apply" = true ]]; then
+            args+=(--apply)
+          fi
+          if [[ -n "${REQUESTED_REPOSITORY:-}" ]]; then
+            args+=(--repo "$REQUESTED_REPOSITORY")
+          fi
+
+          python3 scripts/github_macro_governor.py "${args[@]}" \
+            | tee "$RUNNER_TEMP/github-macro-governor/summary.json"
+
+      - name: Emit macro andon summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "### GitHub Macro Autonomic Governor"
+            echo
+            echo "- controller SHA: \`${GITHUB_SHA}\`"
+            echo "- event: \`${GITHUB_EVENT_NAME}\`"
+            if [[ -f "$RUNNER_TEMP/github-macro-governor/summary.json" ]]; then
+              echo
+              echo '```json'
+              cat "$RUNNER_TEMP/github-macro-governor/summary.json"
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload exact macro receipt
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: github-macro-governor-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/github-macro-governor/
+          if-no-files-found: error
+          retention-days: 14
