@@ -1,0 +1,27 @@
+@prefix pp: <https://ggen.dev/pragprog/> .
+@prefix ex: <https://ggen.dev/ecosystem/pragprog-tps#> .
+
+# Automatic TPS scope. Activation is not compliance evidence.
+# Every PragProg court sees the ecosystem production-system subject.
+ex:productionSystem
+    pp:tpsProfile pp:PragProgTPS ;
+    pp:governedBy pp:tip001, pp:tip002, pp:tip003, pp:tip004, pp:tip005,
+        pp:tip006, pp:tip007, pp:tip008, pp:tip009, pp:tip010,
+        pp:tip011, pp:tip012, pp:tip013, pp:tip014, pp:tip015,
+        pp:tip016, pp:tip017, pp:tip018, pp:tip019, pp:tip020,
+        pp:tip021, pp:tip022, pp:tip023, pp:tip024, pp:tip025,
+        pp:tip026, pp:tip027, pp:tip028, pp:tip029, pp:tip030,
+        pp:tip031, pp:tip032, pp:tip033, pp:tip034, pp:tip035,
+        pp:tip036, pp:tip037, pp:tip038, pp:tip039, pp:tip040,
+        pp:tip041, pp:tip042, pp:tip043, pp:tip044, pp:tip045,
+        pp:tip046, pp:tip047, pp:tip048, pp:tip049, pp:tip050,
+        pp:tip051, pp:tip052, pp:tip053, pp:tip054, pp:tip055,
+        pp:tip056, pp:tip057, pp:tip058, pp:tip059, pp:tip060,
+        pp:tip061, pp:tip062, pp:tip063, pp:tip064, pp:tip065,
+        pp:tip066, pp:tip067, pp:tip068, pp:tip069, pp:tip070,
+        pp:tip071, pp:tip072, pp:tip073, pp:tip074, pp:tip075,
+        pp:tip076, pp:tip077, pp:tip078, pp:tip079, pp:tip080,
+        pp:tip081, pp:tip082, pp:tip083, pp:tip084, pp:tip085,
+        pp:tip086, pp:tip087, pp:tip088, pp:tip089, pp:tip090,
+        pp:tip091, pp:tip092, pp:tip093, pp:tip094, pp:tip095,
+        pp:tip096, pp:tip097, pp:tip098, pp:tip099, pp:tip100 .
