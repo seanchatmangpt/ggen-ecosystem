@@ -5,6 +5,7 @@ name = "ggen-ecosystem"
 source = "ontology.ttl"
 imports = [
   "github-local-runtime.ttl",
+  "github-local-runtime-2026-deltas.ttl",
   "vendor/ggen-marketplace/packs/github-actions-pack/reference/local-runtime-ontology.ttl",
 ]
 
