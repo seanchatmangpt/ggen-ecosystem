@@ -1,0 +1,68 @@
+[governor]
+selection = "reverse-chronological-newest-unresolved-first"
+capability_prefix = "[capability]"
+authorized_issue_logins = ["seanchatmangpt", "github-actions[bot]"]
+max_actions_per_run = 3
+max_observations_per_repo = 50
+observation_window_hours = 72
+agent_model = "gpt-5.3-codex"
+custom_agent = "capability-manufacturer"
+
+# `write` means the repository is eligible for macro actuation when an explicit
+# cross-repository token is configured. It does not grant authority by itself.
+# `agent` means a [capability] demand may be delegated through GitHub's agent-task
+# API when COPILOT_AGENT_TOKEN exists.
+
+[[repository]]
+name = "seanchatmangpt/ggen-ecosystem"
+role = "macro-composition-root"
+write = true
+agent = true
+
+[[repository]]
+name = "seanchatmangpt/gym-ecosystem"
+role = "downstream-composed-gym-crown"
+write = true
+agent = true
+
+[[repository]]
+name = "seanchatmangpt/ggen-marketplace"
+role = "reusable-executable-knowledge"
+write = true
+agent = true
+
+[[repository]]
+name = "seanchatmangpt/ggen"
+role = "deterministic-manufacturer"
+write = true
+agent = true
+
+[[repository]]
+name = "seanchatmangpt/autofde-lab"
+role = "planning-policy-laboratory"
+write = true
+agent = true
+
+[[repository]]
+name = "seanchatmangpt/gymact"
+role = "execution-physics-and-receipts"
+write = true
+agent = true
+
+[[repository]]
+name = "seanchatmangpt/beam4pm"
+role = "process-intelligence"
+write = true
+agent = true
+
+[[repository]]
+name = "seanchatmangpt/ggen_igniter"
+role = "beam-native-control-plane"
+write = true
+agent = true
+
+[[repository]]
+name = "seanchatmangpt/anti-cheat-scorecard"
+role = "independent-reality-court"
+write = true
+agent = true
