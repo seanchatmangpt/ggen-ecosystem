@@ -1,0 +1,50 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:ggen:gym-pack:shape:gym>
+    a sh:NodeShape ;
+    sh:targetClass sosa:Platform ;
+    sh:property [
+        sh:path dct:identifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "A downstream gym must declare exactly one string dct:identifier suitable for the manufactured package name."
+    ] ;
+    sh:property [
+        sh:path dct:title ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path dct:description ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string
+    ] .
+
+<urn:ggen:gym-pack:shape:procedure>
+    a sh:NodeShape ;
+    sh:targetClass sosa:Procedure ;
+    sh:property [
+        sh:path dct:identifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path dct:title ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path dct:type ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( <urn:gymact:consequence:read> <urn:gymact:consequence:do> ) ;
+        sh:message "Every manufactured gym procedure must declare READ or DO consequence class."
+    ] .

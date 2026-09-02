@@ -1,0 +1,20 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+<urn:customer:acme-support-gym>
+    a sosa:Platform ;
+    dct:identifier "acme-support-gym" ;
+    dct:title "Acme Support Gym" ;
+    dct:description "A downstream customer gym manufactured from ontology rather than copied source." .
+
+<urn:customer:procedure:inspect-ticket>
+    a sosa:Procedure ;
+    dct:identifier "inspect-ticket" ;
+    dct:title "Inspect ticket" ;
+    dct:type <urn:gymact:consequence:read> .
+
+<urn:customer:procedure:escalate-ticket>
+    a sosa:Procedure ;
+    dct:identifier "escalate-ticket" ;
+    dct:title "Escalate ticket" ;
+    dct:type <urn:gymact:consequence:do> .
