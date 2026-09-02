@@ -27,13 +27,17 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Checkout exact subject and marketplace
+      - name: Checkout exact subject
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 1
           persist-credentials: false
-          submodules: recursive
+      - name: Materialize exact TPS pack only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git submodule update --init --depth 1 vendor/ggen-marketplace
       - name: Install exact GGen release
         shell: bash
         run: |
