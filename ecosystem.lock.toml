@@ -1,10 +1,10 @@
 version = 3
-base_main_sha = "ff6922c78713a6969b680d7fe57b2f71370dd212"
-updated_at = "2026-09-02T05:39:00Z"
+base_main_sha = "1203f6c34fe4e7d3ab19efbfb34c8e03bd3297e8"
+updated_at = "2026-09-02T07:12:41Z"
 
 [ggen]
 release = "v26.8.28"
-commit_sha = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
+commit_sha = "36caa86eba04de0eae1769e71142df86fd370854"
 linux_x86_64_asset_sha256 = "UNKNOWN-TODO"
 observed_executable_sha256 = "UNKNOWN-TODO"
 aarch64_apple_darwin_asset_sha256 = "82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42"
@@ -37,22 +37,22 @@ version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
-sha = "3d796fddc1e998a166dc76949ec1d1ab01a4a5ee"
+sha = "96d6e10338de2538e93dc27350379b38447216f4"
 repository = "https://github.com/seanchatmangpt/beam4pm"
 role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
 
 [submodules]
 ggen_path = "vendor/ggen"
-ggen_commit = "c61ee99359c9dbc7b3cb71687976932a3e737ed4"
+ggen_commit = "36caa86eba04de0eae1769e71142df86fd370854"
 ggen_marketplace_path = "vendor/ggen-marketplace"
 ggen_marketplace_commit = "6fb1080da9d28f57aa476c9b94eddeee167dde18"
 autofde_lab_path = "vendor/autofde-lab"
-autofde_lab_commit = "61840ec86b05f5542267421d015f3f2d7c1c5ce9"
+autofde_lab_commit = "e5c4aef788600bf3e44abe396fcb1e0668fbcc43"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "ea7a15e4c7c662e41fade02806f4121b5bc41b1e"
 beam4pm_path = "vendor/beam4pm"
-beam4pm_commit = "3d796fddc1e998a166dc76949ec1d1ab01a4a5ee"
+beam4pm_commit = "96d6e10338de2538e93dc27350379b38447216f4"
 
 [composition]
 consumer_boundary = "ggen-ecosystem"
