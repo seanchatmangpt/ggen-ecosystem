@@ -129,8 +129,10 @@ def apply(doc: dict) -> None:
         replaced = replace_exact_sha(LOCK, row["current"], row["latest"])
         if replaced == 0:
             raise SystemExit(f"CROWN_BLOCKED[LOCK_PIN_NOT_FOUND]:{path}:{row['current']}")
-    update_lock_metadata(doc["base_sha"])
-    doc["mirrors_updated"] = synchronize_marketplace_default(marketplace_sha) if marketplace_sha else []
+    mirrors = synchronize_marketplace_default(marketplace_sha) if marketplace_sha else []
+    doc["mirrors_updated"] = mirrors
+    if doc["changed_count"] or mirrors:
+        update_lock_metadata(doc["base_sha"])
 
 
 def main() -> int:
@@ -142,11 +144,13 @@ def main() -> int:
     doc = plan()
     if args.apply:
         apply(doc)
-    receipt = ROOT / args.receipt
+    receipt = Path(args.receipt)
+    if not receipt.is_absolute():
+        receipt = ROOT / receipt
     receipt.parent.mkdir(parents=True, exist_ok=True)
     receipt.write_text(json.dumps(doc, indent=2, sort_keys=True) + "\n")
     print(json.dumps(doc, sort_keys=True))
-    print(f"AUTONOMIC_CROWN_PLAN_ALIVE changed={doc['changed_count']} apply={str(args.apply).lower()}")
+    print(f"AUTONOMIC_CROWN_PLAN_ALIVE changed={doc['changed_count']} mirrors={len(doc.get('mirrors_updated', []))} apply={str(args.apply).lower()}")
     return 0
 
 
