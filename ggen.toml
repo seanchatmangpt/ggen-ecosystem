@@ -3,12 +3,14 @@ name = "ggen-ecosystem"
 
 [ontology]
 source = "ontology.ttl"
+imports = [
+  "github-local-runtime.ttl",
+  "vendor/ggen-marketplace/packs/github-actions-pack/reference/local-runtime-ontology.ttl",
+]
 
 [packs]
-# Sourced from the real vendor/ggen-marketplace git submodule (pinned commit
-# 89adf4c8476f7edc8067fdbb1c256cfbfa22df6a -- see [submodules] in ecosystem.lock.toml),
-# not a git+version fetch -- confirmed schema via ggen's own
-# crates/ggen-config/src/config_schema.rs test `[packs.mypack] path = "../mypack"`.
+# Sourced from the exact vendor/ggen-marketplace git submodule, not a floating
+# package fetch. ecosystem.lock.toml binds the producer commit consumed here.
 github-actions = { path = "vendor/ggen-marketplace/packs/github-actions-pack" }
 
 [templates]
