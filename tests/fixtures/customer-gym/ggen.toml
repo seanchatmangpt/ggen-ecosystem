@@ -1,0 +1,11 @@
+[project]
+name = "acme-support-gym"
+
+[ontology]
+source = "ontology.ttl"
+
+[packs]
+gym = { path = "vendor/ggen-ecosystem/packs/gym-pack" }
+
+[templates]
+dir = "templates"

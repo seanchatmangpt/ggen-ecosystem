@@ -1,0 +1,44 @@
+---
+to: "gym/manifest.toml"
+shape:
+  - vendor/ggen-ecosystem/packs/gym-pack/shapes/gym.shacl.ttl
+sparql:
+  gym: |
+    PREFIX dct: <http://purl.org/dc/terms/>
+    PREFIX sosa: <http://www.w3.org/ns/sosa/>
+    SELECT ?id ?title ?description
+    WHERE {
+      ?gym a sosa:Platform ;
+           dct:identifier ?id ;
+           dct:title ?title ;
+           dct:description ?description .
+    }
+    ORDER BY ?id
+    LIMIT 1
+  procedures: |
+    PREFIX dct: <http://purl.org/dc/terms/>
+    PREFIX sosa: <http://www.w3.org/ns/sosa/>
+    SELECT ?id ?title ?consequence
+    WHERE {
+      ?procedure a sosa:Procedure ;
+                 dct:identifier ?id ;
+                 dct:title ?title ;
+                 dct:type ?kind .
+      BIND(IF(CONTAINS(STR(?kind), "consequence:do"), "DO", "READ") AS ?consequence)
+    }
+    ORDER BY ?id
+---
+{% for row in gym -%}
+[gym]
+id = "{{ row.id }}"
+title = "{{ row.title }}"
+description = "{{ row.description }}"
+manufacturer = "ggen-ecosystem/gym-pack"
+{% endfor %}
+
+{% for row in procedures -%}
+[[procedure]]
+id = "{{ row.id }}"
+title = "{{ row.title }}"
+consequence = "{{ row.consequence }}"
+{% endfor -%}

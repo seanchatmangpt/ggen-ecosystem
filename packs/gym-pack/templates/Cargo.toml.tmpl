@@ -1,0 +1,22 @@
+---
+to: "Cargo.toml"
+shape:
+  - vendor/ggen-ecosystem/packs/gym-pack/shapes/gym.shacl.ttl
+sparql:
+  gym: |
+    PREFIX dct: <http://purl.org/dc/terms/>
+    PREFIX sosa: <http://www.w3.org/ns/sosa/>
+    SELECT ?id
+    WHERE {
+      ?gym a sosa:Platform ; dct:identifier ?id .
+    }
+    ORDER BY ?id
+    LIMIT 1
+---
+[package]
+name = "{% for row in gym %}{{ row.id }}{% endfor %}"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
