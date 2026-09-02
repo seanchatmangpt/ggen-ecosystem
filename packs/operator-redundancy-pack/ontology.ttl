@@ -1,0 +1,37 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix orx: <urn:ggen:operator-redundancy#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+orx:OperationalWorkflow a rdfs:Class .
+orx:ConstitutionalDecision a rdfs:Class .
+orx:CapabilityRequest a rdfs:Class .
+orx:ChildManufactureWorkflow a rdfs:Class .
+orx:HumanPrincipal a rdfs:Class .
+orx:ObservationSource a rdfs:Class .
+orx:DecisionPolicy a rdfs:Class .
+orx:AuthorityEnvelope a rdfs:Class .
+orx:Actuator a rdfs:Class .
+orx:Verifier a rdfs:Class .
+orx:ReceiptSink a rdfs:Class .
+orx:RecoveryPath a rdfs:Class .
+orx:MissingCapabilityPolicy a rdfs:Class .
+
+orx:hasObservationSource a rdf:Property .
+orx:hasDecisionPolicy a rdf:Property .
+orx:hasAuthorityEnvelope a rdf:Property .
+orx:hasActuator a rdf:Property .
+orx:hasVerifier a rdf:Property .
+orx:emitsReceipt a rdf:Property .
+orx:hasRecoveryPath a rdf:Property .
+orx:runtimeRequiresHuman a rdf:Property .
+orx:missingCapabilityPolicy a rdf:Property .
+orx:blockedByCapability a rdf:Property .
+orx:forWorkflow a rdf:Property .
+orx:handledByChildWorkflow a rdf:Property .
+orx:resumesWorkflow a rdf:Property .
+orx:requiresPrincipal a rdf:Property .
+orx:strategy a rdf:Property .
+
+orx:ManufactureChildAndResume a orx:MissingCapabilityPolicy ;
+    dct:title "Manufacture, verify, promote, pin, and resume the blocked parent workflow" .
