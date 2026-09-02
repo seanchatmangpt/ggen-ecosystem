@@ -8,10 +8,15 @@ trap 'rm -rf "$WORK"' EXIT
 
 make_customer() {
   local target="$1"
-  mkdir -p "$target/vendor" "$target/templates"
+  mkdir -p "$target/vendor/ggen-ecosystem" "$target/templates"
   cp "$FIXTURE/ggen.toml" "$target/ggen.toml"
   cp "$FIXTURE/ontology.ttl" "$target/ontology.ttl"
-  ln -s "$ROOT" "$target/vendor/ggen-ecosystem"
+
+  # A real git submodule is physically contained inside the customer root.
+  # Use git archive instead of a symlink so ggen's realpath containment court
+  # sees exactly that topology while still binding the vendored bytes to the
+  # exact checked-out producer HEAD.
+  git -C "$ROOT" archive HEAD | tar -x -C "$target/vendor/ggen-ecosystem"
 }
 
 hash_outputs() {
@@ -26,8 +31,8 @@ hash_outputs() {
 CUSTOMER="$WORK/customer"
 make_customer "$CUSTOMER"
 
-# 1. Manufacture a fresh downstream project through the public wrapper.
-"$ROOT/bin/ggen-ecosystem" manufacture "$CUSTOMER"
+# 1. Manufacture a fresh downstream project through the vendored public wrapper.
+"$CUSTOMER/vendor/ggen-ecosystem/bin/ggen-ecosystem" manufacture "$CUSTOMER"
 for path in Cargo.toml src/main.rs src/gym_profile.rs gym/manifest.toml; do
   test -f "$CUSTOMER/$path"
 done
@@ -48,7 +53,7 @@ grep -F 'escalate-ticket|Escalate ticket|DO' <<<"$RUN_OUTPUT"
 
 # 3. Prove deterministic replay: second manufacture must be byte-identical.
 FIRST_HASHES="$(hash_outputs "$CUSTOMER")"
-"$ROOT/bin/ggen-ecosystem" manufacture "$CUSTOMER"
+"$CUSTOMER/vendor/ggen-ecosystem/bin/ggen-ecosystem" manufacture "$CUSTOMER"
 SECOND_HASHES="$(hash_outputs "$CUSTOMER")"
 [[ "$FIRST_HASHES" = "$SECOND_HASHES" ]] || {
   echo 'BUILD_BROKEN[GYM_FACTORY_NON_IDEMPOTENT]' >&2
@@ -69,7 +74,7 @@ if old not in text:
     raise SystemExit('fixture mutation anchor missing')
 p.write_text(text.replace(old, new, 1))
 PY
-"$ROOT/bin/ggen-ecosystem" manufacture "$CUSTOMER"
+"$CUSTOMER/vendor/ggen-ecosystem/bin/ggen-ecosystem" manufacture "$CUSTOMER"
 grep -F 'Procedure { id: "escalate-ticket", title: "Escalate customer ticket", consequence: "DO" }' "$CUSTOMER/src/gym_profile.rs"
 THIRD_HASHES="$(hash_outputs "$CUSTOMER")"
 [[ "$THIRD_HASHES" != "$SECOND_HASHES" ]] || {
@@ -91,10 +96,10 @@ if needle not in text:
     raise SystemExit('fixture refusal anchor missing')
 p.write_text(text.replace(needle, '', 1))
 PY
-if "$ROOT/bin/ggen-ecosystem" manufacture "$BAD"; then
+if "$BAD/vendor/ggen-ecosystem/bin/ggen-ecosystem" manufacture "$BAD"; then
   echo 'BUILD_BROKEN[INVALID_GYM_PROFILE_WAS_ADMITTED]' >&2
   exit 1
 fi
 echo 'GYM_FACTORY_SHACL_REFUSAL_ALIVE'
 
-echo 'GYM_FACTORY_CHICAGO_ALIVE customer=acme-support-gym replay=deterministic mutation=sensitive invalid=refused'
+echo 'GYM_FACTORY_CHICAGO_ALIVE customer=acme-support-gym replay=deterministic mutation=sensitive invalid=refused vendor=in-root-exact-head'
