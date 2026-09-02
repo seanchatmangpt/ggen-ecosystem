@@ -17,9 +17,16 @@ on:
       - "docs/operator-redundancy.md"
       - ".github/workflows/operator-redundancy-court.yml"
   workflow_dispatch:
+  schedule:
+    - cron: '7/15 * * * *'
+      timezone: "America/Los_Angeles"
 
 permissions:
   contents: read
+
+concurrency:
+  group: operator-redundancy-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   exact-head-operator-redundancy:
