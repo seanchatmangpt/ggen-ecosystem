@@ -1,0 +1,173 @@
+@prefix gha: <http://seanchatmangpt.github.io/packs/github-actions#> .
+@prefix ex:  <https://ggen.io/ecosystem/github-local#> .
+
+# Post-act-v0.2.89 GitHub Actions deltas observed through 2026-09-02.
+# This augments ex:profile from github-local-runtime.ttl without changing its identity.
+
+ex:profile gha:requiresCapability
+  ex:untrustedCacheReadOnly,
+  ex:selfRepositorySyntax,
+  ex:maliciousWorkflowApproval,
+  ex:customImageLayering,
+  ex:safePullRequestTargetCheckout,
+  ex:runnerWindows11Vs2026Arm,
+  ex:runnerXcode27,
+  ex:runnerRhel9,
+  ex:runnerRhel10,
+  ex:selfHostedMinimumVersion,
+  ex:codeQualityActionsIdentity,
+  ex:actionsRetentionEvidence .
+
+ex:untrustedCacheReadOnly a gha:LocalCapability ;
+  gha:capabilityKey "cache.untrusted-trigger-read-only" ;
+  gha:capabilitySince "2026-06-26" ;
+  gha:requiresGitHubControlPlane true .
+
+ex:selfRepositorySyntax a gha:LocalCapability ;
+  gha:capabilityKey "actions.self-repository-syntax" ;
+  gha:capabilitySince "2026-07-30" ;
+  gha:requiresGitHubControlPlane true .
+
+ex:maliciousWorkflowApproval a gha:LocalCapability ;
+  gha:capabilityKey "security.malicious-workflow-approval-hold" ;
+  gha:capabilitySince "2026-07-28" ;
+  gha:requiresGitHubControlPlane true .
+
+ex:customImageLayering a gha:LocalCapability ;
+  gha:capabilityKey "runner.custom-image-layering-snapshot-condition" ;
+  gha:capabilitySince "2026-06-18" ;
+  gha:requiresGitHubControlPlane false .
+
+ex:safePullRequestTargetCheckout a gha:LocalCapability ;
+  gha:capabilityKey "security.pull-request-target-safe-checkout" ;
+  gha:capabilitySince "2026-06-18" ;
+  gha:requiresGitHubControlPlane false .
+
+ex:runnerWindows11Vs2026Arm a gha:LocalCapability ;
+  gha:capabilityKey "runner.windows-11-vs2026-arm" ;
+  gha:capabilitySince "2026-08-20" ;
+  gha:requiresGitHubControlPlane false .
+
+ex:runnerXcode27 a gha:LocalCapability ;
+  gha:capabilityKey "runner.xcode-27" ;
+  gha:capabilitySince "2026-07-16" ;
+  gha:requiresGitHubControlPlane false .
+
+ex:runnerRhel9 a gha:LocalCapability ;
+  gha:capabilityKey "runner.rhel-9" ;
+  gha:capabilitySince "2026-06-25" ;
+  gha:requiresGitHubControlPlane false .
+
+ex:runnerRhel10 a gha:LocalCapability ;
+  gha:capabilityKey "runner.rhel-10" ;
+  gha:capabilitySince "2026-06-25" ;
+  gha:requiresGitHubControlPlane false .
+
+ex:selfHostedMinimumVersion a gha:LocalCapability ;
+  gha:capabilityKey "runner.self-hosted-minimum-version-enforcement" ;
+  gha:capabilitySince "2026-06-12" ;
+  gha:requiresGitHubControlPlane true .
+
+ex:codeQualityActionsIdentity a gha:LocalCapability ;
+  gha:capabilityKey "observability.code-quality-actions-path-actor" ;
+  gha:capabilitySince "2026-08-20" ;
+  gha:requiresGitHubControlPlane true .
+
+ex:actionsRetentionEvidence a gha:LocalCapability ;
+  gha:capabilityKey "evidence.actions-retention-checks-runs-statuses" ;
+  gha:capabilitySince "2026-10-01" ;
+  gha:requiresGitHubControlPlane true .
+
+# Server-issued cache capability token semantics remain GitHub authority, but job compute is self-hosted.
+ex:rUntrustedCacheReadOnly a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:untrustedCacheReadOnly ;
+  gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "GitHub issues the cache token and enforces read-only access; workload runs on self-hosted compute" ;
+  gha:evidenceClass "event identity + cache warning/restore log + BRCE receipt" .
+
+# $/ resolution is performed by current Actions runner/server semantics; runner 2.337.0 is above the 2.336.0 minimum.
+ex:rSelfRepositorySyntax a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:selfRepositorySyntax ;
+  gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "Exact $/ same-repository action/reusable-workflow resolution at the running commit" ;
+  gha:evidenceClass "runner version + resolved action/workflow commit + receipt" .
+
+# The approval itself is a GitHub authenticated-web authority edge; no local simulator may manufacture it.
+ex:rMaliciousWorkflowApproval a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:maliciousWorkflowApproval ;
+  gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "GitHub server may hold the run for collaborator web approval; after approval jobs consume only self-hosted compute" ;
+  gha:evidenceClass "held/approved workflow-run state + approver authority + receipt" .
+
+# Hosted custom-image snapshots are not required locally: preserve their composition semantics with ordinary layered images.
+ex:rCustomImageLayering a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:customImageLayering ;
+  gha:viaBackend ex:ggenLowering ; gha:routeMode gha:ModeLowered ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "Manufacture layered local OCI/VM images from admitted base-image identity; conditional snapshot becomes conditional image publication" ;
+  gha:evidenceClass "base digest + derived image digest + manufacture receipt" .
+ex:rCustomImageHostedExact a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:customImageLayering ;
+  gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeUnsupported ;
+  gha:routePriority 100 ;
+  gha:semanticCeiling "Exact GitHub-hosted custom-image snapshot product is deliberately outside the zero-hosted-minutes execution boundary" ;
+  gha:evidenceClass "typed exclusion" ;
+  gha:unsupportedReason "Exact hosted custom-image snapshot manufacture is a GitHub-hosted product; local layered image manufacture preserves the useful reversible capability without consuming hosted minutes" .
+
+ex:rSafePullRequestTargetCheckout a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:safePullRequestTargetCheckout ;
+  gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "Pinned supported actions/checkout implementation plus explicit pull_request_target event payload; pack security gates still fence unsafe workflow authoring" ;
+  gha:evidenceClass "checkout action SHA + event payload digest + local execution receipt" .
+
+# Non-Linux toolchain/image parity uses the official runner on owner-supplied machines; no hosted minutes.
+ex:rWindows11Vs2026Arm a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:runnerWindows11Vs2026Arm ;
+  gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "Windows 11 ARM64 + Visual Studio 2026 self-hosted machine with exact toolchain inventory" ;
+  gha:evidenceClass "runner OS/arch + VS inventory + receipt" .
+ex:rXcode27 a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:runnerXcode27 ;
+  gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "ARM64 macOS self-hosted runner with admitted Xcode 27 toolchain" ;
+  gha:evidenceClass "xcodebuild version + runner arch + receipt" .
+ex:rRhel9 a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:runnerRhel9 ;
+  gha:viaBackend ex:act ; gha:routeMode gha:ModeLowered ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "Pinned RHEL 9-compatible local container image; no claim of byte-identical GitHub hosted image" ;
+  gha:evidenceClass "image digest + receipt" .
+ex:rRhel10 a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:runnerRhel10 ;
+  gha:viaBackend ex:act ; gha:routeMode gha:ModeLowered ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "Pinned RHEL 10-compatible local container image; no claim of byte-identical GitHub hosted image" ;
+  gha:evidenceClass "image digest + receipt" .
+
+ex:rSelfHostedMinimumVersion a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:selfHostedMinimumVersion ;
+  gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "Pinned runner 2.337.0; registration/execution still subject to GitHub's moving minimum" ;
+  gha:evidenceClass "runner version + GitHub registration/job acceptance + receipt" .
+
+ex:rCodeQualityIdentity a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:codeQualityActionsIdentity ;
+  gha:viaBackend ex:githubApi ; gha:routeMode gha:ModeSidecar ;
+  gha:routePriority 10 ;
+  gha:semanticCeiling "Observe both dynamic/github-code-quality/codeql and legacy code-scanning identities without coupling execution to billing reports" ;
+  gha:evidenceClass "workflow-run path/actor observation + receipt" .
+
+# GitHub may delete old server evidence after retention; BRCE receipts must outlive that mutable projection.
+ex:rActionsRetentionEvidence a gha:CapabilityRoute ;
+  gha:inProfile ex:profile ; gha:forCapability ex:actionsRetentionEvidence ;
+  gha:viaBackend ex:receiptBroker ; gha:routeMode gha:ModeSidecar ;
+  gha:routePriority 1 ;
+  gha:semanticCeiling "Export/bind exact check, run, status and artifact identities into local receipt DAG before GitHub retention can delete server projections" ;
+  gha:evidenceClass "local immutable receipt DAG + source GitHub object ids" .

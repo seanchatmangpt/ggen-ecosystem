@@ -1,6 +1,6 @@
-version = 3
-base_main_sha = "caa521b36c135d4f91c9519407705876d275eb5e"
-updated_at = "2026-09-02T07:33:51Z"
+version = 4
+base_main_sha = "978f0da6a3580398e125f9e88ccd4a040778c57b"
+updated_at = "2026-09-02T21:23:40Z"
 
 [ggen]
 release = "v26.8.28"
@@ -16,14 +16,29 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "6fb1080da9d28f57aa476c9b94eddeee167dde18"
+sha = "046559d5f3652ae1f59023122b38a8ad5dc83465"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
+source_branch = "feat/github-local-dfcm-runtime"
+
+[act]
+release = "v0.2.89"
+commit_sha = "4f411281417e88660bea1c1a1749aa71ae0bd60f"
+repository = "https://github.com/seanchatmangpt/act"
+go_version = "1.25.0"
+role = "primary local GitHub Actions execution adapter; exact semantic gaps route through the admitted DfCM topology"
+
+[actions_runner]
+release = "v2.337.0"
+repository = "https://github.com/actions/runner"
+linux_x64_asset = "actions-runner-linux-x64-2.337.0.tar.gz"
+linux_x64_sha256 = "70920811a4f8ad4328818682bca5c6469c1c942fab52448868071d0063816613"
+role = "official self-hosted fallback for GitHub-server-coupled semantics without GitHub-hosted compute minutes"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "6fb1080da9d28f57aa476c9b94eddeee167dde18"
+marketplace_sha = "046559d5f3652ae1f59023122b38a8ad5dc83465"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -46,13 +61,15 @@ container_root = "/opt/beam4pm"
 ggen_path = "vendor/ggen"
 ggen_commit = "36caa86eba04de0eae1769e71142df86fd370854"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "6fb1080da9d28f57aa476c9b94eddeee167dde18"
+ggen_marketplace_commit = "046559d5f3652ae1f59023122b38a8ad5dc83465"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "e5c4aef788600bf3e44abe396fcb1e0668fbcc43"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "ea7a15e4c7c662e41fade02806f4121b5bc41b1e"
 beam4pm_path = "vendor/beam4pm"
 beam4pm_commit = "96d6e10338de2538e93dc27350379b38447216f4"
+act_path = "vendor/act"
+act_commit = "4f411281417e88660bea1c1a1749aa71ae0bd60f"
 
 [composition]
 consumer_boundary = "ggen-ecosystem"
@@ -61,7 +78,10 @@ pack_catalog = "vendor/ggen-marketplace"
 beam_control_plane = "vendor/ggen_igniter"
 process_intelligence = "vendor/beam4pm"
 diagnosis_and_search = "vendor/autofde-lab"
-rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plane/process-intelligence pins are internal ecosystem concerns"
+local_actions_runtime = "vendor/act"
+server_semantics_fallback = "actions/runner@2.337.0 on self-hosted compute"
+github_object_transport = "direct GitHub API via receipted control-plane adapters"
+rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plane/process-intelligence/runtime pins are internal ecosystem concerns"
 
 [container]
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
@@ -76,11 +96,16 @@ beam4pm_root = "/opt/beam4pm"
 [manufacturing]
 manifest = "ggen.toml"
 ontology = "ontology.ttl"
+local_runtime_ontology = "github-local-runtime.ttl"
+local_runtime_2026_deltas = "github-local-runtime-2026-deltas.ttl"
 workflow = ".github/workflows/ggen-ecosystem-sync.yml"
 container_workflow = ".github/workflows/ggen-ecosystem-container.yml"
 dockerfile = "Dockerfile"
 bootstrap_receipt = "receipts/bootstrap-ggen-ecosystem-sync.json"
 consumer_cli = "bin/ggen-ecosystem"
+local_actions_cli = "bin/ggen-actions-local"
+local_actions_manifest = ".ggen-v2/github-local/runtime-manifest.json"
+local_actions_receipt_root = ".ggen-v2/github-local/receipts"
 
 [catalog]
 owner = "seanchatmangpt"

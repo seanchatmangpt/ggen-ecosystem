@@ -1,0 +1,129 @@
+@prefix gha: <http://seanchatmangpt.github.io/packs/github-actions#> .
+@prefix ex:  <https://ggen.io/ecosystem/github-local#> .
+
+# Project-specific admission graph for running GitHub Actions without
+# GitHub-hosted minutes. Reusable vocabulary/logic belongs in github-actions-pack.
+
+ex:profile
+    a gha:LocalExecutionProfile ;
+    gha:profileName "ggen-ecosystem-local-github-v1" ;
+    gha:receiptRoot ".ggen-v2/github-local/receipts" ;
+    gha:exactActSha "4f411281417e88660bea1c1a1749aa71ae0bd60f" ;
+    gha:exactActVersion "0.2.89" ;
+    gha:exactActionsRunnerVersion "2.337.0" ;
+    gha:requiresCapability
+      ex:workflowExecution,
+      ex:eventPayloads,
+      ex:jobSelection,
+      ex:matrix,
+      ex:jobParallelism,
+      ex:containerActions,
+      ex:serviceContainers,
+      ex:varsSecretsInputs,
+      ex:artifactCurrentRun,
+      ex:artifactCrossRun,
+      ex:dependencyCache,
+      ex:offlineActions,
+      ex:localActionReplacement,
+      ex:runnerLinuxImages,
+      ex:runnerUbuntu2604,
+      ex:node24Actions,
+      ex:backgroundSteps,
+      ex:waitSteps,
+      ex:waitAllSteps,
+      ex:cancelSteps,
+      ex:parallelSteps,
+      ex:concurrencyQueueMax,
+      ex:reusableWorkflows,
+      ex:oidc,
+      ex:environmentProtection,
+      ex:deploymentObjects,
+      ex:githubTokenPermissions,
+      ex:mergeGroup,
+      ex:checksStatuses,
+      ex:repositoryDispatch,
+      ex:workflowDispatchApi,
+      ex:releaseApi,
+      ex:prIssueAutomation,
+      ex:receiptsReplay .
+
+ex:act a gha:ExecutionBackend ; gha:capabilityKey "act" .
+ex:actArtifactServer a gha:ExecutionBackend ; gha:capabilityKey "act-artifact-server" .
+ex:actCacheServer a gha:ExecutionBackend ; gha:capabilityKey "act-cache-server" .
+ex:ggenLowering a gha:ExecutionBackend ; gha:capabilityKey "ggen-lowering" .
+ex:actionsRunner a gha:ExecutionBackend ; gha:capabilityKey "actions-runner-2.337.0" .
+ex:githubApi a gha:ExecutionBackend ; gha:capabilityKey "github-api-direct" .
+ex:receiptBroker a gha:ExecutionBackend ; gha:capabilityKey "ggen-brce-receipt-broker" .
+
+ex:workflowExecution a gha:LocalCapability ; gha:capabilityKey "workflow.execution" ; gha:requiresGitHubControlPlane false .
+ex:eventPayloads a gha:LocalCapability ; gha:capabilityKey "events.payloads" ; gha:requiresGitHubControlPlane false .
+ex:jobSelection a gha:LocalCapability ; gha:capabilityKey "jobs.selection" ; gha:requiresGitHubControlPlane false .
+ex:matrix a gha:LocalCapability ; gha:capabilityKey "jobs.matrix" ; gha:requiresGitHubControlPlane false .
+ex:jobParallelism a gha:LocalCapability ; gha:capabilityKey "jobs.parallelism" ; gha:requiresGitHubControlPlane false .
+ex:containerActions a gha:LocalCapability ; gha:capabilityKey "actions.container" ; gha:requiresGitHubControlPlane false .
+ex:serviceContainers a gha:LocalCapability ; gha:capabilityKey "jobs.services" ; gha:requiresGitHubControlPlane false .
+ex:varsSecretsInputs a gha:LocalCapability ; gha:capabilityKey "context.vars-secrets-inputs" ; gha:requiresGitHubControlPlane false .
+ex:artifactCurrentRun a gha:LocalCapability ; gha:capabilityKey "artifacts.current-run" ; gha:requiresGitHubControlPlane false .
+ex:artifactCrossRun a gha:LocalCapability ; gha:capabilityKey "artifacts.cross-run-repository" ; gha:requiresGitHubControlPlane true .
+ex:dependencyCache a gha:LocalCapability ; gha:capabilityKey "cache.dependencies" ; gha:requiresGitHubControlPlane false .
+ex:offlineActions a gha:LocalCapability ; gha:capabilityKey "actions.offline-cache" ; gha:requiresGitHubControlPlane false .
+ex:localActionReplacement a gha:LocalCapability ; gha:capabilityKey "actions.local-repository-replacement" ; gha:requiresGitHubControlPlane false .
+ex:runnerLinuxImages a gha:LocalCapability ; gha:capabilityKey "runner.linux-custom-images" ; gha:requiresGitHubControlPlane false .
+ex:runnerUbuntu2604 a gha:LocalCapability ; gha:capabilityKey "runner.ubuntu-26.04" ; gha:capabilitySince "2026-06-11" ; gha:requiresGitHubControlPlane false .
+ex:node24Actions a gha:LocalCapability ; gha:capabilityKey "runtime.node24-actions" ; gha:capabilitySince "2026-06-16" ; gha:requiresGitHubControlPlane false .
+ex:backgroundSteps a gha:LocalCapability ; gha:capabilityKey "steps.background" ; gha:capabilitySince "2026-06-25" ; gha:requiresGitHubControlPlane false .
+ex:waitSteps a gha:LocalCapability ; gha:capabilityKey "steps.wait" ; gha:capabilitySince "2026-06-25" ; gha:requiresGitHubControlPlane false .
+ex:waitAllSteps a gha:LocalCapability ; gha:capabilityKey "steps.wait-all" ; gha:capabilitySince "2026-06-25" ; gha:requiresGitHubControlPlane false .
+ex:cancelSteps a gha:LocalCapability ; gha:capabilityKey "steps.cancel" ; gha:capabilitySince "2026-06-25" ; gha:requiresGitHubControlPlane false .
+ex:parallelSteps a gha:LocalCapability ; gha:capabilityKey "steps.parallel" ; gha:capabilitySince "2026-06-25" ; gha:requiresGitHubControlPlane false .
+ex:concurrencyQueueMax a gha:LocalCapability ; gha:capabilityKey "concurrency.queue-max" ; gha:requiresGitHubControlPlane true .
+ex:reusableWorkflows a gha:LocalCapability ; gha:capabilityKey "workflow.reusable-call" ; gha:requiresGitHubControlPlane true .
+ex:oidc a gha:LocalCapability ; gha:capabilityKey "identity.oidc" ; gha:requiresGitHubControlPlane true .
+ex:environmentProtection a gha:LocalCapability ; gha:capabilityKey "environments.protection" ; gha:requiresGitHubControlPlane true .
+ex:deploymentObjects a gha:LocalCapability ; gha:capabilityKey "deployments.objects-status" ; gha:requiresGitHubControlPlane true .
+ex:githubTokenPermissions a gha:LocalCapability ; gha:capabilityKey "identity.github-token-permissions" ; gha:requiresGitHubControlPlane true .
+ex:mergeGroup a gha:LocalCapability ; gha:capabilityKey "events.merge-group" ; gha:requiresGitHubControlPlane true .
+ex:checksStatuses a gha:LocalCapability ; gha:capabilityKey "checks.commit-statuses" ; gha:requiresGitHubControlPlane true .
+ex:repositoryDispatch a gha:LocalCapability ; gha:capabilityKey "api.repository-dispatch" ; gha:requiresGitHubControlPlane true .
+ex:workflowDispatchApi a gha:LocalCapability ; gha:capabilityKey "api.workflow-dispatch" ; gha:requiresGitHubControlPlane true .
+ex:releaseApi a gha:LocalCapability ; gha:capabilityKey "api.releases" ; gha:requiresGitHubControlPlane true .
+ex:prIssueAutomation a gha:LocalCapability ; gha:capabilityKey "api.pr-issue-automation" ; gha:requiresGitHubControlPlane true .
+ex:receiptsReplay a gha:LocalCapability ; gha:capabilityKey "evidence.receipts-replay" ; gha:requiresGitHubControlPlane false .
+
+ex:rWorkflow a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:workflowExecution ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "Act-compatible workflow/job/step semantics" ; gha:evidenceClass "act exit code + local receipt" .
+ex:rEvents a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:eventPayloads ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "Explicit local event JSON; server-synthesized fields remain bounded by supplied payload" ; gha:evidenceClass "event file digest + act receipt" .
+ex:rJobSelection a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:jobSelection ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "act -j selection" ; gha:evidenceClass "act plan + exit code" .
+ex:rMatrix a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:matrix ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "Workflow matrix plus act --matrix filtering" ; gha:evidenceClass "expanded jobs + receipt" .
+ex:rJobParallel a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:jobParallelism ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "Independent jobs with act --concurrent-jobs" ; gha:evidenceClass "per-job logs + receipt" .
+ex:rContainers a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:containerActions ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "Docker Engine API compatible container actions" ; gha:evidenceClass "container execution log + receipt" .
+ex:rServices a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:serviceContainers ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "Linux Docker service-container semantics" ; gha:evidenceClass "service lifecycle log + receipt" .
+ex:rContexts a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:varsSecretsInputs ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "Explicit --var/--secret/--input files and values" ; gha:evidenceClass "redacted invocation receipt" .
+ex:rArtifactNow a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:artifactCurrentRun ; gha:viaBackend ex:actArtifactServer ; gha:routeMode gha:ModeSidecar ; gha:routePriority 10 ; gha:semanticCeiling "Upload/download artifacts within the local workflow run" ; gha:evidenceClass "filesystem artifact + receipt" .
+ex:rCache a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:dependencyCache ; gha:viaBackend ex:actCacheServer ; gha:routeMode gha:ModeSidecar ; gha:routePriority 10 ; gha:semanticCeiling "Persistent local Actions cache server" ; gha:evidenceClass "cache path + receipt" .
+ex:rOffline a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:offlineActions ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "Previously cached action/container dependencies" ; gha:evidenceClass "offline act execution receipt" .
+ex:rLocalRepo a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:localActionReplacement ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "act --local-repository replacement" ; gha:evidenceClass "replacement mapping + receipt" .
+ex:rLinuxImages a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:runnerLinuxImages ; gha:viaBackend ex:act ; gha:routeMode gha:ModeNative ; gha:routePriority 10 ; gha:semanticCeiling "Docker image mapping via -P; image identity must be pinned by consumer" ; gha:evidenceClass "image ref/digest + receipt" .
+ex:rUbuntu2604 a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:runnerUbuntu2604 ; gha:viaBackend ex:act ; gha:routeMode gha:ModeLowered ; gha:routePriority 10 ; gha:semanticCeiling "Map ubuntu-26.04 labels to an admitted local runner image; not a claim of byte-identical hosted VM" ; gha:evidenceClass "image digest + receipt" .
+ex:rNode24 a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:node24Actions ; gha:viaBackend ex:act ; gha:routeMode gha:ModeLowered ; gha:routePriority 10 ; gha:semanticCeiling "Node24-capable action runtime image or explicit FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 parity fixture" ; gha:evidenceClass "node --version + action receipt" .
+
+ex:rBackground a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:backgroundSteps ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 10 ; gha:semanticCeiling "Exact GitHub runner background-step semantics on self-hosted compute; zero GitHub-hosted minutes" ; gha:evidenceClass "runner job/step logs + BRCE receipt" .
+ex:rWait a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:waitSteps ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 10 ; gha:semanticCeiling "Exact wait semantics on runner 2.337.0" ; gha:evidenceClass "runner step conclusion + receipt" .
+ex:rWaitAll a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:waitAllSteps ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 10 ; gha:semanticCeiling "Exact wait-all semantics on runner 2.337.0" ; gha:evidenceClass "runner step conclusion + receipt" .
+ex:rCancel a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:cancelSteps ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 10 ; gha:semanticCeiling "Exact graceful cancel semantics on runner 2.337.0" ; gha:evidenceClass "runner cancellation log + receipt" .
+ex:rParallel a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:parallelSteps ; gha:viaBackend ex:ggenLowering ; gha:routeMode gha:ModeLowered ; gha:routePriority 10 ; gha:semanticCeiling "Canonical lowering to background members plus wait when generating workflows" ; gha:evidenceClass "generated workflow diff + receipt" .
+ex:rParallelExact a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:parallelSteps ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 20 ; gha:semanticCeiling "Exact native parallel syntax execution on runner 2.337.0" ; gha:evidenceClass "runner logs + receipt" .
+
+ex:rConcurrency a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:concurrencyQueueMax ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 10 ; gha:semanticCeiling "GitHub server scheduler owns queue=max ordering and cancellation" ; gha:evidenceClass "workflow run state + receipt" .
+ex:rReusable a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:reusableWorkflows ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 10 ; gha:semanticCeiling "GitHub workflow_call expansion plus self-hosted job execution" ; gha:evidenceClass "caller/callee run identity + receipt" .
+ex:rOidc a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:oidc ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 10 ; gha:semanticCeiling "GitHub-issued OIDC trust root only; local lookalike tokens are not equivalent" ; gha:evidenceClass "issuer/audience/subject claims + receipt" .
+ex:rEnv a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:environmentProtection ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 10 ; gha:semanticCeiling "GitHub environment approvals/protection remain server-authoritative" ; gha:evidenceClass "deployment/environment state + receipt" .
+ex:rDeploy a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:deploymentObjects ; gha:viaBackend ex:githubApi ; gha:routeMode gha:ModeSidecar ; gha:routePriority 10 ; gha:semanticCeiling "Direct GitHub deployment/status API without Actions-hosted compute" ; gha:evidenceClass "API object ids + receipt" .
+ex:rToken a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:githubTokenPermissions ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 10 ; gha:semanticCeiling "GitHub-minted GITHUB_TOKEN permission ceiling" ; gha:evidenceClass "effective permissions + receipt" .
+ex:rMergeGroup a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:mergeGroup ; gha:viaBackend ex:actionsRunner ; gha:routeMode gha:ModeSelfHostedFallback ; gha:routePriority 10 ; gha:semanticCeiling "GitHub merge queue creates canonical merge_group payload" ; gha:evidenceClass "event payload + exact candidate SHA + receipt" .
+ex:rChecks a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:checksStatuses ; gha:viaBackend ex:githubApi ; gha:routeMode gha:ModeSidecar ; gha:routePriority 10 ; gha:semanticCeiling "Direct Checks/commit-status publication; execution proof remains local" ; gha:evidenceClass "check/status id + local execution receipt" .
+ex:rRepoDispatch a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:repositoryDispatch ; gha:viaBackend ex:githubApi ; gha:routeMode gha:ModeSidecar ; gha:routePriority 10 ; gha:semanticCeiling "Direct repository_dispatch API" ; gha:evidenceClass "request/event receipt" .
+ex:rWorkflowDispatch a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:workflowDispatchApi ; gha:viaBackend ex:githubApi ; gha:routeMode gha:ModeSidecar ; gha:routePriority 10 ; gha:semanticCeiling "Direct workflow_dispatch API when server orchestration is desired" ; gha:evidenceClass "dispatch request + observed run id" .
+ex:rRelease a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:releaseApi ; gha:viaBackend ex:githubApi ; gha:routeMode gha:ModeSidecar ; gha:routePriority 10 ; gha:semanticCeiling "Direct release API; asset manufacture remains local" ; gha:evidenceClass "release id/tag/assets + receipt" .
+ex:rPrIssue a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:prIssueAutomation ; gha:viaBackend ex:githubApi ; gha:routeMode gha:ModeSidecar ; gha:routePriority 10 ; gha:semanticCeiling "Direct PR/issue/review/label API operations" ; gha:evidenceClass "GitHub object ids + receipts" .
+ex:rArtifactCross a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:artifactCrossRun ; gha:viaBackend ex:githubApi ; gha:routeMode gha:ModeSidecar ; gha:routePriority 10 ; gha:semanticCeiling "Cross-run/repository artifact retrieval through GitHub API; local act artifact server is current-run only" ; gha:evidenceClass "artifact id/digest + receipt" .
+ex:rReceipts a gha:CapabilityRoute ; gha:inProfile ex:profile ; gha:forCapability ex:receiptsReplay ; gha:viaBackend ex:receiptBroker ; gha:routeMode gha:ModeNative ; gha:routePriority 1 ; gha:semanticCeiling "Zero unreceipted actuation; local execution identity bound before publication" ; gha:evidenceClass "BRCE receipt DAG" .

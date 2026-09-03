@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-EXPECTED_MARKETPLACE_SHA="6fb1080da9d28f57aa476c9b94eddeee167dde18"
+EXPECTED_MARKETPLACE_SHA="046559d5f3652ae1f59023122b38a8ad5dc83465"
 CANDIDATE_SHA="${GITHUB_HEAD_SHA:-${GITHUB_SHA:-$(git rev-parse HEAD)}}"
 if [[ -n "${GITHUB_EVENT_PATH:-}" && -f "${GITHUB_EVENT_PATH}" ]]; then
   pr_head="$(python3 -c 'import json,os; d=json.load(open(os.environ["GITHUB_EVENT_PATH"])); print(d.get("pull_request",{}).get("head",{}).get("sha", ""))')"

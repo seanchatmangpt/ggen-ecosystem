@@ -13,3 +13,6 @@
 [submodule "vendor/beam4pm"]
 	path = vendor/beam4pm
 	url = https://github.com/seanchatmangpt/beam4pm.git
+[submodule "vendor/act"]
+	path = vendor/act
+	url = https://github.com/seanchatmangpt/act.git
