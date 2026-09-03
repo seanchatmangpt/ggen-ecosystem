@@ -55,20 +55,29 @@ PY
 
 run_sync() {
   local consumer="$1"
+  local sync_status=0
   docker run --rm \
     -v "$consumer:/workspace" \
     -w /workspace \
-    "$IMAGE" ggen sync run
+    "$IMAGE" ggen sync run || sync_status=$?
   # The container runs as root by default, so files it writes (including
   # .ggen/keys/{signing,verifying}.key) can land root-owned and mode-restricted
   # on the bind mount. The host-side digest/cleanup steps run as the CI
   # runner's own (non-root) user and need real read/cleanup access to those
   # same files, so make the whole workspace world-readable/removable from
-  # inside the same image right after the real write path runs.
+  # inside the same image right after the real write path runs -- do this
+  # unconditionally (even on sync_status != 0) so a refused negative-path
+  # run still leaves a cleanable workspace.
   docker run --rm \
     -v "$consumer:/workspace" \
     -w /workspace \
     "$IMAGE" chmod -R a+rwX /workspace
+  # Return ggen's own exit code, not chmod's. Without this, a caller that
+  # runs `set +e; run_sync ...; status=$?; set -e` (exactly what the
+  # negative-consumer refusal check below does) captures chmod's exit
+  # status instead -- chmod succeeds even when ggen genuinely refused,
+  # silently turning a real refusal into an apparent, wrong success.
+  return "$sync_status"
 }
 
 command -v git >/dev/null 2>&1 || blocked "git is unavailable"
