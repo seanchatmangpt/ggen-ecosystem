@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "caa521b36c135d4f91c9519407705876d275eb5e"
-updated_at = "2026-09-02T07:33:51Z"
+base_main_sha = "f86b69c1ed5f5f5432f02d20c669186e11edc9bc"
+updated_at = "2026-09-03T05:41:40Z"
 
 [ggen]
 release = "v26.8.28"
@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "6fb1080da9d28f57aa476c9b94eddeee167dde18"
+sha = "825fc434d62390bd2ea5d575118424f62747b580"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "6fb1080da9d28f57aa476c9b94eddeee167dde18"
+marketplace_sha = "825fc434d62390bd2ea5d575118424f62747b580"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -46,7 +46,7 @@ container_root = "/opt/beam4pm"
 ggen_path = "vendor/ggen"
 ggen_commit = "36caa86eba04de0eae1769e71142df86fd370854"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "6fb1080da9d28f57aa476c9b94eddeee167dde18"
+ggen_marketplace_commit = "825fc434d62390bd2ea5d575118424f62747b580"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "e5c4aef788600bf3e44abe396fcb1e0668fbcc43"
 ggen_igniter_path = "vendor/ggen_igniter"
