@@ -89,7 +89,7 @@ jobs:
           python3 -m json.tool "$RUNNER_TEMP/mfact-certification.json" >/dev/null
 
       - name: Preserve certification receipt
-        if: always()
+        if: ${{ always() && !env.ACT }}
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: mfact-certification-${{ github.run_id }}-${{ github.run_attempt }}

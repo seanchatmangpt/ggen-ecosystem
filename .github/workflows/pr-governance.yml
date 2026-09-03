@@ -77,7 +77,7 @@ jobs:
           CHICAGO_EVIDENCE_PATH: ${{ runner.temp }}/chicago-evidence.json
         run: bash tests/chicago_consumer.sh
       - name: Upload Chicago execution evidence
-        if: always()
+        if: ${{ always() && !env.ACT }}
         uses: actions/upload-artifact@v4
         with:
           name: chicago-evidence-${{ github.event.pull_request.head.sha }}
