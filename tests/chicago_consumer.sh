@@ -31,10 +31,19 @@ from pathlib import Path
 import sys
 root = Path(sys.argv[1])
 exclude_out = sys.argv[2].lower() == "true"
+# When excluding the manufactured surface (used by the "authoritative
+# inputs must not mutate" checks), also exclude ggen's own real, expected
+# runtime bookkeeping directories -- .ggen/keys/{signing,verifying}.key and
+# .ggen-v2/receipt*.json are genuinely written by every real `ggen sync run`
+# (see run_sync()'s own chmod-recovery step, which exists because
+# .ggen/keys/* lands root-owned), not authoritative consumer input. This
+# repo's own top-level .gitignore already treats both as generated, not
+# tracked source.
+excluded_dirs = {"out", ".ggen", ".ggen-v2"} if exclude_out else set()
 h = hashlib.sha256()
 for path in sorted(p for p in root.rglob("*") if p.is_file()):
     rel = path.relative_to(root).as_posix()
-    if exclude_out and (rel == "out" or rel.startswith("out/")):
+    if any(rel == d or rel.startswith(d + "/") for d in excluded_dirs):
         continue
     h.update(rel.encode())
     h.update(b"\0")
