@@ -240,7 +240,22 @@ act-container-dryrun:
 # workflow_dispatch (its actual dispatchable trigger) rather than `push`,
 # since act's synthetic push event ref wouldn't match this workflow's
 # `tags: v[0-9]+.[0-9]+.[0-9]+` filter.
+# --concurrent-jobs 1: build-amd64 and build-arm64 have no `needs` between
+# them, so act runs them in parallel by default -- on real GitHub-hosted
+# runners that's fine (separate machines), but locally both compile the
+# same Rust workspace with LTO simultaneously against one shared Colima VM
+# (6GiB RAM), and reliably OOM-kills one of them ("cannot allocate memory"
+# compiling sccache). Serializing is the correct local-only fix, not a
+# bigger VM -- this is inherent to sharing one VM across "two runners'"
+# worth of build load, not a bug in either job.
+# ACCEPTED LOCAL GAP: build-amd64 reliably SIGSEGVs compiling ring's C
+# crypto primitives (cc-rs invoking gcc on ring-0.17.13/crypto/
+# constant_time_test.c) under QEMU user-mode emulation on this Apple
+# Silicon host -- a well-known class of QEMU limitation for hand-optimized
+# C/SIMD code, not an act/Docker config issue, and not reproducible on a
+# real amd64 GitHub-hosted runner (which compiles it natively, no
+# emulation). build-arm64 is native on this host and passes for real.
 act-container:
-    act workflow_dispatch -W .github/workflows/ggen-ecosystem-container.yml --input image_tag=act-local {{act_flags}}
+    act workflow_dispatch -W .github/workflows/ggen-ecosystem-container.yml --input image_tag=act-local --concurrent-jobs 1 {{act_flags}}
 
 act-all: act-list act-validate act-codeql act-work-portfolio act-publication-evidence act-mfact act-governance act-sync
