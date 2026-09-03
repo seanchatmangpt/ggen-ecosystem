@@ -12,3 +12,17 @@ receipts/gymact-autonomics-ledger.sqlite3-shm
 receipts/gymact-autonomics-ledger.sqlite3-wal
 __pycache__/
 *.pyc
+
+# Claude Code worktree/scheduler scratch state -- never part of a real commit.
+# Also matters for local act runs: act's checkout copies the working
+# directory into the job container respecting .gitignore (--use-gitignore),
+# and this directory had grown to 22G (stale worktree incl. a vendored
+# submodule's LFS objects) before being added here, filling the Colima VM
+# disk on the very first real act job run.
+.claude/worktrees/
+.claude/scheduled_tasks.lock
+
+# act (local GitHub Actions parity) — see .secrets.example
+.secrets
+.act-artifacts/
+.act-events/
