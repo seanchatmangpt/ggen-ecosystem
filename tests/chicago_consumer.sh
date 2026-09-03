@@ -34,7 +34,17 @@ exclude_out = sys.argv[2].lower() == "true"
 h = hashlib.sha256()
 for path in sorted(p for p in root.rglob("*") if p.is_file()):
     rel = path.relative_to(root).as_posix()
-    if exclude_out and (rel == "out" or rel.startswith("out/")):
+    if exclude_out and (
+        rel == "out"
+        or rel.startswith("out/")
+        # ggen's own receipt manager creates .ggen/keys/{signing,verifying}.key
+        # and .ggen/receipts/* on first run (see vendor/ggen's
+        # crates/ggen-cli/src/receipt_manager.rs). That directory is tool-owned
+        # generated state, not an authoritative consumer input, so it is
+        # excluded from the mutation check the same way out/ is.
+        or rel == ".ggen"
+        or rel.startswith(".ggen/")
+    ):
         continue
     h.update(rel.encode())
     h.update(b"\0")
