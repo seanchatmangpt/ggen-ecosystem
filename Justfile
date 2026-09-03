@@ -215,8 +215,21 @@ act-governance: act-governance-event
 # that event name. Never hand-edit this file (see .github/copilot-instructions.md)
 # — its one upload-artifact step is an accepted, documented act-only failure
 # (Node18/WebCrypto "crypto is not defined"), everything before it is real coverage.
+#
+# marketplace_sha MUST be passed explicitly, matching the current
+# vendor/ggen-marketplace submodule pin (`git submodule status
+# vendor/ggen-marketplace`, also recorded in ecosystem.lock.toml) -- the
+# workflow's own default input value is a stale snapshot from whenever this
+# generated file was last regenerated, and the real-CI callers of this
+# reusable workflow (e.g. a release pipeline) always pass the current value
+# explicitly rather than relying on that default.
 act-sync:
-    act workflow_call -W .github/workflows/ggen-ecosystem-sync.yml {{act_flags}}
+    #!/usr/bin/env bash
+    set -euo pipefail
+    marketplace_sha="$(git submodule status vendor/ggen-marketplace | awk '{print substr($1,1,40)}' | tr -d '+- ')"
+    act workflow_call -W .github/workflows/ggen-ecosystem-sync.yml \
+      --input "marketplace_sha=$marketplace_sha" \
+      {{act_flags}}
 
 # Dry-run only by default.
 act-container-dryrun:
