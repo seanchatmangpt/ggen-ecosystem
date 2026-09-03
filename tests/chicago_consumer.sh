@@ -39,11 +39,15 @@ for path in sorted(p for p in root.rglob("*") if p.is_file()):
         or rel.startswith("out/")
         # ggen's own receipt manager creates .ggen/keys/{signing,verifying}.key
         # and .ggen/receipts/* on first run (see vendor/ggen's
-        # crates/ggen-cli/src/receipt_manager.rs). That directory is tool-owned
-        # generated state, not an authoritative consumer input, so it is
-        # excluded from the mutation check the same way out/ is.
+        # crates/ggen-cli/src/receipt_manager.rs), and the newer receipt-log
+        # sync path creates .ggen-v2/{receipt.json,receipt-log.jsonl} (see
+        # vendor/ggen's crates/ggen-engine/src/sync.rs). Both directories are
+        # tool-owned generated state, not an authoritative consumer input, so
+        # they are excluded from the mutation check the same way out/ is.
         or rel == ".ggen"
         or rel.startswith(".ggen/")
+        or rel == ".ggen-v2"
+        or rel.startswith(".ggen-v2/")
     ):
         continue
     h.update(rel.encode())
