@@ -1,0 +1,99 @@
+@prefix macro: <https://ggen.dev/ecosystem/macro#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# Macro-layer production law. This graph defines control semantics; concrete
+# repository inventory lives once in governor.toml and is bound into each receipt.
+
+macro:GitHubMacroGovernor
+    a macro:ControlPlane ;
+    macro:selectionPolicy macro:NewestUnresolvedFirst ;
+    macro:preservesOlderUnsupersededOptions true ;
+    macro:requiresExactSubject true ;
+    macro:requiresAuthorityEnvelope true ;
+    macro:requiresReceipt true ;
+    macro:decisionBudget 25 ;
+    macro:actuationBudget 3 ;
+    macro:prohibitedTerminalState macro:AskNamedOperatorWhatNext .
+
+macro:NewestUnresolvedFirst
+    a macro:SelectionPolicy ;
+    macro:orderingKey macro:UpdatedAt ;
+    macro:direction macro:Descending ;
+    macro:tieBreak macro:RepositoryThenIdentity ;
+    macro:continuesPast macro:BlockedAuthority, macro:IdempotentNoop .
+
+macro:Observation
+    a macro:Phase ;
+    macro:mayActuate false .
+
+macro:Selection
+    a macro:Phase ;
+    macro:mayActuate false ;
+    macro:requires macro:Observation ;
+    macro:budgetUnit macro:Decision .
+
+macro:Construction
+    a macro:Phase ;
+    macro:mayActuate false ;
+    macro:requires macro:Selection .
+
+macro:Execution
+    a macro:Phase ;
+    macro:mayActuate true ;
+    macro:requires macro:Construction, macro:AuthorityEnvelope ;
+    macro:budgetUnit macro:AppliedActuation .
+
+macro:Verification
+    a macro:Phase ;
+    macro:mayActuate false ;
+    macro:requires macro:Execution .
+
+macro:Receipt
+    a macro:Phase ;
+    macro:mayActuate false ;
+    macro:requires macro:Verification .
+
+macro:BlockedAuthority
+    a macro:AndonObservation ;
+    macro:consumesActuationBudget false ;
+    macro:preservesFrontierProgress true .
+
+macro:IdempotentNoop
+    a macro:Observation ;
+    macro:consumesActuationBudget false ;
+    macro:preservesFrontierProgress true .
+
+macro:AppliedActuation
+    a macro:ProductionTransition ;
+    macro:consumesActuationBudget true .
+
+macro:WorkflowTimeout
+    a macro:TransientCandidate ;
+    macro:automaticRetryBudget 1 .
+
+macro:WorkflowFailure
+    a macro:Abnormality ;
+    macro:countermeasure macro:ManufactureRepairDemand .
+
+macro:CapabilityDemand
+    a macro:PullSignal ;
+    macro:countermeasure macro:DelegateBoundedWorker .
+
+macro:CopilotAgentTask
+    a macro:OptionalWorker ;
+    macro:requiresUserScopedToken true ;
+    macro:mayCreatePullRequest true ;
+    macro:doesNotGainMergeAuthority true .
+
+macro:CrossRepositoryMutation
+    a macro:Actuation ;
+    macro:requires macro:CrossRepositoryToken, macro:AuthorityEnvelope, macro:Receipt .
+
+macro:PullRequestMerge
+    a macro:Actuation ;
+    macro:notImplementedBy macro:GitHubMacroGovernor ;
+    macro:reason "Merge remains behind repository-local exact-head Chicago/governance courts until a dedicated macro merge contract is admitted." .
+
+macro:AskNamedOperatorWhatNext
+    a macro:ProhibitedTerminalState .

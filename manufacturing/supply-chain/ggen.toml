@@ -1,0 +1,11 @@
+[project]
+name = "ggen-ecosystem-supply-chain-evidence"
+
+[ontology]
+source = "ontology.ttl"
+
+[packs]
+supply-chain-evidence = { git = "https://github.com/seanchatmangpt/ggen-marketplace.git", version = "e54a1a44bf572bc1d7cf79ddd51d2cc478202d33", subdir = "packs/supply-chain-evidence-pack" }
+
+[templates]
+dir = "templates"

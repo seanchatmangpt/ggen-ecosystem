@@ -1,0 +1,19 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Shard 11 -- post-audit census delta (2026-08-29 local / 2026-08-30T01:04Z GitHub).
+# Repositories created AFTER the 2026-08-29 local-project-audit enumeration (shards
+# 05-10) and therefore absent from it. Verified individually via
+# `gh api repos/seanchatmangpt/<name>` (visibility=public, fork=false, archived=false).
+# Each entry is an observation only (see docs/REPOSITORY-CENSUS.md); it grants no
+# dependency, capability, profile, or actuation authority by itself.
+
+eco:repo-candidate-beam4pm a eco:RepositoryCandidate, prov:Entity ;
+    dcterms:identifier "seanchatmangpt/beam4pm" ;
+    eco:sourceUrl "https://github.com/seanchatmangpt/beam4pm" ;
+    eco:censusStanding "CANDIDATE" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; created-2026-08-30T01:04Z after shard-05..10 enumeration; first ggen-only manufactured product proof (consumes vendor/ggen-marketplace beam4pm-process-model-pack)" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
+    eco:publicProjection true .

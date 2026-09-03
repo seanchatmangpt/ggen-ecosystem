@@ -1,0 +1,33 @@
+== ggen-ecosystem benchmark: 20 runs of `ggen sync run --dry-run` ==
+{
+  "benchmark": "ggen_sync_run_dry_run_wall_clock_ms",
+  "runs": 20,
+  "min_ms": 46,
+  "max_ms": 50,
+  "mean_ms": 47.6,
+  "p50_ms": 48,
+  "p95_ms": 49,
+  "raw_ms": [
+    46,
+    46,
+    46,
+    47,
+    47,
+    47,
+    47,
+    47,
+    48,
+    48,
+    48,
+    48,
+    48,
+    48,
+    48,
+    48,
+    48,
+    48,
+    49,
+    50
+  ]
+}
+== done ==

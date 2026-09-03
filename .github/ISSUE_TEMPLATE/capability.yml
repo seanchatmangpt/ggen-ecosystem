@@ -1,0 +1,49 @@
+name: Capability demand
+description: Pull a new capability through the autonomous manufacture system.
+title: "[capability] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is a manufacturing pull signal. The macro governor admits authorized capability demands newest-first while preserving older unsuperseded options.
+  - type: dropdown
+    id: authority
+    attributes:
+      label: Authority
+      description: Authority envelope for this demand.
+      options:
+        - implementation
+        - research-only
+        - proposal-only
+    validations:
+      required: true
+  - type: textarea
+    id: capability
+    attributes:
+      label: Capability
+      description: State the observable capability to manufacture.
+      placeholder: "A downstream consumer can..."
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints / invariants
+      description: Exact authority, safety, compatibility, source-ownership, or architecture constraints.
+    validations:
+      required: false
+  - type: textarea
+    id: consequence
+    attributes:
+      label: Required consequence
+      description: What real execution must be observed before this can be considered ALIVE?
+    validations:
+      required: true
+  - type: textarea
+    id: falsifier
+    attributes:
+      label: Falsifier
+      description: What observation would prove the proposed capability is not standing?
+    validations:
+      required: true

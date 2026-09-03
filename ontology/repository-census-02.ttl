@@ -1,12 +1,15 @@
 @prefix eco: <https://ggen.dev/ecosystem#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 eco:repo-candidate-diagram-design a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/diagram-design" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/diagram-design" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of cathrynlavery/diagram-design; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "cathrynlavery/diagram-design" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-castle a eco:RepositoryCandidate, prov:Entity ;
@@ -20,14 +23,18 @@ eco:repo-candidate-xaas a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/xaas" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/xaas" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of gilacost/engineering_elixir_applications; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "gilacost/engineering_elixir_applications" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-open-ontologies a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/open-ontologies" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/open-ontologies" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of fabio-rovai/open-ontologies; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "fabio-rovai/open-ontologies" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-unrdf a eco:RepositoryCandidate, prov:Entity ;
@@ -48,7 +55,9 @@ eco:repo-candidate-oxigraph a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/oxigraph" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/oxigraph" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of oxigraph/oxigraph; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "oxigraph/oxigraph" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-process-intelligence a eco:RepositoryCandidate, prov:Entity ;
@@ -69,7 +78,9 @@ eco:repo-candidate-ex4pm-plan a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/ex4pm-plan" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/ex4pm-plan" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of airbus/scikit-decide; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "airbus/scikit-decide" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-wasm4pm a eco:RepositoryCandidate, prov:Entity ;
@@ -90,7 +101,9 @@ eco:repo-candidate-pm4py a eco:RepositoryCandidate, prov:Entity ;
     dcterms:identifier "seanchatmangpt/pm4py" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/pm4py" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of process-intelligence-solutions/pm4py; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "process-intelligence-solutions/pm4py" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .
 
 eco:repo-candidate-pm4py-rs a eco:RepositoryCandidate, prov:Entity ;
@@ -118,5 +131,7 @@ eco:repo-candidate-planning-as-a-service a eco:RepositoryCandidate, prov:Entity 
     dcterms:identifier "seanchatmangpt/planning-as-a-service" ;
     eco:sourceUrl "https://github.com/seanchatmangpt/planning-as-a-service" ;
     eco:censusStanding "CANDIDATE" ;
-    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted" ;
+    eco:membershipBasis "observed-public-github-census; ecosystem-membership-not-admitted; verified-2026-08-29: public fork of AI-Planning/planning-as-a-service; excluded-from-authored-work-audit-population" ;
+    eco:forkOf "AI-Planning/planning-as-a-service" ;
+    eco:censusReverifiedDate "2026-08-29"^^xsd:date ;
     eco:publicProjection true .

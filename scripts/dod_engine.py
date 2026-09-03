@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import json
 import subprocess
-import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -34,7 +33,6 @@ def evaluate_live_dod() -> dict:
     total = len(gates)
     alive = sum(1 for g in gates if g["standing"] == "ALIVE")
     blocked = [g for g in gates if g["standing"] == "BLOCKED"]
-    partial = [g for g in gates if g["standing"] == "PARTIAL_ALIVE"]
 
     return {
         "subject": "seanchatmangpt/ggen-ecosystem@v26.8.28",

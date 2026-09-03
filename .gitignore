@@ -10,3 +10,5 @@ tests/.scratch-*/
 .stress-scratch/
 receipts/gymact-autonomics-ledger.sqlite3-shm
 receipts/gymact-autonomics-ledger.sqlite3-wal
+__pycache__/
+*.pyc

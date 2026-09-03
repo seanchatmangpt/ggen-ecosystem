@@ -1,0 +1,14 @@
+[project]
+name = "ggen-ecosystem-pragprog-tps"
+
+[ontology]
+source = "automatic-scope.ttl"
+
+[packs]
+pragprog = { path = "../vendor/ggen-marketplace/packs/pragmatic-programmer-sparql-pack" }
+
+[templates]
+dir = "templates"
+
+[law]
+reflexive = true

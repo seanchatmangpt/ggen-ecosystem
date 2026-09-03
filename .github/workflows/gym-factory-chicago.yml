@@ -1,0 +1,48 @@
+name: Gym Factory Chicago
+
+on:
+  pull_request:
+    paths:
+      - 'packs/gym-pack/**'
+      - 'tests/fixtures/customer-gym/**'
+      - 'scripts/test-gym-factory.sh'
+      - 'bin/ggen-ecosystem'
+      - '.github/workflows/gym-factory-chicago.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'packs/gym-pack/**'
+      - 'tests/fixtures/customer-gym/**'
+      - 'scripts/test-gym-factory.sh'
+      - 'bin/ggen-ecosystem'
+      - '.github/workflows/gym-factory-chicago.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-head-downstream-gym:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact subject
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Prove exact-head identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected='${{ github.event.pull_request.head.sha || github.sha }}'
+          actual="$(git rev-parse HEAD)"
+          test "$actual" = "$expected"
+          echo "EXACT_HEAD_ALIVE $actual"
+
+      - name: Manufacture, compile, replay, mutate, and falsify
+        shell: bash
+        env:
+          GGEN_ECOSYSTEM_CACHE: ${{ runner.temp }}/ggen-ecosystem-cache
+        run: ./scripts/test-gym-factory.sh

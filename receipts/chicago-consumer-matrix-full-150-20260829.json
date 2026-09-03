@@ -1,0 +1,1656 @@
+{
+  "receipts": [
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "12ac480af0cd5facc3c5973e473683a373ceda3c2b95736416525c44599e1a7d",
+      "scenario": "shape-identity",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "566ae3f2d3710fd8866c2b415bd5a354dbc3819b9888009e9eaa62c20befa97a",
+      "scenario": "target-class",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "3c884a807c02c8e0d6500596618fdb64aa36fa0e991ae5d9d6924cb333bc2240",
+      "scenario": "property-path",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "ae5d95e80b9d7713b65291eafb7c3832e5b9ecde2360eaff8948c889d1c8366d",
+      "scenario": "shape-label",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "b5afe9374d5dec90eb2680251edf7274e66ec3a09f337ea850d1b7dfd1df84a9",
+      "scenario": "instance-identity",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "16e9b5e52b6376125caa0f240970c429969594a0f3949b0d8723a721d3f069b5",
+      "scenario": "name-literal",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "de74800d42f6bf1353fea2fc7a798d88f6d9d98e1fe1f10eef9087102e8d0d37",
+      "scenario": "integer-rank",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "774283a950f951d8a0748bc9293e31cf3d0e68c3986edb3f6c551dbd4c8ee936",
+      "scenario": "boolean-literal",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "8fb7bc70cc52632e2c3ee949a1e0ee6b4ff907a73bd04351430c299ac8bc16b4",
+      "scenario": "decimal-literal",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "ea1efca9aa1b6423debba553f34c9704342500df4fda7b6346e1edc30b4d11e5",
+      "scenario": "date-literal",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "74c6c3ef04798f37041ec36a07e4ff24e2e9f6ebce1f92bd228a93eeed439a2b",
+      "scenario": "distinct-type",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "36f8be6bd2ad63f5add72b9a9f9e8ef9116de58ca7454ea3cda021e75dc1d803",
+      "scenario": "descending-order",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "9136406cfe2aaf9e9521305364260ee28af6ce724fe41c3e0f298277c02a9fdd",
+      "scenario": "equality-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "54903cc1326506e6b642f1e9b26ec42e2e9d53378e195e0ac23c07af92c4dba9",
+      "scenario": "numeric-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "cf2ef6a7665033d3f8eff8162a645d053c3119716a22e1db3bdedc9147edfbd4",
+      "scenario": "optional-label",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "4610a35e20bb75f2e2536af4792f349b91d91640f2b0dc5c80b40a7b37d89ab0",
+      "scenario": "string-cast",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "5a6a2ac3d8a5898a1758e41fe70660bf9b0ad5326c99e62dedc7d757b73e1fc3",
+      "scenario": "concat-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "727c27d954c99bd26851cb968b753874eac4b37ebe2b6e581f1785928539a93c",
+      "scenario": "uppercase-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "0420db795c379ac156c413d2c19f07e70144945ad90811ed924e29efa4e34e8f",
+      "scenario": "lowercase-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "37eac5ae1e5786f6949a88b14d43f4cbc53672dcad6e6d01825a3beeb9faac29",
+      "scenario": "string-length",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "4f09a2f915b49629348ea34893048dcc05a94f346689a22d74eca4f7a1964bc0",
+      "scenario": "contains-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "7dadfff2db3ef4a6ce4ab69836f7c8edb72fadc5bcbdc90b50f7294e154543d7",
+      "scenario": "starts-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "96cfb7e3cb9ece73224b79ac9e7e14d7036b317f4f13a04655d90ca017cd0a90",
+      "scenario": "ends-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "33e7320f9ade390898556377b2b9a448d0048254bfc6c00f0064177720534756",
+      "scenario": "substring-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "bd4e709b99f83ecab9ed6ba957621c289f016dc78e6e20e1aa4d985318a8a795",
+      "scenario": "replace-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "20429c64b37068e8ae39326d986df9e7e72cf7ba4dc859d9ba3f6a589525eac0",
+      "scenario": "coalesce-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "a0ecfc141cc57ec3825d5a05cad1324d41259abfcfab45f9d1958accc8059952",
+      "scenario": "if-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "a9df72b221dd2270385f36dc49ee0810dfcaf267da7ad5c244c8cb94afa46772",
+      "scenario": "datatype-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "018ff057d264bebefc73d41ea81ff98d05f4f7e962937bce8ad387cb1a71b3d6",
+      "scenario": "iri-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "3b394dd98cbbcf4cae9dbc1875f7835ce535123a2784a35ad6a5e8ea61774d76",
+      "scenario": "literal-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "87124833ae2896efc3664539618701bfb3bea2b4b3c642485c5318cc1ec1470d",
+      "scenario": "values-admission",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "753791ed014ca00225f1422ef9ced642d8289dc818d300a47484b0e66af62b83",
+      "scenario": "union-branches",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "04c81832859a9a8814fadeef436171832fc4f54c00b3e3109b9f3a8a9ad084bb",
+      "scenario": "exists-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "87030bc5f49fd686e6909ed040594618ded32c7a559d90cb8f6036c510fc1d40",
+      "scenario": "not-exists-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "0c088a42ec27d5d78826e8b0d172310b168410d7ddac7b40966c62ca1def527c",
+      "scenario": "count-aggregate",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "5dcf08b06c3a48bed9fe64fd8e340c4726e0e99e0650d32c42006497a57bdbab",
+      "scenario": "minimum-aggregate",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "50e2d871eca7054d04a03bde8a6d29166a07fb0eff2afee0514fbc78ed7838fb",
+      "scenario": "maximum-aggregate",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "48576282fbd50a95e6300f6f5ffdd8435c79bbcb1030b2bcf696396347c3e6c4",
+      "scenario": "sum-aggregate",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "cf8ac0d4d435a06b9eb259be816c1e7046cd7465bc4768580f3ff3877537c5b5",
+      "scenario": "average-aggregate",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "b06bddf100ee19855d12c7625210fa0bb11e346d3fe0986449ee7f842a3b5694",
+      "scenario": "group-concat",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "a5467112f71aee65de5b795cf9caeee2887a95e37d967d8f1f23e63f15e5ec01",
+      "scenario": "group-by-type",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "c532d7216bf6d2daf1c484bce95ba7ded925b699eaf0c9540b45eafd6edfbf6e",
+      "scenario": "limit-window",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "5178e2b6896b5112fa44133744c5bbe9e1e3e12aa82b2cf065fcb8a103dc8d04",
+      "scenario": "offset-window",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "ece91cbbfcf13b15ebb4edad7faa6c84c70a7f938a7910a194804e5f448dc6b6",
+      "scenario": "regex-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "a242f41361bd288939fa6bd2d5cbda8b81c1638bbccb4dd09dd2d66138fd76d9",
+      "scenario": "true-boolean-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "d87bb82d80c2c6112e8959be1bdc0720c1e56e7711d6160244b424d23b58a309",
+      "scenario": "decimal-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "0eec8b3c87358afa3f2bbb9fbef9b596f507e475e44bd611fe1381ea46719529",
+      "scenario": "date-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "f4638d33750fd35f2eb20b6c40459b86020ccee4f39db0b1d24e97107b8638ab",
+      "scenario": "target-class-join",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "9c2e0a612469ecb7ee40dac85a499302b02425f663579a8f3f1bb247597c0c4e",
+      "scenario": "blank-node-property",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "2cddf014190dd38a800126f11ceb5f0ea5168c411ee67ffca78052331f32b218",
+      "scenario": "predicate-inventory",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "99cd933b9a2b0144eedafaadf3b49b5a8a9887333a632915b6524ef1b43c1759",
+      "scenario": "not-equal-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "4cf1cb644cd2b64c0aec4df59b7eca48a0967c48155249b9283e22802fad0117",
+      "scenario": "less-than-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "6682b6fda44c8d130a6350adfc4b88fdec7bcb83e173a7f67e1630f7a0f6503e",
+      "scenario": "less-or-equal-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "988dfcdfeb1d09698077de977b3fe8c963c45b8f2ff5943d00239d12139f56d6",
+      "scenario": "greater-or-equal-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "790151bd61890297cbc08e0132a5fb32bfe93b15e0448565bedf24a9efa08ef1",
+      "scenario": "in-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "83d760d40641d4587210c7a900c4a5f41347131d4350f618f9c918ba639554e3",
+      "scenario": "not-in-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "0136f5f1127746612f2638a5b6d9ae8551117399946351b2124deaca00fbe59b",
+      "scenario": "conjunction-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "7e39258123fc6996ff528edbc12c811d074be185b6d85ff8e2d667e3f14cf5c9",
+      "scenario": "disjunction-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "b870133c090eb4c9d0701a779fcf5745b880a40c653dca838660634b8537068e",
+      "scenario": "negation-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "5c4bb2568e7e085f34ebed4454fabe1b6a52b26caab7bbe39d26c2ae4487878d",
+      "scenario": "bound-optional",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "e39fd625943365277894ae71e4ad016d5a00fc4ef50ec4fa336ad08d46e608ae",
+      "scenario": "same-term-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "4c39dcfecffc46b279ec8769f36339306d774b7a2edd1cc6edbf0aa9c9d8bad8",
+      "scenario": "numeric-type-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "b2f63ff0ac5ea5ee8aabcfd8db7460d5b021a1c11aacbc8b07c205e00a410be4",
+      "scenario": "language-tag",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "9ebc9668e45b42dab5d7da7dc735b45cc29fcd8f7fb75007124f2cfee327d6a4",
+      "scenario": "language-match",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "f1fb68f09b97e3a56133d6c5f3c9d96a86256d5d6ca7cc8b9b844953960e547c",
+      "scenario": "string-before",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "01a3c2ab07f1dbb58033937b85849aac731ec00bda439a976a97c19fd6888031",
+      "scenario": "string-after",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "b79f0fbf3e46866ccfdc9afdfd71cc188166c759e321b49f8609cbed9ede2cc9",
+      "scenario": "encode-for-uri",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "f8baf60e87cf97cc5eec49a0e1b6eb24f7ab630772640daa7a659db6eca84f15",
+      "scenario": "absolute-value",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "94fe5c2ea72b917efcb271f4eccba48de053f1967479894fdabbacd592fcc608",
+      "scenario": "ceiling-decimal",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "9bff1f27d2679ed190fc5978588815cfd78e80b29757c59949ef18e372db242d",
+      "scenario": "floor-decimal",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "8c761fbd4419ff591e5c10b31f920f39cb3635363afbdc117e0e19aec926eecb",
+      "scenario": "round-decimal",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "41ef8217c045fbfd769e4c57a229054b6a7eb3d6a90846e3b85353119ba79701",
+      "scenario": "addition-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "9b64a1aa13443cd981009884bb3f77845948136bbb50b545a88e1770a61ab473",
+      "scenario": "subtraction-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "a0d0c78bbf1826bb07e92d2a9eb07c9716c4d5f9f6034010ef19ce2c9ffc6019",
+      "scenario": "multiplication-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "663c96cada8cdda6d6b4120b2972f5d09c016a511622bedd36667a828cdaea95",
+      "scenario": "division-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "2ea828454b1319f447cbf5b8d16ea344661889cc9ad91dd302545df66cc6bb08",
+      "scenario": "decimal-cast",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "f6e7708dd56edf7a0581d4ea1f405d879dbecd9f1029ed4bc108292c2ff1a47b",
+      "scenario": "integer-cast",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "a8df8a93ef88d96fc95f386b725a0eadb06c4f1aca5499184fc7424ef3cd5de1",
+      "scenario": "boolean-string-cast",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "c36a689ac17c791b56e79be4951a2d5e16ae3c9bf9cecbf78d6c92669edec3f7",
+      "scenario": "md5-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "1c6af927591cfd9efe1132765990b222b6e1c1a14c7127536aede9aa6e64e8ed",
+      "scenario": "sha1-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "90c7223e2be767c87e13a7c23c051b4100bb6cab7d8d9f5830166aaff6d51959",
+      "scenario": "sha256-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "cb38e2f9edaa390a17932e352cb544df49e12f62a2c7010c3262ec153caaf3cf",
+      "scenario": "sha384-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "04673b0bf17b196b034af5a827ccaa157297e301a2907a1fd06eaae4759a8a49",
+      "scenario": "sha512-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "5b6367aaaefc3b91df0cfc9c4663546f61212076c5ddb1fff0a37fa00d0d5aaf",
+      "scenario": "year-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "f7350af8d660312ce6a566c32d1b162559e3d00b7e505c5430cdaf2fff5efc6a",
+      "scenario": "month-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "86e453c3b26478a99215be809678513f9cea104ad695e219e1cb1cf25b69104c",
+      "scenario": "day-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "4346e018cb670dc97a5d2f7194d4dc8dc227ba41ce6a897f9db92534998d79a1",
+      "scenario": "distinct-count",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "dd4e1de57fda0150af88296b981a01550bc60a7eb9cfd724f681f82a6388d74b",
+      "scenario": "grouped-having",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "0c1d2cc012d58df773d5938d4efeab3f561ac9a4e67e0a0b1dca46dec8398d3d",
+      "scenario": "nested-subquery",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "68a1605deaddf2991c37fac551cdc581b82b7f44f0971f824795fc72dc55502a",
+      "scenario": "minus-pattern",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "37bc8f9b7cfd1d93bdc2d054419e0d3080b35b8283f9562205a81f049ae85850",
+      "scenario": "inverse-property-path",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "a903d66d80a1ef673dd837859089f67c24de420742b6e5944dacba92ba965dd3",
+      "scenario": "sequence-property-path",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "7443fa72f1cfb3479b175c7ac25ba1c7b16ec4b83363fb47c4f2091e0658909a",
+      "scenario": "alternative-property-path",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "f6e0b19811f2c9bc542969ffb6b38a4525ec840722fc70eb242da06bf76d07ac",
+      "scenario": "one-or-more-path",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "65f0d83025a86f0da50e5d84f1fe2fa3bf7bb8742497f27226315edd71635e0f",
+      "scenario": "zero-or-more-path",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "44d54b247008a657dd297ec611e4705478f38213de8084095e129ecb96040348",
+      "scenario": "zero-or-one-path",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "576eaf6232d5b669c4f741c2b619ae9944d4e3f58699cd5368568799e311cf7d",
+      "scenario": "negated-property-set",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "0045b2565881c36e297f6a6f32927d2a75caf23c94a79999457b4d11182131a3",
+      "scenario": "inline-values-pairs",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "c04738e07cf8c265129ae38502d26bc2c4b3d89218b3429ef3a420959e43cea6",
+      "scenario": "select-expression-alias",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "aaa0031b09723fa343a336eb0528e17bea03551f85c65ea08c9ce62c83da91a3",
+      "scenario": "order-by-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "58f48b82dbe0ee70774c314e9c4c135327799c8b6ac826dfbd067a9337724139",
+      "scenario": "strdt-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "033d9d58955c86b4d4ab40bb7cdfad71934cff25382d6d6bf1b6274d204c6ba6",
+      "scenario": "strlang-expression",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "05ed52b6a88abe5ecc5a79adf5d955cbfcdc5fdcac874b9fa2e3dff89f8020e3",
+      "scenario": "iri-construction",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "5da7a9323bd4c0e9cb52e81a41dd0c81ef3b57a4ce1b8dbc215e5be744763566",
+      "scenario": "uri-construction",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "0ebfc645dcf6a80dafd07cebfe1576c80cb4358b8d79f27ef090fc69dc30b95f",
+      "scenario": "blank-object-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "8d2396faca4f2de820526090a8de2a24a81d3bf2d4d0f700eeb05dfea10f700f",
+      "scenario": "uri-subject-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "d8945b674f209f809a87c70189060d9a70b2d84128caead336418d81b4b1a0a2",
+      "scenario": "unbound-optional-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "1f9d295f51dc65bfc1e53cc5d8c3878c97993a4ee86fd59ea8a15cf1a42f5572",
+      "scenario": "coalesce-three-way",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "95a133c84216ad91eba2231dd5fa9da0d5fea2ef9b755429f3e227369a0987b4",
+      "scenario": "if-false-branch",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "9cf06c6a06aedad3d891ab72061ddfc0beceb31fd0342f6843785e7adcfa1cd8",
+      "scenario": "substring-tail",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "ca3e1733004dd648008199a09f97c650cc009c68b72eb91a4ae0ffbf83c35c0b",
+      "scenario": "replace-case-insensitive",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "e97fd87ecb8728492c3a2b659d6776d4553ff081f09a076269bc06a489f1a1ca",
+      "scenario": "regex-case-insensitive",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "1edd77e9adef66ae53ec51796cfe071192b33c8fd64494048a6079f67829bf5d",
+      "scenario": "concat-three-part",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "a84aeb21f7f172bc53ce64d98e27327d747e54577944a7e02d534406b644a81f",
+      "scenario": "string-length-filter",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "9b369c5ab25236ba25c08f614a55b9cbdccc080da9c348d1098752e9ba0fa2b9",
+      "scenario": "negated-contains",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "d1f2e5728b596e8eaa0a759ad5281004e36bf44f12e5c632d5d01139265860ea",
+      "scenario": "negated-starts",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "ee0118a23d556cbec3c9a049a280bdf7ddbb47eb10827914a69a3ca78cc962eb",
+      "scenario": "negated-ends",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "6c634a8a0eb70021ff741cf7377d22c0bc762739d96ffbfc65917364aa796337",
+      "scenario": "numeric-range",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "53d9b0355e1352e9971032a3f9995d7395128981321b8b1b1c9fa04692187009",
+      "scenario": "boolean-disjunction",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "ef47a3eec0ea2b5f0b56cd1124a44f571b755c711a294158f8c56b5474552f92",
+      "scenario": "arithmetic-precedence",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "4b850f5bb6168622e3e7c5ef00728566ee3d657b3251500762c92748f2ffcb84",
+      "scenario": "decimal-addition",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "657595b41765f6ebeb12291c8a3c95b177653f85da466e3fe3666b193e415882",
+      "scenario": "decimal-subtraction",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "70182c403fc431289ac0c085bd39256f8275efd19dbc6c910ccc3af9d5475af9",
+      "scenario": "decimal-multiplication",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "84908d06206932189dde95e37a8da129d03717945350dbd1b39baf84eb53f38f",
+      "scenario": "decimal-division",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "66c074e7f72a7d7421596686c678f5b5f86b4315c2b9b3339dab7a774d9251c5",
+      "scenario": "string-integer-cast",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "e97c35df77b273eab0413492f74e0bacc4caee248cbbad51e88eeb262f5912b7",
+      "scenario": "string-decimal-cast",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "7ad1b663054a01a39af7392e6625559581eef265e6b880d614a075551c270b75",
+      "scenario": "string-boolean-cast",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "bd888ebdf5a72bc09cbf1d5a65c757845c64b5e4637733354e9ea87fdbc862dc",
+      "scenario": "integer-boolean-cast",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "2e0e0d9c97c57638ca50bf174e1f0aed6fa9e5ce97b34e07ddbebba4cf2041e5",
+      "scenario": "integer-datatype",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "8bb38b73d06cd854177d0fb231aa736a5320205d110fe2efecb9e7e081dd2557",
+      "scenario": "boolean-datatype",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "951c409a81a851079e0874e8c606911810e58122067bf5ea403352db0b1bad6f",
+      "scenario": "date-datatype",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "d1fa3bcd61d6e2b15c2d8950a2986bbf19606a22a45e39b4cdd12c26b059a974",
+      "scenario": "count-star",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "d7337a78ded23f9ec777adbf8b7694d9f2b5b2a10ec6a1515da83d2cbad7225d",
+      "scenario": "sum-distinct",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "e826dc70a831953805d181db9e182122ac340051ccf8536aa37614194810fd07",
+      "scenario": "average-distinct",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "bb8c76fea5e568a76aa509191f7352aaa4f1b0765411e790147cdeeecc4716f6",
+      "scenario": "minimum-name",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "6693905344ad6fa0f09bbf0ece0053ea2b248f019b3c379b9a9659b21c7e1cfe",
+      "scenario": "maximum-name",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "1e8984a9fe61fea6c310490ac1087f37f4a61267349756161f512e2c8b7da116",
+      "scenario": "grouped-count-boolean",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "71a8843e28a28cee16eb4bc5de93f436456b0e0b504d254796227747794654cb",
+      "scenario": "grouped-sum-boolean",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "41689d0778732492bdb681d4845191a0f4d22ee3755bf26f61c4b88b018ce4fd",
+      "scenario": "group-concat-distinct",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "50593a68ee8ae69bb0d620bcb54e46facedd1824f5732ffc62453dff5c3f869a",
+      "scenario": "sample-singleton",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "77b568ba67bf083a29c55e78039b6250b98c7047344c479f1ea514f4c666df5a",
+      "scenario": "having-sum",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "1927e282f5838baf44aa6bfbd680fadb3936a798e2fc99db4974d6371eb953cd",
+      "scenario": "limit-offset-window",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "f7ea9d7d960e7249fef24ccbde56c0ae38faa1f11a972dc0a8f04e75998ba154",
+      "scenario": "three-way-union",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "9a19e8682b8c07933679890c00dd3974c53843d5c0fa700e543601a1d23bfc41",
+      "scenario": "optional-coalesce",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "9d2218bf8f65076a410415d51b648ccef39d0805bb887e19c117b7eafd83be0e",
+      "scenario": "nested-aggregate-subquery",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "7cf38ee50037df4fdc341e004e740b86953446ad9751e6431f10f634d5b40f3a",
+      "scenario": "alternative-sequence-path",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "a0b9e2b8f0f45446ce72b138c4173c25dd266ff5d2c8a6ec0cd4f8adf57f7725",
+      "scenario": "peer-roundtrip-path",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "9e53e9c661b9e3c2e5684bbeb7b46d8698e89cee83930bd17f4dde38955c1148",
+      "scenario": "inverse-sequence-path",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "a04847e10e900617c2e2d3612badc6bb2a6fe10f467f6c6cde28c54439441884",
+      "scenario": "inline-bind-values",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    },
+    {
+      "command": "ggen sync run --format json-pretty",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "output_sha256": "e738f1c174d90d2c10b9a00bb497f26d28b354dda76d077a0b4e871a0d6500c5",
+      "scenario": "inline-arithmetic-values",
+      "second_generation_identity": true,
+      "standing": "ALIVE"
+    }
+  ],
+  "scenario_count": 150,
+  "standing": "ALIVE"
+}

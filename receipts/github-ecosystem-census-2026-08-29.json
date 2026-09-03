@@ -1,0 +1,115 @@
+{
+  "schema": "https://ggen.dev/receipts/github-ecosystem-census/v1",
+  "observation_date": "2026-08-29",
+  "owner_login": "seanchatmangpt",
+  "observation_scope": "all repositories owned by seanchatmangpt (local-project-audit pass)",
+  "public_catalog_predicate": "owner=seanchatmangpt AND visibility=public",
+  "audit_population_predicate": "owner=seanchatmangpt AND visibility=public AND fork=false AND archived=false",
+  "counts": {
+    "total_owned_repositories": 379,
+    "public_repositories": 301,
+    "protected_private_repositories": 78,
+    "audit_population": 134,
+    "previously_materialized_candidates": 66,
+    "constitutional_repositories": 3,
+    "newly_materialized_candidates": 87,
+    "previously_materialized_candidates_outside_audit_population": 22
+  },
+  "boundary_falsifiers": {
+    "owner_enumeration_page_size": 100,
+    "owner_nonempty_pages_zero_based": [0, 1, 2, 3],
+    "owner_first_empty_page_zero_based": 4,
+    "owner_last_present_item_zero_based": 378,
+    "owner_first_absent_item_zero_based": 379
+  },
+  "delta_from_2026_08_28_receipt": {
+    "total_owned_repositories": "+1 (378 -> 379)",
+    "public_repositories": "+1 (300 -> 301)",
+    "protected_private_repositories": "+0 (78 -> 78)"
+  },
+  "audit_method": [
+    "gh api 'user/repos?per_page=100&page=N&affiliation=owner' for N=1..5 (page 5 empty, confirming exhaustion)",
+    "filtered to private=false, fork=false, archived=false -- the real-work audit population distinct from the raw public-catalog cardinality",
+    "diffed against dcterms:identifier values already present in ontology/repositories.ttl and ontology/repository-census-01..04.ttl",
+    "gap materialized as eco:RepositoryCandidate individuals in new shards ontology/repository-census-05..10.ttl, identical predicate shape to the existing shards",
+    "full merged graph (ontology/repositories.ttl + repository-census-01..10.ttl) validated with `ggen graph validate --shapes admission/shapes.ttl`: 11 files, 1123 quads, shapes_conform=true on every file, zero duplicate dcterms:identifier values"
+  ],
+  "previously_materialized_candidates_outside_audit_population_list": [
+    "seanchatmangpt/A2A", "seanchatmangpt/aries", "seanchatmangpt/ash", "seanchatmangpt/ash_events",
+    "seanchatmangpt/ash_postgres", "seanchatmangpt/diagram-design", "seanchatmangpt/dogwood",
+    "seanchatmangpt/ex4pm-plan", "seanchatmangpt/gno", "seanchatmangpt/open-ontologies",
+    "seanchatmangpt/oxigraph", "seanchatmangpt/planning-as-a-service", "seanchatmangpt/pm4py",
+    "seanchatmangpt/PMAx-evaluation", "seanchatmangpt/POWL", "seanchatmangpt/reactor",
+    "seanchatmangpt/release-demos", "seanchatmangpt/semantica", "seanchatmangpt/SREGym",
+    "seanchatmangpt/tcps", "seanchatmangpt/weaver", "seanchatmangpt/xaas"
+  ],
+  "previously_materialized_candidates_outside_audit_population_note": "left admitted as-is (fix-forward: prior evidence is not removed); reverified per-repository below",
+  "reverification_2026_08_29": {
+    "method": "gh api repos/seanchatmangpt/<name> per repository (individual GET, not the list enumeration), reading private/fork/archived/parent.full_name directly",
+    "result": "all 22 confirmed real, public, non-archived forks of other owners' repositories (0 renamed/deleted/transferred/newly-private -- every lookup succeeded)",
+    "graph_update": "each of the 22 eco:RepositoryCandidate individuals kept eco:censusStanding \"CANDIDATE\" (required by admission/shapes.ttl RepositoryCandidateShape, and status is unchanged -- still an observed public repository) but gained eco:forkOf \"<upstream full_name>\" and eco:censusReverifiedDate \"2026-08-29\"^^xsd:date, plus an updated eco:membershipBasis noting the verified fork status and its exclusion from the authored-work audit population",
+    "post_update_validation": "ggen graph validate --shapes admission/shapes.ttl over all 11 files: files_checked=11, shapes_conform=true on every file; RepositoryCandidate count unchanged at 153; 0 duplicate dcterms:identifier values",
+    "fork_map": {
+      "seanchatmangpt/A2A": "a2aproject/A2A",
+      "seanchatmangpt/aries": "plaans/aries",
+      "seanchatmangpt/ash": "ash-project/ash",
+      "seanchatmangpt/ash_events": "ash-project/ash_events",
+      "seanchatmangpt/ash_postgres": "ash-project/ash_postgres",
+      "seanchatmangpt/diagram-design": "cathrynlavery/diagram-design",
+      "seanchatmangpt/dogwood": "dogwood-policy/dogwood",
+      "seanchatmangpt/ex4pm-plan": "airbus/scikit-decide",
+      "seanchatmangpt/gno": "rdf-elixir/gno",
+      "seanchatmangpt/open-ontologies": "fabio-rovai/open-ontologies",
+      "seanchatmangpt/oxigraph": "oxigraph/oxigraph",
+      "seanchatmangpt/planning-as-a-service": "AI-Planning/planning-as-a-service",
+      "seanchatmangpt/pm4py": "process-intelligence-solutions/pm4py",
+      "seanchatmangpt/PMAx-evaluation": "fit-process-mining/PMAx-evaluation",
+      "seanchatmangpt/POWL": "fit-process-mining/POWL",
+      "seanchatmangpt/reactor": "ash-project/reactor",
+      "seanchatmangpt/release-demos": "streamlit/release-demos",
+      "seanchatmangpt/semantica": "semantica-agi/semantica",
+      "seanchatmangpt/SREGym": "SREGym/SREGym",
+      "seanchatmangpt/tcps": "github/spec-kit",
+      "seanchatmangpt/weaver": "open-telemetry/weaver",
+      "seanchatmangpt/xaas": "gilacost/engineering_elixir_applications"
+    }
+  },
+  "privacy_fence": {
+    "private_identity_projection": false,
+    "private_partition_representation": "cardinality-only",
+    "prohibited_public_fields": [
+      "private repository name",
+      "private repository id",
+      "private repository url",
+      "private repository ref",
+      "private repository sha",
+      "private repository description",
+      "private repository size"
+    ]
+  },
+  "identity_policy": {
+    "durable_repository_identity": "GitHub repository ID",
+    "mutable_observations": [
+      "repository name",
+      "visibility",
+      "archived state",
+      "default branch",
+      "default branch head SHA"
+    ]
+  },
+  "semantic_boundaries": {
+    "owner_estate": "OBSERVED_SCOPE",
+    "public_catalog": "OBSERVED_SCOPE",
+    "audit_population_nodes": "CANDIDATE",
+    "admission": "RELATION_SCOPED_AND_EVIDENCE_REQUIRED",
+    "actuation_authority": "NONE_FROM_CENSUS"
+  },
+  "constitutional_public_repository_ids": {
+    "ggen": 1071971708,
+    "ggen-marketplace": 1328598648,
+    "ggen-ecosystem": 1349290571
+  },
+  "base_main_sha": "e21f80ee4a4924982f6dcff6e3d4929c49d56c4f",
+  "claim_ceiling": "REAL_GH_API_OWNER_ENUMERATION_PLUS_MECHANICAL_CANDIDATE_MATERIALIZATION_PLUS_SHACL_VALIDATION",
+  "standing": "ALIVE[LOCAL_PROJECT_AUDIT_CANDIDATE_MATERIALIZATION]"
+}

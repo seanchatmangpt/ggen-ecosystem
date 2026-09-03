@@ -1,0 +1,89 @@
+name: GGen Ecosystem Container Qualification
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - .gitmodules
+      - ecosystem.lock.toml
+      - "vendor/**"
+      - ".github/workflows/container-pr-qualification.yml"
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - .gitmodules
+      - ecosystem.lock.toml
+      - "vendor/**"
+      - ".github/workflows/container-pr-qualification.yml"
+
+permissions:
+  contents: read
+
+env:
+  SUBJECT_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qualify:
+    name: Qualify ${{ matrix.platform }} composed image
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            runner: ubuntu-24.04
+            arch: amd64
+            cache_scope: ggen-ecosystem-amd64
+          - platform: linux/arm64
+            runner: ubuntu-24.04-arm
+            arch: arm64
+            cache_scope: ggen-ecosystem-arm64
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 120
+    steps:
+      - name: Checkout exact subject with recursive submodules
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ env.SUBJECT_SHA }}
+          persist-credentials: false
+          submodules: recursive
+
+      - name: Prove exact subject identity
+        shell: bash
+        env:
+          EXPECTED_HEAD: ${{ env.SUBJECT_SHA }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          git submodule status --recursive
+          echo "EXACT_SUBJECT_ALIVE=$EXPECTED_HEAD"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+
+      - name: Build exact composed image without publishing
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          platforms: ${{ matrix.platform }}
+          load: true
+          push: false
+          provenance: false
+          tags: ggen-ecosystem-qualification:${{ matrix.arch }}
+          cache-from: type=gha,scope=${{ matrix.cache_scope }}
+
+      - name: Prove image architecture and runtime contents
+        shell: bash
+        env:
+          EXPECTED_ARCH: ${{ matrix.arch }}
+          IMAGE: ggen-ecosystem-qualification:${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          test "$(docker image inspect "$IMAGE" --format '{{.Architecture}}')" = "$EXPECTED_ARCH"
+          docker run --rm "$IMAGE" ggen --version
+          docker run --rm "$IMAGE" sh -eu -c 'test -x /usr/local/bin/ggen; test -d /opt/ggen-marketplace/packs; test "$(find /opt/ggen-marketplace/packs -mindepth 1 -maxdepth 1 -type d | wc -l)" -gt 0; test -d /opt/autofde-lab/src; test -f /opt/beam4pm/mix.exs; test -f /opt/beam4pm/rebar.config; test -d /opt/beam4pm/native; python3 -c "import rdflib, numpy, dill"'

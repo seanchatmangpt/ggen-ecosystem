@@ -107,6 +107,16 @@ ex:admit
     gha:envVar "MARKETPLACE_SHA: ${{ inputs.marketplace_sha }}" ;
     gha:envVar "GGEN_WORKING_DIRECTORY: ${{ inputs.working_directory }}" ;
     gha:runCommand """set -euo pipefail
+# Container-job reality on HOSTED runners (not reproduced by local `act`,
+# which maps UIDs differently): the workspace is checked out owned by the
+# host runner user while this step runs as the container's user, so every
+# bare `git` call dies with "fatal: detected dubious ownership" -- making
+# `$(git rev-parse HEAD)` expand to empty and the head-mismatch refusal
+# below fire spuriously on EVERY hosted run. Found by the first real
+# external caller (seanchatmangpt/beam4pm PR #22). Declaring the workspace
+# and its submodule safe is scoped to this job's ephemeral container HOME.
+git config --global --add safe.directory "$GITHUB_WORKSPACE"
+git config --global --add safe.directory "$GITHUB_WORKSPACE/vendor/ggen-marketplace"
 [[ "$(git rev-parse HEAD)" = "$CANDIDATE_SHA" ]] || { echo 'REFUSED[EXACT_HEAD_MISMATCH]' >&2; exit 2; }
 [[ "$MARKETPLACE_SHA" =~ ^[0-9a-f]{40}$ ]] || { echo 'REFUSED[INVALID_MARKETPLACE_SHA]' >&2; exit 2; }
 submodule_sha="$(git -C vendor/ggen-marketplace rev-parse HEAD)"
@@ -242,6 +252,24 @@ ex:enforce
   exit 1
 fi""" .
 
+ex:summarizeReceipt
+    a gha:Step ;
+    gha:inJob ex:construct ; gha:stepOrder 8 ;
+    gha:stepName "Summarize sync receipt to job summary" ;
+    gha:condition "always()" ;
+    gha:runCommand """{
+  echo "### GGen sync receipt"
+  echo
+  if [[ -f ggen.lock ]]; then
+    echo '```'
+    cat ggen.lock
+    echo '```'
+  else
+    echo "no ggen.lock found"
+  fi
+} >> "$GITHUB_STEP_SUMMARY"
+""" .
+
 # --- Composed container build + publish -----------------------------------------------------
 # Builds ghcr.io/seanchatmangpt/ggen-ecosystem from ./Dockerfile (real `ggen` binary built from
 # the vendor/ggen submodule + real vendor/ggen-marketplace/packs/ copied in). Pattern follows the
@@ -324,6 +352,23 @@ ex:containerAmd64BuildPush
     gha:withParam "context: ." ;
     gha:withParam "push: true" ;
     gha:withParam "platforms: linux/amd64" ;
+    # SBOM + SLSA provenance attestation (2026-08-29): docker/build-push-action@v6's
+    # real action.yml (verified at the pinned SHA 10e90e3645eae34f1e60eeb005ba3a3d33f178e8,
+    # https://github.com/docker/build-push-action/blob/10e90e3645eae34f1e60eeb005ba3a3d33f178e8/action.yml)
+    # declares `sbom` and `provenance` as native Bool/String inputs -- shorthand for
+    # --attest=type=sbom and --attest=type=provenance respectively. No custom
+    # attest-type wiring needed; the boolean with-params below are sufficient.
+    gha:withParam "sbom: true" ;
+    gha:withParam "provenance: true" ;
+    # Real cache fix (2026-08-29): GitHub-hosted runners are a fresh VM per
+    # job -- local BuildKit cache mounts never persist across separate
+    # workflow runs. cache-from/cache-to type=gha is the actual mechanism
+    # that persists build-layer cache (including this cargo build layer)
+    # across runs via GitHub's own Actions cache service. Scoped per
+    # architecture (amd64/arm64 build independently, different layer
+    # digests, must not share one cache key).
+    gha:withParam "cache-from: type=gha,scope=ggen-ecosystem-amd64" ;
+    gha:withParam "cache-to: type=gha,mode=max,scope=ggen-ecosystem-amd64" ;
     gha:withParam "tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-amd64" .
 
 ex:containerBuildArm64
@@ -369,8 +414,31 @@ ex:containerArm64BuildPush
     gha:withParam "context: ." ;
     gha:withParam "push: true" ;
     gha:withParam "platforms: linux/arm64" ;
+    # SBOM + SLSA provenance attestation (2026-08-29): same native `sbom`/`provenance`
+    # Bool/String inputs verified on the amd64 step above -- see that step's comment
+    # for the exact action.yml source citation.
+    gha:withParam "sbom: true" ;
+    gha:withParam "provenance: true" ;
+    gha:withParam "cache-from: type=gha,scope=ggen-ecosystem-arm64" ;
+    gha:withParam "cache-to: type=gha,mode=max,scope=ggen-ecosystem-arm64" ;
     gha:withParam "tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64" .
 
+# Real, Fortune-5-table-stake supply-chain step (2026-08-29): keyless container
+# signing via cosign + GitHub OIDC (sigstore). No long-lived signing key exists
+# anywhere in this repo or its secrets -- the runner's own OIDC identity token
+# (job permission `id-token: write`) is exchanged with Sigstore's public Fulcio
+# CA for a short-lived signing certificate, the signature is produced entirely
+# in-memory, and the resulting signature + certificate + transparency-log
+# inclusion proof are published to the public Rekor log and to the GHCR
+# registry alongside the image -- the real cosign-installer + `cosign sign
+# --yes <image>@<digest>` pattern documented at
+# https://github.com/sigstore/cosign-installer (README "Keyless Signing
+# Example with GitHub OIDC") and https://docs.sigstore.dev/cosign/signing/overview/,
+# verified against the action's real published action.yml/README before
+# pinning below (not assumed). `sigstore/cosign-installer` pinned to the exact
+# commit SHA of its real v4.1.2 tag, resolved via `git ls-remote --tags
+# https://github.com/sigstore/cosign-installer.git` on 2026-08-29 -- not a
+# floating tag, and not a version number invented without checking.
 ex:containerMerge
     a gha:Job ;
     gha:inWorkflow ex:containerWorkflow ;
@@ -380,10 +448,12 @@ ex:containerMerge
     gha:dependsOn ex:containerBuildAmd64 ;
     gha:dependsOn ex:containerBuildArm64 ;
     gha:jobPermissions """contents: read
-packages: write""" ;
+packages: write
+id-token: write
+security-events: write""" ;
     gha:jobExtra "name: Merge into one multi-arch manifest" ;
-    gha:evidenceEmitted "published multi-arch manifest list digest, real per-platform digests underneath" ;
-    gha:failureClassification "BUILD_BROKEN if manifest assembly fails" .
+    gha:evidenceEmitted "published multi-arch manifest list digest, real per-platform digests underneath, a keyless cosign signature (Fulcio cert + Rekor transparency-log entry) over that manifest-list digest, and a Trivy SARIF vulnerability report uploaded to GitHub code scanning" ;
+    gha:failureClassification "BUILD_BROKEN if manifest assembly fails; BUILD_BROKEN if keyless cosign signing fails" .
 
 ex:containerMergeLogin
     a gha:Step ;
@@ -407,3 +477,51 @@ docker buildx imagetools create \\
   "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}-arm64"
 docker buildx imagetools inspect "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}"
 """ .
+
+ex:containerMergeCosignInstall
+    a gha:Step ;
+    gha:inJob ex:containerMerge ; gha:stepOrder 3 ;
+    gha:stepName "Install cosign" ;
+    gha:usesAction "sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2" .
+
+ex:containerMergeCosignSign
+    a gha:Step ;
+    gha:inJob ex:containerMerge ; gha:stepOrder 4 ;
+    gha:stepName "Sign multi-arch manifest keylessly (cosign + GitHub OIDC)" ;
+    gha:runCommand """set -euo pipefail
+TAG="${{ inputs.image_tag || github.ref_name }}"
+IMAGE="ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}"
+DIGEST=$(docker buildx imagetools inspect "${IMAGE}" --format "{{json .Manifest}}" | jq -r '.digest')
+echo "Signing ${IMAGE}@${DIGEST} keylessly via GitHub OIDC (no signing key in this repo)"
+cosign sign --yes "${IMAGE}@${DIGEST}"
+""" .
+
+# Real container CVE scanning (2026-08-29): CodeQL (see .github/workflows/codeql.yml, hand-
+# authored, outside this ggen-generated rail) scans SOURCE only -- it never inspects the
+# published image's OS packages/dependency layers. Trivy against the just-published multi-arch
+# manifest closes that orthogonal gap: known-CVE table stakes for a Fortune-5 supply chain,
+# scanning the exact artifact that ships, not the source that built it. Ref resolved for real,
+# not assumed: `git ls-remote --tags https://github.com/aquasecurity/trivy-action.git` ->
+# v0.36.0 tag dereferences to commit ed142fd0673e97e23eac54620cfb913e5ce36c25 (confirmed against
+# the real GitHub release page, commit SHA ed142fd0673e97e23eac54620cfb913e5ce36c25, and its real
+# action.yaml at that commit exposing image-ref/format/output inputs). SARIF upload target
+# likewise resolved via `git ls-remote --tags https://github.com/github/codeql-action.git` ->
+# v4.37.9 dereferences to commit cdf488f595d80d6e07e03d4674febd5ab45fa938, whose real
+# upload-sarif/action.yml at that commit exposes the sarif_file input used below. Ordered after
+# cosign signing (stepOrder 5-6) so scanning covers the exact signed artifact.
+ex:containerMergeTrivyScan
+    a gha:Step ;
+    gha:inJob ex:containerMerge ; gha:stepOrder 5 ;
+    gha:stepName "Run Trivy vulnerability scanner on published image" ;
+    gha:usesAction "aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0" ;
+    gha:withParam "image-ref: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}" ;
+    gha:withParam "format: sarif" ;
+    gha:withParam "output: trivy-results.sarif" .
+
+ex:containerMergeSarifUpload
+    a gha:Step ;
+    gha:inJob ex:containerMerge ; gha:stepOrder 6 ;
+    gha:stepName "Upload Trivy scan results to GitHub code scanning" ;
+    gha:condition "always()" ;
+    gha:usesAction "github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9" ;
+    gha:withParam "sarif_file: trivy-results.sarif" .

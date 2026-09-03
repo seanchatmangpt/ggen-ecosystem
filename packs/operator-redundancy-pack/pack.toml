@@ -1,0 +1,4 @@
+[pack]
+name = "operator-redundancy-pack"
+version = "26.9.1"
+description = "Constitutional/operational separation court: operational workflows must run without a named human, emit receipts, verify consequences, recover autonomically, and manufacture missing capabilities before resuming."

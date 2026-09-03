@@ -1,0 +1,143 @@
+name: Container Freshness
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/container-freshness.yml"
+      - ".github/workflows/ggen-ecosystem-container.yml"
+      - "Dockerfile"
+      - "scripts/crown-submodules.py"
+  push:
+    branches: [main]
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ggen-container-freshness
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout exact subject
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Prove exact-head and publisher contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          grep -F 'name: GGen Ecosystem Container Build & Publish' .github/workflows/ggen-ecosystem-container.yml
+          grep -F 'workflow_dispatch:' .github/workflows/ggen-ecosystem-container.yml
+          grep -F 'ghcr.io/seanchatmangpt/ggen-ecosystem:latest' .github/workflows/ggen-ecosystem-container.yml
+          docker buildx build --check -f Dockerfile .
+          echo CONTAINER_FRESHNESS_CONTRACT_ALIVE
+
+  publish-current-crown:
+    if: github.event_name != 'pull_request'
+    needs: validate-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    permissions:
+      actions: write
+      contents: read
+      packages: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout exact default-branch crown
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Dispatch canonical multi-arch publisher
+        id: dispatch
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE_SHA="$(git rev-parse HEAD)"
+          test "$SOURCE_SHA" = "$GITHUB_SHA"
+          TAG="sha-${SOURCE_SHA}"
+          STARTED="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          gh workflow run ggen-ecosystem-container.yml --ref main -f image_tag="$TAG"
+          RUN_ID=""
+          for _ in $(seq 1 30); do
+            RUN_ID="$(gh run list --workflow ggen-ecosystem-container.yml --branch main --event workflow_dispatch --limit 30 --json databaseId,headSha,createdAt \
+              | jq -r --arg sha "$SOURCE_SHA" --arg started "$STARTED" '.[] | select(.headSha == $sha and .createdAt >= $started) | .databaseId' | head -1)"
+            [[ -n "$RUN_ID" ]] && break
+            sleep 2
+          done
+          [[ -n "$RUN_ID" ]] || { echo 'BUILD_BROKEN[PUBLISH_RUN_NOT_OBSERVED]' >&2; exit 1; }
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "source_sha=$SOURCE_SHA" >> "$GITHUB_OUTPUT"
+          echo "PUBLISH_CHILD_RUN $RUN_ID $TAG"
+
+      - name: Wait for canonical publisher standing
+        shell: bash
+        run: gh run watch "${{ steps.dispatch.outputs.run_id }}" --exit-status --interval 10
+
+      - name: Pull and execute published crown
+        id: smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          IMAGE="ghcr.io/seanchatmangpt/ggen-ecosystem:${{ steps.dispatch.outputs.tag }}"
+          docker pull "$IMAGE"
+          docker run --rm "$IMAGE" ggen --help >/dev/null
+          docker run --rm "$IMAGE" bash -lc 'test -d /opt/ggen-marketplace/packs && test -f /opt/beam4pm/mix.exs && test -d /opt/autofde-lab/src'
+          DIGEST="$(docker inspect --format='{{index .RepoDigests 0}}' "$IMAGE" | sed 's/.*@//')"
+          [[ "$DIGEST" =~ ^sha256:[0-9a-f]{64}$ ]]
+          echo "digest=$DIGEST" >> "$GITHUB_OUTPUT"
+          echo "CONTAINER_CROWN_SMOKE_ALIVE $IMAGE@$DIGEST"
+
+      - name: Bind publication receipt
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ steps.dispatch.outputs.source_sha }}
+          TAG: ${{ steps.dispatch.outputs.tag }}
+          DIGEST: ${{ steps.smoke.outputs.digest }}
+          CHILD_RUN_ID: ${{ steps.dispatch.outputs.run_id }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/container-freshness"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          receipt = {
+              "schema": "https://ggen.dev/receipts/container-freshness/v1",
+              "repository": os.environ["GITHUB_REPOSITORY"],
+              "source_sha": os.environ["SOURCE_SHA"],
+              "image": "ghcr.io/seanchatmangpt/ggen-ecosystem",
+              "tag": os.environ["TAG"],
+              "digest": os.environ["DIGEST"],
+              "publisher_run_id": os.environ["CHILD_RUN_ID"],
+              "freshness_run_id": os.environ["GITHUB_RUN_ID"],
+              "standing": "ALIVE",
+          }
+          p = Path(os.environ["RUNNER_TEMP"]) / "container-freshness" / "receipt.json"
+          p.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
+          print(json.dumps(receipt, sort_keys=True))
+          PY
+
+      - name: Upload publication receipt
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: ggen-container-freshness-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/container-freshness/
+          retention-days: 30
+          if-no-files-found: error

@@ -45,6 +45,10 @@ jobs:
         uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
         with:
           tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-amd64
+          cache-to: type=gha,mode=max,scope=ggen-ecosystem-amd64
+          cache-from: type=gha,scope=ggen-ecosystem-amd64
+          provenance: true
+          sbom: true
           platforms: linux/amd64
           push: true
           context: .
@@ -79,6 +83,10 @@ jobs:
         uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
         with:
           tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64
+          cache-to: type=gha,mode=max,scope=ggen-ecosystem-arm64
+          cache-from: type=gha,scope=ggen-ecosystem-arm64
+          provenance: true
+          sbom: true
           platforms: linux/arm64
           push: true
           context: .
@@ -90,6 +98,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write
+      security-events: write
 
     name: Merge into one multi-arch manifest
 
@@ -114,3 +124,30 @@ jobs:
           docker buildx imagetools inspect "ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}"
           
 
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+        
+      - name: Sign multi-arch manifest keylessly (cosign + GitHub OIDC)
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${{ inputs.image_tag || github.ref_name }}"
+          IMAGE="ghcr.io/seanchatmangpt/ggen-ecosystem:${TAG}"
+          DIGEST=$(docker buildx imagetools inspect "${IMAGE}" --format "{{json .Manifest}}" | jq -r '.digest')
+          echo "Signing ${IMAGE}@${DIGEST} keylessly via GitHub OIDC (no signing key in this repo)"
+          cosign sign --yes "${IMAGE}@${DIGEST}"
+          
+
+      - name: Run Trivy vulnerability scanner on published image
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          output: trivy-results.sarif
+          format: sarif
+          image-ref: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}
+        
+      - name: Upload Trivy scan results to GitHub code scanning
+        if: always()
+        uses: github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
+        with:
+          sarif_file: trivy-results.sarif
+        

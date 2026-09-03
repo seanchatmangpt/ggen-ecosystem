@@ -1,0 +1,7 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<urn:ggen:gym-pack>
+    a owl:Ontology ;
+    dct:title "ggen-ecosystem downstream gym manufacturing pack" ;
+    dct:description "Pack ontology metadata. Customer gym instances are supplied by the consuming project's admitted ontology.ttl using public SOSA and DCTERMS vocabulary." .

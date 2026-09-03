@@ -1,0 +1,69 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix orx: <urn:ggen:operator-redundancy#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:ggen:operator-redundancy:shape:operational-workflow>
+    a sh:NodeShape ;
+    sh:targetClass orx:OperationalWorkflow ;
+    sh:not [ sh:class orx:ConstitutionalDecision ] ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [ sh:path dct:title ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [ sh:path orx:hasObservationSource ; sh:minCount 1 ; sh:class orx:ObservationSource ; sh:message "Operational state must be observable outside a human's head." ] ;
+    sh:property [ sh:path orx:hasDecisionPolicy ; sh:minCount 1 ; sh:class orx:DecisionPolicy ; sh:message "Operational selection must be delegated to an executable decision policy." ] ;
+    sh:property [ sh:path orx:hasAuthorityEnvelope ; sh:minCount 1 ; sh:class orx:AuthorityEnvelope ; sh:message "Actuation must be bounded by an explicit authority envelope." ] ;
+    sh:property [ sh:path orx:hasActuator ; sh:minCount 1 ; sh:class orx:Actuator ; sh:message "Operational workflows require a non-human actuation path." ] ;
+    sh:property [ sh:path orx:hasVerifier ; sh:minCount 1 ; sh:class orx:Verifier ; sh:message "Consequences require independent verification." ] ;
+    sh:property [ sh:path orx:emitsReceipt ; sh:minCount 1 ; sh:class orx:ReceiptSink ; sh:message "Zero unreceipted operational actuation." ] ;
+    sh:property [ sh:path orx:hasRecoveryPath ; sh:minCount 1 ; sh:class orx:RecoveryPath ; sh:message "Failure must have an executable recovery path rather than a named-person escalation." ] ;
+    sh:property [
+        sh:path orx:runtimeRequiresHuman ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:hasValue false ;
+        sh:message "Operational workflows may not require a human at runtime; move human intent to a constitutional boundary."
+    ] ;
+    sh:property [
+        sh:path orx:missingCapabilityPolicy ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:hasValue orx:ManufactureChildAndResume ;
+        sh:message "Missing capability must manufacture a child capability and resume the parent workflow."
+    ] .
+
+<urn:ggen:operator-redundancy:shape:capability-request>
+    a sh:NodeShape ;
+    sh:targetClass orx:CapabilityRequest ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [ sh:path orx:forWorkflow ; sh:minCount 1 ; sh:maxCount 1 ; sh:class orx:OperationalWorkflow ] ;
+    sh:property [
+        sh:path orx:handledByChildWorkflow ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:class orx:ChildManufactureWorkflow ;
+        sh:message "A capability gap may not terminate in a human escalation; it needs a child manufacture workflow."
+    ] .
+
+<urn:ggen:operator-redundancy:shape:child-manufacture>
+    a sh:NodeShape ;
+    sh:targetClass orx:ChildManufactureWorkflow ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [ sh:path orx:runtimeRequiresHuman ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:boolean ; sh:hasValue false ] ;
+    sh:property [ sh:path orx:hasAuthorityEnvelope ; sh:minCount 1 ; sh:class orx:AuthorityEnvelope ] ;
+    sh:property [ sh:path orx:hasVerifier ; sh:minCount 1 ; sh:class orx:Verifier ] ;
+    sh:property [ sh:path orx:emitsReceipt ; sh:minCount 1 ; sh:class orx:ReceiptSink ] ;
+    sh:property [
+        sh:path orx:resumesWorkflow ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:class orx:OperationalWorkflow ;
+        sh:message "A manufactured capability must return control to the blocked parent workflow."
+    ] .
+
+<urn:ggen:operator-redundancy:shape:constitutional-decision>
+    a sh:NodeShape ;
+    sh:targetClass orx:ConstitutionalDecision ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [
+        sh:path orx:requiresPrincipal ;
+        sh:minCount 1 ;
+        sh:class orx:HumanPrincipal ;
+        sh:message "Human participation is admissible at explicitly constitutional boundaries."
+    ] .
