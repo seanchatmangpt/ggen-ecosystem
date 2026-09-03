@@ -38,7 +38,7 @@ role = "official self-hosted fallback for GitHub-server-coupled semantics withou
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "6fb1080da9d28f57aa476c9b94eddeee167dde18"
+marketplace_sha = "046559d5f3652ae1f59023122b38a8ad5dc83465"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
