@@ -101,25 +101,35 @@ export DOCKER_HOST := env_var_or_default("ACT_DAEMON_SOCKET", "unix://" + env_va
 # is native to the VM's own root filesystem (matches the working invocation
 # already recorded in docs/DEFINITION-OF-DONE.md).
 act_container_socket := env_var_or_default("ACT_CONTAINER_DAEMON_SOCKET", "unix:///var/run/docker.sock")
-# --bind: bind the real working directory into the job container instead of
-# copying it. Required for correctness whenever a step does
-# docker-outside-of-docker (bind-mounts a path it just wrote into a SIBLING
-# container via the host daemon, e.g. tests/chicago_consumer.sh's
-# `docker run -v "$WORK_ROOT/consumer-a:/workspace" ...`) — under copy mode,
-# that path only exists inside this job container's private overlay copy,
-# invisible to the host daemon, which silently bind-mounts an empty
-# directory instead (observed real failure: "ggen.toml not found at
-# /workspace/ggen.toml" even though the fixture was genuinely copied in).
+act_flags := "--container-architecture " + act_arch + " --container-daemon-socket " + act_container_socket + " --secret-file .secrets"
+
+# --bind (opt-in, NOT part of act_flags — see WARNING below): binds the real
+# working directory into the job container instead of copying it. Needed
+# ONLY by pr-governance.yml's Chicago consumer step, which does
+# docker-outside-of-docker — a `docker run -v "$WORK_ROOT/consumer-a:
+# /workspace" ...` issued FROM INSIDE the job container, talking to the HOST
+# daemon over the bind-mounted socket. Under act's default copy-mode
+# checkout, that scratch path only exists in the job container's own private
+# overlay copy — invisible to the host daemon, which silently bind-mounts an
+# EMPTY directory instead (observed real failure: "ggen.toml not found at
+# /workspace/ggen.toml" even though the fixture was genuinely copied in
+# moments earlier). No other job in this repo does this pattern, so no other
+# recipe needs --bind — keep it scoped to act-governance only.
 #
-# WARNING: --bind means `actions/checkout` operates DIRECTLY on this real
-# working tree (not a disposable copy) — a checkout step that resets to a
-# ref will discard uncommitted changes and untracked files exactly like a
-# real `git checkout --force` + `git clean -fdx` would. Commit (or stash)
-# real work before running any --bind recipe below. (Learned the hard way:
-# act-governance's first --bind run wiped every uncommitted edit in this
-# repo, including .secrets, because pr-governance.yml's checkout step resets
-# to `github.sha` == current HEAD.)
-act_flags := "--bind --container-architecture " + act_arch + " --container-daemon-socket " + act_container_socket + " --secret-file .secrets"
+# WARNING, learned the hard way: --bind means `actions/checkout` runs
+# DIRECTLY against this real working tree (not a disposable copy). A
+# checkout step with `ref: <sha>` does a raw SHA checkout, which (a)
+# discards every uncommitted change and untracked file exactly like a real
+# `git checkout --force` + `git clean -fdx`, AND (b) detaches HEAD from
+# whatever branch was checked out — pr-governance.yml's first --bind run did
+# both: wiped every uncommitted edit in this repo (including this Justfile
+# and .secrets) and detached HEAD, deleting the local
+# repair/chicago-evidence-boundary-20260829 branch ref in the process
+# (recovered only because origin/repair/chicago-evidence-boundary-20260829
+# matched exactly — see git reflog / for-each-ref if this ever recurs).
+# COMMIT real work before running act-governance. Never add --bind to the
+# shared act_flags above.
+act_flags_bind := act_flags + " --bind"
 
 act-list:
     act -l {{act_flags}}
@@ -173,7 +183,16 @@ act-governance-event:
     echo "wrote .act-events/pr-governance.json (base=$base head=$head)"
 
 act-governance: act-governance-event
-    act pull_request -W .github/workflows/pr-governance.yml -j source-authority -e .act-events/pr-governance.json {{act_flags}}
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if ! git diff --quiet || ! git diff --cached --quiet; then
+      echo "REFUSED: uncommitted changes present. act-governance uses --bind," >&2
+      echo "and pr-governance.yml's checkout step resets this real working tree" >&2
+      echo "to the current ref -- commit or stash first (see act_flags_bind's" >&2
+      echo "WARNING comment above for exactly what this destroyed once already)." >&2
+      exit 1
+    fi
+    act pull_request -W .github/workflows/pr-governance.yml -j source-authority -e .act-events/pr-governance.json {{act_flags_bind}}
 
 # The generated sync workflow is workflow_call-only; invoke it directly with
 # that event name. Never hand-edit this file (see .github/copilot-instructions.md)
