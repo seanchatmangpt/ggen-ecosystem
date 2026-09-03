@@ -12,13 +12,16 @@ macro:GitHubMacroGovernor
     macro:requiresExactSubject true ;
     macro:requiresAuthorityEnvelope true ;
     macro:requiresReceipt true ;
+    macro:decisionBudget 25 ;
+    macro:actuationBudget 3 ;
     macro:prohibitedTerminalState macro:AskNamedOperatorWhatNext .
 
 macro:NewestUnresolvedFirst
     a macro:SelectionPolicy ;
     macro:orderingKey macro:UpdatedAt ;
     macro:direction macro:Descending ;
-    macro:tieBreak macro:RepositoryThenIdentity .
+    macro:tieBreak macro:RepositoryThenIdentity ;
+    macro:continuesPast macro:BlockedAuthority, macro:IdempotentNoop .
 
 macro:Observation
     a macro:Phase ;
@@ -27,7 +30,8 @@ macro:Observation
 macro:Selection
     a macro:Phase ;
     macro:mayActuate false ;
-    macro:requires macro:Observation .
+    macro:requires macro:Observation ;
+    macro:budgetUnit macro:Decision .
 
 macro:Construction
     a macro:Phase ;
@@ -37,7 +41,8 @@ macro:Construction
 macro:Execution
     a macro:Phase ;
     macro:mayActuate true ;
-    macro:requires macro:Construction, macro:AuthorityEnvelope .
+    macro:requires macro:Construction, macro:AuthorityEnvelope ;
+    macro:budgetUnit macro:AppliedActuation .
 
 macro:Verification
     a macro:Phase ;
@@ -48,6 +53,20 @@ macro:Receipt
     a macro:Phase ;
     macro:mayActuate false ;
     macro:requires macro:Verification .
+
+macro:BlockedAuthority
+    a macro:AndonObservation ;
+    macro:consumesActuationBudget false ;
+    macro:preservesFrontierProgress true .
+
+macro:IdempotentNoop
+    a macro:Observation ;
+    macro:consumesActuationBudget false ;
+    macro:preservesFrontierProgress true .
+
+macro:AppliedActuation
+    a macro:ProductionTransition ;
+    macro:consumesActuationBudget true .
 
 macro:WorkflowTimeout
     a macro:TransientCandidate ;

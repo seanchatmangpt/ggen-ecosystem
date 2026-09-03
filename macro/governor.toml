@@ -2,6 +2,11 @@
 selection = "reverse-chronological-newest-unresolved-first"
 capability_prefix = "[capability]"
 authorized_issue_logins = ["seanchatmangpt", "github-actions[bot]"]
+# SELECT may inspect up to 25 unresolved items to find lawful work. Only an
+# actually applied mutation consumes one of the three actuation slots.
+max_actuations_per_run = 3
+max_decisions_per_run = 25
+# Backward-compatible adapter value; SELECT uses max_actuations_per_run.
 max_actions_per_run = 3
 max_observations_per_repo = 50
 observation_window_hours = 72
