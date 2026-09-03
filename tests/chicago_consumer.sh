@@ -60,20 +60,29 @@ PY
 
 run_sync() {
   local consumer="$1"
+  local sync_exit=0
   docker run --rm \
     -v "$consumer:/workspace" \
     -w /workspace \
-    "$IMAGE" ggen sync run
+    "$IMAGE" ggen sync run || sync_exit=$?
   # The container runs as root by default, so files it writes (including
   # .ggen/keys/{signing,verifying}.key) can land root-owned and mode-restricted
   # on the bind mount. The host-side digest/cleanup steps run as the CI
   # runner's own (non-root) user and need real read/cleanup access to those
   # same files, so make the whole workspace world-readable/removable from
-  # inside the same image right after the real write path runs.
+  # inside the same image right after the real write path runs, regardless of
+  # whether the sync itself succeeded or refused.
+  #
+  # This chmod's own exit status must never become run_sync's return value: a
+  # bare trailing command here previously masked a real `ggen sync run`
+  # refusal (e.g. the negative-consumer case) behind chmod's near-universal
+  # success, so the negative-consumer court passed even when ggen wrongly
+  # produced output. Capture and re-raise the real sync exit code explicitly.
   docker run --rm \
     -v "$consumer:/workspace" \
     -w /workspace \
     "$IMAGE" chmod -R a+rwX /workspace
+  return "$sync_exit"
 }
 
 command -v git >/dev/null 2>&1 || blocked "git is unavailable"
