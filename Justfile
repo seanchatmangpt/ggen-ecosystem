@@ -192,7 +192,24 @@ act-governance: act-governance-event
       echo "WARNING comment above for exactly what this destroyed once already)." >&2
       exit 1
     fi
-    act pull_request -W .github/workflows/pr-governance.yml -j source-authority -e .act-events/pr-governance.json {{act_flags_bind}}
+    branch="$(git branch --show-current)"
+    if [[ -z "$branch" ]]; then
+      echo "REFUSED: already in detached HEAD -- reattach to a real branch first" >&2
+      echo "(git checkout -B <branch-name>) so this recipe knows what to restore." >&2
+      exit 1
+    fi
+    status=0
+    act pull_request -W .github/workflows/pr-governance.yml -j source-authority -e .act-events/pr-governance.json {{act_flags_bind}} || status=$?
+    # actions/checkout's `ref: <sha>` step ALWAYS detaches HEAD under --bind
+    # (it does a raw SHA checkout), even on a clean tree with no data at
+    # risk -- reattach unconditionally so this repo is never left detached
+    # after a normal recipe run.
+    current="$(git branch --show-current)"
+    if [[ -z "$current" ]]; then
+      git checkout -B "$branch"
+      echo "reattached HEAD to $branch after --bind checkout detached it"
+    fi
+    exit "$status"
 
 # The generated sync workflow is workflow_call-only; invoke it directly with
 # that event name. Never hand-edit this file (see .github/copilot-instructions.md)
