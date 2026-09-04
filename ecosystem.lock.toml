@@ -37,7 +37,7 @@ version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
-sha = "6fb0992d9f2a6d9447bf48b476c9b8e9fa390716"
+sha = "cd914b16bd926b6c2a4913f9d8a75d3e117518e5"
 repository = "https://github.com/seanchatmangpt/beam4pm"
 role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
