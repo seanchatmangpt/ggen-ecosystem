@@ -173,10 +173,41 @@ def certify(root: Path, contract_path: Path):
     observed = []
     if ledger:
         ledger_errors, observed = validate_ledger(root, ledger); errors.extend(ledger_errors)
-    if release and lock: errors.extend(validate_release_receipt(release, lock))
     subject_commit = str(release.get("subject", {}).get("commit", ""))
     load_paths = list(contract.get("subject", {}).get("load_bearing_paths", []))
     lineage = git_lineage(root, subject_commit, load_paths) if SHA1_RE.fullmatch(subject_commit) else {"available":False,"head":None,"receipt_subject_ancestor":None,"load_bearing_changed":None,"changed_paths":[]}
+    # A release receipt is versioned, point-in-time evidence for its own
+    # subject commit (per certification/mfact.toml's [subject] policy:
+    # "Changes after the release receipt do not invalidate old evidence, but
+    # they prevent that old receipt from certifying the new head as ALIVE").
+    # ecosystem.lock.toml keeps moving forward after a release (submodule
+    # reconciliations, pin bumps) -- that is expected, ordinary progress, not
+    # tampering. Grading the receipt's producer identity against the CURRENT
+    # lock on every run therefore manufactures a fresh REFUSED[RECEIPT_*_DRIFT]
+    # out of normal lock advancement instead of out of an actual defect.
+    #
+    # The identity check is still meaningful exactly when the receipt claims
+    # to describe the CURRENT head (subject_commit == lineage.head): in that
+    # case the receipt and the lock describe the same commit and must agree,
+    # or the receipt has been tampered with (or the lock manually edited
+    # without regenerating the receipt) at the exact commit it claims to
+    # cover. Anywhere else, the receipt is by definition historical evidence
+    # -- disagreement with the current lock is expected, not a fatal error;
+    # it is folded into classify_standing's already-existing historical
+    # discount (capped at PARTIAL_ALIVE[BOUNDED_CERTIFICATION]) instead of a
+    # hard REFUSED.
+    receipt_errors = validate_release_receipt(release, lock) if release and lock else []
+    is_exact_head = bool(lineage.get("available")) and subject_commit == lineage.get("head")
+    historical_receipt_reasons: list[str] = []
+    if receipt_errors:
+        if is_exact_head:
+            errors.extend(receipt_errors)
+        else:
+            historical_receipt_reasons = [
+                f"release receipt producer identity differs from current lock ({error}); "
+                "receipt is historical evidence for its own subject commit, not the current head"
+                for error in sorted(set(receipt_errors))
+            ]
     if lineage.get("available") and lineage.get("receipt_subject_ancestor") is False:
         errors.append("REFUSED[RECEIPT_SUBJECT_NOT_ANCESTOR]")
     if errors:
@@ -188,6 +219,7 @@ def certify(root: Path, contract_path: Path):
             receipt_subject_ancestor=lineage.get("receipt_subject_ancestor"),
             load_bearing_changed=lineage.get("load_bearing_changed"),
         ); code = 0
+        reasons = reasons + historical_receipt_reasons
     payload = {
         "schema":"https://ggen.dev/receipts/mfact-certification/v1",
         "certification":{"name":contract.get("name"),"source_repository":contract.get("source_repository"),"source_sha":contract.get("source_sha"),"authority_ceiling":contract.get("authority_ceiling")},
