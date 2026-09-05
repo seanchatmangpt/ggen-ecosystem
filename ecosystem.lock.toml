@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "b2ef5c99108fa35c5a90771087314e697d6be377"
-updated_at = "2026-09-05T06:44:20Z"
+base_main_sha = "3d20db5c39573550f30d1353c4b91a1ebf3cfe6d"
+updated_at = "2026-09-05T07:04:50Z"
 
 [ggen]
 release = "v26.8.28"
@@ -55,7 +55,7 @@ ggen_commit = "36caa86eba04de0eae1769e71142df86fd370854"
 ggen_marketplace_path = "vendor/ggen-marketplace"
 ggen_marketplace_commit = "1ca297a682c4a8fe8b8324c132d04a5d3e20e200"
 autofde_lab_path = "vendor/autofde-lab"
-autofde_lab_commit = "d38a81b5fa7e4537d4d7278b02e11eb24500aaf0"
+autofde_lab_commit = "2b843e2b655934c3c9be368676986a1ba46ff4d0"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "e74bc5d51723e2c4fae2ec3e68e65844676b1a66"
 beam4pm_path = "vendor/beam4pm"
@@ -77,10 +77,12 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
 tag = "v26.8.28"
 digest = "sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c"
-standing = "BLOCKED"
-failure = "manifest-unknown"
+standing = "ALIVE"
+requires_republish = false
 observed_failure_run = 33238309149
-requires_republish = true
+observed_success_run = 33926356178
+observed_success_at = "2026-09-04T22:38:20Z"
+observed_success_head_sha = "0fa1c5c983951b128603d8a03c9b2c3e52a22081"
 beam4pm_root = "/opt/beam4pm"
 
 [manufacturing]
