@@ -14,7 +14,48 @@ they bring in.
 
 ## [Unreleased]
 
-Nothing yet since the `v26.8.28` tag below.
+### Fixed
+
+- `ecosystem.lock.toml`'s `[container]` block corrected a stale
+  `standing = "BLOCKED"` (with `requires_republish = true`, pinned to a
+  historical `observed_failure_run`) even though
+  `ggen-ecosystem-container.yml` has been green on `main` continuously
+  since run `33926356178` at `base_main_sha`. Flipped standing to `ALIVE`,
+  cleared `requires_republish`, and preserved the historical failure run
+  alongside new `observed_success_run`/`observed_success_at`/
+  `observed_success_head_sha` fields rather than deleting the prior
+  observation, #268.
+- `scripts/certify_ecosystem.py`'s `validate_release_receipt()` stopped
+  hard-failing `mfact-certification.yml` on every run by comparing a
+  versioned, point-in-time release receipt against the ever-moving
+  current `ecosystem.lock.toml`. The identity check now only escalates to
+  a hard error when the receipt's subject commit is the current git HEAD;
+  elsewhere the drift folds into the existing historical-evidence
+  discount already documented in `certification/mfact.toml`'s
+  `[subject]` policy, #263.
+- `tps/run.sh` (PragProg TPS) stopped hardcoding
+  `EXPECTED_MARKETPLACE_SHA` as a literal constant — a no-dual-bookkeeping
+  duplicate of `ecosystem.lock.toml`'s `[pragprog_tps].marketplace_sha`
+  that had gone stale after a submodule reconciliation advanced the lock
+  without updating the script's own copy, causing a live
+  `REFUSED[PRAGPROG_PACK_DRIFT]` failure. Now reads the value from the
+  lock file at runtime instead, #266.
+- `ggen.toml`'s `[packs]` section comment cited a stale
+  `vendor/ggen-marketplace` pin (`89adf4c8...`, dated 2026-08-28); updated
+  to the real, currently-vendored `427366d1f...`, matching both
+  `ecosystem.lock.toml` and the actual submodule HEAD. Cosmetic only —
+  the real `[packs]` dependency is a relative `path =` reference, not a
+  SHA pin — but the same historical-drift comment-vs-pin pattern as
+  #248/#263/#266, #267.
+
+### Changed
+
+- `vendor/autofde-lab` submodule pin synced from a 9-day-stale
+  `autofde_lab_commit` to `autofde-lab`'s real `origin/master` tip;
+  `vendor/beam4pm` bumped to its real post-fix HEAD (`beam4pm#47` merged,
+  fixing a `.gitmodules` bug that was blocking Qualify checks on this PR)
+  and both `[beam4pm].sha` and the separate `[submodules].beam4pm_commit`
+  field brought into agreement, #248.
 
 ## [v26.8.28] - 2026-08-29
 
