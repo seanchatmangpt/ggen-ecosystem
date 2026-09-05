@@ -67,10 +67,12 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
 tag = "v26.8.28"
 digest = "sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c"
-standing = "BLOCKED"
-failure = "manifest-unknown"
+standing = "ALIVE"
+requires_republish = false
 observed_failure_run = 33238309149
-requires_republish = true
+observed_success_run = 33926356178
+observed_success_at = "2026-09-04T22:38:20Z"
+observed_success_head_sha = "0fa1c5c983951b128603d8a03c9b2c3e52a22081"
 beam4pm_root = "/opt/beam4pm"
 
 [manufacturing]
