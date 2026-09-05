@@ -42,6 +42,13 @@ repository = "https://github.com/seanchatmangpt/beam4pm"
 role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
 
+[wasm4pm]
+sha = "da48e98cdde83d5b581d3305b7ec3c041a19d77a"
+repository = "https://github.com/seanchatmangpt/wasm4pm"
+version = "26.7.23"
+role = "evidence-oriented process-mining platform with POWL execution and replayable WASM evidence"
+standing = "PARTIAL_ALIVE"
+
 [submodules]
 ggen_path = "vendor/ggen"
 ggen_commit = "36caa86eba04de0eae1769e71142df86fd370854"
@@ -53,6 +60,8 @@ ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "e74bc5d51723e2c4fae2ec3e68e65844676b1a66"
 beam4pm_path = "vendor/beam4pm"
 beam4pm_commit = "cd914b16bd926b6c2a4913f9d8a75d3e117518e5"
+wasm4pm_path = "vendor/wasm4pm"
+wasm4pm_commit = "da48e98cdde83d5b581d3305b7ec3c041a19d77a"
 
 [composition]
 consumer_boundary = "ggen-ecosystem"
@@ -61,7 +70,8 @@ pack_catalog = "vendor/ggen-marketplace"
 beam_control_plane = "vendor/ggen_igniter"
 process_intelligence = "vendor/beam4pm"
 diagnosis_and_search = "vendor/autofde-lab"
-rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plane/process-intelligence pins are internal ecosystem concerns"
+wasm_process_platform = "vendor/wasm4pm"
+rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plane/process-intelligence/diagnosis/WASM-process-platform pins are internal ecosystem concerns"
 
 [container]
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"

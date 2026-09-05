@@ -52,6 +52,13 @@ class EcosystemLockConsistency(unittest.TestCase):
             submodules["autofde_lab_commit"],
         )
 
+    def test_wasm4pm_gitlink_matches_lock(self) -> None:
+        submodules = self.lock["submodules"]
+        self.assertEqual(
+            gitlink(submodules["wasm4pm_path"]),
+            submodules["wasm4pm_commit"],
+        )
+
     def test_blocked_capsule_is_not_claimed_available(self) -> None:
         container = self.lock["container"]
         if container.get("requires_republish"):
