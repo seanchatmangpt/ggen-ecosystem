@@ -97,3 +97,64 @@ macro:PullRequestMerge
 
 macro:AskNamedOperatorWhatNext
     a macro:ProhibitedTerminalState .
+
+# Cross-repository closure kernel. This is a SELECT/CONSTRUCT calculus only.
+# It manufactures lawful next-step intents but never actuates them.
+macro:ClosureKernel
+    a macro:DeterministicPlanner ;
+    macro:mayActuate false ;
+    macro:requiresExactSubject true ;
+    macro:preservesOlderUnsupersededOptions true ;
+    macro:manufactures macro:ClosurePlan, macro:BRCEIntent ;
+    macro:neverAcquires macro:ExecutionAuthority .
+
+macro:WorkIntent a macro:ClosureObject .
+macro:EvidenceGap a macro:ClosureObject .
+macro:DeadEdge a macro:ClosureObject .
+macro:RepairDemand a macro:ClosureObject .
+macro:ChildManufactureRequest a macro:ClosureObject .
+macro:BRCEIntent a macro:ClosureObject ; macro:mayActuate false .
+macro:ActuationReceipt a macro:ClosureObject .
+macro:ReplayRecord a macro:ClosureObject .
+macro:ClosurePlan a macro:ClosureObject .
+
+macro:UNKNOWN a macro:Standing .
+macro:PARTIAL_ALIVE a macro:Standing .
+macro:ALIVE a macro:Standing ;
+    macro:requires macro:ExactSubjectExecution, macro:IndependentVerification, macro:ActuationReceipt .
+macro:BLOCKED a macro:Standing .
+macro:BUILD_BROKEN a macro:Standing .
+macro:UNSUPPORTED a macro:Standing .
+macro:REFUSED a macro:Standing .
+
+macro:FailedEdgeTopologyLaw
+    a macro:ClosureLaw ;
+    macro:states "One failed edge is topology, not graph failure; preserve lawful alternate candidates." .
+
+macro:OneRetryLaw
+    a macro:ClosureLaw ;
+    macro:states "A failed edge may be retried once for the same hypothesis; a repeated unchanged failure manufactures a repair demand." .
+
+macro:NewHypothesisReopensEdgeLaw
+    a macro:ClosureLaw ;
+    macro:states "A materially new hypothesis may reopen a previously failed edge without replaying the unchanged failure." .
+
+macro:ParentChildResumeLaw
+    a macro:ClosureLaw ;
+    macro:states "A parent resumes after a missing capability is manufactured only when the exact child subject is independently verified and receipted." .
+
+macro:ScopeStandingLaw
+    a macro:ClosureLaw ;
+    macro:states "Evidence standing is scoped to subject and environment; lab standing cannot crown production standing." .
+
+macro:SourceAuthorityLaw
+    a macro:ClosureLaw ;
+    macro:states "Generated projections are derivative and cannot become canonical source authority." .
+
+macro:NoAmbientExecutionLaw
+    a macro:ClosureLaw ;
+    macro:states "Raw input, model output, planner output, proof, hook, dream, and semantic derivation have no ambient execution authority." .
+
+macro:BRCEExclusiveDoLaw
+    a macro:ClosureLaw ;
+    macro:states "Consequential DO requires admitted BRCE authority and a receipt; the closure kernel emits intents only." .
