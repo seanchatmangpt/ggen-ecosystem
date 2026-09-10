@@ -6,7 +6,7 @@ source_doctrine = "ggen projects; target systems verify; mfact-style courts cert
 authority_ceiling = "VERIFY"
 lockfile = "ecosystem.lock.toml"
 artifact_ledger = "certification/artifacts.toml"
-release_receipt = "receipts/release-v26.8.28-container.json"
+release_receipt = "receipts/release-v26.9.10-container.json"
 
 [policy]
 require_exact_producer_pin_match = true

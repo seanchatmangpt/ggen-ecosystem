@@ -3,7 +3,7 @@ base_main_sha = "076e0e47586159ac0f67bbabda22f7aff15685ce"
 updated_at = "2026-09-10T19:30:47Z"
 
 [ggen]
-release = "v26.9.9"
+release = "v26.9.10"
 commit_sha = "83a02070d021fbbd66426793d47bc1d68d0603c6"
 linux_x86_64_asset_sha256 = "ad4ab79923d17e32960383aaf5fab8e174bc8d0972872cdf1b3ecc5d11ed9e36"
 observed_executable_sha256 = "1fc76b5809333e2e5ca9ff1b1333c37bdd609a711480c1f74674344ff06d7906"
@@ -75,14 +75,14 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 
 [container]
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
-tag = "v26.8.28"
-digest = "sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c"
+tag = "v26.9.10"
+digest = "sha256:c98bd2777558548e0ff4ef088af6f0dc3d1c32a72426a906bf0ac8eaffee8ef4"
 standing = "ALIVE"
 requires_republish = false
 observed_failure_run = 33238309149
-observed_success_run = 33926356178
-observed_success_at = "2026-09-04T22:38:20Z"
-observed_success_head_sha = "0fa1c5c983951b128603d8a03c9b2c3e52a22081"
+observed_success_run = 34520804764
+observed_success_at = "2026-09-10T19:48:18Z"
+observed_success_head_sha = "076e0e47586159ac0f67bbabda22f7aff15685ce"
 beam4pm_root = "/opt/beam4pm"
 
 [manufacturing]
