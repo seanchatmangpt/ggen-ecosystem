@@ -36,14 +36,22 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY' >> "$GITHUB_ENV"
+          RELEASE_IMAGE="$(python3 - <<'PY'
           import tomllib
           with open('ecosystem.lock.toml', 'rb') as f:
               lock = tomllib.load(f)
           c = lock['container']
-          print(f"RELEASE_IMAGE={c['repository']}@{c['digest']}")
-          print(f"GGEN_SHA256={lock['ggen']['linux_x86_64_asset_sha256']}")
+          print(f"{c['repository']}@{c['digest']}")
           PY
+          )"
+          GGEN_SHA256="$(python3 - <<'PY'
+          import tomllib
+          with open('ecosystem.lock.toml', 'rb') as f:
+              lock = tomllib.load(f)
+          print(lock['ggen']['linux_x86_64_asset_sha256'])
+          PY
+          )"
+          echo "GGEN_SHA256=$GGEN_SHA256" >> "$GITHUB_ENV"
           docker pull "$RELEASE_IMAGE"
           VERSION="$(docker run --rm --network none "$RELEASE_IMAGE" ggen --version)"
           test "$VERSION" = "ggen 26.9.9"
