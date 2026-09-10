@@ -14,6 +14,37 @@ they bring in.
 
 ## [Unreleased]
 
+## [v26.9.10] - 2026-09-10
+
+### Changed
+
+- `[ggen]` bumped `v26.8.28` -> `v26.9.9` (commit `36caa86e` -> `83a02070`),
+  the real upstream latest ggen release as of this tag (`v26.9.10` -- the
+  ecosystem's own release date, `2026-09-10` -- postdates any real ggen
+  `v26.9.10`, which does not exist upstream; `v26.9.9` is the newest real
+  tag). `linux_x86_64_asset_sha256` and `aarch64_apple_darwin_asset_sha256`
+  are the real published sidecar checksums from the `v26.9.9` GitHub
+  Release (cross-verified locally against a real downloaded tarball, not
+  copied blind); `observed_executable_sha256` is the digest of the
+  extracted binary itself, actually run (`ggen --version` -> `26.9.9`),
+  closing the `linux_x86_64_asset_sha256`/`observed_executable_sha256`
+  `UNKNOWN-TODO` gap this file has carried since before `v26.8.28`.
+- `vendor/ggen-marketplace` (`[ggen_marketplace].sha`,
+  `[submodules].ggen_marketplace_commit`, `[pragprog_tps].marketplace_sha`,
+  and `ggen.toml`'s `[packs]` comment) bumped `1bf36244` -> `350ed16d`,
+  picking up two real fixes on `ggen-marketplace` main: PR #426 (18
+  triaged remote branches integrated, real merge-conflict resolution, one
+  broken stub pack dropped) and PR #427 (real `ggen sync run` qualification
+  found and fixed concrete defects in `github-actions-pack` -- the exact
+  pack this repo's own `ggen.toml` composes --, `frontier-release-factory-
+  pack`, `planning-federation-pack`, and `ash-extension-core-pack`; see
+  that repo's own CHANGELOG-equivalent commit messages for detail). No
+  other vendor submodule (`autofde-lab`, `ggen_igniter`, `beam4pm`,
+  `wasm4pm`) was touched in this release -- out of scope for a ggen-core +
+  marketplace bump.
+- `vendor/ggen` submodule gitlink advanced to the new pinned commit
+  (`83a02070`) to match `[ggen].commit_sha`.
+
 ### Fixed
 
 - `ecosystem.lock.toml`'s `[container]` block corrected a stale
@@ -48,7 +79,7 @@ they bring in.
   SHA pin — but the same historical-drift comment-vs-pin pattern as
   #248/#263/#266, #267.
 
-### Changed
+### Changed (carried from Unreleased)
 
 - `vendor/autofde-lab` submodule pin synced from a 9-day-stale
   `autofde_lab_commit` to `autofde-lab`'s real `origin/master` tip;
@@ -158,5 +189,6 @@ real still needs one manual step (linking the GHCR package to this repository
 under "Manage Actions access," so `GITHUB_TOKEN` can push — confirmed no API
 exists for this for either user- or org-owned packages).
 
-[Unreleased]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.8.28...main
+[Unreleased]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.10...main
+[v26.9.10]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.8.28...v26.9.10
 [v26.8.28]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/ab23c9bb...v26.8.28
