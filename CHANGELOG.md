@@ -18,32 +18,60 @@ they bring in.
 
 ### Changed
 
-- `[ggen]` bumped `v26.8.28` -> `v26.9.9` (commit `36caa86e` -> `83a02070`),
-  the real upstream latest ggen release as of this tag (`v26.9.10` -- the
-  ecosystem's own release date, `2026-09-10` -- postdates any real ggen
-  `v26.9.10`, which does not exist upstream; `v26.9.9` is the newest real
-  tag). `linux_x86_64_asset_sha256` and `aarch64_apple_darwin_asset_sha256`
-  are the real published sidecar checksums from the `v26.9.9` GitHub
-  Release (cross-verified locally against a real downloaded tarball, not
-  copied blind); `observed_executable_sha256` is the digest of the
-  extracted binary itself, actually run (`ggen --version` -> `26.9.9`),
-  closing the `linux_x86_64_asset_sha256`/`observed_executable_sha256`
+- `[ggen].release` bumped `v26.8.28` -> `v26.9.10`, matching this
+  ecosystem's own `vYY.M.D` release identity (per this file's format
+  note, `[ggen].release` mirrors `[container].tag` -- it is the
+  ecosystem's own version label, not a literal upstream `ggen` tag name;
+  confirmed by inspecting the prior pin: commit `36caa86e`, labeled
+  `release = "v26.8.28"`, is actually only reachable from real upstream
+  tags `v26.9.8`/`v26.9.9`). `[ggen].commit_sha` is the field that pins
+  the real upstream commit: bumped `36caa86e` -> `83a02070`, the real
+  latest upstream `ggen` release as of this bump (`v26.9.9`, 2026-09-08;
+  no real upstream `v26.9.10` tag exists). `linux_x86_64_asset_sha256`
+  and `aarch64_apple_darwin_asset_sha256` are the real published sidecar
+  checksums from that `v26.9.9` GitHub Release (cross-verified locally
+  against a real downloaded tarball, not copied blind);
+  `observed_executable_sha256` is the digest of the extracted binary
+  itself, actually run (`ggen --version` -> `26.9.9`), closing the
+  `linux_x86_64_asset_sha256`/`observed_executable_sha256`
   `UNKNOWN-TODO` gap this file has carried since before `v26.8.28`.
 - `vendor/ggen-marketplace` (`[ggen_marketplace].sha`,
   `[submodules].ggen_marketplace_commit`, `[pragprog_tps].marketplace_sha`,
-  and `ggen.toml`'s `[packs]` comment) bumped `1bf36244` -> `350ed16d`,
-  picking up two real fixes on `ggen-marketplace` main: PR #426 (18
+  and `ggen.toml`'s `[packs]` comment) bumped `1bf36244` -> `b82ee3ee`,
+  picking up three real fixes on `ggen-marketplace` main: PR #426 (18
   triaged remote branches integrated, real merge-conflict resolution, one
-  broken stub pack dropped) and PR #427 (real `ggen sync run` qualification
+  broken stub pack dropped), PR #427 (real `ggen sync run` qualification
   found and fixed concrete defects in `github-actions-pack` -- the exact
   pack this repo's own `ggen.toml` composes --, `frontier-release-factory-
-  pack`, `planning-federation-pack`, and `ash-extension-core-pack`; see
-  that repo's own CHANGELOG-equivalent commit messages for detail). No
+  pack`, `planning-federation-pack`, and `ash-extension-core-pack`), and
+  PR #429 (`local_dispatch.sh.tmpl` crashed `[FM-TPL-017]` on this exact
+  repo's own zero-`LocalExecutionProfile` consumer graph -- found
+  manufacturing this release, fixed upstream rather than patched locally;
+  see that repo's own CHANGELOG-equivalent commit messages for detail). No
   other vendor submodule (`autofde-lab`, `ggen_igniter`, `beam4pm`,
   `wasm4pm`) was touched in this release -- out of scope for a ggen-core +
   marketplace bump.
 - `vendor/ggen` submodule gitlink advanced to the new pinned commit
   (`83a02070`) to match `[ggen].commit_sha`.
+
+### Added
+
+- GHCR publication closed end-to-end for
+  `ghcr.io/seanchatmangpt/ggen-ecosystem:v26.9.10`: pushing the `v26.9.10`
+  tag triggered `ggen-ecosystem-container.yml` for real (run
+  `34520804764`), building and pushing both `linux/amd64` and
+  `linux/arm64` images and merging them into one multi-arch manifest,
+  digest `sha256:c98bd277...`. Independently re-pulled
+  (`docker pull ghcr.io/seanchatmangpt/ggen-ecosystem:v26.9.10`) and
+  confirmed the identical digest, then ran a network-isolated consumer
+  (`docker run --rm --network none ... ggen --version`) that printed
+  `ggen 26.9.9` -- the exact pinned upstream release, proven inside the
+  published image, not assumed from the build log. `[container]` in
+  `ecosystem.lock.toml` updated to this tag/digest/run in the same
+  release, rather than left pointing at the stale `v26.8.28` receipt
+  (closing the honest `CONTAINER_RELEASE_TAG_DRIFT` refusal
+  `certify_ecosystem.py` correctly raised on this PR before the real
+  build ran).
 
 ### Fixed
 

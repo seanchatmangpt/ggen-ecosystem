@@ -1,0 +1,30 @@
+{
+  "schema": "https://ggen.dev/receipts/ecosystem-sync/v2",
+  "subject": {
+    "repository": "seanchatmangpt/ggen-ecosystem",
+    "commit": "a65a7648f68b79629fb3091fb4cec192d02711f1"
+  },
+  "ecosystem": {
+    "version": "v26.9.10",
+    "ggen_commit": "83a02070d021fbbd66426793d47bc1d68d0603c6",
+    "marketplace_commit": "b82ee3ee3ae7aac72d1a8be47498eb92a5a61160",
+    "container_digest": "sha256:c98bd2777558548e0ff4ef088af6f0dc3d1c32a72426a906bf0ac8eaffee8ef4"
+  },
+  "admission": {
+    "result": "ADMITTED"
+  },
+  "execution": {
+    "command": "ggen sync run --dry-run --format json-pretty",
+    "exit_code": 0
+  },
+  "consequence": {
+    "digest": "sha256:08214c2c18611ac7dd450705a75073fa521e03c154a6ccb81e29f2e6ea66b312"
+  },
+  "verification": {
+    "doctor": "PARTIAL_ALIVE",
+    "chicago": "UNKNOWN",
+    "dod": "PARTIAL_ALIVE"
+  },
+  "standing": "PARTIAL_ALIVE",
+  "notes": "Real GHCR push succeeded 2026-09-10 via the tag-push-triggered ggen-ecosystem-container.yml (run 34520804764): both linux/amd64 and linux/arm64 built and merged into one multi-arch manifest, digest sha256:c98bd277... -- unlike v26.8.28's receipt, this release does NOT carry the linux/arm64-only caveat; both architectures were built and pushed in the same run. Independently re-pulled (docker pull) and confirmed the identical digest, then ran a network-isolated consumer (docker run --rm --network none ... ggen --version) that printed 'ggen 26.9.9' -- the exact pinned upstream release, proven inside the published image, not assumed from the build log alone. bash scripts/doctor.sh and python3 scripts/dod_engine.py both report PARTIAL_ALIVE rather than ALIVE solely because 4 unrelated vendor submodules (autofde-lab, beam4pm, ggen_igniter, wasm4pm) were left uninitialized in the local checkout used to build this receipt -- out of scope for a ggen-core + marketplace bump, and a local-checkout limitation rather than a defect in the committed superproject state (all load-bearing checks for THIS release's actual scope -- ggen pin, marketplace pin, gitlink identity, lock-hash match, container digest format, workflow-drift -- are ALIVE; see scripts/verify-provenance.sh's real output in the same commit's PR). tests/test_container_smoke.sh (the 'chicago' 12-court suite) was not run this pass -- named honestly as UNKNOWN rather than assumed or fabricated; a future pass should initialize the remaining vendor submodules and re-run the full chicago court before claiming full ALIVE standing."
+}
