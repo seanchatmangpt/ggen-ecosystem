@@ -100,9 +100,11 @@ FROM debian:bookworm-slim
 # AutoFDE is copied as source rather than installed as a wheel, so its Python package metadata
 # does not automatically admit its runtime dependency contract. Install the exact base
 # dependencies declared by the pinned vendor/autofde-lab/pyproject.toml, including GymAct at
-# that file's exact git revision. `wrapt==2.2.1` is the minimum version that supplies the
-# per-instance `wrapt.lru_cache` API used by core.Constraint; Debian bookworm's python3-wrapt
-# predates it. The isolated venv retains Debian's rdflib/numpy/dill via --system-site-packages.
+# that file's exact git revision. GymAct in turn admits wasm4pm-compat-pydantic from its exact
+# uv source because that package is intentionally not published on the package index.
+# `wrapt==2.2.1` is the minimum version that supplies the per-instance `wrapt.lru_cache` API
+# used by core.Constraint; Debian bookworm's python3-wrapt predates it. The isolated venv
+# retains Debian's rdflib/numpy/dill via --system-site-packages.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates git python3 python3-venv python3-rdflib python3-numpy python3-dill bash nodejs \
     && python3 -m venv --system-site-packages /opt/ggen-python \
@@ -111,8 +113,9 @@ RUN apt-get update \
          'pathos>=0.2.7' \
          'discrete-optimization>=0.9.0' \
          'wrapt==2.2.1' \
+         'wasm4pm-compat-pydantic @ git+https://github.com/seanchatmangpt/wasm4pm-compat.git@577e2d1d8bdfe27d96f61c63f3ea120994e8bfda#subdirectory=python' \
          'gymact @ git+https://github.com/seanchatmangpt/gymact.git@524d0bc8633d8534f500d67f27384ce9368c0863' \
-    && /opt/ggen-python/bin/python -c 'import wrapt, discrete_optimization, pynng, pathos, gymact; assert hasattr(wrapt, "lru_cache")' \
+    && /opt/ggen-python/bin/python -c 'import wrapt, discrete_optimization, pynng, pathos, gymact, wasm4pm_compat_pydantic; assert hasattr(wrapt, "lru_cache")' \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /out/bin/ggen /usr/local/bin/ggen
@@ -129,7 +132,7 @@ ENV PATH="/opt/ggen-python/bin:/usr/local/bin:${PATH}"
 RUN test -f "$BEAM4PM_ROOT/mix.exs" \
     && test -f "$BEAM4PM_ROOT/rebar.config" \
     && test -d "$BEAM4PM_ROOT/native" \
-    && python3 -c 'import wrapt, discrete_optimization, pynng, pathos, gymact; assert hasattr(wrapt, "lru_cache")'
+    && python3 -c 'import wrapt, discrete_optimization, pynng, pathos, gymact, wasm4pm_compat_pydantic; assert hasattr(wrapt, "lru_cache")'
 
 RUN ggen --version || true
 
