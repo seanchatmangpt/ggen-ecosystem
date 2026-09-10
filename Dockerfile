@@ -97,15 +97,22 @@ FROM debian:bookworm-slim
 # harmless (small apt package, matches local `act` runs to production behavior) but is NOT
 # claimed as fixing a real GitHub-side defect the way bash is.
 #
-# AutoFDE's pinned pyproject requires wrapt>=2.2.1 because core.Constraint uses the
-# per-instance `wrapt.lru_cache` API. Debian bookworm's python3-wrapt predates that API.
-# Keep Debian's scientific packages, but admit wrapt==2.2.1 in an isolated venv with
-# --system-site-packages so the image satisfies the actual source dependency contract.
+# AutoFDE is copied as source rather than installed as a wheel, so its Python package metadata
+# does not automatically admit its runtime dependency contract. Install the exact base
+# dependencies declared by the pinned vendor/autofde-lab/pyproject.toml, including GymAct at
+# that file's exact git revision. `wrapt==2.2.1` is the minimum version that supplies the
+# per-instance `wrapt.lru_cache` API used by core.Constraint; Debian bookworm's python3-wrapt
+# predates it. The isolated venv retains Debian's rdflib/numpy/dill via --system-site-packages.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates git python3 python3-venv python3-rdflib python3-numpy python3-dill bash nodejs \
     && python3 -m venv --system-site-packages /opt/ggen-python \
-    && /opt/ggen-python/bin/pip install --no-cache-dir 'wrapt==2.2.1' \
-    && /opt/ggen-python/bin/python -c 'import wrapt; assert hasattr(wrapt, "lru_cache")' \
+    && /opt/ggen-python/bin/pip install --no-cache-dir \
+         'pynng>=0.6.2' \
+         'pathos>=0.2.7' \
+         'discrete-optimization>=0.9.0' \
+         'wrapt==2.2.1' \
+         'gymact @ git+https://github.com/seanchatmangpt/gymact.git@524d0bc8633d8534f500d67f27384ce9368c0863' \
+    && /opt/ggen-python/bin/python -c 'import wrapt, discrete_optimization, pynng, pathos, gymact; assert hasattr(wrapt, "lru_cache")' \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /out/bin/ggen /usr/local/bin/ggen
@@ -118,11 +125,11 @@ ENV BEAM4PM_ROOT=/opt/beam4pm
 ENV PYTHONPATH="/opt/autofde-lab/src"
 ENV PATH="/opt/ggen-python/bin:/usr/local/bin:${PATH}"
 
-# Fail the image build if the pinned beam4pm submodule was not initialized into the build context.
+# Fail the image build if the pinned beam4pm submodule or AutoFDE base runtime contract is absent.
 RUN test -f "$BEAM4PM_ROOT/mix.exs" \
     && test -f "$BEAM4PM_ROOT/rebar.config" \
     && test -d "$BEAM4PM_ROOT/native" \
-    && python3 -c 'import wrapt; assert hasattr(wrapt, "lru_cache")'
+    && python3 -c 'import wrapt, discrete_optimization, pynng, pathos, gymact; assert hasattr(wrapt, "lru_cache")'
 
 RUN ggen --version || true
 
