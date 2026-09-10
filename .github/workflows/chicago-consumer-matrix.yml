@@ -68,13 +68,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          docker run --rm --network none ggen-ecosystem:test python3 - <<'PY'
-          import wrapt
-          import autofde_lab
-          import autofde_lab_planner
-          assert hasattr(wrapt, 'lru_cache')
-          print('AUTOFDE_RUNTIME_DEPENDENCY_ALIVE')
-          PY
+          docker run --rm --network none ggen-ecosystem:test \
+            python3 -c "import wrapt, autofde_lab, autofde_lab_planner; assert hasattr(wrapt, 'lru_cache'); print('AUTOFDE_RUNTIME_DEPENDENCY_ALIVE')"
 
       - name: Run exact-head container Chicago court
         shell: bash
