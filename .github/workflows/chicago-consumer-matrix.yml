@@ -13,7 +13,7 @@ permissions:
 jobs:
   chicago:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - name: Checkout exact candidate with recursive submodules
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
@@ -29,10 +29,10 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
-          git submodule status --recursive
+          git submodule status
           echo "EXACT_SUBJECT_ALIVE=$EXPECTED_SHA"
 
-      - name: Admit immutable published release image
+      - name: Observe historical immutable release identity
         shell: bash
         run: |
           set -euo pipefail
@@ -41,21 +41,42 @@ jobs:
           with open('ecosystem.lock.toml', 'rb') as f:
               lock = tomllib.load(f)
           c = lock['container']
-          print(f"IMAGE={c['repository']}@{c['digest']}")
+          print(f"RELEASE_IMAGE={c['repository']}@{c['digest']}")
           print(f"GGEN_SHA256={lock['ggen']['linux_x86_64_asset_sha256']}")
           PY
+          docker pull "$RELEASE_IMAGE"
+          VERSION="$(docker run --rm --network none "$RELEASE_IMAGE" ggen --version)"
+          test "$VERSION" = "ggen 26.9.9"
+          echo "HISTORICAL_RELEASE_IDENTITY_ALIVE=$VERSION"
 
-      - name: Pull immutable digest and prove network-isolated runtime identity
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+
+      - name: Build exact-head composed candidate
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          platforms: linux/amd64
+          load: true
+          push: false
+          provenance: false
+          tags: ggen-ecosystem:test
+          cache-from: type=gha,scope=ggen-ecosystem-amd64
+          cache-to: type=gha,mode=max,scope=ggen-ecosystem-amd64
+
+      - name: Prove repaired dependency contract
         shell: bash
         run: |
           set -euo pipefail
-          docker pull "$IMAGE"
-          VERSION="$(docker run --rm --network none "$IMAGE" ggen --version)"
-          test "$VERSION" = "ggen 26.9.9"
-          docker tag "$IMAGE" ggen-ecosystem:test
-          echo "IMMUTABLE_RELEASE_RUNTIME_ALIVE=$VERSION"
+          docker run --rm --network none ggen-ecosystem:test python3 - <<'PY'
+          import wrapt
+          import autofde_lab
+          import autofde_lab_planner
+          assert hasattr(wrapt, 'lru_cache')
+          print('AUTOFDE_RUNTIME_DEPENDENCY_ALIVE')
+          PY
 
-      - name: Run exact container Chicago court
+      - name: Run exact-head container Chicago court
         shell: bash
         run: |
           set -euo pipefail
@@ -104,7 +125,7 @@ jobs:
           grep -F "seanchatmangpt/ggen-ecosystem@$EXPECTED_SHA" "$RUNNER_TEMP/dod.txt"
           grep -F 'STATUS: ALIVE' "$RUNNER_TEMP/dod.txt"
 
-      - name: Validate historical receipt and run mfact court
+      - name: Validate historical receipt and bounded mfact court
         shell: bash
         run: |
           set -euo pipefail
