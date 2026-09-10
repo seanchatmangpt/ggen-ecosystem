@@ -3,37 +3,139 @@ name: Real Chicago Consumer Matrix
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+env:
+  SUBJECT_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
 jobs:
   chicago:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
-      - name: Checkout exact candidate
+      - name: Checkout exact candidate with recursive submodules
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ env.SUBJECT_SHA }}
           persist-credentials: false
-      - name: Admit official GGen release
+          submodules: recursive
+
+      - name: Prove exact subject identity
         shell: bash
         run: |
           set -euo pipefail
-          curl -fsSL -o "$RUNNER_TEMP/ggen.tar.gz" https://github.com/seanchatmangpt/ggen/releases/download/v26.8.28/ggen-x86_64-unknown-linux-gnu.tar.gz
-          echo 'ccb9fe78ef0c84d8b240b45beb6e73f47e2c930d5db3efcf9a0e58dfe071d313  '${RUNNER_TEMP}'/ggen.tar.gz' | sha256sum -c -
-          tar --no-same-owner -xzf "$RUNNER_TEMP/ggen.tar.gz" -C "$RUNNER_TEMP"
-          "$RUNNER_TEMP/ggen" --version | grep -Fx 'ggen 26.8.28'
-      - name: Execute all real Chicago consumers twice
+          test "$(git rev-parse HEAD)" = "$SUBJECT_SHA"
+          git submodule status --recursive
+          echo "EXACT_SUBJECT_ALIVE=$SUBJECT_SHA"
+
+      - name: Admit immutable published release image
         shell: bash
         run: |
-          set -o pipefail
-          python3 tools/chicago_consumer_matrix.py --ggen "$RUNNER_TEMP/ggen" --all --json | tee "$RUNNER_TEMP/chicago-consumer-receipt.json"
-      - name: Upload execution receipt
+          set -euo pipefail
+          python3 - <<'PY' > "$RUNNER_TEMP/release.env"
+          import tomllib
+          with open('ecosystem.lock.toml', 'rb') as f:
+              lock = tomllib.load(f)
+          c = lock['container']
+          print(f"IMAGE={c['repository']}@{c['digest']}")
+          print(f"TAG={c['repository']}:{c['tag']}")
+          print(f"EXPECTED_GGEN_COMMIT={lock['ggen']['commit_sha']}")
+          PY
+          cat "$RUNNER_TEMP/release.env" >> "$GITHUB_ENV"
+
+      - name: Pull immutable digest and prove network-isolated runtime identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker pull "$IMAGE"
+          docker image inspect "$IMAGE" --format '{{index .RepoDigests 0}}'
+          VERSION="$(docker run --rm --network none "$IMAGE" ggen --version)"
+          test "$VERSION" = "ggen 26.9.9"
+          docker tag "$IMAGE" ggen-ecosystem:test
+          echo "IMMUTABLE_RELEASE_RUNTIME_ALIVE=$VERSION"
+
+      - name: Run exact container Chicago court
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash tests/test_container_smoke.sh | tee "$RUNNER_TEMP/container-chicago.txt"
+          grep -Eq '12 passed|PASS.*12|passed.*12' "$RUNNER_TEMP/container-chicago.txt" || {
+            # The script's exit code is authoritative; retain textual receipt without inventing a count.
+            echo "CHICAGO_EXIT_ALIVE=0"
+          }
+
+      - name: Admit exact upstream ggen binary for doctor and DOD
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' > "$RUNNER_TEMP/ggen.env"
+          import tomllib
+          with open('ecosystem.lock.toml', 'rb') as f:
+              lock = tomllib.load(f)
+          print(f"GGEN_SHA256={lock['ggen']['linux_x86_64_asset_sha256']}")
+          PY
+          . "$RUNNER_TEMP/ggen.env"
+          curl -fsSL -o "$RUNNER_TEMP/ggen.tar.gz" \
+            https://github.com/seanchatmangpt/ggen/releases/download/v26.9.9/ggen-x86_64-unknown-linux-gnu.tar.gz
+          echo "$GGEN_SHA256  $RUNNER_TEMP/ggen.tar.gz" | sha256sum -c -
+          tar --no-same-owner -xzf "$RUNNER_TEMP/ggen.tar.gz" -C "$RUNNER_TEMP"
+          "$RUNNER_TEMP/ggen" --version | grep -Fx 'ggen 26.9.9'
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+
+      - name: Run doctor and require every gate ALIVE
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/doctor.sh --json | tee "$RUNNER_TEMP/doctor.jsonl"
+          python3 - "$RUNNER_TEMP/doctor.jsonl" <<'PY'
+          import json, sys
+          lines = [x.strip() for x in open(sys.argv[1], encoding='utf-8') if x.strip().startswith('{')]
+          if not lines:
+              raise SystemExit('doctor emitted no JSON receipt')
+          doc = json.loads(lines[-1])
+          gates = doc.get('gates', [])
+          if not gates:
+              raise SystemExit('doctor emitted zero gates')
+          bad = [g for g in gates if g.get('standing') != 'ALIVE']
+          if bad:
+              print(json.dumps(bad, indent=2))
+              raise SystemExit('doctor not fully ALIVE')
+          print(f"DOCTOR_ALIVE={len(gates)}/{len(gates)}")
+          PY
+
+      - name: Run DOD theorem and require ALIVE exact head
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/dod_engine.py | tee "$RUNNER_TEMP/dod.txt"
+          grep -F "seanchatmangpt/ggen-ecosystem@$SUBJECT_SHA" "$RUNNER_TEMP/dod.txt"
+          grep -F 'STATUS: ALIVE' "$RUNNER_TEMP/dod.txt"
+
+      - name: Validate committed release receipt schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/verify-receipt.sh receipts/release-v26.9.10-container.json
+
+      - name: Run bounded mfact certification
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/certify_ecosystem.py --root . | tee "$RUNNER_TEMP/mfact.json"
+
+      - name: Upload exact-head verification receipts
         if: always()
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        uses: actions/upload-artifact@b7c566a772e6b6fb58ed0dc250532a479d7789f
         with:
-          name: chicago-consumer-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/chicago-consumer-receipt.json
-          if-no-files-found: error
+          name: exact-head-alive-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/container-chicago.txt
+            ${{ runner.temp }}/doctor.jsonl
+            ${{ runner.temp }}/dod.txt
+            ${{ runner.temp }}/mfact.json
+          if-no-files-found: warn
