@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "b42eb56e3d111f9b016bb409b0a35037d2b094e9"
-updated_at = "2026-09-10T21:34:01Z"
+base_main_sha = "e6b8b27d0b155d37f7b3e12d3e15f32506e1a148"
+updated_at = "2026-09-11T00:00:58Z"
 
 [ggen]
 release = "v26.9.10"
@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "942a4f63167ebc73a21bd881b3ffb40b7454d78d"
+sha = "d129f275659cc53994b3c7b05d00569ecd438383"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "942a4f63167ebc73a21bd881b3ffb40b7454d78d"
+marketplace_sha = "d129f275659cc53994b3c7b05d00569ecd438383"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -31,7 +31,7 @@ workflow = ".github/workflows/pragprog-tps.yml"
 receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 
 [ggen_igniter]
-sha = "da19ad3137d5e2dbee7815de5026542e9a0a7e27"
+sha = "dc08680b807d5e1742b3d584aa67c5e39de4844a"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
 version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
@@ -53,11 +53,11 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "83a02070d021fbbd66426793d47bc1d68d0603c6"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "942a4f63167ebc73a21bd881b3ffb40b7454d78d"
+ggen_marketplace_commit = "d129f275659cc53994b3c7b05d00569ecd438383"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "cd48efcb6c6d93a1fdc5f9a20df586334ae2d416"
 ggen_igniter_path = "vendor/ggen_igniter"
-ggen_igniter_commit = "da19ad3137d5e2dbee7815de5026542e9a0a7e27"
+ggen_igniter_commit = "dc08680b807d5e1742b3d584aa67c5e39de4844a"
 beam4pm_path = "vendor/beam4pm"
 beam4pm_commit = "7aa4f6485203b5f2f6db7ab118092d02c01670e7"
 wasm4pm_path = "vendor/wasm4pm"
