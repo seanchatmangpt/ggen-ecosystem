@@ -77,9 +77,9 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
 tag = "v26.9.10"
 digest = "sha256:c98bd2777558548e0ff4ef088af6f0dc3d1c32a72426a906bf0ac8eaffee8ef4"
-standing = "PARTIAL_ALIVE"
+standing = "BLOCKED"
 requires_republish = true
-requires_republish_reason = "marketplace pin (363b616e8241e40546975e89fe3ed20bdf0c9e3d) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
+failure = "marketplace pin (363b616e8241e40546975e89fe3ed20bdf0c9e3d) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
 observed_failure_run = 33238309149
 observed_success_run = 34520804764
 observed_success_at = "2026-09-10T19:48:18Z"
