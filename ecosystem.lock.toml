@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "d129f275659cc53994b3c7b05d00569ecd438383"
+sha = "363b616e8241e40546975e89fe3ed20bdf0c9e3d"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "d129f275659cc53994b3c7b05d00569ecd438383"
+marketplace_sha = "363b616e8241e40546975e89fe3ed20bdf0c9e3d"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -53,7 +53,7 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "83a02070d021fbbd66426793d47bc1d68d0603c6"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "d129f275659cc53994b3c7b05d00569ecd438383"
+ggen_marketplace_commit = "363b616e8241e40546975e89fe3ed20bdf0c9e3d"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "cd48efcb6c6d93a1fdc5f9a20df586334ae2d416"
 ggen_igniter_path = "vendor/ggen_igniter"
@@ -77,8 +77,9 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
 tag = "v26.9.10"
 digest = "sha256:c98bd2777558548e0ff4ef088af6f0dc3d1c32a72426a906bf0ac8eaffee8ef4"
-standing = "ALIVE"
-requires_republish = false
+standing = "PARTIAL_ALIVE"
+requires_republish = true
+requires_republish_reason = "marketplace pin (363b616e8241e40546975e89fe3ed20bdf0c9e3d) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
 observed_failure_run = 33238309149
 observed_success_run = 34520804764
 observed_success_at = "2026-09-10T19:48:18Z"
