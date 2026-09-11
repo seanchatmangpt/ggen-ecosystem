@@ -17,6 +17,18 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
+def git_head() -> str:
+    proc = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=REPO_ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    return proc.stdout.strip() if proc.returncode == 0 and proc.stdout.strip() else "UNKNOWN"
+
+
 def evaluate_live_dod() -> dict:
     cmd = ["bash", str(REPO_ROOT / "scripts" / "doctor.sh"), "--json"]
     proc = subprocess.run(cmd, cwd=REPO_ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -35,10 +47,10 @@ def evaluate_live_dod() -> dict:
     blocked = [g for g in gates if g["standing"] == "BLOCKED"]
 
     return {
-        "subject": "seanchatmangpt/ggen-ecosystem@v26.8.28",
+        "subject": f"seanchatmangpt/ggen-ecosystem@{git_head()}",
         "total_gates": total,
         "alive_gates": alive,
-        "standing": "ALIVE" if alive == total else ("BLOCKED" if blocked else "PARTIAL_ALIVE"),
+        "standing": "ALIVE" if total > 0 and alive == total else ("BLOCKED" if blocked else "PARTIAL_ALIVE"),
         "gates": gates,
     }
 
