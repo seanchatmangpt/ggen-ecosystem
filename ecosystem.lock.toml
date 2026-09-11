@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "e6b8b27d0b155d37f7b3e12d3e15f32506e1a148"
-updated_at = "2026-09-11T00:00:58Z"
+base_main_sha = "c98d7ad32e9769977fa514e266836030f314b575"
+updated_at = "2026-09-11T09:32:52Z"
 
 [ggen]
 release = "v26.9.10"
@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "363b616e8241e40546975e89fe3ed20bdf0c9e3d"
+sha = "7c50bef7c0e32085fe09c1c2cacc558cc2348ed3"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "363b616e8241e40546975e89fe3ed20bdf0c9e3d"
+marketplace_sha = "7c50bef7c0e32085fe09c1c2cacc558cc2348ed3"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -53,9 +53,9 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "83a02070d021fbbd66426793d47bc1d68d0603c6"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "363b616e8241e40546975e89fe3ed20bdf0c9e3d"
+ggen_marketplace_commit = "7c50bef7c0e32085fe09c1c2cacc558cc2348ed3"
 autofde_lab_path = "vendor/autofde-lab"
-autofde_lab_commit = "cd48efcb6c6d93a1fdc5f9a20df586334ae2d416"
+autofde_lab_commit = "de62563b043746cc85d0bdb1471f88ddacbb6a38"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "dc08680b807d5e1742b3d584aa67c5e39de4844a"
 beam4pm_path = "vendor/beam4pm"
@@ -79,7 +79,7 @@ tag = "v26.9.10"
 digest = "sha256:c98bd2777558548e0ff4ef088af6f0dc3d1c32a72426a906bf0ac8eaffee8ef4"
 standing = "BLOCKED"
 requires_republish = true
-failure = "marketplace pin (363b616e8241e40546975e89fe3ed20bdf0c9e3d) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
+failure = "marketplace pin (7c50bef7c0e32085fe09c1c2cacc558cc2348ed3) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
 observed_failure_run = 33238309149
 observed_success_run = 34520804764
 observed_success_at = "2026-09-10T19:48:18Z"
