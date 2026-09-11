@@ -1,0 +1,189 @@
+{
+  "all_gates_passed": true,
+  "artifact_digests": {
+    "manifest_sha256": "771b7649b941bdd32c35b4422dd9bba9c41591c9b593b26acefa7cf8d7995c7d",
+    "pack_gate_sha256": {
+      "010_release_contract.rq": "1692a10935ce703b4c12beaac53348a3d3459f3253642d0628e7c28b8bde7524",
+      "020_component_identity.rq": "84bd54f0faa68dc1a1bef68c3ccfbe166b19d97581b31a11bd4eb0758ee23c00",
+      "030_dependency_closure.rq": "e4adec955afdee4da08657049328fd4e9415de42ee13836e81340a8f97e6a662",
+      "040_required_component_law.rq": "a784047d7fa96c8473eda91878b7681d8e22352ae4b82f50edc0e44c2c4e06dd",
+      "050_ref_observation_law.rq": "077424705e4e477bb0deef0aefbe51f9beda60fea5b846d36c91aa1fad452315",
+      "060_unique_repository.rq": "7af954e115e2c51ca0060ce123015e810c71830ece9276d1514cfa718018a445"
+    },
+    "pack_ontology_sha256": "8b19ca4f8bc3ca53a42e437d5fe8effee2082830d0c59a15b9db70ea509d9763",
+    "run_gate_py_sha256": "ee080f5419d03fac72edaa364e19a572c535f7769632086bf860fc0c958d48b6"
+  },
+  "corrupt_sha_test": false,
+  "gates": [
+    {
+      "name": "010_release_contract.rq",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "020_component_identity.rq",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "030_dependency_closure.rq",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "040_required_component_law.rq",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "050_ref_observation_law.rq",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "060_unique_repository.rq",
+      "passed": true,
+      "violations": []
+    }
+  ],
+  "manifest_path": "/private/tmp/g07-release-gate-worktree/tools/g07-release-gate/release-manifest.toml",
+  "pack_dir": "/Users/sac/ggen-ecosystem/vendor/ggen-marketplace/packs/chatman-ecosystem-release-pack",
+  "receipt_dag": {
+    "node_count": 15,
+    "nodes": {
+      "077424705e4e477bb0deef0aefbe51f9beda60fea5b846d36c91aa1fad452315": {
+        "kind": "sparql-gate-query",
+        "path": "/Users/sac/ggen-ecosystem/vendor/ggen-marketplace/packs/chatman-ecosystem-release-pack/gates/050_ref_observation_law.rq",
+        "predecessors": [],
+        "sha256": "077424705e4e477bb0deef0aefbe51f9beda60fea5b846d36c91aa1fad452315"
+      },
+      "1692a10935ce703b4c12beaac53348a3d3459f3253642d0628e7c28b8bde7524": {
+        "kind": "sparql-gate-query",
+        "path": "/Users/sac/ggen-ecosystem/vendor/ggen-marketplace/packs/chatman-ecosystem-release-pack/gates/010_release_contract.rq",
+        "predecessors": [],
+        "sha256": "1692a10935ce703b4c12beaac53348a3d3459f3253642d0628e7c28b8bde7524"
+      },
+      "1f5a1e2ed89eef13c2a0924e0e4cbf3a10c81f70e2a22cb1f22e7f937ba660eb": {
+        "gate": "020_component_identity.rq",
+        "kind": "gate-result",
+        "passed": true,
+        "predecessors": [
+          "96373a4d1599d6527a3e836af5635e11609dc4254987db902fc2bdec2d8503dd",
+          "84bd54f0faa68dc1a1bef68c3ccfbe166b19d97581b31a11bd4eb0758ee23c00"
+        ],
+        "sha256": "1f5a1e2ed89eef13c2a0924e0e4cbf3a10c81f70e2a22cb1f22e7f937ba660eb",
+        "violation_count": 0
+      },
+      "2aa94efa5e192de22868fa0c269aa9d5bb70164f03ab1e29c839d1d39a094bf0": {
+        "gate": "040_required_component_law.rq",
+        "kind": "gate-result",
+        "passed": true,
+        "predecessors": [
+          "96373a4d1599d6527a3e836af5635e11609dc4254987db902fc2bdec2d8503dd",
+          "a784047d7fa96c8473eda91878b7681d8e22352ae4b82f50edc0e44c2c4e06dd"
+        ],
+        "sha256": "2aa94efa5e192de22868fa0c269aa9d5bb70164f03ab1e29c839d1d39a094bf0",
+        "violation_count": 0
+      },
+      "35f9ceca7460670f0507caf2646b08e5196f4d657cc776bf20baa9876e6915fc": {
+        "gate": "030_dependency_closure.rq",
+        "kind": "gate-result",
+        "passed": true,
+        "predecessors": [
+          "96373a4d1599d6527a3e836af5635e11609dc4254987db902fc2bdec2d8503dd",
+          "e4adec955afdee4da08657049328fd4e9415de42ee13836e81340a8f97e6a662"
+        ],
+        "sha256": "35f9ceca7460670f0507caf2646b08e5196f4d657cc776bf20baa9876e6915fc",
+        "violation_count": 0
+      },
+      "3ddea62c33e5acc2e88d646e71f868fecdf1911a0ef843ab78df658d9e08986d": {
+        "gate": "010_release_contract.rq",
+        "kind": "gate-result",
+        "passed": true,
+        "predecessors": [
+          "96373a4d1599d6527a3e836af5635e11609dc4254987db902fc2bdec2d8503dd",
+          "1692a10935ce703b4c12beaac53348a3d3459f3253642d0628e7c28b8bde7524"
+        ],
+        "sha256": "3ddea62c33e5acc2e88d646e71f868fecdf1911a0ef843ab78df658d9e08986d",
+        "violation_count": 0
+      },
+      "4bf3ccd82c9bcdc70fc5317ac85480bfb0842d74d4ae53156c1cb9bff7144f42": {
+        "gate": "060_unique_repository.rq",
+        "kind": "gate-result",
+        "passed": true,
+        "predecessors": [
+          "96373a4d1599d6527a3e836af5635e11609dc4254987db902fc2bdec2d8503dd",
+          "7af954e115e2c51ca0060ce123015e810c71830ece9276d1514cfa718018a445"
+        ],
+        "sha256": "4bf3ccd82c9bcdc70fc5317ac85480bfb0842d74d4ae53156c1cb9bff7144f42",
+        "violation_count": 0
+      },
+      "771b7649b941bdd32c35b4422dd9bba9c41591c9b593b26acefa7cf8d7995c7d": {
+        "kind": "release-manifest.toml",
+        "path": "/private/tmp/g07-release-gate-worktree/tools/g07-release-gate/release-manifest.toml",
+        "predecessors": [],
+        "sha256": "771b7649b941bdd32c35b4422dd9bba9c41591c9b593b26acefa7cf8d7995c7d"
+      },
+      "7af954e115e2c51ca0060ce123015e810c71830ece9276d1514cfa718018a445": {
+        "kind": "sparql-gate-query",
+        "path": "/Users/sac/ggen-ecosystem/vendor/ggen-marketplace/packs/chatman-ecosystem-release-pack/gates/060_unique_repository.rq",
+        "predecessors": [],
+        "sha256": "7af954e115e2c51ca0060ce123015e810c71830ece9276d1514cfa718018a445"
+      },
+      "84bd54f0faa68dc1a1bef68c3ccfbe166b19d97581b31a11bd4eb0758ee23c00": {
+        "kind": "sparql-gate-query",
+        "path": "/Users/sac/ggen-ecosystem/vendor/ggen-marketplace/packs/chatman-ecosystem-release-pack/gates/020_component_identity.rq",
+        "predecessors": [],
+        "sha256": "84bd54f0faa68dc1a1bef68c3ccfbe166b19d97581b31a11bd4eb0758ee23c00"
+      },
+      "8f3fae673465cc26a102eac9102dac8e22c300c1c7d18bb12e00e121db2225c4": {
+        "kind": "release-verdict",
+        "predecessors": [
+          "1f5a1e2ed89eef13c2a0924e0e4cbf3a10c81f70e2a22cb1f22e7f937ba660eb",
+          "2aa94efa5e192de22868fa0c269aa9d5bb70164f03ab1e29c839d1d39a094bf0",
+          "35f9ceca7460670f0507caf2646b08e5196f4d657cc776bf20baa9876e6915fc",
+          "3ddea62c33e5acc2e88d646e71f868fecdf1911a0ef843ab78df658d9e08986d",
+          "4bf3ccd82c9bcdc70fc5317ac85480bfb0842d74d4ae53156c1cb9bff7144f42",
+          "a7759a1a68a76566dc7277bb3707982d7f44fe8201cebfd20fbd43d4f8902565"
+        ],
+        "sha256": "8f3fae673465cc26a102eac9102dac8e22c300c1c7d18bb12e00e121db2225c4"
+      },
+      "96373a4d1599d6527a3e836af5635e11609dc4254987db902fc2bdec2d8503dd": {
+        "kind": "rdf-turtle-projection",
+        "predecessors": [
+          "771b7649b941bdd32c35b4422dd9bba9c41591c9b593b26acefa7cf8d7995c7d"
+        ],
+        "sha256": "96373a4d1599d6527a3e836af5635e11609dc4254987db902fc2bdec2d8503dd"
+      },
+      "a7759a1a68a76566dc7277bb3707982d7f44fe8201cebfd20fbd43d4f8902565": {
+        "gate": "050_ref_observation_law.rq",
+        "kind": "gate-result",
+        "passed": true,
+        "predecessors": [
+          "96373a4d1599d6527a3e836af5635e11609dc4254987db902fc2bdec2d8503dd",
+          "077424705e4e477bb0deef0aefbe51f9beda60fea5b846d36c91aa1fad452315"
+        ],
+        "sha256": "a7759a1a68a76566dc7277bb3707982d7f44fe8201cebfd20fbd43d4f8902565",
+        "violation_count": 0
+      },
+      "a784047d7fa96c8473eda91878b7681d8e22352ae4b82f50edc0e44c2c4e06dd": {
+        "kind": "sparql-gate-query",
+        "path": "/Users/sac/ggen-ecosystem/vendor/ggen-marketplace/packs/chatman-ecosystem-release-pack/gates/040_required_component_law.rq",
+        "predecessors": [],
+        "sha256": "a784047d7fa96c8473eda91878b7681d8e22352ae4b82f50edc0e44c2c4e06dd"
+      },
+      "e4adec955afdee4da08657049328fd4e9415de42ee13836e81340a8f97e6a662": {
+        "kind": "sparql-gate-query",
+        "path": "/Users/sac/ggen-ecosystem/vendor/ggen-marketplace/packs/chatman-ecosystem-release-pack/gates/030_dependency_closure.rq",
+        "predecessors": [],
+        "sha256": "e4adec955afdee4da08657049328fd4e9415de42ee13836e81340a8f97e6a662"
+      }
+    },
+    "root": "771b7649b941bdd32c35b4422dd9bba9c41591c9b593b26acefa7cf8d7995c7d",
+    "verdict": "8f3fae673465cc26a102eac9102dac8e22c300c1c7d18bb12e00e121db2225c4"
+  },
+  "run_at": "2026-09-01T18:02:30.128969+00:00",
+  "standing_breakdown": {
+    "UNKNOWN": 9
+  }
+}

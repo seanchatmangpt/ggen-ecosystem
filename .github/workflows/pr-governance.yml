@@ -14,16 +14,28 @@ concurrency:
 
 jobs:
   source-authority:
-    name: Source authority and syntax
+    name: Source authority, syntax, and Chicago
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 60
     steps:
       - name: Checkout exact PR head
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
+          submodules: recursive
           persist-credentials: false
+      - name: Assert exact PR head
+        shell: bash
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          actual="$(git rev-parse HEAD)"
+          test "$actual" = "$EXPECTED_HEAD" || {
+            echo "REFUSED[HEAD_DRIFT]: expected=$EXPECTED_HEAD actual=$actual" >&2
+            exit 1
+          }
       - name: Compile Python control surfaces
         run: python3 -m compileall -q scripts tests
       - name: Validate shell syntax
@@ -57,4 +69,17 @@ jobs:
             echo 'REFUSED[GENERATED_PROJECTION_DIRECT_EDIT]: generated sync workflow changed without authoritative generator input.' >&2
             exit 1
           fi
-          echo 'ALIVE: source-authority boundary admitted.'
+          echo 'PARTIAL_ALIVE[PR_GOVERNANCE]: source-authority and syntax admitted; Chicago execution remains separate.'
+      - name: Execute exact-head Chicago consumer
+        shell: bash
+        env:
+          CHICAGO_SUBJECT_SHA: ${{ github.event.pull_request.head.sha }}
+          CHICAGO_EVIDENCE_PATH: ${{ runner.temp }}/chicago-evidence.json
+        run: bash tests/chicago_consumer.sh
+      - name: Upload Chicago execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chicago-evidence-${{ github.event.pull_request.head.sha }}
+          path: ${{ runner.temp }}/chicago-evidence.json
+          if-no-files-found: ignore

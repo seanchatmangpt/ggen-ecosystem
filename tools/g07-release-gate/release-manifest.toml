@@ -1,0 +1,108 @@
+# G07 ecosystem-release-verifier: real release manifest for v26.9.1
+# Source of truth for exact SHAs: ~/chatman-ecosystem/ecosystem.lock
+# (format: repository|exact_commit_sha|admitted_role)
+#
+# Standing values below are taken from live GitHub check-runs at each locked
+# SHA, re-queried at manifest-build time (see fetch_standing.py / this run's
+# report.json for the exact `gh api` calls and raw counts). Where a fresh
+# check-run query could not be completed this run, standing is left UNKNOWN
+# rather than guessed or copied from a prior cycle.
+
+[release]
+version = "26.9.1"
+target_date = "2026-09-01"
+standing = "UNKNOWN"
+authority_class = "SELECT_CONSTRUCT"
+required_roles = ["manufacturer", "actuation-authority", "certifier"]
+
+# --- components, one per ecosystem.lock line -------------------------------
+
+[[component]]
+repository = "seanchatmangpt/truex"
+branch_ref = "main"
+commit_sha = "7da0500926ddd0374e91f6ab8d58244f6611fe4a"
+role = "receipt-reference"
+disposition = "ADAPTER"
+standing = "UNKNOWN"
+required = false
+ref_check_mode = "GITHUB_LIVE"
+
+[[component]]
+repository = "seanchatmangpt/mcpp"
+branch_ref = "main"
+commit_sha = "9995559a9042806ba18cd8177b1f5dd4c064008b"
+role = "capability-reference"
+disposition = "ADAPTER"
+standing = "UNKNOWN"
+required = false
+ref_check_mode = "GITHUB_LIVE"
+
+[[component]]
+repository = "seanchatmangpt/wasm4pm"
+branch_ref = "main"
+commit_sha = "44f1bca8ff8cb05b1d8f5561c20c827e33d2b5fd"
+role = "process-evidence"
+disposition = "ADAPTER"
+standing = "UNKNOWN"
+required = false
+ref_check_mode = "GITHUB_LIVE"
+
+[[component]]
+repository = "seanchatmangpt/ferroplan"
+branch_ref = "main"
+commit_sha = "282fae46a7cf4f71ab473e33b5f3fdb4d73433c9"
+role = "planner"
+disposition = "ADAPTER"
+standing = "UNKNOWN"
+required = false
+ref_check_mode = "GITHUB_LIVE"
+
+[[component]]
+repository = "seanchatmangpt/mfw"
+branch_ref = "main"
+commit_sha = "e4fbda46f13d8213b86aa4f981d2387638983066"
+role = "oracle"
+disposition = "ADAPTER"
+standing = "UNKNOWN"
+required = false
+ref_check_mode = "GITHUB_LIVE"
+
+[[component]]
+repository = "seanchatmangpt/ggen"
+branch_ref = "main"
+commit_sha = "c36d72161b847b13555c24132819281f17e40e40"
+role = "manufacturer"
+disposition = "REQUIRED"
+standing = "UNKNOWN"
+required = true
+ref_check_mode = "GITHUB_LIVE"
+
+[[component]]
+repository = "seanchatmangpt/mfact"
+branch_ref = "main"
+commit_sha = "308384002a15b9946acbcd6f560c5819723d79dc"
+role = "certifier"
+disposition = "REQUIRED"
+standing = "UNKNOWN"
+required = true
+ref_check_mode = "GITHUB_LIVE"
+
+[[component]]
+repository = "seanchatmangpt/unrdf"
+branch_ref = "main"
+commit_sha = "a7b5a907d029dbca1af1bc2734ef1f7fb981a98d"
+role = "semantic-admission"
+disposition = "ADAPTER"
+standing = "UNKNOWN"
+required = false
+ref_check_mode = "GITHUB_LIVE"
+
+[[component]]
+repository = "seanchatmangpt/chatman-ecosystem"
+branch_ref = "main"
+commit_sha = "14cfd7b01aac25b3271963378d07357eb0c55af6"
+role = "actuation-authority"
+disposition = "REQUIRED"
+standing = "UNKNOWN"
+required = true
+ref_check_mode = "GITHUB_LIVE"
