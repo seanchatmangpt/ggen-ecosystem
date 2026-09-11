@@ -1,0 +1,51 @@
+name: Repository Hygiene
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repo-hygiene-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  hygiene:
+    name: GitHub DX and repository contracts
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout exact subject
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          check-latest: false
+
+      - name: Verify GitHub-native capability contracts
+        run: python3 scripts/github_dx_check.py --root .
+
+      - name: Parse shell programs
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            bash -n "$file"
+          done < <(find scripts tests -type f -name '*.sh' -print0)
+
+      - name: Verify lock and certification courts
+        run: |
+          python3 -m unittest tests.lock_contracts.test_ecosystem_lock_consistency -v
+          python3 -m unittest tests.test_mfact_certification -v
+
+      - name: Refuse diagnostic mutation
+        run: git diff --exit-code

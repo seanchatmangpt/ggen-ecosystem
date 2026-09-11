@@ -1,0 +1,29 @@
+name: Pull Request Labeler
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: pr-labeler-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  label:
+    name: Label from trusted base configuration
+    runs-on: ubuntu-24.04
+    steps:
+      # SECURITY: pull_request_target has write authority. This job intentionally does not
+      # checkout or execute pull-request code; actions/labeler reads the trusted base config
+      # and GitHub's changed-file API only.
+      - name: Apply path labels
+        uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13 # v7.0.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/labeler.yml
+          sync-labels: false
+          dot: true

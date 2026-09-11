@@ -20,6 +20,14 @@ doctor:
 doctor-json:
     @bash scripts/doctor.sh --json
 
+# GitHub-native collaboration/security/Actions/Copilot/DX contract court.
+github-dx:
+    @python3 scripts/github_dx_check.py --root .
+
+# Machine-readable GitHub-native DX standing.
+github-dx-json:
+    @python3 scripts/github_dx_check.py --root . --json
+
 # Explain why current standing exists across all gates
 explain:
     @python3 scripts/ecosystem_alive.py --explain

@@ -1,0 +1,50 @@
+name: Capability gap
+description: Record an unsupported ecosystem capability without disguising it as a defect.
+title: "capability: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this when the requested behavior is not present in the admitted producer/pack/capsule. Missing capability is `UNSUPPORTED`, not an invitation to fabricate standing.
+  - type: textarea
+    id: capability
+    attributes:
+      label: Required capability
+      description: Describe the capability independently of one proposed implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current admitted surface
+      description: Which GGen, Marketplace pack, ecosystem profile, workflow, or consumer path was inspected?
+    validations:
+      required: true
+  - type: input
+    id: exact_subject
+    attributes:
+      label: Exact subject
+      placeholder: owner/repo@40-char-sha, pack path, or container@sha256:...
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence of the gap
+      description: Include the command, output, query result, or absence proof that supports `UNSUPPORTED`.
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Reversible options
+      description: List known ways to add the capability without prematurely selecting one architecture.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance test
+      description: What independent execution would move this capability from unsupported to admitted and verified?
+    validations:
+      required: true

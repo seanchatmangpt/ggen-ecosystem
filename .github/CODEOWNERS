@@ -1,5 +1,20 @@
-# CODEOWNERS -- default reviewer for the whole tree.
-# Generated files (workflows, generated/) are still owned here since a
-# review of a regenerated workflow means reviewing the ontology change
-# that produced it, not the .yml text itself.
+# Default ownership keeps review routing deterministic for a single-owner public repository.
 * @seanchatmangpt
+
+# Semantic authority and manufacture inputs.
+/ontology.ttl @seanchatmangpt
+/ggen.toml @seanchatmangpt
+/ecosystem.lock.toml @seanchatmangpt
+/admission/ @seanchatmangpt
+/certification/ @seanchatmangpt
+
+# Generated manufacturing projections: review only; repair their semantic source.
+/.github/workflows/ggen-ecosystem-*.yml @seanchatmangpt
+
+# Security, release, and execution boundaries.
+/.github/workflows/ @seanchatmangpt
+/Dockerfile @seanchatmangpt
+/.gitmodules @seanchatmangpt
+/vendor/ @seanchatmangpt
+/receipts/ @seanchatmangpt
+/SECURITY.md @seanchatmangpt

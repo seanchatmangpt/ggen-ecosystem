@@ -1,34 +1,33 @@
 version: 2
 updates:
-  # .github/workflows/ggen-ecosystem-sync.yml is GENERATED from authoritative
-  # GGen inputs. Dependabot changes to that projection are drift signals only;
-  # the PR governance gate refuses a direct generated-only edit.
+  # GitHub Actions are exact-SHA pinned. Dependabot surfaces upstream movement as a review signal.
+  # GGen-generated workflow pins must be repaired at their semantic/template source and regenerated;
+  # a Dependabot PR against generated YAML is never itself authority to hand-edit the projection.
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "09:00"
+      time: "06:00"
       timezone: "America/Los_Angeles"
     open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+    commit-message:
+      prefix: "chore(actions)"
     groups:
       github-actions:
         patterns:
           - "*"
-    commit-message:
-      prefix: "chore(actions)"
 
+  # Submodule movement changes exact producer identity and must never auto-merge.
   - package-ecosystem: "gitsubmodule"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "09:20"
+      time: "06:30"
       timezone: "America/Los_Angeles"
     open-pull-requests-limit: 5
-    groups:
-      submodules:
-        patterns:
-          - "*"
+    rebase-strategy: "auto"
     commit-message:
       prefix: "chore(submodules)"
