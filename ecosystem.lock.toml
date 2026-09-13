@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "c306254d57de3513f35f31f3a277d7a192174ab4"
-updated_at = "2026-09-13T05:58:31Z"
+base_main_sha = "bb5c01e130a37781702727e94c0f51c3d41b3621"
+updated_at = "2026-09-13T11:40:24Z"
 
 [ggen]
 release = "v26.9.10"
@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "a3dfc7f7818c9dcdfb976732caad2a1a892b4b02"
+sha = "00f14b1b966900aa129f16a2e51727ef697823ec"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "a3dfc7f7818c9dcdfb976732caad2a1a892b4b02"
+marketplace_sha = "00f14b1b966900aa129f16a2e51727ef697823ec"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -31,13 +31,13 @@ workflow = ".github/workflows/pragprog-tps.yml"
 receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 
 [ggen_igniter]
-sha = "8a2209b084a5ecbf8a935d10f85a5ef14a27050e"
+sha = "6b9baecf6d40d4357702526524e8a4a13c1c1c8d"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
 version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
-sha = "97b7f03796138c68d2068a14f600628212a5ddc9"
+sha = "293d26fb9a8e1c2be2d8ea719d218919e0b428d4"
 repository = "https://github.com/seanchatmangpt/beam4pm"
 role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
@@ -53,13 +53,13 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "ad3a7e661ae876c48bb3813be0f96a30913acd6d"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "a3dfc7f7818c9dcdfb976732caad2a1a892b4b02"
+ggen_marketplace_commit = "00f14b1b966900aa129f16a2e51727ef697823ec"
 autofde_lab_path = "vendor/autofde-lab"
-autofde_lab_commit = "b35019752100ea35a7d0d89288b8c78200210bbf"
+autofde_lab_commit = "8ed10fc286e9c5665747033436e7c3f8c8091738"
 ggen_igniter_path = "vendor/ggen_igniter"
-ggen_igniter_commit = "8a2209b084a5ecbf8a935d10f85a5ef14a27050e"
+ggen_igniter_commit = "6b9baecf6d40d4357702526524e8a4a13c1c1c8d"
 beam4pm_path = "vendor/beam4pm"
-beam4pm_commit = "97b7f03796138c68d2068a14f600628212a5ddc9"
+beam4pm_commit = "293d26fb9a8e1c2be2d8ea719d218919e0b428d4"
 wasm4pm_path = "vendor/wasm4pm"
 wasm4pm_commit = "da48e98cdde83d5b581d3305b7ec3c041a19d77a"
 
@@ -79,7 +79,7 @@ tag = "v26.9.10"
 digest = "sha256:c98bd2777558548e0ff4ef088af6f0dc3d1c32a72426a906bf0ac8eaffee8ef4"
 standing = "BLOCKED"
 requires_republish = true
-failure = "marketplace pin (a3dfc7f7818c9dcdfb976732caad2a1a892b4b02) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
+failure = "marketplace pin (00f14b1b966900aa129f16a2e51727ef697823ec) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
 observed_failure_run = 33238309149
 observed_success_run = 34520804764
 observed_success_at = "2026-09-10T19:48:18Z"
