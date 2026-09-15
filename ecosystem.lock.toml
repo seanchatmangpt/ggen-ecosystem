@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "92fc50351c0fdc131f0633bf4e13077857620a06"
-updated_at = "2026-09-14T22:25:50Z"
+base_main_sha = "ff8d8b3abec7fcb7e9d4e5ac783c9346daf279bb"
+updated_at = "2026-09-15T07:38:23Z"
 
 [ggen]
 release = "v26.9.10"
@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "1a68a6973cccca65992c6026c0ef7f08d78c6470"
+sha = "861f09843ae47705a53bd6d3ba2d6c91246d6c5a"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "1a68a6973cccca65992c6026c0ef7f08d78c6470"
+marketplace_sha = "861f09843ae47705a53bd6d3ba2d6c91246d6c5a"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -53,7 +53,7 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "ad3a7e661ae876c48bb3813be0f96a30913acd6d"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "1a68a6973cccca65992c6026c0ef7f08d78c6470"
+ggen_marketplace_commit = "861f09843ae47705a53bd6d3ba2d6c91246d6c5a"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "8ed10fc286e9c5665747033436e7c3f8c8091738"
 ggen_igniter_path = "vendor/ggen_igniter"
@@ -79,7 +79,7 @@ tag = "v26.9.10"
 digest = "sha256:c98bd2777558548e0ff4ef088af6f0dc3d1c32a72426a906bf0ac8eaffee8ef4"
 standing = "BLOCKED"
 requires_republish = true
-failure = "marketplace pin (1a68a6973cccca65992c6026c0ef7f08d78c6470) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
+failure = "marketplace pin (861f09843ae47705a53bd6d3ba2d6c91246d6c5a) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
 observed_failure_run = 33238309149
 observed_success_run = 34520804764
 observed_success_at = "2026-09-10T19:48:18Z"
