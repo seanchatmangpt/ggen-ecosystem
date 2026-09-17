@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "dbf6820e686f8d10735f21b7fa2e4170a57f2faa"
-updated_at = "2026-09-17T07:33:12Z"
+base_main_sha = "a8cdf34fb7c3711b66b731a9eb62622537efc68b"
+updated_at = "2026-09-17T22:05:30Z"
 
 [ggen]
 release = "v26.9.10"
@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "a24193705f9be02f18ffc4c9743a1b55b282e240"
+sha = "800b8c6c5d05e91ff3b2d3bbd99c095acbe09359"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "a24193705f9be02f18ffc4c9743a1b55b282e240"
+marketplace_sha = "800b8c6c5d05e91ff3b2d3bbd99c095acbe09359"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -37,7 +37,7 @@ version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
-sha = "293d26fb9a8e1c2be2d8ea719d218919e0b428d4"
+sha = "22fa4aac83a20019bdef23897c6bb4aa783a5af3"
 repository = "https://github.com/seanchatmangpt/beam4pm"
 role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
@@ -53,13 +53,13 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "ad3a7e661ae876c48bb3813be0f96a30913acd6d"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "a24193705f9be02f18ffc4c9743a1b55b282e240"
+ggen_marketplace_commit = "800b8c6c5d05e91ff3b2d3bbd99c095acbe09359"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "00af45eeef96cdfe34d7ea8c2acf7fc31b9d54b0"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "15305cea430d66ede71e6a711634e3b5fab3ae09"
 beam4pm_path = "vendor/beam4pm"
-beam4pm_commit = "293d26fb9a8e1c2be2d8ea719d218919e0b428d4"
+beam4pm_commit = "22fa4aac83a20019bdef23897c6bb4aa783a5af3"
 wasm4pm_path = "vendor/wasm4pm"
 wasm4pm_commit = "da48e98cdde83d5b581d3305b7ec3c041a19d77a"
 
@@ -79,7 +79,7 @@ tag = "v26.9.10"
 digest = "sha256:c98bd2777558548e0ff4ef088af6f0dc3d1c32a72426a906bf0ac8eaffee8ef4"
 standing = "BLOCKED"
 requires_republish = true
-failure = "marketplace pin (a24193705f9be02f18ffc4c9743a1b55b282e240) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
+failure = "marketplace pin (800b8c6c5d05e91ff3b2d3bbd99c095acbe09359) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
 observed_failure_run = 33238309149
 observed_success_run = 34520804764
 observed_success_at = "2026-09-10T19:48:18Z"
