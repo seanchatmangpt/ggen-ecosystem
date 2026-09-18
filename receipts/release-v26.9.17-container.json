@@ -1,0 +1,30 @@
+{
+  "schema": "https://ggen.dev/receipts/ecosystem-sync/v2",
+  "subject": {
+    "repository": "seanchatmangpt/ggen-ecosystem",
+    "commit": "fcd6a068aa673ce3c2d782c9ae63fb2c1f8387f0"
+  },
+  "ecosystem": {
+    "version": "v26.9.17",
+    "ggen_commit": "ad3a7e661ae876c48bb3813be0f96a30913acd6d",
+    "marketplace_commit": "800b8c6c5d05e91ff3b2d3bbd99c095acbe09359",
+    "container_digest": "sha256:9c6a5c36d4df3e949b3cdb352eae4a45bd5b9289a9d22681f18dc5d4af529f00"
+  },
+  "admission": {
+    "result": "ADMITTED"
+  },
+  "execution": {
+    "command": "ggen sync run --dry-run --format quiet",
+    "exit_code": 0
+  },
+  "consequence": {
+    "digest": "sha256:aca98d4889792aaf51384a2b28b8bba921a3148aa8a9cefa32ff6df231d2a388"
+  },
+  "verification": {
+    "doctor": "ALIVE",
+    "chicago": "UNKNOWN",
+    "dod": "ALIVE"
+  },
+  "standing": "PARTIAL_ALIVE",
+  "notes": "Real GHCR push succeeded 2026-09-18T03:51:53Z via workflow_dispatch of ggen-ecosystem-container.yml (run 35304615620, image_tag=v26.9.17) on main @ fcd6a068: linux/amd64 + linux/arm64 built and merged into one multi-arch manifest, digest sha256:9c6a5c36..., then keylessly cosign-signed via GitHub OIDC. The git tag v26.9.17 (on merge head 2df9d4b2, PR #334) triggered the same workflow first, but that run (35303904365) failed at 'Checkout with submodules' -- root cause pre-existing on main, not the release: beam4pm @ 22fa4aac pinned native/ferroplan at 4b8ff2ef, which the ferroplan remote no longer serves ('upload-pack: not our ref' after an upstream history rewrite). Repaired upstream at the pin's owner (beam4pm PR #74: ferroplan gitlink reverted to 29134d7b, the pin the last successful image ran, verified fetchable), ecosystem advanced to beam4pm fc164d7d in PR #341, then this dispatch published the tag. The tag push path and the dispatch path build the same image; only the trigger differs (recorded here so the lineage is exact). scripts/doctor.sh run in-session after publication: ALL 11 gates ALIVE, including an independent docker pull + run of ghcr.io/seanchatmangpt/ggen-ecosystem:v26.9.17 that matched the manifest digest sha256:9c6a5c36... exactly (gate 11) -- the digest is re-observed locally, not assumed from the CI log. The binary inside the image self-reports 'ggen 26.9.10' -- that is upstream ggen's own Cargo version label at pinned commit ad3a7e661, not this ecosystem's release identity (v26.9.17, per CHANGELOG.md's format note). Standing is PARTIAL_ALIVE, not ALIVE, for one honest reason: tests/test_container_smoke.sh (the chicago 12-court suite) was not executed this pass and is recorded as UNKNOWN rather than fabricated; every other verifier (strict sync exit 0 on the exact tree, lock-contracts 7/7, certify-test 8/8, certify court exit 0 with zero typed refusals, benchmark 20 runs p50 42ms) ran for real this session."
+}

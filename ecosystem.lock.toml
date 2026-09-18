@@ -1,6 +1,6 @@
 version = 3
 base_main_sha = "a8cdf34fb7c3711b66b731a9eb62622537efc68b"
-updated_at = "2026-09-18T03:55:00Z"
+updated_at = "2026-09-18T03:59:25Z"
 
 [ggen]
 release = "v26.9.17"
@@ -76,14 +76,11 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 [container]
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
 tag = "v26.9.17"
-digest = "sha256:c98bd2777558548e0ff4ef088af6f0dc3d1c32a72426a906bf0ac8eaffee8ef4"
-standing = "BLOCKED"
-requires_republish = true
-failure = "marketplace pin (800b8c6c5d05e91ff3b2d3bbd99c095acbe09359) postdates this container's own build (observed_success_at 2026-09-10T19:48:18Z) -- the published v26.9.10 image does not reflect current marketplace main content; a fresh container build is needed before this pin can honestly report standing=ALIVE again"
-observed_failure_run = 33238309149
-observed_success_run = 34520804764
-observed_success_at = "2026-09-10T19:48:18Z"
-observed_success_head_sha = "076e0e47586159ac0f67bbabda22f7aff15685ce"
+digest = "sha256:9c6a5c36d4df3e949b3cdb352eae4a45bd5b9289a9d22681f18dc5d4af529f00"
+standing = "ALIVE"
+observed_success_run = 35304615620
+observed_success_at = "2026-09-18T03:51:53Z"
+observed_success_head_sha = "fcd6a068aa673ce3c2d782c9ae63fb2c1f8387f0"
 beam4pm_root = "/opt/beam4pm"
 
 [manufacturing]
