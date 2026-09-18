@@ -8,6 +8,7 @@ attempt network publication or actuation.
 from __future__ import annotations
 
 import pathlib
+import re
 import subprocess
 import tomllib
 import unittest
@@ -43,6 +44,31 @@ class EcosystemLockConsistency(unittest.TestCase):
         self.assertEqual(
             gitlink(submodules["ggen_marketplace_path"]),
             submodules["ggen_marketplace_commit"],
+        )
+
+    def test_ggen_toml_packs_comment_marketplace_sha_matches_lock(self) -> None:
+        """Tripwire for the comment-vs-pin drift class fixed in #248/#263/#266/#267.
+
+        Any 40-hex commit SHA cited in a ggen.toml comment must be the pinned
+        marketplace commit; a stale citation must fail here rather than mislead
+        about which commit is actually vendored.
+        """
+        manifest_text = (ROOT / "ggen.toml").read_text()
+        comment_lines = [
+            line for line in manifest_text.splitlines() if line.lstrip().startswith("#")
+        ]
+        cited_shas = set(
+            re.findall(r"\b[0-9a-f]{40}\b", "\n".join(comment_lines))
+        )
+        pinned = self.lock["submodules"]["ggen_marketplace_commit"]
+        self.assertEqual(
+            cited_shas,
+            {pinned},
+            msg=(
+                "ggen.toml comment cites marketplace SHA(s) "
+                f"{sorted(cited_shas)} but ecosystem.lock.toml pins {pinned} "
+                "-- update the comment when the submodule pin moves"
+            ),
         )
 
     def test_autofde_lab_gitlink_matches_lock(self) -> None:
