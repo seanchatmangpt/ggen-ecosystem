@@ -72,6 +72,17 @@ they bring in.
   while the vendored submodule and lock pin `800b8c6c5` (cosmetic only — the
   `[packs]` entry is a relative `path =` reference, not a SHA pin — but the same
   class has recurred five times; now guarded by the tripwire above).
+- Container build unblocked: `vendor/beam4pm` @ `22fa4aac` pinned
+  `native/ferroplan` at `4b8ff2ef`, which the ferroplan remote no longer serves
+  ("upload-pack: not our ref" after an upstream history rewrite) — every
+  `--recursive` checkout died with git exit 128, failing the tag-`v26.9.17`
+  container run (35303904365) and the 22:06Z main dispatch before it. Fixed
+  upstream in beam4pm PR #74 (gitlink reverted to `29134d7b`, the pin the last
+  successful image build ran, verified still directly fetchable; beam4pm's other
+  nested pins verified fetchable); this repo advances the pin to merged head
+  `fc164d7d`. The `v26.9.17` image is then published via the container
+  workflow's `workflow_dispatch` path (`image_tag: v26.9.17`) rather than by
+  moving the already-pushed git tag.
 
 ## [v26.9.10] - 2026-09-10
 
