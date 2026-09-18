@@ -1,9 +1,9 @@
 version = 3
 base_main_sha = "a8cdf34fb7c3711b66b731a9eb62622537efc68b"
-updated_at = "2026-09-17T22:05:30Z"
+updated_at = "2026-09-18T03:35:00Z"
 
 [ggen]
-release = "v26.9.10"
+release = "v26.9.17"
 commit_sha = "ad3a7e661ae876c48bb3813be0f96a30913acd6d"
 linux_x86_64_asset_sha256 = "ad4ab79923d17e32960383aaf5fab8e174bc8d0972872cdf1b3ecc5d11ed9e36"
 observed_executable_sha256 = "1fc76b5809333e2e5ca9ff1b1333c37bdd609a711480c1f74674344ff06d7906"
@@ -75,7 +75,7 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 
 [container]
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
-tag = "v26.9.10"
+tag = "v26.9.17"
 digest = "sha256:c98bd2777558548e0ff4ef088af6f0dc3d1c32a72426a906bf0ac8eaffee8ef4"
 standing = "BLOCKED"
 requires_republish = true

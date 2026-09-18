@@ -14,6 +14,65 @@ they bring in.
 
 ## [Unreleased]
 
+## [v26.9.17] - 2026-09-17
+
+### Added
+
+- `docs/RFC-GPACK-001-v26.9.17.md`: the **GGEN Semantic Pack Protocol** proposed
+  standard, landed verbatim from the operator-supplied draft (2889 lines). Defines
+  the GGEN Pack as a portable, content-addressable, ontology-backed semantic
+  manufacturing unit binding Identity + Semantics + Dependencies + Admission +
+  Projection + Authority + Evidence + Lifecycle, and formalizes the separations the
+  current three implementations diverge on: `Query ≠ Gate` (gates are refusal
+  falsifiers, queries are render-binding inputs), `RendererIdentity ≠
+  FileExtension` (`.tmpl` must not remain the sole renderer authority),
+  `Dependency ≠ AmbientProjection` (SEMANTICS/LAW/PROJECTION scope algebra), one
+  bootstrap manifest identity contract, and a canonical typed RDF binding model as
+  the cross-engine comparison oracle. Also specifies the canonical SHA-256
+  PackDigest, target-ownership collision law, `PackAuthority ≤ CONSTRUCT` ceiling,
+  portable receipt envelope, typed refusal vocabulary, 15 portable conformance
+  courts, the first conformance corpus, and compatibility-preserving migration
+  ladders for Rust `ggen`, `ggen_igniter`, and `ggen-marketplace` (legacy profiles
+  `GGEN-PACK-RUST-LEGACY-1` / `GGEN-PACK-IGNITER-LEGACY-1` keep existing packs
+  valid). Grounded against the exact producer heads this release pins:
+  ggen `ad3a7e661`, ggen-marketplace `800b8c6c5`, ggen_igniter `15305cea`.
+  The RFC's recommended first implementation artifact (`ggen-pack-spec-pack` +
+  first cross-engine portable fixture, Appendix E crown) is explicitly future
+  work, not this release.
+- `tests/lock_contracts/test_ecosystem_lock_consistency.py::
+  test_ggen_toml_packs_comment_marketplace_sha_matches_lock`: permanent tripwire
+  for the comment-vs-pin drift class fixed in #248/#263/#266/#267 — any 40-hex
+  SHA cited in a `ggen.toml` comment must equal the lock's pinned
+  `ggen_marketplace_commit`. Falsified both ways before landing: passes on the
+  corrected comment, fires on main's stale comment.
+- `docs/jira/v26.9.17/`: milestone session records — the cross-family
+  cleanup/merge investigation and additive merge pass (including one correction:
+  its log had reported PR #267 as merged, but `7e62e475` is not an ancestor of
+  `origin/main`; that fix is superseded by this release's comment correction +
+  tripwire), and this release's ticket.
+
+### Changed
+
+- Release identity `v26.9.10` -> `v26.9.17` (`[ggen].release` +
+  `[container].tag` in `ecosystem.lock.toml`, this repo's own `vYY.M.D`
+  convention). Producer pins are unchanged from the post-v26.9.10 crown
+  reconciliations (ggen `ad3a7e661`, ggen-marketplace `800b8c6c5`,
+  ggen_igniter `15305cea` — the exact heads the RFC was inspected against), so
+  this is a spec-landing + release-identity bump, not a producer re-pin.
+- Pushing tag `v26.9.17` triggers `ggen-ecosystem-container.yml`, whose fresh
+  build is the path to clearing the standing `[container] standing = BLOCKED /
+  requires_republish` state (marketplace pin postdates the v26.9.10-era image).
+  Per this repo's release-receipt discipline, `[container]` digest/standing are
+  updated in a follow-up commit only after that real build succeeds — never
+  fabricated ahead of it.
+
+### Fixed
+
+- `ggen.toml` `[packs]` comment cited stale ggen-marketplace SHA `363b616e`
+  while the vendored submodule and lock pin `800b8c6c5` (cosmetic only — the
+  `[packs]` entry is a relative `path =` reference, not a SHA pin — but the same
+  class has recurred five times; now guarded by the tripwire above).
+
 ## [v26.9.10] - 2026-09-10
 
 ### Changed
