@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "daddf5892997f2552fb2745a0e29e96c12272c5e"
-updated_at = "2026-09-19T05:43:32Z"
+base_main_sha = "553f68c3251d4d5d6d436781cc7dbe50e5cfa28a"
+updated_at = "2026-09-20T11:11:53Z"
 
 [ggen]
 release = "v26.9.17"
@@ -37,7 +37,7 @@ version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
-sha = "27ff280db3a3270315f26f56d8b83d2f304feb07"
+sha = "574368706e6afd804c7a13771bed3cf03da33ce0"
 repository = "https://github.com/seanchatmangpt/beam4pm"
 role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
@@ -59,7 +59,7 @@ autofde_lab_commit = "d5ac60ffde588a452ce8615f203971d17c69e31f"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3"
 beam4pm_path = "vendor/beam4pm"
-beam4pm_commit = "27ff280db3a3270315f26f56d8b83d2f304feb07"
+beam4pm_commit = "574368706e6afd804c7a13771bed3cf03da33ce0"
 wasm4pm_path = "vendor/wasm4pm"
 wasm4pm_commit = "da48e98cdde83d5b581d3305b7ec3c041a19d77a"
 
