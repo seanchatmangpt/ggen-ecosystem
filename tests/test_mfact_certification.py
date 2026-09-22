@@ -49,6 +49,23 @@ class MfactCertificationTests(unittest.TestCase):
     def test_exact_producer_pins_admit(self):
         self.assertEqual(cert.validate_lock(valid_lock()), [])
 
+    def test_compiler_and_capsule_versions_are_independent(self):
+        lock = valid_lock()
+        lock["ggen"]["release"] = "v26.9.13"
+        lock["container"]["tag"] = "v26.9.17"
+        self.assertEqual(cert.validate_lock(lock), [])
+
+    def test_release_receipt_binds_capsule_version_not_compiler_version(self):
+        lock = valid_lock()
+        lock["ggen"]["release"] = "v26.9.13"
+        lock["container"]["tag"] = "v26.9.17"
+        receipt = valid_receipt()
+        receipt["ecosystem"]["version"] = "v26.9.17"
+        self.assertNotIn(
+            "REFUSED[RECEIPT_CONTAINER_RELEASE_DRIFT]",
+            cert.validate_release_receipt(receipt, lock),
+        )
+
     def test_ggen_submodule_drift_refuses(self):
         lock = valid_lock()
         lock["submodules"]["ggen_commit"] = "0" * 40
