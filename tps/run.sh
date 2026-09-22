@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-EXPECTED_MARKETPLACE_SHA="$(python3 -c 'import tomllib; print(tomllib.load(open("ecosystem.lock.toml","rb"))["pragprog_tps"]["marketplace_sha"])')"
+GLOBAL_MARKETPLACE_SHA="$(python3 -c 'import tomllib; print(tomllib.load(open("ecosystem.lock.toml","rb"))["ggen_marketplace"]["sha"])')"
+TPS_MARKETPLACE_SHA="$(python3 -c 'import tomllib; print(tomllib.load(open("ecosystem.lock.toml","rb"))["pragprog_tps"]["marketplace_sha"])')"
+[[ "$TPS_MARKETPLACE_SHA" = "$GLOBAL_MARKETPLACE_SHA" ]] || {
+  echo "REFUSED[PRAGPROG_LOCK_DRIFT]:$TPS_MARKETPLACE_SHA:$GLOBAL_MARKETPLACE_SHA" >&2
+  exit 2
+}
+EXPECTED_MARKETPLACE_SHA="$GLOBAL_MARKETPLACE_SHA"
 CANDIDATE_SHA="${GITHUB_HEAD_SHA:-${GITHUB_SHA:-$(git rev-parse HEAD)}}"
 if [[ -n "${GITHUB_EVENT_PATH:-}" && -f "${GITHUB_EVENT_PATH}" ]]; then
   pr_head="$(python3 -c 'import json,os; d=json.load(open(os.environ["GITHUB_EVENT_PATH"])); print(d.get("pull_request",{}).get("head",{}).get("sha", ""))')"
