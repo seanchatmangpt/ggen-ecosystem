@@ -1,13 +1,12 @@
 version = 3
-base_main_sha = "553f68c3251d4d5d6d436781cc7dbe50e5cfa28a"
-updated_at = "2026-09-20T11:11:53Z"
+base_main_sha = "21a8deee052ceeabaf5fc18ffd873cdca6540f1f"
+updated_at = "2026-09-22T23:05:00Z"
 
 [ggen]
-release = "v26.9.17"
-commit_sha = "06093e0cd679662b8c6d15eedea0973fd475dec5"
-linux_x86_64_asset_sha256 = "ad4ab79923d17e32960383aaf5fab8e174bc8d0972872cdf1b3ecc5d11ed9e36"
-observed_executable_sha256 = "1fc76b5809333e2e5ca9ff1b1333c37bdd609a711480c1f74674344ff06d7906"
-aarch64_apple_darwin_asset_sha256 = "0af3bf29dba1addfbcc9f83456ac1e8297b49ae429f86b02cbfe7431e91778be"
+release = "v26.9.13"
+commit_sha = "290a4280319ad3345ca85b09862e39c5d7a3f2d9"
+release_asset_hashes_observed = false
+release_asset_hashes_reason = "v26.9.13 release-asset hashes were not re-observed in this reconciliation; the admitted consumption path is the composed container"
 
 [consumer_manufacture]
 release = "v26.8.27"
@@ -33,12 +32,14 @@ receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 [ggen_igniter]
 sha = "d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
-version = "26.8.30"
+version = "26.9.15"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
 sha = "574368706e6afd804c7a13771bed3cf03da33ce0"
 repository = "https://github.com/seanchatmangpt/beam4pm"
+version = "26.9.12"
+release_ref_observed = false
 role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
 
@@ -51,11 +52,11 @@ standing = "PARTIAL_ALIVE"
 
 [submodules]
 ggen_path = "vendor/ggen"
-ggen_commit = "06093e0cd679662b8c6d15eedea0973fd475dec5"
+ggen_commit = "290a4280319ad3345ca85b09862e39c5d7a3f2d9"
 ggen_marketplace_path = "vendor/ggen-marketplace"
 ggen_marketplace_commit = "616e93d1e6f9566e4b5eb4e2c3d1400746786e50"
 autofde_lab_path = "vendor/autofde-lab"
-autofde_lab_commit = "d5ac60ffde588a452ce8615f203971d17c69e31f"
+autofde_lab_commit = "5d7ec09315f35766e7744b391edde350e9dc35f3"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3"
 beam4pm_path = "vendor/beam4pm"
@@ -105,3 +106,105 @@ observed_total_owned_repositories = 378
 census_date = "2026-08-28"
 census_base_main_sha = "c1bb4b8a25fe73c54c16f95d4aaac6710ea49833"
 census_receipt = "receipts/github-ecosystem-census-2026-08-28.json"
+
+[recent_versions]
+observed_at = "2026-09-22T23:05:00Z"
+scope = "versioned ecosystem projects observed during the 2026-09-21/22 release and integration wave"
+authority = "observation only; package metadata and tag resolution do not imply publication, deployment, or runtime standing"
+
+[recent_versions.ggen]
+repository = "https://github.com/seanchatmangpt/ggen"
+version = "26.9.13"
+source = "Cargo.toml [workspace.package].version"
+source_head_sha = "290a4280319ad3345ca85b09862e39c5d7a3f2d9"
+release_ref = "v26.9.13"
+release_ref_observed = true
+
+[recent_versions.ggen_igniter]
+repository = "https://github.com/seanchatmangpt/ggen_igniter"
+version = "26.9.15"
+source = "mix.exs"
+source_head_sha = "d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3"
+release_ref = "v26.9.15"
+release_ref_observed = true
+
+[recent_versions.beam4pm]
+repository = "https://github.com/seanchatmangpt/beam4pm"
+version = "26.9.12"
+source = "mix.exs"
+source_head_sha = "574368706e6afd804c7a13771bed3cf03da33ce0"
+release_ref = "v26.9.12"
+release_ref_observed = false
+
+[recent_versions.wasm4pm]
+repository = "https://github.com/seanchatmangpt/wasm4pm"
+version = "26.7.23"
+source = "Cargo.toml [workspace.package].version"
+source_head_sha = "da48e98cdde83d5b581d3305b7ec3c041a19d77a"
+release_ref = "v26.7.23"
+release_ref_observed = true
+
+[recent_versions.ash_a2a]
+repository = "https://github.com/seanchatmangpt/ash_a2a"
+version = "26.9.21"
+source = "mix.exs"
+source_head_sha = "596960660fb4c54777c0b8a24d9d284318898071"
+release_ref = "v26.9.21"
+release_ref_observed = true
+
+[recent_versions.ash_r2rml]
+repository = "https://github.com/seanchatmangpt/ash_r2rml"
+version = "26.9.12"
+source = "mix.exs"
+source_head_sha = "241342a9661a01ebc931e1ed7d3c7e96c5d76e0a"
+release_ref = "v26.9.12"
+release_ref_observed = true
+
+[recent_versions.ash_surface]
+repository = "https://github.com/seanchatmangpt/ash_surface"
+version = "26.9.13"
+source = "mix.exs"
+source_head_sha = "7d5492795d9b9a0956f51545ed1ad1932768b77e"
+release_ref = "v26.9.13"
+release_ref_observed = false
+
+[recent_versions.ash_expo]
+repository = "https://github.com/seanchatmangpt/ash_expo"
+version = "0.1.0-dev"
+source = "mix.exs"
+source_head_sha = "3430fbd862555b598befe7b0f72b9afc1a7bfa12"
+release_ref = "v0.1.0-dev"
+release_ref_observed = false
+
+[recent_versions.ash_planning_center]
+repository = "https://github.com/seanchatmangpt/ash_planning_center"
+version = "26.9.10"
+source = "mix.exs"
+source_head_sha = "5ee26cbdc8fef26c92c7691355c76f5aed2e7b2c"
+release_ref = "v26.9.10"
+release_ref_observed = false
+
+[recent_versions.ash_pplan]
+repository = "https://github.com/seanchatmangpt/ash_pplan"
+version = "26.9.7"
+source = "mix.exs"
+source_head_sha = "d35f6298e8bd4683c36018180afac1b17dfeaa97"
+release_ref = "v26.9.7"
+release_ref_observed = false
+
+[recent_versions.ash_ex4pm]
+repository = "https://github.com/seanchatmangpt/ash_ex4pm"
+version = "26.9.10"
+source = "mix.exs"
+source_head_sha = "d4ffb71d40dd8317e78c488e0f591508579886fa"
+release_ref = "v26.9.10"
+release_ref_observed = true
+
+[recent_versions.ex4pm]
+repository = "https://github.com/seanchatmangpt/ex4pm"
+version = "26.9.9"
+source = "mix.exs"
+source_head_sha = "426455b6dfaf3931f85cc05b612ff73759766267"
+release_ref = "v26.9.9"
+release_ref_observed = true
+
