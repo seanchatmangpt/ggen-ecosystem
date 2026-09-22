@@ -74,6 +74,16 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Materialize exact producer manifests required by lock court
+        shell: bash
+        env:
+          GIT_LFS_SKIP_SMUDGE: "1"
+        run: |
+          set -euo pipefail
+          git submodule update --init --depth 1             vendor/ggen             vendor/ggen_igniter             vendor/beam4pm             vendor/wasm4pm
+          echo PRODUCER_MANIFEST_SUBJECTS_ALIVE
+
+
       - name: Verify lock, gitlink, and blocked-capsule correspondence
         run: python3 -m unittest tests.lock_contracts.test_ecosystem_lock_consistency -v
 
