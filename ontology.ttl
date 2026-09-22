@@ -525,3 +525,38 @@ ex:containerMergeSarifUpload
     gha:condition "always()" ;
     gha:usesAction "github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9" ;
     gha:withParam "sarif_file: trivy-results.sarif" .
+
+
+# --- v26.9.22 semantic life-loop composition crown -------------------------
+# Consumer ABox only. Reusable bridge law lives in ggen-marketplace
+# semantic-life-loop-pack; LifeGym/BibleGym keep their own semantic ownership.
+@prefix sll: <https://ggen.dev/ontology/semantic-life-loop#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+ex:personalLifeFormationObservation
+    a sosa:Observation ;
+    dcterms:identifier "observation:personal-life-formation:v26.9.22:001" ;
+    sosa:hasSimpleResult "A bounded life/formation observation requires Semantic Jira work admission before it can become reusable machine experience." .
+
+ex:personalLifeFormationSubject
+    a prov:Entity ;
+    dcterms:identifier "subject:personal-life-formation:v26.9.22:001" .
+
+ex:personalLifeFormationCandidate
+    a sll:WorkCandidate ;
+    dcterms:identifier "SLL-001" ;
+    dcterms:subject ex:personalLifeFormationSubject ;
+    sll:deltaClass "NOVEL_OBSERVATION" ;
+    sll:workKind "INVESTIGATE_NOVEL_OBSERVATION" ;
+    prov:wasDerivedFrom ex:personalLifeFormationObservation .
+
+ex:personalSemanticLoopEpisode
+    a sll:Episode ;
+    dcterms:identifier "personal-semantic-loop-v26.9.22-001" ;
+    sll:sourceDigest "sha256:3bf9a1de74874adad8be47521e641e7cbc885fa0d6f58ea6d3358ef89d68e3ce" ;
+    sll:projectionPriority 100 ;
+    prov:used <urn:lifegym:world-profile>,
+              <urn:biblegym:capability:devotion_prompt_packet> ;
+    sll:hasCandidate ex:personalLifeFormationCandidate .
