@@ -1,6 +1,6 @@
 version = 3
 base_main_sha = "553f68c3251d4d5d6d436781cc7dbe50e5cfa28a"
-updated_at = "2026-09-20T11:11:53Z"
+updated_at = "2026-09-22T03:44:08Z"
 
 [ggen]
 release = "v26.9.17"
@@ -16,7 +16,7 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "616e93d1e6f9566e4b5eb4e2c3d1400746786e50"
+sha = "75ab27ddf465f96c845bdfa8851d3b05545e8bf5"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
@@ -31,7 +31,7 @@ workflow = ".github/workflows/pragprog-tps.yml"
 receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 
 [ggen_igniter]
-sha = "d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3"
+sha = "c95b83170b44f6f4f71f1a65300ef9ec990ee948"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
 version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
@@ -53,11 +53,11 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "06093e0cd679662b8c6d15eedea0973fd475dec5"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "616e93d1e6f9566e4b5eb4e2c3d1400746786e50"
+ggen_marketplace_commit = "75ab27ddf465f96c845bdfa8851d3b05545e8bf5"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "d5ac60ffde588a452ce8615f203971d17c69e31f"
 ggen_igniter_path = "vendor/ggen_igniter"
-ggen_igniter_commit = "d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3"
+ggen_igniter_commit = "c95b83170b44f6f4f71f1a65300ef9ec990ee948"
 beam4pm_path = "vendor/beam4pm"
 beam4pm_commit = "574368706e6afd804c7a13771bed3cf03da33ce0"
 wasm4pm_path = "vendor/wasm4pm"
@@ -105,3 +105,12 @@ observed_total_owned_repositories = 378
 census_date = "2026-08-28"
 census_base_main_sha = "c1bb4b8a25fe73c54c16f95d4aaac6710ea49833"
 census_receipt = "receipts/github-ecosystem-census-2026-08-28.json"
+
+[semantic_life_loop]
+version = "v26.9.22"
+marketplace_pack = "packs/semantic-life-loop-pack"
+marketplace_sha = "75ab27ddf465f96c845bdfa8851d3b05545e8bf5"
+ggen_igniter_sha = "c95b83170b44f6f4f71f1a65300ef9ec990ee948"
+source_binding_sha256 = "3bf9a1de74874adad8be47521e641e7cbc885fa0d6f58ea6d3358ef89d68e3ce"
+authority_ceiling = "CONSTRUCT"
+standing = "UNKNOWN"
