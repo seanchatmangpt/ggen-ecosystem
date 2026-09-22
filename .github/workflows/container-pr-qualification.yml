@@ -87,3 +87,47 @@ jobs:
           test "$(docker image inspect "$IMAGE" --format '{{.Architecture}}')" = "$EXPECTED_ARCH"
           docker run --rm "$IMAGE" ggen --version
           docker run --rm "$IMAGE" sh -eu -c 'test -x /usr/local/bin/ggen; test -d /opt/ggen-marketplace/packs; test "$(find /opt/ggen-marketplace/packs -mindepth 1 -maxdepth 1 -type d | wc -l)" -gt 0; test -d /opt/autofde-lab/src; test -f /opt/beam4pm/mix.exs; test -f /opt/beam4pm/rebar.config; test -d /opt/beam4pm/native; python3 -c "import rdflib, numpy, dill"'
+
+
+      - name: Regenerate governed projections with exact composed producer
+        if: matrix.arch == 'amd64'
+        id: regenerate
+        shell: bash
+        env:
+          IMAGE: ggen-ecosystem-qualification:amd64
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/ggen-regenerated"
+          docker run --rm             -v "$GITHUB_WORKSPACE:/workspace"             -w /workspace             "$IMAGE"             ggen sync run
+          cp .github/workflows/ggen-ecosystem-sync.yml "$RUNNER_TEMP/ggen-regenerated/"
+          cp .github/workflows/ggen-ecosystem-container.yml "$RUNNER_TEMP/ggen-regenerated/"
+          if git diff --quiet --             .github/workflows/ggen-ecosystem-sync.yml             .github/workflows/ggen-ecosystem-container.yml; then
+            echo "drift=false" >> "$GITHUB_OUTPUT"
+            echo GENERATED_PROJECTIONS_ALIVE
+          else
+            echo "drift=true" >> "$GITHUB_OUTPUT"
+            git diff --               .github/workflows/ggen-ecosystem-sync.yml               .github/workflows/ggen-ecosystem-container.yml               > "$RUNNER_TEMP/ggen-regenerated/generated-workflows.patch"
+            echo BUILD_BROKEN[GENERATED_PROJECTION_DRIFT]
+          fi
+
+      - name: Upload exact regenerated projections
+        if: matrix.arch == 'amd64' && always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: ggen-regenerated-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/ggen-regenerated/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Enforce generated projection identity
+        if: matrix.arch == 'amd64'
+        shell: bash
+        env:
+          DRIFT: ${{ steps.regenerate.outputs.drift }}
+        run: |
+          set -euo pipefail
+          if [[ "$DRIFT" != false ]]; then
+            echo REFUSED[GENERATED_PROJECTION_DRIFT] >&2
+            exit 1
+          fi
+          echo GENERATED_PROJECTION_IDENTITY_ALIVE
