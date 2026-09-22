@@ -23,7 +23,7 @@ role = "reusable executable-knowledge packs and templates"
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "616e93d1e6f9566e4b5eb4e2c3d1400746786e50"
+marketplace_sha = "75ab27ddf465f96c845bdfa8851d3b05545e8bf5"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
