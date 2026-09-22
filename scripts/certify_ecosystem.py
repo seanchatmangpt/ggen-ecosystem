@@ -63,7 +63,12 @@ def validate_lock(lock: dict[str, Any]) -> list[str]:
     if ggen_sha != sub_ggen: errors.append("REFUSED[GGEN_SUBMODULE_PIN_DRIFT]")
     if market_sha != sub_market: errors.append("REFUSED[MARKETPLACE_SUBMODULE_PIN_DRIFT]")
     if repo != "ghcr.io/seanchatmangpt/ggen-ecosystem": errors.append("REFUSED[CONTAINER_REPOSITORY_IDENTITY]")
-    if tag != release: errors.append("REFUSED[CONTAINER_RELEASE_TAG_DRIFT]")
+    # The ggen compiler release and the ggen-ecosystem capsule release are
+    # independent version domains. Historical admitted evidence already proves
+    # this: ecosystem v26.9.17 contained a ggen binary reporting 26.9.10.
+    # Requiring tag == ggen.release collapses producer identity into product
+    # identity and falsely refuses lawful composition advances.
+    if not VERSION_RE.fullmatch(tag): errors.append("REFUSED[CONTAINER_RELEASE_IDENTITY]")
     if not SHA256_RE.fullmatch(digest): errors.append("REFUSED[IMMUTABLE_CONTAINER_DIGEST_REQUIRED]")
     for label, value in {
         "ggen.release": release, "ggen.commit_sha": ggen_sha, "ggen_marketplace.sha": market_sha,
@@ -83,7 +88,7 @@ def validate_release_receipt(receipt: dict[str, Any], lock: dict[str, Any]) -> l
     standing = str(receipt.get("standing", ""))
     if subject.get("repository") != "seanchatmangpt/ggen-ecosystem": errors.append("REFUSED[RECEIPT_REPOSITORY_IDENTITY]")
     if not SHA1_RE.fullmatch(str(subject.get("commit", ""))): errors.append("REFUSED[RECEIPT_SUBJECT_IDENTITY]")
-    if ecosystem.get("version") != lock.get("ggen", {}).get("release"): errors.append("REFUSED[RECEIPT_RELEASE_DRIFT]")
+    if ecosystem.get("version") != lock.get("container", {}).get("tag"): errors.append("REFUSED[RECEIPT_CONTAINER_RELEASE_DRIFT]")
     if ecosystem.get("ggen_commit") != lock.get("ggen", {}).get("commit_sha"): errors.append("REFUSED[RECEIPT_GGEN_DRIFT]")
     if ecosystem.get("marketplace_commit") != lock.get("ggen_marketplace", {}).get("sha"): errors.append("REFUSED[RECEIPT_MARKETPLACE_DRIFT]")
     if ecosystem.get("container_digest") != lock.get("container", {}).get("digest"): errors.append("REFUSED[RECEIPT_CONTAINER_DRIFT]")
