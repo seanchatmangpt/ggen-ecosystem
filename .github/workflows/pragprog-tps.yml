@@ -37,7 +37,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git submodule update --init --depth 1 vendor/ggen-marketplace
+          # The TPS court consumes text pack source only. Large public-ontology
+          # LFS payloads elsewhere in the marketplace are outside this subject
+          # and must not turn LFS quota into a false semantic failure.
+          GIT_LFS_SKIP_SMUDGE=1 git submodule update --init --depth 1 vendor/ggen-marketplace
       - name: Install exact GGen release
         shell: bash
         run: |
