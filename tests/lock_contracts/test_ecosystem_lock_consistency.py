@@ -29,6 +29,22 @@ def gitlink(path: str) -> str:
     return sha
 
 
+def mix_version(path: pathlib.Path) -> str:
+    text = path.read_text()
+    match = re.search(r'@version\s+"([^"]+)"', text) or re.search(
+        r'version:\s*"([^"]+)"', text
+    )
+    if not match:
+        raise AssertionError(f"no Mix project version found in {path}")
+    return match.group(1)
+
+
+def cargo_workspace_version(path: pathlib.Path) -> str:
+    with path.open("rb") as handle:
+        doc = tomllib.load(handle)
+    return doc["workspace"]["package"]["version"]
+
+
 class EcosystemLockConsistency(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
@@ -84,6 +100,47 @@ class EcosystemLockConsistency(unittest.TestCase):
             gitlink(submodules["wasm4pm_path"]),
             submodules["wasm4pm_commit"],
         )
+
+
+    def test_ggen_release_matches_vendored_workspace_version(self) -> None:
+        version = cargo_workspace_version(ROOT / "vendor/ggen/Cargo.toml")
+        self.assertEqual(self.lock["ggen"]["release"], f"v{version}")
+
+    def test_ggen_igniter_version_and_gitlink_match_lock(self) -> None:
+        submodules = self.lock["submodules"]
+        self.assertEqual(
+            gitlink(submodules["ggen_igniter_path"]),
+            submodules["ggen_igniter_commit"],
+        )
+        self.assertEqual(
+            self.lock["ggen_igniter"]["version"],
+            mix_version(ROOT / submodules["ggen_igniter_path"] / "mix.exs"),
+        )
+
+    def test_beam4pm_version_and_gitlink_match_lock(self) -> None:
+        submodules = self.lock["submodules"]
+        self.assertEqual(
+            gitlink(submodules["beam4pm_path"]),
+            submodules["beam4pm_commit"],
+        )
+        self.assertEqual(
+            self.lock["beam4pm"]["version"],
+            mix_version(ROOT / submodules["beam4pm_path"] / "mix.exs"),
+        )
+
+    def test_wasm4pm_version_matches_vendored_workspace_version(self) -> None:
+        submodules = self.lock["submodules"]
+        version = cargo_workspace_version(
+            ROOT / submodules["wasm4pm_path"] / "Cargo.toml"
+        )
+        self.assertEqual(self.lock["wasm4pm"]["version"], version)
+
+    def test_recent_version_snapshot_matches_direct_composition_versions(self) -> None:
+        recent = self.lock["recent_versions"]
+        self.assertEqual(recent["ggen"]["version"], self.lock["ggen"]["release"].removeprefix("v"))
+        self.assertEqual(recent["ggen_igniter"]["version"], self.lock["ggen_igniter"]["version"])
+        self.assertEqual(recent["beam4pm"]["version"], self.lock["beam4pm"]["version"])
+        self.assertEqual(recent["wasm4pm"]["version"], self.lock["wasm4pm"]["version"])
 
     def test_blocked_capsule_is_not_claimed_available(self) -> None:
         container = self.lock["container"]
