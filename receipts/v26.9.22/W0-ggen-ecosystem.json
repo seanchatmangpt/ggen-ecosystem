@@ -1,0 +1,43 @@
+{
+  "repo": "ggen-ecosystem",
+  "path": "/Users/sac/ggen-ecosystem",
+  "wave": "v26.9.22",
+  "lane": "L10-consumers-w0",
+  "base_sha_before": {
+    "found_branch": "docs/v26.9.18-wave-plan",
+    "found_head": "a139516c53ca9dae7e21f9a6ae62dd17d5cf7a03"
+  },
+  "preserve_branches": [
+    {"branch": "preserve/v26.9.22/main-checkout", "sha": "8c03d65ebcc6037f42277df155c3ca1450b94453", "covers": "untracked docs/jira/v26.9.18/tickets/ (T01-T15) and docs/jira/v26.9.19/ (000-011), 27 files, at a139516c"},
+    {"branch": "preserve/v26.9.22/stash-0", "sha": "fc7164526c83c746eda4ee7820c9fc29ad3eade5", "covers": "stash@{0} 'On repair/chicago-evidence-boundary-20260829: autofde-lab pin bump'"}
+  ],
+  "stashes_preserved": {
+    "count": 1,
+    "disposition": "stash entry KEPT and content committed to preserve/v26.9.22/stash-0"
+  },
+  "merge": {
+    "target": "main",
+    "merged": "origin/main 21a8deee052ceeabaf5fc18ffd873cdca6540f1f",
+    "merge_sha": "21a8deee052ceeabaf5fc18ffd873cdca6540f1f",
+    "mode": "fast-forward 2380f5e0 -> 21a8deee (5 crown commits: ecosystem.lock.toml + vendor gitlinks), via 'git fetch origin main:main' (ff-only; main not checked out anywhere)",
+    "conflicts": "none (fast-forward)"
+  },
+  "integration_worktree": {
+    "path": "/Users/sac/wt/v26922/ggen-ecosystem/int",
+    "branch": "release/v26.9.22",
+    "head": "21a8deee052ceeabaf5fc18ffd873cdca6540f1f",
+    "note": "created by earlier same-wave pass; == post-merge local main; verified clean, not recreated"
+  },
+  "baseline_gate": {
+    "command": "python3.13 -m compileall -q scripts tests; bash -n over scripts/tools *.sh; python3.13 tools/verify_supply_chain_bundle.py; python3.13 -m unittest tests.lock_contracts.test_ecosystem_lock_consistency -v",
+    "exits": {"compileall": 0, "bash_n": "0 failures", "verify_supply_chain_bundle": 0, "lock_consistency_unittest": 1},
+    "excerpt": "verify_supply_chain_bundle: checked=102 passed=102 failed=0 subject=21a8deee authority=ggen. lock_consistency: Ran 7 tests, FAILED (failures=1): ggen.toml comment cites marketplace SHA 800b8c6c but ecosystem.lock.toml pins 616e93d1",
+    "verdict": "PARTIAL_ALIVE — manifest/supply-chain validation green; the 1 lock-consistency failure is the documented pre-existing comment/pin drift on origin/main (survey merge_notes; fixed by GGE-26922-03 in a later wave). Not fixed here.",
+    "note": "default python3 is Xcode 3.9 (no tomllib); gate run under /opt/homebrew/bin/python3.13"
+  },
+  "standing": "PARTIAL_ALIVE",
+  "notes": [
+    "Earlier partial W0 pass (same wave) verified and completed by this run.",
+    "No push performed; docs/v26.9.18-wave-plan branch left untouched for its later-wave PR (GGE-26922-04)."
+  ]
+}
