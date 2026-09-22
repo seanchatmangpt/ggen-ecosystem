@@ -6,7 +6,7 @@ source = "ontology.ttl"
 
 [packs]
 # Sourced from the real vendor/ggen-marketplace git submodule (pinned commit
-# 800b8c6c5d05e91ff3b2d3bbd99c095acbe09359 -- see [submodules] in ecosystem.lock.toml),
+# 75ab27ddf465f96c845bdfa8851d3b05545e8bf5 -- see [submodules] in ecosystem.lock.toml),
 # not a git+version fetch -- confirmed schema via ggen's own
 # crates/ggen-config/src/config_schema.rs test `[packs.mypack] path = "../mypack"`.
 # The comment SHA above is asserted against the lock by
@@ -14,6 +14,9 @@ source = "ontology.ttl"
 # (test_ggen_toml_packs_comment_marketplace_sha_matches_lock) -- the drift class
 # fixed in #248/#263/#266/#267 is now a permanent tripwire, not a recurring patch.
 github-actions = { path = "vendor/ggen-marketplace/packs/github-actions-pack" }
+lifegym-world = { path = "vendor/ggen-marketplace/packs/lifegym-world-pack" }
+biblegym = { path = "vendor/ggen-marketplace/packs/biblegym-pack" }
+semantic-life-loop = { path = "vendor/ggen-marketplace/packs/semantic-life-loop-pack" }
 
 [templates]
 dir = "templates"
