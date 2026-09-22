@@ -7,7 +7,7 @@
 
 Canonical governed composition root for the ggen ecosystem.
 
-> **Current release standing:** `ALIVE`. Issue #146 (`BLOCKED[GHCR_MANIFEST_UNKNOWN]`) is closed: the composed capsule digest (`sha256:b9e170233fe1...`) was never broken -- the GHCR package was private, which GHCR reports as `manifest unknown` to unauthorized pulls rather than an access-denied error. Fixed by changing the package to public (2026-08-29); re-verified with a genuinely unauthenticated `docker logout` + full local cache removal + fresh pull + in-capsule `ggen --version`, all real, all passing. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
+> **Current source standing:** `PARTIAL_ALIVE`. The last admitted composed-container evidence remains `v26.9.17`, but the source composition has advanced beyond that receipted subject during the 2026-09-22 version reconciliation. Fresh compose/qualification/replay is required before the new exact head can regain `ALIVE` standing.
 
 This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
 
@@ -57,13 +57,18 @@ A `Justfile` provides the fuller canonical operator surface (`just --list` for a
 
 ### Exact producer pins
 
-- GGen release: `v26.8.28` (real published GitHub release, verified via prior release evidence)
-- GGen source commit: `c61ee99359c9dbc7b3cb71687976932a3e737ed4` (matches the `vendor/ggen` gitlink)
-- GGen aarch64-apple-darwin release asset SHA-256 (historical; no longer the consumption path): `82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42`
-- Marketplace commit: `89adf4c8476f7edc8067fdbb1c256cfbfa22df6a` (matches `ecosystem.lock.toml` and the `vendor/ggen-marketplace` gitlink)
-- AutoFDE Lab commit: `a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09` (matches `ecosystem.lock.toml` and the `vendor/autofde-lab` gitlink)
-- Marketplace pack: `packs/github-actions-pack` (sourced via local submodule `path =`, not `git =`/`version =`)
-- Historical composed-container digest: `sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` — **not currently admitted as pullable**; republish and re-crown are tracked in issue #146.
+The source composition is reconciled to the newest observed direct identities without inheriting standing from older receipts:
+
+- GGen release: `v26.9.13`; source/gitlink commit `290a4280319ad3345ca85b09862e39c5d7a3f2d9`.
+- Marketplace commit: `616e93d1e6f9566e4b5eb4e2c3d1400746786e50`.
+- AutoFDE Lab gitlink: `5d7ec09315f35766e7744b391edde350e9dc35f3`.
+- ggen_igniter: package version `26.9.15`; gitlink `d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3`; release ref `v26.9.15` observed.
+- beam4pm: package version `26.9.12`; gitlink `574368706e6afd804c7a13771bed3cf03da33ce0`; no matching `v26.9.12` Git ref was observed during this reconciliation.
+- wasm4pm: package/release version `26.7.23`; gitlink `da48e98cdde83d5b581d3305b7ec3c041a19d77a`.
+- Marketplace pack: `packs/github-actions-pack`, sourced from the local marketplace submodule.
+- Last admitted composed-container evidence: `ghcr.io/seanchatmangpt/ggen-ecosystem:v26.9.17@sha256:9c6a5c36d4df3e949b3cdb352eae4a45bd5b9289a9d22681f18dc5d4af529f00`. This is historical evidence for the updated source head, not a fresh crown.
+
+`ecosystem.lock.toml [recent_versions]` also records the recent non-vendored package-version observations (including `ash_a2a 26.9.21`, `ash_r2rml 26.9.12`, `ash_surface 26.9.13`, `ash_ex4pm 26.9.10`, and `ex4pm 26.9.9`) together with whether the corresponding Git release ref actually resolved at observation time.
 
 ## Maximum ecosystem graph
 
