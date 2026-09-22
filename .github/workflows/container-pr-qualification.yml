@@ -106,7 +106,7 @@ jobs:
           doc = json.loads(p.read_text())
           assert doc["schema"] == "semantic-life-loop.observation-delta.v1"
           assert doc["episode_id"] == "personal-semantic-loop-v26.9.22-001"
-          assert doc["digest"] == "sha256:11412f4be4608cd0c44e81b8640a609e4054261cd1add300f2a78f3f44b732b8"
+          assert doc["digest"] == "sha256:df6ed4923002417f51002113e6d5f07c62c96c8e0316162e4af5d07188f98379"
           assert len(doc["work_candidates"]) == 1
           candidate = doc["work_candidates"][0]
           assert candidate["id"] == "SLL-001"
