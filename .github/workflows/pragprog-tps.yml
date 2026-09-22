@@ -35,6 +35,11 @@ jobs:
           persist-credentials: false
       - name: Materialize exact TPS pack only
         shell: bash
+        env:
+          # The TPS pack does not consume marketplace LFS payloads. Fail closed
+          # on the exact Git commit while skipping unrelated LFS smudge so an
+          # exhausted external LFS budget cannot block this narrow court.
+          GIT_LFS_SKIP_SMUDGE: "1"
         run: |
           set -euo pipefail
           git submodule update --init --depth 1 vendor/ggen-marketplace
