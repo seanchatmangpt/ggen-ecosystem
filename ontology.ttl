@@ -555,7 +555,7 @@ ex:personalLifeFormationCandidate
 ex:personalSemanticLoopEpisode
     a sll:Episode ;
     dcterms:identifier "personal-semantic-loop-v26.9.22-001" ;
-    sll:sourceDigest "sha256:11412f4be4608cd0c44e81b8640a609e4054261cd1add300f2a78f3f44b732b8" ;
+    sll:sourceDigest "sha256:df6ed4923002417f51002113e6d5f07c62c96c8e0316162e4af5d07188f98379" ;
     sll:projectionPriority 100 ;
     prov:used <urn:lifegym:world-profile>,
               <urn:biblegym:capability:devotion_prompt_packet> ;
