@@ -50,7 +50,7 @@ standing_authority = true
 load_bearing = true
 
 [[artifact]]
-path = "receipts/release-v26.8.28-container.json"
+path = "receipts/release-v26.9.17-container.json"
 kind = "evidence"
 producer = "verification"
 standing_authority = true
