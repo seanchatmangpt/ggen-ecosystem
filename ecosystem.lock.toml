@@ -208,3 +208,66 @@ source_head_sha = "426455b6dfaf3931f85cc05b612ff73759766267"
 release_ref = "v26.9.9"
 release_ref_observed = true
 
+[recent_versions.xaas]
+repository = "https://github.com/seanchatmangpt/xaas"
+version = "26.9.17"
+source = "VERSION"
+source_head_sha = "2d229c272c3a02dcb8e75ff600ea0a4edc058d71"
+release_ref = "v26.9.17"
+release_ref_observed = false
+
+[recent_versions.gymact]
+repository = "https://github.com/seanchatmangpt/gymact"
+version = "26.8.23"
+source = "pyproject.toml [project].version"
+source_head_sha = "bf123ddbfb8fb7983e2dd8ed53d91b0a1c0ba637"
+release_ref = "v26.8.23"
+release_ref_observed = false
+
+[recent_versions.zcode_cli]
+repository = "https://github.com/seanchatmangpt/zcode-cli"
+version = "3.11.2-25"
+source = "package.json"
+source_head_sha = "84b4edce2cbe161b3d079e6ca0de67820d6beb38"
+release_ref = "v3.11.2-25"
+release_ref_observed = true
+
+[recent_versions.zoela]
+repository = "https://github.com/seanchatmangpt/zoela"
+version = "26.9.14"
+source = "package.json"
+source_head_sha = "ddc299048e12557c4b9831b38a6dee5669e8a136"
+release_ref = "v26.9.14"
+release_ref_observed = true
+
+[recent_versions.ash_kudzu]
+repository = "https://github.com/seanchatmangpt/ash_kudzu"
+version = "0.1.0"
+source = "mix.exs"
+source_head_sha = "dd182bba9ed5ce252fe997b987415ed69742208a"
+release_ref = "v0.1.0"
+release_ref_observed = false
+
+[recent_versions.frozen_duckdb]
+repository = "https://github.com/seanchatmangpt/frozen-duckdb"
+version = "1.5.5"
+source = "Cargo.toml [workspace.package].version"
+source_head_sha = "a3a69e43fadb3f683d402936415af7d2ff9f7384"
+release_ref = "v1.5.5"
+release_ref_observed = false
+
+[recent_heads.ggen_marketplace]
+repository = "https://github.com/seanchatmangpt/ggen-marketplace"
+source_head_sha = "616e93d1e6f9566e4b5eb4e2c3d1400746786e50"
+reason = "repository has an exact composition identity but no repository-level version was admitted by this reconciliation"
+
+[recent_heads.autofde_lab]
+repository = "https://github.com/seanchatmangpt/autofde-lab"
+source_head_sha = "5d7ec09315f35766e7744b391edde350e9dc35f3"
+reason = "pyproject.toml declares a dynamic version; no concrete repository version was admitted by this reconciliation"
+
+[recent_heads.engineering_standards]
+repository = "https://github.com/seanchatmangpt/engineering-standards"
+source_head_sha = "610944c48bce6377291c088a3e07775e9ef2908b"
+reason = "no repository-level package/version manifest was observed; head identity recorded without inventing a version"
+
