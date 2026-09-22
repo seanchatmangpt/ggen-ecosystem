@@ -87,3 +87,38 @@ jobs:
           test "$(docker image inspect "$IMAGE" --format '{{.Architecture}}')" = "$EXPECTED_ARCH"
           docker run --rm "$IMAGE" ggen --version
           docker run --rm "$IMAGE" sh -eu -c 'test -x /usr/local/bin/ggen; test -d /opt/ggen-marketplace/packs; test "$(find /opt/ggen-marketplace/packs -mindepth 1 -maxdepth 1 -type d | wc -l)" -gt 0; test -d /opt/autofde-lab/src; test -f /opt/beam4pm/mix.exs; test -f /opt/beam4pm/rebar.config; test -d /opt/beam4pm/native; python3 -c "import rdflib, numpy, dill"'
+
+      - name: Manufacture semantic life loop twice with exact composed GGen
+        shell: bash
+        env:
+          IMAGE: ggen-ecosystem-qualification:${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          artifact="artifacts/semantic-life-loop.observation-delta.json"
+          rm -f "$artifact"
+          rm -rf .ggen-v2
+          docker run --rm -v "$PWD:/workspace" -w /workspace "$IMAGE"             ggen sync run --format json-pretty
+          test -f "$artifact"
+          first="$(sha256sum "$artifact" | awk '{print $1}')"
+          python3 - "$artifact" <<'PY'
+          import json, pathlib, sys
+          p = pathlib.Path(sys.argv[1])
+          doc = json.loads(p.read_text())
+          assert doc["schema"] == "semantic-life-loop.observation-delta.v1"
+          assert doc["episode_id"] == "personal-semantic-loop-v26.9.22-001"
+          assert doc["digest"] == "sha256:11412f4be4608cd0c44e81b8640a609e4054261cd1add300f2a78f3f44b732b8"
+          assert len(doc["work_candidates"]) == 1
+          candidate = doc["work_candidates"][0]
+          assert candidate["id"] == "SLL-001"
+          assert candidate["kind"] == "INVESTIGATE_NOVEL_OBSERVATION"
+          assert candidate["delta_class"] == "NOVEL_OBSERVATION"
+          assert candidate["authority"] == "CONSTRUCT_ONLY"
+          assert candidate["standing"] == "CANDIDATE"
+          assert candidate["do_authority"] is False
+          assert candidate["dispatch"] == "NOT_EXECUTED"
+          PY
+          docker run --rm -v "$PWD:/workspace" -w /workspace "$IMAGE"             ggen sync run --format json-pretty
+          second="$(sha256sum "$artifact" | awk '{print $1}')"
+          test "$first" = "$second"
+          git diff --exit-code -- .github/workflows/ggen-ecosystem-sync.yml .github/workflows/ggen-ecosystem-container.yml
+          echo "SEMANTIC_LIFE_LOOP_MANUFACTURE_ALIVE sha256=$second"
