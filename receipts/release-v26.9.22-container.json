@@ -1,0 +1,24 @@
+{
+  "schema": "https://ggen.dev/receipts/container-freshness/v1",
+  "release": "v26.9.22",
+  "repository": "seanchatmangpt/ggen-ecosystem",
+  "source_sha": "97620bdd72f9125fb6280537a86fe9da72001386",
+  "image": "ghcr.io/seanchatmangpt/ggen-ecosystem",
+  "tag": "v26.9.22",
+  "digest": "sha256:6605878ee50f897947560445f655602e9f4471dcaeb4c493a0ce55dbec4bec13",
+  "publisher_run_id": 35833887166,
+  "verified_locally": {
+    "command": "docker run --rm ghcr.io/seanchatmangpt/ggen-ecosystem:v26.9.22 ggen --version",
+    "exit": 0,
+    "stdout": "ggen 26.9.12"
+  },
+  "sa2a_plan_only_court": {
+    "amd64": "success",
+    "arm64": "success"
+  },
+  "cosign_signed": true,
+  "trivy_scanned": true,
+  "work_order": "GGE-26922-11",
+  "lane": "L10a-FINISH",
+  "standing": "ALIVE"
+}
