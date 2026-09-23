@@ -1,10 +1,10 @@
 version = 3
-base_main_sha = "854d64ea5fcf24920602ff82ff84077496158f70"
-updated_at = "2026-09-23T11:23:42Z"
+base_main_sha = "f717564785758281524be6d3551193392f20d724"
+updated_at = "2026-09-23T16:46:15Z"
 
 [ggen]
 release = "v26.9.22"
-commit_sha = "9ddd8d372f1ccc25f3c7004d6fbeafb3cc113357"
+commit_sha = "233e23bfc894fe9da8bfabbaedad7277ef485362"
 linux_x86_64_asset_sha256 = "ad4ab79923d17e32960383aaf5fab8e174bc8d0972872cdf1b3ecc5d11ed9e36"
 observed_executable_sha256 = "1fc76b5809333e2e5ca9ff1b1333c37bdd609a711480c1f74674344ff06d7906"
 aarch64_apple_darwin_asset_sha256 = "0af3bf29dba1addfbcc9f83456ac1e8297b49ae429f86b02cbfe7431e91778be"
@@ -51,7 +51,7 @@ standing = "PARTIAL_ALIVE"
 
 [submodules]
 ggen_path = "vendor/ggen"
-ggen_commit = "9ddd8d372f1ccc25f3c7004d6fbeafb3cc113357"
+ggen_commit = "233e23bfc894fe9da8bfabbaedad7277ef485362"
 ggen_marketplace_path = "vendor/ggen-marketplace"
 ggen_marketplace_commit = "420bc91e7c1e291be73ab749b7e443252bc7bab8"
 autofde_lab_path = "vendor/autofde-lab"
