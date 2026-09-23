@@ -8,7 +8,10 @@
     "lock contract unittest 7/7 OK on python 3.12 (CI version; ambient python3 is 3.9 without tomllib)",
     "ggen.toml: marketplace SHA de-cited from [packs] comment (crown authorized-path gate forbids ggen.toml edits so a cited SHA rots); tripwire test updated: no citation = sanctioned, wrong citation still fails",
     "direct root cause of prior crown failures proven: run 35824027486 died in reconcile-step LFS smudge (agrovoc_lod.nt.zip, 'repository exceeded its LFS budget') inside crown-submodules.py's git submodule update",
-    "NOT yet observed: a dispatched crown run concluding success (runs queued at GitHub for 40+ min: 35828883896 a533e04, 35833809670 97620b)"
+    "NOT yet observed: a dispatched crown run concluding success (runs queued at GitHub for 40+ min: 35828883896 a533e04, 35833809670 97620b)",
+    "crown 35833809670 (3cece799) failed candidate courts at verify-provenance [6-workflow-drift]: the hand-added SA2A court steps in ggen-ecosystem-container.yml drifted from the ontology-generated form; fixed at the source by adding the court gha:Step facts to ontology.ttl and regenerating via ggen sync run (3b211cdc, dry-run content-identical)",
+    "crown re-dispatched manually (35838226908 at 3b211cd, pending at receipt time - GitHub queue congestion observed all wave: earlier runs queued 40-90 min)",
+    "GGE-26922-08 gate evidence: v26.9.22 image build run 35833887166 shows SA2A plan-only court success on BOTH amd64 and arm64"
   ],
   "standing": "PARTIAL_ALIVE"
 }

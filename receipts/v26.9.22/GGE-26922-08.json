@@ -7,7 +7,10 @@
     "honest current state: the probe FAILS against the published sha-21a8deee image - three real composition defects found and fixed: Debian python3-wrapt 1.14.1 ships without wrapt.lru_cache (used by autofde_lab.core); pydantic absent (bookworm apt = 1.10, chain needs v2 ConfigDict/model_validator); pyshacl absent",
     "fix pushed ced8c5af: Dockerfile builds /opt/sa2a-venv (pydantic v2 + pyshacl + real PyPI wrapt; a venv because pip-mixed dist-packages died on pyparsing.DelimitedList shadowing) with a build-failing import probe; publisher runs a per-arch SA2A plan-only court step against the just-pushed -amd64/-arm64 images, bound to the lock's autofde_lab_commit",
     "recipe proven in-session on a derivative of the published image: same steps -> SA2A_IMPORT_ALIVE printed",
-    "CI proof (both arches) still queued: runs 35831250827 (a533e04), 35833887166/35833844016 (97620bd) - GitHub queue congestion; docker run gate against the new image pending those"
+    "CI proof (both arches) still queued: runs 35831250827 (a533e04), 35833887166/35833844016 (97620bd) - GitHub queue congestion; docker run gate against the new image pending those",
+    "RESOLVED MID-WAVE: run 35833887166 (v26.9.22 image build at 97620bdd) completed SUCCESS with SA2A plan-only court (amd64)=success AND SA2A plan-only court (arm64)=success, merge-manifest + cosign + Trivy all success",
+    "crown 35833809670 then caught the hand-added court steps as [6-workflow-drift] (ggen-ecosystem-container.yml is ontology-GENERATED); fixed at the source: ex:container*Sa2aCourt gha:Step facts added to ontology.ttl and the workflow regenerated via ggen sync run (3b211cdc); dry-run now reports both managed workflows content-identical",
+    "two generation lessons caught before push: Turtle backslash escapes (FM-GRAPH-002 parse error on sed parens) and quote escapes (first regeneration lost \", breaking bash quoting)"
   ],
-  "standing": "PARTIAL_ALIVE"
+  "standing": "ALIVE"
 }
