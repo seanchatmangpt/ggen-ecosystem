@@ -80,6 +80,8 @@ jobs:
 
       - name: Reconcile declared submodules to remote crowns
         id: reconcile
+        env:
+          GIT_LFS_SKIP_SMUDGE: "1"
         shell: bash
         run: |
           set -euo pipefail
