@@ -80,6 +80,8 @@ jobs:
 
       - name: Reconcile declared submodules to remote crowns
         id: reconcile
+        env:
+          GIT_LFS_SKIP_SMUDGE: "1"
         shell: bash
         run: |
           set -euo pipefail
@@ -130,13 +132,15 @@ jobs:
 
       - name: Execute exact candidate Chicago courts
         if: steps.reconcile.outputs.changed == 'true'
+        env:
+          GIT_LFS_SKIP_SMUDGE: "1"
         shell: bash
         run: |
           set -euo pipefail
           CANDIDATE="${{ steps.candidate.outputs.candidate }}"
           test "$(git rev-parse HEAD)" = "$CANDIDATE"
           git submodule sync --recursive
-          git submodule update --init --depth 1
+          GIT_LFS_SKIP_SMUDGE=1 git submodule update --init --depth 1
           ./tps/install-ggen.sh
           ./scripts/verify-provenance.sh
           ./scripts/test-gym-factory.sh
