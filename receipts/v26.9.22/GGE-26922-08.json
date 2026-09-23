@@ -1,0 +1,13 @@
+{
+  "wo": "GGE-26922-08",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "docker run --rm ghcr.io/seanchatmangpt/ggen-ecosystem:sha-$(git rev-parse origin/main) python3 -c 'import autofde_lab.sa2a, autofde_lab.sa2a.admission.pipeline; print(\"SA2A_IMPORT_ALIVE\")'",
+  "exit": 1,
+  "output_excerpt": [
+    "honest current state: the probe FAILS against the published sha-21a8deee image - three real composition defects found and fixed: Debian python3-wrapt 1.14.1 ships without wrapt.lru_cache (used by autofde_lab.core); pydantic absent (bookworm apt = 1.10, chain needs v2 ConfigDict/model_validator); pyshacl absent",
+    "fix pushed ced8c5af: Dockerfile builds /opt/sa2a-venv (pydantic v2 + pyshacl + real PyPI wrapt; a venv because pip-mixed dist-packages died on pyparsing.DelimitedList shadowing) with a build-failing import probe; publisher runs a per-arch SA2A plan-only court step against the just-pushed -amd64/-arm64 images, bound to the lock's autofde_lab_commit",
+    "recipe proven in-session on a derivative of the published image: same steps -> SA2A_IMPORT_ALIVE printed",
+    "CI proof (both arches) still queued: runs 35831250827 (a533e04), 35833887166/35833844016 (97620bd) - GitHub queue congestion; docker run gate against the new image pending those"
+  ],
+  "standing": "PARTIAL_ALIVE"
+}

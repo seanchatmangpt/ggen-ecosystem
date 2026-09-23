@@ -1,0 +1,12 @@
+{
+  "wo": "GGE-26922-01",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "git fetch origin --prune && git checkout main && git merge --ff-only origin/main && test \"$(git rev-parse main)\" = \"$(git ls-remote origin refs/heads/main | cut -f1)\" && GIT_LFS_SKIP_SMUDGE=1 git submodule update --init && test \"$(git submodule status | grep -c '^[+-]')\" = 0",
+  "exit": 0,
+  "output_excerpt": [
+    "fetch --prune exit 0; local main already 21a8deee (W0 second pass); ff-only no-op; ls-remote match OK",
+    "GIT_LFS_SKIP_SMUDGE=1 submodule update --init: autofde-lab d5ac60f, beam4pm 5743687, ggen 06093e0, ggen-marketplace 616e93d, ggen_igniter d84da14 (main's gitlinks)",
+    "submodule status '^[+-]' count = 0; main checkout porcelain = 0"
+  ],
+  "standing": "ALIVE"
+}

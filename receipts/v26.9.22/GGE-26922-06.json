@@ -1,0 +1,13 @@
+{
+  "wo": "GGE-26922-06",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "gh pr view 25 -R seanchatmangpt/ggen_igniter --json state,baseRefName; gh pr view 477 -R seanchatmangpt/ggen-marketplace --json state,baseRefName",
+  "exit": 0,
+  "output_excerpt": [
+    "producers not on their mains: ggen_igniter #25 OPEN (base=fix/pr21-dfcm-shacl-reconciled, NOT main; head=feat/v26.9.21-youth-readiness-ingest), ggen-marketplace #477 OPEN (base=main, head=feat/v26.9.22-semantic-life-loop-pack); ggen_igniter main tip d84da14, ggen-marketplace main tip 420bc91",
+    "per the parallel-lane rule the rebind is recorded QUEUED against the pinned current release refs (ggen_igniter main d84da14 is already the ecosystem gitlink; marketplace pin 616e93d1 current)",
+    "awaited exact refs: merge of ggen_igniter PR #25 to main and ggen-marketplace PR #477 to main; then rebind lock gitlinks, ggen.toml comment (now de-cited, no longer needs edit), [semantic_life_loop].marketplace_sha and source digest, and close #345",
+    "#345 already closed as superseded by #350 (that step did not need the producers)"
+  ],
+  "standing": "QUEUED"
+}

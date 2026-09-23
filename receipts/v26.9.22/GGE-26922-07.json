@@ -1,0 +1,11 @@
+{
+  "wo": "GGE-26922-07",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "depends_on GGE-26922-06",
+  "exit": 0,
+  "output_excerpt": [
+    "blocked: the ecosystem court wiring (GgenIgniter.SemanticJira admitting SLL-001 on both architectures) sits behind the producer-first #350 rebind (GGE-26922-06, QUEUED); #350's court log cannot show the admission until the igniter observation-delta pack is bound and the composed image rebuilt",
+    "awaited exact refs: GGE-26922-06 completion (ggen_igniter PR #25 + ggen-marketplace PR #477 merged, lock rebound, #350 qualification green)"
+  ],
+  "standing": "BLOCKED"
+}

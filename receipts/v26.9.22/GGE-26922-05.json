@@ -1,0 +1,12 @@
+{
+  "wo": "GGE-26922-05",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "gh pr checks 348 -R seanchatmangpt/ggen-ecosystem; gh pr merge 348 --merge",
+  "exit": 0,
+  "output_excerpt": [
+    "re-qualification: merged origin/main (71e42710+a533e046 LFS guards) into adopt/engineering-standards-v26.9.21 (merge 54d46421), which retriggered checks",
+    "all 6 checks pass at exact head 54d46421: court (the former BLOCKED[LFS_BUDGET] check, now passing under the GIT_LFS_SKIP_SMUDGE guard), 52-case publication evidence court, Analyze Python, CodeQL, Source authority and syntax, chicago",
+    "undrafted (was draft) and merged: MERGED, merge commit 7758dc60"
+  ],
+  "standing": "ALIVE"
+}

@@ -1,0 +1,15 @@
+{
+  "wo": "GGE-26922-11",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "git ls-remote --tags origin refs/tags/v26.9.22 | wc -l",
+  "exit": 0,
+  "output_excerpt": [
+    "release identity commit 97620bdd pushed: [ggen].release v26.9.17->v26.9.22, [container].tag v26.9.17->v26.9.22, standing BLOCKED + requires_republish + failure reason (honest, per the v26.9.17 release discipline), updated_at refreshed",
+    "ontology.ttl + ggen-ecosystem-sync.yml defaults bumped: dead v26.8.28 container tag -> v26.9.22, marketplace_sha c779aec2 -> pinned 616e93d1 (the #329 'bump the pins, regenerate' item, done in the lock-consistent direction)",
+    "CHANGELOG.md [v26.9.22] entry with real commit hashes; lock-contract tests 7/7 OK",
+    "tag v26.9.22 (annotated, at 97620bdd) pushed: ls-remote count = 1",
+    "canonical publisher dispatched with image_tag=v26.9.22 (run 35833887166, queued - GitHub queue congestion)",
+    "NOT yet done: docker run ghcr.io/seanchatmangpt/ggen-ecosystem:v26.9.22 ggen --version, the follow-up lock commit with real digest + ALIVE + observed run, and receipts/release-v26.9.22-container.json - all pending the queued image build"
+  ],
+  "standing": "PARTIAL_ALIVE"
+}

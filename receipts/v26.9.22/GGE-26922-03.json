@@ -1,0 +1,14 @@
+{
+  "wo": "GGE-26922-03",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "grep -c GIT_LFS_SKIP_SMUDGE .github/workflows/autonomic-crown.yml .github/workflows/pragprog-tps.yml; python3 -m unittest tests.lock_contracts.test_ecosystem_lock_consistency -v",
+  "exit": 0,
+  "output_excerpt": [
+    "grep gates: autonomic-crown.yml = 3 (reconcile env + courts env + inline), pragprog-tps.yml = 1 (materialize step env); pushed 71e42710 + a533e046",
+    "lock contract unittest 7/7 OK on python 3.12 (CI version; ambient python3 is 3.9 without tomllib)",
+    "ggen.toml: marketplace SHA de-cited from [packs] comment (crown authorized-path gate forbids ggen.toml edits so a cited SHA rots); tripwire test updated: no citation = sanctioned, wrong citation still fails",
+    "direct root cause of prior crown failures proven: run 35824027486 died in reconcile-step LFS smudge (agrovoc_lod.nt.zip, 'repository exceeded its LFS budget') inside crown-submodules.py's git submodule update",
+    "NOT yet observed: a dispatched crown run concluding success (runs queued at GitHub for 40+ min: 35828883896 a533e04, 35833809670 97620b)"
+  ],
+  "standing": "PARTIAL_ALIVE"
+}

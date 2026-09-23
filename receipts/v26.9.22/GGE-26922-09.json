@@ -1,0 +1,11 @@
+{
+  "wo": "GGE-26922-09",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "depends_on GGE-26922-06, GGE-26922-07",
+  "exit": 0,
+  "output_excerpt": [
+    "blocked behind the producer chain; also binding law: standing comes from the TransitionLog, never literals - no observed semantic life loop success run exists to write back, so [semantic_life_loop].standing stays UNKNOWN and receipts/semantic-life-loop-v26.9.22.json is not fabricated",
+    "awaited exact refs: GGE-26922-07 court log showing GgenIgniter.SemanticJira admitting SLL-001 on amd64+arm64, whose run id + head sha then feed observed_success_run / observed_success_head_sha"
+  ],
+  "standing": "BLOCKED"
+}

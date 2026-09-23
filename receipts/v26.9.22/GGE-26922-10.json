@@ -1,0 +1,14 @@
+{
+  "wo": "GGE-26922-10",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "gh pr list -R seanchatmangpt/ggen-ecosystem --state open --json number -q length",
+  "exit": 0,
+  "output_excerpt": [
+    "gate: open PRs = 2 (<= 4), each with recorded reason: #350 kept (producer-first crown, QUEUED on producers), #363 kept (recent 2026-09-22 work owned by a parallel lane)",
+    "closed with reasons: 6 stale PRs (#159/#174/#201/#225/#229/#310), #329 (pin content landed in release commit 97620bdd; dependabot bumps conflict with crown-managed surface), #345 (superseded by #350)",
+    "branches: 104 merged remote branches deleted (commits contained in origin/main; zero loss); 42 unmerged non-PR remote branches deliberately KEPT and documented (deleting unmerged work needs owner decisions); 5 [gone] local branches recorded (changelog-session-updates, chore/container-v26.9.17-closure, dependabot/...c1aec2c850, fix/beam4pm-ferroplan-dead-pin, release/v26.9.17 - all tips contained in history or preserved by W0)",
+    "issues: 117 auto-filed [capability][repair] issues closed with per-class reasons (crown/TPS/container = LFS budget fixed by GGE-26922-03 guards; mfact = #263; chicago = stale v26.8.28 pins being reconciled by GGE-26922-11); #364/#365/#366 (newest crown/container, in-flight fixes) + 1 non-repair issue left open; 0 close failures",
+    "stash@{0} (autofde-lab pin bump, fc716452): KEEP - preserved by W0 as preserve/v26.9.22/stash-0; crown now owns pin reconciliation, so the stash is obsolete-but-kept, never dropped"
+  ],
+  "standing": "ALIVE"
+}

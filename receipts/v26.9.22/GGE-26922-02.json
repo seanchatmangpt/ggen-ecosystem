@@ -1,0 +1,13 @@
+{
+  "wo": "GGE-26922-02",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "for w in ggen-06-queries-dir ggen-09-alias ign-12-gate-semantics ign-14-bindings; do git -C /Users/sac/wt-v26918/$w status --porcelain | wc -l; done",
+  "exit": 0,
+  "output_excerpt": [
+    "gate: 0 0 0 0",
+    "committed on their existing gpack/* branches: ggen-06 f40e8aa7 (sync.rs + pack_queries_dir_e2e.rs, 302 insertions); ggen-09 65ab20a1 (generation_rules/pack/sync + consumer_alias_e2e.rs, 456 insertions); ign-12 f86d5ed (7 files, 1164 insertions incl. gate.ex, pack_profile.ex); ign-14 df2274f (9 files, 1263 insertions incl. binding.ex + binding/{adapter,oxigraph,qlever,sparql}.ex)",
+    "320 tracked _build/** artifact deletions per ggen worktree explicitly discarded via git checkout -- (restored from git; not code)",
+    "gpack/mkt-03-invalid-corpus pushed to seanchatmangpt/ggen-marketplace origin: new branch at d2d52edf2afa8145f08077ee2a5277b1682e1948 (ls-remote verified); non-force"
+  ],
+  "standing": "ALIVE"
+}

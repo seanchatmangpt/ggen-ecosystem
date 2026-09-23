@@ -1,0 +1,13 @@
+{
+  "wo": "GGE-26922-04",
+  "base_sha": "435117fd7f419cc18b0d7b1ba3f25c2d224ac1fc",
+  "command": "git status --porcelain | wc -l; gh pr list --head docs/v26.9.18-wave-plan --state all --json number -q length",
+  "exit": 0,
+  "output_excerpt": [
+    "27 tickets restored from preserve/v26.9.22/main-checkout (8c03d65e) onto docs/v26.9.18-wave-plan: 41c7343f pushed; PR #367 opened and MERGED (all 6 checks pass)",
+    "resolution marks evidence-checked: 003 RESOLVED (#248 merged 2026-09-04), 004 RESOLVED (#263), 005 RESOLVED (#266); 009 NOT marked resolved - #174 verified still OPEN at decision time and was later closed stale, so 009 recorded IN_PROGRESS with reason (no fabricated resolution)",
+    "main-checkout porcelain = 0 (submodules realigned per branch)",
+    "process note: first attempt committed the tickets to local main by mistake (checkout had moved to main in WO-01); repaired by cherry-pick onto the wave-plan branch, local main pointer moved back to the already-pushed SHA; the stray commit was never on origin/main and stays reachable via the branch + reflog"
+  ],
+  "standing": "ALIVE"
+}
