@@ -51,7 +51,10 @@ class EcosystemLockConsistency(unittest.TestCase):
 
         Any 40-hex commit SHA cited in a ggen.toml comment must be the pinned
         marketplace commit; a stale citation must fail here rather than mislead
-        about which commit is actually vendored.
+        about which commit is actually vendored. Citing no SHA at all is the
+        sanctioned steady state: the crown's authorized-path gate forbids
+        ggen.toml edits, so a citation could not follow a crown bump (the
+        citation was removed in GGE-26922-03).
         """
         manifest_text = (ROOT / "ggen.toml").read_text()
         comment_lines = [
@@ -61,13 +64,15 @@ class EcosystemLockConsistency(unittest.TestCase):
             re.findall(r"\b[0-9a-f]{40}\b", "\n".join(comment_lines))
         )
         pinned = self.lock["submodules"]["ggen_marketplace_commit"]
+        if not cited_shas:
+            return
         self.assertEqual(
             cited_shas,
             {pinned},
             msg=(
                 "ggen.toml comment cites marketplace SHA(s) "
                 f"{sorted(cited_shas)} but ecosystem.lock.toml pins {pinned} "
-                "-- update the comment when the submodule pin moves"
+                "-- update or drop the comment citation when the submodule pin moves"
             ),
         )
 
