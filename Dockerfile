@@ -97,7 +97,7 @@ FROM debian:bookworm-slim
 # harmless (small apt package, matches local `act` runs to production behavior) but is NOT
 # claimed as fixing a real GitHub-side defect the way bash is.
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates git python3 python3-wrapt python3-rdflib python3-numpy python3-dill bash nodejs \
+    && apt-get install -y --no-install-recommends ca-certificates git python3 python3-wrapt python3-rdflib python3-numpy python3-dill python3-pip python3-venv bash nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /out/bin/ggen /usr/local/bin/ggen
@@ -114,6 +114,23 @@ ENV PATH="/usr/local/bin:${PATH}"
 RUN test -f "$BEAM4PM_ROOT/mix.exs" \
     && test -f "$BEAM4PM_ROOT/rebar.config" \
     && test -d "$BEAM4PM_ROOT/native"
+
+# --- SA2A plan-only court runtime (GGE-26922-08) -------------------------
+# The vendored autofde-lab SA2A admission chain needs pydantic v2
+# (ConfigDict/model_validator -- Debian bookworm's python3-pydantic is 1.10),
+# pyshacl, and a real PyPI wrapt (Debian's python3-wrapt 1.14.1 ships without
+# wrapt.lru_cache, which autofde_lab.core uses). Installed in a dedicated venv
+# instead of mixing pip into Debian's dist-packages: mixing them breaks on
+# pyparsing/rdflib version shadowing (verified in-session; the mixed recipe
+# died on `pyparsing.DelimitedList`). Real PyPI wrapt in the venv also removes
+# the need for any sitecustomize shim.
+RUN python3 -m venv /opt/sa2a-venv \
+    && /opt/sa2a-venv/bin/pip install --no-cache-dir "pydantic>=2,<3" pyshacl wrapt
+
+# Fail the image build if the SA2A plan-only admission chain cannot import
+# from the pinned vendor/autofde-lab gitlink baked in above.
+RUN PYTHONPATH="$PYTHONPATH" /opt/sa2a-venv/bin/python -c \
+    "import autofde_lab.sa2a, autofde_lab.sa2a.admission.pipeline; print('SA2A_IMPORT_ALIVE')"
 
 RUN ggen --version || true
 
