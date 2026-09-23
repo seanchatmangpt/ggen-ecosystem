@@ -1,10 +1,10 @@
 version = 3
-base_main_sha = "553f68c3251d4d5d6d436781cc7dbe50e5cfa28a"
-updated_at = "2026-09-23T08:05:00Z"
+base_main_sha = "3b211cdce903ea6847b404548face12a71e52d2d"
+updated_at = "2026-09-23T08:56:11Z"
 
 [ggen]
 release = "v26.9.22"
-commit_sha = "06093e0cd679662b8c6d15eedea0973fd475dec5"
+commit_sha = "1598aa01ddb1848d31880dbbfd8d126353b41371"
 linux_x86_64_asset_sha256 = "ad4ab79923d17e32960383aaf5fab8e174bc8d0972872cdf1b3ecc5d11ed9e36"
 observed_executable_sha256 = "1fc76b5809333e2e5ca9ff1b1333c37bdd609a711480c1f74674344ff06d7906"
 aarch64_apple_darwin_asset_sha256 = "0af3bf29dba1addfbcc9f83456ac1e8297b49ae429f86b02cbfe7431e91778be"
@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "616e93d1e6f9566e4b5eb4e2c3d1400746786e50"
+sha = "420bc91e7c1e291be73ab749b7e443252bc7bab8"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "616e93d1e6f9566e4b5eb4e2c3d1400746786e50"
+marketplace_sha = "420bc91e7c1e291be73ab749b7e443252bc7bab8"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -51,11 +51,11 @@ standing = "PARTIAL_ALIVE"
 
 [submodules]
 ggen_path = "vendor/ggen"
-ggen_commit = "06093e0cd679662b8c6d15eedea0973fd475dec5"
+ggen_commit = "1598aa01ddb1848d31880dbbfd8d126353b41371"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "616e93d1e6f9566e4b5eb4e2c3d1400746786e50"
+ggen_marketplace_commit = "420bc91e7c1e291be73ab749b7e443252bc7bab8"
 autofde_lab_path = "vendor/autofde-lab"
-autofde_lab_commit = "d5ac60ffde588a452ce8615f203971d17c69e31f"
+autofde_lab_commit = "b34c0713d2631b9abfb5ea934cc8e295b935c9a7"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3"
 beam4pm_path = "vendor/beam4pm"
