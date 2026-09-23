@@ -423,6 +423,44 @@ ex:containerArm64BuildPush
     gha:withParam "cache-to: type=gha,mode=max,scope=ggen-ecosystem-arm64" ;
     gha:withParam "tags: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64" .
 
+# --- SA2A plan-only court (GGE-26922-08) -------------------------------------
+# Runs the SA2A admission-chain import probe inside each just-pushed
+# single-platform image, binding the court to the autofde-lab gitlink baked
+# into that image from ecosystem.lock.toml. The probe needs /opt/sa2a-venv,
+# which the Dockerfile builds (pydantic v2 + pyshacl + real PyPI wrapt) and
+# build-fails without; see the Dockerfile section comment for the three
+# composition defects this court surfaced (wrapt.lru_cache, pydantic,
+# pyshacl). Note: the sed regex backslashes are doubled below because a
+# Turtle quoted string interprets backslash escapes; the generated YAML
+# receives single backslashes.
+ex:containerAmd64Sa2aCourt
+    a gha:Step ;
+    gha:inJob ex:containerBuildAmd64 ; gha:stepOrder 5 ;
+    gha:stepName "SA2A plan-only court (amd64, GGE-26922-08)" ;
+    gha:envVar "IMAGE: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-amd64" ;
+    gha:runCommand """set -euo pipefail
+PIN="$(git rev-parse HEAD:vendor/autofde-lab)"
+LOCK_PIN="$(sed -n 's/.*autofde_lab_commit = "\\([0-9a-f]*\\)".*/\\1/p' ecosystem.lock.toml)"
+echo "autofde-lab gitlink bound into this image: $PIN (lock: $LOCK_PIN)"
+OUT="$(docker run --rm "$IMAGE" bash -lc 'PYTHONPATH=/opt/autofde-lab/src /opt/sa2a-venv/bin/python -c "import autofde_lab.sa2a, autofde_lab.sa2a.admission.pipeline; print(\\"SA2A_IMPORT_ALIVE\\")"')"
+echo "$OUT" | grep -q SA2A_IMPORT_ALIVE
+echo "$OUT"
+echo SA2A_PLAN_ONLY_COURT_ALIVE_AMD64""" .
+
+ex:containerArm64Sa2aCourt
+    a gha:Step ;
+    gha:inJob ex:containerBuildArm64 ; gha:stepOrder 5 ;
+    gha:stepName "SA2A plan-only court (arm64, GGE-26922-08)" ;
+    gha:envVar "IMAGE: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64" ;
+    gha:runCommand """set -euo pipefail
+PIN="$(git rev-parse HEAD:vendor/autofde-lab)"
+LOCK_PIN="$(sed -n 's/.*autofde_lab_commit = "\\([0-9a-f]*\\)".*/\\1/p' ecosystem.lock.toml)"
+echo "autofde-lab gitlink bound into this image: $PIN (lock: $LOCK_PIN)"
+OUT="$(docker run --rm "$IMAGE" bash -lc 'PYTHONPATH=/opt/autofde-lab/src /opt/sa2a-venv/bin/python -c "import autofde_lab.sa2a, autofde_lab.sa2a.admission.pipeline; print(\\"SA2A_IMPORT_ALIVE\\")"')"
+echo "$OUT" | grep -q SA2A_IMPORT_ALIVE
+echo "$OUT"
+echo SA2A_PLAN_ONLY_COURT_ALIVE_ARM64""" .
+
 # Real, Fortune-5-table-stake supply-chain step (2026-08-29): keyless container
 # signing via cosign + GitHub OIDC (sigstore). No long-lived signing key exists
 # anywhere in this repo or its secrets -- the runner's own OIDC identity token

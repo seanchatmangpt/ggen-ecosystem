@@ -54,11 +54,10 @@ jobs:
           platforms: linux/amd64
           push: true
           context: .
-
+        
       - name: SA2A plan-only court (amd64, GGE-26922-08)
         env:
           IMAGE: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-amd64
-          AUTOFDE_PIN: ${{ github.sha }}
         shell: bash
         run: |
           set -euo pipefail
@@ -69,7 +68,7 @@ jobs:
           echo "$OUT" | grep -q SA2A_IMPORT_ALIVE
           echo "$OUT"
           echo SA2A_PLAN_ONLY_COURT_ALIVE_AMD64
-        
+
   build-arm64:
     runs-on: ubuntu-24.04-arm
     timeout-minutes: 30
@@ -107,7 +106,7 @@ jobs:
           platforms: linux/arm64
           push: true
           context: .
-
+        
       - name: SA2A plan-only court (arm64, GGE-26922-08)
         env:
           IMAGE: ghcr.io/seanchatmangpt/ggen-ecosystem:${{ inputs.image_tag || github.ref_name }}-arm64
@@ -115,12 +114,13 @@ jobs:
         run: |
           set -euo pipefail
           PIN="$(git rev-parse HEAD:vendor/autofde-lab)"
-          echo "autofde-lab gitlink bound into this image: $PIN"
+          LOCK_PIN="$(sed -n 's/.*autofde_lab_commit = "\([0-9a-f]*\)".*/\1/p' ecosystem.lock.toml)"
+          echo "autofde-lab gitlink bound into this image: $PIN (lock: $LOCK_PIN)"
           OUT="$(docker run --rm "$IMAGE" bash -lc 'PYTHONPATH=/opt/autofde-lab/src /opt/sa2a-venv/bin/python -c "import autofde_lab.sa2a, autofde_lab.sa2a.admission.pipeline; print(\"SA2A_IMPORT_ALIVE\")"')"
           echo "$OUT" | grep -q SA2A_IMPORT_ALIVE
           echo "$OUT"
           echo SA2A_PLAN_ONLY_COURT_ALIVE_ARM64
-        
+
   merge-manifest:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
