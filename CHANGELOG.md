@@ -14,6 +14,52 @@ they bring in.
 
 ## [Unreleased]
 
+## [v26.9.22] - 2026-09-23
+
+Release identity follows the vYY.M.D convention (see the format note above).
+Commit hashes below are real and checkable with `git show <hash>`.
+
+### Added
+
+- SA2A plan-only court in the composed image, both architectures: the container
+  now builds `/opt/sa2a-venv` (pydantic v2, pyshacl, real PyPI wrapt) and the
+  image build itself fails if `autofde_lab.sa2a` /
+  `autofde_lab.sa2a.admission.pipeline` cannot be imported from the pinned
+  `vendor/autofde-lab` gitlink; the canonical publisher runs the same probe as
+  a per-arch court step against the just-pushed `-amd64`/`-arm64` images
+  (ced8c5af). Previously the probe failed three ways against the shipped
+  image: Debian python3-wrapt lacks `wrapt.lru_cache`, pydantic was absent,
+  and pyshacl was absent.
+
+### Changed
+
+- Autonomic crown and PragProg TPS run their submodule materialization under
+  `GIT_LFS_SKIP_SMUDGE=1` (71e42710, a533e046): the reconcile and candidate
+  courts died in LFS smudge (`agrovoc_lod.nt.zip`, "repository exceeded its
+  LFS budget") — the `BLOCKED[LFS_BUDGET]` class that also kept PR #348 red.
+- `ggen.toml` no longer cites a marketplace SHA in the `[packs]` comment: the
+  crown's authorized-path gate forbids ggen.toml edits, so any cited SHA rots
+  at the next crown bump. The drift tripwire
+  `test_ggen_toml_packs_comment_marketplace_sha_matches_lock` now treats "no
+  citation" as the sanctioned state and still fails on a wrong citation
+  (71e42710).
+- `ggen-ecosystem-sync.yml` workflow_call defaults and their ontology.ttl
+  projection bumped from the dead `v26.8.28` container tag to `v26.9.22`, and
+  the `marketplace_sha` default from `c779aec2` to the pinned
+  `616e93d1e6f9566e4b5eb4e2c3d1400746786e50` (this release).
+- `[ggen].release` / `[container].tag`: v26.9.17 → v26.9.22. `[container]`
+  stands BLOCKED/requires_republish until the tag build publishes; the digest
+  follow-up commit lands with the real digest per release-receipt discipline.
+
+### Fixed
+
+- PR #348 (adopt/engineering-standards-v26.9.21) re-qualified and merged
+  (7758dc60) after the LFS guard turned its only red check green.
+- Session history landed as repo docs: the 27 v26.9.18 wave-plan tickets +
+  v26.9.19 survey restored from the W0 preserve and merged via #367, with
+  evidence-checked resolution marks (003→#248, 004→#263, 005→#266; 009 stays
+  IN_PROGRESS — #174 was closed stale, not merged).
+
 ## [v26.9.17] - 2026-09-17
 
 ### Added

@@ -1,9 +1,9 @@
 version = 3
 base_main_sha = "553f68c3251d4d5d6d436781cc7dbe50e5cfa28a"
-updated_at = "2026-09-20T11:11:53Z"
+updated_at = "2026-09-23T08:05:00Z"
 
 [ggen]
-release = "v26.9.17"
+release = "v26.9.22"
 commit_sha = "06093e0cd679662b8c6d15eedea0973fd475dec5"
 linux_x86_64_asset_sha256 = "ad4ab79923d17e32960383aaf5fab8e174bc8d0972872cdf1b3ecc5d11ed9e36"
 observed_executable_sha256 = "1fc76b5809333e2e5ca9ff1b1333c37bdd609a711480c1f74674344ff06d7906"
@@ -75,9 +75,11 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 
 [container]
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
-tag = "v26.9.17"
+tag = "v26.9.22"
 digest = "sha256:9c6a5c36d4df3e949b3cdb352eae4a45bd5b9289a9d22681f18dc5d4af529f00"
-standing = "ALIVE"
+standing = "BLOCKED"
+requires_republish = true
+failure = "v26.9.22 image not yet published: digest below still describes the v26.9.17-era image; awaiting the ggen-ecosystem-container build for tag v26.9.22 (GGE-26922-11)"
 observed_success_run = 35304615620
 observed_success_at = "2026-09-18T03:51:53Z"
 observed_success_head_sha = "fcd6a068aa673ce3c2d782c9ae63fb2c1f8387f0"
