@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "f717564785758281524be6d3551193392f20d724"
-updated_at = "2026-09-23T16:46:15Z"
+base_main_sha = "ee528a1bbfd4263232cefe6903b0df4f8b618502"
+updated_at = "2026-09-24T04:37:02Z"
 
 [ggen]
 release = "v26.9.22"
@@ -55,7 +55,7 @@ ggen_commit = "233e23bfc894fe9da8bfabbaedad7277ef485362"
 ggen_marketplace_path = "vendor/ggen-marketplace"
 ggen_marketplace_commit = "420bc91e7c1e291be73ab749b7e443252bc7bab8"
 autofde_lab_path = "vendor/autofde-lab"
-autofde_lab_commit = "ae255ad123dfdcef9b3de82395006834abb20a28"
+autofde_lab_commit = "29ffb8f9749b0b693579bc68c7f61ac15b16841f"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3"
 beam4pm_path = "vendor/beam4pm"
