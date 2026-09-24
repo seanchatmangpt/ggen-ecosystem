@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "ba61d39c410d5c8b8d43959c0a3f9c1ee9624ad3"
-updated_at = "2026-09-24T09:53:35Z"
+base_main_sha = "104f5afcc688e3f70185cc344b32645d6806171b"
+updated_at = "2026-09-24T14:54:30Z"
 
 [ggen]
 release = "v26.9.22"
@@ -31,7 +31,7 @@ workflow = ".github/workflows/pragprog-tps.yml"
 receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 
 [ggen_igniter]
-sha = "d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3"
+sha = "292e40ab08a250ef3f049f9a80b4a65e332d9155"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
 version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
@@ -57,7 +57,7 @@ ggen_marketplace_commit = "420bc91e7c1e291be73ab749b7e443252bc7bab8"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "29ffb8f9749b0b693579bc68c7f61ac15b16841f"
 ggen_igniter_path = "vendor/ggen_igniter"
-ggen_igniter_commit = "d84da1419a6945c6a8a64b8f6cdca9d0b2c9e0f3"
+ggen_igniter_commit = "292e40ab08a250ef3f049f9a80b4a65e332d9155"
 beam4pm_path = "vendor/beam4pm"
 beam4pm_commit = "574368706e6afd804c7a13771bed3cf03da33ce0"
 wasm4pm_path = "vendor/wasm4pm"
