@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "f0740a70f812ec66c5fe99a0d9af66ced9acd092"
-updated_at = "2026-09-25T01:23:54Z"
+base_main_sha = "ae41386c6e597bedb3137fa5e32fbef2c73d409a"
+updated_at = "2026-09-25T08:08:39Z"
 
 [ggen]
 release = "v26.9.22"
@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "5eb71f7ed947f705a8d6b145cb9b0be82855d793"
+sha = "1f4abc53084e3376a7fed2c1d153029e8711fcee"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "5eb71f7ed947f705a8d6b145cb9b0be82855d793"
+marketplace_sha = "1f4abc53084e3376a7fed2c1d153029e8711fcee"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -31,19 +31,19 @@ workflow = ".github/workflows/pragprog-tps.yml"
 receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 
 [ggen_igniter]
-sha = "7d53cb3b3ffe0a32f0e4b5f1365b9e1adff82d44"
+sha = "780a81d81c6e579084ba3048037419aab7d7386e"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
 version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
-sha = "574368706e6afd804c7a13771bed3cf03da33ce0"
+sha = "8c3f5e09c297023059ad384629a55ddb2ac785b1"
 repository = "https://github.com/seanchatmangpt/beam4pm"
 role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
 
 [wasm4pm]
-sha = "552f15ecba00f75a5866dfc3e7565ef2fe629341"
+sha = "dd31b48531dd9a97a2af3d468e1eca946ff49481"
 repository = "https://github.com/seanchatmangpt/wasm4pm"
 version = "26.7.23"
 role = "evidence-oriented process-mining platform with POWL execution and replayable WASM evidence"
@@ -53,15 +53,15 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "cc0cd3cb3ea1794e22e9331f2514dfccffa0cf2b"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "5eb71f7ed947f705a8d6b145cb9b0be82855d793"
+ggen_marketplace_commit = "1f4abc53084e3376a7fed2c1d153029e8711fcee"
 autofde_lab_path = "vendor/autofde-lab"
-autofde_lab_commit = "b3375edcab896d1c8eb2afeeb9b10a37b15e5fb7"
+autofde_lab_commit = "72900f03cf9772d84d0bace1e35e86eb6b077b92"
 ggen_igniter_path = "vendor/ggen_igniter"
-ggen_igniter_commit = "7d53cb3b3ffe0a32f0e4b5f1365b9e1adff82d44"
+ggen_igniter_commit = "780a81d81c6e579084ba3048037419aab7d7386e"
 beam4pm_path = "vendor/beam4pm"
-beam4pm_commit = "574368706e6afd804c7a13771bed3cf03da33ce0"
+beam4pm_commit = "8c3f5e09c297023059ad384629a55ddb2ac785b1"
 wasm4pm_path = "vendor/wasm4pm"
-wasm4pm_commit = "552f15ecba00f75a5866dfc3e7565ef2fe629341"
+wasm4pm_commit = "dd31b48531dd9a97a2af3d468e1eca946ff49481"
 
 [composition]
 consumer_boundary = "ggen-ecosystem"
