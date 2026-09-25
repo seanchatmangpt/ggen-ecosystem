@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "8bf231242b5fa30587a3d7357c8aaa57905ccfdf"
-updated_at = "2026-09-25T18:29:06Z"
+base_main_sha = "aaec37474aa217c5df694331f5eeba0eca56648d"
+updated_at = "2026-09-25T22:13:00Z"
 
 [ggen]
 release = "v26.9.22"
@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "5ea152e64169c90661c0f68f2de43f244aa42dfc"
+sha = "81e2919c4caa972a3237cd79b9c23d8c3fc5892e"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "5ea152e64169c90661c0f68f2de43f244aa42dfc"
+marketplace_sha = "81e2919c4caa972a3237cd79b9c23d8c3fc5892e"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -37,7 +37,7 @@ version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
-sha = "8c3f5e09c297023059ad384629a55ddb2ac785b1"
+sha = "c2d9dbe441b892ba070eac52bfebeb0e3c132d39"
 repository = "https://github.com/seanchatmangpt/beam4pm"
 role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
@@ -53,13 +53,13 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "595b094220fd26adcec8507d46c16e8a9d9882dd"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "5ea152e64169c90661c0f68f2de43f244aa42dfc"
+ggen_marketplace_commit = "81e2919c4caa972a3237cd79b9c23d8c3fc5892e"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "98b6cc9bfe3af8a25b3ad53019f5fb71fe2d37d0"
 ggen_igniter_path = "vendor/ggen_igniter"
 ggen_igniter_commit = "9639198b5c3e0e25906acc5b36dd9eb17bd592be"
 beam4pm_path = "vendor/beam4pm"
-beam4pm_commit = "8c3f5e09c297023059ad384629a55ddb2ac785b1"
+beam4pm_commit = "c2d9dbe441b892ba070eac52bfebeb0e3c132d39"
 wasm4pm_path = "vendor/wasm4pm"
 wasm4pm_commit = "9fc4f1ae3cc99cf65a5f014580db8e1ea3d08b55"
 
