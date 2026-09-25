@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "ae41386c6e597bedb3137fa5e32fbef2c73d409a"
-updated_at = "2026-09-25T08:08:39Z"
+base_main_sha = "f3cc60f8b65a57980455e93c026176bd446f3f3d"
+updated_at = "2026-09-25T13:38:23Z"
 
 [ggen]
 release = "v26.9.22"
@@ -31,7 +31,7 @@ workflow = ".github/workflows/pragprog-tps.yml"
 receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 
 [ggen_igniter]
-sha = "780a81d81c6e579084ba3048037419aab7d7386e"
+sha = "9639198b5c3e0e25906acc5b36dd9eb17bd592be"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
 version = "26.8.30"
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
@@ -43,7 +43,7 @@ role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
 
 [wasm4pm]
-sha = "dd31b48531dd9a97a2af3d468e1eca946ff49481"
+sha = "9fc4f1ae3cc99cf65a5f014580db8e1ea3d08b55"
 repository = "https://github.com/seanchatmangpt/wasm4pm"
 version = "26.7.23"
 role = "evidence-oriented process-mining platform with POWL execution and replayable WASM evidence"
@@ -55,13 +55,13 @@ ggen_commit = "cc0cd3cb3ea1794e22e9331f2514dfccffa0cf2b"
 ggen_marketplace_path = "vendor/ggen-marketplace"
 ggen_marketplace_commit = "1f4abc53084e3376a7fed2c1d153029e8711fcee"
 autofde_lab_path = "vendor/autofde-lab"
-autofde_lab_commit = "72900f03cf9772d84d0bace1e35e86eb6b077b92"
+autofde_lab_commit = "98b6cc9bfe3af8a25b3ad53019f5fb71fe2d37d0"
 ggen_igniter_path = "vendor/ggen_igniter"
-ggen_igniter_commit = "780a81d81c6e579084ba3048037419aab7d7386e"
+ggen_igniter_commit = "9639198b5c3e0e25906acc5b36dd9eb17bd592be"
 beam4pm_path = "vendor/beam4pm"
 beam4pm_commit = "8c3f5e09c297023059ad384629a55ddb2ac785b1"
 wasm4pm_path = "vendor/wasm4pm"
-wasm4pm_commit = "dd31b48531dd9a97a2af3d468e1eca946ff49481"
+wasm4pm_commit = "9fc4f1ae3cc99cf65a5f014580db8e1ea3d08b55"
 
 [composition]
 consumer_boundary = "ggen-ecosystem"
