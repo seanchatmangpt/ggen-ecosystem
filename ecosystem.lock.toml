@@ -1,10 +1,10 @@
 version = 3
-base_main_sha = "f3cc60f8b65a57980455e93c026176bd446f3f3d"
-updated_at = "2026-09-25T13:38:23Z"
+base_main_sha = "8bf231242b5fa30587a3d7357c8aaa57905ccfdf"
+updated_at = "2026-09-25T18:29:06Z"
 
 [ggen]
 release = "v26.9.22"
-commit_sha = "cc0cd3cb3ea1794e22e9331f2514dfccffa0cf2b"
+commit_sha = "595b094220fd26adcec8507d46c16e8a9d9882dd"
 linux_x86_64_asset_sha256 = "ad4ab79923d17e32960383aaf5fab8e174bc8d0972872cdf1b3ecc5d11ed9e36"
 observed_executable_sha256 = "1fc76b5809333e2e5ca9ff1b1333c37bdd609a711480c1f74674344ff06d7906"
 aarch64_apple_darwin_asset_sha256 = "0af3bf29dba1addfbcc9f83456ac1e8297b49ae429f86b02cbfe7431e91778be"
@@ -16,14 +16,14 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "1f4abc53084e3376a7fed2c1d153029e8711fcee"
+sha = "5ea152e64169c90661c0f68f2de43f244aa42dfc"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "1f4abc53084e3376a7fed2c1d153029e8711fcee"
+marketplace_sha = "5ea152e64169c90661c0f68f2de43f244aa42dfc"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -51,9 +51,9 @@ standing = "PARTIAL_ALIVE"
 
 [submodules]
 ggen_path = "vendor/ggen"
-ggen_commit = "cc0cd3cb3ea1794e22e9331f2514dfccffa0cf2b"
+ggen_commit = "595b094220fd26adcec8507d46c16e8a9d9882dd"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "1f4abc53084e3376a7fed2c1d153029e8711fcee"
+ggen_marketplace_commit = "5ea152e64169c90661c0f68f2de43f244aa42dfc"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "98b6cc9bfe3af8a25b3ad53019f5fb71fe2d37d0"
 ggen_igniter_path = "vendor/ggen_igniter"
