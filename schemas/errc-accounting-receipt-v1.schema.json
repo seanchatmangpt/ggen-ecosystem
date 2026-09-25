@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ggen.dev/schema/errc-accounting-receipt-v1.json",
+  "title": "ERRC Accounting Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema","repository","subject_sha","handwritten_loc","generated_loc","reused_source_loc","materialized_loc","net_maintained_loc","semantic_compression_ratio","ownership"],
+  "properties": {
+    "schema": {"const":"ggen.errc-accounting-receipt.v1"},
+    "repository": {"type":"string","minLength":1},
+    "subject_sha": {"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "handwritten_loc": {"type":"integer","minimum":0},
+    "generated_loc": {"type":"integer","minimum":0},
+    "reused_source_loc": {"type":"integer","minimum":0},
+    "materialized_loc": {"type":"integer","minimum":0},
+    "net_maintained_loc": {"type":"integer"},
+    "semantic_compression_ratio": {"type":"number","minimum":0},
+    "ownership": {
+      "type":"array",
+      "items":{
+        "type":"object",
+        "additionalProperties":false,
+        "required":["path","class"],
+        "properties":{
+          "path":{"type":"string","minLength":1},
+          "class":{"enum":["handwritten","generated","reused"]},
+          "generator_subject_sha":{"type":"string","pattern":"^[0-9a-f]{40}$"},
+          "reused_subject_sha":{"type":"string","pattern":"^[0-9a-f]{40}$"}
+        },
+        "allOf":[
+          {"if":{"properties":{"class":{"const":"generated"}}},"then":{"required":["generator_subject_sha"]}},
+          {"if":{"properties":{"class":{"const":"reused"}}},"then":{"required":["reused_subject_sha"]}}
+        ]
+      }
+    }
+  },
+  "description":"Fail-closed ERRC accounting contract. Paths without an admitted ownership row are handwritten. Reused LOC is zero until the pinned reused subject is materialized and counted."
+}
