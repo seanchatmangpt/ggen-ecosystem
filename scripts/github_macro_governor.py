@@ -8,12 +8,14 @@ import datetime as dt
 import hashlib
 import json
 import os
+import re
+import subprocess
 import tomllib
 import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 API = "https://api.github.com"
 VERSION = "2026-03-10"
@@ -90,6 +92,9 @@ class GitHub:
     def post(self, path: str, body: dict[str, Any] | None = None) -> Any:
         return self.request("POST", path, body)
 
+    def patch(self, path: str, body: dict[str, Any]) -> Any:
+        return self.request("PATCH", path, body)
+
 
 def parse_time(value: str) -> dt.datetime:
     value = value[:-1] + "+00:00" if value.endswith("Z") else value
@@ -137,6 +142,7 @@ def normalize_workflow_runs(repo: Repo, payload: dict[str, Any], *, now: dt.date
             "run_id": run["id"], "status": status, "conclusion": conclusion,
             "head_sha": run.get("head_sha"), "event": run.get("event"),
             "run_attempt": run.get("run_attempt", 1), "workflow_id": run.get("workflow_id"),
+            "workflow_name": run.get("name"),
         }
         if status != "completed":
             action, kind = "observe", "workflow-active"
@@ -208,6 +214,14 @@ def collect(api: GitHub, repo: Repo, policy: Policy, current: dt.datetime) -> li
     )
 
 
+def collect_reconciliations(api: GitHub, repo: Repo, policy: Policy, ancestry: Ancestry) -> list[dict[str, Any]]:
+    q = urllib.parse.quote(repo.full_name, safe="/")
+    n = max(1, min(policy.max_observations_per_repo, 100))
+    successes = api.get(f"/repos/{q}/actions/runs?status=success&per_page={n}")
+    issues = api.get(f"/repos/{q}/issues?state=open&per_page=100")
+    return reconcile_demands(repo.full_name, issues, normalize_recoveries(repo, successes), ancestry)
+
+
 def reverse_chronological(items: list[Observation]) -> list[Observation]:
     return sorted(items, key=lambda x: (x.timestamp, x.repo, x.identity), reverse=True)
 
@@ -216,12 +230,245 @@ def actionable(item: Observation) -> bool:
     return item.action not in {"observe", "none"}
 
 
+# --- Subject-keyed demand (C17 / GGE-26922-14) -------------------------------------------
+#
+# A repair demand is keyed by its SUBJECT (repo, workflow, head_sha, conclusion), never by the
+# run that observed it: N failing runs of one workflow on one head with one failure class are
+# one defect and therefore one demand.  A demand closes only on a RECOVERY RECEIPT: a later
+# success run of the same workflow on a head that descends from (or equals) the demand head.
+# Every other open demand stays open (anti-windup: the demand count cannot be zeroed by closing).
+
+SUBJECT_SCHEMA = "macro-demand-subject/v2"
+SUBJECT_MARKER = re.compile(r"<!-- macro-subject:(\{.*\}) -->")
+LEGACY_TITLE = re.compile(r"^\[capability\]\[repair\] (?P<name>.+): (?P<conclusion>[^:]+)$")
+LEGACY_FIELD = re.compile(r"^- (?P<key>source repository|head SHA|conclusion): `(?P<value>[^`]*)`$", re.M)
+
+
+@dataclasses.dataclass(frozen=True)
+class DemandSubject:
+    repo: str
+    workflow_id: int | None
+    workflow_name: str
+    head_sha: str
+    conclusion: str
+    observed_at: str = ""
+
+    def workflow_key(self) -> str:
+        return f"id:{self.workflow_id}" if self.workflow_id is not None else f"name:{self.workflow_name}"
+
+    def key(self) -> dict[str, str]:
+        return {"schema": SUBJECT_SCHEMA, "repo": self.repo, "workflow": self.workflow_key(),
+                "head_sha": self.head_sha, "conclusion": self.conclusion}
+
+    def same_workflow(self, workflow_id: int | None, workflow_name: str) -> bool:
+        if self.workflow_id is not None and workflow_id is not None:
+            return self.workflow_id == workflow_id
+        return bool(self.workflow_name) and self.workflow_name == workflow_name
+
+    def same_subject(self, other: "DemandSubject") -> bool:
+        return (self.repo == other.repo and self.head_sha == other.head_sha
+                and self.conclusion == other.conclusion
+                and self.same_workflow(other.workflow_id, other.workflow_name))
+
+
+def _workflow_id(value: Any) -> int | None:
+    try:
+        return None if value is None or value == "" else int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def subject_of(item: Observation) -> DemandSubject:
+    meta = item.metadata
+    return DemandSubject(
+        repo=item.repo,
+        workflow_id=_workflow_id(meta.get("workflow_id")),
+        workflow_name=str(meta.get("workflow_name") or item.title or ""),
+        head_sha=str(meta.get("head_sha") or "UNKNOWN"),
+        conclusion=str(meta.get("conclusion") or "UNKNOWN"),
+        observed_at=item.updated_at,
+    )
+
+
 def fingerprint(item: Observation) -> str:
-    doc = {
-        "repo": item.repo, "kind": item.kind, "identity": item.identity, "action": item.action,
-        "head_sha": item.metadata.get("head_sha"), "conclusion": item.metadata.get("conclusion"),
-    }
+    """Subject key (repo, workflow, head_sha, conclusion). The run id is deliberately absent."""
+    doc = subject_of(item).key()
     return hashlib.sha256(json.dumps(doc, sort_keys=True, separators=(",", ":")).encode()).hexdigest()[:24]
+
+
+def subject_of_issue(issue: dict[str, Any], repo: str) -> DemandSubject | None:
+    """Recover the demand subject from an open repair issue; None if it is not a governor demand.
+
+    v2 bodies carry an explicit ``macro-subject`` marker.  Legacy (run-keyed) bodies are parsed
+    from their field lines and title so pre-existing duplicates (e.g. #365/#366) are reconcilable.
+    """
+    body = str(issue.get("body") or "")
+    if "pull_request" in issue or "<!-- macro-fingerprint:" not in body:
+        return None
+    m = SUBJECT_MARKER.search(body)
+    if m:
+        try:
+            doc = json.loads(m.group(1))
+            return DemandSubject(str(doc["repo"]), _workflow_id(doc.get("workflow_id")),
+                                 str(doc.get("workflow_name") or ""), str(doc["head_sha"]),
+                                 str(doc["conclusion"]), str(doc.get("observed_at") or ""))
+        except (KeyError, ValueError, TypeError):
+            return None
+    fields = {x.group("key"): x.group("value") for x in LEGACY_FIELD.finditer(body)}
+    title = LEGACY_TITLE.match(str(issue.get("title") or ""))
+    head = fields.get("head SHA", "")
+    if not title or not head or head == "UNKNOWN":
+        return None
+    return DemandSubject(fields.get("source repository") or repo, None, title.group("name"), head,
+                         fields.get("conclusion") or title.group("conclusion"),
+                         str(issue.get("created_at") or ""))
+
+
+@dataclasses.dataclass(frozen=True)
+class Recovery:
+    repo: str
+    run_id: int
+    workflow_id: int | None
+    workflow_name: str
+    head_sha: str
+    updated_at: str
+    url: str
+
+
+def normalize_recoveries(repo: Repo, payload: dict[str, Any]) -> list[Recovery]:
+    """Completed success runs: the only admissible evidence for closing a demand."""
+    out = []
+    for run in payload.get("workflow_runs", []):
+        if str(run.get("status") or "") != "completed" or str(run.get("conclusion") or "") != "success":
+            continue
+        head, updated = run.get("head_sha"), str(run.get("updated_at") or run.get("created_at") or "")
+        if not head or not updated:
+            continue
+        out.append(Recovery(repo.full_name, int(run["id"]), _workflow_id(run.get("workflow_id")),
+                            str(run.get("name") or ""), str(head), updated, str(run.get("html_url") or "")))
+    return out
+
+
+# Ancestry oracle: (repo, ancestor_sha, descendant_sha) -> True | False | None (unknown).
+Ancestry = Callable[[str, str, str], "bool | None"]
+
+
+class GitAncestry:
+    """Ancestry from a local git object store (``git merge-base --is-ancestor``)."""
+
+    def __init__(self, git_dir: Path):
+        self.git_dir = git_dir
+
+    def __call__(self, repo: str, ancestor: str, descendant: str) -> bool | None:
+        res = subprocess.run(["git", "-C", str(self.git_dir), "merge-base", "--is-ancestor", ancestor, descendant],
+                             capture_output=True, text=True)
+        return {0: True, 1: False}.get(res.returncode)
+
+
+class GitHubAncestry:
+    """Ancestry from the GitHub compare API: base...head status ahead|identical => base is an ancestor."""
+
+    def __init__(self, api: GitHub):
+        self.api = api
+
+    def __call__(self, repo: str, ancestor: str, descendant: str) -> bool | None:
+        q = urllib.parse.quote(repo, safe="/")
+        try:
+            doc = self.api.get(f"/repos/{q}/compare/{ancestor}...{descendant}")
+        except RuntimeError:
+            return None
+        status = str((doc or {}).get("status") or "")
+        if status in {"ahead", "identical"}:
+            return True
+        if status in {"behind", "diverged"}:
+            return False
+        return None
+
+
+def find_recovery(subject: DemandSubject, recoveries: list[Recovery], ancestry: Ancestry,
+                  not_before: str = "") -> tuple[Recovery | None, str]:
+    """Newest admissible recovery for ``subject`` and a typed reason when there is none."""
+    floor = parse_time(not_before or subject.observed_at) if (not_before or subject.observed_at) else None
+    unknown = False
+    for rec in sorted(recoveries, key=lambda r: (parse_time(r.updated_at), r.run_id), reverse=True):
+        if rec.repo != subject.repo or not subject.same_workflow(rec.workflow_id, rec.workflow_name):
+            continue
+        if floor is not None and parse_time(rec.updated_at) <= floor:
+            continue
+        verdict = ancestry(subject.repo, subject.head_sha, rec.head_sha)
+        if verdict is True:
+            return rec, "CLOSED[RECOVERY_RECEIPT]"
+        if verdict is None:
+            unknown = True
+    return None, "OPEN[ANCESTRY_UNKNOWN]" if unknown else "OPEN[NO_RECOVERY_RECEIPT]"
+
+
+def recovery_comment(subject: DemandSubject, rec: Recovery) -> str:
+    return f"""Macro governor recovery receipt: CLOSED[RECOVERY_RECEIPT]
+
+- demand subject: `{subject.repo}` workflow `{subject.workflow_name or subject.workflow_key()}` head `{subject.head_sha}` conclusion `{subject.conclusion}`
+- recovery run id: `{rec.run_id}`
+- recovery run URL: {rec.url}
+- recovery head SHA: `{rec.head_sha}` (descends from demand head)
+- recovery observed at: `{rec.updated_at}`
+
+<!-- macro-recovery:{rec.run_id} -->
+"""
+
+
+def reconcile_demands(repo: str, issues: list[dict[str, Any]], recoveries: list[Recovery],
+                      ancestry: Ancestry) -> list[dict[str, Any]]:
+    """Plan close-on-recovery for every open governor demand in ``repo``; others stay open."""
+    plans = []
+    for issue in issues:
+        subject = subject_of_issue(issue, repo)
+        if subject is None:
+            continue
+        rec, standing = find_recovery(subject, recoveries, ancestry,
+                                      not_before=subject.observed_at or str(issue.get("created_at") or ""))
+        plan = {"action": "close-on-recovery" if rec else "keep-open", "target": repo,
+                "issue_number": issue.get("number"), "subject": dataclasses.asdict(subject),
+                "applied": False, "standing": standing}
+        if rec:
+            plan["recovery_run_id"] = rec.run_id
+            plan["recovery_url"] = rec.url
+            plan["recovery_head_sha"] = rec.head_sha
+        plans.append(plan)
+    return plans
+
+
+def apply_recovery_close(plan: dict[str, Any], current_repo: str, apply: bool) -> dict[str, Any]:
+    if plan["action"] != "close-on-recovery":
+        return plan
+    if "recovery_run_id" not in plan:
+        return {**plan, "standing": "REFUSED[NO_RECOVERY_RUN_ID]"}
+    if not apply:
+        return {**plan, "standing": "PLANNED[CLOSED[RECOVERY_RECEIPT]]"}
+    token, name = token_for(plan["target"], current_repo)
+    if not token:
+        return {**plan, "standing": f"BLOCKED[{name}_MISSING]"}
+    api, q = GitHub(token), urllib.parse.quote(plan["target"], safe="/")
+    s = plan["subject"]
+    subject = DemandSubject(s["repo"], s["workflow_id"], s["workflow_name"], s["head_sha"], s["conclusion"],
+                            s.get("observed_at", ""))
+    rec = Recovery(plan["target"], int(plan["recovery_run_id"]), None, s["workflow_name"],
+                   plan["recovery_head_sha"], "", plan.get("recovery_url", ""))
+    api.post(f"/repos/{q}/issues/{plan['issue_number']}/comments", {"body": recovery_comment(subject, rec)})
+    api.patch(f"/repos/{q}/issues/{plan['issue_number']}", {"state": "closed", "state_reason": "completed"})
+    return {**plan, "applied": True, "standing": "CLOSED[RECOVERY_RECEIPT]"}
+
+
+def dedupe_demands(items: list[Observation]) -> list[Observation]:
+    """Keep only the newest repair-demand candidate per subject fingerprint; order is preserved."""
+    seen, out = set(), []
+    for item in items:
+        if item.action == "manufacture-repair-demand":
+            fp = fingerprint(item)
+            if fp in seen:
+                continue
+            seen.add(fp)
+        out.append(item)
+    return out
 
 
 def token_for(repo: str, current_repo: str) -> tuple[str | None, str]:
@@ -231,6 +478,8 @@ def token_for(repo: str, current_repo: str) -> tuple[str | None, str]:
 
 def repair_body(item: Observation) -> str:
     fp = fingerprint(item)
+    subject = subject_of(item)
+    marker = json.dumps(dataclasses.asdict(subject), sort_keys=True, separators=(",", ":"))
     return f"""Authority: implementation
 
 Manufactured by the GitHub macro governor from exact production evidence.
@@ -238,8 +487,12 @@ Manufactured by the GitHub macro governor from exact production evidence.
 - source repository: `{item.repo}`
 - source identity: `{item.identity}`
 - source URL: {item.url}
+- workflow: `{subject.workflow_name}` (id `{subject.workflow_id if subject.workflow_id is not None else 'UNKNOWN'}`)
 - head SHA: `{item.metadata.get('head_sha') or 'UNKNOWN'}`
 - conclusion: `{item.metadata.get('conclusion') or 'UNKNOWN'}`
+
+Demand key: subject `(repo, workflow, head_sha, conclusion)`; later failing runs of the same subject
+do not open new demands. Closes only on a success run of the same workflow on a descendant head.
 
 Required loop:
 `inspect -> reproduce -> RCA -> repair authoritative input -> exact-head Chicago -> receipt -> merge/containment -> permanent guard`
@@ -247,7 +500,22 @@ Required loop:
 Do not blindly rerun deterministic product defects. Do not edit generated ownership surfaces.
 
 <!-- macro-fingerprint:{fp} -->
+<!-- macro-subject:{marker} -->
 """
+
+
+def existing_demand(item: Observation, open_issues: list[dict[str, Any]]) -> Any:
+    """Issue number of an open demand for the same subject (v2 fingerprint or legacy body)."""
+    needle, subject = f"<!-- macro-fingerprint:{fingerprint(item)} -->", subject_of(item)
+    for issue in open_issues:
+        if "pull_request" in issue:
+            continue
+        if needle in str(issue.get("body") or ""):
+            return issue.get("number")
+        other = subject_of_issue(issue, item.repo)
+        if other is not None and subject.same_subject(other):
+            return issue.get("number")
+    return None
 
 
 def make_repair_demand(item: Observation, current_repo: str, apply: bool) -> dict[str, Any]:
@@ -259,10 +527,9 @@ def make_repair_demand(item: Observation, current_repo: str, apply: bool) -> dic
     if not token:
         return {**result, "standing": f"BLOCKED[{name}_MISSING]"}
     api, q = GitHub(token), urllib.parse.quote(item.repo, safe="/")
-    needle = f"<!-- macro-fingerprint:{fp} -->"
-    for issue in api.get(f"/repos/{q}/issues?state=open&per_page=100"):
-        if "pull_request" not in issue and needle in str(issue.get("body") or ""):
-            return {**result, "standing": "NOOP[DEMAND_ALREADY_EXISTS]"}
+    existing = existing_demand(item, api.get(f"/repos/{q}/issues?state=open&per_page=100"))
+    if existing is not None:
+        return {**result, "standing": "NOOP[DEMAND_ALREADY_EXISTS]", "issue_number": existing}
     created = api.post(f"/repos/{q}/issues", {
         "title": f"[capability][repair] {item.title}: {item.metadata.get('conclusion') or 'abnormality'}",
         "body": repair_body(item),
@@ -384,17 +651,32 @@ def main(argv: list[str] | None = None) -> int:
     current_repo = os.environ.get("GITHUB_REPOSITORY", "seanchatmangpt/ggen-ecosystem")
     api = GitHub(os.environ.get("MACRO_GITHUB_TOKEN") or os.environ.get("GITHUB_TOKEN"))
     observations, errors = [], []
+    reconciliations: list[dict[str, Any]] = []
     current = now()
+    ancestry = GitHubAncestry(api)
     for repo in policy.managed:
         try:
             observations.extend(collect(api, repo, policy, current))
         except Exception as exc:
             errors.append({"repo": repo.full_name, "error": str(exc)})
+            continue
+        try:
+            reconciliations.extend(collect_reconciliations(api, repo, policy, ancestry))
+        except Exception as exc:
+            errors.append({"repo": repo.full_name, "error": f"reconcile: {exc}"})
 
     observations = reverse_chronological(observations)
-    candidates = [x for x in observations if actionable(x)]
+    candidates = dedupe_demands([x for x in observations if actionable(x)])
+    recovered = {(p["target"], p["issue_number"]) for p in reconciliations if p["action"] == "close-on-recovery"}
     decisions = []
     for item in candidates[:max(0, policy.max_actions_per_run)]:
+        if item.action == "delegate-agent" and (item.repo, item.metadata.get("issue_number")) in recovered:
+            decisions.append({"action": item.action, "target": item.repo, "applied": False,
+                              "issue_number": item.metadata.get("issue_number"),
+                              "standing": "NOOP[DEMAND_RECOVERED]",
+                              "source": {"kind": item.kind, "identity": item.identity,
+                                         "updated_at": item.updated_at, "url": item.url}})
+            continue
         try:
             decision = execute(item, policy, current_repo, args.apply)
         except Exception as exc:
@@ -403,6 +685,20 @@ def main(argv: list[str] | None = None) -> int:
         decision["source"] = {"kind": item.kind, "identity": item.identity,
                               "updated_at": item.updated_at, "url": item.url}
         decisions.append(decision)
+
+    closes = 0
+    for plan in reconciliations:
+        if plan["action"] == "close-on-recovery":
+            if closes >= max(0, policy.max_actions_per_run):
+                plan = {**plan, "standing": "DEFERRED[ACTION_BUDGET_EXHAUSTED]"}
+            else:
+                closes += 1
+                try:
+                    plan = apply_recovery_close(plan, current_repo, args.apply)
+                except Exception as exc:
+                    plan = {**plan, "applied": False, "standing": "BUILD_BROKEN[MACRO_ACTION_EXCEPTION]",
+                            "error": str(exc)}
+        decisions.append(plan)
 
     write_receipt(args.receipt, args.policy, observations, decisions, started, args.apply, errors)
     summary = {
