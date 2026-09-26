@@ -226,9 +226,12 @@ REPO = "seanchatmangpt/ggen-ecosystem"
 
 
 def _git(cwd: Path, *args: str) -> str:
-    env = {**os.environ, "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t", "GIT_COMMITTER_NAME": "t",
-           "GIT_COMMITTER_EMAIL": "t@t", "GIT_AUTHOR_DATE": "2026-09-01T00:00:00Z",
-           "GIT_COMMITTER_DATE": "2026-09-01T00:00:00Z"}
+    # hermetic_git_env scrubs inherited GIT_DIR & co.: without it git honours an ambient
+    # GIT_DIR over -C and these fixture commits land in the caller's repository.
+    env = mod.hermetic_git_env(
+        GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@t", GIT_COMMITTER_NAME="t",
+        GIT_COMMITTER_EMAIL="t@t", GIT_AUTHOR_DATE="2026-09-01T00:00:00Z",
+        GIT_COMMITTER_DATE="2026-09-01T00:00:00Z")
     return subprocess.run(["git", "-C", str(cwd), *args], check=True, capture_output=True,
                           text=True, env=env).stdout.strip()
 
@@ -457,6 +460,85 @@ class SubjectKeyedDemandTests(unittest.TestCase):
             doc = json.loads(receipt.read_text())
         self.assertEqual(90, doc["decisions"][0]["recovery_run_id"])
         self.assertEqual("CLOSED[RECOVERY_RECEIPT]", doc["decisions"][0]["standing"])
+
+
+def _repo_state(repo: Path) -> str:
+    """Refs, HEAD, reflog and object counts: any commit or ref move in ``repo`` changes it."""
+    return "\n".join([
+        _git(repo, "for-each-ref"),
+        _git(repo, "symbolic-ref", "HEAD"),
+        _git(repo, "reflog", "--all"),
+        _git(repo, "count-objects", "-v"),
+    ])
+
+
+class GitEnvHermeticityTests(unittest.TestCase):
+    """GGE v26.9.26 gge-governor-test-git-env-hermeticity. Real git, real subprocesses."""
+
+    def test_scrub_list_covers_every_git_local_env_var(self):
+        # Git itself is the oracle for which variables relocate the repository.
+        local = subprocess.run(["git", "rev-parse", "--local-env-vars"], check=True,
+                               capture_output=True, text=True).stdout.split()
+        self.assertTrue(local)
+        self.assertEqual([], sorted(set(local) - set(mod.GIT_LOCAL_ENV_VARS)))
+
+    def test_hermetic_env_drops_location_vars_and_keeps_everything_else(self):
+        base = {v: "/elsewhere" for v in mod.GIT_LOCAL_ENV_VARS}
+        base.update({"PATH": "/bin", "HOME": "/h", "GIT_AUTHOR_NAME": "x", "GIT_DIRX": "keep"})
+        env = mod.hermetic_git_env(base, GIT_AUTHOR_NAME="t")
+        self.assertEqual({"PATH": "/bin", "HOME": "/h", "GIT_AUTHOR_NAME": "t", "GIT_DIRX": "keep"}, env)
+        self.assertIn("GIT_DIR", base)  # the caller's mapping is not mutated
+
+    def test_hermetic_env_empty_base_and_default_is_os_environ(self):
+        self.assertEqual({}, mod.hermetic_git_env({}))
+        self.assertEqual({"A": "1"}, mod.hermetic_git_env({}, A="1"))
+        default = mod.hermetic_git_env()
+        self.assertEqual({k: v for k, v in os.environ.items() if k not in mod.GIT_LOCAL_ENV_VARS},
+                         default)
+
+    def _sentinel(self, td: str) -> Path:
+        sentinel = Path(td) / "sentinel"
+        sentinel.mkdir()
+        _git(sentinel, "init", "-q", "-b", "main")
+        _git(sentinel, "commit", "-q", "--allow-empty", "-m", "sentinel")
+        return sentinel
+
+    def test_ancestry_ignores_ambient_git_dir(self):
+        # A real child process with GIT_DIR pointing at an unrelated repo must still answer
+        # ancestry from the git_dir it was constructed with.
+        with tempfile.TemporaryDirectory() as td:
+            sentinel = self._sentinel(td)
+            repo = Path(td) / "repo"
+            repo.mkdir()
+            _git(repo, "init", "-q", "-b", "main")
+            _git(repo, "commit", "-q", "--allow-empty", "-m", "R")
+            r = _git(repo, "rev-parse", "HEAD")
+            _git(repo, "commit", "-q", "--allow-empty", "-m", "A")
+            a = _git(repo, "rev-parse", "HEAD")
+            code = ("import importlib.util, sys; from pathlib import Path\n"
+                    f"s = importlib.util.spec_from_file_location('g', {str(MODULE_PATH)!r})\n"
+                    "m = importlib.util.module_from_spec(s); sys.modules['g'] = m; s.loader.exec_module(m)\n"
+                    f"g = m.GitAncestry(Path({str(repo)!r}))\n"
+                    f"print(g('x', {r!r}, {a!r}), g('x', {a!r}, {r!r}), g('x', 'f' * 40, {a!r}))\n")
+            env = {**os.environ, "GIT_DIR": str(sentinel / ".git")}
+            out = subprocess.run([sys.executable, "-c", code], env=env, check=True,
+                                 capture_output=True, text=True).stdout.split()
+        self.assertEqual(["True", "False", "None"], out)
+
+    def test_suite_under_ambient_git_dir_leaves_sentinel_repo_byte_identical(self):
+        with tempfile.TemporaryDirectory() as td:
+            sentinel = self._sentinel(td)
+            before = _repo_state(sentinel)
+            env = {**os.environ, "GIT_DIR": str(sentinel / ".git")}
+            env.pop("GIT_WORK_TREE", None)
+            proc = subprocess.run(
+                [sys.executable, "-m", "unittest", "tests.test_github_macro_governor.SubjectKeyedDemandTests"],
+                cwd=MODULE_PATH.parents[1], env=env, capture_output=True, text=True)
+            after = _repo_state(sentinel)
+        self.assertEqual(0, proc.returncode, proc.stderr[-2000:])
+        self.assertRegex(proc.stderr, r"Ran [1-9]\d* tests")
+        self.assertEqual(before, after)
+        self.assertNotIn("refs/heads/side", after)
 
 
 if __name__ == "__main__":
