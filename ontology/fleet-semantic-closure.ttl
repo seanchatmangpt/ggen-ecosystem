@@ -1,0 +1,31 @@
+@prefix fsc: <https://ggen.dev/ontology/fleet-semantic-closure#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+fsc:FleetSemanticClosure a rdfs:Class .
+fsc:Supplier a rdfs:Class .
+fsc:Capability a rdfs:Class .
+fsc:Consumer a rdfs:Class .
+fsc:ClosureReceipt a rdfs:Class ; rdfs:subClassOf prov:Entity .
+fsc:exactSubject a rdf:Property ; rdfs:domain fsc:Supplier ; rdfs:range xsd:string .
+fsc:canonicalOwner a rdf:Property ; rdfs:domain fsc:Capability ; rdfs:range fsc:Supplier .
+fsc:provides a rdf:Property ; rdfs:domain fsc:Supplier ; rdfs:range fsc:Capability .
+fsc:consumes a rdf:Property ; rdfs:domain fsc:Consumer ; rdfs:range fsc:Capability .
+fsc:authorityCeiling a rdf:Property ; rdfs:range xsd:string .
+fsc:closureDigest a rdf:Property ; rdfs:domain fsc:ClosureReceipt ; rdfs:range xsd:string .
+fsc:sourceDigest a rdf:Property ; rdfs:domain fsc:ClosureReceipt ; rdfs:range xsd:string .
+fsc:replayDigest a rdf:Property ; rdfs:domain fsc:ClosureReceipt ; rdfs:range xsd:string .
+
+fsc:ClosureShape a sh:NodeShape ;
+  sh:targetClass fsc:FleetSemanticClosure ;
+  sh:property [ sh:path fsc:authorityCeiling ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("NONE") ] .
+fsc:SupplierShape a sh:NodeShape ;
+  sh:targetClass fsc:Supplier ;
+  sh:property [ sh:path fsc:exactSubject ; sh:minCount 1 ; sh:maxCount 1 ] .
+fsc:CapabilityShape a sh:NodeShape ;
+  sh:targetClass fsc:Capability ;
+  sh:property [ sh:path fsc:canonicalOwner ; sh:minCount 1 ; sh:maxCount 1 ] .

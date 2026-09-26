@@ -1,0 +1,60 @@
+version = 1
+schema = "https://ggen.dev/contracts/fleet-semantic-closure/v1"
+authority_ceiling = "NONE"
+ontology = "ontology/fleet-semantic-closure.ttl"
+
+[[supplier]]
+id = "ggen"
+lock_section = "ggen"
+lock_key = "commit_sha"
+capabilities = ["semantic-manufacture", "spg-rewrite"]
+
+[[supplier]]
+id = "ggen-marketplace"
+lock_section = "ggen_marketplace"
+lock_key = "sha"
+capabilities = ["qualified-pack-catalog", "interchangeable-parts"]
+
+[[supplier]]
+id = "ggen-igniter"
+lock_section = "ggen_igniter"
+lock_key = "sha"
+capabilities = ["beam-reconciliation", "ocel-emission"]
+
+[[supplier]]
+id = "autofde-lab"
+lock_section = "submodules"
+lock_key = "autofde_lab_commit"
+capabilities = ["diagnosis-search", "capability-ecology"]
+
+[[supplier]]
+id = "beam4pm"
+lock_section = "beam4pm"
+lock_key = "sha"
+capabilities = ["process-intelligence"]
+
+[[supplier]]
+id = "wasm4pm"
+lock_section = "wasm4pm"
+lock_key = "sha"
+capabilities = ["wasm-process-evidence"]
+
+[[consumer]]
+id = "ecosystem-manufacture"
+requires = ["semantic-manufacture", "qualified-pack-catalog"]
+consequence = "deterministic generated projection"
+
+[[consumer]]
+id = "beam-control-plane"
+requires = ["beam-reconciliation", "ocel-emission", "process-intelligence"]
+consequence = "receipted process-control projection"
+
+[[consumer]]
+id = "diagnosis-loop"
+requires = ["diagnosis-search", "capability-ecology", "wasm-process-evidence"]
+consequence = "evidence-bound diagnosis without authority acquisition"
+
+[[consumer]]
+id = "runtime-substitution"
+requires = ["interchangeable-parts", "capability-ecology"]
+consequence = "qualified substitution remains SELECT-only"
