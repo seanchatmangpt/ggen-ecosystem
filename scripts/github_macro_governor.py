@@ -353,15 +353,43 @@ def normalize_recoveries(repo: Repo, payload: dict[str, Any]) -> list[Recovery]:
 Ancestry = Callable[[str, str, str], "bool | None"]
 
 
+# Repository-location variables git honours over ``-C <path>`` (the set printed by
+# ``git rev-parse --local-env-vars``, the same list git's own submodule machinery clears).
+# An inherited GIT_DIR (Mode P / scratch-archive lanes export one) would otherwise redirect
+# every git call here -- reads *and* writes -- into the caller's repository.
+GIT_LOCAL_ENV_VARS = (
+    "GIT_ALTERNATE_OBJECT_DIRECTORIES", "GIT_CONFIG", "GIT_CONFIG_PARAMETERS", "GIT_CONFIG_COUNT",
+    "GIT_OBJECT_DIRECTORY", "GIT_DIR", "GIT_WORK_TREE", "GIT_IMPLICIT_WORK_TREE", "GIT_GRAFT_FILE",
+    "GIT_INDEX_FILE", "GIT_NO_REPLACE_OBJECTS", "GIT_REPLACE_REF_BASE", "GIT_PREFIX",
+    "GIT_SHALLOW_FILE", "GIT_COMMON_DIR",
+)
+
+
+def hermetic_git_env(base: "dict[str, str] | None" = None, **overrides: str) -> dict[str, str]:
+    """``base`` (default ``os.environ``) minus GIT_LOCAL_ENV_VARS, plus ``overrides``.
+
+    Git then resolves the repository from ``-C <path>`` alone, so an ambient GIT_DIR can
+    never make a call read from or write to another repository.
+    """
+    env = {k: v for k, v in (os.environ if base is None else base).items()
+           if k not in GIT_LOCAL_ENV_VARS}
+    env.update(overrides)
+    return env
+
+
 class GitAncestry:
-    """Ancestry from a local git object store (``git merge-base --is-ancestor``)."""
+    """Ancestry from a local git object store (``git merge-base --is-ancestor``).
+
+    Runs under ``hermetic_git_env()``: the answer comes from ``git_dir``, never from an
+    inherited GIT_DIR/GIT_OBJECT_DIRECTORY.
+    """
 
     def __init__(self, git_dir: Path):
         self.git_dir = git_dir
 
     def __call__(self, repo: str, ancestor: str, descendant: str) -> bool | None:
         res = subprocess.run(["git", "-C", str(self.git_dir), "merge-base", "--is-ancestor", ancestor, descendant],
-                             capture_output=True, text=True)
+                             capture_output=True, text=True, env=hermetic_git_env())
         return {0: True, 1: False}.get(res.returncode)
 
 
