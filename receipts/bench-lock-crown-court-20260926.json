@@ -1,0 +1,33 @@
+{
+  "authority": "NONE",
+  "court_sha256": "dd43d5bb4ba6bc2a2013a3dd77f69d37c67d3a19a7d5fd15a6660de6fe014ac6",
+  "court_standing": "ALIVE",
+  "environment": {
+    "machine": "arm64",
+    "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+    "python": "3.14.3"
+  },
+  "evaluate": {
+    "max_ms": 3.3157,
+    "median_ms": 0.7572,
+    "min_ms": 0.7326,
+    "n": 2000,
+    "p95_ms": 0.9217
+  },
+  "load_inputs": {
+    "max_ms": 134.0896,
+    "median_ms": 82.1036,
+    "min_ms": 60.4413,
+    "n": 30,
+    "p95_ms": 123.1004
+  },
+  "lock_sha256": "d9dbede2236cdeb8a8e856aff9dadee80a89d6ebc99e798daa8b333de3702257",
+  "regression_bound": {
+    "budget_ms": 10.0,
+    "enforced_by": "tests/lock_contracts/test_lock_crown_court.py::test_evaluate_stays_within_budget",
+    "metric": "evaluate.median_ms",
+    "within_budget": true
+  },
+  "schema": "https://ggen.dev/receipts/bench-lock-crown-court/v1",
+  "subject_rev": "3b75fe27b31ac7c7e8064483e643c501725275b8"
+}

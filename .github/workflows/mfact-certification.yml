@@ -9,6 +9,8 @@ on:
     paths:
       - "certification/**"
       - "scripts/certify_ecosystem.py"
+      - "scripts/lock_crown_court.py"
+      - "CHANGELOG.md"
       - "tests/test_mfact_certification.py"
       - "tests/lock_contracts/**"
       - "ecosystem.lock.toml"
@@ -25,6 +27,8 @@ on:
     paths:
       - "certification/**"
       - "scripts/certify_ecosystem.py"
+      - "scripts/lock_crown_court.py"
+      - "CHANGELOG.md"
       - "tests/test_mfact_certification.py"
       - "tests/lock_contracts/**"
       - "ecosystem.lock.toml"
@@ -76,6 +80,12 @@ jobs:
 
       - name: Verify lock, gitlink, and blocked-capsule correspondence
         run: python3 -m unittest tests.lock_contracts.test_ecosystem_lock_consistency -v
+
+      - name: Lock/crown admission court (pins, projection parity, release record, standing)
+        run: |
+          set -euo pipefail
+          python3 -m unittest tests.lock_contracts.test_lock_crown_court -v
+          python3 scripts/lock_crown_court.py --root . --rev HEAD
 
       - name: Run certification falsifiers
         run: python3 -m unittest tests.test_mfact_certification -v
