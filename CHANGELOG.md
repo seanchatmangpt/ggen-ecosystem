@@ -14,6 +14,33 @@ they bring in.
 
 ## [Unreleased]
 
+## [v26.9.25] - 2026-09-26
+
+Release identity follows the vYY.M.D convention (see the format note above).
+Every vendored producer is advanced to its remote default-branch head, each of
+which is a v26.9.25 upstream commit.
+
+### Changed
+
+- Submodule crown (via `scripts/crown-submodules.py --apply`, gitlinks + lock):
+  - `vendor/ggen` 595b0942 → 58aeda92 (feat(v26.9.25): manufacture SPG
+    rewrites with exact-subject replay, ggen#751)
+  - `vendor/ggen-marketplace` bf10f7bf → 2c4c4c7e (feat(v26.9.25): canonical
+    UNRDF interchangeable-part adapters, ggen-marketplace#504)
+  - `vendor/autofde-lab` b417eea6 → a936f360 (feat(v26.9.25): qualified
+    capability ecology retirement law, autofde-lab#201)
+  - `vendor/ggen_igniter` 31643647 → c33b0f67 (v26.9.25 production closure,
+    ggen_igniter#36); `[ggen_igniter].version` 26.8.30 → 26.9.24, the version
+    that head's `mix.exs` declares
+  - `vendor/beam4pm` c2d9dbe4 → 2563466a (ferroplan sync 26.9.25, beam4pm#90)
+  - `vendor/wasm4pm` unchanged (9fc4f1ae is already the remote head)
+- `ggen-ecosystem-sync.yml` workflow_call defaults and their ontology.ttl
+  projection: container tag `v26.9.22` → `v26.9.25`, `marketplace_sha`
+  `616e93d1` → the pinned `2c4c4c7e2a4eb33ebe2ad9ab23725af3c476a637`.
+- `[ggen].release` / `[container].tag`: v26.9.22 → v26.9.25. `[container]`
+  stays BLOCKED with `requires_republish` until the tag build publishes. The
+  real digest and ALIVE land in a later release-receipt commit.
+
 ## [v26.9.22] - 2026-09-23
 
 Release identity follows the vYY.M.D convention (see the format note above).
