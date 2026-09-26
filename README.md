@@ -57,13 +57,15 @@ A `Justfile` provides the fuller canonical operator surface (`just --list` for a
 
 ### Exact producer pins
 
-- GGen release: `v26.8.28` (real published GitHub release, verified via prior release evidence)
-- GGen source commit: `c61ee99359c9dbc7b3cb71687976932a3e737ed4` (matches the `vendor/ggen` gitlink)
+The single live source for these pins is `ecosystem.lock.toml` — this list is a convenience projection; when they disagree, the lock wins.
+
+- GGen release: `v26.9.22` (bumped from v26.8.28 by the 2026-09-22 release lane, `97620bdd`)
+- GGen source commit: `06093e0cd679662b8c6d15eedea0973fd475dec5` (matches the `vendor/ggen` gitlink)
 - GGen aarch64-apple-darwin release asset SHA-256 (historical; no longer the consumption path): `82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42`
-- Marketplace commit: `89adf4c8476f7edc8067fdbb1c256cfbfa22df6a` (matches `ecosystem.lock.toml` and the `vendor/ggen-marketplace` gitlink)
-- AutoFDE Lab commit: `a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09` (matches `ecosystem.lock.toml` and the `vendor/autofde-lab` gitlink)
+- Marketplace commit: `616e93d1e6f9566e4b5eb4e2c3d1400746786e50` (matches `ecosystem.lock.toml` and the `vendor/ggen-marketplace` gitlink)
+- AutoFDE Lab commit: `d5ac60ffde588a452ce8615f203971d17c69e31f` (matches `ecosystem.lock.toml` and the `vendor/autofde-lab` gitlink)
 - Marketplace pack: `packs/github-actions-pack` (sourced via local submodule `path =`, not `git =`/`version =`)
-- Historical composed-container digest: `sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` — **not currently admitted as pullable**; republish and re-crown are tracked in issue #146.
+- Composed container: `ghcr.io/seanchatmangpt/ggen-ecosystem:v26.9.22` at digest `sha256:6605878ee50f897947560445f655602e9f4471dcaeb4c493a0ce55dbec4bec13`, standing `ALIVE` (published + verified 2026-09-23, run 35833887166, cosign-signed receipt `receipts/release-v26.9.22-container.json`). The historical digest `sha256:b9e1702…` and issue #146's republish task are superseded by this publish.
 
 ## Maximum ecosystem graph
 
@@ -89,7 +91,9 @@ Five semantic profiles are defined: `cloud-session`, `platform-engineering`, `pr
 
 ## GitHub-native cloud bootstrap
 
-`.github/workflows/ggen-ecosystem-sync.yml` is both a reusable `workflow_call` target and a manual `workflow_dispatch` rail. It checks out the exact candidate (with submodules), admits exact producer/pack identities, runs its `construct` job **inside** the pinned `ghcr.io/seanchatmangpt/ggen-ecosystem` container, executes `ggen sync run`, and captures deterministic replay evidence while keeping repository mutation authority outside the workflow (`contents: read` only). `.github/workflows/ggen-ecosystem-container.yml` builds and publishes that container from `vendor/ggen` + `vendor/ggen-marketplace` on tag push or manual dispatch. The workflow definition is present, but the current capsule must be republished before this path can regain `ALIVE` standing.
+`.github/workflows/ggen-ecosystem-sync.yml` is both a reusable `workflow_call` target and a manual `workflow_dispatch` rail. It checks out the exact candidate (with submodules), admits exact producer/pack identities, runs its `construct` job **inside** the pinned `ghcr.io/seanchatmangpt/ggen-ecosystem` container, executes `ggen sync run`, and captures deterministic replay evidence while keeping repository mutation authority outside the workflow (`contents: read` only). `.github/workflows/ggen-ecosystem-container.yml` builds and publishes that container from `vendor/ggen` + `vendor/ggen-marketplace` on tag push or manual dispatch. The `v26.9.22` capsule is published and verified (`[container] standing = "ALIVE"` in `ecosystem.lock.toml`, receipt `receipts/release-v26.9.22-container.json`).
+
+The release-crown contract corpus also has a hand-written CI consumer: `.github/workflows/release-crown-contracts.yml` gates every push to `main` touching the tool, the corpus, or `docs/DEFINITION-OF-DONE.md` (plus `workflow_dispatch`), running `tools/verify_release_crown.py contracts/release-crown --root .` over the 49 JSON contracts. The full suite runs as non-gating evidence; the gate fails on any contract outside the named `EXCLUDED` list. The 5 excluded contracts (`09/10/19/20-dod-pr-*-standing`, `47-dod-rollup-arithmetic`) evaluate `REFUSED:*` standing drift against `docs/DEFINITION-OF-DONE.md` — re-adjudicating them is a court decision, not a CI edit.
 
 ## Provenance
 

@@ -14,6 +14,34 @@ they bring in.
 
 ## [Unreleased]
 
+### Added
+
+- Per-arch SA2A plan-only court steps are now documented as ontology-sourced:
+  `ontology.ttl` carries the `gha:Step` individuals
+  `ex:containerAmd64Sa2aCourt` and `ex:containerArm64Sa2aCourt` — each
+  `gha:inJob` its architecture's build job at `gha:stepOrder 5`, with a
+  `gha:envVar` binding `IMAGE` to the just-pushed single-platform tag and the
+  full `gha:runCommand` probe block — and
+  `.github/workflows/ggen-ecosystem-container.yml` carries the matching
+  `SA2A plan-only court (amd64, GGE-26922-08)` and
+  `SA2A plan-only court (arm64, GGE-26922-08)` steps rendered from those
+  facts. Per the repo's generated-workflow law, the workflow is a projection
+  of these admitted `gha:Step` facts and must not be hand-edited; repair the
+  ontology source and re-render.
+- The release-crown contract corpus has a CI consumer:
+  `.github/workflows/release-crown-contracts.yml` (hand-written, commit
+  `f3cc60f8`) runs `tools/verify_release_crown.py contracts/release-crown
+  --root .` over the 49 JSON contracts on every push to `main` touching the
+  tool, the corpus, or `docs/DEFINITION-OF-DONE.md`, plus `workflow_dispatch`
+  for on-demand runs. The full suite runs as non-gating evidence; the gate
+  fails on any contract outside the named `EXCLUDED` list. The 5 excluded
+  contracts (`09-dod-pr-009-standing`, `10-dod-pr-010-standing`,
+  `19-dod-pr-019-standing`, `20-dod-pr-020-standing`,
+  `47-dod-rollup-arithmetic`) evaluate `REFUSED:STANDING_DRIFT` /
+  `REFUSED:DOD_ROLLUP_DRIFT` against `docs/DEFINITION-OF-DONE.md` — doc rows
+  were advanced by the release session while the contracts hold pre-release
+  standings; re-adjudication is a court decision, not a CI edit.
+
 ## [v26.9.22] - 2026-09-23
 
 Release identity follows the vYY.M.D convention (see the format note above).
