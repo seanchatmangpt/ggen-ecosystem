@@ -14,6 +14,23 @@ they bring in.
 
 ## [Unreleased]
 
+### Added
+
+- Lock/crown admission court `scripts/lock_crown_court.py` (SELECT-only,
+  authority NONE) with 35 Chicago cases in
+  `tests/lock_contracts/test_lock_crown_court.py`, run by the MFact
+  certification workflow. It binds every `[submodules]` pin to its gitlink
+  (now including `vendor/ggen_igniter` and `vendor/beam4pm`, which the older
+  consistency test did not cover), every per-producer section sha to its
+  `[submodules]` pin, the sync workflow's input defaults to their
+  `ontology.ttl` source, `ggen_container_tag` to `[container].tag`, the
+  `marketplace_sha` default to a citation in the release's CHANGELOG
+  section, `[container].tag` to `[ggen].release`, the container standing
+  vocabulary, and `base_main_sha`/`updated_at` to the subject's history.
+  Every law is crown-stable (a lawful `crown-submodules.py --apply` bump stays
+  admitted); 23/23 refusal mutants are killed. Benchmark receipt:
+  `receipts/bench-lock-crown-court-20260926.json`.
+
 ## [v26.9.25] - 2026-09-26
 
 Release identity follows the vYY.M.D convention (see the format note above).
