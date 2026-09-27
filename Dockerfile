@@ -101,7 +101,21 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /out/bin/ggen /usr/local/bin/ggen
+
+# The source checkout preserves the full marketplace corpus for replay/migration evidence,
+# but runtime consumers must see only the canonical active capability surface declared by
+# marketplace.active.toml. Copy the source bytes, then deterministically prune every direct
+# pack directory that is not active and seal an exact-surface receipt into the image.
+# This prevents consumers such as the XaaS GGen workbench from treating historical Ash/
+# experiment/version pack directories as peer public capabilities.
+COPY vendor/ggen-marketplace/marketplace.active.toml /opt/ggen-marketplace/marketplace.active.toml
 COPY vendor/ggen-marketplace/packs/ /opt/ggen-marketplace/packs/
+COPY scripts/materialize_active_marketplace.py /usr/local/bin/materialize_active_marketplace.py
+RUN python3 /usr/local/bin/materialize_active_marketplace.py \
+      --root /opt/ggen-marketplace \
+      --prune \
+      > /opt/ggen-marketplace/ACTIVE_SURFACE.json
+
 COPY vendor/autofde-lab/src/ /opt/autofde-lab/src/
 COPY vendor/beam4pm/ /opt/beam4pm/
 
