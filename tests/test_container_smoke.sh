@@ -68,25 +68,46 @@ else
 fi
 
 # =============================================================================
-# Assertion 2: `ls /opt/ggen-marketplace/packs` lists real pack directories,
-# non-empty, containing 'github-actions-pack'
+# Assertion 2: runtime marketplace visibility equals marketplace.active.toml
+# exactly. Historical source packs may exist in the vendored checkout, but the
+# composed runtime capsule must expose only the canonical active set.
 # =============================================================================
 echo
-echo "== Assertion 2: ls /opt/ggen-marketplace/packs =="
-PACKS_OUTPUT="$(docker run --rm "$IMAGE" ls /opt/ggen-marketplace/packs 2>&1)"
-PACKS_STATUS=$?
+echo "== Assertion 2: canonical active marketplace runtime surface =="
+SURFACE_OUTPUT="$(docker run --rm "$IMAGE" python3 -c '
+import json
+from pathlib import Path
+root = Path("/opt/ggen-marketplace")
+receipt = json.loads((root / "ACTIVE_SURFACE.json").read_text())
+visible = sorted(p.name for p in (root / "packs").iterdir() if p.is_dir())
+active = receipt["active_packs"]
+ok = (
+    receipt["standing"] == "ALIVE"
+    and receipt["front_door"] == "ggen-platform-pack"
+    and visible == active
+    and receipt["visible_packs"] == active
+    and receipt["visible_pack_count"] == len(active)
+)
+print(json.dumps({
+    "ok": ok,
+    "front_door": receipt["front_door"],
+    "active_count": len(active),
+    "visible": visible,
+    "removed_count": receipt["removed_count"],
+}, sort_keys=True))
+raise SystemExit(0 if ok else 1)
+' 2>&1)"
+SURFACE_STATUS=$?
 echo "--- real observed output ---"
-echo "$PACKS_OUTPUT"
-echo "--- exit code: $PACKS_STATUS ---"
+echo "$SURFACE_OUTPUT"
+echo "--- exit code: $SURFACE_STATUS ---"
 
-if [ "$PACKS_STATUS" -ne 0 ]; then
-    fail "assertion 2: 'ls /opt/ggen-marketplace/packs' exited non-zero ($PACKS_STATUS)"
-elif [ -z "$PACKS_OUTPUT" ]; then
-    fail "assertion 2: 'ls /opt/ggen-marketplace/packs' produced empty output"
-elif ! echo "$PACKS_OUTPUT" | grep -q "github-actions-pack"; then
-    fail "assertion 2: 'github-actions-pack' not found in real pack listing: '$PACKS_OUTPUT'"
+if [ "$SURFACE_STATUS" -ne 0 ]; then
+    fail "assertion 2: runtime marketplace surface does not equal the canonical active set"
+elif ! echo "$SURFACE_OUTPUT" | grep -q '"front_door": "ggen-platform-pack"'; then
+    fail "assertion 2: canonical ggen-platform-pack front door missing from runtime receipt"
 else
-    pass "assertion 2: /opt/ggen-marketplace/packs lists real packs including github-actions-pack"
+    pass "assertion 2: runtime exposes exactly the active marketplace packs through ggen-platform-pack"
 fi
 
 # =============================================================================
