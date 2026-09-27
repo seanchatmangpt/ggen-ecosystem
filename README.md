@@ -13,7 +13,7 @@ This repository owns ecosystem identity, composition, admission, closure, qualif
 
 ## Manufacturing contract
 
-The repository is a first-class GGen consumer. `ggen` itself is consumed by building it from the real `vendor/ggen` submodule into a composed container (bundled with the real `vendor/ggen-marketplace/packs/`), published to GHCR — not by downloading a release binary tarball:
+The repository is a first-class GGen consumer. `ggen` itself is consumed by building it from the real `vendor/ggen` submodule into a composed container. The source checkout retains the complete `vendor/ggen-marketplace/packs/` corpus, but the runtime image deterministically projects `vendor/ggen-marketplace/marketplace.active.toml` and exposes **only the active canonical pack directories** under `/opt/ggen-marketplace/packs/`. Historical/legacy pack source remains available in the submodule for replay and migration evidence; it is not a runtime discovery surface. The composed image is published to GHCR — not assembled from a downloaded release binary tarball:
 
 ```text
 vendor/ggen (submodule)        vendor/ggen-marketplace (submodule)
@@ -29,6 +29,8 @@ ggen.toml + ontology.ttl                     |
                         .github/workflows/ggen-ecosystem-sync.yml
                         .github/workflows/ggen-ecosystem-container.yml
 ```
+
+The container build writes `/opt/ggen-marketplace/ACTIVE_SURFACE.json` as a machine-readable receipt. Its `visible_packs` must equal `marketplace.active.toml.active.packs` exactly, and its `front_door` must be `ggen-platform-pack`. The build refuses missing active packs, duplicate/unsorted declarations, an unadmitted front door, or any legacy directory left visible after projection. This keeps runtime consumers such as the XaaS GGen workbench on the marketplace's canonical topology rather than development-history pack names.
 
 Both generated workflows are a generated consequence of `ontology.ttl`. Edit its semantic inputs and regenerate with `ggen sync run`; do not hand-edit either generated workflow. A reusable composite Action (`use-ggen-ecosystem`, in `ggen-marketplace/packs/github-actions-pack/examples/consume-github-actions-pack/`) lets other repos run `ggen sync run` inside the same pinned container without a curl/binary step of their own.
 
