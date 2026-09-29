@@ -110,6 +110,14 @@ producer identities (ggen release, source commit, marketplace commit, autofde-la
 `ecosystem.lock.toml` and are cross-checked against the vendored gitlinks — do not hand-adjust one
 without the other.
 
+### CASTLE remaining-capability projection
+
+`ontology/castle-projection.ttl` is the semantic source for CASTLE's non-owner capability estate. It projects 23 exact repository subjects into existing CASTLE owners without creating new sovereign runtime or consequence crowns. Every projection is `CANDIDATE`, has authority ceiling `CONSTRUCT`, an explicit disposition/target/runtime placement, and a falsifier.
+
+`profiles/castle.ttl` selects the profile. The three `queries/castle-*.rq` files are the positive projection and zero-row non-sovereignty/uniqueness courts. `docs/castle/` is Diátaxis documentation only: edit the RDF source first, then keep the reference projection in conservation with it. Never use documentation presence, a generated view, or the projection itself as evidence of `ALIVE` standing.
+
+XaaS remains runtime existence/composition. CASTLE remains consequential admissibility. A projected repository may donate or wrap capability, but it may not claim `RUNTIME_CORE` or `CONSEQUENCE_CROWN`.
+
 ### DfCM (Design for Capability Manufacturing) phases
 
 `AGENTS.md` frames all work as: **Preserve -> Fence -> Calculus -> Exclusions -> Falsifier ->
