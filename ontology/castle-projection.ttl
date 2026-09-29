@@ -1,0 +1,373 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# CASTLE v26.9.28 remaining-capability projection.
+#
+# This graph projects the 23 repositories that CASTLE's sJira crown did not
+# retain as irreducible KEEP owners. Projection != ownership and projection !=
+# admission. Every edge is CANDIDATE and has authority ceiling CONSTRUCT.
+#
+# Source crown:
+#   seanchatmangpt/castle@c6a69e23fc99a70e78e98436ba7f715fc1099a7b
+#   docs/sjira/v26.9.28/repos.ttl
+#
+# Runtime/product crown remains external to this projection:
+#   XaaS   = runtime existence/composition
+#   CASTLE = consequential admissibility
+#   BRCE   = protected CONSTRUCT -> DO
+
+eco:CastleCapabilityProjection a <http://www.w3.org/2000/01/rdf-schema#Class> .
+eco:projectedRepository a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:sourceBranch a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:sourceSha a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:projectedCapability a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:projectionDisposition a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:projectionTarget a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:runtimePlacement a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:projectionStanding a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:authorityCeiling a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:falsifier a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+eco:projectionSource a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+
+eco:castle a eco:Profile, prov:Plan ;
+    dcterms:title "castle" ;
+    eco:profileName "castle" ;
+    eco:selectionPolicy "project-non-owner-capabilities-without-promoting-sovereignty" ;
+    eco:profileStanding "CANDIDATE" ;
+    eco:includesCapability
+        eco:LegacyManufactureCompatibility,
+        eco:RdfKernelCompatibility,
+        eco:ProcessExecutionKernel,
+        eco:AshProcessProjection,
+        eco:ExternalWorkerProvider,
+        eco:ModelProviderBridge,
+        eco:WorkSystemAdapter,
+        eco:HumanBoardSurface,
+        eco:MobileSurface,
+        eco:PlanningCenterAdapter,
+        eco:DomainApplicationSurface,
+        eco:SoftwareConsequenceAdapter,
+        eco:StrategyDoctrineKnowledge,
+        eco:EngineeringConstitutionKnowledge,
+        eco:ProtocolSpecificationKnowledge,
+        eco:HistoricalSemanticSource,
+        eco:FormalTheoryProjection,
+        eco:ProofDrivenManufactureResearch,
+        eco:SemanticDocumentProjection,
+        eco:ProcessEvidenceCompatibility,
+        eco:CapabilityKernelResearch,
+        eco:ProofCarryingWorkRuntimeResearch,
+        eco:ApplicationConstitutionResearch .
+
+eco:castle-projection-source a prov:Entity ;
+    dcterms:identifier "seanchatmangpt/castle@c6a69e23fc99a70e78e98436ba7f715fc1099a7b:docs/sjira/v26.9.28/repos.ttl" ;
+    dcterms:title "CASTLE v26.9.28 remaining repository conservation set" .
+
+# --- Capability vocabulary -------------------------------------------------
+
+eco:LegacyManufactureCompatibility a eco:Capability, skos:Concept ;
+    skos:prefLabel "legacy manufacture compatibility" .
+eco:RdfKernelCompatibility a eco:Capability, skos:Concept ;
+    skos:prefLabel "RDF kernel compatibility" .
+eco:ProcessExecutionKernel a eco:Capability, skos:Concept ;
+    skos:prefLabel "process execution kernel" .
+eco:AshProcessProjection a eco:Capability, skos:Concept ;
+    skos:prefLabel "Ash process projection" .
+eco:ExternalWorkerProvider a eco:Capability, skos:Concept ;
+    skos:prefLabel "external worker provider" .
+eco:ModelProviderBridge a eco:Capability, skos:Concept ;
+    skos:prefLabel "model-provider bridge" .
+eco:WorkSystemAdapter a eco:Capability, skos:Concept ;
+    skos:prefLabel "work-system adapter" .
+eco:HumanBoardSurface a eco:Capability, skos:Concept ;
+    skos:prefLabel "human board surface" .
+eco:MobileSurface a eco:Capability, skos:Concept ;
+    skos:prefLabel "mobile surface" .
+eco:PlanningCenterAdapter a eco:Capability, skos:Concept ;
+    skos:prefLabel "Planning Center adapter" .
+eco:DomainApplicationSurface a eco:Capability, skos:Concept ;
+    skos:prefLabel "domain application surface" .
+eco:SoftwareConsequenceAdapter a eco:Capability, skos:Concept ;
+    skos:prefLabel "software consequence adapter" .
+eco:StrategyDoctrineKnowledge a eco:Capability, skos:Concept ;
+    skos:prefLabel "strategy and doctrine knowledge" .
+eco:EngineeringConstitutionKnowledge a eco:Capability, skos:Concept ;
+    skos:prefLabel "engineering constitution knowledge" .
+eco:ProtocolSpecificationKnowledge a eco:Capability, skos:Concept ;
+    skos:prefLabel "protocol specification knowledge" .
+eco:HistoricalSemanticSource a eco:Capability, skos:Concept ;
+    skos:prefLabel "historical semantic source" .
+eco:FormalTheoryProjection a eco:Capability, skos:Concept ;
+    skos:prefLabel "formal theory projection" .
+eco:ProofDrivenManufactureResearch a eco:Capability, skos:Concept ;
+    skos:prefLabel "proof-driven manufacture research" .
+eco:SemanticDocumentProjection a eco:Capability, skos:Concept ;
+    skos:prefLabel "semantic document and diagram projection" .
+eco:ProcessEvidenceCompatibility a eco:Capability, skos:Concept ;
+    skos:prefLabel "typed process-evidence compatibility" .
+eco:CapabilityKernelResearch a eco:Capability, skos:Concept ;
+    skos:prefLabel "deterministic capability-kernel research" .
+eco:ProofCarryingWorkRuntimeResearch a eco:Capability, skos:Concept ;
+    skos:prefLabel "proof-carrying admissible-work runtime research" .
+eco:ApplicationConstitutionResearch a eco:Capability, skos:Concept ;
+    skos:prefLabel "application constitutional-control-plane research" .
+
+# --- Previously dispositioned non-owner repositories -----------------------
+
+eco:castle-projection-ggen a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/ggen" ;
+    eco:sourceBranch "main" ; eco:sourceSha "ff96f04e8c7b851e5cca53f3faf5ce1d5f43ce6e" ;
+    eco:projectedCapability eco:LegacyManufactureCompatibility ;
+    eco:projectionDisposition "REPLACE" ;
+    eco:projectionTarget "seanchatmangpt/ggen_igniter" ;
+    eco:runtimePlacement "KNOWLEDGE_AND_MANUFACTURE_SOURCE" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "CASTLE runtime requires legacy ggen as a sovereign authority or permanent runtime dependency." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-unrdf a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/unrdf" ;
+    eco:sourceBranch "main" ; eco:sourceSha "0550d9630da94b170c931f17a1580ea90091cbb4" ;
+    eco:projectedCapability eco:RdfKernelCompatibility ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/graphlaw" ;
+    eco:runtimePlacement "SEMANTIC_KERNEL_BEHIND_OWNER" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "UNRDF becomes a second semantic-law owner beside GraphLaw." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-ex4pm a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/ex4pm" ;
+    eco:sourceBranch "main" ; eco:sourceSha "d1ff769ca7763168ff154b1def980dfaec0cb15c" ;
+    eco:projectedCapability eco:ProcessExecutionKernel ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/beam4pm" ;
+    eco:runtimePlacement "PROCESS_KERNEL_BEHIND_RUNTIME_OWNER" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "EX4PM creates a second process-runtime crown or direct consequence path." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-ash-ex4pm a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/ash_ex4pm" ;
+    eco:sourceBranch "main" ; eco:sourceSha "64a21504d3aab0165275cb3e1c9e2fc124d83413" ;
+    eco:projectedCapability eco:AshProcessProjection ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/process-intelligence" ;
+    eco:runtimePlacement "ASH_ADAPTER" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Ash process projection invents process truth or authority not present in receipts." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-zcode a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/zcode-cli" ;
+    eco:sourceBranch "main" ; eco:sourceSha "a568c3c3ee4b377e98fe9db0f37fa90da760734f" ;
+    eco:projectedCapability eco:ExternalWorkerProvider ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/xaas" ;
+    eco:runtimePlacement "PROVIDER_EDGE" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Worker possession or successful tool execution becomes CASTLE authority." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-chatgpt-cloud-elixir a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/chatgpt-cloud-elixir" ;
+    eco:sourceBranch "main" ; eco:sourceSha "8efaa40b69c8162d22fe2dc5e59657f8dcff529e" ;
+    eco:projectedCapability eco:ModelProviderBridge ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/xaas" ;
+    eco:runtimePlacement "PROVIDER_EDGE" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "A model/provider session gains ambient runtime or consequence sovereignty." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-ash-atlassian a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/ash_atlassian" ;
+    eco:sourceBranch "main" ; eco:sourceSha "43e3d21b7c4e4571493fcf3757392ed16f2dd967" ;
+    eco:projectedCapability eco:WorkSystemAdapter ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/ash_a2a" ;
+    eco:runtimePlacement "EXTERNAL_SYSTEM_ADAPTER" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Atlassian/Jira state becomes authority or bypasses SA2A exact-subject transport." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-ash-surface a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/ash_surface" ;
+    eco:sourceBranch "main" ; eco:sourceSha "c066a55f452f23b348df375c00aae7811f6f72be" ;
+    eco:projectedCapability eco:HumanBoardSurface ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/castle" ;
+    eco:runtimePlacement "HUMAN_SURFACE" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "UI state or presentation becomes board authority or semantic truth." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-ash-expo a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/ash_expo" ;
+    eco:sourceBranch "main" ; eco:sourceSha "024852b92330c76e12d0ab26531ef1e511c71041" ;
+    eco:projectedCapability eco:MobileSurface ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/ash_surface" ;
+    eco:runtimePlacement "MOBILE_SURFACE" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Mobile presentation or cached state becomes independent authority." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-ash-planning-center a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/ash_planning_center" ;
+    eco:sourceBranch "main" ; eco:sourceSha "5ee26cbdc8fef26c92c7691355c76f5aed2e7b2c" ;
+    eco:projectedCapability eco:PlanningCenterAdapter ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/ash_a2a" ;
+    eco:runtimePlacement "EXTERNAL_SYSTEM_ADAPTER" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Planning Center records acquire private authorization semantics or bypass CASTLE." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-zoela a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/zoela" ;
+    eco:sourceBranch "main" ; eco:sourceSha "cae4a862744380f6a78b962e3f345ede8bd860dd" ;
+    eco:projectedCapability eco:DomainApplicationSurface ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/castle" ;
+    eco:runtimePlacement "DOMAIN_TENANT" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Domain doctrine/application semantics become a universal CASTLE law or runtime crown." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-cargo-cicd a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/cargo-cicd" ;
+    eco:sourceBranch "main" ; eco:sourceSha "59214d6a1293d794b7a27095276047cdff73a9ec" ;
+    eco:projectedCapability eco:SoftwareConsequenceAdapter ;
+    eco:projectionDisposition "WRAP" ;
+    eco:projectionTarget "seanchatmangpt/castle" ;
+    eco:runtimePlacement "PROTECTED_CONSEQUENCE_ADAPTER" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "CI/CD can mutate protected software state without CASTLE BRCE admission." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-chatman-ecosystem a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/chatman-ecosystem" ;
+    eco:sourceBranch "main" ; eco:sourceSha "92cb17cda899a8d85abdaa04db10a3d2334e116d" ;
+    eco:projectedCapability eco:StrategyDoctrineKnowledge ;
+    eco:projectionDisposition "KEEP_KNOWLEDGE_PLANE" ;
+    eco:projectionTarget "seanchatmangpt/castle" ;
+    eco:runtimePlacement "KNOWLEDGE_PLANE_ONLY" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Historical doctrine or strategy source becomes runtime authority merely by citation." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-engineering-standards a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/engineering-standards" ;
+    eco:sourceBranch "main" ; eco:sourceSha "0f23708a07349e110f7c2ec567eea778f934915d" ;
+    eco:projectedCapability eco:EngineeringConstitutionKnowledge ;
+    eco:projectionDisposition "KEEP_KNOWLEDGE_PLANE" ;
+    eco:projectionTarget "seanchatmangpt/ggen-ecosystem" ;
+    eco:runtimePlacement "KNOWLEDGE_PLANE_ONLY" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Engineering doctrine is treated as observed runtime standing without admission." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-agile-protocol a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/agile-protocol-specification" ;
+    eco:sourceBranch "main" ; eco:sourceSha "1b731a6e963fa249c4e3e8bcbe932025c5e38bb5" ;
+    eco:projectedCapability eco:ProtocolSpecificationKnowledge ;
+    eco:projectionDisposition "KEEP_KNOWLEDGE_PLANE" ;
+    eco:projectionTarget "seanchatmangpt/ash_a2a" ;
+    eco:runtimePlacement "KNOWLEDGE_PLANE_ONLY" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Protocol specification becomes transport authority without an executed implementation receipt." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-praxis a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/praxis" ;
+    eco:sourceBranch "main" ; eco:sourceSha "c78783b4ea3124fc9d1179a9e47d43c522b529f2" ;
+    eco:projectedCapability eco:HistoricalSemanticSource ;
+    eco:projectionDisposition "ABSORB" ;
+    eco:projectionTarget "seanchatmangpt/graphlaw" ;
+    eco:runtimePlacement "HISTORICAL_SOURCE_ONLY" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Praxis remains a second semantic implementation after GraphLaw extraction." ;
+    eco:projectionSource eco:castle-projection-source .
+
+# --- Previously unresolved supporting candidates ---------------------------
+
+eco:castle-projection-mfw a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/mfw" ;
+    eco:sourceBranch "main" ; eco:sourceSha "c5a10b00bc8cbc27052840c0b9b51607c2ff85b1" ;
+    eco:projectedCapability eco:FormalTheoryProjection ;
+    eco:projectionDisposition "CANDIDATE_WRAP" ;
+    eco:projectionTarget "seanchatmangpt/graphlaw" ;
+    eco:runtimePlacement "FORMAL_KNOWLEDGE_EDGE" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Lean/OMDoc projection is treated as CASTLE law or proof without exact translation receipts." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-ostar a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/ostar" ;
+    eco:sourceBranch "main" ; eco:sourceSha "a392e009400c83d5e175b508c4e3008e189945d3" ;
+    eco:projectedCapability eco:ProofDrivenManufactureResearch ;
+    eco:projectionDisposition "CANDIDATE_ABSORB" ;
+    eco:projectionTarget "seanchatmangpt/ggen_igniter" ;
+    eco:runtimePlacement "MANUFACTURE_RESEARCH_SOURCE" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "OSTAR becomes a parallel manufacture crown rather than donating proven operators and receipt patterns." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-mmdio a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/mmdio" ;
+    eco:sourceBranch "main" ; eco:sourceSha "afc1f6e890a6d1c17b84d5931b21d3c74a851ebc" ;
+    eco:projectedCapability eco:SemanticDocumentProjection ;
+    eco:projectionDisposition "CANDIDATE_WRAP" ;
+    eco:projectionTarget "seanchatmangpt/ash_surface" ;
+    eco:runtimePlacement "POWERLESS_DOCUMENT_PROJECTION" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Diagram, presentation, or Markdown projection becomes semantic source or actuation authority." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-wasm4pm-compat a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/wasm4pm-compat" ;
+    eco:sourceBranch "main" ; eco:sourceSha "c90e2d974c6bb9b2edc5bb25ac1d9e7364148a25" ;
+    eco:projectedCapability eco:ProcessEvidenceCompatibility ;
+    eco:projectionDisposition "CANDIDATE_WRAP" ;
+    eco:projectionTarget "seanchatmangpt/wasm4pm" ;
+    eco:runtimePlacement "STRUCTURAL_COMPATIBILITY_BOUNDARY" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Compatibility structures execute process logic, silently accept lossy projection, or become a second wasm4pm engine." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-dteam a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/dteam" ;
+    eco:sourceBranch "main" ; eco:sourceSha "5c00d757ebc614e1db1dd0d564dd0c34896d57a0" ;
+    eco:projectedCapability eco:CapabilityKernelResearch ;
+    eco:projectionDisposition "CANDIDATE_ABSORB" ;
+    eco:projectionTarget "seanchatmangpt/xaas" ;
+    eco:runtimePlacement "CAPABILITY_DONOR_ONLY" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "DTeam becomes a second runtime/process/actuation crown instead of donating independently verified primitives." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-mcpp a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/mcpp" ;
+    eco:sourceBranch "master" ; eco:sourceSha "5f5ee2175424c63edc6cdc211d3a5289a1c5556f" ;
+    eco:projectedCapability eco:ProofCarryingWorkRuntimeResearch ;
+    eco:projectionDisposition "CANDIDATE_ABSORB" ;
+    eco:projectionTarget "seanchatmangpt/xaas" ;
+    eco:runtimePlacement "RUNTIME_DOCTRINE_DONOR_ONLY" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "MCPP becomes an alternate admissible-work runtime crown instead of donating route/proof/receipt doctrine." ;
+    eco:projectionSource eco:castle-projection-source .
+
+eco:castle-projection-chatman-nano-stack a eco:CastleCapabilityProjection ;
+    eco:projectedRepository "seanchatmangpt/chatman-nano-stack" ;
+    eco:sourceBranch "master" ; eco:sourceSha "de7eb619310a522e44e9d6cf20e9460806b314ea" ;
+    eco:projectedCapability eco:ApplicationConstitutionResearch ;
+    eco:projectionDisposition "CANDIDATE_ABSORB" ;
+    eco:projectionTarget "seanchatmangpt/castle" ;
+    eco:runtimePlacement "APPLICATION_RESEARCH_DONOR_ONLY" ;
+    eco:projectionStanding "CANDIDATE" ; eco:authorityCeiling "CONSTRUCT" ;
+    eco:falsifier "Nano Stack's local constitutional plane becomes an alternate CASTLE consequence crown." ;
+    eco:projectionSource eco:castle-projection-source .

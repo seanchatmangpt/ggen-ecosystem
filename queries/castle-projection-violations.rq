@@ -1,0 +1,52 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+
+# Violation query. Zero rows is the admitted result.
+# Projections are non-sovereign: exact one repository/capability/disposition/
+# target/placement/standing/authority/falsifier; standing CANDIDATE;
+# authority CONSTRUCT; and no remaining repository may claim RUNTIME_CORE or
+# CONSEQUENCE_CROWN placement.
+SELECT ?projection ?violation
+WHERE {
+  ?projection a eco:CastleCapabilityProjection .
+
+  {
+    FILTER NOT EXISTS { ?projection eco:projectedRepository ?repository . }
+    BIND("MISSING_REPOSITORY" AS ?violation)
+  }
+  UNION {
+    FILTER NOT EXISTS { ?projection eco:sourceSha ?sha . }
+    BIND("MISSING_SOURCE_SHA" AS ?violation)
+  }
+  UNION {
+    FILTER NOT EXISTS { ?projection eco:projectedCapability ?capability . }
+    BIND("MISSING_CAPABILITY" AS ?violation)
+  }
+  UNION {
+    FILTER NOT EXISTS { ?projection eco:projectionDisposition ?disposition . }
+    BIND("MISSING_DISPOSITION" AS ?violation)
+  }
+  UNION {
+    FILTER NOT EXISTS { ?projection eco:projectionTarget ?target . }
+    BIND("MISSING_TARGET" AS ?violation)
+  }
+  UNION {
+    FILTER NOT EXISTS { ?projection eco:runtimePlacement ?placement . }
+    BIND("MISSING_RUNTIME_PLACEMENT" AS ?violation)
+  }
+  UNION {
+    ?projection eco:projectionStanding ?standing .
+    FILTER(?standing != "CANDIDATE")
+    BIND("NON_CANDIDATE_STANDING" AS ?violation)
+  }
+  UNION {
+    ?projection eco:authorityCeiling ?authority .
+    FILTER(?authority != "CONSTRUCT")
+    BIND("AUTHORITY_CEILING_DRIFT" AS ?violation)
+  }
+  UNION {
+    ?projection eco:runtimePlacement ?placement .
+    FILTER(?placement = "RUNTIME_CORE" || ?placement = "CONSEQUENCE_CROWN")
+    BIND("CROWN_OWNERSHIP_SMUGGLED_INTO_PROJECTION" AS ?violation)
+  }
+}
+ORDER BY ?projection ?violation
