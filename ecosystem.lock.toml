@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "2be5597e6c9658e66df8c3c247cde0f7cbcc0cdc"
-updated_at = "2026-09-29T06:12:00Z"
+base_main_sha = "50fdfa20c84205a80c6eb94e916cffbedc4b816e"
+updated_at = "2026-09-29T16:19:54Z"
 
 [ggen]
 release = "v26.9.29"
@@ -51,7 +51,7 @@ role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
 
 [wasm4pm]
-sha = "2ec870ef6f2411beab238f56859c3ca438455c1c"
+sha = "818c405358d68a8bb54bb91fc14e649e51256937"
 repository = "https://github.com/seanchatmangpt/wasm4pm"
 version = "26.9.28"
 latest_published_release = "v26.9.24"
@@ -71,7 +71,7 @@ ggen_igniter_commit = "4c5eed22252203980060dbc757c447823179253f"
 beam4pm_path = "vendor/beam4pm"
 beam4pm_commit = "34ce4a23d0c59edab2391f149413bc5fb1e375c3"
 wasm4pm_path = "vendor/wasm4pm"
-wasm4pm_commit = "2ec870ef6f2411beab238f56859c3ca438455c1c"
+wasm4pm_commit = "818c405358d68a8bb54bb91fc14e649e51256937"
 
 [composition]
 consumer_boundary = "ggen-ecosystem"
