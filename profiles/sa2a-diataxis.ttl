@@ -1,0 +1,9 @@
+@prefix sa2a: <https://seanchatmangpt.github.io/sa2a/diataxis#> .
+
+<urn:sa2a:fleet:chatman-ecosystem> a sa2a:RepositoryProfile ;
+  sa2a:version "26.9.29" ;
+  sa2a:authority <https://github.com/seanchatmangpt/engineering-standards/tree/main/semantic/sa2a-diataxis> ;
+  sa2a:generator <https://github.com/seanchatmangpt/ggen-marketplace/tree/main/packs/sa2a-diataxis-pack> .
+
+<urn:sa2a:capability:fleet-project> a sa2a:Capability ;
+  sa2a:specifiedBy <https://github.com/seanchatmangpt/engineering-standards/tree/main/semantic/sa2a-diataxis> .

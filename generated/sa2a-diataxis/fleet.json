@@ -1,0 +1,447 @@
+{
+  "schema": "sa2a-diataxis-fleet/v1",
+  "authority": "engineering-standards/semantic/sa2a-diataxis",
+  "generator": "ggen-marketplace/packs/sa2a-diataxis-pack",
+  "repos": [
+    {
+      "repository": "seanchatmangpt/engineering-standards",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/ggen-marketplace",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/ggen_igniter",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/ggen-ecosystem",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/ash_a2a",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/xaas",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/beam4pm",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/ferroplan",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/ash_pplan",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/bcinr",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/wasm4pm",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/wasm4pm-compat",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/ex4pm",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/ash_ex4pm",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/dspy-wasm",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/ash_dspy",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/zcode-cli",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/gitvan",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/chatgpt-cloud-elixir",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/ollama-ai-provider-v2",
+      "role": "runtime"
+    },
+    {
+      "repository": "seanchatmangpt/graphlaw",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/ash_graphlaw",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/ash_r2rml",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/unrdf",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/qlever",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/praxis",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/open-ontologies",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/process-intelligence",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/mmdio",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/ash_kudzu",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/star-toml",
+      "role": "semantic"
+    },
+    {
+      "repository": "seanchatmangpt/ggen",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/ggen-legacy",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/ggen-mcp",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/mfact",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/mfact-command-center",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/agile-protocol-specification",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/chatman-ecosystem",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/cargo-cicd",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/mfw",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/dteam",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/mcpp",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/chatman-nano-stack",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/anti-llm-cheat-lsp",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/cln-stack",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/mac-artifact-cleaner",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/agent-guides",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/dspygen",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/lsp-max",
+      "role": "manufacture"
+    },
+    {
+      "repository": "seanchatmangpt/affidavit",
+      "role": "evidence"
+    },
+    {
+      "repository": "seanchatmangpt/gymact",
+      "role": "evidence"
+    },
+    {
+      "repository": "seanchatmangpt/autofde-lab",
+      "role": "evidence"
+    },
+    {
+      "repository": "seanchatmangpt/autofde",
+      "role": "evidence"
+    },
+    {
+      "repository": "seanchatmangpt/fdegym",
+      "role": "evidence"
+    },
+    {
+      "repository": "seanchatmangpt/ash_surface",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_expo",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_planning_center",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_atlassian",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_admin",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_ai",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_archival",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_blog",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash-book-prereqs",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_cloak",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_commanded",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_csv",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_double_entry",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_events",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_json_api",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_json_api_wrapper",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_n8n",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_oban",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_paper_trail",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_postgres",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_state_machine",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/ash_swarm",
+      "role": "ash-extension"
+    },
+    {
+      "repository": "seanchatmangpt/castle",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/zoela",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/ai",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/ai-elements",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/BusinessOS",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/arazzo-ai",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/Arazzo-Specification",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/truex",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/chatman",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/chatmangpt",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/ostar",
+      "role": "product"
+    },
+    {
+      "repository": "seanchatmangpt/-nitrouse",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/agent-actor",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/agent-zero",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/AgileGen",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/cre",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/erlmcp",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/A2A",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/a2a-rs",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/POWL",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/pm4wasm",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/ai-self-sustaining-system",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/aider",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/AutoGPT",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/autotel",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/atman",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/ax",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/avmnif-rs",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/basecampapi",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/uvmgr_v0",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/bytestar",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/astro",
+      "role": "prior-art"
+    },
+    {
+      "repository": "seanchatmangpt/algokit-core",
+      "role": "prior-art"
+    }
+  ]
+}
