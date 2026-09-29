@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "50fdfa20c84205a80c6eb94e916cffbedc4b816e"
-updated_at = "2026-09-29T16:19:54Z"
+base_main_sha = "5fb2dd9e4c0c58f6fe07a6c5589b6eec068f41ec"
+updated_at = "2026-09-29T21:38:46Z"
 
 [ggen]
 release = "v26.9.29"
@@ -18,7 +18,7 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "20ac5c935e46b7f0ff1336e7876e7730c935ebde"
+sha = "22f6077e1bc185ab924e49c41b29ffe0645a0ba7"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
 latest_published_release = "v26.9.29"
 latest_published_release_sha = "637b561cc6384fc9ac0e4282d048cc7624256258"
@@ -27,7 +27,7 @@ role = "reusable executable-knowledge packs and templates"
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "20ac5c935e46b7f0ff1336e7876e7730c935ebde"
+marketplace_sha = "22f6077e1bc185ab924e49c41b29ffe0645a0ba7"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -35,7 +35,7 @@ workflow = ".github/workflows/pragprog-tps.yml"
 receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 
 [ggen_igniter]
-sha = "4c5eed22252203980060dbc757c447823179253f"
+sha = "36d352c04a970f255dd97e459774ac358c8b645e"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
 version = "26.9.29"
 latest_published_release = "v26.8.27"
@@ -43,7 +43,7 @@ matching_version_tag_observed = false
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
-sha = "34ce4a23d0c59edab2391f149413bc5fb1e375c3"
+sha = "3ecedfb66385fa4fa200e5fb7a2853638bc40c65"
 version = "26.9.28"
 repository = "https://github.com/seanchatmangpt/beam4pm"
 matching_version_tag_observed = false
@@ -51,7 +51,7 @@ role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
 
 [wasm4pm]
-sha = "818c405358d68a8bb54bb91fc14e649e51256937"
+sha = "09c171b4447257f018e30d721af6701258ebfeff"
 repository = "https://github.com/seanchatmangpt/wasm4pm"
 version = "26.9.28"
 latest_published_release = "v26.9.24"
@@ -63,15 +63,15 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "ff96f04e8c7b851e5cca53f3faf5ce1d5f43ce6e"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "20ac5c935e46b7f0ff1336e7876e7730c935ebde"
+ggen_marketplace_commit = "22f6077e1bc185ab924e49c41b29ffe0645a0ba7"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "d42a5af94481a3128bf3e35d5f2a0a9a70f22e41"
 ggen_igniter_path = "vendor/ggen_igniter"
-ggen_igniter_commit = "4c5eed22252203980060dbc757c447823179253f"
+ggen_igniter_commit = "36d352c04a970f255dd97e459774ac358c8b645e"
 beam4pm_path = "vendor/beam4pm"
-beam4pm_commit = "34ce4a23d0c59edab2391f149413bc5fb1e375c3"
+beam4pm_commit = "3ecedfb66385fa4fa200e5fb7a2853638bc40c65"
 wasm4pm_path = "vendor/wasm4pm"
-wasm4pm_commit = "818c405358d68a8bb54bb91fc14e649e51256937"
+wasm4pm_commit = "09c171b4447257f018e30d721af6701258ebfeff"
 
 [composition]
 consumer_boundary = "ggen-ecosystem"
