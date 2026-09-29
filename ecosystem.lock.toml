@@ -1,13 +1,15 @@
 version = 3
-base_main_sha = "6ce94a389311d947b449e66e3542bad16e092264"
-updated_at = "2026-09-29T03:39:21Z"
+base_main_sha = "2be5597e6c9658e66df8c3c247cde0f7cbcc0cdc"
+updated_at = "2026-09-29T06:12:00Z"
 
 [ggen]
-release = "v26.9.25"
+release = "v26.9.29"
 commit_sha = "ff96f04e8c7b851e5cca53f3faf5ce1d5f43ce6e"
-linux_x86_64_asset_sha256 = "ad4ab79923d17e32960383aaf5fab8e174bc8d0972872cdf1b3ecc5d11ed9e36"
-observed_executable_sha256 = "1fc76b5809333e2e5ca9ff1b1333c37bdd609a711480c1f74674344ff06d7906"
-aarch64_apple_darwin_asset_sha256 = "0af3bf29dba1addfbcc9f83456ac1e8297b49ae429f86b02cbfe7431e91778be"
+upstream_release = "v26.9.28"
+observed_executable_evidence = "ggen Actions run 36508964375, ggen.sha256; binary reports ggen 26.9.28"
+linux_x86_64_asset_sha256 = "47316dd090d52d3fc7f1ee8185b8fab09e4a69f1a6fd1cf8e083781e192383e6"
+observed_executable_sha256 = "c44f9c5632de1bf6c7cf926a5cbbd88303c681f1bb976f2e90ef4b3122ae44a6"
+aarch64_apple_darwin_asset_sha256 = "d553c4bf7318275f6d7f4e04ea0af0b37ec9c2479af648cc1035bdf2d99ca857"
 
 [consumer_manufacture]
 release = "v26.8.27"
@@ -16,14 +18,16 @@ linux_x86_64_asset_sha256 = "ab442ced90a9836fd4eb07a5d61eb58293843cd515d864699fc
 source = "existing exact-release path proven by .github/workflows/supply-chain-manufacture.yml"
 
 [ggen_marketplace]
-sha = "caa4fe6133445638cbfdbfac017187ed8090dc95"
+sha = "20ac5c935e46b7f0ff1336e7876e7730c935ebde"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
+latest_published_release = "v26.9.29"
+latest_published_release_sha = "637b561cc6384fc9ac0e4282d048cc7624256258"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
 pack = "packs/pragmatic-programmer-sparql-pack"
 version = "0.2.1"
-marketplace_sha = "caa4fe6133445638cbfdbfac017187ed8090dc95"
+marketplace_sha = "20ac5c935e46b7f0ff1336e7876e7730c935ebde"
 active_courts = 100
 mode = "automatic-andon"
 strict_mode = "workflow_dispatch strict=true"
@@ -33,19 +37,25 @@ receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 [ggen_igniter]
 sha = "4c5eed22252203980060dbc757c447823179253f"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
-version = "26.9.24"
+version = "26.9.29"
+latest_published_release = "v26.8.27"
+matching_version_tag_observed = false
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
 sha = "34ce4a23d0c59edab2391f149413bc5fb1e375c3"
+version = "26.9.28"
 repository = "https://github.com/seanchatmangpt/beam4pm"
+matching_version_tag_observed = false
 role = "BEAM-first process mining and process intelligence runtime"
 container_root = "/opt/beam4pm"
 
 [wasm4pm]
-sha = "c321251bba8613528dd1f2018560c37e180cfdcf"
+sha = "2ec870ef6f2411beab238f56859c3ca438455c1c"
 repository = "https://github.com/seanchatmangpt/wasm4pm"
-version = "26.7.23"
+version = "26.9.28"
+latest_published_release = "v26.9.24"
+matching_version_tag_observed = false
 role = "evidence-oriented process-mining platform with POWL execution and replayable WASM evidence"
 standing = "PARTIAL_ALIVE"
 
@@ -53,7 +63,7 @@ standing = "PARTIAL_ALIVE"
 ggen_path = "vendor/ggen"
 ggen_commit = "ff96f04e8c7b851e5cca53f3faf5ce1d5f43ce6e"
 ggen_marketplace_path = "vendor/ggen-marketplace"
-ggen_marketplace_commit = "caa4fe6133445638cbfdbfac017187ed8090dc95"
+ggen_marketplace_commit = "20ac5c935e46b7f0ff1336e7876e7730c935ebde"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "d42a5af94481a3128bf3e35d5f2a0a9a70f22e41"
 ggen_igniter_path = "vendor/ggen_igniter"
@@ -61,7 +71,7 @@ ggen_igniter_commit = "4c5eed22252203980060dbc757c447823179253f"
 beam4pm_path = "vendor/beam4pm"
 beam4pm_commit = "34ce4a23d0c59edab2391f149413bc5fb1e375c3"
 wasm4pm_path = "vendor/wasm4pm"
-wasm4pm_commit = "c321251bba8613528dd1f2018560c37e180cfdcf"
+wasm4pm_commit = "2ec870ef6f2411beab238f56859c3ca438455c1c"
 
 [composition]
 consumer_boundary = "ggen-ecosystem"
@@ -75,11 +85,11 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 
 [container]
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
-tag = "v26.9.25"
+tag = "v26.9.29"
 digest = "sha256:6605878ee50f897947560445f655602e9f4471dcaeb4c493a0ce55dbec4bec13"
 standing = "BLOCKED"
 requires_republish = true
-failure = "v26.9.25 image not yet published: digest below still describes the v26.9.22-era image; awaiting the ggen-ecosystem-container build for tag v26.9.25"
+failure = "v26.9.29 image not yet published: digest below is historical evidence from the prior published image; awaiting the ggen-ecosystem-container build and independent pull verification for tag v26.9.29"
 observed_success_run = 35833887166
 observed_success_at = "2026-09-23T08:27:01Z"
 observed_success_head_sha = "97620bdd72f9125fb6280537a86fe9da72001386"
