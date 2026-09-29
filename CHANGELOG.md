@@ -31,6 +31,60 @@ they bring in.
   admitted); 23/23 refusal mutants are killed. Benchmark receipt:
   `receipts/bench-lock-crown-court-20260926.json`.
 
+## [v26.9.29] - 2026-09-29
+
+Release identity remains the ggen-ecosystem CalVer boundary; upstream producer
+versions/tags are recorded independently so source version, rolling head,
+published tag, and ecosystem release are not conflated.
+
+### Changed
+
+- Ecosystem release identity: `v26.9.25` → `v26.9.29`
+  (`[ggen].release == [container].tag`).
+- Upstream GGen is now bound to the real published `v26.9.28` release at
+  `ff96f04e8c7b851e5cca53f3faf5ce1d5f43ce6e` (the current vendored gitlink).
+  GitHub release evidence reports the Linux x86_64 archive digest as
+  `47316dd090d52d3fc7f1ee8185b8fab09e4a69f1a6fd1cf8e083781e192383e6`
+  and the Apple aarch64 archive digest as
+  `d553c4bf7318275f6d7f4e04ea0af0b37ec9c2479af648cc1035bdf2d99ca857`.
+  The successful Debian release run `36508964375` emitted
+  `ggen.sha256 = c44f9c5632de1bf6c7cf926a5cbbd88303c681f1bb976f2e90ef4b3122ae44a6`;
+  that build output reports `ggen 26.9.28`.
+- The immutable ggen-marketplace release `v26.9.29` resolves to
+  `637b561cc6384fc9ac0e4282d048cc7624256258`. The reusable sync workflow
+  defaults now select that release commit. The rolling marketplace crown is
+  intentionally newer: `caa4fe6133445638cbfdbfac017187ed8090dc95` →
+  `20ac5c935e46b7f0ff1336e7876e7730c935ebde`, preserving the distinction
+  between an immutable release snapshot and the integration head.
+- `vendor/wasm4pm` rolls from
+  `c321251bba8613528dd1f2018560c37e180cfdcf` →
+  `2ec870ef6f2411beab238f56859c3ca438455c1c`; its source version metadata
+  is corrected from `26.7.23` to `26.9.28`.
+- `ggen_igniter` source version metadata is corrected from `26.9.24` to
+  `26.9.29`; `beam4pm` source version `26.9.28` is now recorded explicitly.
+  Their rolling SHAs were already current.
+- `ontology.ttl` now projects `ggen_container_tag=v26.9.29` and
+  `marketplace_sha=637b561cc6384fc9ac0e4282d048cc7624256258`; the generated sync
+  workflow is kept byte-parity with those two changed defaults.
+
+### Release/tag standing
+
+- **Published and observed:** `ggen@v26.9.28` and
+  `ggen-marketplace@v26.9.29`.
+- **Source-versioned but no matching tag observed at this release cut:**
+  `ggen_igniter 26.9.29`, `beam4pm 26.9.28`,
+  `wasm4pm 26.9.28`, and the current `autofde-lab` head. The latest
+  published releases observed for the two repositories that do publish GitHub
+  Releases are `ggen_igniter@v26.8.27` and `wasm4pm@v26.9.24`.
+  No tag is manufactured from a version string.
+
+### Standing
+
+- The `v26.9.29` composed container remains
+  `BLOCKED[REQUIRES_REPUBLISH]` until a real tag build publishes it and an
+  independent pull/replay admits the resulting digest. The historical digest
+  remains evidence only; this release does not promote it to `ALIVE`.
+
 ## [v26.9.25] - 2026-09-26
 
 Release identity follows the vYY.M.D convention (see the format note above).
@@ -377,6 +431,10 @@ real still needs one manual step (linking the GHCR package to this repository
 under "Manage Actions access," so `GITHUB_TOKEN` can push — confirmed no API
 exists for this for either user- or org-owned packages).
 
-[Unreleased]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.10...main
+[Unreleased]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.29...main
+[v26.9.29]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.25...v26.9.29
+[v26.9.25]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.22...v26.9.25
+[v26.9.22]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.17...v26.9.22
+[v26.9.17]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.10...v26.9.17
 [v26.9.10]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.8.28...v26.9.10
 [v26.8.28]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/ab23c9bb...v26.8.28
