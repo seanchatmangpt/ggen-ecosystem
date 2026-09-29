@@ -109,7 +109,7 @@ The maximal repository scope is **every public repository owned by `seanchatmang
 
 Catalog membership is observation, not admission. It grants no dependency edge, compatibility claim, execution status, or mutation authority by itself. Private repository identities are not projected into this public repository.
 
-Five semantic profiles are defined: `cloud-session`, `platform-engineering`, `process-intelligence`, `autofde`, and `everything`. The source DfCM bootstrap space preserves eight exhaustive reversible construction candidates across transport, knowledge closure, and execution mode.
+Six semantic profiles are defined: `cloud-session`, `platform-engineering`, `process-intelligence`, `autofde`, `everything`, and `castle`. The `castle` profile projects non-owner CASTLE capabilities toward existing irreducible owners; it does not create another runtime or consequence crown. The source DfCM bootstrap space preserves eight exhaustive reversible construction candidates across transport, knowledge closure, and execution mode.
 
 ## GitHub-native cloud bootstrap
 
