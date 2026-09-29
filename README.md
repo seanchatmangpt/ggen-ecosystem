@@ -7,7 +7,7 @@
 
 Canonical governed composition root for the ggen ecosystem.
 
-> **Current release standing:** `ALIVE`. Issue #146 (`BLOCKED[GHCR_MANIFEST_UNKNOWN]`) is closed: the composed capsule digest (`sha256:b9e170233fe1...`) was never broken -- the GHCR package was private, which GHCR reports as `manifest unknown` to unauthorized pulls rather than an access-denied error. Fixed by changing the package to public (2026-08-29); re-verified with a genuinely unauthenticated `docker logout` + full local cache removal + fresh pull + in-capsule `ggen --version`, all real, all passing. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
+> **Current release standing:** `BLOCKED[REQUIRES_REPUBLISH]` for ecosystem `v26.9.29`. The producer identities are admitted below, but the composed `v26.9.29` GHCR image has not yet been published and independently re-pulled/replayed. Historical container digests remain evidence for their own subjects only; they do not establish standing for this release. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
 
 This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
 
@@ -57,13 +57,37 @@ A `Justfile` provides the fuller canonical operator surface (`just --list` for a
 
 ### Exact producer pins
 
-- GGen release: `v26.8.28` (real published GitHub release, verified via prior release evidence)
-- GGen source commit: `c61ee99359c9dbc7b3cb71687976932a3e737ed4` (matches the `vendor/ggen` gitlink)
-- GGen aarch64-apple-darwin release asset SHA-256 (historical; no longer the consumption path): `82123e4dcfcd57d0b07852d0123e52bbaadc99fa076fcaa126855a1c960f9b42`
-- Marketplace commit: `89adf4c8476f7edc8067fdbb1c256cfbfa22df6a` (matches `ecosystem.lock.toml` and the `vendor/ggen-marketplace` gitlink)
-- AutoFDE Lab commit: `a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09` (matches `ecosystem.lock.toml` and the `vendor/autofde-lab` gitlink)
-- Marketplace pack: `packs/github-actions-pack` (sourced via local submodule `path =`, not `git =`/`version =`)
-- Historical composed-container digest: `sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` — **not currently admitted as pullable**; republish and re-crown are tracked in issue #146.
+The integration crown and published-release identities are intentionally separate.
+
+- Ecosystem release: `v26.9.29` (container publication still pending).
+- GGen published release: `v26.9.28` at
+  `ff96f04e8c7b851e5cca53f3faf5ce1d5f43ce6e` (also the current
+  `vendor/ggen` gitlink).
+- GGen Linux x86_64 release archive SHA-256:
+  `47316dd090d52d3fc7f1ee8185b8fab09e4a69f1a6fd1cf8e083781e192383e6`.
+  Release-run build-output SHA-256 for `target/release/ggen`:
+  `c44f9c5632de1bf6c7cf926a5cbbd88303c681f1bb976f2e90ef4b3122ae44a6`
+  (run `36508964375`, reports `ggen 26.9.28`).
+- Marketplace published release: `v26.9.29` at
+  `637b561cc6384fc9ac0e4282d048cc7624256258`; rolling
+  `vendor/ggen-marketplace` crown:
+  `20ac5c935e46b7f0ff1336e7876e7730c935ebde`.
+- AutoFDE Lab rolling crown:
+  `d42a5af94481a3128bf3e35d5f2a0a9a70f22e41`.
+- GGen Igniter rolling crown:
+  `4c5eed22252203980060dbc757c447823179253f`, source version `26.9.29`;
+  latest observed published GitHub Release remains `v26.8.27`.
+- Beam4PM rolling crown:
+  `34ce4a23d0c59edab2391f149413bc5fb1e375c3`, source version `26.9.28`;
+  no matching `v26.9.28` tag was observed at this release cut.
+- WASM4PM rolling crown:
+  `2ec870ef6f2411beab238f56859c3ca438455c1c`, source version `26.9.28`;
+  latest observed published GitHub Release remains `v26.9.24`.
+- Marketplace pack: `packs/github-actions-pack` (sourced via local submodule
+  `path =`, not `git =`/`version =`).
+- The digest currently retained in `ecosystem.lock.toml [container]` is
+  historical evidence only until the `v26.9.29` image is published and
+  independently admitted.
 
 ## Maximum ecosystem graph
 
