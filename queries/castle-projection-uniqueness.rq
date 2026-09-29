@@ -1,0 +1,21 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+
+# Violation query. Zero rows is the admitted result.
+# Each remaining repository and projected capability appears exactly once.
+SELECT ?kind ?value (COUNT(?projection) AS ?count)
+WHERE {
+  {
+    ?projection a eco:CastleCapabilityProjection ;
+                eco:projectedRepository ?value .
+    BIND("repository" AS ?kind)
+  }
+  UNION
+  {
+    ?projection a eco:CastleCapabilityProjection ;
+                eco:projectedCapability ?value .
+    BIND("capability" AS ?kind)
+  }
+}
+GROUP BY ?kind ?value
+HAVING(COUNT(?projection) != 1)
+ORDER BY ?kind ?value
