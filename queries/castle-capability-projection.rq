@@ -1,0 +1,16 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+
+SELECT ?repository ?sha ?capability ?disposition ?target ?placement ?standing ?authority ?falsifier
+WHERE {
+  ?projection a eco:CastleCapabilityProjection ;
+              eco:projectedRepository ?repository ;
+              eco:sourceSha ?sha ;
+              eco:projectedCapability ?capability ;
+              eco:projectionDisposition ?disposition ;
+              eco:projectionTarget ?target ;
+              eco:runtimePlacement ?placement ;
+              eco:projectionStanding ?standing ;
+              eco:authorityCeiling ?authority ;
+              eco:falsifier ?falsifier .
+}
+ORDER BY ?repository
