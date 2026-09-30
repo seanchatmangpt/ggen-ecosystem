@@ -1,0 +1,17 @@
+schema: standing-import-identity-self-court/v2
+subject: contracts/standing-imports/v26.9.30.identity-repair.yaml
+qualification: PARTIAL
+checks:
+  standards_artifact_publishers:
+    expected: [openid/authzen, w3c/prov-o]
+    overlay_present: true
+  a2a_projection_identity:
+    canonical: a2aproject/A2A
+    legacy_projection: google/A2A
+    repair_overlay_present: true
+remaining_refusal:
+  projection_source_not_rewritten: REFUSED[DONOR_IDENTITY_DRIFT]
+law:
+  repair_overlay_is_not_source_rewrite: true
+  authority_promotion: false
+  strict_composition_allowed: false
