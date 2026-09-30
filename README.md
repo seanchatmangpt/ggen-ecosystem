@@ -97,6 +97,8 @@ The major new capability family is a payment/effect-chain evidence stack. `ontol
 
 The payment frontier therefore treats identity vectors, OCEL/OTel mappings, settlement state machines, mutation courts, and conformance checkers as **evidence**. In particular, `UNKNOWN` settlement outcome requires reconciliation before retry, finality must correspond to the same settlement observation, replay is non-actuating, and no donor acquires DO authority.
 
+The same intake binds the recent recovery/actuation/evidence changes from `ggen-legacy`, `gymact`, `zcode-cli`, `ash_surface`, `wasm4pm-compat`, `bcinr`, `gitvan`, `ash_kudzu`, `wasm4pm`, `process-intelligence`, and `erlmcp`. Their projection is defined in `ontology/frontier/runtime-evidence-intake.ttl`: each capability is attached to the existing semantic, consequence, trust, process, runtime, manufacture, operational-realization, or product owner with an explicit authority ceiling and falsifier.
+
 ## Maximum ecosystem graph
 
 The manufacturing rail above is the proven operational path when its exact capsule identity is admitted. The semantic control plane around it is intentionally larger:
