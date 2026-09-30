@@ -1,15 +1,9 @@
-schema: standing-import-exact-identity-court/v1
+schema: standing-import-exact-identity-court/v2
 subject: contracts/standing-imports/v26.9.30.yaml
 mode: fail_closed
 requirements:
-  - donor_repository
-  - donor_version_or_ref
-  - donor_commit_sha
-  - provenance_source
-  - canonical_owner
-  - required_standing
-  - authority_ceiling
-  - consumer_projection
+  git_commit: [repository, commit_sha, provenance_source, canonical_owner, required_standing, authority_ceiling]
+  standards_artifact: [publisher, artifact_id, stable_uri, finality_evidence, canonical_owner, required_standing, authority_ceiling]
 refusals:
   missing_donor_commit_sha: REFUSED[IMPORT_IDENTITY_UNBOUND]
   missing_provenance_source: REFUSED[IMPORT_PROVENANCE_UNBOUND]
@@ -19,6 +13,7 @@ refusals:
   donor_presence_as_runtime_authority: REFUSED[IMPORT_RUNTIME_PROMOTION]
   replacement_without_falsifier: REFUSED[PRIOR_ART_REPLACEMENT_UNJUSTIFIED]
 qualification:
-  current_manifest_expected: REFUSED[IMPORT_IDENTITY_UNBOUND]
-  reason: current donor rows intentionally lack exact donor version/ref and commit SHA
-  promotion_condition: every donor row satisfies all requirements and inherited courts pass
+  current_manifest_expected: ADMITTED
+  resolved_rows: 5
+  unresolved_rows: 0
+  executable_verifier: scripts/verify_standing_imports.py
