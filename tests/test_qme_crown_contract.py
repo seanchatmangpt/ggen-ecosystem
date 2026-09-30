@@ -35,7 +35,7 @@ class QmeCrownContractTests(unittest.TestCase):
         canonical = self.manifest["canonical_spec"]
         expected = (
             "seanchatmangpt/chatman-ecosystem@"
-            "32c47032a9cefd0ab4f0980efc32fa84505031b2"
+            "88b276f71e2c8e606553942cb721bceb6836a87e"
         )
         self.assertEqual(
             f"{canonical['repository']}@{canonical['sha']}",
@@ -68,7 +68,7 @@ class QmeCrownContractTests(unittest.TestCase):
             claim["expected_claim_standing"],
             "UNSUPPORTED:INSUFFICIENT_INDEPENDENT_HUMAN_BASELINE_EVIDENCE",
         )
-        self.assertEqual(claim["marketplace_candidate_sha"], "888e2374f1df9ac089ab34b82ee0ca6168caf102")
+        self.assertEqual(claim["marketplace_candidate_sha"], "801d1869e52a8ba8ac362972283b900ca21d8281")
 
     def test_graphlaw_is_reused_as_qualification_engine(self) -> None:
         engine = self.manifest["qualification_engine"]
