@@ -3,7 +3,7 @@
   "court": "QME-1/CrossEcosystem500MClaimCrown",
   "canonical_spec": {
     "repository": "seanchatmangpt/chatman-ecosystem",
-    "sha": "32c47032a9cefd0ab4f0980efc32fa84505031b2",
+    "sha": "88b276f71e2c8e606553942cb721bceb6836a87e",
     "path": "docs/rfc/qme-1-qualified-machine-experience.md"
   },
   "authority_ceiling": "VERIFY",
@@ -11,56 +11,56 @@
   "claim": {
     "target_person_years": 500000000,
     "marketplace_repository": "seanchatmangpt/ggen-marketplace",
-    "marketplace_candidate_sha": "888e2374f1df9ac089ab34b82ee0ca6168caf102",
+    "marketplace_candidate_sha": "801d1869e52a8ba8ac362972283b900ca21d8281",
     "court_path": "scripts/chicago_work_equivalent.py",
     "ledger_path": "evidence/chicago/marketplace-work-equivalent.json",
     "workflow_path": ".github/workflows/chicago-work-equivalent.yml",
-    "workflow_run_id": 36679347586,
+    "workflow_run_id": 36681014141,
     "workflow_name": "Chicago work-equivalent court",
     "expected_claim_standing": "UNSUPPORTED:INSUFFICIENT_INDEPENDENT_HUMAN_BASELINE_EVIDENCE"
   },
   "qualification_engine": {
     "repository": "seanchatmangpt/graphlaw",
-    "sha": "c28563b207c5b0ab682d6827d659d6a4b09ee5a6",
+    "sha": "9689614faefe89a6a8c0da246c70b83f14d16465",
     "module_path": "src/qualification.rs",
     "profile_path": "qualification/profiles/universal.json",
-    "workflow_run_id": 36680571724,
+    "workflow_run_id": 36681199719,
     "workflow_name": "CI"
   },
   "participants": [
     {
       "repository": "seanchatmangpt/graphlaw",
-      "sha": "48a7bbd801b8df1d7ffab879b10d58d7f14ef7bc",
+      "sha": "9689614faefe89a6a8c0da246c70b83f14d16465",
       "role": "semantic law-state and reasoning"
     },
     {
       "repository": "seanchatmangpt/ash_graphlaw",
-      "sha": "53242c3154f9f966aa33f7cae7593bfcbcaa2784",
+      "sha": "6aaf71beeb054c0eb16b0c50eefa710f49c18bd0",
       "role": "application projection of GraphLaw semantics"
     },
     {
       "repository": "seanchatmangpt/ash_r2rml",
-      "sha": "7225d99f2a3418fd967b385167c04de39d5f0d14",
+      "sha": "36f25a30f2f60acde7da1a965626451dbc40b6f8",
       "role": "virtual knowledge graph observation and federation"
     },
     {
       "repository": "seanchatmangpt/ash_a2a",
-      "sha": "3db54bce26741c893226b8e2e5c9789a643952a4",
+      "sha": "3325032d9dea201e6deb82ef242c534aacb3b420",
       "role": "PreparedEffect, receipt and replay consequence protocol"
     },
     {
       "repository": "seanchatmangpt/affidavit",
-      "sha": "95f8b5b7f224424a35ab1412b7b49254a31ed603",
+      "sha": "9888b4084d8d7f4cf9337f572c6bbfb592f94e09",
       "role": "cryptographic evidence and standing"
     },
     {
       "repository": "seanchatmangpt/xaas",
-      "sha": "46abcd533bfbde917c7a67b0c3df4293d747f96f",
+      "sha": "9ff91c6fd3e205398d082a6be366f21e9ec7777c",
       "role": "runtime composition"
     },
     {
       "repository": "seanchatmangpt/ggen-marketplace",
-      "sha": "e7297dd1f4b0bb9f34a8655acef2baa5bc6e8ed5",
+      "sha": "801d1869e52a8ba8ac362972283b900ca21d8281",
       "role": "semantic manufacture and reusable conformance assets"
     }
   ]
