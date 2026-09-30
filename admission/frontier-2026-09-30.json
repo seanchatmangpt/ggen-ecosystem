@@ -1,0 +1,286 @@
+{
+  "schema": "https://ggen.dev/admission/frontier-intake/v1",
+  "window": {
+    "start": "2026-09-23",
+    "end": "2026-09-30",
+    "basis": "merged repository changes and exact default-branch subjects observed through GitHub"
+  },
+  "target": {
+    "repository": "seanchatmangpt/ggen-ecosystem",
+    "base_sha": "93d51a9dd9b083acc821376c8462d3c861adde87"
+  },
+  "authority": {
+    "ceiling": "VERIFY",
+    "do_authority": false,
+    "rule": "observation, projection, conformance and receipts do not imply DO"
+  },
+  "canonical_owners": [
+    {
+      "repository": "seanchatmangpt/chatman-ecosystem",
+      "branch": "main",
+      "sha": "50c9172bdd8492090c619a703a3293a4f8d09aa6",
+      "role": "universal-laws-factory-e-and-qme-specification"
+    },
+    {
+      "repository": "seanchatmangpt/graphlaw",
+      "branch": "main",
+      "sha": "79275191a0feb19e6de701dabb95402a9b2b28e7",
+      "role": "semantic-law-state-and-executable-qualification"
+    },
+    {
+      "repository": "seanchatmangpt/ash_graphlaw",
+      "branch": "main",
+      "sha": "6aaf71beeb054c0eb16b0c50eefa710f49c18bd0",
+      "role": "ash-graphlaw-projection"
+    },
+    {
+      "repository": "seanchatmangpt/ash_r2rml",
+      "branch": "main",
+      "sha": "36f25a30f2f60acde7da1a965626451dbc40b6f8",
+      "role": "virtual-knowledge-graph-observation"
+    },
+    {
+      "repository": "seanchatmangpt/ash_a2a",
+      "branch": "main",
+      "sha": "09288ef6416d35ca2267da38b97608733013e3b3",
+      "role": "prepared-effect-consequence-protocol"
+    },
+    {
+      "repository": "seanchatmangpt/affidavit",
+      "branch": "main",
+      "sha": "9888b4084d8d7f4cf9337f572c6bbfb592f94e09",
+      "role": "cryptographic-evidence-and-standing"
+    },
+    {
+      "repository": "seanchatmangpt/beam4pm",
+      "branch": "main",
+      "sha": "aa98261db7719f7708ad7990064bbc5f06b754df",
+      "role": "process-evidence-owner"
+    },
+    {
+      "repository": "seanchatmangpt/xaas",
+      "branch": "main",
+      "sha": "9ff91c6fd3e205398d082a6be366f21e9ec7777c",
+      "role": "runtime-composition-owner"
+    },
+    {
+      "repository": "seanchatmangpt/ggen-marketplace",
+      "branch": "main",
+      "sha": "cb82395df9d726237f5480bc41fb18e875ce91b9",
+      "role": "semantic-manufacture-owner"
+    },
+    {
+      "repository": "seanchatmangpt/castle",
+      "branch": "main",
+      "sha": "c18bf1d89ed5395d5ffb00f875d901a26f16b2fe",
+      "role": "product-consequence-constitution"
+    },
+    {
+      "repository": "seanchatmangpt/engineering-standards",
+      "branch": "main",
+      "sha": "7470b12670ea11e3e8f8a86fe23b36f332cfafd8",
+      "role": "engineering-constitution-and-sa2a-diataxis"
+    },
+    {
+      "repository": "seanchatmangpt/ash",
+      "branch": "main",
+      "sha": "733564da755cf9240cb2b6d8b32c6e4fce8ba5d5",
+      "role": "application-resource-and-domain-model"
+    },
+    {
+      "repository": "seanchatmangpt/ggen_igniter",
+      "branch": "main",
+      "sha": "ae205c3b85c85b5d43738b2f0e3b6833863adbb0",
+      "role": "beam-reconciliation-and-operational-realization"
+    }
+  ],
+  "frontier_donors": [
+    {
+      "repository": "seanchatmangpt/semantic_bit",
+      "branch": "main",
+      "sha": "a955c773336cdb18fbbb2ca899f1ca0df1ca87f0",
+      "capability": "canonical-economic-effect-identity",
+      "target_owner": "seanchatmangpt/ash_a2a",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/a2a-rs",
+      "branch": "master",
+      "sha": "75ba4a6ea3104c0edb0b31f4286faedf1a6964a6",
+      "capability": "prepared-economic-effect-carriage-vectors",
+      "target_owner": "seanchatmangpt/ash_a2a",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/mcpp",
+      "branch": "master",
+      "sha": "a0ce275a235a4655f6f76259bc3d1e6d47477c9d",
+      "capability": "payment-effect-and-settlement-conformance",
+      "target_owner": "seanchatmangpt/ash_a2a",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/dteam",
+      "branch": "main",
+      "sha": "27885a8b42cdee2fb096ab585c8c691c9e6f6969",
+      "capability": "ocel-payment-effect-chain-checker",
+      "target_owner": "seanchatmangpt/beam4pm",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/autotel",
+      "branch": "main",
+      "sha": "52c23c4b960e0d3ecd414b0bce5a35b565c8975d",
+      "capability": "otel-to-ocel-settlement-evidence",
+      "target_owner": "seanchatmangpt/beam4pm",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/mfw",
+      "branch": "main",
+      "sha": "dfd25a63033505be98673d96d5b25c2ce7e666d5",
+      "capability": "payment-effect-chain-falsifier",
+      "target_owner": "seanchatmangpt/graphlaw",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/yawl",
+      "branch": "master",
+      "sha": "db94343f2fb0f1b757d390f54f799924468c1442",
+      "capability": "settlement-state-machine-model",
+      "target_owner": "seanchatmangpt/ash_a2a",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/cre",
+      "branch": "master",
+      "sha": "dc763e7e3a0cf9f7cc7cd735c284f6a13e2ca989",
+      "capability": "idempotent-effect-claim-state-machine",
+      "target_owner": "seanchatmangpt/ash_a2a",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/ggen-legacy",
+      "branch": "main",
+      "sha": "72f5e7a58ed36e8ec6ad19837b6f81d87cc2d8fa",
+      "capability": "verified-repository-reconstitution",
+      "target_owner": "seanchatmangpt/ggen-marketplace",
+      "authority_ceiling": "CONSTRUCT"
+    },
+    {
+      "repository": "seanchatmangpt/gymact",
+      "branch": "main",
+      "sha": "d3eb5e848cb86952921d1b0083e0b7e7e1f53609",
+      "capability": "exactly-once-actuation-evidence",
+      "target_owner": "seanchatmangpt/ash_a2a",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/zcode-cli",
+      "branch": "main",
+      "sha": "60dc2602c2e5e898110c9bf3e1cbe18227c63357",
+      "capability": "portable-recovery-worker-runtime",
+      "target_owner": "seanchatmangpt/xaas",
+      "authority_ceiling": "CONSTRUCT"
+    },
+    {
+      "repository": "seanchatmangpt/ash_surface",
+      "branch": "main",
+      "sha": "881a740bad5e16ddfea3d360f837638fd55ef98a",
+      "capability": "powerless-human-surface",
+      "target_owner": "seanchatmangpt/castle",
+      "authority_ceiling": "CONSTRUCT"
+    },
+    {
+      "repository": "seanchatmangpt/wasm4pm-compat",
+      "branch": "main",
+      "sha": "4c523e0d81a5bb52fda21cea992201f608e088b5",
+      "capability": "process-evidence-compatibility",
+      "target_owner": "seanchatmangpt/beam4pm",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/bcinr",
+      "branch": "main",
+      "sha": "6e2c1069fbaab83ed9700aefd353071ef93073c1",
+      "capability": "cmca-resource-envelope-producer",
+      "target_owner": "seanchatmangpt/ash_a2a",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/gitvan",
+      "branch": "main",
+      "sha": "9221cf7cb0f2483566e1306426fd857622d5034b",
+      "capability": "exact-subject-git-notes-gateway",
+      "target_owner": "seanchatmangpt/affidavit",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/ash_kudzu",
+      "branch": "feat/shacl-admission-gate",
+      "sha": "70429ebdf4c72497f2b59912a5778f7b3f887fa4",
+      "capability": "portable-semantic-evidence-admission",
+      "target_owner": "seanchatmangpt/graphlaw",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/wasm4pm",
+      "branch": "main",
+      "sha": "09c171b4447257f018e30d721af6701258ebfeff",
+      "capability": "resource-admission-signer-quorum-and-wasm-process-runtime",
+      "target_owner": "seanchatmangpt/beam4pm",
+      "authority_ceiling": "CONSTRUCT"
+    },
+    {
+      "repository": "seanchatmangpt/process-intelligence",
+      "branch": "main",
+      "sha": "f816a372bc414c378c63f717618935ad574e5fe0",
+      "capability": "ash-process-intelligence-projection",
+      "target_owner": "seanchatmangpt/beam4pm",
+      "authority_ceiling": "EVIDENCE"
+    },
+    {
+      "repository": "seanchatmangpt/erlmcp",
+      "branch": "main",
+      "sha": "3cbf5dd8fdc823eade2f42fcfcf3bc4b304afb54",
+      "capability": "rail-fault-simulation",
+      "target_owner": "seanchatmangpt/ggen_igniter",
+      "authority_ceiling": "EVIDENCE"
+    }
+  ],
+  "falsifiers": [
+    "a donor becomes a second canonical owner",
+    "external success or allow becomes local DO authority",
+    "payment retry occurs while settlement outcome is UNKNOWN",
+    "two settlements are admitted for one exact economic effect",
+    "finality evidence belongs to a different settlement observation",
+    "effect identity omits a load-bearing party/account/authority field",
+    "replay creates a second external consequence",
+    "a projection is treated as runtime standing",
+    "rail fault simulation is treated as subject failure rather than edge-local transport evidence",
+    "semantic evidence admission bypasses GraphLaw canonical ownership",
+    "resource envelope or signer quorum is promoted directly to consequential DO"
+  ],
+  "fleet_observation": {
+    "repository": "seanchatmangpt/chatman-ecosystem",
+    "sha": "50c9172bdd8492090c619a703a3293a4f8d09aa6",
+    "path": "observations/fleet/2026-09-30-seven-day.json",
+    "observation_id": "fleet:recent:2026-09-30:7d",
+    "repository_count": 101,
+    "authority": "NONE",
+    "standing": "OBSERVED",
+    "semantics": "exhaustive seven-day activity observation; composition selection remains local"
+  },
+  "post_horizon_updates": [
+    {
+      "repository": "seanchatmangpt/chatman-ecosystem",
+      "sha": "50c9172bdd8492090c619a703a3293a4f8d09aa6",
+      "reason": "merged exhaustive seven-day fleet observation"
+    },
+    {
+      "repository": "seanchatmangpt/ash_a2a",
+      "sha": "09288ef6416d35ca2267da38b97608733013e3b3",
+      "reason": "merged seven-day DfCM fleet capability absorption"
+    }
+  ]
+}

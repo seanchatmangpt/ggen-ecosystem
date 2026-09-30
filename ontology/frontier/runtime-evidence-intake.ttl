@@ -1,0 +1,131 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Seven-day non-payment frontier intake, 2026-09-23..2026-09-30.
+# Every donor is projected behind an existing owner. No donor acquires DO.
+
+eco:RuntimeEvidenceFrontier a eco:CapabilityGraph ;
+  dcterms:title "Seven-day runtime, manufacture, recovery and evidence frontier" ;
+  eco:semanticOwner "seanchatmangpt/graphlaw" ;
+  eco:consequenceOwner "seanchatmangpt/ash_a2a" ;
+  eco:trustEvidenceOwner "seanchatmangpt/affidavit" ;
+  eco:processEvidenceOwner "seanchatmangpt/beam4pm" ;
+  eco:runtimeCompositionOwner "seanchatmangpt/xaas" ;
+  eco:manufactureOwner "seanchatmangpt/ggen-marketplace" ;
+  eco:operationalRealizationOwner "seanchatmangpt/ggen_igniter" ;
+  eco:productConstitutionOwner "seanchatmangpt/castle" ;
+  eco:authorityCeiling "CONSTRUCT" ;
+  eco:failureTopology "EDGE_LOCAL" ;
+  eco:replayPolicy "NON_ACTUATING" ;
+  prov:wasDerivedFrom
+    <https://github.com/seanchatmangpt/ggen-legacy/commit/72f5e7a58ed36e8ec6ad19837b6f81d87cc2d8fa>,
+    <https://github.com/seanchatmangpt/gymact/commit/d3eb5e848cb86952921d1b0083e0b7e7e1f53609>,
+    <https://github.com/seanchatmangpt/zcode-cli/commit/60dc2602c2e5e898110c9bf3e1cbe18227c63357>,
+    <https://github.com/seanchatmangpt/ash_surface/commit/881a740bad5e16ddfea3d360f837638fd55ef98a>,
+    <https://github.com/seanchatmangpt/wasm4pm-compat/commit/4c523e0d81a5bb52fda21cea992201f608e088b5>,
+    <https://github.com/seanchatmangpt/bcinr/commit/6e2c1069fbaab83ed9700aefd353071ef93073c1>,
+    <https://github.com/seanchatmangpt/gitvan/commit/9221cf7cb0f2483566e1306426fd857622d5034b>,
+    <https://github.com/seanchatmangpt/ash_kudzu/commit/70429ebdf4c72497f2b59912a5778f7b3f887fa4>,
+    <https://github.com/seanchatmangpt/wasm4pm/commit/09c171b4447257f018e30d721af6701258ebfeff>,
+    <https://github.com/seanchatmangpt/process-intelligence/commit/f816a372bc414c378c63f717618935ad574e5fe0>,
+    <https://github.com/seanchatmangpt/erlmcp/commit/3cbf5dd8fdc823eade2f42fcfcf3bc4b304afb54> .
+
+eco:frontier-ggen-legacy a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/ggen-legacy" ;
+  eco:sourceSha "72f5e7a58ed36e8ec6ad19837b6f81d87cc2d8fa" ;
+  eco:projectedCapability "verified-repository-reconstitution" ;
+  eco:projectionTarget "seanchatmangpt/ggen-marketplace" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "CONSTRUCT" ;
+  eco:falsifier "Reconstitution evidence is treated as source standing without independent closure." .
+
+eco:frontier-gymact a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/gymact" ;
+  eco:sourceSha "d3eb5e848cb86952921d1b0083e0b7e7e1f53609" ;
+  eco:projectedCapability "exactly-once-actuation-evidence" ;
+  eco:projectionTarget "seanchatmangpt/ash_a2a" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "Actuation ledger evidence permits duplicate external consequence." .
+
+eco:frontier-zcode a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/zcode-cli" ;
+  eco:sourceSha "60dc2602c2e5e898110c9bf3e1cbe18227c63357" ;
+  eco:projectedCapability "portable-recovery-worker-runtime" ;
+  eco:projectionTarget "seanchatmangpt/xaas" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "CONSTRUCT" ;
+  eco:falsifier "Worker possession or recovery execution becomes consequence authority." .
+
+eco:frontier-ash-surface a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/ash_surface" ;
+  eco:sourceSha "881a740bad5e16ddfea3d360f837638fd55ef98a" ;
+  eco:projectedCapability "powerless-human-surface" ;
+  eco:projectionTarget "seanchatmangpt/castle" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "CONSTRUCT" ;
+  eco:falsifier "Rendered state is promoted to board authority or semantic truth." .
+
+eco:frontier-wasm4pm-compat a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/wasm4pm-compat" ;
+  eco:sourceSha "4c523e0d81a5bb52fda21cea992201f608e088b5" ;
+  eco:projectedCapability "process-evidence-compatibility" ;
+  eco:projectionTarget "seanchatmangpt/beam4pm" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "Compatibility projection silently executes process logic or accepts lossy identity." .
+
+eco:frontier-bcinr a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/bcinr" ;
+  eco:sourceSha "6e2c1069fbaab83ed9700aefd353071ef93073c1" ;
+  eco:projectedCapability "cmca-resource-envelope-producer" ;
+  eco:projectionTarget "seanchatmangpt/ash_a2a" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "A resource envelope is treated as authorization or execution authority." .
+
+eco:frontier-gitvan a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/gitvan" ;
+  eco:sourceSha "9221cf7cb0f2483566e1306426fd857622d5034b" ;
+  eco:projectedCapability "exact-subject-git-notes-gateway" ;
+  eco:projectionTarget "seanchatmangpt/affidavit" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "A Git note transfers standing to a different subject or grants authority." .
+
+eco:frontier-ash-kudzu a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/ash_kudzu" ;
+  eco:sourceSha "70429ebdf4c72497f2b59912a5778f7b3f887fa4" ;
+  eco:projectedCapability "portable-semantic-evidence-admission" ;
+  eco:projectionTarget "seanchatmangpt/graphlaw" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "Portable evidence bypasses canonical semantic ownership or local qualification." .
+
+eco:frontier-wasm4pm a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/wasm4pm" ;
+  eco:sourceSha "09c171b4447257f018e30d721af6701258ebfeff" ;
+  eco:projectedCapability "resource-admission-signer-quorum-and-wasm-process-runtime" ;
+  eco:projectionTarget "seanchatmangpt/beam4pm" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "CONSTRUCT" ;
+  eco:falsifier "Signer quorum or resource admission bypasses consequence authority." .
+
+eco:frontier-process-intelligence a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/process-intelligence" ;
+  eco:sourceSha "f816a372bc414c378c63f717618935ad574e5fe0" ;
+  eco:projectedCapability "ash-process-intelligence-projection" ;
+  eco:projectionTarget "seanchatmangpt/beam4pm" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "Process projection becomes a second process truth or runtime crown." .
+
+eco:frontier-erlmcp a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/erlmcp" ;
+  eco:sourceSha "3cbf5dd8fdc823eade2f42fcfcf3bc4b304afb54" ;
+  eco:projectedCapability "rail-fault-simulation" ;
+  eco:projectionTarget "seanchatmangpt/ggen_igniter" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "Rail failure is promoted to subject failure or disables unrelated lawful work." .

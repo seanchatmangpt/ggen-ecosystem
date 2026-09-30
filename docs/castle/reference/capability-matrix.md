@@ -22,12 +22,12 @@
 | `seanchatmangpt/engineering-standards` | Engineering constitution knowledge | KEEP_KNOWLEDGE_PLANE | ggen-ecosystem | Knowledge plane only |
 | `seanchatmangpt/agile-protocol-specification` | Protocol specification knowledge | KEEP_KNOWLEDGE_PLANE | ash_a2a | Knowledge plane only |
 | `seanchatmangpt/praxis` | Historical semantic source | ABSORB | graphlaw | Historical source only |
-| `seanchatmangpt/mfw` | Formal theory projection | CANDIDATE_WRAP | graphlaw | Formal knowledge edge |
+| `seanchatmangpt/mfw` | Payment effect-chain falsifier | CANDIDATE_WRAP | graphlaw | Evidence/falsifier edge |
 | `seanchatmangpt/ostar` | Proof-driven manufacture research | CANDIDATE_ABSORB | ggen_igniter | Manufacture research source |
 | `seanchatmangpt/mmdio` | Semantic document projection | CANDIDATE_WRAP | ash_surface | Powerless document projection |
 | `seanchatmangpt/wasm4pm-compat` | Process-evidence compatibility | CANDIDATE_WRAP | wasm4pm | Structural compatibility boundary |
-| `seanchatmangpt/dteam` | Capability-kernel research | CANDIDATE_ABSORB | xaas | Capability donor only |
-| `seanchatmangpt/mcpp` | Proof-carrying admissible-work runtime research | CANDIDATE_ABSORB | xaas | Runtime-doctrine donor only |
+| `seanchatmangpt/dteam` | OCEL payment effect-chain checker | CANDIDATE_ABSORB | beam4pm | Process-evidence donor only |
+| `seanchatmangpt/mcpp` | Payment effect + settlement conformance | CANDIDATE_ABSORB | ash_a2a | Conformance donor only |
 | `seanchatmangpt/chatman-nano-stack` | Application constitutional-control-plane research | CANDIDATE_ABSORB | castle | Application research donor only |
 
 ## Query surfaces
@@ -46,3 +46,8 @@ CASTLE = CONSEQUENTIAL_ADMISSIBILITY
 ```
 
 No row in this matrix changes either equation.
+
+
+## Seven-day payment frontier
+
+The 2026-09-23..2026-09-30 intake adds `semantic_bit`, `a2a-rs`, `autotel`, `yawl`, and `cre` as evidence-only donors in `ontology/frontier/payment-effect-chain.ttl`. Existing `mfw`, `dteam`, and `mcpp` projections were reclassified above to match their merged payment/effect-chain capabilities. None becomes a new runtime, authority, settlement, or payments crown.

@@ -10,5 +10,7 @@
 8. Cross CASTLE BRCE before any external or synthetic DO.
 9. Observe the independent postcondition and manufacture the existing receipt/OCEL evidence.
 10. Feed the evidence to Beam4PM and compose runtime placement through XaaS.
+11. Differentially test the same exact effect against the admitted donor courts (`semantic_bit`, `a2a-rs`, `mcpp`, `dteam`, `autotel`, `mfw`, `yawl`, `cre`) without transferring their authority or runtime assumptions.
+12. Refuse release if any donor exposes an identity omission, blind retry, wrong-settlement finality, double settlement, or actuating replay that the canonical path would admit.
 
 No FIBO-specific authority, receipt, replay, or consequence subsystem is introduced.

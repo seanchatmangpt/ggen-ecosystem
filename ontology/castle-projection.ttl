@@ -163,7 +163,7 @@ eco:castle-projection-ash-ex4pm a eco:CastleCapabilityProjection ;
 
 eco:castle-projection-zcode a eco:CastleCapabilityProjection ;
     eco:projectedRepository "seanchatmangpt/zcode-cli" ;
-    eco:sourceBranch "main" ; eco:sourceSha "a568c3c3ee4b377e98fe9db0f37fa90da760734f" ;
+    eco:sourceBranch "main" ; eco:sourceSha "60dc2602c2e5e898110c9bf3e1cbe18227c63357" ;
     eco:projectedCapability eco:ExternalWorkerProvider ;
     eco:projectionDisposition "WRAP" ;
     eco:projectionTarget "seanchatmangpt/xaas" ;
@@ -196,7 +196,7 @@ eco:castle-projection-ash-atlassian a eco:CastleCapabilityProjection ;
 
 eco:castle-projection-ash-surface a eco:CastleCapabilityProjection ;
     eco:projectedRepository "seanchatmangpt/ash_surface" ;
-    eco:sourceBranch "main" ; eco:sourceSha "c066a55f452f23b348df375c00aae7811f6f72be" ;
+    eco:sourceBranch "main" ; eco:sourceSha "881a740bad5e16ddfea3d360f837638fd55ef98a" ;
     eco:projectedCapability eco:HumanBoardSurface ;
     eco:projectionDisposition "WRAP" ;
     eco:projectionTarget "seanchatmangpt/castle" ;
@@ -251,7 +251,7 @@ eco:castle-projection-cargo-cicd a eco:CastleCapabilityProjection ;
 
 eco:castle-projection-chatman-ecosystem a eco:CastleCapabilityProjection ;
     eco:projectedRepository "seanchatmangpt/chatman-ecosystem" ;
-    eco:sourceBranch "main" ; eco:sourceSha "92cb17cda899a8d85abdaa04db10a3d2334e116d" ;
+    eco:sourceBranch "main" ; eco:sourceSha "50c9172bdd8492090c619a703a3293a4f8d09aa6" ;
     eco:projectedCapability eco:StrategyDoctrineKnowledge ;
     eco:projectionDisposition "KEEP_KNOWLEDGE_PLANE" ;
     eco:projectionTarget "seanchatmangpt/castle" ;
@@ -262,7 +262,7 @@ eco:castle-projection-chatman-ecosystem a eco:CastleCapabilityProjection ;
 
 eco:castle-projection-engineering-standards a eco:CastleCapabilityProjection ;
     eco:projectedRepository "seanchatmangpt/engineering-standards" ;
-    eco:sourceBranch "main" ; eco:sourceSha "0f23708a07349e110f7c2ec567eea778f934915d" ;
+    eco:sourceBranch "main" ; eco:sourceSha "7470b12670ea11e3e8f8a86fe23b36f332cfafd8" ;
     eco:projectedCapability eco:EngineeringConstitutionKnowledge ;
     eco:projectionDisposition "KEEP_KNOWLEDGE_PLANE" ;
     eco:projectionTarget "seanchatmangpt/ggen-ecosystem" ;
@@ -297,7 +297,7 @@ eco:castle-projection-praxis a eco:CastleCapabilityProjection ;
 
 eco:castle-projection-mfw a eco:CastleCapabilityProjection ;
     eco:projectedRepository "seanchatmangpt/mfw" ;
-    eco:sourceBranch "main" ; eco:sourceSha "c5a10b00bc8cbc27052840c0b9b51607c2ff85b1" ;
+    eco:sourceBranch "main" ; eco:sourceSha "dfd25a63033505be98673d96d5b25c2ce7e666d5" ;
     eco:projectedCapability eco:FormalTheoryProjection ;
     eco:projectionDisposition "CANDIDATE_WRAP" ;
     eco:projectionTarget "seanchatmangpt/graphlaw" ;
@@ -330,7 +330,7 @@ eco:castle-projection-mmdio a eco:CastleCapabilityProjection ;
 
 eco:castle-projection-wasm4pm-compat a eco:CastleCapabilityProjection ;
     eco:projectedRepository "seanchatmangpt/wasm4pm-compat" ;
-    eco:sourceBranch "main" ; eco:sourceSha "c90e2d974c6bb9b2edc5bb25ac1d9e7364148a25" ;
+    eco:sourceBranch "main" ; eco:sourceSha "4c523e0d81a5bb52fda21cea992201f608e088b5" ;
     eco:projectedCapability eco:ProcessEvidenceCompatibility ;
     eco:projectionDisposition "CANDIDATE_WRAP" ;
     eco:projectionTarget "seanchatmangpt/wasm4pm" ;
@@ -341,7 +341,7 @@ eco:castle-projection-wasm4pm-compat a eco:CastleCapabilityProjection ;
 
 eco:castle-projection-dteam a eco:CastleCapabilityProjection ;
     eco:projectedRepository "seanchatmangpt/dteam" ;
-    eco:sourceBranch "main" ; eco:sourceSha "5c00d757ebc614e1db1dd0d564dd0c34896d57a0" ;
+    eco:sourceBranch "main" ; eco:sourceSha "27885a8b42cdee2fb096ab585c8c691c9e6f6969" ;
     eco:projectedCapability eco:CapabilityKernelResearch ;
     eco:projectionDisposition "CANDIDATE_ABSORB" ;
     eco:projectionTarget "seanchatmangpt/xaas" ;
@@ -352,7 +352,7 @@ eco:castle-projection-dteam a eco:CastleCapabilityProjection ;
 
 eco:castle-projection-mcpp a eco:CastleCapabilityProjection ;
     eco:projectedRepository "seanchatmangpt/mcpp" ;
-    eco:sourceBranch "master" ; eco:sourceSha "5f5ee2175424c63edc6cdc211d3a5289a1c5556f" ;
+    eco:sourceBranch "master" ; eco:sourceSha "a0ce275a235a4655f6f76259bc3d1e6d47477c9d" ;
     eco:projectedCapability eco:ProofCarryingWorkRuntimeResearch ;
     eco:projectionDisposition "CANDIDATE_ABSORB" ;
     eco:projectionTarget "seanchatmangpt/xaas" ;

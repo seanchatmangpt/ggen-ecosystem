@@ -2,7 +2,7 @@
 
 eco:reference-stack-compounding a eco:Profile ;
   eco:profileName "reference-stack-compounding" ;
-  eco:includesCapability eco:GraphLawKnowledgeHookFibo ;
+  eco:includesCapability eco:GraphLawKnowledgeHookFibo, eco:PaymentEffectChainFrontier, eco:RuntimeEvidenceFrontier ;
   eco:selectionPolicy "one-canonical-owner-many-deterministic-projections" ;
   eco:generatedArtifactPolicy "derive-from-admitted-semantic-source" ;
   eco:duplicateSemanticsPolicy "retire-or-demote-to-adapter" ;

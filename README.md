@@ -71,14 +71,14 @@ The integration crown and published-release identities are intentionally separat
 - Marketplace published release: `v26.9.29` at
   `637b561cc6384fc9ac0e4282d048cc7624256258`; rolling
   `vendor/ggen-marketplace` crown:
-  `20ac5c935e46b7f0ff1336e7876e7730c935ebde`.
+  `cb82395df9d726237f5480bc41fb18e875ce91b9`.
 - AutoFDE Lab rolling crown:
   `d42a5af94481a3128bf3e35d5f2a0a9a70f22e41`.
 - GGen Igniter rolling crown:
   `4c5eed22252203980060dbc757c447823179253f`, source version `26.9.29`;
   latest observed published GitHub Release remains `v26.8.27`.
 - Beam4PM rolling crown:
-  `34ce4a23d0c59edab2391f149413bc5fb1e375c3`, source version `26.9.28`;
+  `aa98261db7719f7708ad7990064bbc5f06b754df`, source version `26.9.28`;
   no matching `v26.9.28` tag was observed at this release cut.
 - WASM4PM rolling crown:
   `2ec870ef6f2411beab238f56859c3ca438455c1c`, source version `26.9.28`;
@@ -88,6 +88,16 @@ The integration crown and published-release identities are intentionally separat
 - The digest currently retained in `ecosystem.lock.toml [container]` is
   historical evidence only until the `v26.9.29` image is published and
   independently admitted.
+
+## Seven-day frontier intake
+
+The current seven-day intake window is **2026-09-23 through 2026-09-30**. Exhaustive fleet observation is reused from `seanchatmangpt/chatman-ecosystem@50c9172bdd8492090c619a703a3293a4f8d09aa6`, where `observations/fleet/2026-09-30-seven-day.json` records 101 active repositories with `authority=NONE` and `standing=OBSERVED`. This repository then selects the load-bearing composition subset in `admission/frontier-2026-09-30.json`; `scripts/frontier_intake.py` validates the upstream fleet evidence and verifies selected branch heads live without granting authority, while `.github/workflows/frontier-intake.yml` executes the court twice for replay identity.
+
+The major new capability family is a payment/effect-chain evidence stack. `ontology/frontier/payment-effect-chain.ttl` projects `semantic_bit`, `a2a-rs`, `mcpp`, `dteam`, `autotel`, `mfw`, `yawl`, and `cre` into existing owners instead of creating a new payments crown. Economic-effect consequence semantics remain owned by AshA2A; GraphLaw owns semantic qualification, Beam4PM owns process evidence, Affidavit owns cryptographic evidence, XaaS owns runtime composition, and CASTLE remains the consequential product constitution.
+
+The payment frontier therefore treats identity vectors, OCEL/OTel mappings, settlement state machines, mutation courts, and conformance checkers as **evidence**. In particular, `UNKNOWN` settlement outcome requires reconciliation before retry, finality must correspond to the same settlement observation, replay is non-actuating, and no donor acquires DO authority.
+
+The same intake binds the recent recovery/actuation/evidence changes from `ggen-legacy`, `gymact`, `zcode-cli`, `ash_surface`, `wasm4pm-compat`, `bcinr`, `gitvan`, `ash_kudzu`, `wasm4pm`, `process-intelligence`, and `erlmcp`. Their projection is defined in `ontology/frontier/runtime-evidence-intake.ttl`: each capability is attached to the existing semantic, consequence, trust, process, runtime, manufacture, operational-realization, or product owner with an explicit authority ceiling and falsifier.
 
 ## Maximum ecosystem graph
 

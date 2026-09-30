@@ -1,0 +1,84 @@
+name: Seven-day frontier intake
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "admission/frontier-2026-09-30.json"
+      - "ontology/frontier/payment-effect-chain.ttl"
+      - "ontology/frontier/runtime-evidence-intake.ttl"
+      - "ontology/castle-projection.ttl"
+      - "ontology/reference-stack/owner-graph.ttl"
+      - "profiles/reference-stack-compounding.ttl"
+      - "scripts/frontier_intake.py"
+      - "tests/test_frontier_intake.py"
+      - "ecosystem.lock.toml"
+      - "vendor/ggen-marketplace"
+      - "vendor/beam4pm"
+      - ".github/workflows/frontier-intake.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontier-intake-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontier:
+    name: Exact-subject seven-day frontier court
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact subject
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          submodules: true
+          persist-credentials: false
+
+      - name: Assert exact subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          test "$actual" = "$expected"
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Compile and run structural falsifiers
+        run: |
+          python3 -m py_compile scripts/frontier_intake.py tests/test_frontier_intake.py
+          python3 -m unittest tests.test_frontier_intake -v
+
+      - name: Verify lock and gitlink correspondence
+        run: python3 -m unittest tests.lock_contracts.test_ecosystem_lock_consistency -v
+
+      - name: Execute live frontier twice
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/frontier_intake.py --live --require-alive --receipt "$RUNNER_TEMP/frontier-a.json" >/dev/null
+          python3 scripts/frontier_intake.py --live --require-alive --receipt "$RUNNER_TEMP/frontier-b.json" >/dev/null
+          cmp "$RUNNER_TEMP/frontier-a.json" "$RUNNER_TEMP/frontier-b.json"
+          python3 -m json.tool "$RUNNER_TEMP/frontier-a.json" >/dev/null
+
+      - name: Preserve receipt
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: seven-day-frontier-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/frontier-a.json
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Refuse verifier mutation
+        run: git diff --exit-code
