@@ -118,3 +118,38 @@ kind = "documentation"
 producer = "ecosystem"
 standing_authority = false
 load_bearing = false
+
+[[artifact]]
+path = "admission/frontier-2026-09-30.json"
+kind = "control"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = true
+
+[[artifact]]
+path = "ontology/frontier/payment-effect-chain.ttl"
+kind = "source"
+producer = "ecosystem"
+standing_authority = true
+load_bearing = true
+
+[[artifact]]
+path = "scripts/frontier_intake.py"
+kind = "verifier"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = true
+
+[[artifact]]
+path = ".github/workflows/frontier-intake.yml"
+kind = "verifier"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = true
+
+[[artifact]]
+path = "tests/test_frontier_intake.py"
+kind = "verifier"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = false
