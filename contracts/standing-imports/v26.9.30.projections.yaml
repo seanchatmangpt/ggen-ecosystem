@@ -1,0 +1,44 @@
+schema: standing-import-projections/v1
+subject: contracts/standing-imports/v26.9.30.yaml
+law:
+  projection_implies_ownership: false
+  technical_conformance_implies_authority: false
+  donor_presence_implies_runtime_authority: false
+  imported_do_authority: forbidden
+imports:
+  openid/authzen:
+    canonical_owner: ash_a2a
+    projection: authorization_evidence
+    authority_ceiling: VERIFY
+    required_standing: ADMITTED
+    negative_knowledge: PDP_PEP_interop_does_not_authorize_consequence
+  google/A2A:
+    canonical_owner: ash_a2a
+    projection: agent_interop_evidence
+    authority_ceiling: VERIFY
+    required_standing: ADMITTED
+    negative_knowledge: protocol_conformance_does_not_grant_DO
+  spiffe/spiffe:
+    canonical_owner: affidavit
+    projection: workload_identity_evidence
+    authority_ceiling: VERIFY
+    required_standing: ADMITTED
+    negative_knowledge: identity_does_not_imply_authorization
+  w3c/prov-o:
+    canonical_owner: affidavit
+    projection: provenance_evidence
+    authority_ceiling: VERIFY
+    required_standing: ADMITTED
+    negative_knowledge: derivation_does_not_imply_equivalence_or_authority
+  edmcouncil/fibo:
+    canonical_owner: graphlaw
+    projection: finance_semantics
+    authority_ceiling: CONSTRUCT
+    required_standing: ADMITTED
+    negative_knowledge: ontology_conformance_does_not_settle_or_actuate
+consumer_gate:
+  require_exact_donor_identity: true
+  require_import_contract: true
+  require_court_pass: true
+  require_receipt_replay: true
+  reject_unbound_import: true
