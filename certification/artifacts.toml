@@ -153,3 +153,11 @@ kind = "verifier"
 producer = "ecosystem"
 standing_authority = false
 load_bearing = false
+
+
+[[artifact]]
+path = "ontology/frontier/runtime-evidence-intake.ttl"
+kind = "source"
+producer = "ecosystem"
+standing_authority = true
+load_bearing = true
