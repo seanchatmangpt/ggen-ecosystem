@@ -13,9 +13,17 @@ law:
 admissions:
   openid/authzen:
     identity_class: standards_artifact
+    publisher: OpenID Foundation
     artifact_id: Authorization API 1.0 Final
     stable_uri: https://openid.net/specs/authorization-api-1_0.html
     finality_evidence: approved_2026-01-12_not_subject_to_further_revision
+    canonical_owner: ash_a2a
+    authority_ceiling: VERIFY
+  a2aproject/A2A:
+    identity_class: git_commit
+    repository: a2aproject/A2A
+    commit_sha: 3303592588e388e62e0f69f701af531d2f4e3991
+    provenance_source: github_git_ref
     canonical_owner: ash_a2a
     authority_ceiling: VERIFY
   spiffe/spiffe:
@@ -27,12 +35,20 @@ admissions:
     authority_ceiling: VERIFY
   w3c/prov-o:
     identity_class: standards_artifact
+    publisher: W3C
     artifact_id: REC-prov-o-20130430
     stable_uri: https://www.w3.org/TR/2013/REC-prov-o-20130430/
     finality_evidence: W3C_Recommendation_2013-04-30
     canonical_owner: affidavit
     authority_ceiling: VERIFY
+  edmcouncil/fibo:
+    identity_class: git_commit
+    repository: edmcouncil/fibo
+    commit_sha: f59157fe156e3d91b1c045222d0a7dc06b7d78a2
+    provenance_source: github_git_ref
+    canonical_owner: graphlaw
+    authority_ceiling: CONSTRUCT
 qualification:
-  newly_resolved_rows: 3
-  all_five_identity_rows_resolved: true
-  strict_composition_still_requires: [standing, inherited_courts, receipt_replay]
+  resolved_rows: 5
+  unresolved_rows: 0
+  strict_composition_requires: [standing, inherited_courts, receipt_replay]
