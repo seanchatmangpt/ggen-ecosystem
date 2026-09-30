@@ -1,0 +1,100 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# Seven-day payment/effect-chain intake, 2026-09-23..2026-09-30.
+# Donors remain evidence/conformance sources. Canonical ownership is unchanged.
+
+eco:PaymentEffectChainFrontier a eco:CapabilityGraph ;
+  dcterms:title "PreparedEconomicEffect and settlement evidence frontier" ;
+  eco:consequenceOwner "seanchatmangpt/ash_a2a" ;
+  eco:semanticOwner "seanchatmangpt/graphlaw" ;
+  eco:processEvidenceOwner "seanchatmangpt/beam4pm" ;
+  eco:trustEvidenceOwner "seanchatmangpt/affidavit" ;
+  eco:runtimeCompositionOwner "seanchatmangpt/xaas" ;
+  eco:productConstitutionOwner "seanchatmangpt/castle" ;
+  eco:authorityCeiling "EVIDENCE_UNLESS_SEPARATELY_ADMITTED" ;
+  eco:replayPolicy "NON_ACTUATING" ;
+  eco:retryPolicy "UNKNOWN_REQUIRES_RECONCILE" ;
+  eco:settlementPolicy "AT_MOST_ONE_SETTLEMENT_PER_EXACT_EFFECT" ;
+  prov:wasDerivedFrom
+    <https://github.com/seanchatmangpt/semantic_bit/commit/a955c773336cdb18fbbb2ca899f1ca0df1ca87f0>,
+    <https://github.com/seanchatmangpt/a2a-rs/commit/75ba4a6ea3104c0edb0b31f4286faedf1a6964a6>,
+    <https://github.com/seanchatmangpt/mcpp/commit/a0ce275a235a4655f6f76259bc3d1e6d47477c9d>,
+    <https://github.com/seanchatmangpt/dteam/commit/27885a8b42cdee2fb096ab585c8c691c9e6f6969>,
+    <https://github.com/seanchatmangpt/autotel/commit/52c23c4b960e0d3ecd414b0bce5a35b565c8975d>,
+    <https://github.com/seanchatmangpt/mfw/commit/dfd25a63033505be98673d96d5b25c2ce7e666d5>,
+    <https://github.com/seanchatmangpt/yawl/commit/db94343f2fb0f1b757d390f54f799924468c1442>,
+    <https://github.com/seanchatmangpt/cre/commit/dc763e7e3a0cf9f7cc7cd735c284f6a13e2ca989> .
+
+eco:payment-donor-semantic-bit a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/semantic_bit" ;
+  eco:sourceSha "a955c773336cdb18fbbb2ca899f1ca0df1ca87f0" ;
+  eco:projectedCapability "canonical-economic-effect-identity" ;
+  eco:projectionTarget "seanchatmangpt/ash_a2a" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "Mutation of any load-bearing effect identity field must change or refuse effect_id." .
+
+eco:payment-donor-a2a-rs a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/a2a-rs" ;
+  eco:sourceSha "75ba4a6ea3104c0edb0b31f4286faedf1a6964a6" ;
+  eco:projectedCapability "prepared-economic-effect-carriage-vectors" ;
+  eco:projectionTarget "seanchatmangpt/ash_a2a" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "A2A carriage success is interpreted as payment authority or settlement finality." .
+
+eco:payment-donor-mcpp a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/mcpp" ;
+  eco:sourceSha "a0ce275a235a4655f6f76259bc3d1e6d47477c9d" ;
+  eco:projectedCapability "payment-effect-and-settlement-conformance" ;
+  eco:projectionTarget "seanchatmangpt/ash_a2a" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "A standalone conformance model becomes a second consequence runtime." .
+
+eco:payment-donor-dteam a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/dteam" ;
+  eco:sourceSha "27885a8b42cdee2fb096ab585c8c691c9e6f6969" ;
+  eco:projectedCapability "ocel-payment-effect-chain-checker" ;
+  eco:projectionTarget "seanchatmangpt/beam4pm" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "An OCEL checker becomes process truth or actuation authority." .
+
+eco:payment-donor-autotel a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/autotel" ;
+  eco:sourceSha "52c23c4b960e0d3ecd414b0bce5a35b565c8975d" ;
+  eco:projectedCapability "otel-to-ocel-settlement-evidence" ;
+  eco:projectionTarget "seanchatmangpt/beam4pm" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "Timeout or missing acknowledgement is silently treated as NOT_ACCEPTED instead of UNKNOWN." .
+
+eco:payment-donor-mfw a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/mfw" ;
+  eco:sourceSha "dfd25a63033505be98673d96d5b25c2ce7e666d5" ;
+  eco:projectedCapability "payment-effect-chain-falsifier" ;
+  eco:projectionTarget "seanchatmangpt/graphlaw" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "Finality for a different settlement observation satisfies the current settlement." .
+
+eco:payment-donor-yawl a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/yawl" ;
+  eco:sourceSha "db94343f2fb0f1b757d390f54f799924468c1442" ;
+  eco:projectedCapability "settlement-state-machine-model" ;
+  eco:projectionTarget "seanchatmangpt/ash_a2a" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "UNKNOWN bypasses RECONCILE or a second settlement is accepted." .
+
+eco:payment-donor-cre a eco:CapabilityProjection ;
+  eco:projectedRepository "seanchatmangpt/cre" ;
+  eco:sourceSha "dc763e7e3a0cf9f7cc7cd735c284f6a13e2ca989" ;
+  eco:projectedCapability "idempotent-effect-claim-state-machine" ;
+  eco:projectionTarget "seanchatmangpt/ash_a2a" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "EVIDENCE" ;
+  eco:falsifier "Settle before acceptance, duplicate settle, or re-prepare changes external consequence." .
