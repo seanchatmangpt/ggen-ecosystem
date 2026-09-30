@@ -56,6 +56,21 @@ class FrontierIntakeTests(unittest.TestCase):
         with self.assertRaisesRegex(frontier.Refusal, "FRONTIER_SHA"):
             frontier.validate(mutated)
 
+
+    def test_fleet_observation_cannot_promote_standing(self) -> None:
+        mutated = copy.deepcopy(self.manifest)
+        mutated["fleet_observation"]["standing"] = "ALIVE"
+        with self.assertRaisesRegex(frontier.Refusal, "FLEET_OBSERVATION_PROMOTION"):
+            frontier.validate(mutated)
+
+    def test_fleet_observation_is_exhaustive_scan_source(self) -> None:
+        fleet = self.manifest["fleet_observation"]
+        self.assertEqual(fleet["repository"], "seanchatmangpt/chatman-ecosystem")
+        self.assertEqual(fleet["observation_id"], "fleet:recent:2026-09-30:7d")
+        self.assertEqual(fleet["repository_count"], 101)
+        self.assertEqual(fleet["authority"], "NONE")
+        self.assertEqual(fleet["standing"], "OBSERVED")
+
     def test_payment_donors_are_present(self) -> None:
         repos = {item["repository"] for item in self.manifest["frontier_donors"]}
         expected = {
