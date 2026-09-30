@@ -1,0 +1,35 @@
+schema: standing-import-identities/v1
+subject: contracts/standing-imports/v26.9.30.yaml
+policy:
+  immutable_commit_sha_required: true
+  tag_or_ref_is_locator_not_identity: true
+  technical_conformance_implies_authority: false
+identities:
+  a2aproject/A2A:
+    ref: v1.0.1
+    commit_sha: 3303592588e388e62e0f69f701af531d2f4e3991
+    provenance: github_git_ref
+    canonical_owner: ash_a2a
+    required_standing: ADMITTED
+    authority_ceiling: VERIFY
+    consumer_projection: agent_interop_evidence
+    negative_knowledge: protocol_conformance_does_not_grant_DO
+  edmcouncil/fibo:
+    ref: master_2026Q2
+    commit_sha: f59157fe156e3d91b1c045222d0a7dc06b7d78a2
+    provenance: github_git_ref
+    canonical_owner: graphlaw
+    required_standing: ADMITTED
+    authority_ceiling: CONSTRUCT
+    consumer_projection: finance_semantics
+    negative_knowledge: ontology_conformance_does_not_settle_or_actuate
+unresolved:
+  - donor: openid/authzen
+    refusal: REFUSED[IMPORT_IDENTITY_UNBOUND]
+  - donor: spiffe/spiffe
+    refusal: REFUSED[IMPORT_IDENTITY_UNBOUND]
+  - donor: w3c/prov-o
+    refusal: REFUSED[IMPORT_IDENTITY_UNBOUND]
+qualification:
+  admitted: false
+  reason: all donor rows must have immutable identity before strict fleet composition
