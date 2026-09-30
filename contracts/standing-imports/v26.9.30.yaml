@@ -1,0 +1,23 @@
+schema: standing-import/v1
+policy:
+  exact_identity_required: true
+  provenance_required: true
+  canonical_owner_required: true
+  qualification_required: true
+  receipt_replay_required: true
+imports:
+  - donor: openid/authzen
+    canonical_owner: ash_a2a
+    role: authorization_interoperability
+  - donor: google/A2A
+    canonical_owner: ash_a2a
+    role: agent_interoperability
+  - donor: spiffe/spiffe
+    canonical_owner: affidavit
+    role: workload_identity
+  - donor: w3c/prov-o
+    canonical_owner: affidavit
+    role: provenance
+  - donor: edmcouncil/fibo
+    canonical_owner: graphlaw
+    role: finance_ontology
