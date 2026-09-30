@@ -14,4 +14,12 @@ eco:RfcReferenceStack a eco:CapabilityGraph ;
   eco:productConstitutionOwner "seanchatmangpt/castle" ;
   eco:authorityCeiling "CONSTRUCT_BEFORE_CASTLE_BRCE" ;
   eco:ggenCoreDisposition "READ_ONLY_UNTIL_V26_10_1" ;
-  prov:wasDerivedFrom <https://github.com/seanchatmangpt/graphlaw/commit/48a7bbd801b8df1d7ffab879b10d58d7f14ef7bc> .
+  eco:qualificationSpecificationOwner "seanchatmangpt/chatman-ecosystem" ;
+  eco:qualificationExecutionOwner "seanchatmangpt/graphlaw" ;
+  eco:paymentEffectOwner "seanchatmangpt/ash_a2a" ;
+  eco:paymentEvidenceOwner "seanchatmangpt/beam4pm" ;
+  prov:wasDerivedFrom
+    <https://github.com/seanchatmangpt/chatman-ecosystem/commit/869babb1d0c852e0ceda581a3edfea6d32189d95>,
+    <https://github.com/seanchatmangpt/graphlaw/commit/79275191a0feb19e6de701dabb95402a9b2b28e7>,
+    <https://github.com/seanchatmangpt/ash_a2a/commit/3325032d9dea201e6deb82ef242c534aacb3b420>,
+    <https://github.com/seanchatmangpt/beam4pm/commit/aa98261db7719f7708ad7990064bbc5f06b754df> .
