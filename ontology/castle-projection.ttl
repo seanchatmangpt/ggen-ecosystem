@@ -251,7 +251,7 @@ eco:castle-projection-cargo-cicd a eco:CastleCapabilityProjection ;
 
 eco:castle-projection-chatman-ecosystem a eco:CastleCapabilityProjection ;
     eco:projectedRepository "seanchatmangpt/chatman-ecosystem" ;
-    eco:sourceBranch "main" ; eco:sourceSha "869babb1d0c852e0ceda581a3edfea6d32189d95" ;
+    eco:sourceBranch "main" ; eco:sourceSha "50c9172bdd8492090c619a703a3293a4f8d09aa6" ;
     eco:projectedCapability eco:StrategyDoctrineKnowledge ;
     eco:projectionDisposition "KEEP_KNOWLEDGE_PLANE" ;
     eco:projectionTarget "seanchatmangpt/castle" ;
