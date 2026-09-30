@@ -1,4 +1,4 @@
-schema: standing-import-projections/v1
+schema: standing-import-projections/v2
 subject: contracts/standing-imports/v26.9.30.yaml
 law:
   projection_implies_ownership: false
@@ -12,7 +12,7 @@ imports:
     authority_ceiling: VERIFY
     required_standing: ADMITTED
     negative_knowledge: PDP_PEP_interop_does_not_authorize_consequence
-  google/A2A:
+  a2aproject/A2A:
     canonical_owner: ash_a2a
     projection: agent_interop_evidence
     authority_ceiling: VERIFY
