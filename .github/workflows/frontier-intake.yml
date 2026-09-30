@@ -6,6 +6,7 @@ on:
     paths:
       - "admission/frontier-2026-09-30.json"
       - "ontology/frontier/payment-effect-chain.ttl"
+      - "ontology/frontier/runtime-evidence-intake.ttl"
       - "ontology/castle-projection.ttl"
       - "ontology/reference-stack/owner-graph.ttl"
       - "profiles/reference-stack-compounding.ttl"
