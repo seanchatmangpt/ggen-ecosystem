@@ -22,8 +22,8 @@ class FrontierIntakeTests(unittest.TestCase):
 
     def test_current_manifest_is_structurally_alive(self) -> None:
         result = frontier.validate(self.manifest)
-        self.assertEqual(result["owner_count"], 10)
-        self.assertEqual(result["donor_count"], 13)
+        self.assertEqual(result["owner_count"], 13)
+        self.assertEqual(result["donor_count"], 19)
         self.assertGreaterEqual(result["falsifier_count"], 8)
 
     def test_no_do_authority(self) -> None:
@@ -67,6 +67,12 @@ class FrontierIntakeTests(unittest.TestCase):
             "seanchatmangpt/mfw",
             "seanchatmangpt/yawl",
             "seanchatmangpt/cre",
+            "seanchatmangpt/bcinr",
+            "seanchatmangpt/gitvan",
+            "seanchatmangpt/ash_kudzu",
+            "seanchatmangpt/wasm4pm",
+            "seanchatmangpt/process-intelligence",
+            "seanchatmangpt/erlmcp",
         }
         self.assertTrue(expected.issubset(repos))
 
@@ -80,6 +86,9 @@ class FrontierIntakeTests(unittest.TestCase):
             "seanchatmangpt/xaas",
             "seanchatmangpt/ggen-marketplace",
             "seanchatmangpt/castle",
+            "seanchatmangpt/engineering-standards",
+            "seanchatmangpt/ash",
+            "seanchatmangpt/ggen_igniter",
         }:
             self.assertIn(required, owners)
 
