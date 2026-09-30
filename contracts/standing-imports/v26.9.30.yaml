@@ -1,15 +1,20 @@
-schema: standing-import/v1
+schema: standing-import/v2
 policy:
   exact_identity_required: true
   provenance_required: true
   canonical_owner_required: true
   qualification_required: true
   receipt_replay_required: true
+  imported_do_authority: forbidden
+marketplace_absorption_pack:
+  repository: seanchatmangpt/ggen-marketplace
+  commit_sha: 9db60f4c04ed3b553244bc16233bc9302983026a
+  path: packs/authzen-spiffe-absorption-pack
 imports:
   - donor: openid/authzen
     canonical_owner: ash_a2a
     role: authorization_interoperability
-  - donor: google/A2A
+  - donor: a2aproject/A2A
     canonical_owner: ash_a2a
     role: agent_interoperability
   - donor: spiffe/spiffe
