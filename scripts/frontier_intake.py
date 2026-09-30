@@ -107,6 +107,21 @@ def validate(manifest: dict[str, Any]) -> dict[str, Any]:
         donor_names.add(repo)
         subjects.append({"repository": repo, "branch": branch, "sha": sha, "kind": "donor"})
 
+    fleet = manifest.get("fleet_observation")
+    if not isinstance(fleet, dict):
+        raise Refusal("REFUSED[FLEET_OBSERVATION_MISSING]")
+    fleet_repo = str(fleet.get("repository", ""))
+    fleet_sha = require_sha(fleet.get("sha"), "fleet_observation")
+    fleet_path = str(fleet.get("path", ""))
+    if fleet_repo != "seanchatmangpt/chatman-ecosystem" or not fleet_path:
+        raise Refusal("REFUSED[FLEET_OBSERVATION_IDENTITY]")
+    if fleet.get("observation_id") != "fleet:recent:2026-09-30:7d":
+        raise Refusal("REFUSED[FLEET_OBSERVATION_ID]")
+    if fleet.get("repository_count") != 101:
+        raise Refusal("REFUSED[FLEET_OBSERVATION_COUNT]")
+    if fleet.get("authority") != "NONE" or fleet.get("standing") != "OBSERVED":
+        raise Refusal("REFUSED[FLEET_OBSERVATION_PROMOTION]")
+
     falsifiers = manifest.get("falsifiers")
     if not isinstance(falsifiers, list) or len(falsifiers) < 8 or not all(isinstance(x, str) and x for x in falsifiers):
         raise Refusal("REFUSED[FRONTIER_FALSIFIER_COVERAGE]")
@@ -116,6 +131,13 @@ def validate(manifest: dict[str, Any]) -> dict[str, Any]:
         "donor_count": len(donors),
         "subjects": subjects,
         "falsifier_count": len(falsifiers),
+        "fleet_observation": {
+            "repository": fleet_repo,
+            "sha": fleet_sha,
+            "path": fleet_path,
+            "observation_id": fleet["observation_id"],
+            "repository_count": fleet["repository_count"],
+        },
     }
 
 
@@ -139,6 +161,53 @@ def github_head(repository: str, branch: str) -> str:
     return require_sha(payload.get("commit", {}).get("sha"), repository)
 
 
+def github_raw_json(repository: str, sha: str, path: str) -> dict[str, Any]:
+    require_sha(sha, f"{repository}:{path}")
+    owner, repo = repository.split("/", 1)
+    url = f"https://raw.githubusercontent.com/{owner}/{repo}/{sha}/{path}"
+    request = urllib.request.Request(url, headers={"User-Agent": "ggen-ecosystem-frontier-intake/1"})
+    try:
+        with urllib.request.urlopen(request, timeout=20) as response:
+            payload = json.load(response)
+    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
+        raise Refusal(f"BLOCKED[FLEET_OBSERVATION_UNAVAILABLE]:{repository}:{sha}:{path}:{exc}") from exc
+    if not isinstance(payload, dict):
+        raise Refusal("REFUSED[FLEET_OBSERVATION_NOT_OBJECT]")
+    return payload
+
+
+def observe_fleet(fleet: dict[str, Any]) -> dict[str, Any]:
+    payload = github_raw_json(fleet["repository"], fleet["sha"], fleet["path"])
+    checks = {
+        "schema": payload.get("schema") == "https://chatman.dev/fleet/recent-activity/v1",
+        "observation_id": payload.get("observation_id") == fleet["observation_id"],
+        "repository_count": payload.get("repository_count") == fleet["repository_count"],
+        "authority": payload.get("authority") == "NONE",
+        "standing": payload.get("standing") == "OBSERVED",
+    }
+    failed = sorted(key for key, ok in checks.items() if not ok)
+    if failed:
+        raise Refusal("REFUSED[FLEET_OBSERVATION_CONFORMANCE]:" + ",".join(failed))
+    repositories = payload.get("repositories")
+    if not isinstance(repositories, list) or len(repositories) != fleet["repository_count"]:
+        raise Refusal("REFUSED[FLEET_OBSERVATION_ROWS]")
+    if not any(
+        row.get("repository") == "seanchatmangpt/ggen" and row.get("read_only") is True
+        for row in repositories if isinstance(row, dict)
+    ):
+        raise Refusal("REFUSED[FLEET_GGEN_READ_ONLY]")
+    return {
+        "repository": fleet["repository"],
+        "sha": fleet["sha"],
+        "path": fleet["path"],
+        "observation_id": payload["observation_id"],
+        "repository_count": payload["repository_count"],
+        "authority": payload["authority"],
+        "standing": payload["standing"],
+        "ggen_read_only": True,
+    }
+
+
 def observe_live(subjects: list[dict[str, str]]) -> list[dict[str, str]]:
     observations = []
     for subject in sorted(subjects, key=lambda x: (x["repository"], x["branch"])):
@@ -155,6 +224,7 @@ def run(manifest_path: Path, *, live: bool) -> dict[str, Any]:
     manifest = load(manifest_path)
     structural = validate(manifest)
     observed = observe_live(structural["subjects"]) if live else []
+    fleet_observation = observe_fleet(structural["fleet_observation"]) if live else structural["fleet_observation"]
     return {
         "schema": "https://ggen.dev/receipts/frontier-intake/v1",
         "manifest": str(manifest_path),
@@ -166,6 +236,7 @@ def run(manifest_path: Path, *, live: bool) -> dict[str, Any]:
         "falsifier_count": structural["falsifier_count"],
         "live": live,
         "observations": observed,
+        "fleet_observation": fleet_observation,
         "standing": "ALIVE",
     }
 
