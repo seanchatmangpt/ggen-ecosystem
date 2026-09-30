@@ -44,4 +44,8 @@ load_bearing_paths = [
   "Dockerfile",
   ".github/workflows/ggen-ecosystem-sync.yml",
   ".github/workflows/ggen-ecosystem-container.yml",
+  ".qme/profile.json",
+  "certification/qme-1-crown.json",
+  "scripts/qme_crown.py",
+  ".github/workflows/qme-1-crown.yml",
 ]

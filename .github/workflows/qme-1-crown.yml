@@ -1,0 +1,97 @@
+name: QME-1 cross-ecosystem crown
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".qme/profile.json"
+      - "certification/qme-1-crown.json"
+      - "scripts/qme_crown.py"
+      - "tests/test_qme_crown_contract.py"
+      - "docs/qme-1-reference.md"
+      - ".github/workflows/qme-1-crown.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: qme-1-crown-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  crown:
+    name: Exact-head QME-1 ecosystem crown
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout exact subject
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Assert exact subject identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          test "$actual" = "$expected"
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Execute live cross-ecosystem crown twice
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python scripts/qme_crown.py             --root .             --manifest certification/qme-1-crown.json             --receipt "${RUNNER_TEMP}/qme-crown-a.json"             --require-alive             > "${RUNNER_TEMP}/qme-crown-a.stdout.json"
+          python scripts/qme_crown.py             --root .             --manifest certification/qme-1-crown.json             --receipt "${RUNNER_TEMP}/qme-crown-b.json"             --require-alive             > "${RUNNER_TEMP}/qme-crown-b.stdout.json"
+          cmp "${RUNNER_TEMP}/qme-crown-a.json" "${RUNNER_TEMP}/qme-crown-b.json"
+          cmp "${RUNNER_TEMP}/qme-crown-a.stdout.json" "${RUNNER_TEMP}/qme-crown-b.stdout.json"
+          python -m json.tool "${RUNNER_TEMP}/qme-crown-a.json" >/dev/null
+
+      - name: Assert crown and claim standing stay separate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - "${RUNNER_TEMP}/qme-crown-a.json" <<'PY'
+          import json, sys
+          from pathlib import Path
+          r = json.loads(Path(sys.argv[1]).read_text())
+          assert r["standing"] == "ALIVE"
+          assert r["authority_ceiling"] == "VERIFY"
+          assert r["claim_authority"] == "NONE"
+          assert r["claim_standing"] == "UNSUPPORTED:INSUFFICIENT_INDEPENDENT_HUMAN_BASELINE_EVIDENCE"
+          assert r["marketplace_claim"]["target_person_years"] == 500_000_000
+          assert len(r["participants"]) == 7
+          PY
+
+      - name: Run local contract tests
+        run: python -m unittest -v tests.test_qme_crown_contract
+
+      - name: Preserve crown receipt
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v6.0.0
+        with:
+          name: qme-1-cross-ecosystem-crown
+          path: ${{ runner.temp }}/qme-crown-a.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Refuse verifier mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          changed="$(git status --porcelain --untracked-files=all)"
+          if [[ -n "$changed" ]]; then
+            echo "::error title=REFUSED:QME_CROWN_MUTATED_SUBJECT::$changed"
+            exit 2
+          fi

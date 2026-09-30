@@ -76,3 +76,45 @@ kind = "verifier"
 producer = "ecosystem"
 standing_authority = false
 load_bearing = false
+
+[[artifact]]
+path = ".qme/profile.json"
+kind = "projection"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = true
+
+[[artifact]]
+path = "certification/qme-1-crown.json"
+kind = "control"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = true
+
+[[artifact]]
+path = "scripts/qme_crown.py"
+kind = "verifier"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = true
+
+[[artifact]]
+path = ".github/workflows/qme-1-crown.yml"
+kind = "verifier"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = true
+
+[[artifact]]
+path = "tests/test_qme_crown_contract.py"
+kind = "verifier"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = false
+
+[[artifact]]
+path = "docs/qme-1-reference.md"
+kind = "documentation"
+producer = "ecosystem"
+standing_authority = false
+load_bearing = false
