@@ -1,0 +1,54 @@
+version: v26.9.30
+kind: standing-import-inheritance-replay-court
+mode: strict
+
+claim:
+  imported_capability_is_admitted_only_if:
+    - immutable_donor_identity
+    - provenance_bound
+    - canonical_owner_bound
+    - canonical_owner_standing_admitted
+    - authority_ceiling_bound
+    - consumer_projection_bound
+    - inherited_courts_pass
+    - import_receipt_emitted
+    - deterministic_replay_matches
+
+authority:
+  technical_conformance_implies_runtime_authority: false
+  donor_presence_implies_runtime_authority: false
+  imported_do_authority: forbidden
+  do_requires: BRCE
+
+refusals:
+  - id: owner-standing-missing
+    given: identity_qualified_donor
+    unless: canonical_owner_standing_admitted
+    expect: REFUSED[OWNER_STANDING_UNADMITTED]
+  - id: conformance-authority-escalation
+    given: donor_technical_conformance
+    when: requested_authority_exceeds_ceiling
+    expect: REFUSED[AUTHORITY_ESCALATION]
+  - id: projection-without-receipt
+    given: consumer_projection
+    unless: import_receipt_emitted
+    expect: REFUSED[IMPORT_RECEIPT_MISSING]
+  - id: replay-divergence
+    given: import_receipt
+    unless: deterministic_replay_matches
+    expect: REFUSED[IMPORT_REPLAY_DIVERGED]
+
+receipt:
+  binds:
+    - donor_immutable_identity
+    - donor_provenance
+    - canonical_owner
+    - owner_standing_receipt
+    - authority_ceiling
+    - inherited_court_receipts
+    - consumer_projection
+    - replay_digest
+
+falsifier: >
+  Any identity-qualified donor entering strict composition without an ADMITTED
+  canonical-owner standing receipt whose replay reproduces the same bounded result.
