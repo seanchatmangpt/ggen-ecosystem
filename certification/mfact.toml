@@ -48,4 +48,8 @@ load_bearing_paths = [
   "certification/qme-1-crown.json",
   "scripts/qme_crown.py",
   ".github/workflows/qme-1-crown.yml",
+  "admission/frontier-2026-09-30.json",
+  "ontology/frontier/payment-effect-chain.ttl",
+  "scripts/frontier_intake.py",
+  ".github/workflows/frontier-intake.yml",
 ]
