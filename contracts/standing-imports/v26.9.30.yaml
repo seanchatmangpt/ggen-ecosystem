@@ -8,7 +8,7 @@ policy:
   imported_do_authority: forbidden
 marketplace_absorption_pack:
   repository: seanchatmangpt/ggen-marketplace
-  commit_sha: 9db60f4c04ed3b553244bc16233bc9302983026a
+  commit_sha: a0e1e6d62bdff4ec153d297cb1fbaab8edb30617
   path: packs/authzen-spiffe-absorption-pack
 imports:
   - donor: openid/authzen
