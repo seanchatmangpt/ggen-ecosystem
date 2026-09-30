@@ -1,0 +1,8 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK WHERE {
+  eco:GraphLawKnowledgeHookFibo
+    eco:projectionTarget "seanchatmangpt/castle:reference-stack/fibo-payment" ;
+    eco:reusesProductBoundary "seanchatmangpt/castle:BRCE" ;
+    eco:authorityCeiling "NONE" .
+  eco:RfcReferenceStack eco:productConstitutionOwner "seanchatmangpt/castle" .
+}

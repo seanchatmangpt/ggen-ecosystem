@@ -1,0 +1,8 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK WHERE {
+  eco:FiboPaymentSemanticDelta
+    eco:newAuthoritySubsystems 0 ;
+    eco:newReceiptSubsystems 0 ;
+    eco:newReplaySubsystems 0 ;
+    eco:newConsequenceSubsystems 0 .
+}

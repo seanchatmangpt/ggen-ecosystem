@@ -1,0 +1,8 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK WHERE {
+  eco:FiboPaymentSemanticDelta
+    eco:observedThrough "seanchatmangpt/ash_r2rml" ;
+    eco:routedThrough "seanchatmangpt/ash_a2a" ;
+    eco:constitutedBy "seanchatmangpt/castle:BRCE" ;
+    eco:feedbackInto "seanchatmangpt/beam4pm" .
+}

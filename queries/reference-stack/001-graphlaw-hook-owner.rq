@@ -1,0 +1,6 @@
+PREFIX eco: <https://ggen.dev/ecosystem#>
+ASK WHERE {
+  eco:RfcReferenceStack eco:semanticOwner "seanchatmangpt/graphlaw" .
+  eco:GraphLawKnowledgeHookFibo eco:projectionSource "seanchatmangpt/graphlaw:contracts/knowledge_hook/" ;
+    eco:authorityCeiling "NONE" .
+}

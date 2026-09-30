@@ -1,0 +1,17 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+eco:RfcReferenceStack a eco:CapabilityGraph ;
+  eco:semanticOwner "seanchatmangpt/graphlaw" ;
+  eco:applicationProjectionOwner "Ash/Ashler" ;
+  eco:observationOwner "seanchatmangpt/ash_r2rml" ;
+  eco:consequenceOwner "seanchatmangpt/ash_a2a" ;
+  eco:trustEvidenceOwner "seanchatmangpt/affidavit" ;
+  eco:operationalRealizationOwner "Reactor" ;
+  eco:processEvidenceOwner "seanchatmangpt/beam4pm" ;
+  eco:runtimeCompositionOwner "seanchatmangpt/xaas" ;
+  eco:manufactureOwner "seanchatmangpt/ggen-marketplace" ;
+  eco:productConstitutionOwner "seanchatmangpt/castle" ;
+  eco:authorityCeiling "CONSTRUCT_BEFORE_CASTLE_BRCE" ;
+  eco:ggenCoreDisposition "READ_ONLY_UNTIL_V26_10_1" ;
+  prov:wasDerivedFrom <https://github.com/seanchatmangpt/graphlaw/tree/factory-c/v26.9.29-reference-knowledge-hook-r9> .

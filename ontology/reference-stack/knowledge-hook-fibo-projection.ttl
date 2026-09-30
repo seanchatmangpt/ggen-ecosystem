@@ -1,0 +1,18 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+eco:GraphLawKnowledgeHookFibo a eco:DeterministicProjection ;
+  eco:projectionSource "seanchatmangpt/graphlaw:contracts/knowledge_hook/" ;
+  eco:projectionTarget "seanchatmangpt/castle:reference-stack/fibo-payment" ;
+  eco:projectedCapability "fibo:PaymentExecution" ;
+  eco:projectionStanding "CANDIDATE" ;
+  eco:authorityCeiling "NONE" ;
+  eco:requiresExactSubject true ;
+  eco:requiresSourceDigest true ;
+  eco:requiresReplayIdentity true ;
+  eco:reusesCourtFamily "graphlaw:conformance/knowledge_hook" ;
+  eco:reusesConsequenceThinWaist "seanchatmangpt/ash_a2a" ;
+  eco:reusesTrustPlane "seanchatmangpt/affidavit" ;
+  eco:reusesProductBoundary "seanchatmangpt/castle:BRCE" ;
+  eco:falsifier "Any projection creates a second semantic owner, consequence protocol, authority model, receipt truth, or replay engine." ;
+  prov:wasDerivedFrom eco:RfcReferenceStack .
