@@ -14,4 +14,4 @@ eco:RfcReferenceStack a eco:CapabilityGraph ;
   eco:productConstitutionOwner "seanchatmangpt/castle" ;
   eco:authorityCeiling "CONSTRUCT_BEFORE_CASTLE_BRCE" ;
   eco:ggenCoreDisposition "READ_ONLY_UNTIL_V26_10_1" ;
-  prov:wasDerivedFrom <https://github.com/seanchatmangpt/graphlaw/tree/factory-c/v26.9.29-reference-knowledge-hook-r9> .
+  prov:wasDerivedFrom <https://github.com/seanchatmangpt/graphlaw/commit/48a7bbd801b8df1d7ffab879b10d58d7f14ef7bc> .
