@@ -50,6 +50,7 @@ load_bearing_paths = [
   ".github/workflows/qme-1-crown.yml",
   "admission/frontier-2026-09-30.json",
   "ontology/frontier/payment-effect-chain.ttl",
+  "ontology/frontier/runtime-evidence-intake.ttl",
   "scripts/frontier_intake.py",
   ".github/workflows/frontier-intake.yml",
 ]
