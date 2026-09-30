@@ -1,6 +1,6 @@
 version = 3
-base_main_sha = "5fb2dd9e4c0c58f6fe07a6c5589b6eec068f41ec"
-updated_at = "2026-09-29T21:38:46Z"
+base_main_sha = "f8e436079b8f35c3c800d843e9f60cf8a75613e5"
+updated_at = "2026-09-30T00:18:42Z"
 
 [ggen]
 release = "v26.9.29"
@@ -35,7 +35,7 @@ workflow = ".github/workflows/pragprog-tps.yml"
 receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 
 [ggen_igniter]
-sha = "36d352c04a970f255dd97e459774ac358c8b645e"
+sha = "ae205c3b85c85b5d43738b2f0e3b6833863adbb0"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
 version = "26.9.29"
 latest_published_release = "v26.8.27"
@@ -67,7 +67,7 @@ ggen_marketplace_commit = "22f6077e1bc185ab924e49c41b29ffe0645a0ba7"
 autofde_lab_path = "vendor/autofde-lab"
 autofde_lab_commit = "d42a5af94481a3128bf3e35d5f2a0a9a70f22e41"
 ggen_igniter_path = "vendor/ggen_igniter"
-ggen_igniter_commit = "36d352c04a970f255dd97e459774ac358c8b645e"
+ggen_igniter_commit = "ae205c3b85c85b5d43738b2f0e3b6833863adbb0"
 beam4pm_path = "vendor/beam4pm"
 beam4pm_commit = "3ecedfb66385fa4fa200e5fb7a2853638bc40c65"
 wasm4pm_path = "vendor/wasm4pm"
