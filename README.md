@@ -91,7 +91,7 @@ The integration crown and published-release identities are intentionally separat
 
 ## Seven-day frontier intake
 
-The current seven-day intake window is **2026-09-23 through 2026-09-30**. The exact observed subjects live in `admission/frontier-2026-09-30.json`; `scripts/frontier_intake.py` verifies those branch heads live without granting authority, and `.github/workflows/frontier-intake.yml` executes the court twice for replay identity.
+The current seven-day intake window is **2026-09-23 through 2026-09-30**. Exhaustive fleet observation is reused from `seanchatmangpt/chatman-ecosystem@50c9172bdd8492090c619a703a3293a4f8d09aa6`, where `observations/fleet/2026-09-30-seven-day.json` records 101 active repositories with `authority=NONE` and `standing=OBSERVED`. This repository then selects the load-bearing composition subset in `admission/frontier-2026-09-30.json`; `scripts/frontier_intake.py` validates the upstream fleet evidence and verifies selected branch heads live without granting authority, while `.github/workflows/frontier-intake.yml` executes the court twice for replay identity.
 
 The major new capability family is a payment/effect-chain evidence stack. `ontology/frontier/payment-effect-chain.ttl` projects `semantic_bit`, `a2a-rs`, `mcpp`, `dteam`, `autotel`, `mfw`, `yawl`, and `cre` into existing owners instead of creating a new payments crown. Economic-effect consequence semantics remain owned by AshA2A; GraphLaw owns semantic qualification, Beam4PM owns process evidence, Affidavit owns cryptographic evidence, XaaS owns runtime composition, and CASTLE remains the consequential product constitution.
 
