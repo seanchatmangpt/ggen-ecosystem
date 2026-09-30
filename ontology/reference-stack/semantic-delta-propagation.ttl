@@ -1,0 +1,17 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+
+eco:FiboPaymentSemanticDelta a eco:SemanticDelta ;
+  eco:sourceOwner "seanchatmangpt/graphlaw" ;
+  eco:manufacturesProjection eco:GraphLawKnowledgeHookFibo ;
+  eco:projectsInto "Ash/Ashler" ;
+  eco:observedThrough "seanchatmangpt/ash_r2rml" ;
+  eco:routedThrough "seanchatmangpt/ash_a2a" ;
+  eco:qualifiedBy "seanchatmangpt/affidavit" ;
+  eco:realizedBy "Reactor/CommandBus" ;
+  eco:constitutedBy "seanchatmangpt/castle:BRCE" ;
+  eco:feedbackInto "seanchatmangpt/beam4pm" ;
+  eco:runtimeComposedBy "seanchatmangpt/xaas" ;
+  eco:newAuthoritySubsystems 0 ;
+  eco:newReceiptSubsystems 0 ;
+  eco:newReplaySubsystems 0 ;
+  eco:newConsequenceSubsystems 0 .

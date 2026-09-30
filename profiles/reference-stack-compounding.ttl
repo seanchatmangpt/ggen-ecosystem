@@ -1,0 +1,10 @@
+@prefix eco: <https://ggen.dev/ecosystem#> .
+
+eco:reference-stack-compounding a eco:Profile ;
+  eco:profileName "reference-stack-compounding" ;
+  eco:includesCapability eco:GraphLawKnowledgeHookFibo ;
+  eco:selectionPolicy "one-canonical-owner-many-deterministic-projections" ;
+  eco:generatedArtifactPolicy "derive-from-admitted-semantic-source" ;
+  eco:duplicateSemanticsPolicy "retire-or-demote-to-adapter" ;
+  eco:authorityPolicy "no-projection-may-acquire-do" ;
+  eco:replayPolicy "replay-must-not-create-second-consequence" .
