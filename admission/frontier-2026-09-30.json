@@ -18,7 +18,7 @@
     {
       "repository": "seanchatmangpt/chatman-ecosystem",
       "branch": "main",
-      "sha": "869babb1d0c852e0ceda581a3edfea6d32189d95",
+      "sha": "50c9172bdd8492090c619a703a3293a4f8d09aa6",
       "role": "universal-laws-factory-e-and-qme-specification"
     },
     {
@@ -42,7 +42,7 @@
     {
       "repository": "seanchatmangpt/ash_a2a",
       "branch": "main",
-      "sha": "3325032d9dea201e6deb82ef242c534aacb3b420",
+      "sha": "09288ef6416d35ca2267da38b97608733013e3b3",
       "role": "prepared-effect-consequence-protocol"
     },
     {
@@ -72,7 +72,7 @@
     {
       "repository": "seanchatmangpt/castle",
       "branch": "main",
-      "sha": "5c03ca0f32d9c2cc02d504004b7902b2a8256db5",
+      "sha": "c18bf1d89ed5395d5ffb00f875d901a26f16b2fe",
       "role": "product-consequence-constitution"
     },
     {
@@ -260,5 +260,27 @@
     "rail fault simulation is treated as subject failure rather than edge-local transport evidence",
     "semantic evidence admission bypasses GraphLaw canonical ownership",
     "resource envelope or signer quorum is promoted directly to consequential DO"
+  ],
+  "fleet_observation": {
+    "repository": "seanchatmangpt/chatman-ecosystem",
+    "sha": "50c9172bdd8492090c619a703a3293a4f8d09aa6",
+    "path": "observations/fleet/2026-09-30-seven-day.json",
+    "observation_id": "fleet:recent:2026-09-30:7d",
+    "repository_count": 101,
+    "authority": "NONE",
+    "standing": "OBSERVED",
+    "semantics": "exhaustive seven-day activity observation; composition selection remains local"
+  },
+  "post_horizon_updates": [
+    {
+      "repository": "seanchatmangpt/chatman-ecosystem",
+      "sha": "50c9172bdd8492090c619a703a3293a4f8d09aa6",
+      "reason": "merged exhaustive seven-day fleet observation"
+    },
+    {
+      "repository": "seanchatmangpt/ash_a2a",
+      "sha": "09288ef6416d35ca2267da38b97608733013e3b3",
+      "reason": "merged seven-day DfCM fleet capability absorption"
+    }
   ]
 }
