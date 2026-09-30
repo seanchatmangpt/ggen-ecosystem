@@ -1,0 +1,8 @@
+schema: standing-import-identity-self-court/v1
+qualification: REFUSED[IDENTITY_SELF_COURT_FAILED]
+findings:
+  v2_standards_artifact_missing_required_publisher: true
+  a2a_projection_identity_drift: google/A2A != a2aproject/A2A
+refusals:
+  missing_required_identity_field: REFUSED[IDENTITY_SCHEMA_INCOMPLETE]
+  projection_identity_drift: REFUSED[DONOR_IDENTITY_DRIFT]
