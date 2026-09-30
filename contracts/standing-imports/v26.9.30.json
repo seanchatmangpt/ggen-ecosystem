@@ -1,0 +1,69 @@
+{
+  "schema": "standing-import-machine/v1",
+  "subject": "standing-closed-fleet",
+  "marketplace_absorption_pack": {
+    "repository": "seanchatmangpt/ggen-marketplace",
+    "commit_sha": "9db60f4c04ed3b553244bc16233bc9302983026a",
+    "path": "packs/authzen-spiffe-absorption-pack"
+  },
+  "law": {
+    "technical_conformance_implies_authority": false,
+    "donor_presence_implies_runtime_authority": false,
+    "imported_do_authority": "forbidden",
+    "receipt_replay_required": true
+  },
+  "donors": [
+    {
+      "id": "openid/authzen",
+      "identity_class": "standards_artifact",
+      "publisher": "OpenID Foundation",
+      "artifact_id": "Authorization API 1.0 Final",
+      "stable_uri": "https://openid.net/specs/authorization-api-1_0.html",
+      "finality_evidence": "approved_2026-01-12_not_subject_to_further_revision",
+      "canonical_owner": "ash_a2a",
+      "required_standing": "ADMITTED",
+      "authority_ceiling": "VERIFY"
+    },
+    {
+      "id": "a2aproject/A2A",
+      "identity_class": "git_commit",
+      "repository": "a2aproject/A2A",
+      "commit_sha": "3303592588e388e62e0f69f701af531d2f4e3991",
+      "provenance_source": "github_git_ref",
+      "canonical_owner": "ash_a2a",
+      "required_standing": "ADMITTED",
+      "authority_ceiling": "VERIFY"
+    },
+    {
+      "id": "spiffe/spiffe",
+      "identity_class": "git_commit",
+      "repository": "spiffe/spiffe",
+      "commit_sha": "f97c46dfd0ff0d4e412cce5c73846a9ca32a99a2",
+      "provenance_source": "github_verified_commit",
+      "canonical_owner": "affidavit",
+      "required_standing": "ADMITTED",
+      "authority_ceiling": "VERIFY"
+    },
+    {
+      "id": "w3c/prov-o",
+      "identity_class": "standards_artifact",
+      "publisher": "W3C",
+      "artifact_id": "REC-prov-o-20130430",
+      "stable_uri": "https://www.w3.org/TR/2013/REC-prov-o-20130430/",
+      "finality_evidence": "W3C_Recommendation_2013-04-30",
+      "canonical_owner": "affidavit",
+      "required_standing": "ADMITTED",
+      "authority_ceiling": "VERIFY"
+    },
+    {
+      "id": "edmcouncil/fibo",
+      "identity_class": "git_commit",
+      "repository": "edmcouncil/fibo",
+      "commit_sha": "f59157fe156e3d91b1c045222d0a7dc06b7d78a2",
+      "provenance_source": "github_git_ref",
+      "canonical_owner": "graphlaw",
+      "required_standing": "ADMITTED",
+      "authority_ceiling": "CONSTRUCT"
+    }
+  ]
+}
