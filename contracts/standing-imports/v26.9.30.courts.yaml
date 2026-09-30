@@ -1,0 +1,23 @@
+schema: standing-import-courts/v2
+subject: contracts/standing-imports/v26.9.30.json
+strict:
+  require_exact_identity: true
+  require_provenance: true
+  require_canonical_owner: true
+  require_qualification: true
+  require_receipt_replay: true
+  executable_verifier: scripts/verify_standing_imports.py
+falsifiers:
+  - missing_exact_identity
+  - missing_provenance
+  - missing_canonical_owner
+  - unadmitted_standing
+  - technical_conformance_promotes_authority
+  - donor_presence_promotes_runtime_authority
+  - replacement_without_prior_art_falsifier
+  - donor_identity_drift
+expected:
+  strict_admission: refuse_on_any_falsifier
+  authority_promotion: never_implicit
+  replay: deterministic
+  current_subject: ALIVE

@@ -1,0 +1,54 @@
+schema: standing-import-identity-algebra/v2
+subject: standing-closed-fleet
+identity_classes:
+  git_commit:
+    required: [repository, commit_sha, provenance_source]
+    mutable_ref_is_identity: false
+  standards_artifact:
+    required: [publisher, artifact_id, stable_uri, finality_evidence]
+law:
+  immutable_identity_required: true
+  locator_alone_sufficient: false
+  technical_conformance_implies_authority: false
+admissions:
+  openid/authzen:
+    identity_class: standards_artifact
+    publisher: OpenID Foundation
+    artifact_id: Authorization API 1.0 Final
+    stable_uri: https://openid.net/specs/authorization-api-1_0.html
+    finality_evidence: approved_2026-01-12_not_subject_to_further_revision
+    canonical_owner: ash_a2a
+    authority_ceiling: VERIFY
+  a2aproject/A2A:
+    identity_class: git_commit
+    repository: a2aproject/A2A
+    commit_sha: 3303592588e388e62e0f69f701af531d2f4e3991
+    provenance_source: github_git_ref
+    canonical_owner: ash_a2a
+    authority_ceiling: VERIFY
+  spiffe/spiffe:
+    identity_class: git_commit
+    repository: spiffe/spiffe
+    commit_sha: f97c46dfd0ff0d4e412cce5c73846a9ca32a99a2
+    provenance_source: github_verified_commit
+    canonical_owner: affidavit
+    authority_ceiling: VERIFY
+  w3c/prov-o:
+    identity_class: standards_artifact
+    publisher: W3C
+    artifact_id: REC-prov-o-20130430
+    stable_uri: https://www.w3.org/TR/2013/REC-prov-o-20130430/
+    finality_evidence: W3C_Recommendation_2013-04-30
+    canonical_owner: affidavit
+    authority_ceiling: VERIFY
+  edmcouncil/fibo:
+    identity_class: git_commit
+    repository: edmcouncil/fibo
+    commit_sha: f59157fe156e3d91b1c045222d0a7dc06b7d78a2
+    provenance_source: github_git_ref
+    canonical_owner: graphlaw
+    authority_ceiling: CONSTRUCT
+qualification:
+  resolved_rows: 5
+  unresolved_rows: 0
+  strict_composition_requires: [standing, inherited_courts, receipt_replay]

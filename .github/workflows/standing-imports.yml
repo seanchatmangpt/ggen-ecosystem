@@ -1,0 +1,22 @@
+name: Standing import exact-identity court
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  standing-imports:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ecosystem
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Checkout exact marketplace absorption pack
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: seanchatmangpt/ggen-marketplace
+          ref: a0e1e6d62bdff4ec153d297cb1fbaab8edb30617
+          path: marketplace
+      - name: Verify immutable donor identities and inherited courts
+        run: |
+          python3 scripts/verify_standing_imports.py --marketplace-root marketplace --output /tmp/standing-import-receipt.json
+          cat /tmp/standing-import-receipt.json

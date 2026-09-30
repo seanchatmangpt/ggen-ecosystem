@@ -1,0 +1,19 @@
+schema: standing-import-identity-self-court/v2
+subject: contracts/standing-imports/v26.9.30.yaml
+qualification: ALIVE
+checks:
+  standards_artifact_publishers:
+    expected: [openid/authzen, w3c/prov-o]
+    resolved: true
+  a2a_projection_identity:
+    canonical: a2aproject/A2A
+    legacy_projection_present: false
+  marketplace_absorption_pack:
+    exact_commit_bound: true
+  executable_verifier:
+    path: scripts/verify_standing_imports.py
+remaining_refusal: NONE
+law:
+  authority_promotion: false
+  imported_do_authority: forbidden
+  strict_composition_allowed_after_replay: true

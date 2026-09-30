@@ -1,0 +1,27 @@
+version: v26.9.30
+kind: standing-import-inheritance-replay-court
+mode: strict
+executable_verifier: scripts/verify_standing_imports.py
+claim:
+  imported_capability_is_admitted_only_if:
+    - immutable_donor_identity
+    - provenance_bound
+    - canonical_owner_bound
+    - canonical_owner_standing_admitted
+    - authority_ceiling_bound
+    - consumer_projection_bound
+    - inherited_courts_pass
+    - import_receipt_emitted
+    - deterministic_replay_matches
+authority:
+  technical_conformance_implies_runtime_authority: false
+  donor_presence_implies_runtime_authority: false
+  imported_do_authority: forbidden
+  do_requires: BRCE
+qualification:
+  standing: ALIVE
+  donor_identity_drift: false
+  marketplace_pack_bound: true
+falsifier: >-
+  Any identity-qualified donor entering strict composition without an ADMITTED
+  canonical-owner standing receipt whose replay reproduces the same bounded result.
