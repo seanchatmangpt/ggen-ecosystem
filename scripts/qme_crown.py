@@ -24,7 +24,7 @@ SHA40 = re.compile(r"^[0-9a-f]{40}$")
 QME_PROFILE = "QME-1/EcosystemReference"
 CANONICAL_QME_SUBJECT = (
     "seanchatmangpt/chatman-ecosystem@"
-    "32c47032a9cefd0ab4f0980efc32fa84505031b2"
+    "88b276f71e2c8e606553942cb721bceb6836a87e"
 )
 REQUIRED_INHERITANCE = frozenset(
     {
