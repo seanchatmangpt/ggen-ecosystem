@@ -1,0 +1,20 @@
+schema: standing-import-courts/v1
+subject: contracts/standing-imports/v26.9.30.yaml
+strict:
+  require_exact_identity: true
+  require_provenance: true
+  require_canonical_owner: true
+  require_qualification: true
+  require_receipt_replay: true
+falsifiers:
+  - missing_exact_identity
+  - missing_provenance
+  - missing_canonical_owner
+  - unadmitted_standing
+  - technical_conformance_promotes_authority
+  - donor_presence_promotes_runtime_authority
+  - replacement_without_prior_art_falsifier
+expected:
+  strict_admission: refuse_on_any_falsifier
+  authority_promotion: never_implicit
+  replay: deterministic
