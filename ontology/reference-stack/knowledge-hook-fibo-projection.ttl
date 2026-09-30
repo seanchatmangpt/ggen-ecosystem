@@ -2,7 +2,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
 eco:GraphLawKnowledgeHookFibo a eco:DeterministicProjection ;
-  eco:projectionSource "seanchatmangpt/graphlaw:contracts/knowledge_hook/" ;
+  eco:projectionSource "seanchatmangpt/graphlaw@48a7bbd801b8df1d7ffab879b10d58d7f14ef7bc:contracts/knowledge_hook/" ;
   eco:projectionTarget "seanchatmangpt/castle:reference-stack/fibo-payment" ;
   eco:projectedCapability "fibo:PaymentExecution" ;
   eco:projectionStanding "CANDIDATE" ;
