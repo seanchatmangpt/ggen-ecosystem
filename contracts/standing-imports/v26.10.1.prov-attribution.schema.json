@@ -1,0 +1,7 @@
+{
+  "schema": "prov-attribution-boundary/v1",
+  "prov_attribution_implies_authorization": false,
+  "prov_association_implies_authorization": false,
+  "authorization_owner": "EXTERNAL_POLICY",
+  "authority_ceiling": "EVIDENCE_VALIDATION_ONLY"
+}
