@@ -1,0 +1,7 @@
+{
+  "schema": "prov-normalization/v1",
+  "donor": "W3C PROV-CONSTRAINTS",
+  "normalize_before_validity": true,
+  "normal_form_required_for_replay": true,
+  "local_alternate_calculus": false
+}
