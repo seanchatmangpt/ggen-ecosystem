@@ -1,0 +1,9 @@
+{
+  "schema": "prov-validity-admission/v1",
+  "normative_donor": "W3C PROV-CONSTRAINTS",
+  "artifact": "REC-prov-constraints-20130430",
+  "normalization_required": true,
+  "validity_required": true,
+  "validity_implies_authority": false,
+  "refusal": "OCEL_PROV_INVALID"
+}
