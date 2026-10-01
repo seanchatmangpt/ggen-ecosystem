@@ -1,0 +1,50 @@
+{
+  "schema": "prior-art-import-contract/v1",
+  "id": "ocel-2.0",
+  "capability": "object-centric event-log interchange",
+  "decision": "REUSE",
+  "existing_implies_required": true,
+  "canonical_owner": "ggen-ecosystem",
+  "donor": {
+    "identity_class": "standards_artifact",
+    "publisher": "RWTH Aachen University, Chair of Process and Data Science",
+    "artifact_id": "OCEL (Object-Centric Event Log) 2.0 Specification",
+    "version": "2.0",
+    "published": "2023-10-16",
+    "stable_uri": "https://www.ocel-standard.org/2.0/ocel20_specification.pdf",
+    "finality_evidence": "versioned specification document with published JSON, XML and relational validation schemes"
+  },
+  "required_semantics": [
+    "events and objects have stable identifiers and types",
+    "event-to-object relationships preserve qualifiers",
+    "object-to-object relationships preserve qualifiers",
+    "object attribute changes preserve timestamps",
+    "exchange-format projection preserves the OCEL metamodel"
+  ],
+  "negative_knowledge": [
+    "OCEL interchange conformance does not imply runtime authority",
+    "JSON, XML and SQLite serialization adjacency does not by itself prove semantic equivalence",
+    "OCEL 2.1 extensions must not be silently interpreted as OCEL 2.0 semantics",
+    "event-log evidence is observational and cannot authorize protected DO",
+    "lossy flattening to case-centric traces is not equivalent to object-centric interchange"
+  ],
+  "standing": {
+    "required_technical_standing": "ADMITTED",
+    "required_external_standing": "VERSIONED_PUBLIC_SPECIFICATION",
+    "runtime_authority_ceiling": "EVIDENCE_ONLY",
+    "imported_do_authority": "forbidden"
+  },
+  "irreducible_delta": "NONE until an executable consumer requirement falsifies OCEL 2.0 coverage",
+  "falsifiers": [
+    "missing or altered E2O qualifier",
+    "missing or altered O2O qualifier",
+    "loss of timestamped object-attribute history",
+    "cross-format round-trip changes metamodel-observable content",
+    "consumer promotes imported OCEL evidence to runtime or DO authority"
+  ],
+  "sources": [
+    "https://www.ocel-standard.org/",
+    "https://www.ocel-standard.org/specification/formats/json/",
+    "https://www.ocel-standard.org/2.0/ocel20_specification.pdf"
+  ]
+}
