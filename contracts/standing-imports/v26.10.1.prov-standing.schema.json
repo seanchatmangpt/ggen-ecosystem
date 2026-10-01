@@ -1,0 +1,8 @@
+{
+  "schema": "prov-standing-separation/v1",
+  "prov_validity_is_truth": false,
+  "prov_validity_is_authorization": false,
+  "prov_validity_is_external_standing": false,
+  "standing_admission": "INDEPENDENT",
+  "authority_admission": "INDEPENDENT"
+}
