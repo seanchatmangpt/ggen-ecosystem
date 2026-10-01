@@ -1,0 +1,7 @@
+{
+  "schema": "ocel-time-projection/v1",
+  "timestamps_may_constrain_order": true,
+  "timestamps_may_invent_generation": false,
+  "timestamps_may_invent_usage": false,
+  "missing_causal_event": "PRESERVE_UNKNOWN"
+}
