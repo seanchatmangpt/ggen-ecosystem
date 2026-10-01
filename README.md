@@ -7,7 +7,7 @@
 
 Canonical governed composition root for the ggen ecosystem.
 
-> **Current release standing:** `BLOCKED[REQUIRES_REPUBLISH]` for ecosystem `v26.10.1`. The producer identities are admitted below, but the composed `v26.10.1` GHCR image has not yet been published and independently re-pulled/replayed. As of the v26.10.1 crown (2026-10-01) the composed container itself is `BLOCKED[AWAITING_PUBLISH]` for tag v26.10.1 (the v26.9.22-era digest below is superseded and awaits republish); the authoritative live standing is `ecosystem.lock.toml [container]`. Historical container digests remain evidence for their own subjects only; they do not establish standing for this release. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
+> **Current release standing:** `ALIVE` for ecosystem `v26.10.1`. The composed `v26.10.1` GHCR image is published (`sha256:cf0612ae22425c94731dc7bc43ea857a02ab30910a4f91a80e9eb902e7f06004`, container run `36924410651`, 2026-10-01) and its digest independently re-fetched anonymously from the public index; the authoritative live standing is `ecosystem.lock.toml [container]`. Historical container digests remain evidence for their own subjects only; they do not establish standing for this release. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
 
 This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
 

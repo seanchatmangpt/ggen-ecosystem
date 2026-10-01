@@ -86,13 +86,11 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 [container]
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
 tag = "v26.10.1"
-digest = "sha256:6605878ee50f897947560445f655602e9f4471dcaeb4c493a0ce55dbec4bec13"
-standing = "BLOCKED"
-requires_republish = true
-failure = "v26.10.1 image not yet published: digest below is historical evidence from the prior published image; awaiting the ggen-ecosystem-container build and independent pull verification for tag v26.10.1"
-observed_success_run = 35833887166
-observed_success_at = "2026-09-23T08:27:01Z"
-observed_success_head_sha = "97620bdd72f9125fb6280537a86fe9da72001386"
+digest = "sha256:cf0612ae22425c94731dc7bc43ea857a02ab30910a4f91a80e9eb902e7f06004"
+standing = "ALIVE"
+observed_success_run = 36924410651
+observed_success_at = "2026-10-01T21:16:44Z"
+observed_success_head_sha = "e4be6fee4edecb2075a3a5a6863058051ecbed82"
 beam4pm_root = "/opt/beam4pm"
 
 [manufacturing]
