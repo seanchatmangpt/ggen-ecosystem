@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ggen-ecosystem:tool-delta:v26.10.1",
+  "title": "Runtime Tool Delta",
+  "type": "object",
+  "required": [
+    "event_type",
+    "github",
+    "notion"
+  ],
+  "properties": {
+    "event_type": {
+      "const": "TOOL_DELTA_COMPUTED"
+    },
+    "github": {
+      "$ref": "#/$defs/delta"
+    },
+    "notion": {
+      "$ref": "#/$defs/delta"
+    }
+  },
+  "$defs": {
+    "delta": {
+      "type": "object",
+      "required": [
+        "expected",
+        "present",
+        "callable",
+        "restricted",
+        "missing",
+        "failed"
+      ],
+      "properties": {
+        "expected": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "present": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "callable": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "restricted": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "failed": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
