@@ -7,7 +7,7 @@
 
 Canonical governed composition root for the ggen ecosystem.
 
-> **Current release standing:** `BLOCKED[REQUIRES_REPUBLISH]` for ecosystem `v26.9.29`. The producer identities are admitted below, but the composed `v26.9.29` GHCR image has not yet been published and independently re-pulled/replayed. Historical container digests remain evidence for their own subjects only; they do not establish standing for this release. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
+> **Current release standing:** `BLOCKED[REQUIRES_REPUBLISH]` for ecosystem `v26.10.1`. The producer identities are admitted below, but the composed `v26.10.1` GHCR image has not yet been published and independently re-pulled/replayed. As of the v26.10.1 crown (2026-10-01) the composed container itself is `BLOCKED[AWAITING_PUBLISH]` for tag v26.10.1 (the v26.9.22-era digest below is superseded and awaits republish); the authoritative live standing is `ecosystem.lock.toml [container]`. Historical container digests remain evidence for their own subjects only; they do not establish standing for this release. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
 
 This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
 
@@ -61,7 +61,7 @@ A `Justfile` provides the fuller canonical operator surface (`just --list` for a
 
 The integration crown and published-release identities are intentionally separate.
 
-- Ecosystem release: `v26.9.29` (container publication still pending).
+- Ecosystem release: `v26.10.1` (container publication still pending).
 - GGen published release: `v26.9.28` at
   `ff96f04e8c7b851e5cca53f3faf5ce1d5f43ce6e` (also the current
   `vendor/ggen` gitlink).
@@ -70,26 +70,22 @@ The integration crown and published-release identities are intentionally separat
   Release-run build-output SHA-256 for `target/release/ggen`:
   `c44f9c5632de1bf6c7cf926a5cbbd88303c681f1bb976f2e90ef4b3122ae44a6`
   (run `36508964375`, reports `ggen 26.9.28`).
-- Marketplace published release: `v26.9.29` at
-  `637b561cc6384fc9ac0e4282d048cc7624256258`; rolling
-  `vendor/ggen-marketplace` crown:
-  `cb82395df9d726237f5480bc41fb18e875ce91b9`.
-- AutoFDE Lab rolling crown:
-  `d42a5af94481a3128bf3e35d5f2a0a9a70f22e41`.
+- Marketplace commit: `bf9eccb3420134d4850dd49a5cbbef7dc35f20e2` (matches `ecosystem.lock.toml` and the `vendor/ggen-marketplace` gitlink)
+- AutoFDE Lab commit: `71de04a60db723764fab5afe042b42937b471e0e` (matches `ecosystem.lock.toml` and the `vendor/autofde-lab` gitlink)
 - GGen Igniter rolling crown:
-  `4c5eed22252203980060dbc757c447823179253f`, source version `26.9.29`;
-  latest observed published GitHub Release remains `v26.8.27`.
+  `0abed8a35db68c18bba6982b266dd7546c162d1c`, source version `26.9.30`.
 - Beam4PM rolling crown:
-  `aa98261db7719f7708ad7990064bbc5f06b754df`, source version `26.9.28`;
-  no matching `v26.9.28` tag was observed at this release cut.
+  `7bad16ab4c20d0eeb90adca1c90a6f3f4d5900dc`, source version `26.9.30`.
 - WASM4PM rolling crown:
-  `2ec870ef6f2411beab238f56859c3ca438455c1c`, source version `26.9.28`;
-  latest observed published GitHub Release remains `v26.9.24`.
+  `a7352d818dbcaa15909833f13ac367dc5950a7a9`, source version `26.9.30`
+  (per `Cargo.toml`; the npm `package.json` at the same SHA still reads
+  `26.9.28`).
 - Marketplace pack: `packs/github-actions-pack` (sourced via local submodule
   `path =`, not `git =`/`version =`).
 - The digest currently retained in `ecosystem.lock.toml [container]` is
-  historical evidence only until the `v26.9.29` image is published and
+  historical evidence only until the `v26.10.1` image is published and
   independently admitted.
+- Historical composed-container digest: `sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` — **not currently admitted as pullable**; republish and re-crown are pending (lock `[container]` standing `BLOCKED` with `requires_republish = true`); the original manifest-unknown issue #146 is closed.
 
 ## Seven-day frontier intake
 
