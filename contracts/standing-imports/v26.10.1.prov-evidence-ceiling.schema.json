@@ -1,0 +1,7 @@
+{
+  "schema": "prov-evidence-ceiling/v1",
+  "technical_standing": "PROVENANCE_VALID",
+  "authority_ceiling": "EVIDENCE_VALIDATION_ONLY",
+  "runtime_authority": "NONE",
+  "consequential_authority": "FORBIDDEN"
+}
