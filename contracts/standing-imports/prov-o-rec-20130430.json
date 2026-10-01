@@ -1,0 +1,22 @@
+{
+  "schema": "standing-import/v1",
+  "donor": {
+    "standard": "W3C PROV-O",
+    "version": "REC-20130430",
+    "source": "https://www.w3.org/TR/2013/REC-prov-o-20130430/"
+  },
+  "required_capability": "provenance-interchange",
+  "existing_entails_required": true,
+  "semantic_delta": "NONE",
+  "runtime_authority_ceiling": "EVIDENCE_VALIDATION_ONLY",
+  "imported_do_authority": false,
+  "negative_knowledge": [
+    "derivation-is-not-semantic-equivalence",
+    "attribution-is-not-authorization",
+    "association-is-not-authorization",
+    "provenance-validity-is-not-truth",
+    "evidence-does-not-imply-standing"
+  ],
+  "canonical_owner": "ggen-ecosystem/standing-imports",
+  "validator": "scripts/prov_import_authority_court.py"
+}
