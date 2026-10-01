@@ -1,0 +1,16 @@
+{
+  "schema": "factory-d.prior-art-import/v1",
+  "donor": "DCMI Terms",
+  "required_capability": "resource metadata",
+  "decision": "REUSE_OR_COMPOSE",
+  "authority_ceiling": "EVIDENCE_ONLY",
+  "negative_knowledge": [
+    "metadata assertion is not provenance proof"
+  ],
+  "falsifier": "required provenance relation cannot be represented",
+  "standing": {
+    "technical": "QUALIFY",
+    "external": "UNCLAIMED",
+    "runtime_authority": "NONE"
+  }
+}
