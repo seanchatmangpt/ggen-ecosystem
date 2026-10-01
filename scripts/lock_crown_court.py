@@ -24,6 +24,7 @@ tests/lock_contracts/test_lock_crown_court.py):
   WORKFLOW_DEFAULT_MISSING    sync workflow lacks ggen_container_tag/marketplace_sha defaults
   WORKFLOW_CONTAINER_TAG      workflow ggen_container_tag default != lock [container].tag
   PROJECTION_PARITY           workflow input defaults != ontology.ttl source defaults
+  ACTION_PIN_PARITY           generated workflow action pins != ontology.ttl source pins
   MARKETPLACE_DEFAULT_UNRECORDED  marketplace_sha default not cited in the release's CHANGELOG section
   RELEASE_IDENTITY            [container].tag != [ggen].release
   RELEASE_UNRECORDED          CHANGELOG has no section for [ggen].release
@@ -112,6 +113,14 @@ def ontology_on_block(text: str) -> str:
     return match.group(1) if match else ""
 
 
+_ACTION_PIN = re.compile(r"uses:\\s*([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)@([0-9a-f]{40})")
+
+
+def action_pins(text: str) -> list[tuple[str, str]]:
+    """Ordered immutable GitHub Action pins from source or generated workflow."""
+    return _ACTION_PIN.findall(text)
+
+
 def changelog_section(text: str, release: str) -> str | None:
     heading = re.compile(r"^## \[" + re.escape(release) + r"\]", re.M)
     match = heading.search(text)
@@ -179,6 +188,10 @@ def evaluate(inputs: dict) -> list[tuple[str, str]]:
     onto = workflow_defaults(ontology_on_block(inputs["ontology_text"]))
     if wf != onto:
         out.append(("PROJECTION_PARITY", f"workflow={wf} ontology={onto}"))
+    workflow_actions = action_pins(inputs["workflow_text"])
+    ontology_actions = action_pins(inputs["ontology_text"])
+    if workflow_actions != ontology_actions:
+        out.append(("ACTION_PIN_PARITY", f"workflow={workflow_actions} ontology={ontology_actions}"))
     tags = [v for k, v in wf if k == "ggen_container_tag"]
     markets = [v for k, v in wf if k == "marketplace_sha"]
     if not tags or not markets:

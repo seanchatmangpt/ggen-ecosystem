@@ -190,6 +190,14 @@ class LockCrownCourt(unittest.TestCase):
         inputs["workflow_text"] = inputs["workflow_text"].replace(f"default: {tag}", "default: v26.9.22", 1)
         self.assertEqual(codes(inputs), {"PROJECTION_PARITY", "WORKFLOW_CONTAINER_TAG"})
 
+    def test_hand_edited_generated_action_pin_is_refused(self) -> None:
+        inputs = self.mutated()
+        pins = court.action_pins(inputs["workflow_text"])
+        self.assertTrue(pins, msg="anti-vacuity: generated workflow must contain immutable action pins")
+        action, pin = pins[0]
+        inputs["workflow_text"] = inputs["workflow_text"].replace(f"{action}@{pin}", f"{action}@{'0' * 40}", 1)
+        self.assertEqual(codes(inputs), {"ACTION_PIN_PARITY"})
+
     def test_stale_container_tag_in_both_projection_and_source_is_refused(self) -> None:
         inputs = self.mutated()
         tag = court.tomllib.loads(inputs["lock_text"])["container"]["tag"]
