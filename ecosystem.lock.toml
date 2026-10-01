@@ -1,9 +1,9 @@
 version = 3
-base_main_sha = "38ccda683b499db16f4a6425a7d080ad0c86607c"
-updated_at = "2026-10-01T16:18:47Z"
+base_main_sha = "dc665a1e93573949040900faa65b46af3a3ea6d9"
+updated_at = "2026-10-01T19:44:09Z"
 
 [ggen]
-release = "v26.9.29"
+release = "v26.10.1"
 commit_sha = "ff96f04e8c7b851e5cca53f3faf5ce1d5f43ce6e"
 upstream_release = "v26.9.28"
 observed_executable_evidence = "ggen Actions run 36508964375, ggen.sha256; binary reports ggen 26.9.28"
@@ -20,8 +20,8 @@ source = "existing exact-release path proven by .github/workflows/supply-chain-m
 [ggen_marketplace]
 sha = "bf9eccb3420134d4850dd49a5cbbef7dc35f20e2"
 repository = "https://github.com/seanchatmangpt/ggen-marketplace"
-latest_published_release = "v26.9.29"
-latest_published_release_sha = "637b561cc6384fc9ac0e4282d048cc7624256258"
+latest_published_release = "v26.9.30"
+latest_published_release_sha = "80d429f13cc887f66855ba4029f6d83aa3a8098f"
 role = "reusable executable-knowledge packs and templates"
 
 [pragprog_tps]
@@ -37,14 +37,14 @@ receipt_schema = "https://ggen.dev/receipts/pragprog-tps/v1"
 [ggen_igniter]
 sha = "0abed8a35db68c18bba6982b266dd7546c162d1c"
 repository = "https://github.com/seanchatmangpt/ggen_igniter"
-version = "26.9.29"
+version = "26.9.30"
 latest_published_release = "v26.8.27"
 matching_version_tag_observed = false
 role = "BEAM-native reconciliation, Reactor coordination, Igniter actuation, OCEL emission, planning boundary, receipts and replay"
 
 [beam4pm]
 sha = "7bad16ab4c20d0eeb90adca1c90a6f3f4d5900dc"
-version = "26.9.28"
+version = "26.9.30"
 repository = "https://github.com/seanchatmangpt/beam4pm"
 matching_version_tag_observed = false
 role = "BEAM-first process mining and process intelligence runtime"
@@ -53,8 +53,8 @@ container_root = "/opt/beam4pm"
 [wasm4pm]
 sha = "a7352d818dbcaa15909833f13ac367dc5950a7a9"
 repository = "https://github.com/seanchatmangpt/wasm4pm"
-version = "26.9.28"
-latest_published_release = "v26.9.24"
+version = "26.9.30"
+latest_published_release = "v26.9.30"
 matching_version_tag_observed = false
 role = "evidence-oriented process-mining platform with POWL execution and replayable WASM evidence"
 standing = "PARTIAL_ALIVE"
@@ -85,11 +85,11 @@ rule = "consumers integrate ggen-ecosystem; direct compiler/catalog/control-plan
 
 [container]
 repository = "ghcr.io/seanchatmangpt/ggen-ecosystem"
-tag = "v26.9.29"
+tag = "v26.10.1"
 digest = "sha256:6605878ee50f897947560445f655602e9f4471dcaeb4c493a0ce55dbec4bec13"
 standing = "BLOCKED"
 requires_republish = true
-failure = "v26.9.29 image not yet published: digest below is historical evidence from the prior published image; awaiting the ggen-ecosystem-container build and independent pull verification for tag v26.9.29"
+failure = "v26.10.1 image not yet published: digest below is historical evidence from the prior published image; awaiting the ggen-ecosystem-container build and independent pull verification for tag v26.10.1"
 observed_success_run = 35833887166
 observed_success_at = "2026-09-23T08:27:01Z"
 observed_success_head_sha = "97620bdd72f9125fb6280537a86fe9da72001386"
