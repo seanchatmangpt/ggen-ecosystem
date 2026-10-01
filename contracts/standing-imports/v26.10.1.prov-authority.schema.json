@@ -1,0 +1,8 @@
+{
+  "schema": "prov-authority-ceiling/v1",
+  "technical_ceiling": "EVIDENCE_VALIDATION_ONLY",
+  "runtime_authority": "NONE",
+  "do_authority": "FORBIDDEN",
+  "external_standing": "INDEPENDENT",
+  "refusal": "OCEL_PROV_AUTHORITY_PROMOTION"
+}
