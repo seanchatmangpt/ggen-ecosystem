@@ -1,0 +1,7 @@
+{
+  "schema": "prov-usage-boundary/v1",
+  "e2o_adjacency_is_usage": false,
+  "requires_directional_evidence": true,
+  "requires_projection_rule": true,
+  "otherwise": "PRESERVE_OCEL_RELATION"
+}
