@@ -1,0 +1,8 @@
+{
+  "schema": "prov-replay/v1",
+  "inputs": ["source_ocel_id", "source_version", "projection_rule_id", "projection_rule_version"],
+  "normalizer": "W3C-PROV-CONSTRAINTS",
+  "comparison": "normalized_prov_equivalence",
+  "required": true,
+  "refusal": "OCEL_PROV_REPLAY_DIVERGENCE"
+}
