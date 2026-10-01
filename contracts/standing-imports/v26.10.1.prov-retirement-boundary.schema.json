@@ -1,0 +1,8 @@
+{
+  "schema": "prov-retirement-boundary/v1",
+  "requires_same_subject": true,
+  "requires_same_observable_boundary": true,
+  "requires_negative_courts": true,
+  "requires_replay_equivalence": true,
+  "preserve_authority_boundary": true
+}
