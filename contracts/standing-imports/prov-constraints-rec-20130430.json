@@ -1,0 +1,19 @@
+{
+  "schema": "standing-import/v1",
+  "donor": {
+    "standard": "W3C PROV-CONSTRAINTS",
+    "version": "REC-20130430",
+    "source": "https://www.w3.org/TR/2013/REC-prov-constraints-20130430/"
+  },
+  "required_capability": "provenance-validity",
+  "existing_entails_required": true,
+  "semantic_delta": "NONE",
+  "runtime_authority_ceiling": "EVIDENCE_VALIDATION_ONLY",
+  "imported_do_authority": false,
+  "negative_knowledge": [
+    "prov-valid-is-not-true",
+    "prov-valid-is-not-authorized",
+    "normalization-is-not-runtime-actuation"
+  ],
+  "canonical_owner": "ggen-ecosystem/standing-imports"
+}
