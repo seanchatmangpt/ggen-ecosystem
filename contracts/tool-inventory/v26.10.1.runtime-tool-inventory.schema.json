@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ggen-ecosystem:tool-inventory:v26.10.1",
+  "title": "Runtime Tool Inventory Observation",
+  "type": "object",
+  "required": [
+    "event_type",
+    "profile",
+    "observed_at_run",
+    "github",
+    "notion"
+  ],
+  "properties": {
+    "event_type": {
+      "const": "TOOL_INVENTORY_OBSERVED"
+    },
+    "profile": {
+      "const": "PRIOR_ART_ABSORPTION"
+    },
+    "observed_at_run": {
+      "type": "string",
+      "minLength": 1
+    },
+    "github": {
+      "$ref": "#/$defs/surface"
+    },
+    "notion": {
+      "$ref": "#/$defs/surface"
+    }
+  },
+  "$defs": {
+    "surface": {
+      "type": "object",
+      "required": [
+        "baseline_exposed",
+        "observed_exposed",
+        "present",
+        "callable",
+        "restricted",
+        "missing",
+        "failed"
+      ],
+      "properties": {
+        "baseline_exposed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observed_exposed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "present": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "callable": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "restricted": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "failed": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
