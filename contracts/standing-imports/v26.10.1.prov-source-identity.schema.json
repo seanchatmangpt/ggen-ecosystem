@@ -1,0 +1,8 @@
+{
+  "schema": "prov-source-identity/v1",
+  "required": ["source_standard", "source_version", "source_identifier", "projection_rule", "target_identifier"],
+  "source_standard": "OCEL",
+  "source_version": "2.0",
+  "target_standard": "W3C PROV",
+  "authority_ceiling": "EVIDENCE_VALIDATION_ONLY"
+}
