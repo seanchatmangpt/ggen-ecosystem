@@ -1,0 +1,8 @@
+{
+  "schema": "prov-relation-admission/v1",
+  "default": "PRESERVE_SOURCE",
+  "qualified_projection_requires_rule": true,
+  "o2o_derivation_default": false,
+  "e2o_causal_direction_default": false,
+  "refusal": "OCEL_PROV_RELATION_INVENTED"
+}
