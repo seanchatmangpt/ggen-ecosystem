@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, hashlib, json, re, tomllib
+import argparse, hashlib, json, re, subprocess, tomllib
 from pathlib import Path
 
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
@@ -13,6 +13,15 @@ REQUIRED_CASES = {
 
 def digest(path: Path) -> str:
     return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+
+def observed_git_head(root: Path) -> str | None:
+    try:
+        return subprocess.check_output(
+            ["git", "-C", str(root), "rev-parse", "HEAD"],
+            text=True, stderr=subprocess.DEVNULL,
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return None
 
 def main() -> int:
     p=argparse.ArgumentParser()
@@ -41,6 +50,11 @@ def main() -> int:
     if doc["law"].get("imported_do_authority")!="forbidden": refusals.append("IMPORTED_DO_AUTHORITY")
 
     pack=doc["marketplace_absorption_pack"]
+    observed_marketplace_sha=observed_git_head(a.marketplace_root)
+    if observed_marketplace_sha is None:
+        refusals.append("MARKETPLACE_SUBJECT_UNOBSERVABLE")
+    elif observed_marketplace_sha != pack["commit_sha"]:
+        refusals.append("MARKETPLACE_SUBJECT_SUBSTITUTION")
     root=a.marketplace_root / pack["path"]
     source=tomllib.loads((root/"source-lock.toml").read_text(encoding="utf-8"))
     courts=tomllib.loads((root/"qualification/courts.toml").read_text(encoding="utf-8"))
@@ -62,7 +76,7 @@ def main() -> int:
       "standing":"ALIVE" if not refusals else "REFUSED",
       "subject":doc["subject"],
       "manifest_digest":digest(a.manifest),
-      "marketplace_pack":pack,
+      "marketplace_pack":pack,\n      "observed_marketplace_sha":observed_marketplace_sha,
       "qualified_donors":ids if not refusals else [],
       "refusals":sorted(set(refusals)),
       "authority":"NONE",
