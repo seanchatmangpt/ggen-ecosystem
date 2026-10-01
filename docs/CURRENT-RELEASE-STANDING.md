@@ -21,7 +21,7 @@ The current repository head must be resolved at verification time; the ancestor 
 records the composed multi-arch image for tag `v26.10.1` (`sha256:cf0612ae22425c94731dc7bc43ea857a02ab30910a4f91a80e9eb902e7f06004`), built by
 container run `36924410651` @ head `e4be6fee4edecb2075a3a5a6863058051ecbed82`
 (2026-10-01T21:16:44Z), with the digest independently re-fetched anonymously from
-the public GHCR index (`docker buildx imagetools inspect`, no local credentials).
+the public GHCR index (`docker buildx imagetools inspect`, no local credentials),The image was then anonymously pulled and `ggen --version` executed in-container (`ggen 26.9.28`, matching `[ggen].upstream_release`).
 The prior `sha256:6605878ee50f897947560445f655602e9f4471dcaeb4c493a0ce55dbec4bec13`
 digest remains historical evidence of the v26.9.22-era image only (observed run
 `35833887166`, 2026-09-23). See `ecosystem.lock.toml [container]`.

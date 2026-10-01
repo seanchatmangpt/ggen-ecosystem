@@ -1,0 +1,10 @@
+{
+  "schema": "https://ggen.dev/receipts/consumer-replay/v1",
+  "image": "ghcr.io/seanchatmangpt/ggen-ecosystem:v26.10.1",
+  "digest": "sha256:cf0612ae22425c94731dc7bc43ea857a02ab30910a4f91a80e9eb902e7f06004",
+  "pull": "anonymous (no registry credentials on daemon)",
+  "executed": "docker run --rm ghcr.io/seanchatmangpt/ggen-ecosystem:v26.10.1 ggen --version",
+  "observed": "ggen 26.9.28",
+  "matches_lock_upstream_release": "v26.9.28",
+  "at": "2026-10-01T21:30:00Z"
+}
