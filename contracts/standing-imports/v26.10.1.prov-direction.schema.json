@@ -1,0 +1,7 @@
+{
+  "schema": "prov-direction-admission/v1",
+  "default": "REFUSE",
+  "requires": ["source_relation", "source_qualifier", "projection_rule_id"],
+  "forbidden_inference": ["adjacency_to_used", "adjacency_to_generated", "o2o_to_derived"],
+  "refusal": "OCEL_PROV_DIRECTION_UNJUSTIFIED"
+}
