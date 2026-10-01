@@ -1,0 +1,18 @@
+{
+  "schema": "factory-d.prior-art-import/v1",
+  "donor": "OCEL 2.0",
+  "required_capability": "object-centric event interchange",
+  "decision": "REUSE_OR_COMPOSE",
+  "canonical_owner": "ggen-ecosystem",
+  "authority_ceiling": "EVIDENCE_ONLY",
+  "negative_knowledge": [
+    "event relation is not automatically causal provenance"
+  ],
+  "falsifier": "projection invents causal direction",
+  "admission": {
+    "technical_standing": "REQUIRES_EXECUTABLE_QUALIFICATION",
+    "external_standing": "UNCLAIMED",
+    "runtime_authority": "NONE"
+  },
+  "generated_projection_policy": "source_contract_is_canonical; generated projections must not be hand-edited"
+}
