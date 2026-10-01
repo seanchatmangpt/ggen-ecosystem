@@ -1,0 +1,6 @@
+{
+  "schema": "prov-projection-receipt/v1",
+  "fields": ["source_id", "rule_id", "target_id", "normalization_result", "validity_result"],
+  "replay_required": true,
+  "authority": "EVIDENCE_VALIDATION_ONLY"
+}
