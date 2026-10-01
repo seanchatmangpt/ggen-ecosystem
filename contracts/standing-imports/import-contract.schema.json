@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Standing Import Contract","type":"object","required":["donor","provenance","authority_ceiling","negative_knowledge"],"properties":{"donor":{"type":"object"},"provenance":{"type":"object"},"authority_ceiling":{"enum":["NONE","OBSERVE","CONSTRUCT"]},"negative_knowledge":{"type":"array","minItems":1}}}
