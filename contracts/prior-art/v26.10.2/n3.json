@@ -1,0 +1,16 @@
+{
+  "schema": "factory-d.prior-art-import/v1",
+  "donor": "Notation3",
+  "required_capability": "RDF rules and graph syntax",
+  "decision": "REUSE_OR_COMPOSE",
+  "authority_ceiling": "EVIDENCE_ONLY",
+  "negative_knowledge": [
+    "rule derivation is not asserted truth"
+  ],
+  "falsifier": "derived triple violates admission boundary",
+  "standing": {
+    "technical": "QUALIFY",
+    "external": "UNCLAIMED",
+    "runtime_authority": "NONE"
+  }
+}
