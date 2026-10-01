@@ -1,0 +1,21 @@
+{
+  "schema": "prov-projection-negative/v1",
+  "authority_ceiling": "EVIDENCE_VALIDATION_ONLY",
+  "runtime_authority": "NONE",
+  "do_authority": "FORBIDDEN",
+  "refusals": [
+    "OCEL_PROV_DIRECTION_UNJUSTIFIED",
+    "OCEL_PROV_HISTORY_COLLAPSE",
+    "OCEL_PROV_RELATION_INVENTED",
+    "OCEL_PROV_INVALID",
+    "OCEL_PROV_REPLAY_DIVERGENCE",
+    "OCEL_PROV_AUTHORITY_PROMOTION"
+  ],
+  "admit": {
+    "direction_justified": true,
+    "history_preserved": true,
+    "relations_justified": true,
+    "prov_constraints_valid": true,
+    "replay_equal": true
+  }
+}
