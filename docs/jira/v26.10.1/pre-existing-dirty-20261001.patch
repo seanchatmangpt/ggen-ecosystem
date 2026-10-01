@@ -1,0 +1,119 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index c3737eec..8f8b0d5a 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -14,6 +14,11 @@ they bring in.
+ 
+ ## [Unreleased]
+ 
++Note: `ecosystem.ttl`'s `dcterms:hasVersion` (`"26.8.27"`) intentionally lags
++`ecosystem.lock.toml`'s `[ggen].release` (`v26.9.25`) until the next crown bumps it; the gap
++between the ontology's consumer-manufacture version and the release identity is expected, not
++drift.
++
+ ### Added
+ 
+ - Lock/crown admission court `scripts/lock_crown_court.py` (SELECT-only,
+@@ -31,6 +36,13 @@ they bring in.
+   admitted); 23/23 refusal mutants are killed. Benchmark receipt:
+   `receipts/bench-lock-crown-court-20260926.json`.
+ 
++- `.github/workflows/release-crown-contracts.yml` (f3cc60f8, 2026-09-25): CI
++  consumer for the release-crown contract corpus, running on push to `main`
++  that touches tool/corpus/DoD paths plus `workflow_dispatch`, and gating on
++  the 44/49 admitted-green `contracts/release-crown/` contracts (the 5
++  EXCLUDED contracts still evaluate `REFUSED:*` standing-drift against
++  `docs/DEFINITION-OF-DONE.md` and await court re-adjudication).
++
+ ## [v26.9.25] - 2026-09-26
+ 
+ Release identity follows the vYY.M.D convention (see the format note above).
+diff --git a/README.md b/README.md
+index a77aa078..2b699a53 100644
+--- a/README.md
++++ b/README.md
+@@ -7,7 +7,7 @@
+ 
+ Canonical governed composition root for the ggen ecosystem.
+ 
+-> **Current release standing:** `ALIVE`. Issue #146 (`BLOCKED[GHCR_MANIFEST_UNKNOWN]`) is closed: the composed capsule digest (`sha256:b9e170233fe1...`) was never broken -- the GHCR package was private, which GHCR reports as `manifest unknown` to unauthorized pulls rather than an access-denied error. Fixed by changing the package to public (2026-08-29); re-verified with a genuinely unauthenticated `docker logout` + full local cache removal + fresh pull + in-capsule `ggen --version`, all real, all passing. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
++> **Current release standing:** `ALIVE`. Issue #146 (`BLOCKED[GHCR_MANIFEST_UNKNOWN]`) is closed: the composed capsule digest (`sha256:b9e170233fe1...`) was never broken -- the GHCR package was private, which GHCR reports as `manifest unknown` to unauthorized pulls rather than an access-denied error. Fixed by changing the package to public (2026-08-29); re-verified with a genuinely unauthenticated `docker logout` + full local cache removal + fresh pull + in-capsule `ggen --version`, all real, all passing. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix. As of the v26.9.25 crown (2026-09-26) the composed container itself is `BLOCKED[AWAITING_PUBLISH]` for tag v26.9.25 (the v26.9.22-era digest below is superseded and awaits republish); the authoritative live standing is `ecosystem.lock.toml [container]`.
+ 
+ This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
+ 
+@@ -63,7 +63,7 @@ A `Justfile` provides the fuller canonical operator surface (`just --list` for a
+ - Marketplace commit: `89adf4c8476f7edc8067fdbb1c256cfbfa22df6a` (matches `ecosystem.lock.toml` and the `vendor/ggen-marketplace` gitlink)
+ - AutoFDE Lab commit: `a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09` (matches `ecosystem.lock.toml` and the `vendor/autofde-lab` gitlink)
+ - Marketplace pack: `packs/github-actions-pack` (sourced via local submodule `path =`, not `git =`/`version =`)
+-- Historical composed-container digest: `sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` — **not currently admitted as pullable**; republish and re-crown are tracked in issue #146.
++- Historical composed-container digest: `sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` — **not currently admitted as pullable**; republish and re-crown are pending (lock `[container]` standing `BLOCKED` with `requires_republish = true`); the original manifest-unknown issue #146 is closed.
+ 
+ ## Maximum ecosystem graph
+ 
+diff --git a/docs/CURRENT-RELEASE-STANDING.md b/docs/CURRENT-RELEASE-STANDING.md
+index 31507d52..3984b90b 100644
+--- a/docs/CURRENT-RELEASE-STANDING.md
++++ b/docs/CURRENT-RELEASE-STANDING.md
+@@ -5,16 +5,23 @@ This page is the canonical current release-standing correction for the composed
+ ## Exact admitted subject
+ 
+ - repository: `seanchatmangpt/ggen-ecosystem`
+-- reconciliation ancestor: `f42aa25c4974a0d5a701ed0e08f3bce46d69d115`
+-- ggen source: `c61ee99359c9dbc7b3cb71687976932a3e737ed4`
+-- marketplace source: `89adf4c8476f7edc8067fdbb1c256cfbfa22df6a`
+-- autofde-lab gitlink: `a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09`
++- reconciliation ancestor: `650156ad876b7fea2b708b7b538d6693c708e177`
++- ggen source: `be43abd8aa6284cc15a4dc7dc1021c59169e7f67`
++- marketplace source: `2c4c4c7e2a4eb33ebe2ad9ab23725af3c476a637`
++- ggen_igniter source: `c33b0f676e996ae1805cd69702c60a30af27fd16` (version 26.9.24)
++- autofde-lab gitlink: `a936f3601bde56e9b72ea8f6ec660172ee32c128`
++
++Updated 2026-09-27 from ecosystem.lock.toml @ HEAD.
+ 
+ The current repository head must be resolved at verification time; the ancestor above records the reconciliation lineage, not a claim that future heads inherit execution evidence automatically.
+ 
+ ## Capsule standing
+ 
+-`ALIVE`
++`BLOCKED[AWAITING_PUBLISH]` as of the v26.9.25 crown (2026-09-26): the lock's
++`[container]` section carries `requires_republish = true` for tag `v26.9.25` — the
++v26.9.25 image is not yet published, and the digest on record still describes the
++v26.9.22-era image (see `ecosystem.lock.toml [container]`). The previous `ALIVE`
++verdict below held for that v26.9.22-era digest.
+ 
+ Root cause of the historical `BLOCKED[GHCR_MANIFEST_UNKNOWN]` (2026-08-29): the
+ `ghcr.io/seanchatmangpt/ggen-ecosystem` package was **private**. GHCR reports `manifest unknown`
+diff --git a/docs/MACRO-GOVERNOR-DEMAND.md b/docs/MACRO-GOVERNOR-DEMAND.md
+index 740fc012..6d79d991 100644
+--- a/docs/MACRO-GOVERNOR-DEMAND.md
++++ b/docs/MACRO-GOVERNOR-DEMAND.md
+@@ -41,6 +41,16 @@ ancestry cannot be decided. Delegation to an agent is skipped for a demand that
+ same pass (`NOOP[DEMAND_RECOVERED]`). Closes are bounded by `max_actions_per_run`; the excess is
+ `DEFERRED[ACTION_BUDGET_EXHAUSTED]`.
+ 
++## Environment hermeticity
++
++Governor git calls run under `hermetic_git_env()` (introduced in 2ae7969a): the environment is
++stripped of `GIT_LOCAL_ENV_VARS` — the `git rev-parse --local-env-vars` set, covering `GIT_DIR`,
++`GIT_WORK_TREE`, `GIT_INDEX_FILE` and siblings — so the repository resolves from `-C <path>` alone.
++An exported `GIT_DIR` in the caller's shell (Mode P / scratch-archive lanes) can therefore no longer
++redirect governor git calls into another repository. The hermeticity tests run in a child process
++with `GIT_DIR` pointed at a sentinel repo and require the sentinel's refs, HEAD, reflog and object
++counts to stay byte-identical.
++
+ ## Falsifier
+ 
+ - One `(workflow, head_sha, conclusion)` produces more than one fingerprint across 3 failing runs.
+diff --git a/docs/TRANSPORT.md b/docs/TRANSPORT.md
+index e3334452..2e595e12 100644
+--- a/docs/TRANSPORT.md
++++ b/docs/TRANSPORT.md
+@@ -4,7 +4,7 @@ Transport answers how an exact admitted object becomes executable without changi
+ 
+ The intended primary transport is a composed `ggen-ecosystem` container image: `Dockerfile` builds a real `ggen` binary from the `vendor/ggen` submodule and copies the `vendor/ggen-marketplace/packs/` tree (plus `vendor/autofde-lab/src/`) into a `debian:bookworm-slim` runtime image, published to `ghcr.io/seanchatmangpt/ggen-ecosystem`. `.github/workflows/ggen-ecosystem-container.yml` builds and publishes it as three jobs — `build-amd64` and `build-arm64` each push a single-arch image tagged `<tag>-amd64`/`<tag>-arm64`, then `merge-manifest` (which `needs: [build-arm64, build-amd64]`) runs `docker buildx imagetools create` to fuse them into one multi-arch manifest published as both `<tag>` and `latest`. `.github/workflows/ggen-ecosystem-sync.yml` then runs its steps `container:`-scoped inside that pinned image rather than installing a `ggen` binary directly on the runner, and the composite action at `vendor/ggen-marketplace/packs/github-actions-pack/examples/consume-github-actions-pack/.github/actions/use-ggen-ecosystem/action.yml` lets consumer repos `docker run` that same published image against their own `ggen.toml` without installing `ggen` locally. This supersedes the earlier binary-release-consumption path: `ecosystem.lock.toml`'s `[release]` section is kept only as the source-identity record binding `vendor/ggen`'s vendored commit, not as an active transport.
+ 
+-`ecosystem.lock.toml`'s `[container]` section is the exact record of this transport's current standing — check it before trusting the digest is pullable: as of the last recorded observation, a hosted-run replay (Actions run `33238309149`) hit `manifest unknown` pulling the pinned digest during job-container initialization, so the section's `standing = "BLOCKED"` and `requires_republish = true` until a fresh publish, pull, and consumer execution are observed.
++`ecosystem.lock.toml`'s `[container]` section is the exact record of this transport's current standing — check it before trusting the digest is pullable: as of the v26.9.25 crown (2026-09-26), the section's `standing = "BLOCKED"` and `requires_republish = true` record the awaiting-publish state for tag `v26.9.25` — `[container].failure`: the pinned digest still describes the v26.9.22-era image, and the v26.9.25 image has not yet been published, pulled, and consumer-executed. (Historical root-cause note, 2026-08-29: an earlier `BLOCKED[GHCR_MANIFEST_UNKNOWN]` state arose when a hosted-run replay, Actions run `33238309149`, hit `manifest unknown` pulling the then-pinned digest during job-container initialization — the private GHCR package reporting `manifest unknown` rather than an access-denied error, not a broken digest.)
+ 
+ Other reversible lawful transports remain available:
+ 1. already-present exact sibling checkout (e.g. the `vendor/ggen`, `vendor/ggen-marketplace`, `vendor/autofde-lab` submodule checkouts themselves);
