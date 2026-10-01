@@ -1,0 +1,7 @@
+{
+  "schema": "ocel-qualifier-preservation/v1",
+  "e2o_qualifier_required_for_directional_projection": true,
+  "o2o_qualifier_preserved": true,
+  "unqualified_relation": "SOURCE_ONLY",
+  "projection_requires_explicit_rule": true
+}
