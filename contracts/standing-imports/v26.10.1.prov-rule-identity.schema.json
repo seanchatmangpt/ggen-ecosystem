@@ -1,0 +1,7 @@
+{
+  "schema": "prov-rule-identity/v1",
+  "rule_id_required": true,
+  "rule_version_required": true,
+  "source_standard_required": true,
+  "target_standard_required": true
+}
