@@ -1,0 +1,8 @@
+{
+  "schema": "prov-history-preservation/v1",
+  "source": "OCEL-2.0",
+  "target": "W3C-PROV",
+  "changing_object_requires_version_boundary": true,
+  "timeless_entity_collapse": "REFUSE",
+  "refusal": "OCEL_PROV_HISTORY_COLLAPSE"
+}
