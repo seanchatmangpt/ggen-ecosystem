@@ -1,0 +1,16 @@
+{
+  "schema": "factory-d.prior-art-import/v1",
+  "donor": "DMN",
+  "required_capability": "decision model notation",
+  "decision": "REUSE_OR_COMPOSE",
+  "authority_ceiling": "EVIDENCE_ONLY",
+  "negative_knowledge": [
+    "decision model is not authorization source"
+  ],
+  "falsifier": "decision lacks required authority provenance",
+  "standing": {
+    "technical": "QUALIFY",
+    "external": "UNCLAIMED",
+    "runtime_authority": "NONE"
+  }
+}
