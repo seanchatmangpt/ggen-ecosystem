@@ -1,0 +1,16 @@
+{
+  "schema": "factory-d.prior-art-import/v1",
+  "donor": "OASIS XACML",
+  "required_capability": "attribute-based access-control policy",
+  "decision": "REUSE_OR_COMPOSE",
+  "authority_ceiling": "EVIDENCE_ONLY",
+  "negative_knowledge": [
+    "policy evaluation is not identity proof"
+  ],
+  "falsifier": "decision cannot bind required subject identity",
+  "standing": {
+    "technical": "QUALIFY",
+    "external": "UNCLAIMED",
+    "runtime_authority": "NONE"
+  }
+}
