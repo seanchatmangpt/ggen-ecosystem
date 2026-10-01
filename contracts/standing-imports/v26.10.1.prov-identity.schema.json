@@ -1,0 +1,7 @@
+{
+  "schema": "prov-identity/v1",
+  "publisher": "W3C",
+  "ontology_artifact": "REC-prov-o-20130430",
+  "constraints_artifact": "REC-prov-constraints-20130430",
+  "immutable_artifact_identity_required": true
+}
