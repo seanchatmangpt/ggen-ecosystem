@@ -1,0 +1,7 @@
+{
+  "schema": "prov-qualified-relation/v1",
+  "requires_source_qualifier": true,
+  "requires_projection_rule": true,
+  "requires_source_trace": true,
+  "unqualified_default": "NO_PROJECTION"
+}
