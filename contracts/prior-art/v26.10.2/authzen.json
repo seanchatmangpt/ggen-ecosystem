@@ -1,0 +1,18 @@
+{
+  "schema": "factory-d.prior-art-import/v1",
+  "donor": "OpenID AuthZEN",
+  "required_capability": "authorization decision interchange",
+  "decision": "REUSE_OR_COMPOSE",
+  "canonical_owner": "ggen-ecosystem",
+  "authority_ceiling": "EVIDENCE_ONLY",
+  "negative_knowledge": [
+    "decision protocol is not identity proof or DO authority"
+  ],
+  "falsifier": "canonical authorization request/response mismatch",
+  "admission": {
+    "technical_standing": "REQUIRES_EXECUTABLE_QUALIFICATION",
+    "external_standing": "UNCLAIMED",
+    "runtime_authority": "NONE"
+  },
+  "generated_projection_policy": "source_contract_is_canonical; generated projections must not be hand-edited"
+}
