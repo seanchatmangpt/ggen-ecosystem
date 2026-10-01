@@ -56,6 +56,7 @@ dossier: `docs/releases/v26.10.1-vendor-crown.md`).
   all six vendored producers advanced to their remote default-branch heads:
   - `vendor/autofde-lab` → 71de04a6 (origin `master` head)
   - `vendor/beam4pm` → 7bad16ab (`v26.9.9-777-g7bad16ab`)
+  - beam4pm re-pinned to `c3017e42` (upstream fix on beam4pm main: nested `vendor/ggen-marketplace` gitlink raised to reachable `637b561c` — prior pin `c95d1088` dangling upstream, 'not our ref'; unblocks container builds)
   - `vendor/ggen` → ff96f04e (`v26.9.28`)
   - `vendor/ggen-marketplace` → bf9eccb3 (`v26.9.30-6-gbf9eccb34`)
   - `vendor/ggen_igniter` → 0abed8a3 (`v26.9.15-378-g0abed8a`)
