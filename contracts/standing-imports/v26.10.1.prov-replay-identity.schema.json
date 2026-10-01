@@ -1,0 +1,6 @@
+{
+  "schema": "prov-replay-identity/v1",
+  "inputs": ["source_id", "source_version", "rule_id", "rule_version"],
+  "output": "normalized_prov_identity",
+  "deterministic": true
+}
