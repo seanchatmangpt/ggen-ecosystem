@@ -5,16 +5,23 @@ This page is the canonical current release-standing correction for the composed 
 ## Exact admitted subject
 
 - repository: `seanchatmangpt/ggen-ecosystem`
-- reconciliation ancestor: `f42aa25c4974a0d5a701ed0e08f3bce46d69d115`
-- ggen source: `c61ee99359c9dbc7b3cb71687976932a3e737ed4`
-- marketplace source: `89adf4c8476f7edc8067fdbb1c256cfbfa22df6a`
-- autofde-lab gitlink: `a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09`
+- reconciliation ancestor: `650156ad876b7fea2b708b7b538d6693c708e177`
+- ggen source: `be43abd8aa6284cc15a4dc7dc1021c59169e7f67`
+- marketplace source: `2c4c4c7e2a4eb33ebe2ad9ab23725af3c476a637`
+- ggen_igniter source: `c33b0f676e996ae1805cd69702c60a30af27fd16` (version 26.9.24)
+- autofde-lab gitlink: `a936f3601bde56e9b72ea8f6ec660172ee32c128`
+
+Updated 2026-09-27 from ecosystem.lock.toml @ HEAD.
 
 The current repository head must be resolved at verification time; the ancestor above records the reconciliation lineage, not a claim that future heads inherit execution evidence automatically.
 
 ## Capsule standing
 
-`ALIVE`
+`BLOCKED[AWAITING_PUBLISH]` as of the v26.9.25 crown (2026-09-26): the lock's
+`[container]` section carries `requires_republish = true` for tag `v26.9.25` — the
+v26.9.25 image is not yet published, and the digest on record still describes the
+v26.9.22-era image (see `ecosystem.lock.toml [container]`). The previous `ALIVE`
+verdict below held for that v26.9.22-era digest.
 
 Root cause of the historical `BLOCKED[GHCR_MANIFEST_UNKNOWN]` (2026-08-29): the
 `ghcr.io/seanchatmangpt/ggen-ecosystem` package was **private**. GHCR reports `manifest unknown`

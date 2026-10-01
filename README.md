@@ -7,7 +7,7 @@
 
 Canonical governed composition root for the ggen ecosystem.
 
-> **Current release standing:** `ALIVE`. Issue #146 (`BLOCKED[GHCR_MANIFEST_UNKNOWN]`) is closed: the composed capsule digest (`sha256:b9e170233fe1...`) was never broken -- the GHCR package was private, which GHCR reports as `manifest unknown` to unauthorized pulls rather than an access-denied error. Fixed by changing the package to public (2026-08-29); re-verified with a genuinely unauthenticated `docker logout` + full local cache removal + fresh pull + in-capsule `ggen --version`, all real, all passing. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix.
+> **Current release standing:** `ALIVE`. Issue #146 (`BLOCKED[GHCR_MANIFEST_UNKNOWN]`) is closed: the composed capsule digest (`sha256:b9e170233fe1...`) was never broken -- the GHCR package was private, which GHCR reports as `manifest unknown` to unauthorized pulls rather than an access-denied error. Fixed by changing the package to public (2026-08-29); re-verified with a genuinely unauthenticated `docker logout` + full local cache removal + fresh pull + in-capsule `ggen --version`, all real, all passing. See [docs/DEFINITION-OF-DONE.md](docs/DEFINITION-OF-DONE.md) for the full gate matrix. As of the v26.9.25 crown (2026-09-26) the composed container itself is `BLOCKED[AWAITING_PUBLISH]` for tag v26.9.25 (the v26.9.22-era digest below is superseded and awaits republish); the authoritative live standing is `ecosystem.lock.toml [container]`.
 
 This repository owns ecosystem identity, composition, admission, closure, qualification, transport, and release standing. It does not absorb the source identity of `ggen`, `ggen-marketplace`, or independently versioned ecosystem repositories. `ggen` and `ggen-marketplace` are vendored as real git submodules (`vendor/ggen`, `vendor/ggen-marketplace`) rather than referenced only by URL+pinned-SHA in TOML.
 
@@ -63,7 +63,7 @@ A `Justfile` provides the fuller canonical operator surface (`just --list` for a
 - Marketplace commit: `89adf4c8476f7edc8067fdbb1c256cfbfa22df6a` (matches `ecosystem.lock.toml` and the `vendor/ggen-marketplace` gitlink)
 - AutoFDE Lab commit: `a4dbb9a9943d23b51af9f3dc71b7beba52b3ec09` (matches `ecosystem.lock.toml` and the `vendor/autofde-lab` gitlink)
 - Marketplace pack: `packs/github-actions-pack` (sourced via local submodule `path =`, not `git =`/`version =`)
-- Historical composed-container digest: `sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` — **not currently admitted as pullable**; republish and re-crown are tracked in issue #146.
+- Historical composed-container digest: `sha256:b9e170233fe15d91003fbfc322786534d208fe8ac1b5c58cc0702d88d9ceeb3c` — **not currently admitted as pullable**; republish and re-crown are pending (lock `[container]` standing `BLOCKED` with `requires_republish = true`); the original manifest-unknown issue #146 is closed.
 
 ## Maximum ecosystem graph
 

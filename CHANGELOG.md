@@ -14,6 +14,11 @@ they bring in.
 
 ## [Unreleased]
 
+Note: `ecosystem.ttl`'s `dcterms:hasVersion` (`"26.8.27"`) intentionally lags
+`ecosystem.lock.toml`'s `[ggen].release` (`v26.9.25`) until the next crown bumps it; the gap
+between the ontology's consumer-manufacture version and the release identity is expected, not
+drift.
+
 ### Added
 
 - Lock/crown admission court `scripts/lock_crown_court.py` (SELECT-only,
@@ -30,6 +35,13 @@ they bring in.
   Every law is crown-stable (a lawful `crown-submodules.py --apply` bump stays
   admitted); 23/23 refusal mutants are killed. Benchmark receipt:
   `receipts/bench-lock-crown-court-20260926.json`.
+
+- `.github/workflows/release-crown-contracts.yml` (f3cc60f8, 2026-09-25): CI
+  consumer for the release-crown contract corpus, running on push to `main`
+  that touches tool/corpus/DoD paths plus `workflow_dispatch`, and gating on
+  the 44/49 admitted-green `contracts/release-crown/` contracts (the 5
+  EXCLUDED contracts still evaluate `REFUSED:*` standing-drift against
+  `docs/DEFINITION-OF-DONE.md` and await court re-adjudication).
 
 ## [v26.9.25] - 2026-09-26
 
