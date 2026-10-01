@@ -1,0 +1,16 @@
+{
+  "schema": "factory-d.prior-art-import/v1",
+  "donor": "Apache Avro",
+  "required_capability": "schema evolution and serialization",
+  "decision": "REUSE_OR_COMPOSE",
+  "authority_ceiling": "EVIDENCE_ONLY",
+  "negative_knowledge": [
+    "schema compatibility is not application equivalence"
+  ],
+  "falsifier": "reader/writer compatibility loses required invariant",
+  "standing": {
+    "technical": "QUALIFY",
+    "external": "UNCLAIMED",
+    "runtime_authority": "NONE"
+  }
+}
