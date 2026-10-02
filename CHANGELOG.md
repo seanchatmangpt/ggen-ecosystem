@@ -14,12 +14,31 @@ they bring in.
 
 ## [Unreleased]
 
-Note: `ecosystem.ttl`'s `dcterms:hasVersion` (`"26.8.27"`) intentionally lags
-`ecosystem.lock.toml`'s `[ggen].release` (`v26.9.25`) until the next crown bumps it; the gap
-between the ontology's consumer-manufacture version and the release identity is expected, not
-drift.
+Post-`v26.10.1` receipts; version surface unchanged
+(`ecosystem.lock.toml` `[ggen].release` == `[container].tag` == `v26.10.1`,
+`ecosystem.ttl` `dcterms:hasVersion` == `"26.10.1"` — the previously recorded
+intentional lag note is closed by the `v26.10.1` crown, see below).
 
 ### Added
+
+- Container publish (7329ae13, 2026-10-01): `[container]` standing
+  `BLOCKED[AWAITING_PUBLISH]` → `ALIVE` at `sha256:cf0612ae` (run
+  `36924410651`, both arches + manifest merge green); standing docs crowned.
+- Consumer-executed replay of the published `v26.10.1` image (615280b7,
+  2026-10-01): anonymous pull + in-container `ggen 26.9.28`, matching
+  `upstream_release`.
+
+### Fixed
+
+- Release-history repair (2026-10-01): annotated tag `v26.9.25` minted at its
+  unambiguous release commit `3b75fe27` ("release: bump to `v26.9.25`"); it
+  previously existed only as a CHANGELOG section. The `[v26.10.1]` and
+  `[v26.9.29]` compare links now resolve (`v26.9.29` was never tagged — its
+  compare anchor is the release-identity binding commit `6dd3e732`; the
+  `[v26.10.1]` compare is retargeted `v26.9.22...v26.10.1`). The stale
+  `[Unreleased]` note claiming `dcterms:hasVersion` lags the release is
+  removed — the `v26.10.1` crown closed that lag (see the `[v26.10.1]`
+  section).
 
 - Lock/crown admission court `scripts/lock_crown_court.py` (SELECT-only,
   authority NONE) with 35 Chicago cases in
@@ -473,8 +492,8 @@ under "Manage Actions access," so `GITHUB_TOKEN` can push — confirmed no API
 exists for this for either user- or org-owned packages).
 
 [Unreleased]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.10.1...main
-[v26.10.1]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.29...v26.10.1
-[v26.9.29]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.25...v26.9.29
+[v26.10.1]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.22...v26.10.1
+[v26.9.29]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.25...6dd3e732
 [v26.9.25]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.22...v26.9.25
 [v26.9.22]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.17...v26.9.22
 [v26.9.17]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.10...v26.9.17
