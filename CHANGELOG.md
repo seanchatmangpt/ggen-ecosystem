@@ -14,7 +14,31 @@ they bring in.
 
 ## [Unreleased]
 
+Post-`v26.10.1` receipts; version surface unchanged
+(`ecosystem.lock.toml` `[ggen].release` == `[container].tag` == `v26.10.1`,
+`ecosystem.ttl` `dcterms:hasVersion` == `"26.10.1"` — the previously recorded
+intentional lag note is closed by the `v26.10.1` crown, see below).
+
 ### Added
+
+- Container publish (7329ae13, 2026-10-01): `[container]` standing
+  `BLOCKED[AWAITING_PUBLISH]` → `ALIVE` at `sha256:cf0612ae` (run
+  `36924410651`, both arches + manifest merge green); standing docs crowned.
+- Consumer-executed replay of the published `v26.10.1` image (615280b7,
+  2026-10-01): anonymous pull + in-container `ggen 26.9.28`, matching
+  `upstream_release`.
+
+### Fixed
+
+- Release-history repair (2026-10-01): annotated tag `v26.9.25` minted at its
+  unambiguous release commit `3b75fe27` ("release: bump to `v26.9.25`"); it
+  previously existed only as a CHANGELOG section. The `[v26.10.1]` and
+  `[v26.9.29]` compare links now resolve (`v26.9.29` was never tagged — its
+  compare anchor is the release-identity binding commit `6dd3e732`; the
+  `[v26.10.1]` compare is retargeted `v26.9.22...v26.10.1`). The stale
+  `[Unreleased]` note claiming `dcterms:hasVersion` lags the release is
+  removed — the `v26.10.1` crown closed that lag (see the `[v26.10.1]`
+  section).
 
 - Lock/crown admission court `scripts/lock_crown_court.py` (SELECT-only,
   authority NONE) with 35 Chicago cases in
@@ -30,6 +54,42 @@ they bring in.
   Every law is crown-stable (a lawful `crown-submodules.py --apply` bump stays
   admitted); 23/23 refusal mutants are killed. Benchmark receipt:
   `receipts/bench-lock-crown-court-20260926.json`.
+
+- `.github/workflows/release-crown-contracts.yml` (f3cc60f8, 2026-09-25): CI
+  consumer for the release-crown contract corpus, running on push to `main`
+  that touches tool/corpus/DoD paths plus `workflow_dispatch`, and gating on
+  the 44/49 admitted-green `contracts/release-crown/` contracts (the 5
+  EXCLUDED contracts still evaluate `REFUSED:*` standing-drift against
+  `docs/DEFINITION-OF-DONE.md` and await court re-adjudication).
+
+## [v26.10.1] - 2026-10-01
+
+Release identity follows the vYY.M.D convention (see the format note above).
+Every vendored producer is advanced to its remote default-branch head (seams
+pinned in `docs/jira/v26.10.1/RESOLUTIONS.md`; full per-vendor old→new SHA
+dossier: `docs/releases/v26.10.1-vendor-crown.md`).
+
+### Changed
+
+- Submodule crown (via `scripts/crown-submodules.py --apply`, gitlinks + lock):
+  all six vendored producers advanced to their remote default-branch heads:
+  - `vendor/autofde-lab` → 71de04a6 (origin `master` head)
+  - `vendor/beam4pm` → 7bad16ab (`v26.9.9-777-g7bad16ab`)
+  - beam4pm re-pinned to `c3017e42` (upstream fix on beam4pm main: nested `vendor/ggen-marketplace` gitlink raised to reachable `637b561c` — prior pin `c95d1088` dangling upstream, 'not our ref'; unblocks container builds)
+  - `vendor/ggen` → ff96f04e (`v26.9.28`)
+  - `vendor/ggen-marketplace` → bf9eccb3 (`v26.9.30-6-gbf9eccb34`)
+  - `vendor/ggen_igniter` → 0abed8a3 (`v26.9.15-378-g0abed8a`)
+  - `vendor/wasm4pm` → a7352d81 (`v26.9.30-5-ga7352d818`)
+- Lock pins updated in lockstep with the crown: `base_main_sha` →
+  `dc665a1e93573949040900faa65b46af3a3ea6d9`, `[ggen_marketplace].sha` /
+  `marketplace_sha` → `bf9eccb3420134d4850dd49a5cbbef7dc35f20e2`.
+- `[ggen].release`: ggen consumer-manufacture pinned to `v26.9.28`; tag
+  `v26.10.0` exists upstream without release assets (recorded failed edge).
+- `[container].tag`: set to `v26.10.1`. `[container]` stays `BLOCKED` with
+  `requires_republish` until the tag build publishes.
+- `ecosystem.ttl` `dcterms:hasVersion` crowned `"26.8.27"` → `"26.10.1"`:
+  the previously-recorded intentional lag (note under `[Unreleased]`)
+  closes with this crown.
 
 ## [v26.9.29] - 2026-09-29
 
@@ -431,8 +491,9 @@ real still needs one manual step (linking the GHCR package to this repository
 under "Manage Actions access," so `GITHUB_TOKEN` can push — confirmed no API
 exists for this for either user- or org-owned packages).
 
-[Unreleased]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.29...main
-[v26.9.29]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.25...v26.9.29
+[Unreleased]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.10.1...main
+[v26.10.1]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.22...v26.10.1
+[v26.9.29]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.25...6dd3e732
 [v26.9.25]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.22...v26.9.25
 [v26.9.22]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.17...v26.9.22
 [v26.9.17]: https://github.com/seanchatmangpt/ggen-ecosystem/compare/v26.9.10...v26.9.17

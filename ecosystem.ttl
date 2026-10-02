@@ -9,7 +9,7 @@ eco:ggen-ecosystem
     a dcat:Dataset, prov:Entity ;
     dcterms:title "ggen ecosystem composition graph" ;
     dcterms:identifier "seanchatmangpt/ggen-ecosystem" ;
-    dcterms:hasVersion "26.8.27" ;
+    dcterms:hasVersion "26.10.1" ;
     dcterms:description "Canonical governed composition, closure, qualification and transport graph for the ggen ecosystem." ;
     eco:owns eco:Composition, eco:Admission, eco:Closure, eco:Qualification, eco:Transport, eco:Standing ;
     eco:doesNotOwn eco:RepositorySourceIdentity, eco:AmbientActuation ;

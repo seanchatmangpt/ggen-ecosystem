@@ -1,0 +1,21 @@
+# Failed first invocation — ambient python3 lacks tomllib (Python 3.9.6)
+
+command: cd /Users/sac/ggen-ecosystem && python3 scripts/lock_crown_court.py --help
+exit: 1
+timestamp_utc: 2026-10-01T19:26:47Z (approx; immediately before the successful python3.11 run)
+
+stderr (complete):
+Traceback (most recent call last):
+  File "/Users/sac/ggen-ecosystem/scripts/lock_crown_court.py", line 47, in <module>
+    import tomllib
+ModuleNotFoundError: No module named 'tomllib'
+
+Meaning: the court requires Python 3.11+ (stdlib tomllib). Ambient `python3` on this
+host is 3.9.6. The successful baseline run used /usr/local/bin/python3.11 (3.11.6).
+Integration must invoke the court as `python3.11 scripts/lock_crown_court.py`.
+
+Interpreter census at baseline (2026-10-01T19:27Z):
+  python3   -> 3.9.6  (no tomllib — court import fails)
+  python3.11 -> /usr/local/bin/python3.11 (3.11.6)  [used for the baseline run]
+  python3.12 -> /usr/local/bin/python3.12 (3.12.2)
+  python3.13 -> /opt/homebrew/bin/python3.13 (3.13.11)

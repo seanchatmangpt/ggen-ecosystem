@@ -41,6 +41,16 @@ ancestry cannot be decided. Delegation to an agent is skipped for a demand that 
 same pass (`NOOP[DEMAND_RECOVERED]`). Closes are bounded by `max_actions_per_run`; the excess is
 `DEFERRED[ACTION_BUDGET_EXHAUSTED]`.
 
+## Environment hermeticity
+
+Governor git calls run under `hermetic_git_env()` (introduced in 2ae7969a): the environment is
+stripped of `GIT_LOCAL_ENV_VARS` — the `git rev-parse --local-env-vars` set, covering `GIT_DIR`,
+`GIT_WORK_TREE`, `GIT_INDEX_FILE` and siblings — so the repository resolves from `-C <path>` alone.
+An exported `GIT_DIR` in the caller's shell (Mode P / scratch-archive lanes) can therefore no longer
+redirect governor git calls into another repository. The hermeticity tests run in a child process
+with `GIT_DIR` pointed at a sentinel repo and require the sentinel's refs, HEAD, reflog and object
+counts to stay byte-identical.
+
 ## Falsifier
 
 - One `(workflow, head_sha, conclusion)` produces more than one fingerprint across 3 failing runs.

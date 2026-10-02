@@ -1,0 +1,21 @@
+{
+  "lane": "L9",
+  "milestone": "v26.10.1",
+  "receipt": "pre-bump crown dry-run attempt",
+  "command": "cd /Users/sac/ggen-ecosystem && python3 scripts/crown-submodules.py --help",
+  "exit_code": 0,
+  "timestamp_utc": "2026-10-01T19:27:16Z (approx; help captured before court run)",
+  "stdout_tail": "usage: crown-submodules.py [-h] [--apply] [--receipt RECEIPT]\n\noptional arguments:\n  -h, --help            show this help message and exit\n  --apply\n  --receipt RECEIPT",
+  "stderr_tail": "",
+  "interpretation": "REFUSED_NO_DRYRUN",
+  "finding": "No --dry-run / --check / --diff flag exists; the only flags are --apply and --receipt. Per the L9 dispatch contract: if NO dry-run form exists, do NOT run the script — gitlink mutation is coordinator-only at integration. The script was NOT executed beyond --help.",
+  "not_executed_beyond_help": true,
+  "source_read_evidence": {
+    "note": "Static read of scripts/crown-submodules.py main()/apply() (lines 128-149), recorded so the coordinator knows exactly what the two forms do. This read does not change the contract-prescribed refusal: no explicit dry-run flag exists.",
+    "bare_form_no_apply": "Runs plan() (git ls-remote --symref to every vendor remote + git ls-tree HEAD) — read-only for the repo — then WRITES a receipt JSON (default artifacts/autonomic-crown.json, i.e. inside the repo, outside L9's owned path) and prints the plan. Not side-effect-free; not run.",
+    "apply_form": "--apply additionally runs git submodule update --init --depth 1, git fetch --depth 1, git checkout --detach <latest> per changed vendor, rewrites every occurrence of each old pin SHA in ecosystem.lock.toml, refreshes base_main_sha/updated_at to now(), and refuses CROWN_BLOCKED[WORKFLOW_MUTATION_OUTSIDE_AUTHORITY] if .github/workflows shows any diff. Coordinator-only.",
+    "crown_targets_source": "apply() crowns each vendor to its REMOTE default-branch head (ls-remote), NOT to RESOLUTIONS.md targets. If remote heads have moved past the RESOLUTIONS targets, --apply would crown past them. Coordinator must verify plan output against docs/jira/v26.10.1/RESOLUTIONS.md crown targets before/after --apply."
+  },
+  "standing": "REFUSED_NO_DRYRUN",
+  "authority": "NONE"
+}
