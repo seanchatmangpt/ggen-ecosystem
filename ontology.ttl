@@ -22,12 +22,12 @@ ex:workflow
       description: Exact tag of the composed ggen-ecosystem container (ggen binary + marketplace packs)
       required: false
       type: string
-      default: v26.9.29
+      default: v26.10.1
     marketplace_sha:
       description: Exact ggen marketplace commit required by every pack (must match vendor/ggen-marketplace submodule pin)
       required: false
       type: string
-      default: 637b561cc6384fc9ac0e4282d048cc7624256258
+      default: bf9eccb3420134d4850dd49a5cbbef7dc35f20e2
     working_directory:
       description: Repository relative directory containing ggen.toml
       required: false
@@ -49,12 +49,12 @@ workflow_dispatch:
       description: Exact tag of the composed ggen-ecosystem container (ggen binary + marketplace packs)
       required: true
       type: string
-      default: v26.9.29
+      default: v26.10.1
     marketplace_sha:
       description: Exact ggen marketplace commit required by every pack (must match vendor/ggen-marketplace submodule pin)
       required: true
       type: string
-      default: 637b561cc6384fc9ac0e4282d048cc7624256258
+      default: bf9eccb3420134d4850dd49a5cbbef7dc35f20e2
     working_directory:
       description: Repository relative directory containing ggen.toml
       required: true

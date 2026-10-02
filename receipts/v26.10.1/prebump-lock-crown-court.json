@@ -1,0 +1,30 @@
+{
+  "lane": "L9",
+  "milestone": "v26.10.1",
+  "receipt": "pre-bump lock/crown admission court baseline",
+  "command": "cd /Users/sac/ggen-ecosystem && python3.11 scripts/lock_crown_court.py",
+  "command_note": "Invocation discovered from script header + argparse (--root default=repo root, --rev default=HEAD). Interpreter MUST be python3.11+: the court imports tomllib; ambient python3 is 3.9.6 and fails with ModuleNotFoundError (exit 1) — that failed attempt is recorded in prebump-court-python39-attempt.txt alongside this receipt.",
+  "exit_code": 0,
+  "timestamp_utc": "2026-10-01T19:28:47Z (start) / 2026-10-01T19:28:48Z (end)",
+  "subject": "19a2b1f1467dc7820ca0704e99507aa68e676259 (branch release/v26.10.1)",
+  "stdout_tail": "{\n  \"authority\": \"NONE\",\n  \"schema\": \"https://ggen.dev/receipts/lock-crown-court/v1\",\n  \"standing\": \"ALIVE\",\n  \"subject\": \"19a2b1f1467dc7820ca0704e99507aa68e676259\",\n  \"violations\": []\n}",
+  "stderr_tail": "",
+  "interpretation": "PASS",
+  "court_reader_semantics": {
+    "worktree_read": ["ecosystem.lock.toml", ".github/workflows/ggen-ecosystem-sync.yml", "ontology.ttl", "CHANGELOG.md", ".gitmodules"],
+    "rev_read": ["gitlinks (git ls-tree <subject>)", "commit times (base_main_sha, subject)"],
+    "source": "scripts/lock_crown_court.py load_inputs() lines 235-273"
+  },
+  "tree_state_at_run": {
+    "lock_sha256": "d6bc2edc1edab85fdadac3bcaa620549295d642e66ce31249682a166da16fe3c",
+    "lock_diff_vs_head": "empty (worktree lock byte-identical to HEAD:19a2b1f1 lock)",
+    "evidence": "sha256 captured at T0=19:25:56Z and re-verified at T1/T2 (19:32:54Z still unchanged); snapshot copied to /tmp/v26101-lane9/lock-at-T0.toml",
+    "coherence_argument": "The ALIVE/0-violations verdict itself proves workflow+ontology+CHANGELOG were still pre-bump (v26.9.29-coherent) at court time: any mid-bump state of those worktree files against the v26.9.29 lock would have raised WORKFLOW_CONTAINER_TAG / PROJECTION_PARITY / MARKETPLACE_DEFAULT_UNRECORDED / RELEASE_UNRECORDED violations."
+  },
+  "interleaving_observed": {
+    "note": "L1 (ecosystem.lock.toml) had NOT landed by 19:32:54Z — lock sha256 unchanged since T0, so this baseline is the true pre-bump court verdict. L4's edits (ontology.ttl + ggen-ecosystem-sync.yml defaults -> v26.10.1 / bf9eccb3420134d4850dd49a5cbbef7dc35f20e2) landed AFTER the court run (observed flipped between 19:29Z and 19:31Z); they were pre-bump at 19:28:47Z per the coherence argument above.",
+    "dirty_at_193254Z": [".github/workflows/ggen-ecosystem-sync.yml", "CHANGELOG.md", "README.md", "docs/CURRENT-RELEASE-STANDING.md", "docs/MACRO-GOVERNOR-DEMAND.md", "docs/TRANSPORT.md", "ecosystem.ttl", "ontology.ttl", "vendor/* (6 gitlinks, worktree checkout state)"]
+  },
+  "standing": "ALIVE",
+  "authority": "NONE (SELECT-only court; script docstring: never fetches, publishes, or mutates)"
+}
