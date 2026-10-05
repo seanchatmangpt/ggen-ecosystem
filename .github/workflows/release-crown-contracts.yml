@@ -29,7 +29,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
 
       - name: Full contract suite (evidence — non-gating)
         id: full
@@ -78,7 +78,7 @@ jobs:
 
       - name: Upload full-suite report
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: release-crown-contract-report
           path: release-crown-report.json
