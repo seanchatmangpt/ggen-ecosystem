@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sj: <https://ggen-igniter.dev/ontology/semantic-jira#> .
+@prefix eco: <urn:seanchatmangpt:ggen-ecosystem:v26.10.8:> .
+
+# Canonical sJira shape (fold into ggen_igniter priv/ggen/semantic-jira-pack,
+# prefix sj: <https://ggen-igniter.dev/ontology/semantic-jira#>).
+#
+# DISCLAIMER (evidence ceiling): this workgraph is a CANDIDATE planning graph
+# only. It is not a runtime, not a live Jira, not a receipt, and confers no DO
+# standing. Every sj:standing below is "CANDIDATE" unless it quotes a standing
+# value recorded in ecosystem.lock.toml (v3, base_main_sha dc665a1e, updated
+# 2026-10-01T20:47:35Z), in which case it records the lock's observation, not
+# a new admission. Submodule SHAs are exact gitlink positions of HEAD
+# 7e107f18c43b8cf2266da68f310e878cd37a8577 as recorded by `git ls-tree HEAD
+# vendor/` and mirrored in ecosystem.lock.toml [submodules]. Graph-local
+# documentation properties (eco:*) never shadow sj: properties.
+
+eco:Milestone a prov:Activity ;
+  dcterms:title "ggen-ecosystem composition-root campaign — v26.10.8" ;
+  sj:standing "CANDIDATE" ;
+  sj:authorityCeiling "OBSERVE|SELECT|CONSTRUCT|VERIFY" ;
+  sj:evidenceCeiling "Work graph only; no runtime execution, merge, release, or DO standing." ;
+  prov:wasDerivedFrom <https://github.com/seanchatmangpt/ggen-ecosystem/commit/7e107f18c43b8cf2266da68f310e878cd37a8577> .
+
+# --- Composition-root standing facts (ecosystem.lock.toml) -------------------
+
+eco:SJIRA-GGE-2601 a sj:WorkOrder ;
+  dcterms:identifier "SJIRA-GGE-2601" ;
+  dcterms:title "Re-verify composition-root standing in ecosystem.lock.toml" ;
+  sj:standing "CANDIDATE" ;
+  sj:repository "seanchatmangpt/ggen-ecosystem" ;
+  sj:authorityCeiling "CONSTRUCT" ;
+  sj:acceptance "Lock's recorded standing values re-read from disk and each re-confirmed or corrected with an observed execution receipt: [wasm4pm] standing=PARTIAL_ALIVE; [container] standing=ALIVE (tag v26.10.1, digest sha256:cf0612ae..., observed_success_run 36924410651 at 2026-10-01T21:16:44Z, head e4be6fee); [catalog] standing=PARTIAL_ALIVE (census 2026-08-28, 378 owned repositories, census_base_main_sha c1bb4b8a)." .
+
+eco:SJIRA-GGE-2602 a sj:WorkOrder ;
+  dcterms:identifier "SJIRA-GGE-2602" ;
+  dcterms:title "Reconcile submodule gitlink positions against lock [submodules]" ;
+  sj:standing "CANDIDATE" ;
+  sj:repository "seanchatmangpt/ggen-ecosystem" ;
+  sj:authorityCeiling "CONSTRUCT" ;
+  sj:acceptance "git ls-tree HEAD vendor/ equals ecosystem.lock.toml [submodules] byte-for-byte: vendor/ggen ff96f04e8c7b851e5cca53f3faf5ce1d5f43ce6e; vendor/ggen-marketplace bf9eccb3420134d4850dd49a5cbbef7dc35f20e2; vendor/autofde-lab 71de04a60db723764fab5afe042b42937b471e0e; vendor/ggen_igniter 0abed8a35db68c18bba6982b266dd7546c162d1c; vendor/beam4pm c3017e4283777927eb01b5049bfa8b07d4e6ac7b; vendor/wasm4pm a7352d818dbcaa15909833f13ac367dc5950a7a9. Any drift is a typed refusal with the observed-vs-locked SHA pair." .
+
+eco:SJIRA-GGE-2603 a sj:WorkOrder ;
+  dcterms:identifier "SJIRA-GGE-2603" ;
+  dcterms:title "Flag version-tag skew where matching_version_tag_observed = false" ;
+  sj:standing "CANDIDATE" ;
+  sj:repository "seanchatmangpt/ggen-ecosystem" ;
+  sj:authorityCeiling "CONSTRUCT" ;
+  sj:acceptance "Sections with matching_version_tag_observed=false ([ggen_igniter] version 26.9.30 vs latest_published_release v26.8.27; [beam4pm] version 26.9.30 with no published-release pin; [wasm4pm] version 26.9.30 vs v26.9.30 published at a different SHA a7352d81 vs 80d429f1) each carry a typed UNKNOWN standing note in the next lock refresh, never an inferred CONFORMANT." .
+
+# --- Capability-intake projections -------------------------------------------
+
+eco:SJIRA-GGE-2604 a sj:WorkOrder ;
+  dcterms:identifier "SJIRA-GGE-2604" ;
+  dcterms:title "Verify capability-intake projections are a deterministic function of the lock" ;
+  sj:standing "CANDIDATE" ;
+  eco:targetArtifact "generated/ projection under ggen.toml [ontology] ontology.ttl + [manufacturing] manifest" ;
+  sj:repository "seanchatmangpt/ggen-ecosystem" ;
+  sj:authorityCeiling "CONSTRUCT" ;
+  sj:acceptance "generated/ projections under ggen.toml ([manufacturing] manifest, workflow .github/workflows/ggen-ecosystem-sync.yml, bootstrap receipt receipts/bootstrap-ggen-ecosystem-sync.json) regenerate byte-identically from ontology.ttl + ecosystem.lock.toml at the pinned compiler vendor/ggen ff96f04e; any drift is a typed refusal, not a hand-edit to generated/." .
+
+eco:SJIRA-GGE-2605 a sj:WorkOrder ;
+  dcterms:identifier "SJIRA-GGE-2605" ;
+  dcterms:title "Keep pragprog_tps courts green on the pinned marketplace SHA" ;
+  sj:standing "CANDIDATE" ;
+  sj:repository "seanchatmangpt/ggen-ecosystem" ;
+  sj:authorityCeiling "CONSTRUCT" ;
+  sj:acceptance "packs/pragmatic-programmer-sparql-pack 0.2.1 active_courts=100 continue passing in automatic-andon mode against marketplace_sha bf9eccb3; strict_mode runs remain workflow_dispatch strict=true; receipts conform to https://ggen.dev/receipts/pragprog-tps/v1." .
