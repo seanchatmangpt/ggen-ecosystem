@@ -1,0 +1,20 @@
+{
+  "lock_head_sha": "dc665a1e93573949040900faa65b46af3a3ea6d9",
+  "path": ".lock-root",
+  "pins": {
+    "beam4pm/sha": "ded4133ed2ec7489b1fd3c679bdc26d0765c1fcd3560c03f7bdc39c5b342266f",
+    "container/digest": "16c1567de62d31170ec27e2032ddbd62cf44f8d79f6a204313e929dce64fb3aa",
+    "container/observed_success_head_sha": "8ced6b3795e52132f7844de812fd3bfb6ba4b6d6f94d51f8e5be8a3e1968ce73",
+    "ggen/commit_sha": "cc97003865c740168ac2480eb32c55aeff00fdc4ae1900fb568bb6e6ddf079e7",
+    "ggen_igniter/sha": "042d0d936642f7ea112c1a4ff1eb0dbd07e09f87efbdff1e9b0d5a7261a0b7b2",
+    "ggen_marketplace/sha": "c634c80970b2e30b28499a1ed1b104cab5b98b8eb14bde8f15df0583d41481b2",
+    "vendor/autofde-lab": "8685dee34fa7f7f5723048517a1c70e248d4292f1898ab5fd3269085fa43a3f3",
+    "vendor/beam4pm": "c1ee12337978180cc1669aaef7e235d2040ab0a629f81d00bf29be975427c590",
+    "vendor/ggen": "c97c944254f7b7e0b970b55bedc0194288cd5b8ba0dbce7f6fcfd97cdc016164",
+    "vendor/ggen-marketplace": "9b75e3883f1f4737752bd292f51a27b2ba1d777abf69695f7b89c49f9061335f",
+    "vendor/ggen_igniter": "473c2dac94f206edc7a52392ef82a37d0e73bdb54a94a70e4aa5d325770da2bd",
+    "vendor/wasm4pm": "5456b9b0d3d92e922117e1a2e3455fd93009324aa7e17742380b248c732866a4",
+    "wasm4pm/sha": "d5d65e6a95ef3e49ddae285ac62066bc5d6484e38b9c9ddc51e491922ec96388"
+  },
+  "root": "d041614e6a3bf53353349767f41445bc76c966c853a5950c6ce1226962531f2c"
+}

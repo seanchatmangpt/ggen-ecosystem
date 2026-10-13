@@ -35,6 +35,8 @@ jobs:
           done < <(find scripts tests -type f -name '*.sh' -print0)
       - name: Verify supply-chain evidence bundle court
         run: python3 tools/verify_supply_chain_bundle.py
+      - name: Enforce lock content root (C18 hermetic pins)
+        run: python3 scripts/lock_content_root.py --check
       - name: Refuse direct edits to generated sync projection
         shell: bash
         env:

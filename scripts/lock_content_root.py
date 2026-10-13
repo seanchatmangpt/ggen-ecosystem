@@ -10,8 +10,11 @@ Determinism: two runs are byte-identical regardless of key order in the TOML.
 
 Usage:
   python3 scripts/lock_content_root.py [--lock PATH] [--out PATH] [--head-sha SHA]
+  python3 scripts/lock_content_root.py --check [--root-file PATH]
 
 Output JSON: {"pins": {path: digest}, "root": ..., "lock_head_sha": ...}
+--check recomputes the root and compares against the committed .lock-root
+golden file; exit 1 naming the diverging pins on mismatch.
 """
 from __future__ import annotations
 
@@ -98,11 +101,21 @@ def compute_root(lock_path: Path = DEFAULT_LOCK, head_sha: str | None = None) ->
     }
 
 
+def _write(result: dict, out: Path | None) -> None:
+    text = json.dumps(result, indent=2, sort_keys=True) + "\n"
+    if out:
+        out.write_text(text)
+    else:
+        sys.stdout.write(text)
+
+
 def main(argv: list[str]) -> int:
     args = list(argv)
     lock_path = DEFAULT_LOCK
     out = None
     head_sha = None
+    check = False
+    root_file = Path(__file__).resolve().parents[1] / ".lock-root"
     it = iter(args)
     for a in it:
         if a == "--lock":
@@ -111,14 +124,38 @@ def main(argv: list[str]) -> int:
             out = Path(next(it))
         elif a == "--head-sha":
             head_sha = next(it)
+        elif a == "--check":
+            check = True
+        elif a == "--root-file":
+            root_file = Path(next(it))
         else:
             raise SystemExit(f"unknown argument {a!r}")
     result = compute_root(lock_path, head_sha)
-    text = json.dumps(result, indent=2, sort_keys=True) + "\n"
-    if out:
-        out.write_text(text)
-    else:
-        sys.stdout.write(text)
+    if not check:
+        _write(result, out)
+        return 0
+    if not root_file.exists():
+        print(f"REFUSED[LOCK_ROOT_MISSING]: {root_file} does not exist", file=sys.stderr)
+        return 1
+    expected = json.loads(root_file.read_text())
+    root_file_path = expected.get("path", ".lock-root")
+    drift = sorted(
+        p
+        for p in sorted(set(result["pins"]) | set(expected.get("pins", {})))
+        if result["pins"].get(p) != expected.get("pins", {}).get(p)
+    )
+    if expected.get("root") != result["root"] or drift:
+        print(f"REFUSED[LOCK_ROOT_DIVERGED]: root {root_file_path}", file=sys.stderr)
+        print(f"  expected root: {expected.get('root')}", file=sys.stderr)
+        print(f"  observed root: {result['root']}", file=sys.stderr)
+        for p in drift:
+            print(
+                f"  pin {p}: expected {expected.get('pins', {}).get(p)} "
+                f"observed {result['pins'].get(p)}",
+                file=sys.stderr,
+            )
+        return 1
+    print(f"ALIVE: lock content root matches {root_file_path} ({result['root']})")
     return 0
 
 
