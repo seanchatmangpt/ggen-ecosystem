@@ -16,7 +16,24 @@ eco:ggen-ecosystem
     eco:defaultProfile eco:cloud-session ;
     eco:maximalProfile eco:everything ;
     eco:manufacturedBy eco:ggen ;
-    eco:knowledgeSource eco:ggen-marketplace .
+    eco:knowledgeSource eco:ggen-marketplace, eco:affidavit, eco:graphlaw, eco:insa, eco:mfact, eco:castle .
+
+# 2026-10-13 wave: cross-repo capital surfaces. Pack-level facts are recorded as
+# annotations on the owning repo's existing node (repo granularity is the only
+# granularity this ontology models).
+eco:ggen-marketplace
+    dcterms:description "Canonical corpus of reusable ggen packs; houses packs/refusal-vocabulary-pack (semantic refusal vocabulary crosswalk) and packs/insa-law-pack (eight-vow insa law pack)." ;
+    skos:note "packs/refusal-vocabulary-pack and packs/insa-law-pack are consumed by differential-court test seams in affidavit (strata_refusal_golden_lifecycle, strata_refusal_seam), graphlaw (strata_gate_differential, insa_chain_differential, insa_law_order fixtures) and insa (eight_vow_rdf_differential)." .
+eco:affidavit
+    dcterms:description "Affidavit receipt plane; differential-court test seams consume ggen-marketplace refusal-vocabulary fixtures." .
+eco:graphlaw
+    dcterms:description "Graphlaw WASM kernel plane; strata/insa differential-court seams consume ggen-marketplace fixtures." .
+eco:insa
+    dcterms:description "Insa law plane; eight_vow_rdf_differential court consumes ggen-marketplace insa-law-pack fixtures." .
+eco:mfact
+    dcterms:description "Mfact formal plane; procint Petri-net witnesses (ProcInt.lean, AxiomAudit.lean, StrataStore.lean) under the eco:Closure evidence ceiling." .
+eco:castle
+    dcterms:description "Castle evidence plane; QMe/castle-board evidence surfaces (docs/qme-1-reference.md, WBPR_CASTLE_BOARD) over castle-ggen-rdf." .
 
 eco:Composition a skos:Concept ; skos:prefLabel "composition" .
 eco:Admission a skos:Concept ; skos:prefLabel "admission" .
