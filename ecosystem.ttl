@@ -4,6 +4,9 @@
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+eco:knowledgeSource a rdf:Property ; skos:prefLabel "knowledge source" .
 
 eco:ggen-ecosystem
     a dcat:Dataset, prov:Entity ;
