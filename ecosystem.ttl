@@ -16,7 +16,7 @@ eco:ggen-ecosystem
     eco:defaultProfile eco:cloud-session ;
     eco:maximalProfile eco:everything ;
     eco:manufacturedBy eco:ggen ;
-    eco:knowledgeSource eco:ggen-marketplace, eco:affidavit, eco:graphlaw, eco:insa, eco:mfact, eco:castle .
+    eco:knowledgeSource eco:ggen-marketplace, eco:affidavit, eco:graphlaw, eco:insa, eco:mfact, eco:castle, eco:unibit .
 
 # 2026-10-13 wave: cross-repo capital surfaces. Pack-level facts are recorded as
 # annotations on the owning repo's existing node (repo granularity is the only
@@ -34,6 +34,8 @@ eco:mfact
     dcterms:description "Mfact formal plane; procint Petri-net witnesses (ProcInt.lean, AxiomAudit.lean, StrataStore.lean) under the eco:Closure evidence ceiling." .
 eco:castle
     dcterms:description "Castle evidence plane; QMe/castle-board evidence surfaces (docs/qme-1-reference.md, WBPR_CASTLE_BOARD) over castle-ggen-rdf." .
+eco:unibit
+    dcterms:description "Unibit kernel plane; kernel_projection_drift court (crates/unibit-kernel/tests) consumes the strata-ledger-pack kernel_laws.rs projection as its declared provenance source; two kernel defects witnessed and fixed forward from that seam (bitfenwick idx=1 chain, consume-vs-OR semantics documented)." .
 
 eco:Composition a skos:Concept ; skos:prefLabel "composition" .
 eco:Admission a skos:Concept ; skos:prefLabel "admission" .
