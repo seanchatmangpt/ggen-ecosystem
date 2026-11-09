@@ -32,7 +32,7 @@ jobs:
           python3 tools/chicago_consumer_matrix.py --ggen "$RUNNER_TEMP/ggen" --all --json | tee "$RUNNER_TEMP/chicago-consumer-receipt.json"
       - name: Upload execution receipt
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: chicago-consumer-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/chicago-consumer-receipt.json
