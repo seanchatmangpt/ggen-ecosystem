@@ -661,13 +661,43 @@ def write_receipt(path: Path, policy_path: Path, observations: list[Observation]
         f"{hashlib.sha256(text.encode()).hexdigest()}  {path.name}\n")
 
 
+BOM_REPO = re.compile(r"^fleet:\S+\s+a\s+fleet:Repo\b[^\n]*\n\s+rdfs:label\s+\"([^\"]*)\"", re.M)
+
+
+def bom_dry_run(policy_path: Path, bom: Path) -> int:
+    """Offline diff of managed repositories ('-' not in BOM) vs BOM repos ('+' not managed).
+
+    Matches on the repository basename. Reads the policy and BOM only: constructs no GitHub
+    client, makes no request, writes no receipt. Output is deterministic (no timestamps).
+    """
+    policy = load_policy(policy_path)
+    managed = {r.full_name.split("/", 1)[-1]: r.full_name for r in policy.managed}
+    fleet = set(BOM_REPO.findall(bom.read_text()))
+    print(f"# governor dry-run against {bom.name}: managed={len(managed)} bom_repos={len(fleet)}")
+    for name in sorted(set(managed) - fleet):
+        print(f"- {managed[name]}")
+    for name in sorted(fleet - set(managed)):
+        print(f"+ {name}")
+    print(f"GOVERNOR_BOM_DRYRUN_OK only_managed={len(set(managed) - fleet)} only_bom={len(fleet - set(managed))}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--policy", type=Path, default=Path("macro/governor.toml"))
     ap.add_argument("--receipt", type=Path, default=Path("macro/receipt.json"))
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--repo", action="append", default=[])
+    ap.add_argument("--bom", type=Path, help="fleet-bom.ttl to diff managed repositories against")
+    ap.add_argument("--dry-run", action="store_true", help="with --bom: print BOM diff; no network, no writes")
     args = ap.parse_args(argv)
+
+    if args.bom and not args.apply:
+        args.dry_run = True  # BOM-driven runs default to offline dry-run; actuation needs --apply
+    if args.dry_run:
+        if args.apply or not args.bom:
+            raise SystemExit("REFUSED[DRY_RUN_REQUIRES_BOM_AND_EXCLUDES_APPLY]")
+        return bom_dry_run(args.policy, args.bom)
 
     started, policy = now(), load_policy(args.policy)
     if args.repo:

@@ -121,11 +121,45 @@ def apply(doc: dict) -> None:
         raise SystemExit(f"CROWN_BLOCKED[WORKFLOW_MUTATION_OUTSIDE_AUTHORITY]:{workflow_diff}")
 
 
+BOM_REPO = re.compile(r"^fleet:\S+\s+a\s+fleet:Repo\b[^\n]*\n\s+rdfs:label\s+\"([^\"]*)\"", re.M)
+
+
+def bom_repos(path: Path) -> set[str]:
+    """Repo labels declared as fleet:Repo nodes in a fleet BOM (pure read, no network)."""
+    return set(BOM_REPO.findall(path.read_text()))
+
+
+def dry_run_diff(bom: Path) -> int:
+    """Offline diff: declared submodules ('-' = not in BOM) vs BOM repos ('+' = not a submodule).
+
+    Reads .gitmodules and the BOM only; runs no git command, imports no network client,
+    writes nothing.
+    """
+    declared = {Path(s["path"]).name: s["path"] for s in submodules()}
+    fleet = bom_repos(bom)
+    print(f"# crown dry-run against {bom.name}: submodules={len(declared)} bom_repos={len(fleet)}")
+    for name in sorted(set(declared) - fleet):
+        print(f"- {declared[name]}")
+    for name in sorted(fleet - set(declared)):
+        print(f"+ {name}")
+    print(f"CROWN_BOM_DRYRUN_OK only_submodule={len(set(declared) - fleet)} only_bom={len(fleet - set(declared))}")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--receipt", default="artifacts/autonomic-crown.json")
+    ap.add_argument("--bom", type=Path, help="fleet-bom.ttl to diff declared submodules against")
+    ap.add_argument("--dry-run", action="store_true", help="with --bom: print BOM diff, no network, no writes")
     args = ap.parse_args()
+
+    if args.bom and not args.apply:
+        args.dry_run = True  # BOM-driven runs default to offline dry-run; actuation needs --apply
+    if args.dry_run:
+        if args.apply or not args.bom:
+            raise SystemExit("REFUSED[DRY_RUN_REQUIRES_BOM_AND_EXCLUDES_APPLY]")
+        return dry_run_diff(args.bom)
 
     doc = plan()
     if args.apply:
